@@ -3,6 +3,8 @@ package co.edu.unicauca.appterapiademencia.loguin;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -34,9 +36,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.edu.unicauca.appterapiademencia.R;
-
-
-
+import co.edu.unicauca.appterapiademencia.principal.PrincipalActivity;
 
 
 public class LoginActivity extends AppCompatActivity  implements LoginView  {
@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity  implements LoginView  {
     @BindView(R.id.txt_username) EditText edt_username;
     @BindView(R.id.txt_password) EditText edt_password;
     @BindView(R.id.container_SingIn) LinearLayout container;
+    @BindView(R.id.txt_error) TextView txt_error;
     private LoginPresenter loginPresenter;
 
     @Override
@@ -80,12 +81,13 @@ public class LoginActivity extends AppCompatActivity  implements LoginView  {
 
     @Override
     public void handleSingIn() {
-
+        loginPresenter.validateLogin(edt_username.getText().toString(),edt_password.getText().toString());
     }
 
     @Override
     public void navigateToMainScreen() {
 
+        startActivity(new Intent(this, PrincipalActivity.class));
     }
 
     @Override
@@ -95,6 +97,11 @@ public class LoginActivity extends AppCompatActivity  implements LoginView  {
 
     @Override
     public void loginError(String error) {
+        edt_password.setText("");
+        String msgErr = getResources().getString(R.string.error_loguin);
+        txt_error.setEnabled(true);
+        txt_error.setText(msgErr);
+
 
     }
 

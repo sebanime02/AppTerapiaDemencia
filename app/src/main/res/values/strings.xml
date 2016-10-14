@@ -21,4 +21,6 @@
     <string name="hint_username">Nombre de Usuario</string>
     <string name="hint_password">Contraseña</string>
     <string name="btn_entrar">Entrar</string>
+    <string name="error_loguin">Su usuario y contrasena no son correctos</string>
+    <string name="btn_irRegistro">Regístrate como supervisor</string>
 </resources>
