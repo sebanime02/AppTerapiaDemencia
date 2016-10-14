@@ -2,4 +2,14 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--LOGUIN 1 LAYOUT-->
+    <dimen name="tamano_Titulo_aplicacion">30sp</dimen>
+    <dimen name="margen_imagen_botones">50dp</dimen>
+    <dimen name="margen_entre_elementos_loguin">20dp</dimen>
+    <dimen name="ancho_boton_pequeño">100dp</dimen>
+    <dimen name="ancho_imagen_loguin">300dp</dimen>
+    <dimen name="alto_imagen_loguin">200dp</dimen>
+    <dimen name="padding_imagen_loguin">20dp</dimen>
+    <dimen name="prueba">-80px</dimen>
 </resources>

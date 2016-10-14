@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="co.edu.unicauca.appterapiademencia.loguin.LoginActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+        <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Titulo_aplicacion"
+                android:textSize="@dimen/tamano_Titulo_aplicacion"
+                android:textAlignment="center"
+                android:textStyle="bold"
+
+                />
+            <ImageView
+                android:id="@+id/img_loguin1"
+
+
+                android:layout_width="@dimen/ancho_imagen_loguin"
+                android:layout_height="@dimen/alto_imagen_loguin"
+
+                android:src="@drawable/logologuin"
+                />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_soysupervisor"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_soysupervisor"
+
+                    />
+
+                 <Button
+                android:id="@+id/btn_soycuidador"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/btn_soycuidador"
+                />
+
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/btn_salir"
+                android:layout_width="@dimen/ancho_boton_pequeño"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
+                android:text="@string/btn_salir"
+
+                />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
