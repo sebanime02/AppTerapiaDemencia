@@ -15,6 +15,8 @@ public interface LoginView {
     void loginError(String error);
     void newUserError(String Error);
     void newUserSucess();
+    void navigateToLogin();
+    void navigateToRegister();
 
 
 }

@@ -23,4 +23,7 @@
     <string name="btn_entrar">Entrar</string>
     <string name="error_loguin">Su usuario y contrasena no son correctos</string>
     <string name="btn_irRegistro">Regístrate como supervisor</string>
+    <string name="dialog_succes_title">Te has registrado!</string>
+    <string name="dialog_succes_content">Se ha registrado correctamente, ingrese de nuevo sus datos</string>
+    <string name="dialog_succes_agree">Entiendo</string>
 </resources>

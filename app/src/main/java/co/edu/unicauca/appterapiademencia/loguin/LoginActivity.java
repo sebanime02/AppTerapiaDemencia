@@ -29,6 +29,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,16 +45,28 @@ import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalActivity;
 
 
-public class LoginActivity extends AppCompatActivity  implements LoginView  {
+public class LoginActivity extends AppCompatActivity implements LoginView {
 
-    @BindView(R.id.btn_salir) Button btn_salir;
-    @BindView(R.id.btn_soycuidador) Button btn_cuidador;
-    @BindView(R.id.btn_soysupervisor) Button btn_supervisor;
-    @BindView(R.id.txt_username) EditText edt_username;
-    @BindView(R.id.txt_password) EditText edt_password;
-    @BindView(R.id.container_SingIn) LinearLayout container;
-    @BindView(R.id.txt_error) TextView txt_error;
+    @BindView(R.id.btn_salir)
+    Button btn_salir;
+    @BindView(R.id.btn_soycuidador)
+    Button btn_cuidador;
+    @BindView(R.id.btn_soysupervisor)
+    Button btn_supervisor;
+    @BindView(R.id.txt_username)
+    EditText edt_username;
+    @BindView(R.id.txt_password)
+    EditText edt_password;
+    @BindView(R.id.container_SingIn)
+    LinearLayout container;
+    @BindView(R.id.txt_error)
+    TextView txt_error;
     private LoginPresenter loginPresenter;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,22 +74,26 @@ public class LoginActivity extends AppCompatActivity  implements LoginView  {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+
     }
 
-   @OnClick(R.id.btn_soysupervisor)
 
-   private void setInputs(){
-       setInputs(true);
-   }
+
+
+    @OnClick(R.id.btn_soysupervisor)
+
+    private void setInputs() {
+        setInputs(true);
+    }
 
     @Override
-    public void enableInputs() {
+    public void enableInputs() {setInputs(true);
 
     }
 
     @Override
     public void disableInputs() {
-     setInputs(false);
+        setInputs(false);
     }
 
     @Override
@@ -81,7 +103,7 @@ public class LoginActivity extends AppCompatActivity  implements LoginView  {
 
     @Override
     public void handleSingIn() {
-        loginPresenter.validateLogin(edt_username.getText().toString(),edt_password.getText().toString());
+        loginPresenter.validateLogin(edt_username.getText().toString(), edt_password.getText().toString());
     }
 
     @Override
@@ -112,18 +134,31 @@ public class LoginActivity extends AppCompatActivity  implements LoginView  {
 
     @Override
     public void newUserSucess() {
+        //Alerta diciendo que se registro
+        new MaterialDialog.Builder(this).title(R.string.dialog_succes_title).content(R.string.dialog_succes_content).positiveText(R.string.dialog_succes_agree).show();
+
 
     }
 
-    private void setInputs(boolean enabled)
-    {
-        if(enabled) {
+    @Override
+    public void navigateToLogin() {
+        startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    @Override
+    public void navigateToRegister() {
+        startActivity(new Intent(this, RegisterActivity.class));
+    }
+
+    private void setInputs(boolean enabled) {
+        if (enabled) {
             container.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             container.setVisibility(View.GONE);
         }
     }
+
+
 
 }
 
