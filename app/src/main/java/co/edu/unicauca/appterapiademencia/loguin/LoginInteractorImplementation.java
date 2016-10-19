@@ -9,6 +9,11 @@ import android.util.Log;
 public class LoginInteractorImplementation implements  LoginInteractor {
     private LoginRepository loginRepository;
 
+    public LoginInteractorImplementation(){
+        loginRepository = new LoginRepositoryImplementation();
+    }
+
+
     @Override
     public void checkSession() {
         loginRepository.checkSession();
