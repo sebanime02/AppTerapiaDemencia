@@ -1,0 +1,35 @@
+package co.edu.unicauca.appterapiademencia.lib;
+
+/**
+ * Created by SEBAS on 18/10/2016.
+ */
+
+public class GreenRobotEventBus implements EventBus {
+    de.greenrobot.event.EventBus eventBus;
+
+    private static class SingletonHolder{
+        private static final GreenRobotEventBus INSTANCE = new GreenRobotEventBus();
+
+    }
+    public static GreenRobotEventBus getInstance(){
+        return SingletonHolder.INSTANCE;
+    }
+    public GreenRobotEventBus(){
+        this.eventBus = de.greenrobot.event.EventBus.getDefault();
+    }
+
+    @Override
+    public void register(Object suscriber) {
+
+    }
+
+    @Override
+    public void unregister(Object suscriber) {
+
+    }
+
+    @Override
+    public void post(Object event) {
+
+    }
+}
