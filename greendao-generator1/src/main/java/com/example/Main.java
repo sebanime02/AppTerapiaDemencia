@@ -1,24 +1,14 @@
-package co.edu.unicauca.appterapiademencia.domain;
+package com.example;
 
+import org.greenrobot.greendao.generator.DaoGenerator;
 import org.greenrobot.greendao.generator.Entity;
-import org.greenrobot.greendao.generator.Property;
 import org.greenrobot.greendao.generator.Schema;
+import org.greenrobot.greendao.generator.Property;
+public class Main {
+    public static void main(String[] args)throws Exception {
+        Schema schema = new Schema(1, "co.edu.unicauca.appterapiademencia.domain");
 
-/**
- * Created by ENF on 19/10/2016.
- */
 
-public class DaoGenerator {
-    public static void main(String[] args)throws Exception{
-        Schema schema = new Schema(1,"co.edu.unicauca.appterapiademencia.domain");
-        schema.setDefaultJavaPackageDao("co.edu.unicauca.appterapiademencia.domain.dao");
-       /* addUserTable(schema);
-        addPatientTable(schema);
-        addNoteTable(schema);
-        addTipTable(schema);
-        addHistorialTable(schema);
-        addCognitiverecommendationTable(schema);
-        addExercisecognitiveTable(schema);*/
 
         //USER TABLE
         Entity user = schema.addEntity("User");
@@ -121,16 +111,9 @@ public class DaoGenerator {
         exercise.addToMany(recommendation,exerciseIdhistoric);
 
 
-
-
-
-
-
+        DaoGenerator dao = new DaoGenerator();
+        dao.generateAll(schema,"./app/src/main/java");
 
 
     }
-
-
-
-
-}
+    }

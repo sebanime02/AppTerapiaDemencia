@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <!-- REGISTER LAYOUT-->
+    <dimen name="alto_banner_register">200dp</dimen>
+    <dimen name="password_text_size">16sp</dimen>
+
+
+</resources>

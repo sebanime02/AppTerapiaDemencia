@@ -5,7 +5,7 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
 
-    tools:context="co.edu.unicauca.appterapiademencia.loguin.LoginActivity">
+    tools:context="co.edu.unicauca.appterapiademencia.login.LoginActivity">
 
     <ScrollView
     android:layout_width="match_parent"
@@ -111,12 +111,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
                         android:text="@string/btn_entrar"
-                        android:background="@color/colorPrimary"
+                        android:background="@color/primary_color"
                         android:textColor="@color/white"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         />
-                     <TextView
+
+                    <TextView
                          android:id="@+id/txt_error"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
@@ -136,7 +137,7 @@
                 android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
                 android:text="@string/btn_irRegistro"
                 android:background="@color/white"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/primary_color"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:textAllCaps="false"

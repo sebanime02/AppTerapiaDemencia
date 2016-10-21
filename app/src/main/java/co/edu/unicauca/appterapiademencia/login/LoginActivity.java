@@ -1,42 +1,13 @@
-package co.edu.unicauca.appterapiademencia.loguin;
+package co.edu.unicauca.appterapiademencia.login;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
-import android.view.KeyEvent;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         loginPresenter = new LoginPresenterImplementation(this);
@@ -101,10 +73,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         setInputs(false);
     }
 
-    @Override
-    public void handleSingUp() {
-
-    }
 
     @Override
     public void handleSingIn() {
@@ -132,23 +100,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     }
 
-    @Override
-    public void newUserError(String Error) {
 
-    }
-
-    @Override
-    public void newUserSucess() {
-        //Alerta diciendo que se registro
-        new MaterialDialog.Builder(this).title(R.string.dialog_succes_title).content(R.string.dialog_succes_content).positiveText(R.string.dialog_succes_agree).show();
-
-
-    }
-
-    @Override
-    public void navigateToLogin() {
-        startActivity(new Intent(this, LoginActivity.class));
-    }
 
     @Override
     public void navigateToRegister() {
@@ -158,6 +110,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     private void setInputs(boolean enabled) {
         if (enabled) {
             container.setVisibility(View.VISIBLE);
+            btn_supervisor.setBackgroundColor(getResources().getColor(R.color.accent_color));
         } else {
             container.setVisibility(View.GONE);
         }

@@ -20,16 +20,18 @@ public class GreenRobotEventBus implements EventBus {
 
     @Override
     public void register(Object suscriber) {
+        eventBus.register(suscriber);
 
     }
 
     @Override
     public void unregister(Object suscriber) {
-
+        eventBus.unregister(suscriber);
     }
 
     @Override
     public void post(Object event) {
+        eventBus.post(event);
 
     }
 }

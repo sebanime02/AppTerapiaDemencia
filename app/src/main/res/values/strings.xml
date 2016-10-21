@@ -13,17 +13,28 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <!-- LOGUIN 1 LAYOUT-->
+    <!-- LOGIN 1 LAYOUT-->
     <string name="Titulo_aplicacion">Aplicación Para Terapia Demencia</string>
-    <string name="btn_soycuidador">Soy Cuidador</string>
-    <string name="btn_soysupervisor">Soy Supervisor</string>
+    <string name="btn_soycuidador">Soy Cuidador(Acceso limitado)</string>
+    <string name="btn_soysupervisor">Superviso Cuidadores</string>
     <string name="btn_salir">Salir</string>
     <string name="hint_username">Nombre de Usuario</string>
     <string name="hint_password">Contraseña</string>
     <string name="btn_entrar">Entrar</string>
     <string name="error_loguin">Su usuario y contrasena no son correctos</string>
-    <string name="btn_irRegistro">Regístrate como supervisor</string>
+    <string name="btn_irRegistro">O Regístrate como supervisor</string>
     <string name="dialog_succes_title">Te has registrado!</string>
     <string name="dialog_succes_content">Se ha registrado correctamente, ingrese de nuevo sus datos</string>
     <string name="dialog_succes_agree">Entiendo</string>
+    <!--REGISTER -->
+
+    <string name="title_register">Registro de Supervisor</string>
+    <string name="btn_save">Guardar</string>
+    <string name="txt_register_instructions">Por favor, Complete los siguientes datos :</string>
+
+    <string name="hint_username_supervisor">Nombre de usuario corto que te identifique </string>
+    <string name="hint_complename_supervisor">Primer Nombre y Apellido</string>
+    <string name="hint_password_supervisor">Tu contraseña</string>
+    <string name="hint_password_supervisor_aprobar">Contraseña de un supervisor anteriormente registrado</string>
+    <string name="back_login">Regresar al inicio de sesión</string>
 </resources>

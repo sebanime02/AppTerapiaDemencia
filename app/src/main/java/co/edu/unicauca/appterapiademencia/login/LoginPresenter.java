@@ -1,4 +1,4 @@
-package co.edu.unicauca.appterapiademencia.loguin;
+package co.edu.unicauca.appterapiademencia.login;
 
 import co.edu.unicauca.appterapiademencia.events.LoginEvent;
 

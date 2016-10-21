@@ -1,6 +1,4 @@
-package co.edu.unicauca.appterapiademencia.loguin;
-
-import android.util.Log;
+package co.edu.unicauca.appterapiademencia.login;
 
 /**
  * Created by ENF on 14/10/2016.
