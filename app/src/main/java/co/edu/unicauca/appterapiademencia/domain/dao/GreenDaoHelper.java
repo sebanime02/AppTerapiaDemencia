@@ -12,7 +12,7 @@ import co.edu.unicauca.appterapiademencia.SetupActivity;
  */
 
 public class GreenDaoHelper {
-    private static GreenDaoHelper INSTANCE;
+
     private static DaoSession daoSession;
     private static final String DB_NAME="terapia-db";
     private static Context context;
@@ -20,16 +20,17 @@ public class GreenDaoHelper {
 
     private static class SingletonHolder{
 
-        private static final GreenDaoHelper INSTANCE = new GreenDaoHelper(SetupActivity.getContext());
+        private static final GreenDaoHelper INSTANCE = new GreenDaoHelper();
 
     }
     public static GreenDaoHelper getInstance(){
             return SingletonHolder.INSTANCE;
     }
 
-    private GreenDaoHelper(Context context){
+    private GreenDaoHelper(){
 
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, DB_NAME);
+
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(SetupActivity.getContext(), DB_NAME);
         Database db = helper.getWritableDb();
         this.daoSession = new DaoMaster(db).newSession();
     }

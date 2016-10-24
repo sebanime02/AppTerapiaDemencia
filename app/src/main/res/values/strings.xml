@@ -15,7 +15,7 @@
     </string>
     <!-- LOGIN 1 LAYOUT-->
     <string name="Titulo_aplicacion">Aplicación Para Terapia Demencia</string>
-    <string name="btn_soycuidador">Soy Cuidador(Acceso limitado)</string>
+    <string name="btn_soycuidador">Soy Cuidador (Acceso Limitado)</string>
     <string name="btn_soysupervisor">Superviso Cuidadores</string>
     <string name="btn_salir">Salir</string>
     <string name="hint_username">Nombre de Usuario</string>
@@ -37,4 +37,9 @@
     <string name="hint_password_supervisor">Tu contraseña</string>
     <string name="hint_password_supervisor_aprobar">Contraseña de un supervisor anteriormente registrado</string>
     <string name="back_login">Regresar al inicio de sesión</string>
+    <string name="dialog_register_error_title">Nombre de Usuario en uso</string>
+    <string name="dialog_register_error_content">Escriba un Nuevo Nombre de Usuario</string>
+    <string name="dialog_register_error_agree">Entiendo</string>
+    <string name="dialog_register_emptyinput_title">Faltan campos</string>
+    <string name="dialog_register_emptyinput_content">Debe completar todos los campos</string>
 </resources>

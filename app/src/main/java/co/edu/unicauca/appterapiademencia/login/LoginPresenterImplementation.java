@@ -15,7 +15,9 @@ public class LoginPresenterImplementation implements LoginPresenter {
     private LoginView loginView;
     private RegisterView registerView;
     private LoginInteractor loginInteractor;
-    private SetupActivity setup;
+    private Boolean inputState;
+
+
 
 
     public LoginPresenterImplementation(LoginView loginView){
@@ -23,11 +25,7 @@ public class LoginPresenterImplementation implements LoginPresenter {
         this.loginInteractor = new LoginInteractorImplementation();
         this.eventBus = GreenRobotEventBus.getInstance();
     }
-    public LoginPresenterImplementation(RegisterView registerView){
-        this.registerView = registerView;
-        this.loginInteractor = new LoginInteractorImplementation();
-        this.eventBus = GreenRobotEventBus.getInstance();
-    }
+
 
     @Override
     public void OnCreate(){
@@ -37,17 +35,12 @@ public class LoginPresenterImplementation implements LoginPresenter {
     }
     @Override
     public void OnDestroy() {
-        if(setup.autenticationMode()==false){
         loginView = null;
-
-        }
-        else{ //true
-            registerView=null;
-        }
 
         eventBus.unregister(this);
 
     }
+    //Este checkforauthenticated user es bueno implementarlo con shared preference
 
     @Override
     public void checkForAuthenticatedUser() {
@@ -66,13 +59,7 @@ public class LoginPresenterImplementation implements LoginPresenter {
 
     }
 
-    @Override
-    public void registerNewUser(String username, String password) {
-        if(loginView != null){
-            loginView.navigateToMainScreen();
-        }
-        loginInteractor.doSingUp(username,password);
-    }
+
 
 
     @Override
@@ -84,16 +71,26 @@ public class LoginPresenterImplementation implements LoginPresenter {
             case LoginEvent.onSingInError:
                 onSignInError(event.getErrorMessage());
                 break;
-            case LoginEvent.onSingUpSuccess:
-                onSignUpSucces();
-                break;
-            case LoginEvent.onSingUpError:
-                onSignUpError(event.getErrorMessage());
-                break;
+
             case LoginEvent.onFailedToRecoverSession:
                 onFailedToRecoverSession();
                 break;
         }
+    }
+
+    @Override
+    public void manageInputs() {
+
+        if(inputState=false || inputState==null){
+            inputState=true;
+            loginView.enableInputs();
+        }
+        else{
+            inputState=false;
+            loginView.disableInputs();
+        }
+
+
     }
 
     private void onFailedToRecoverSession(){
@@ -105,13 +102,7 @@ public class LoginPresenterImplementation implements LoginPresenter {
         }
 
     }
-    private void onSignUpSucces() {
-        if(registerView != null){
-            registerView.newUserSucess();
-            registerView.navigateToLogin();
-        }
 
-    }
     private void onSignInError(String error) {
         if(loginView != null){
             loginView.loginError(error);
@@ -120,10 +111,5 @@ public class LoginPresenterImplementation implements LoginPresenter {
 
     }
 
-    private void onSignUpError(String error){
-        if(loginView != null){
-            loginView.loginError(error);
-        }
 
-    }
 }

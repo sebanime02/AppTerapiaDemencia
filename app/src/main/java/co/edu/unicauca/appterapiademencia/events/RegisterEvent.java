@@ -1,19 +1,20 @@
 package co.edu.unicauca.appterapiademencia.events;
 
+import android.app.Application;
+import android.content.res.Resources;
+
 /**
- * Created by SEBAS on 18/10/2016.
+ * Created by SEBAS on 22/10/2016.
  */
 
-public class LoginEvent {
-    public final static int onSingInError = 0;
+public class RegisterEvent {
+    public final static int onSingUpError = 0;
+    public final static int onSingUpSuccess = 1;
+    public final static int onSingUpErrorEmptyInputs = 2;
 
-    public final static int onSingInSuccess =  1;
-
-    public final static int onFailedToRecoverSession = 2;
 
     private int eventType;
     private String errorMessage;
-
 
     public int getEventType() {
         return eventType;

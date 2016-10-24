@@ -3,6 +3,14 @@ package co.edu.unicauca.appterapiademencia;
 import android.app.Application;
 import android.content.Context;
 
+import org.greenrobot.greendao.database.Database;
+
+import co.edu.unicauca.appterapiademencia.domain.dao.DaoMaster;
+import co.edu.unicauca.appterapiademencia.domain.dao.DaoSession;
+import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
+
+import static org.greenrobot.greendao.test.DbTest.DB_NAME;
+
 /**
  * Created by ENF on 21/10/2016.
  */
@@ -10,6 +18,8 @@ import android.content.Context;
 public class SetupActivity extends Application {
     private static Context context;
     private static boolean autenticationMode;
+    private static final String DB_NAME="terapia-db";
+    private static DaoSession daoSession;
 
 
 
@@ -18,18 +28,21 @@ public class SetupActivity extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
-        autenticationMode = false;//inicializa en inicio de sesion
+        setupGreenDaoHelper(context);
+
+
+
+
+
 
 
     }
-    public static void setAutenticationMode(boolean autenticationMode) {
-        SetupActivity.autenticationMode = autenticationMode;
-    }
 
-    public static boolean autenticationMode() {
-        return autenticationMode;
+    private void setupGreenDaoHelper(Context context) {
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, DB_NAME);
+        Database db = helper.getWritableDb();
+        this.daoSession = new DaoMaster(db).newSession();
     }
-
 
 
     public static Context getContext() {

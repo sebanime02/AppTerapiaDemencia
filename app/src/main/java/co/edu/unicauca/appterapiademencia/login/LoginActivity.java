@@ -33,6 +33,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @BindView(R.id.txt_error)
     TextView txt_error;
     private LoginPresenter loginPresenter;
+    @BindView(R.id.btn_soycuidador) Button btn_soycuidador;
+    @BindView(R.id.btn_soysupervisor) Button btn_soysupervisor;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -47,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         ButterKnife.bind(this);
         loginPresenter = new LoginPresenterImplementation(this);
         loginPresenter.OnCreate();
-        loginPresenter.checkForAuthenticatedUser();
+        //loginPresenter.checkForAuthenticatedUser();
 
     }
 
@@ -57,20 +59,18 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         super.onDestroy();
     }
 
-    @OnClick(R.id.btn_soysupervisor)
-
-    private void setInputs() {
-        setInputs(true);
-    }
+    @OnClick(R.id.btn_soysupervisor) private void setInputs() {loginPresenter.manageInputs();}
 
     @Override
-    public void enableInputs() {setInputs(true);
+    public void enableInputs() {
+        container.setVisibility(View.VISIBLE);
+        btn_supervisor.setBackgroundColor(getResources().getColor(R.color.accent_color));
 
     }
 
     @Override
     public void disableInputs() {
-        setInputs(false);
+        container.setVisibility(View.GONE);
     }
 
 
@@ -79,11 +79,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         loginPresenter.validateLogin(edt_username.getText().toString(), edt_password.getText().toString());
     }
 
-    @Override
-    public void navigateToMainScreen() {
-
-        startActivity(new Intent(this, PrincipalActivity.class));
-    }
+    @OnClick(R.id.btn_soycuidador) @Override public void navigateToMainScreen() {startActivity(new Intent(this, PrincipalActivity.class));}
 
     @Override
     public void exitLogin() {

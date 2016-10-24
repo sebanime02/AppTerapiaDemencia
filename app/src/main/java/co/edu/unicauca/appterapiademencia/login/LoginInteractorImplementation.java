@@ -17,10 +17,7 @@ public class LoginInteractorImplementation implements  LoginInteractor {
         loginRepository.checkSession();
     }
 
-    @Override
-    public void doSingUp(String username, String password) {
-        loginRepository.signUp(username,password);
-    }
+
 
     @Override
     public void doSignIn(String username, String password) {

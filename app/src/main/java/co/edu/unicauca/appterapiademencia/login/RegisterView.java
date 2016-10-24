@@ -6,10 +6,11 @@ package co.edu.unicauca.appterapiademencia.login;
 
 public interface RegisterView {
 
-    void newUserError();
+    void newUserError(int error);
     void handleSingUp();
     void navigateToLogin();
     void newUserSucess();
+
 
 
 }
