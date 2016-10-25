@@ -50,7 +50,7 @@ public class LoginRepositoryImplementation implements LoginRepository {
             if(user.getId()!=null)
             {
 
-                postEvent(LoginEvent.onSingUpSuccess,1);
+                postEvent(RegisterEvent.onSingUpSuccess,2);
             }
             else
             {
@@ -60,31 +60,46 @@ public class LoginRepositoryImplementation implements LoginRepository {
         }
         else{
             Log.e("Registro","La contraseña de un supervisor anteriormente registrado no es correcta");
-            postEvent(RegisterEvent.onSingUpError,2);
+            postEvent(RegisterEvent.onSingUpErrorAprobal,2);
         }
 
+        /*PRUEBAS REGISTRO
+        accessType = true; //verdadero es supervisor
+        User user = new User(null,username,password,completeName,accessType);
+        this.userDao.insert(user);
 
+        Log.d("RegistroUsuario","Nueva id insertada: "+user.getId());
 
+        if(user.getId()!=null)
+        {
+
+            postEvent(RegisterEvent.onSingUpSuccess,2);
+        }
+        else
+        {
+            Log.e("Registro","Error al registrar el nuevo usuario");
+            postEvent(RegisterEvent.onSingUpError,2);
+        }
+          */
 
     }
 
     @Override
     public void signIn(String username, String password) {
-
+        Log.e("Login","Estoy en el repositorio");
 
         QueryBuilder qbsignin = GreenDaoHelper.getUserDao().queryBuilder();
         qbsignin.where(UserDao.Properties.Username.eq(username), UserDao.Properties.Password.eq(password));
 
         List users = qbsignin.list();
-        for(int i=0; i<=qbsignin.list().size(); i++)
-        {
-            Log.d("IngresoUsuario", "Usuario" + qbsignin.list().get(i).toString());
-        }
+
         if(users.size()==1)
         {
+            Log.e("Login","Hay un usuario que coincide");
             postEvent(LoginEvent.onSingInSuccess,1);
         }
         else{
+            Log.e("Login","No coincide");
             postEvent(LoginEvent.onSingInError,1);
         }
 
@@ -98,35 +113,27 @@ public class LoginRepositoryImplementation implements LoginRepository {
         postEvent(LoginEvent.onFailedToRecoverSession,1);
     }
 
-    private void postEvent(int type, String errorMessage,int typemethod){
+    private void postEvent(int type,int typemethod){
        //typemethod==1 para eventos de logueo, typemethod==2 para eventos de registro
         if(typemethod==1)
         {
         LoginEvent loginEvent = new LoginEvent();
         loginEvent.setEventType(type);
-            if(errorMessage != null)
-                {
-                    loginEvent.setErrorMessage(errorMessage);
-                }
-        EventBus eventBus = GreenRobotEventBus.getInstance();
+
+        EventBus eventBusLogin = GreenRobotEventBus.getInstance();
         Log.e("Login","Va a registrar el evento");
-        eventBus.post(loginEvent);
+        eventBusLogin.post(loginEvent);
         }
         else
         {
          RegisterEvent registerEvent = new RegisterEvent();
          registerEvent.setEventType(type);
-            if(errorMessage != null)
-            {
-                registerEvent.setErrorMessage(errorMessage);
-            }
-         EventBus eventBus = GreenRobotEventBus.getInstance();
+
+         EventBus eventBusRegister = GreenRobotEventBus.getInstance();
          Log.e("Registro","Va a registrar el evento");
-         eventBus.post(registerEvent);
+         eventBusRegister.post(registerEvent);
         }
 
     }
-    private void postEvent(int type,int typemethod){
-        postEvent(type,null,typemethod);
-    }
+
 }

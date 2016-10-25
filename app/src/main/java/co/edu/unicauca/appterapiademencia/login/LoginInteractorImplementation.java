@@ -1,5 +1,7 @@
 package co.edu.unicauca.appterapiademencia.login;
 
+import android.util.Log;
+
 /**
  * Created by ENF on 14/10/2016.
  */
@@ -21,6 +23,7 @@ public class LoginInteractorImplementation implements  LoginInteractor {
 
     @Override
     public void doSignIn(String username, String password) {
+        Log.e("Login","Estoy en el interactor");
         loginRepository.signIn(username,password);
     }
 }

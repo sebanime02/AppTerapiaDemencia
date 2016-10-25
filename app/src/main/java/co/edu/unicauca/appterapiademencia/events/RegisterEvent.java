@@ -8,13 +8,13 @@ import android.content.res.Resources;
  */
 
 public class RegisterEvent {
-    public final static int onSingUpError = 0;
+    public final static int onSingUpError = 0; //nombre de usuario ya utilizado
     public final static int onSingUpSuccess = 1;
-    public final static int onSingUpErrorEmptyInputs = 2;
+    public final static int onSingUpErrorAprobal = 2; //contraseña de aprobacion no existente
 
 
     private int eventType;
-    private String errorMessage;
+
 
     public int getEventType() {
         return eventType;
@@ -24,11 +24,5 @@ public class RegisterEvent {
         this.eventType = eventType;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
-    }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
 }

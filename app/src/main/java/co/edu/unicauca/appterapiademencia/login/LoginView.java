@@ -14,10 +14,10 @@ public interface LoginView {
 
     void navigateToMainScreen();
     void exitLogin();
-    void loginError(String error);
+    void loginError();
 
     void navigateToRegister();
-    void newUserSucces();
+
 
 
 }

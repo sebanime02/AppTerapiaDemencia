@@ -43,7 +43,7 @@
                 android:textColor="@color/white"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:onClick="ir_supervisa"
+                android:onClick="deployInputs"
                 />
 
             <Button
@@ -58,7 +58,7 @@
                 android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:onClick="ir_cuida"
+                android:onClick="toMain"
                 />
 
             <android.support.design.widget.CoordinatorLayout
@@ -119,10 +119,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
                         android:text="@string/btn_entrar"
-                        android:background="@color/primary_color"
+                        android:background="@color/colorAccent"
                         android:textColor="@color/white"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:onClick="autenticateUser"
                         />
 
                     <TextView
@@ -151,7 +152,7 @@
                 android:textAllCaps="false"
                 android:fontFamily="sans-serif-black"
                 android:textSize="@dimen/textsize_btn_irRegistro"
-                android:onClick="ir_registro"
+                android:onClick="toRegister"
                 />
 
 

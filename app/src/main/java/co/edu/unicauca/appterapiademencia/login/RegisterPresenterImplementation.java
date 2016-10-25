@@ -54,8 +54,12 @@ public class RegisterPresenterImplementation implements RegisterPresenter{
                 break;
             case RegisterEvent.onSingUpError:
                 Log.e("Registro","en el presentador devolvio error de registro");
-                onSignUpError();
+                onSignUpError(RegisterEvent.onSingUpError);
                 break;
+            case RegisterEvent.onSingUpErrorAprobal:
+                Log.e("Registro","en el presentador devolvio error de registro por contraseña de aprobacion");
+                onSignUpError(RegisterEvent.onSingUpErrorAprobal);
+
 
 
         }
@@ -68,9 +72,9 @@ public class RegisterPresenterImplementation implements RegisterPresenter{
 
     }
 
-    private void onSignUpError() {
+    private void onSignUpError(int evento) {
         if (registerView != null) {
-            registerView.newUserError(RegisterEvent.onSingUpError);
+            registerView.newUserError(evento);
         }
     }
 }

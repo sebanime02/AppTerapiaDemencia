@@ -6,6 +6,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.CorrectionInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,7 +20,12 @@ import co.edu.unicauca.appterapiademencia.principal.PrincipalActivity;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
-
+    private EditText input_username,input_password;
+    private Button btn_salir,btn_cuidador,btn_supervisor;
+    private CoordinatorLayout container;
+    private TextView txt_error;
+    private String username,password;
+    /*
     @BindView(R.id.btn_salir)
     Button btn_salir;
     @BindView(R.id.btn_soycuidador)
@@ -36,6 +42,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @BindView(R.id.txt_error)
     TextView txt_error;
+    */
+
+
     private LoginPresenter loginPresenter;
 
 
@@ -50,7 +59,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
+        //ButterKnife.bind(this);
+        input_username = (EditText) findViewById(R.id.txt_username);
+        input_password = (EditText) findViewById(R.id.txt_password);
+        btn_cuidador= (Button) findViewById(R.id.btn_soycuidador);
+        btn_supervisor= (Button) findViewById(R.id.btn_soysupervisor);
+        container = (CoordinatorLayout) findViewById(R.id.container_SingIn);
+        txt_error = (TextView) findViewById(R.id.txt_error);
+
         loginPresenter = new LoginPresenterImplementation(this);
         loginPresenter.OnCreate();
         //loginPresenter.checkForAuthenticatedUser();
@@ -64,27 +80,38 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
     @Override
     public void setInputs() {
+        Log.e("Login","entro a setinputs del activity");
         loginPresenter.manageInputs();
 
     }
 
     @Override
     public void enableInputs() {
+        Log.e("Login","De nuevo en el activity voy a habilitar los inputs");
+
         container.setVisibility(View.VISIBLE);
+
         btn_supervisor.setBackgroundColor(getResources().getColor(R.color.accent_color));
 
     }
 
     @Override
     public void disableInputs() {
+
+        Log.e("Login","De nuevo en el activity voy a deshabilitar los inputs");
         container.setVisibility(View.GONE);
+        btn_supervisor.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
     }
 
 
     @Override
     public void handleSingIn() {
-        loginPresenter.validateLogin(edt_username.getText().toString(), edt_password.getText().toString());
+
+            Log.e("Login","inputs completos");
+            loginPresenter.validateLogin(input_username.getText().toString(), input_password.getText().toString());
     }
+
 
     @Override
     public void navigateToMainScreen() {
@@ -93,15 +120,18 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void exitLogin() {
+    public void exitLogin()
+    {
 
     }
 
     @Override
-    public void loginError(String error) {
-        edt_password.setText("");
+    public void loginError()
+    {
+        input_password.setText("Error de Login");
         String msgErr = getResources().getString(R.string.error_loguin);
         txt_error.setEnabled(true);
+        txt_error.setVisibility(View.VISIBLE);
         txt_error.setText(msgErr);
 
 
@@ -109,25 +139,47 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
 
     @Override
-    public void navigateToRegister() {
+    public void navigateToRegister()
+    {
         Log.e("Registro", "entro a registro");
         startActivity(new Intent(this, RegisterActivity.class));
     }
 
-    @Override
-    public void newUserSucces() {
-        new MaterialDialog.Builder(this).title(R.string.dialog_register_error_title).content(R.string.dialog_register_error_content).positiveText(R.string.dialog_register_error_agree).show();
+
+    private void validateInputs()
+    {
+        username = input_username.getText().toString();
+        password = input_password.getText().toString();
+
+        if (username.equals("")) {
+            txt_error.setText(R.string.input_empty_username);
+        }
+        if (password.equals("")) {
+            txt_error.setText(R.string.input_empty_password);
+        }
+        if (username.equals("") || password.equals("")) {
+            txt_error.setText(R.string.input_empty_both);
+
+        }
+        else{
+            handleSingIn();
+
+        }
     }
 
 
-    public void ir_cuida(View v){
+    public void toMain(View v){
         navigateToMainScreen();
     }
-    public void ir_supervisa(View v){
+    public void deployInputs(View v){
         setInputs();
     }
-    public void ir_registro(View v){
+    public void toRegister(View v){
         navigateToRegister();
+    }
+    public void autenticateUser(View v){
+        validateInputs();
+
     }
 
 

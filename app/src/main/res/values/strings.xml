@@ -26,6 +26,9 @@
     <string name="dialog_succes_title">Te has registrado!</string>
     <string name="dialog_succes_content">Se ha registrado correctamente, ingrese de nuevo sus datos</string>
     <string name="dialog_succes_agree">Entiendo</string>
+    <string name="input_empty_username">El campo: nombre de usuario esta vacío</string>
+    <string name="input_empty_password">El campo: contraseña esta vacío</string>
+    <string name="input_empty_both">Los campos: nombre de usuario y contraseña estan vacíos</string>
     <!--REGISTER -->
 
     <string name="title_register">Registro de Supervisor</string>
@@ -37,10 +40,15 @@
     <string name="hint_password_supervisor">Tu contraseña</string>
     <string name="hint_password_supervisor_aprobar">Contraseña de un supervisor anteriormente registrado</string>
     <string name="back_login">Regresar al inicio de sesión</string>
-    <string name="dialog_register_error_title">Nombre de Usuario en uso</string>
-    <string name="dialog_register_error_content">Escriba un Nuevo Nombre de Usuario</string>
+    <string name="dialog_register_error_title">No fue posible registrarse</string>
+    <string name="dialog_register_error_content">Intente cambiando el nombre de usuario</string>
     <string name="dialog_register_error_agree">Entiendo</string>
     <string name="dialog_register_emptyinput_title">Faltan campos</string>
     <string name="dialog_register_emptyinput_content">Debe completar todos los campos</string>
+
+    <string name="dialog_register_error_aprobal_title">El último campo no es válido</string>
+    <string name="dialog_register_error_aprobal_content">Pídale a un supervisor registrado que digite su contraseña de nuevo</string>
+
+
 
 </resources>

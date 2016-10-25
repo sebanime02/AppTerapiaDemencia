@@ -13,5 +13,5 @@ public interface LoginPresenter {
     void validateLogin(String username,String password);
     void onEventMainThread(LoginEvent event);
     void manageInputs();
-    void newUserSuccess();
+
 }

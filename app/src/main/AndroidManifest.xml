@@ -18,7 +18,7 @@
 
         <activity
             android:name=".login.LoginActivity"
-            android:label="Login">
+            android:label="Ingreso al Sistema">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +29,7 @@
 
         <activity
         android:name=".login.RegisterActivity"
-        android:label="Registro">
+        android:label="Registro de Supervisores">
 
          </activity>
         <activity

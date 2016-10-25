@@ -1,5 +1,7 @@
 package co.edu.unicauca.appterapiademencia.login;
 
+import android.util.Log;
+
 import co.edu.unicauca.appterapiademencia.events.LoginEvent;
 import co.edu.unicauca.appterapiademencia.lib.EventBus;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
@@ -14,7 +16,7 @@ public class LoginPresenterImplementation implements LoginPresenter {
     private LoginView loginView;
     private RegisterView registerView;
     private LoginInteractor loginInteractor;
-    private Boolean inputState;
+    private Boolean inputState = false;
 
 
 
@@ -51,9 +53,8 @@ public class LoginPresenterImplementation implements LoginPresenter {
 
     @Override
     public void validateLogin(String username, String password) {
-        if(loginView != null){
-            loginView.navigateToMainScreen();
-        }
+        Log.e("Login","Estoy en el presentador");
+
         loginInteractor.doSignIn(username,password);
 
     }
@@ -65,13 +66,13 @@ public class LoginPresenterImplementation implements LoginPresenter {
     public void onEventMainThread(LoginEvent event) {
         switch (event.getEventType()){
             case LoginEvent.onSingInSuccess:
+                Log.e("Login","En el presentador de vuelta, login success");
                 onSignInSucces();
                 break;
             case LoginEvent.onSingInError:
-                onSignInError(event.getErrorMessage());
+                Log.e("Login","En el presentador de vuelta, login error");
+                onSignInError();
                 break;
-            case LoginEvent.onSingUpSuccess:
-                newUserSuccess();
 
             case LoginEvent.onFailedToRecoverSession:
                 onFailedToRecoverSession();
@@ -81,45 +82,43 @@ public class LoginPresenterImplementation implements LoginPresenter {
 
     @Override
     public void manageInputs() {
-        if(loginView != null) {
-            loginView.disableInputs();
-        }
+        Log.e("Login","Entro al manageInputs del presentador");
 
-        /*
+
+        if (getInputState() == false) {
         if(loginView != null) {
-            if ((getInputState() == false) || (getInputState() == null)) {
+
                 setInputState(true);
                 loginView.enableInputs();
-            } else {
+            }
+        }
+        else {
+            if(loginView != null) {
                 setInputState(false);
                 loginView.disableInputs();
             }
         }
-         */
 
     }
 
-    @Override
-    public void newUserSuccess() {
-        if(loginView != null) {
-            loginView.newUserSucces();
-        }
 
-    }
 
     private void onFailedToRecoverSession(){
 
     }
     private void onSignInSucces() {
+
         if(loginView != null){
+            Log.e("Login","Hay vista no nula, navegemos a principal");
             loginView.navigateToMainScreen();
         }
 
     }
 
-    private void onSignInError(String error) {
+    private void onSignInError() {
         if(loginView != null){
-            loginView.loginError(error);
+            Log.e("Login","Hay vista no nula, mostremos el error");
+            loginView.loginError();
         }
 
 

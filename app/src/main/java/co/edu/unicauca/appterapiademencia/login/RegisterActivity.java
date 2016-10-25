@@ -41,7 +41,7 @@ private EditText input_username,input_password_supervisor,input_completename,inp
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_register);
-        ButterKnife.bind(this);
+        //ButterKnife.bind(this);
         input_username = (EditText) findViewById(R.id.txt_username);
         input_password_supervisor = (EditText) findViewById(R.id.txt_password_supervisor);
         input_completename = (EditText) findViewById(R.id.txt_completename);
@@ -61,12 +61,15 @@ private EditText input_username,input_password_supervisor,input_completename,inp
     @Override
     public void newUserError(int error) {
         switch (error) {
-            case 1:
-            new MaterialDialog.Builder(this).title(R.string.dialog_succes_title).content(R.string.dialog_succes_content).positiveText(R.string.dialog_succes_agree).show();
-            break;
+            case 0:
+                Log.e("Registro","dialog de error de registro por username");
+                new MaterialDialog.Builder(this).title(R.string.dialog_register_error_title).content(R.string.dialog_register_error_content).positiveText(R.string.dialog_succes_agree).show();
+                break;
             case 2:
-            new MaterialDialog.Builder(this).title(R.string.dialog_register_emptyinput_title).content(R.string.dialog_register_emptyinput_content).positiveText(R.string.dialog_succes_agree).show();
+                Log.e("Registro","dialog de error de registro por contraseña de aprobacion");
+            new MaterialDialog.Builder(this).title(R.string.dialog_register_error_aprobal_title).content(R.string.dialog_register_error_aprobal_content).positiveText(R.string.dialog_succes_agree).show();
             break;
+
 
         }
     }
@@ -84,7 +87,7 @@ private EditText input_username,input_password_supervisor,input_completename,inp
         {
             Log.e("Registro","la validacion no funciono");
 
-            new MaterialDialog.Builder(this).title("campos vacios").content("Hay campos vacios, por favor completelos").positiveText(R.string.dialog_succes_agree).show();
+            new MaterialDialog.Builder(this).title(R.string.dialog_register_emptyinput_title).content(R.string.dialog_register_emptyinput_content).positiveText(R.string.dialog_succes_agree).show();
         }
     }
     private boolean validateInputs(String username, String password, String completeName, String passwordaprobal) {
@@ -106,12 +109,15 @@ private EditText input_username,input_password_supervisor,input_completename,inp
     public void newUserSuccess() {
         MaterialDialog.Builder builder = new MaterialDialog.Builder(this);
         builder.title("Registro con éxito").content("Su registro como supervisor ha sido completado con éxito").positiveText(R.string.dialog_succes_agree).show();;
-        builder.onPositive(new MaterialDialog().SingleButtonCallback(){
+        builder.onPositive(new MaterialDialog.SingleButtonCallback() {
             @Override
-            public void onClick(@NonNull MaterialDialog dialog, DialogAction which){
-
+            public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                materialDialog.dismiss();
             }
         });
+        builder.show();
+        navigateToLogin();
+
 
 
     }
