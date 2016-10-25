@@ -2,16 +2,18 @@ package co.edu.unicauca.appterapiademencia.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalActivity;
 
@@ -28,13 +30,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     EditText edt_username;
     @BindView(R.id.txt_password)
     EditText edt_password;
+
     @BindView(R.id.container_SingIn)
-    LinearLayout container;
+    CoordinatorLayout container;
+
     @BindView(R.id.txt_error)
     TextView txt_error;
     private LoginPresenter loginPresenter;
-    @BindView(R.id.btn_soycuidador) Button btn_soycuidador;
-    @BindView(R.id.btn_soysupervisor) Button btn_soysupervisor;
+
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -54,12 +58,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
 
-    protected  void onDestroy(){
+    protected void onDestroy() {
         loginPresenter.OnDestroy();
         super.onDestroy();
     }
+    @Override
+    public void setInputs() {
+        loginPresenter.manageInputs();
 
-    @OnClick(R.id.btn_soysupervisor) private void setInputs() {loginPresenter.manageInputs();}
+    }
 
     @Override
     public void enableInputs() {
@@ -79,7 +86,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         loginPresenter.validateLogin(edt_username.getText().toString(), edt_password.getText().toString());
     }
 
-    @OnClick(R.id.btn_soycuidador) @Override public void navigateToMainScreen() {startActivity(new Intent(this, PrincipalActivity.class));}
+    @Override
+    public void navigateToMainScreen() {
+        Log.e("Principal", "navega al menu principal");
+        startActivity(new Intent(this, PrincipalActivity.class));
+    }
 
     @Override
     public void exitLogin() {
@@ -97,21 +108,27 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
 
-
     @Override
     public void navigateToRegister() {
+        Log.e("Registro", "entro a registro");
         startActivity(new Intent(this, RegisterActivity.class));
     }
 
-    private void setInputs(boolean enabled) {
-        if (enabled) {
-            container.setVisibility(View.VISIBLE);
-            btn_supervisor.setBackgroundColor(getResources().getColor(R.color.accent_color));
-        } else {
-            container.setVisibility(View.GONE);
-        }
+    @Override
+    public void newUserSucces() {
+        new MaterialDialog.Builder(this).title(R.string.dialog_register_error_title).content(R.string.dialog_register_error_content).positiveText(R.string.dialog_register_error_agree).show();
     }
 
+
+    public void ir_cuida(View v){
+        navigateToMainScreen();
+    }
+    public void ir_supervisa(View v){
+        setInputs();
+    }
+    public void ir_registro(View v){
+        navigateToRegister();
+    }
 
 
 }

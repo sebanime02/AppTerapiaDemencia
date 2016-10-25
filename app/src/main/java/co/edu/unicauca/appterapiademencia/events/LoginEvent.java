@@ -10,6 +10,7 @@ public class LoginEvent {
     public final static int onSingInSuccess =  1;
 
     public final static int onFailedToRecoverSession = 2;
+    public final static int onSingUpSuccess = 3;
 
     private int eventType;
     private String errorMessage;

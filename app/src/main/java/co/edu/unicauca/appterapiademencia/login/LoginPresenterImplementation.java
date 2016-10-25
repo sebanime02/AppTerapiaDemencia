@@ -1,6 +1,5 @@
 package co.edu.unicauca.appterapiademencia.login;
 
-import co.edu.unicauca.appterapiademencia.SetupActivity;
 import co.edu.unicauca.appterapiademencia.events.LoginEvent;
 import co.edu.unicauca.appterapiademencia.lib.EventBus;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
@@ -71,6 +70,8 @@ public class LoginPresenterImplementation implements LoginPresenter {
             case LoginEvent.onSingInError:
                 onSignInError(event.getErrorMessage());
                 break;
+            case LoginEvent.onSingUpSuccess:
+                newUserSuccess();
 
             case LoginEvent.onFailedToRecoverSession:
                 onFailedToRecoverSession();
@@ -80,16 +81,29 @@ public class LoginPresenterImplementation implements LoginPresenter {
 
     @Override
     public void manageInputs() {
-
-        if(inputState=false || inputState==null){
-            inputState=true;
-            loginView.enableInputs();
-        }
-        else{
-            inputState=false;
+        if(loginView != null) {
             loginView.disableInputs();
         }
 
+        /*
+        if(loginView != null) {
+            if ((getInputState() == false) || (getInputState() == null)) {
+                setInputState(true);
+                loginView.enableInputs();
+            } else {
+                setInputState(false);
+                loginView.disableInputs();
+            }
+        }
+         */
+
+    }
+
+    @Override
+    public void newUserSuccess() {
+        if(loginView != null) {
+            loginView.newUserSucces();
+        }
 
     }
 
@@ -112,4 +126,11 @@ public class LoginPresenterImplementation implements LoginPresenter {
     }
 
 
+    public Boolean getInputState() {
+        return inputState;
+    }
+
+    public void setInputState(Boolean inputState) {
+        this.inputState = inputState;
+    }
 }

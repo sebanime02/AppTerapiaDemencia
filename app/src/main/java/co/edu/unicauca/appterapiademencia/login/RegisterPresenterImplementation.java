@@ -1,6 +1,6 @@
 package co.edu.unicauca.appterapiademencia.login;
 
-import android.widget.EditText;
+import android.util.Log;
 
 import co.edu.unicauca.appterapiademencia.events.RegisterEvent;
 import co.edu.unicauca.appterapiademencia.lib.EventBus;
@@ -35,40 +35,35 @@ public class RegisterPresenterImplementation implements RegisterPresenter{
 
     @Override
     public void registerUser(String username, String password, String completeName, String passwordaprobal) {
-        if(validateInputs(username,password,completeName,passwordaprobal)==true) {
+
+        Log.e("Registro","llego al presentador");
             registerInteractor.doSingUp(username, password, completeName, passwordaprobal);
-        }
-        else{
-            registerView.newUserError(RegisterEvent.onSingUpErrorEmptyInputs);
-        }
+
+            //registerView.newUserError(RegisterEvent.onSingUpErrorEmptyInputs);
+
 
     }
-    private boolean validateInputs(String username, String password, String completeName, String passwordaprobal) {
-        if(username.equals("") || password.equals("") || completeName.equals("") || passwordaprobal.equals("")){
-            return true;
-        }
-        else{
-            return  false;
-        }
-    }
+
 
     @Override
     public void onEventMainThread(RegisterEvent event) {
         switch (event.getEventType()){
             case RegisterEvent.onSingUpSuccess:
-                onSignUpSucces();
+                Log.e("Registro","el presentador devolvio exito en el registro");
+                onSignUpSuccess();
                 break;
             case RegisterEvent.onSingUpError:
+                Log.e("Registro","en el presentador devolvio error de registro");
                 onSignUpError();
                 break;
 
 
         }
     }
-    private void onSignUpSucces() {
+    private void onSignUpSuccess() {
         if(registerView != null){
-            registerView.newUserSucess();
-            registerView.navigateToLogin();
+
+            registerView.newUserSuccess();
         }
 
     }

@@ -7,6 +7,7 @@ package co.edu.unicauca.appterapiademencia.login;
 public interface LoginView {
     void enableInputs();
     void disableInputs();
+    void setInputs();
 
 
     void handleSingIn();
@@ -16,6 +17,7 @@ public interface LoginView {
     void loginError(String error);
 
     void navigateToRegister();
+    void newUserSucces();
 
 
 }

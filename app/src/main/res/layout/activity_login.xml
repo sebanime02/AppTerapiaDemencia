@@ -8,55 +8,58 @@
     tools:context="co.edu.unicauca.appterapiademencia.login.LoginActivity">
 
     <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-        <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="top"
-        >
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="top"
+            >
 
 
             <ImageView
 
-            android:id="@+id/img_loguin"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/logologuinletras"
+                android:id="@+id/img_loguin"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/logologuinletras"
 
-            android:scaleType="fitXY"
+                android:scaleType="fitXY"
 
-            />
+                />
 
-
-            <Button
-            android:id="@+id/btn_soysupervisor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_soysupervisor"
-            android:fontFamily="sans-serif-black"
-            android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:background="@color/primary_color"
-            android:textColor="@color/white"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            />
 
             <Button
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:fontFamily="sans-serif-black"
-              android:text="@string/btn_soycuidador"
-              android:textAllCaps="false"
-              android:background="@color/primary_color"
-              android:id="@+id/button2"
-              android:textColor="@color/white"
-              android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
-              android:layout_marginLeft="@dimen/activity_horizontal_margin"
-              android:layout_marginRight="@dimen/activity_horizontal_margin"  />
+                android:id="@+id/btn_soysupervisor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_soysupervisor"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:background="@color/primary_color"
+                android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:onClick="ir_supervisa"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/btn_soycuidador"
+                android:textAllCaps="false"
+                android:background="@color/primary_color"
+                android:id="@+id/btn_soycuidador"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:onClick="ir_cuida"
+                />
 
             <android.support.design.widget.CoordinatorLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -76,7 +79,7 @@
                     android:orientation="vertical"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                  >
+                    >
 
 
 
@@ -123,14 +126,14 @@
                         />
 
                     <TextView
-                         android:id="@+id/txt_error"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:fontFamily="sans-serif-black"
-                         android:textColor="@color/red_dark"
+                        android:id="@+id/txt_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:textColor="@color/red_dark"
 
-                         android:gravity="center_horizontal"
-                         />
+                        android:gravity="center_horizontal"
+                        />
 
                 </LinearLayout>
 
@@ -148,6 +151,7 @@
                 android:textAllCaps="false"
                 android:fontFamily="sans-serif-black"
                 android:textSize="@dimen/textsize_btn_irRegistro"
+                android:onClick="ir_registro"
                 />
 
 

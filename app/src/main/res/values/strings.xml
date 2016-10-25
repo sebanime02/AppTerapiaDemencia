@@ -42,4 +42,5 @@
     <string name="dialog_register_error_agree">Entiendo</string>
     <string name="dialog_register_emptyinput_title">Faltan campos</string>
     <string name="dialog_register_emptyinput_content">Debe completar todos los campos</string>
+
 </resources>
