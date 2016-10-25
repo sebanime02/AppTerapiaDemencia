@@ -110,6 +110,7 @@ public class LoginPresenterImplementation implements LoginPresenter {
 
         if(loginView != null){
             Log.e("Login","Hay vista no nula, navegemos a principal");
+          //PENDIENTE  loginView.saveLoginPreference();
             loginView.navigateToMainScreen();
         }
 

@@ -37,9 +37,13 @@ public class LoginRepositoryImplementation implements LoginRepository {
         Log.e("Registro","llego al patron repositorio");
 
         QueryBuilder qbsignup = GreenDaoHelper.getUserDao().queryBuilder();
-        qbsignup.where(UserDao.Properties.Password.eq(password));
+        qbsignup.where(UserDao.Properties.Password.eq(passwordaprobal));
 
         List users = qbsignup.list();
+
+
+        Log.e("Registro", "Numero de contraseñas repetidas: "+users.size()+"");
+
         if(users.size()>=1){
             accessType = true; //verdadero es supervisor
             User user = new User(null,username,password,completeName,accessType);

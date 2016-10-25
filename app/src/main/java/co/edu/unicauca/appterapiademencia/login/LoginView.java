@@ -17,6 +17,7 @@ public interface LoginView {
     void loginError();
 
     void navigateToRegister();
+    void saveLoginPreference();
 
 
 

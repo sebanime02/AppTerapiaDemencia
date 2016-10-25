@@ -1,20 +1,16 @@
 package co.edu.unicauca.appterapiademencia.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.CorrectionInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.afollestad.materialdialogs.MaterialDialog;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalActivity;
 
@@ -25,6 +21,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     private CoordinatorLayout container;
     private TextView txt_error;
     private String username,password;
+    SharedPreferences loginpreference;
     /*
     @BindView(R.id.btn_salir)
     Button btn_salir;
@@ -57,6 +54,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /* PENDIENTE
+        loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
+        if(loginpreference.getBoolean("sessionValidation",true)){
+            navigateToMainScreen();
+        }
+        */
 
         setContentView(R.layout.activity_login);
         //ButterKnife.bind(this);
@@ -119,6 +123,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         startActivity(new Intent(this, PrincipalActivity.class));
     }
 
+
     @Override
     public void exitLogin()
     {
@@ -143,6 +148,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     {
         Log.e("Registro", "entro a registro");
         startActivity(new Intent(this, RegisterActivity.class));
+    }
+
+    @Override
+    public void saveLoginPreference() {
+
+        SharedPreferences.Editor editor = loginpreference.edit();
+        editor.putBoolean("sessionValidation",true);
+        editor.commit();
     }
 
 
