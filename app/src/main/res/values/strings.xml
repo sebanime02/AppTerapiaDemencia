@@ -50,8 +50,9 @@
     <string name="dialog_register_error_aprobal_content">Pídale a un supervisor registrado que digite su contraseña de nuevo</string>
 
     <!--NAVIGATION DRAWER -->
-    <string name="title_section1">Notificaciones</string>
-    <string name="title_section2">Lista de pacientes</string>
+
+    <string name="title_section1">Lista de pacientes</string>
+    <string name="title_section2">Notificaciones</string>
     <string name="title_section3">Tips para el cuidador </string>
     <string name="title_section4">Perfil de paciente</string>
     <string name="title_section5">Ayuda</string>

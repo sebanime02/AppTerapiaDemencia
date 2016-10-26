@@ -34,7 +34,7 @@
             android:label="Registro de Supervisores"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".principal.PatientListActivity"
+            android:name=".principal.PrincipalActivity"
             android:label="Principal"
             android:launchMode="singleTask"
             android:screenOrientation="landscape" />

@@ -1,8 +1,5 @@
 package co.edu.unicauca.appterapiademencia.events;
 
-import android.app.Application;
-import android.content.res.Resources;
-
 /**
  * Created by SEBAS on 22/10/2016.
  */
