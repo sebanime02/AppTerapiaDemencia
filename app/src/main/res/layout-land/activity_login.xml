@@ -4,64 +4,157 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/white"
     tools:context="co.edu.unicauca.appterapiademencia.login.LoginActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        >
+        android:layout_height="wrap_content">
         <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:orientation="vertical"
-            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="top"
             >
 
+
             <ImageView
-                android:id="@+id/img_loguin1"
 
-
-                android:layout_width="@dimen/ancho_imagen_loguin"
-                android:layout_height="@dimen/alto_imagen_loguin"
-
+                android:id="@+id/img_loguin"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
                 android:src="@drawable/logologuinletras"
+
+                android:scaleType="fitXY"
+
                 />
-            <LinearLayout
-                android:orientation="horizontal"
+
+
+            <Button
+                android:id="@+id/btn_soysupervisor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_soysupervisor"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:background="@color/primary_color"
+                android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:onClick="deployInputs"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/btn_soycuidador"
+                android:textAllCaps="false"
+                android:background="@color/primary_color"
+                android:id="@+id/btn_soycuidador"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:onClick="toMain"
+                />
+
+            <android.support.design.widget.CoordinatorLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/container_SingIn"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <Button
-                    android:id="@+id/btn_soysupervisor"
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content"
-                    android:text="@string/btn_soysupervisor"
-
-                    />
-
-                 <Button
-                android:id="@+id/btn_soycuidador"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="@string/btn_soycuidador"
-                />
 
 
-            </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="?attr/actionBarSize"
+                    android:orientation="vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    >
+
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/txt_username"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"
+                            android:hint="@string/hint_username"
+
+                            android:drawableLeft="@mipmap/ic_account_circle_black_24dp"
+                            />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/txt_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:hint="@string/hint_password"
+                            android:drawableLeft="@mipmap/ic_lock_black_24dp"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btn_entrar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
+                        android:text="@string/btn_entrar"
+                        android:background="@color/colorAccent"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:onClick="autenticateUser"
+                        />
+
+                    <TextView
+                        android:id="@+id/txt_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:textColor="@color/red_dark"
+
+                        android:gravity="center_horizontal"
+                        />
+
+                </LinearLayout>
+
+            </android.support.design.widget.CoordinatorLayout>
             <Button
-                android:id="@+id/btn_salir"
-                android:layout_width="@dimen/ancho_boton_pequeño"
+                android:id="@+id/btn_irRegistro"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
-                android:text="@string/btn_salir"
-
+                android:text="@string/btn_irRegistro"
+                android:background="@color/white"
+                android:textColor="@color/primary_color"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:textAllCaps="false"
+                android:fontFamily="sans-serif-black"
+                android:textSize="@dimen/textsize_btn_irRegistro"
+                android:onClick="toRegister"
                 />
+
 
 
         </LinearLayout>

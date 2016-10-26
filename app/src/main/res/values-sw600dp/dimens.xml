@@ -7,5 +7,7 @@
     <dimen name="alto_banner_register">200dp</dimen>
     <dimen name="password_text_size">16sp</dimen>
 
+    <!-- NAVIGATION DRAWER -->
+    <dimen name="dimen_drawer">350dp</dimen>
 
 </resources>

@@ -7,9 +7,6 @@ import org.greenrobot.greendao.database.Database;
 
 import co.edu.unicauca.appterapiademencia.domain.dao.DaoMaster;
 import co.edu.unicauca.appterapiademencia.domain.dao.DaoSession;
-import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
-
-import static org.greenrobot.greendao.test.DbTest.DB_NAME;
 
 /**
  * Created by ENF on 21/10/2016.
@@ -29,9 +26,6 @@ public class SetupActivity extends Application {
         super.onCreate();
         context = getApplicationContext();
         setupGreenDaoHelper(context);
-
-
-
 
 
 

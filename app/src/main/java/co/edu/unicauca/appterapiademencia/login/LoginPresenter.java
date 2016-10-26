@@ -9,7 +9,7 @@ import co.edu.unicauca.appterapiademencia.events.LoginEvent;
 public interface LoginPresenter {
     void OnDestroy();
     void OnCreate();
-    void checkForAuthenticatedUser();
+
     void validateLogin(String username,String password);
     void onEventMainThread(LoginEvent event);
     void manageInputs();

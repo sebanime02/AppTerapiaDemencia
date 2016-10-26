@@ -2,7 +2,6 @@ package co.edu.unicauca.appterapiademencia.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.EditText;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import butterknife.ButterKnife;
 import co.edu.unicauca.appterapiademencia.R;
 
 /**
@@ -53,7 +51,7 @@ private EditText input_username,input_password_supervisor,input_completename,inp
 
     @Override
     protected void onDestroy() {
-        //registerPresenter.OnDestroy();
+        registerPresenter.OnDestroy();
         super.onDestroy();
     }
 

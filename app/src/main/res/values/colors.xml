@@ -12,5 +12,9 @@
     <color name="accent_color">#9E9E9E</color>
     <color name="red_dark">#D32F2F</color>
     <color name="magenta">#F50057</color>
+    <color name="md_statusbar_translucent">#4000</color>
+    <color name="fondo">#E8F5E9</color>
+
+
 
 </resources>

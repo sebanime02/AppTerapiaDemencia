@@ -8,41 +8,40 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
+        android:name=".SetupActivity"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".SetupActivity"
-
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".login.LoginActivity"
-            android:label="Ingreso al Sistema">
+            android:label="Ingreso al Sistema"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-
-        <activity
-        android:name=".login.RegisterActivity"
-        android:label="Registro de Supervisores">
-
-         </activity>
-        <activity
-            android:name=".principal.PrincipalActivity"
-            android:label="Principal">
-
         </activity>
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+
+        <activity
+            android:name=".login.RegisterActivity"
+            android:label="Registro de Supervisores"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".principal.PatientListActivity"
+            android:label="Principal"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
-
-
 
     </application>
 

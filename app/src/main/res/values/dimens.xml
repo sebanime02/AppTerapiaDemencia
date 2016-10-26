@@ -4,8 +4,10 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="large_title_text_size">30sp</dimen>
     <dimen name="medium_text_size">20dp</dimen>
+    <dimen name="activity_horizontal_margin2">86dp</dimen>
+    <dimen name="activity_vertical_margin2">30dp</dimen>
 
-    <!--LOGIN 1 LAYOUT-->
+    <!--LOGIN LAYOUT-->
     <dimen name="tamano_Titulo_aplicacion">30sp</dimen>
     <dimen name="margen_imagen_botones">50dp</dimen>
     <dimen name="margen_entre_elementos_loguin">20dp</dimen>
@@ -18,5 +20,13 @@
     <!-- REGISTER LAYOUT-->
     <dimen name="alto_banner_register">200dp</dimen>
     <dimen name="password_text_size">12sp</dimen>
+
+    <!-- NAVIGATION DRAWER-->
+    <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="dimen_drawer">250dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_bar_height">200dp</dimen>
+    <dimen name="item_width">200dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 
 </resources>

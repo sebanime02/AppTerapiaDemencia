@@ -41,15 +41,7 @@ public class LoginPresenterImplementation implements LoginPresenter {
         eventBus.unregister(this);
 
     }
-    //Este checkforauthenticated user es bueno implementarlo con shared preference
 
-    @Override
-    public void checkForAuthenticatedUser() {
-     if(loginView != null){
-            loginView.navigateToMainScreen();
-        }
-        loginInteractor.checkSession();
-    }
 
     @Override
     public void validateLogin(String username, String password) {

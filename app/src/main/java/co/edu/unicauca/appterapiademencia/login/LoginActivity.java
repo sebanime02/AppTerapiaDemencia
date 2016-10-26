@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import co.edu.unicauca.appterapiademencia.R;
-import co.edu.unicauca.appterapiademencia.principal.PrincipalActivity;
+import co.edu.unicauca.appterapiademencia.principal.PatientListActivity;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void navigateToMainScreen() {
         Log.e("Principal", "navega al menu principal");
-        startActivity(new Intent(this, PrincipalActivity.class));
+        startActivity(new Intent(this, PatientListActivity.class));
     }
 
 
@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void loginError()
     {
-        input_password.setText("Error de Login");
+
         String msgErr = getResources().getString(R.string.error_loguin);
         txt_error.setEnabled(true);
         txt_error.setVisibility(View.VISIBLE);
