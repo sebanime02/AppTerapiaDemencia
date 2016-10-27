@@ -38,6 +38,11 @@
             android:label="Principal"
             android:launchMode="singleTask"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".principal.MainActivity"
+            android:label="Principal"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
 
         <meta-data
             android:name="com.google.android.gms.version"

@@ -1,7 +1,6 @@
 package co.edu.unicauca.appterapiademencia.principal.patientlist;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +30,7 @@ public class PatientListFragment extends Fragment implements PatientListView {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        /* principalPresenter = new PrincipalListPresenterImplementation(this);
         principalPresenter.OnCreate(); */

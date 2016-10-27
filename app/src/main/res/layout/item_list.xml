@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="20dp"
+    android:weightSum="4"
+    >
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:src="@drawable/edit"
+        />
+    <TextView
+        android:text="prueba"
+        android:id="@+id/title"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="20dp" />
+
+</LinearLayout>

@@ -14,7 +14,8 @@
 
         <item
             android:id="@+id/item_navigation_drawer_tips"
-            android:title="@string/title_section3" >
+            android:title=
+                "@string/title_section3" >
 
 
         </item>

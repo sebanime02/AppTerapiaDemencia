@@ -15,4 +15,5 @@ public interface PatientListView {
 
     void navigateToExercise(Patient patient);
     void getPatients();
+
 }

@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import co.edu.unicauca.appterapiademencia.R;
-import co.edu.unicauca.appterapiademencia.principal.PrincipalActivity;
+import co.edu.unicauca.appterapiademencia.principal.MainActivity;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void navigateToMainScreen() {
         Log.e("Principal", "navega al menu principal");
-        startActivity(new Intent(this, PrincipalActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
 
 

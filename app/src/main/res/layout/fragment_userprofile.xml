@@ -12,16 +12,11 @@
 
 
     <TextView
-        android:text="Lista pacientes"
+        android:text="User profile"
         android:textSize="30dp"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-
-
-
-
 
 
 

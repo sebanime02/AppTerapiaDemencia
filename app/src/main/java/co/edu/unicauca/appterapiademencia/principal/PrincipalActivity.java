@@ -44,7 +44,7 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.activity_navigationdrawer);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
