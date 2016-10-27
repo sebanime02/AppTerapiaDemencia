@@ -11,12 +11,16 @@ import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.principal.PrincipalListPresenter;
 
 /**
  * Created by ENF on 25/10/2016.
  */
 
 public class PatientListFragment extends Fragment implements PatientListView {
+
+    private PrincipalListPresenter principalPresenter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -29,6 +33,8 @@ public class PatientListFragment extends Fragment implements PatientListView {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       /* principalPresenter = new PrincipalListPresenterImplementation(this);
+        principalPresenter.OnCreate(); */
     }
 
     @Override
@@ -47,8 +53,8 @@ public class PatientListFragment extends Fragment implements PatientListView {
     }
 
     @Override
-    public List<Patient> showPatients() {
-        return null;
+    public void showPatients(List<Patient> patientList) {
+
     }
 
     @Override
