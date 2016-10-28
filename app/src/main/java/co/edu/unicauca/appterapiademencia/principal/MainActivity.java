@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,8 +31,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ListView listView;
     private String[] items;
     private ActionBar actionBar;
+    private Toolbar toolbar;
     private List<RowItem> rowItems;
-    public static final Integer[] images = {R.drawable.edit,R.drawable.edit,R.drawable.edit,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
+    public static final Integer[] images = {R.drawable.ic_action_content_mail,R.drawable.ic_action_content_report,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
     public static final String[] titles= {"Lista de Pacientes","Notificaciones","Tips para el cuidador","Perfil de usuario","Ayuda","Salir"};
 
 
@@ -50,20 +53,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         listView = (ListView)  findViewById(R.id.lista);
         listView.setOnItemClickListener(this);
 
-        /*
-        items = new String[]{"Lista de Pacientes","Notificaciones","Tips"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,items);
-         */
+      
         listView.setAdapter(adapter);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-/*
         actionBar = getSupportActionBar();
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         actionBar.setTitle("Lista de Pacientes");
 
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
-
-      */
 
        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new PatientListFragment())
@@ -112,32 +113,34 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container, new PatientListFragment())
                             .commit();
-                 //   actionBar.setTitle("Lista de Pacientes");
+                    actionBar.setTitle("Lista de Pacientes");
                     break;
                 case 1:
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container, new NotificationListFragment())
                             .commit();
-                  // actionBar.setTitle("Notificaciones de Supervisor");
+                   actionBar.setTitle("Notificaciones de Supervisor");
 
                     break;
                 case 2:
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container, new TipsListFragment())
                             .commit();
-                 //   actionBar.setTitle("Tips para el cuidador");
+                    actionBar.setTitle("Tips para el cuidador");
 
                     break;
                 case 3:
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container, new UserProfileFragment())
                             .commit();
-                //    actionBar.setTitle("Perfil de Usuario");
+                    actionBar.setTitle("Perfil de Usuario");
+                    break;
                 case 4:
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container, new HelpFragment())
                             .commit();
-               //     actionBar.setTitle("Ayuda");
+                    actionBar.setTitle("Ayuda");
+                    break;
 
                 case 5:
                     SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);
@@ -147,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     Intent i2 = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(i2);
                     finish();
+                    break;
 
         }
     }

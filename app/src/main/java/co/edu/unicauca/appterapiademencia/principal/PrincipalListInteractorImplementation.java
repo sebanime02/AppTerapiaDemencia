@@ -12,6 +12,11 @@ import co.edu.unicauca.appterapiademencia.domain.Patient;
 
 public class PrincipalListInteractorImplementation implements PrincipalListInteractor {
 
+    private PrincipalListRepository principalListRepository;
+
+    public PrincipalListInteractorImplementation(){
+        principalListRepository = new PrincipalListRepositoryImplementation();
+    }
 
     @Override
     public void addPatient() {
@@ -26,6 +31,7 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
 
     @Override
     public void getPatients() {
+        principalListRepository.getPatients();
 
     }
 

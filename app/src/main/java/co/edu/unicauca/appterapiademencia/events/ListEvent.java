@@ -7,5 +7,13 @@ import java.util.List;
  */
 
 public class ListEvent {
+    public List<Object> getObjectlist() {
+        return objectlist;
+    }
+
+    public void setObjectlist(List<Object> objectlist) {
+        this.objectlist = objectlist;
+    }
+
     private List<Object> objectlist;
 }

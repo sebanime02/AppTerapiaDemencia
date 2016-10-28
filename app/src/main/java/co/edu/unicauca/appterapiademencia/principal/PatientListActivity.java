@@ -24,6 +24,9 @@ import java.util.Calendar;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.login.LoginActivity;
+import co.edu.unicauca.appterapiademencia.principal.help.HelpFragment;
+import co.edu.unicauca.appterapiademencia.principal.tips.TipsListFragment;
+import co.edu.unicauca.appterapiademencia.principal.userprofile.UserProfileFragment;
 
 /**
  * Created by ENF on 14/10/2016.
@@ -39,7 +42,7 @@ public class PatientListActivity  extends AppCompatActivity implements SearchVie
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.activity_navigationdrawer);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

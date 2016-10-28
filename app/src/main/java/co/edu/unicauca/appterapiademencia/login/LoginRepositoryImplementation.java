@@ -35,7 +35,7 @@ public class LoginRepositoryImplementation implements LoginRepository {
     @Override
     public void signUp(String username, String password, String completeName, String passwordaprobal) {
         Log.e("Registro","llego al patron repositorio");
-   /*
+
         QueryBuilder qbsignup = GreenDaoHelper.getUserDao().queryBuilder();
         qbsignup.where(UserDao.Properties.Password.eq(passwordaprobal));
 
@@ -66,8 +66,8 @@ public class LoginRepositoryImplementation implements LoginRepository {
             Log.e("Registro","La contraseña de un supervisor anteriormente registrado no es correcta");
             postEvent(RegisterEvent.onSingUpErrorAprobal,2);
         }
-      */
 
+        /*
         accessType = true; //verdadero es supervisor
         User user = new User(null,username,password,completeName,accessType);
         this.userDao.insert(user);
@@ -85,7 +85,7 @@ public class LoginRepositoryImplementation implements LoginRepository {
             postEvent(RegisterEvent.onSingUpError,2);
         }
 
-
+       */
     }
 
     @Override
