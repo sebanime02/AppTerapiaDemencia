@@ -1,5 +1,9 @@
 package co.edu.unicauca.appterapiademencia.lib;
 
+import java.util.List;
+
+import co.edu.unicauca.appterapiademencia.domain.Patient;
+
 /**
  * Created by SEBAS on 18/10/2016.
  */
@@ -34,4 +38,9 @@ public class GreenRobotEventBus implements EventBus {
         eventBus.post(event);
 
     }
+
+
+
+
+
 }

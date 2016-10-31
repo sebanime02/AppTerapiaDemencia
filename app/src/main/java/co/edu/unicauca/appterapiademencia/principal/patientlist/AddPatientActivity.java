@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -84,13 +85,15 @@ public class AddPatientActivity extends AppCompatActivity{
         edt_sindromes = (EditText) findViewById(R.id.edt_sindromes);
         edt_observaciones = (EditText) findViewById(R.id.edt_observaciones);
 
-        btn_guardar = (Button) findViewById(R.id.btn_guardar);
+        btn_guardar = (Button) findViewById(R.id.btn_guardar_paso1);
 
 
         imgbtn = (ImageButton) findViewById(R.id.foto_paciente);
-        imagen = Uri.parse("android.resource://co.edu.unicauca/appterapiademencia/drawable/add").toString();
-        actionBar = getSupportActionBar();
+        imagen = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/drawable/add").toString();
+
+        /*actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        */
         colocarImagen();
         registerForContextMenu(imgbtn);
 
@@ -101,17 +104,22 @@ public class AddPatientActivity extends AppCompatActivity{
         day = calendar.get(Calendar.DAY_OF_MONTH);
 
         Bundle bundle = getIntent().getExtras();
-        if(bundle!=null){
+        if (bundle != null) {
             try {
 
 
-                    actualizar = bundle.getString("actualizar");
-                    datosa = new String[10];
-                    datosa = bundle.getStringArray("datosa");
-                    edt_id.setText(bundle.getString("Id").toString());
-                    edt_id.setEnabled(false);
-                    edt_nomb.setText(datosa[0].toString());
-                    btn_fecha.setText(datosa[1].toString());
+                actualizar = bundle.getString("actualizar");
+
+                datosa = new String[10];
+                datosa = bundle.getStringArray("datosa");
+                edt_id.setText(bundle.getString("Id").toString());
+                edt_id.setEnabled(false);
+                edt_nomb.setText(datosa[0].toString());
+                btn_fecha.setText(datosa[1].toString());
+                edt_eps.setText(datosa[3].toString());
+                edt_antecedentes.setText(datosa[4].toString());
+                edt_sindromes.setText(datosa[5].toString());
+                edt_observaciones.setText(datosa[6].toString());
 
                 /*
                     if(datosa[2].toString().equals("Macho")){
@@ -120,18 +128,19 @@ public class AddPatientActivity extends AppCompatActivity{
                         rdhembra.setChecked(true);
                     }
                        */
-                    if(datosa[9].toString().equalsIgnoreCase("")){
+                if (datosa[2].toString().equalsIgnoreCase("")) {
 
-                        imgbtn.setBackgroundResource(R.drawable.add);
+                    imgbtn.setBackgroundResource(R.drawable.add);
 
-                    }
-                    else {
-                        imgbtn.setBackground(Drawable.createFromPath(datosa[9]));}
+                } else {
+                    imgbtn.setBackground(Drawable.createFromPath(datosa[2]));
+                }
 
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
     }
     public void onClick(View v) {
         switch (v.getId()) {
@@ -140,14 +149,20 @@ public class AddPatientActivity extends AppCompatActivity{
                 openContextMenu(v);
                 break;
 
-            case R.id.btn_guardar:
+            case R.id.btn_guardar_paso1:
                 if(validar(edt_id.getText().toString(),btn_fecha.getText().toString(),edt_nomb.getText().toString())==false){
                     Toast.makeText(this,"Debe poner cédula, fecha de nacimiento y nombre completo",Toast.LENGTH_LONG).show();
+                    Log.e("Agregar paciente","faltan campos obligatorios");
                 }else {
                      queryBuilder = GreenDaoHelper.getPatientDao().queryBuilder();
 
                      List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(edt_id.getText().toString())).limit(1).list();
-                     //idpaciente= patientList.get(0).getIdentity();
+
+                    for(int j=0;j<patientList.size();j++){
+                         Log.e("Agregar paciente",""+patientList.get(j).getIdentity());
+
+                     }
+
 
 
                     if (actualizar.equals("actualizar")) {
@@ -172,7 +187,10 @@ public class AddPatientActivity extends AppCompatActivity{
                         startActivity(ir_reg);
                         //overridePendingTransition(R.anim.left_in, R.anim.left_out);
                     } else {
-                        if (patientList==null) {
+                        if (patientList.size()==0)
+                        {
+                            Log.e("Agregar paciente","La cedula esta libre");
+
                             paciente = new String[7];
                             Intent ir_reg = new Intent(this, AddPatient2Activity.class);
 
@@ -190,6 +208,7 @@ public class AddPatientActivity extends AppCompatActivity{
                             startActivity(ir_reg);
                             //overridePendingTransition(R.anim.left_in, R.anim.left_out);
                         } else {
+                            Log.e("Agregar paciente","Cedula ya existe");
                             Toast.makeText(this, "La cédula ingresada ya existe, puede  que el paciente haya sido ingresado con anterioridad", Toast.LENGTH_LONG).show();
                         }
                     }

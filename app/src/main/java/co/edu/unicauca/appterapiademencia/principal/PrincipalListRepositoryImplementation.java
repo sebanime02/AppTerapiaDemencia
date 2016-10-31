@@ -12,7 +12,7 @@ import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.PatientDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.UserDao;
-import co.edu.unicauca.appterapiademencia.events.ListEvent;
+import co.edu.unicauca.appterapiademencia.events.PatientListEvent;
 import co.edu.unicauca.appterapiademencia.lib.EventBus;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
 
@@ -42,13 +42,19 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     }
 
     @Override
-    public void getPatients() {
-
+    public List<Patient> getPatients() {
+      /*  Patient prueba = new Patient(null,"sebastian d","18/04/1995","","emsanar",1061779709,"ninguno",null,null,null,null,0,0,0);
+        this.patientDao.insert(prueba);
+           */
      QueryBuilder qbpatients = GreenDaoHelper.getPatientDao().queryBuilder();
         List patients = qbpatients.list();
         List<Patient> patientList = patients;
-
-        postEvent(patients,1);
+        int i;
+        for(i=0; i<patientList.size();i++){
+            Log.e("List Patients","Paciente con nombre "+patientList.get(i).getName());
+        }
+        Log.e("List Patients","Envia al postlistevent la lista");
+        return patientList;
 
 
     }
@@ -82,21 +88,18 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     public void changeUserData(HashMap<String, Object> hashMap) {
 
     }
-    private void postEvent(List<Object> objectList,int typemethod){
-        //typemethod==1 para eventos de pacientes,
-        if(typemethod==1)
-        {
-            ListEvent listEvent = new ListEvent();
-            listEvent.setObjectlist(objectList);
+    private void postPatientListEvent(List<Patient> patientList){
+
+
+            PatientListEvent listEvent = new PatientListEvent();
+            listEvent.setPatientList(patientList);
 
             EventBus eventBus = GreenRobotEventBus.getInstance();
-            Log.e("Lista","Va a registrar el evento");
-            eventBus.post(listEvent);
-        }
-        else
-        {
+            Log.e("Lista de Pacientes","Va a registrar el evento con lista de pacientes");
 
-        }
+
+
+
 
     }
 }

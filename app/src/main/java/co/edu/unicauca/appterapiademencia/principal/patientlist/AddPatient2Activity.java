@@ -14,9 +14,9 @@ import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
-import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.PatientDao;
+import co.edu.unicauca.appterapiademencia.principal.MainActivity;
 
 /**
  * Created by ENF on 30/10/2016.
@@ -31,7 +31,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
     private QueryBuilder queryBuilder;
     String[] paciente,datosa;
     private String actualizar="";
-    private PatientDao patientDao:
+    private PatientDao patientDao;
     private GreenDaoHelper helper;
     private Patient patientObj;
 
@@ -72,29 +72,31 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                 actualizar = "";
             } else {
                 datosa = new String[10];
-                datosa = bundl.getArra("datosa");
-                if (datosa[8].toString().equals("Visión Normal")) {
+                datosa = bundl.getStringArray("datosa");
+                if (datosa[7].toString().equals("0")) {
 
                     s_vision.setSelection(0);
                 }
-                if (datosa[8].toString().equals("Baja visión")) {
+                if (datosa[7].toString().equals("1")) {
                     s_vision.setSelection(1);
                 }
-                if (datosa[8].toString().equals("Doble Propósito")) {
-                    s_vision.setSelection(2);
+                if (datosa[7].toString().equals("2")) {
 
-                    if (datosa[9].toString().equals("Puede Escribir")) {
+                    s_vision.setSelection(2);
+                }
+
+                 if (datosa[8].toString().equals("0")) {
                         s_escritura.setSelection(0);
                     }
-                    if (datosa[9].toString().equals("No puede escribir")) {
+                 if (datosa[8].toString().equals("1")) {
                         s_escritura.setSelection(1);
                     }
 
-                    if (datosa[10].toString().equals("Puede Dibujar")) {
-                        s_vision.setSelection(0);
+                  if (datosa[9].toString().equals("0")) {
+                        s_dibujo.setSelection(0);
                     }
-                    if (datosa[10].toString().equals("No puede Dibujar")) {
-                        s_vision.setSelection(1);
+                  if (datosa[9].toString().equals("1")) {
+                        s_dibujo.setSelection(1);
                     }
 
 
@@ -102,7 +104,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
             }
         }
-    }
+
 
 
     @Override
@@ -118,14 +120,14 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         var_foto = paciente[1];
                     }else {
                         if (paciente[1].equals("")) {
-                            var_foto = datosa[9];
+                            var_foto = datosa[2];
                         } else {
                             var_foto = paciente[1];
                         }
                     }
 
                     String var_id = paciente[0];
-                    int parse_id = Integer.parseInt(var_id)
+                    int parse_id = Integer.parseInt(var_id);
 
                     String var_nombre = paciente[2];
                     String var_fecha = paciente[3];
@@ -172,15 +174,15 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         }
 
 
-                    }
+
 
                     //-------------------------------
-                    Intent ir_main = new Intent(this, Main.class);
+                    Intent ir_main = new Intent(this, MainActivity.class);
                     startActivity(ir_main);
                     //overridePendingTransition(R.anim.left_in, R.anim.left_out);
                     finish();
                     break;
-                case R.id.btn_atras_ing_Bovino:
+                case R.id.btn_atras_paciente:
                     super.onBackPressed();
                     //overridePendingTransition(R.anim.right_in, R.anim.right_out);
                     break;

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +13,8 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
+import co.edu.unicauca.appterapiademencia.adapters.PatientListAdapter;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
-import co.edu.unicauca.appterapiademencia.principal.PrincipalListPresenter;
 
 /**
  * Created by ENF on 25/10/2016.
@@ -20,14 +22,19 @@ import co.edu.unicauca.appterapiademencia.principal.PrincipalListPresenter;
 
 public class PatientListFragment extends Fragment implements PatientListView {
 
-    private PrincipalListPresenter principalPresenter;
+    private PatientListPresenter patientListPresenter;
     private FloatingActionButton floatingActionButton;
+    private RecyclerView recycler;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager LManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_listpatients, container, false);
         floatingActionButton= (FloatingActionButton) rootView.findViewById(R.id.add_patient);
+        recycler = (RecyclerView) rootView.findViewById(R.id.reciclador);
+        getPatients();
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,8 +48,10 @@ public class PatientListFragment extends Fragment implements PatientListView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       /* principalPresenter = new PrincipalListPresenterImplementation(this);
-        principalPresenter.OnCreate(); */
+        patientListPresenter = new PatientListPresenterImplementation(this);
+        patientListPresenter.onCreate();
+
+
 
 
     }
@@ -50,6 +59,7 @@ public class PatientListFragment extends Fragment implements PatientListView {
     @Override
     public void onResume() {
         super.onResume();
+        getPatients();
     }
 
     @Override
@@ -64,6 +74,16 @@ public class PatientListFragment extends Fragment implements PatientListView {
 
     @Override
     public void showPatients(List<Patient> patientList) {
+
+        recycler.setHasFixedSize(true);
+        LManager = new LinearLayoutManager(getContext());
+        recycler.setLayoutManager(LManager);
+
+        adapter = new PatientListAdapter(patientList, getActivity());
+        recycler.setAdapter(adapter);
+
+
+
 
     }
 
@@ -80,7 +100,7 @@ public class PatientListFragment extends Fragment implements PatientListView {
 
     @Override
     public void getPatients() {
-
+        patientListPresenter.getPatient();
     }
     public void navigateToAddPatient(){
 

@@ -16,7 +16,7 @@ public interface PrincipalListInteractor {
 
     void addPatient();
     void showPatients();
-    void getPatients();
+    List<Patient> getPatients();
     void delete(Patient patient);
 
     void insertTip();

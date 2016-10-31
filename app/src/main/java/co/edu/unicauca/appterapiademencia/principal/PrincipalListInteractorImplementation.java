@@ -1,5 +1,7 @@
 package co.edu.unicauca.appterapiademencia.principal;
 
+import android.util.Log;
+
 import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.List;
@@ -30,8 +32,11 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
 
 
     @Override
-    public void getPatients() {
-        principalListRepository.getPatients();
+    public List<Patient> getPatients() {
+
+        Log.e("List Patients","En el interactor principal, llama al repositorio");
+        return principalListRepository.getPatients();
+
 
     }
 

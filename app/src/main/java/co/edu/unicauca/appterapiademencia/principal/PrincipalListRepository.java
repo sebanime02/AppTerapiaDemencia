@@ -13,7 +13,7 @@ import co.edu.unicauca.appterapiademencia.domain.Patient;
 public interface PrincipalListRepository {
     void addPatient();
     void showPatients();
-    void getPatients();
+    List<Patient> getPatients();
     void delete(Patient patient);
 
     void insertTip();
