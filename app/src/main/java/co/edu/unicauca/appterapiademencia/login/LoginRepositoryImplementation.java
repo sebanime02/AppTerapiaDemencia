@@ -42,6 +42,9 @@ public class LoginRepositoryImplementation implements LoginRepository {
         List users = qbsignup.list();
 
 
+
+
+
         Log.e("Registro", "Numero de contraseñas repetidas: "+users.size()+"");
 
         if(users.size()>=1){

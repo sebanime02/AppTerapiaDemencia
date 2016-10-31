@@ -17,7 +17,7 @@ public class Note {
     private String noteType;
 
     @NotNull
-    private java.util.Date date;
+    private String date;
     private String hour;
     private String description;
     private String color;
@@ -34,7 +34,7 @@ public class Note {
     }
 
     @Generated
-    public Note(Long id, long patientId, long userId, String noteType, java.util.Date date, String hour, String description, String color, String owner, Boolean late, Boolean state) {
+    public Note(Long id, long patientId, long userId, String noteType, String date, String hour, String description, String color, String owner, Boolean late, Boolean state) {
         this.id = id;
         this.patientId = patientId;
         this.userId = userId;
@@ -81,12 +81,12 @@ public class Note {
     }
 
     @NotNull
-    public java.util.Date getDate() {
+    public String getDate() {
         return date;
     }
 
     /** Not-null value; ensure this value is available before it is saved to the database. */
-    public void setDate(@NotNull java.util.Date date) {
+    public void setDate(@NotNull String date) {
         this.date = date;
     }
 

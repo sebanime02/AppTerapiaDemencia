@@ -1,16 +1,11 @@
 package co.edu.unicauca.appterapiademencia.domain;
 
-import org.greenrobot.greendao.DaoException;
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.JoinProperty;
-import org.greenrobot.greendao.annotation.NotNull;
-import org.greenrobot.greendao.annotation.ToMany;
+import org.greenrobot.greendao.annotation.*;
 
 import java.util.List;
-
 import co.edu.unicauca.appterapiademencia.domain.dao.DaoSession;
+import org.greenrobot.greendao.DaoException;
+
 import co.edu.unicauca.appterapiademencia.domain.dao.ExerciseDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.HistoricDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.RecommendationDao;

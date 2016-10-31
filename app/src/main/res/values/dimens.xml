@@ -29,4 +29,7 @@
     <dimen name="item_width">200dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
+    <!--LIST PACIENT-->
+    <dimen name="patient_image_size">20dp</dimen>
+
 </resources>

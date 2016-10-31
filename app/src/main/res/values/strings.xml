@@ -66,4 +66,10 @@
 
 
     <!-- PATIENT LIST -->
+
+
+    <!--ADD PATIENT  -->
+    <string name="spinner_vision">Limitación de Visión</string>
+    <string name="spinner_escritura">Limitación de Escritura</string>
+    <string name="spinner_dibujo">Limitación de Dibujo</string>
 </resources>

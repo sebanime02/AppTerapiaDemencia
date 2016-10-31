@@ -135,6 +135,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     {
 
         String msgErr = getResources().getString(R.string.error_loguin);
+        input_password.setError(msgErr);
         txt_error.setEnabled(true);
         txt_error.setVisibility(View.VISIBLE);
         txt_error.setText(msgErr);

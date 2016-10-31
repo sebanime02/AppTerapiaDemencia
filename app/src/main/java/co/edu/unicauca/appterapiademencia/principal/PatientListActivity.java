@@ -25,6 +25,8 @@ import java.util.Calendar;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.login.LoginActivity;
 import co.edu.unicauca.appterapiademencia.principal.help.HelpFragment;
+import co.edu.unicauca.appterapiademencia.principal.notification.NotificationListFragment;
+import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientListFragment;
 import co.edu.unicauca.appterapiademencia.principal.tips.TipsListFragment;
 import co.edu.unicauca.appterapiademencia.principal.userprofile.UserProfileFragment;
 

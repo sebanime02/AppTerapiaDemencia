@@ -7,7 +7,7 @@ import org.greenrobot.greendao.generator.Property;
 public class Main {
     public static void main(String[] args)throws Exception {
         Schema schema = new Schema(1, "co.edu.unicauca.appterapiademencia.domain");
-
+        schema.setDefaultJavaPackageDao("co.edu.unicauca.appterapiademencia.domain.dao");
 
 
         //USER TABLE
@@ -24,14 +24,20 @@ public class Main {
 
         patient.addIdProperty().autoincrement();
         patient.addStringProperty("name").notNull();
-        patient.addIntProperty("age").notNull();
-        patient.addIntProperty("eps");
+        patient.addStringProperty("birthday").notNull();
+        patient.addStringProperty("photopath");
+        patient.addStringProperty("eps");
         patient.addIntProperty("identity").notNull().unique();
         patient.addStringProperty("antecedents");
         patient.addStringProperty("syndromes");
         patient.addStringProperty("observations");
         patient.addIntProperty("mec");
         patient.addIntProperty("gds");
+        patient.addIntProperty("visionlimitation");
+        patient.addIntProperty("writinglimitation");
+        patient.addIntProperty("drawinglimitation");
+
+
 
 
 
@@ -49,7 +55,7 @@ public class Main {
 
 
         note.addStringProperty("noteType");
-        note.addDateProperty("date").notNull();
+        note.addStringProperty("date").notNull();
         note.addStringProperty("hour");
         note.addStringProperty("description");
         note.addStringProperty("color"); //Importancia

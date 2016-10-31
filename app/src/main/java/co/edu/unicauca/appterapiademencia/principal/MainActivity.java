@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,7 +17,7 @@ import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.Item.RowItem;
 import co.edu.unicauca.appterapiademencia.R;
-import co.edu.unicauca.appterapiademencia.adapter.Adapter;
+import co.edu.unicauca.appterapiademencia.adapters.Adapter;
 import co.edu.unicauca.appterapiademencia.login.LoginActivity;
 import co.edu.unicauca.appterapiademencia.principal.help.HelpFragment;
 import co.edu.unicauca.appterapiademencia.principal.notification.NotificationListFragment;

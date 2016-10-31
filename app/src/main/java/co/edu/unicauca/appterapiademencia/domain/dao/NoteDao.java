@@ -31,7 +31,7 @@ public class NoteDao extends AbstractDao<Note, Long> {
         public final static Property PatientId = new Property(1, long.class, "patientId", false, "PATIENT_ID");
         public final static Property UserId = new Property(2, long.class, "userId", false, "USER_ID");
         public final static Property NoteType = new Property(3, String.class, "noteType", false, "NOTE_TYPE");
-        public final static Property Date = new Property(4, java.util.Date.class, "date", false, "DATE");
+        public final static Property Date = new Property(4, String.class, "date", false, "DATE");
         public final static Property Hour = new Property(5, String.class, "hour", false, "HOUR");
         public final static Property Description = new Property(6, String.class, "description", false, "DESCRIPTION");
         public final static Property Color = new Property(7, String.class, "color", false, "COLOR");
@@ -59,7 +59,7 @@ public class NoteDao extends AbstractDao<Note, Long> {
                 "\"PATIENT_ID\" INTEGER NOT NULL ," + // 1: patientId
                 "\"USER_ID\" INTEGER NOT NULL ," + // 2: userId
                 "\"NOTE_TYPE\" TEXT," + // 3: noteType
-                "\"DATE\" INTEGER NOT NULL ," + // 4: date
+                "\"DATE\" TEXT NOT NULL ," + // 4: date
                 "\"HOUR\" TEXT," + // 5: hour
                 "\"DESCRIPTION\" TEXT," + // 6: description
                 "\"COLOR\" TEXT," + // 7: color
@@ -89,7 +89,7 @@ public class NoteDao extends AbstractDao<Note, Long> {
         if (noteType != null) {
             stmt.bindString(4, noteType);
         }
-        stmt.bindLong(5, entity.getDate().getTime());
+        stmt.bindString(5, entity.getDate());
  
         String hour = entity.getHour();
         if (hour != null) {
@@ -137,7 +137,7 @@ public class NoteDao extends AbstractDao<Note, Long> {
         if (noteType != null) {
             stmt.bindString(4, noteType);
         }
-        stmt.bindLong(5, entity.getDate().getTime());
+        stmt.bindString(5, entity.getDate());
  
         String hour = entity.getHour();
         if (hour != null) {
@@ -182,7 +182,7 @@ public class NoteDao extends AbstractDao<Note, Long> {
             cursor.getLong(offset + 1), // patientId
             cursor.getLong(offset + 2), // userId
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // noteType
-            new java.util.Date(cursor.getLong(offset + 4)), // date
+            cursor.getString(offset + 4), // date
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // hour
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // description
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // color
@@ -199,7 +199,7 @@ public class NoteDao extends AbstractDao<Note, Long> {
         entity.setPatientId(cursor.getLong(offset + 1));
         entity.setUserId(cursor.getLong(offset + 2));
         entity.setNoteType(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setDate(new java.util.Date(cursor.getLong(offset + 4)));
+        entity.setDate(cursor.getString(offset + 4));
         entity.setHour(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setDescription(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setColor(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
