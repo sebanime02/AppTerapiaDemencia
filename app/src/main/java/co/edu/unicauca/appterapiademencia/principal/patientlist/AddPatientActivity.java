@@ -12,8 +12,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -23,6 +25,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
@@ -42,7 +46,7 @@ import co.edu.unicauca.appterapiademencia.util.BitmapUtil;
  * Created by ENF on 28/10/2016.
  */
 
-public class AddPatientActivity extends AppCompatActivity{
+public class AddPatientActivity extends AppCompatActivity implements View.OnClickListener{
 
     private String var_genero="";
     private String var_fecha="";
@@ -66,6 +70,7 @@ public class AddPatientActivity extends AppCompatActivity{
     private PatientDao  patientDao;
     private QueryBuilder queryBuilder;
     private ActionBar actionBar;
+    private Toolbar toolbar;
 
   public AddPatientActivity(){
       this.patientDao = GreenDaoHelper.getPatientDao();
@@ -76,8 +81,10 @@ public class AddPatientActivity extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addpatient_personalinformation);
+
         prefs = getSharedPreferences("datos", Context.MODE_PRIVATE);
         edt_id = (EditText) findViewById(R.id.edt_cedula);
+       // btn_guardar = (Button) findViewById(R.id.btn_guardar_paso1);
         edt_nomb = (EditText) findViewById(R.id.edt_nombre_paciente);
         btn_fecha = (Button) findViewById(R.id.btn_fecha_patiente);
         edt_eps = (EditText) findViewById(R.id.edt_eps);
@@ -85,13 +92,14 @@ public class AddPatientActivity extends AppCompatActivity{
         edt_sindromes = (EditText) findViewById(R.id.edt_sindromes);
         edt_observaciones = (EditText) findViewById(R.id.edt_observaciones);
 
-        btn_guardar = (Button) findViewById(R.id.btn_guardar_paso1);
+
 
 
         imgbtn = (ImageButton) findViewById(R.id.foto_paciente);
-        imagen = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/drawable/add").toString();
-
-        /*actionBar = getSupportActionBar();
+        imagen = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/drawable/addsmall").toString();
+/*
+        toolbar = (Toolbar) findViewById(R.id.toolbaraddpatient);
+        actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         */
         colocarImagen();
@@ -142,84 +150,106 @@ public class AddPatientActivity extends AppCompatActivity{
             }
         }
     }
+
+    public void savePage1(View view)
+    {
+
+        Log.e("Agregar paciente","Presiono el boton siguiente");
+
+        if(validar(edt_id.getText().toString(),btn_fecha.getText().toString(),edt_nomb.getText().toString())==false)
+        {
+            new MaterialDialog.Builder(this).title("Campos Obligagorios Faltantes").content("Debe poner cédula, fecha de nacimiento y nombre completo").positiveText(R.string.dialog_succes_agree).show();
+            //Toast.makeText(this,"Debe poner cédula, fecha de nacimiento y nombre completo",Toast.LENGTH_LONG).show();
+            edt_id.setError("Obligatorio");
+            edt_nomb.setError("Obligatorio");
+            btn_fecha.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.red_dark));
+
+            Log.e("Agregar paciente","faltan campos obligatorios");
+        }else {
+            queryBuilder = GreenDaoHelper.getPatientDao().queryBuilder();
+
+            List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(Integer.parseInt(edt_id.getText().toString()))).limit(1).list();
+            //.limit(1).list();
+
+            for(int j=0;j<patientList.size();j++){
+                Log.e("Agregar paciente",""+patientList.get(j).getIdentity());
+
+            }
+
+
+
+            if (actualizar.equals("actualizar")) {
+                paciente = new String[7];
+                Intent ir_reg = new Intent(this, AddPatient2Activity.class);
+
+                paciente[0] = edt_id.getText().toString();
+                paciente[1] = name2;
+                paciente[2] = edt_nomb.getText().toString();
+                paciente[3] = btn_fecha.getText().toString();
+                paciente[4] = edt_eps.getText().toString();
+                paciente[5] = edt_antecedentes.getText().toString();
+                paciente[6] = edt_sindromes.getText().toString();
+                paciente[7] = edt_observaciones.getText().toString();
+
+
+                ir_reg.putExtra("paciente", paciente);
+
+                ir_reg.putExtra("actualizar", actualizar);
+                ir_reg.putExtra("datosa", datosa);
+
+                startActivity(ir_reg);
+                //overridePendingTransition(R.anim.left_in, R.anim.left_out);
+            } else {
+                if (patientList.size()==0)
+                {
+                    Log.e("Agregar paciente","La cedula esta libre");
+
+                    paciente = new String[8];
+                    Intent ir_reg = new Intent(this, AddPatient2Activity.class);
+
+                    paciente[0] = edt_id.getText().toString();
+                    if(name2==""){
+                        name2=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/drawable/emptyuser").toString();
+                    }
+                    paciente[1] = name2;
+                    paciente[2] = edt_nomb.getText().toString();
+                    paciente[3] = btn_fecha.getText().toString();
+                    paciente[4] = edt_eps.getText().toString();
+                    paciente[5] = edt_antecedentes.getText().toString();
+                    paciente[6] = edt_sindromes.getText().toString();
+                    paciente[7] = edt_observaciones.getText().toString();
+
+                    ir_reg.putExtra("paciente", paciente);
+
+                    startActivity(ir_reg);
+                    //overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                } else {
+                    Log.e("Agregar paciente","Cedula ya existe");
+                    Toast.makeText(this, "La cédula ingresada ya existe, puede  que el paciente haya sido ingresado con anterioridad", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+
+    }
+
     public void onClick(View v) {
         switch (v.getId()) {
 
             case R.id.foto_paciente:
                 openContextMenu(v);
                 break;
-
+               /*
             case R.id.btn_guardar_paso1:
-                if(validar(edt_id.getText().toString(),btn_fecha.getText().toString(),edt_nomb.getText().toString())==false){
-                    Toast.makeText(this,"Debe poner cédula, fecha de nacimiento y nombre completo",Toast.LENGTH_LONG).show();
-                    Log.e("Agregar paciente","faltan campos obligatorios");
-                }else {
-                     queryBuilder = GreenDaoHelper.getPatientDao().queryBuilder();
-
-                     List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(edt_id.getText().toString())).limit(1).list();
-
-                    for(int j=0;j<patientList.size();j++){
-                         Log.e("Agregar paciente",""+patientList.get(j).getIdentity());
-
-                     }
 
 
-
-                    if (actualizar.equals("actualizar")) {
-                        paciente = new String[7];
-                        Intent ir_reg = new Intent(this, AddPatient2Activity.class);
-
-                        paciente[0] = edt_id.getText().toString();
-                        paciente[1] = name2;
-                        paciente[2] = edt_nomb.getText().toString();
-                        paciente[3] = btn_fecha.getText().toString();
-                        paciente[4] = edt_eps.getText().toString();
-                        paciente[5] = edt_antecedentes.getText().toString();
-                        paciente[6] = edt_sindromes.getText().toString();
-                        paciente[7] = edt_observaciones.getText().toString();
-
-
-                        ir_reg.putExtra("paciente", paciente);
-
-                        ir_reg.putExtra("actualizar", actualizar);
-                        ir_reg.putExtra("datosa", datosa);
-
-                        startActivity(ir_reg);
-                        //overridePendingTransition(R.anim.left_in, R.anim.left_out);
-                    } else {
-                        if (patientList.size()==0)
-                        {
-                            Log.e("Agregar paciente","La cedula esta libre");
-
-                            paciente = new String[7];
-                            Intent ir_reg = new Intent(this, AddPatient2Activity.class);
-
-                            paciente[0] = edt_id.getText().toString();
-                            paciente[1] = name2;
-                            paciente[2] = edt_nomb.getText().toString();
-                            paciente[3] = btn_fecha.getText().toString();
-                            paciente[4] = edt_eps.getText().toString();
-                            paciente[5] = edt_antecedentes.getText().toString();
-                            paciente[6] = edt_sindromes.getText().toString();
-                            paciente[7] = edt_observaciones.getText().toString();
-
-                            ir_reg.putExtra("paciente", paciente);
-
-                            startActivity(ir_reg);
-                            //overridePendingTransition(R.anim.left_in, R.anim.left_out);
-                        } else {
-                            Log.e("Agregar paciente","Cedula ya existe");
-                            Toast.makeText(this, "La cédula ingresada ya existe, puede  que el paciente haya sido ingresado con anterioridad", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                }
-                break;
+                break;*/
             case R.id.btn_fecha_patiente:
                 showDialog(999);
                 break;
 
         }
     }
+
     @Override
     protected Dialog onCreateDialog(int id) {
         // TODO Auto-generated method stub
@@ -230,6 +260,7 @@ public class AddPatientActivity extends AppCompatActivity{
         }
         return null;
     }
+
     private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
@@ -245,10 +276,11 @@ public class AddPatientActivity extends AppCompatActivity{
         var_fecha = (new StringBuilder().append(day).append("/")
                 .append(month).append("/").append(year)).toString();
         btn_fecha.setText(var_fecha);
+        btn_fecha.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.negro));
     }
 
-    public Boolean validar(String id, String fecha, String nombre) {
-        if (id.equals("")  || fecha.equals("") || nombre.equals("") || fecha.equals("DD/MM/AAAA")) {
+    public Boolean validar(String id, String fecha, String genero) {
+        if (id.equals("")  || fecha.equals("") || genero.equals("") || fecha.equals("DD/MM/AAAA")) {
             return false;
         }else {
             return true;
@@ -293,16 +325,19 @@ public class AddPatientActivity extends AppCompatActivity{
             getMenuInflater().inflate(R.menu.menu_foto_perfil, menu);
         } else {
             queryBuilder = GreenDaoHelper.getPatientDao().queryBuilder();
+            if (edt_id.getText().toString() != "") {
+                int id = Integer.parseInt(edt_id.getText().toString());
 
-            List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(edt_id.getText().toString())).limit(1).list();
-            //idpaciente= patientList.get(0).getIdentity();
+                List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(id)).limit(1).list();
 
-            if (patientList == null) {
-                String nombre_foto = "/ModBovino/" + edt_id.getText().toString() + ".jpg";
-                name = Environment.getExternalStorageDirectory().getPath() + nombre_foto;
-                getMenuInflater().inflate(R.menu.menu_foto_perfil, menu);
-            } else {
-                Toast.makeText(this, "La cédula ingresada ya existe, puede  que el paciente haya sido ingresado con anterioridad", Toast.LENGTH_LONG).show();
+
+                if (patientList.size() == 0) {
+                    String nombre_foto = "/ModTerapia/" + edt_id.getText().toString() + ".jpg";
+                    name = Environment.getExternalStorageDirectory().getPath() + nombre_foto;
+                    getMenuInflater().inflate(R.menu.menu_foto_perfil, menu);
+                } else {
+                    Toast.makeText(this, "La cédula ya ha sido registrada anteriormente, revise la lista de pacientes", Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
@@ -380,5 +415,8 @@ public class AddPatientActivity extends AppCompatActivity{
 
 
     }
-
 }
+
+
+
+

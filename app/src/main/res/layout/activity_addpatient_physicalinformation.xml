@@ -10,25 +10,48 @@
 
 
     <LinearLayout
-        android:padding="50dp"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:background="@color/colorPrimary"
+            >
         <TextView
-            android:layout_gravity="center_horizontal"
-            android:text="Limitaciones Físicas"
-            android:textSize="25sp"
-            android:textColor="@color/negro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_gravity="center_horizontal"
-            android:text="Califique las limitaciones físicas del paciente, esto será de ayuda para facilitar la experiencia con los ejercicios cognitivos"
-            android:textSize="20sp"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
 
+            android:layout_gravity="center_horizontal"
+            android:text="LIMITACIONES FISICAS"
+            android:textSize="25sp"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
+            android:fontFamily="sans-serif"
             android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:text="Califíque las Limitaciones Físicas del paciente, esto será de ayuda para facilitar la experiencia con los ejercicios cognitivos."
+                android:textSize="20sp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="20dp"
+            android:orientation="vertical">
+
+
+
 
         <TextView
             android:text="Visión"
@@ -57,24 +80,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:prompt="@string/spinner_vision"/>
-
-        <RelativeLayout
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-
-                android:drawableLeft="@drawable/ic_save_white_24dp"
-                android:id="@+id/btn_guardar_paciente"
+            <TextView
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Guardar"
-                android:textColor="@color/white"
-                android:layout_alignParentRight="true"
-                android:background="@color/colorAccent"/>
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:text="Paso 2 de 3"
+                android:textSize="20dp"
+                />
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="66"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                style="?android:attr/progressBarStyleHorizontal"
+
+                />
+
+        <Button
+
+            android:drawableLeft="@drawable/ic_save_white_24dp"
+            android:id="@+id/btn_guardar_paciente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:textColor="@color/white"
+            android:background="@color/colorAccent"/>
 
             <Button
                 android:id="@+id/btn_atras_paciente"
@@ -82,27 +115,15 @@
                 android:layout_height="wrap_content"
                 android:text="Atras"
                 android:textSize="20sp"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:textColor="@color/colorPrimaryDark"
                 style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true" />
-        </RelativeLayout>
-        <TextView
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:gravity="center_horizontal"
-            android:text="Paso 2 de 3"
-            android:textSize="20dp"
-            />
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="100"
-            android:progress="66"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            style="?android:attr/progressBarStyleHorizontal" />
+                android:layout_gravity="center_horizontal"
+                 />
+
+
+
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

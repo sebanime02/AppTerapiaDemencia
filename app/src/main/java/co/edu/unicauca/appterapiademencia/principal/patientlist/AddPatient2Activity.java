@@ -53,8 +53,8 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
         btn_atras.setOnClickListener(this);
 
         s_vision = (Spinner) findViewById(R.id.spi_vision);
-        s_escritura = (Spinner) findViewById(R.id.spi_vision);
-        s_dibujo = (Spinner) findViewById(R.id.spi_vision);
+        s_escritura = (Spinner) findViewById(R.id.spi_escritura);
+        s_dibujo = (Spinner) findViewById(R.id.spi_dibujo);
 
         ArrayAdapter<String> adaptervision = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, vision);
         ArrayAdapter<String> adapterescritura = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, escritura);

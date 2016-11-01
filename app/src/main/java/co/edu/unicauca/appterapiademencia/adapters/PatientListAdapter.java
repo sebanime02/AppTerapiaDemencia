@@ -39,7 +39,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
         }
         layoutInflater = activity.getLayoutInflater();
         this.activity = activity;
-        this.imageSize= activity.getResources().getDimensionPixelSize(R.dimen.patient_image_size);
+        this.imageSize= activity.getResources().getDimensionPixelSize(R.dimen.img_size_item_list);
 
 
     }
@@ -70,8 +70,8 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
             //Picasso.with(this.a).load(Uri.parse(foto)).transform(new CircleTransform()).memoryPolicy(MemoryPolicy.NO_CACHE).into(myholder.foto_bov);
             Picasso.with(this.activity).load(Uri.parse(foto)).resize(imageSize, imageSize).transform(new CircleTransform()).into(holder.img_patient);
         }
-        holder.patient_name.setText("Nombre: " + id);
-        holder.patient_age.setText("Id: " + id);
+        holder.patient_name.setText(nombre);
+        holder.patient_age.setText("C.C " + id);
 
         return;
     }

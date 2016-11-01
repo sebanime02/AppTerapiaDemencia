@@ -59,6 +59,7 @@ public class PatientListFragment extends Fragment implements PatientListView {
     @Override
     public void onResume() {
         super.onResume();
+
         getPatients();
     }
 
@@ -75,12 +76,20 @@ public class PatientListFragment extends Fragment implements PatientListView {
     @Override
     public void showPatients(List<Patient> patientList) {
 
-        recycler.setHasFixedSize(true);
-        LManager = new LinearLayoutManager(getContext());
-        recycler.setLayoutManager(LManager);
+        try {
+            recycler.setHasFixedSize(true);
+            LManager = new LinearLayoutManager(getContext());
+            recycler.setLayoutManager(LManager);
 
-        adapter = new PatientListAdapter(patientList, getActivity());
-        recycler.setAdapter(adapter);
+            adapter = new PatientListAdapter(patientList, getActivity());
+            recycler.setAdapter(adapter);
+        }catch (Exception e){
+
+        }
+          adapter.notifyDataSetChanged();
+
+
+
 
 
 

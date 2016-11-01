@@ -43,11 +43,11 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
 
     @Override
     public List<Patient> getPatients() {
-      /*  Patient prueba = new Patient(null,"sebastian d","18/04/1995","","emsanar",1061779709,"ninguno",null,null,null,null,0,0,0);
+       /*Patient prueba = new Patient(null,"Orlando Ñ","18/04/1995","","cosmitet",11111,"ninguno",null,null,null,null,0,0,0);
         this.patientDao.insert(prueba);
            */
      QueryBuilder qbpatients = GreenDaoHelper.getPatientDao().queryBuilder();
-        List patients = qbpatients.list();
+        List patients = qbpatients.orderDesc(PatientDao.Properties.Id).list();
         List<Patient> patientList = patients;
         int i;
         for(i=0; i<patientList.size();i++){

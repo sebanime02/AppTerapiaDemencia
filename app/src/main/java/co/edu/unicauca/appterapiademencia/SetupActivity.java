@@ -2,11 +2,8 @@ package co.edu.unicauca.appterapiademencia;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Environment;
 
 import org.greenrobot.greendao.database.Database;
-
-import java.io.File;
 
 import co.edu.unicauca.appterapiademencia.domain.dao.DaoMaster;
 import co.edu.unicauca.appterapiademencia.domain.dao.DaoSession;
@@ -29,7 +26,7 @@ public class SetupActivity extends Application {
         super.onCreate();
         context = getApplicationContext();
         setupGreenDaoHelper(context);
-        createFolder();
+
 
 
     }
@@ -45,18 +42,6 @@ public class SetupActivity extends Application {
 
         return context;
     }
-    private void createFolder() {
-        File folder = new File(Environment.getExternalStorageDirectory() + "/ModTerapia");
-        boolean success = true;
-        if (!folder.exists()) {
-            //Toast.makeText(this, "carpeta creada", Toast.LENGTH_SHORT).show();
-            success = folder.mkdir();
-        }
-        if (success) {
-            //Toast.makeText(this, "La carpeta ya esxiste", Toast.LENGTH_SHORT).show();
-        } else {
-            //Toast.makeText(this, "fallo al crear carpeta", Toast.LENGTH_SHORT).show();
-        }
-    }
+
 
 }

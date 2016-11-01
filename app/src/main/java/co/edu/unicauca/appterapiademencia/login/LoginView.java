@@ -18,6 +18,7 @@ public interface LoginView {
 
     void navigateToRegister();
     void saveLoginPreference();
+    void setSupervisorPreference();
 
 
 

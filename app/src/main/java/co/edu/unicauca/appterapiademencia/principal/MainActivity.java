@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -32,27 +33,57 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ActionBar actionBar;
     private Toolbar toolbar;
     private List<RowItem> rowItems;
-    public static final Integer[] images = {R.drawable.ic_action_content_mail,R.drawable.ic_action_content_report,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
-    public static final String[] titles= {"Lista de Pacientes","Notificaciones","Tips para el cuidador","Perfil de usuario","Ayuda","Salir"};
+    private String titleMessage;
+    private Fragment fragmentchoice1,fragmentchoice2,fragmentchoice3,fragmentchoice4,fragmentchoice5;
+    public static final Integer[] imagessupervisor = {R.drawable.ic_list_black_24dp,R.drawable.ic_action_content_report,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
+    public static final String[] titlessupervisor= {"Lista de Pacientes","Notificaciones","Tips para el cuidador","Perfil de usuario","Ayuda","Salir"};
+    public static final Integer[] imagescarer ={R.drawable.ic_list_black_24dp,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
+    public static final String[] titlescarer ={"Lista de Pacientes","Tips para el cuidador","Perfil de usuario","Ayuda","Salir"};
 
+
+
+    private boolean supervisormode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_masterdetail);
-        rowItems = new ArrayList<RowItem>();
-        for (int i = 0; i < titles.length; i++) {
-            RowItem item = new RowItem(images[i], titles[i]);
-            rowItems.add(item);
-        }
+        SharedPreferences loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
 
-        listView = (ListView) findViewById(R.id.lista);
+        setContentView(R.layout.activity_masterdetail);
+
+
+
+        rowItems = new ArrayList<RowItem>();
+         if(loginpreference.getBoolean("supervisor",true))
+            {
+                for (int i = 0; i < titlessupervisor.length; i++)
+                {
+                    RowItem    item = new RowItem(imagessupervisor[i], titlessupervisor[i]);
+                    rowItems.add(item);
+                }
+                titleMessage = "Sesión de Supervisor";
+            }
+         else
+            {
+                for (int i = 0; i < titlescarer.length; i++)
+                {
+                    RowItem    item = new RowItem(imagescarer[i], titlescarer[i]);
+                    rowItems.add(item);
+                }
+                titleMessage = "Sesión de Cuidador";
+            }
+
+
+
+
+
+        listView = (ListView) findViewById(R.id.listaPacientes);
         Adapter adapter = new Adapter(this,
                 R.layout.item_list, rowItems);
-        listView = (ListView)  findViewById(R.id.lista);
+        //listView = (ListView)  findViewById(R.id.lista);
         listView.setOnItemClickListener(this);
 
-      
+
         listView.setAdapter(adapter);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -60,12 +91,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
-        actionBar.setTitle("Lista de Pacientes");
+        actionBar.setDisplayHomeAsUpEnabled(false);
 
 
-       getSupportFragmentManager().beginTransaction()
+        if(loginpreference.getBoolean("supervisor",false)){
+            actionBar.setTitle("Sesión de Cuidador");
+
+        }
+        if(loginpreference.getBoolean("supervisor",true)){
+            actionBar.setTitle("Sesión de Supervisor");
+        }
+
+
+
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new PatientListFragment())
                 .commit();
 
@@ -77,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-
                    getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container, new ListPatientFragment())
                             .commit();
@@ -90,7 +128,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                 .replace(R.id.container, new ListTipsFragment())
                                 .commit();
                 }
-
             }
         });
       */
@@ -103,54 +140,100 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);
+        if(preferencias.getBoolean("supervisor",true))
+        {
+           supervisormode= true;
+        }
+        if(preferencias.getBoolean("supervisor",true)){
+            supervisormode=false;
+        }
         Log.d("Presionado",position+"");
-            switch (position) {
-                case 0:
+        switch (position) {
+            case 0:
 
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, new PatientListFragment())
+                        .commit();
+                actionBar.setTitle("Lista de Pacientes");
+                break;
+            case 1:
+                if(supervisormode==true){
+                    callNotifications();
+                }
+                else {
+                   callTips();
+                    }
 
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, new PatientListFragment())
-                            .commit();
-                    actionBar.setTitle("Lista de Pacientes");
-                    break;
-                case 1:
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, new NotificationListFragment())
-                            .commit();
-                   actionBar.setTitle("Notificaciones de Supervisor");
+                break;
+            case 2:
+                if(supervisormode==true)
+                {
+                    callTips();
+                }
+                else{
+                    callUserProfile();
+                }
 
-                    break;
-                case 2:
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, new TipsListFragment())
-                            .commit();
-                    actionBar.setTitle("Tips para el cuidador");
+                break;
+            case 3:
+                if(supervisormode==true){
+                    callUserProfile();
+                }
+                else{
+                    callHelp();
+                }
+                break;
+            case 4:
+                if (supervisormode==true){
+                    callHelp();
+                }
+                else{
+                    callSignOff();
+                }
+                break;
 
-                    break;
-                case 3:
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, new UserProfileFragment())
-                            .commit();
-                    actionBar.setTitle("Perfil de Usuario");
-                    break;
-                case 4:
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, new HelpFragment())
-                            .commit();
-                    actionBar.setTitle("Ayuda");
-                    break;
+            case 5:
+                if(supervisormode==true){
+                    callSignOff();
+                }
 
-                case 5:
-                    SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor=preferencias.edit();
-                    editor.putBoolean("sessionValidation", false);
-                    editor.commit();
-                    Intent i2 = new Intent(MainActivity.this, LoginActivity.class);
-                    startActivity(i2);
-                    finish();
-                    break;
+                break;
 
         }
     }
+    public void callNotifications(){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, new NotificationListFragment())
+                .commit();
+        actionBar.setTitle("Notificaciones de Supervisor");
+    }
+    public void callTips(){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, new TipsListFragment())
+                .commit();
+        actionBar.setTitle("Tips para el cuidador");
+    }
+    public void callUserProfile(){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, new UserProfileFragment())
+                .commit();
+        actionBar.setTitle("Perfil de Usuario");
+    }
+    public void callHelp(){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, new HelpFragment())
+                .commit();
+        actionBar.setTitle("Ayuda");
+    }
+    public void callSignOff(){
+        SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=preferencias.edit();
+        editor.putBoolean("sessionValidation", false);
+        editor.commit();
+        Intent i2 = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(i2);
+        finish();
+    }
+
 }
