@@ -3,8 +3,13 @@ package co.edu.unicauca.appterapiademencia.domain.dao;
 import android.content.Context;
 
 import org.greenrobot.greendao.database.Database;
+import org.greenrobot.greendao.query.QueryBuilder;
+
+import java.util.HashMap;
+import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.SetupActivity;
+import co.edu.unicauca.appterapiademencia.domain.User;
 
 
 /**
@@ -16,6 +21,8 @@ public class GreenDaoHelper {
     private static co.edu.unicauca.appterapiademencia.domain.dao.DaoSession daoSession;
     private static final String DB_NAME="terapiaprueba-db";
     private static Context context;
+    private HashMap<String,String> userinformation;
+    private QueryBuilder queryBuilder;
 
 
     private static class SingletonHolder{
@@ -27,9 +34,8 @@ public class GreenDaoHelper {
             return SingletonHolder.INSTANCE;
     }
 
-    private GreenDaoHelper(){
-
-
+    private GreenDaoHelper()
+    {
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(SetupActivity.getContext(), DB_NAME);
         Database db = helper.getWritableDb();
         this.daoSession = new co.edu.unicauca.appterapiademencia.domain.dao.DaoMaster(db).newSession();
@@ -58,6 +64,15 @@ public class GreenDaoHelper {
     }
     public static HistoricDao getHistoricDao(){
         return daoSession.getHistoricDao();
+    }
+
+    public HashMap<String,String> getUserInformation(String username)
+    {
+        queryBuilder=getUserDao().queryBuilder();
+        List<User> listuser = queryBuilder.where(UserDao.Properties.Username.eq(username)).limit(1).list();
+        userinformation.put("completename",listuser.get(0).getCompleteName());
+        //userinformation.put("",listuser.get(0).get());
+        return userinformation;
     }
 
 

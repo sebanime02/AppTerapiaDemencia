@@ -18,6 +18,7 @@ public class Main {
         user.addStringProperty("password").notNull();
         user.addStringProperty("completeName").notNull();
         user.addBooleanProperty("accessType"); //Booleano para determinar si es supervisor
+        user.addStringProperty("photopath");
 
         //PATIENT TABLE
         Entity patient = schema.addEntity("Patient");

@@ -31,6 +31,7 @@ public class User {
     @NotNull
     private String completeName;
     private Boolean accessType;
+    private String photopath;
 
     /** Used to resolve relations */
     @Generated
@@ -59,12 +60,13 @@ public class User {
     }
 
     @Generated
-    public User(Long id, String username, String password, String completeName, Boolean accessType) {
+    public User(Long id, String username, String password, String completeName, Boolean accessType, String photopath) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.completeName = completeName;
         this.accessType = accessType;
+        this.photopath = photopath;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -118,6 +120,14 @@ public class User {
 
     public void setAccessType(Boolean accessType) {
         this.accessType = accessType;
+    }
+
+    public String getPhotopath() {
+        return photopath;
+    }
+
+    public void setPhotopath(String photopath) {
+        this.photopath = photopath;
     }
 
     /** To-many relationship, resolved on first access (and after reset). Changes to to-many relations are not persisted, make changes to the target entity. */

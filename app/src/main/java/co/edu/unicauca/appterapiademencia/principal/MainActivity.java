@@ -4,14 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +22,9 @@ import java.util.List;
 import co.edu.unicauca.appterapiademencia.Item.RowItem;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.Adapter;
+import co.edu.unicauca.appterapiademencia.domain.User;
+import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
+import co.edu.unicauca.appterapiademencia.domain.dao.UserDao;
 import co.edu.unicauca.appterapiademencia.login.LoginActivity;
 import co.edu.unicauca.appterapiademencia.principal.help.HelpFragment;
 import co.edu.unicauca.appterapiademencia.principal.notification.NotificationListFragment;
@@ -34,12 +40,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Toolbar toolbar;
     private List<RowItem> rowItems;
     private String titleMessage;
-    private Fragment fragmentchoice1,fragmentchoice2,fragmentchoice3,fragmentchoice4,fragmentchoice5;
+    private TextView completeNameNavbar;
+    private ImageView userAvatarNavbar;
     public static final Integer[] imagessupervisor = {R.drawable.ic_list_black_24dp,R.drawable.ic_action_content_report,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
     public static final String[] titlessupervisor= {"Lista de Pacientes","Notificaciones","Tips para el cuidador","Perfil de usuario","Ayuda","Salir"};
     public static final Integer[] imagescarer ={R.drawable.ic_list_black_24dp,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
     public static final String[] titlescarer ={"Lista de Pacientes","Tips para el cuidador","Perfil de usuario","Ayuda","Salir"};
-
+    private String username;
 
 
     private boolean supervisormode;
@@ -51,8 +58,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         setContentView(R.layout.activity_masterdetail);
 
-
-
+        userAvatarNavbar= (ImageView) findViewById(R.id.image_header);
+        completeNameNavbar = (TextView) findViewById(R.id.completename_navbar);
+        QueryBuilder queryBuilder = GreenDaoHelper.getUserDao().queryBuilder();
         rowItems = new ArrayList<RowItem>();
          if(loginpreference.getBoolean("supervisor",true))
             {
@@ -62,6 +70,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     rowItems.add(item);
                 }
                 titleMessage = "Sesión de Supervisor";
+                loginpreference.getString("username",username);
+                List<User> users= queryBuilder.where(UserDao.Properties.Username.eq(username)).limit(1).list();
+
+
             }
          else
             {
@@ -71,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     rowItems.add(item);
                 }
                 titleMessage = "Sesión de Cuidador";
+
             }
 
 
