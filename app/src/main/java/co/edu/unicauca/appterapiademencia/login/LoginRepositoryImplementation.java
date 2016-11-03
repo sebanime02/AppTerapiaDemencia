@@ -75,7 +75,7 @@ public class LoginRepositoryImplementation implements LoginRepository {
 */
 
         accessType = true; //verdadero es supervisor
-        User user = new User(null,username,password,completeName,accessType);
+        User user = new User(null,username,password,completeName,accessType,"");
         this.userDao.insert(user);
 
         Log.d("RegistroUsuario","Nueva id insertada: "+user.getId());

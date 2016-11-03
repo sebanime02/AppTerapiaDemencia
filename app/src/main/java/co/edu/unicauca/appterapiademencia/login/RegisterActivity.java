@@ -1,36 +1,19 @@
 package co.edu.unicauca.appterapiademencia.login;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.drawable.Drawable;
-import android.media.MediaScannerConnection;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
 import co.edu.unicauca.appterapiademencia.R;
-import co.edu.unicauca.appterapiademencia.domain.Patient;
-import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
-import co.edu.unicauca.appterapiademencia.domain.dao.UserDao;
-import co.edu.unicauca.appterapiademencia.util.BitmapUtil;
 
 /**
  * Created by ENF on 14/10/2016.
@@ -159,7 +142,10 @@ private EditText input_username,input_password_supervisor,input_completename,inp
         navigateToLogin();
     }
 
-    public void addImage(View v){
+
+    /* CODIGO PARA PERSONALIZAR AVATAR
+    public void addImage(View v)
+    {
         if(input_username.getText().toString().equals("")){
             new MaterialDialog.Builder(this).title("Primero escriba un nombre de usuario").content(R.string.dialog_register_emptyinput_content).positiveText(R.string.dialog_succes_agree).show();
 
@@ -291,6 +277,7 @@ private EditText input_username,input_password_supervisor,input_completename,inp
 
 
     }
+    */
 
 
 }

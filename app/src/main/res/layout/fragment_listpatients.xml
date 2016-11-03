@@ -10,8 +10,18 @@
     android:background="@color/white"
     tools:context="co.edu.unicauca.appterapiademencia.principal.MainActivity">
 
+   <EditText
+       android:drawableTint="@color/colorPrimaryDark"
+
+       android:drawableLeft="@android:drawable/ic_menu_search"
+       android:id="@+id/search_box"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+
+       />
 
     <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/search_box"
         android:id="@+id/reciclador"
         android:gravity="center"
         android:scrollbars="vertical"

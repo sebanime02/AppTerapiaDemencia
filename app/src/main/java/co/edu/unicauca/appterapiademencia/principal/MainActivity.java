@@ -3,9 +3,11 @@ package co.edu.unicauca.appterapiademencia.principal;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private String titleMessage;
     private TextView completeNameNavbar;
     private ImageView userAvatarNavbar;
+    private SearchView searchView;
     public static final Integer[] imagessupervisor = {R.drawable.ic_list_black_24dp,R.drawable.ic_action_content_report,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
     public static final String[] titlessupervisor= {"Lista de Pacientes","Notificaciones","Tips para el cuidador","Perfil de usuario","Ayuda","Salir"};
     public static final Integer[] imagescarer ={R.drawable.ic_list_black_24dp,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
@@ -70,8 +73,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     rowItems.add(item);
                 }
                 titleMessage = "Sesión de Supervisor";
-                loginpreference.getString("username",username);
-                List<User> users= queryBuilder.where(UserDao.Properties.Username.eq(username)).limit(1).list();
+                if(loginpreference.getString("username",username)!=null) {
+                    loginpreference.getString("username", username);
+                    List<User> users = queryBuilder.where(UserDao.Properties.Username.eq(username)).limit(1).list();
+                    User user = users.get(0);
+                    String completename = user.getCompleteName().toString();
+                    completeNameNavbar.setText("Supervisor /n"+completename);
+                    if(user.getPhotopath().equals(""))
+                    {
+                        userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
+
+                    }
+                    else{
+                        userAvatarNavbar.setBackground(Drawable.createFromPath(user.getPhotopath()));
+                    }
+                }
+                else{
+                    completeNameNavbar.setText("Supervisor");
+                    userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
+                }
+
+
 
 
             }
@@ -83,7 +105,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     rowItems.add(item);
                 }
                 titleMessage = "Sesión de Cuidador";
+                completeNameNavbar.setText("Cuidador");
 
+                userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
             }
 
 
@@ -151,6 +175,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onResume();
     }
 
+
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);
@@ -207,9 +233,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
 
             case 5:
-                if(supervisormode==true){
+
                     callSignOff();
-                }
 
                 break;
 

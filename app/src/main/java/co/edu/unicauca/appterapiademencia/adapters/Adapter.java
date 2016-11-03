@@ -18,7 +18,7 @@ import co.edu.unicauca.appterapiademencia.R;
  * Created by ENF on 27/10/2016.
  */
 
-public class Adapter extends ArrayAdapter<RowItem> {
+public class Adapter extends ArrayAdapter<RowItem>{
 
     Context context;
 

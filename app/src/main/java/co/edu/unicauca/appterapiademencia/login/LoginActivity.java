@@ -69,6 +69,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             navigateToMainScreen();
         }
 
+
         setContentView(R.layout.activity_login);
         //ButterKnife.bind(this);
         input_username = (EditText) findViewById(R.id.txt_username);

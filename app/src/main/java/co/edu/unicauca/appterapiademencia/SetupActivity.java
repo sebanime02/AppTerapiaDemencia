@@ -15,7 +15,7 @@ import co.edu.unicauca.appterapiademencia.domain.dao.DaoSession;
 public class SetupActivity extends Application {
     private static Context context;
     private static boolean autenticationMode;
-    private static final String DB_NAME="terapiaprueba-db";
+    private static final String DB_NAME="terapiaprueba2-db";
     private static DaoSession daoSession;
 
 
