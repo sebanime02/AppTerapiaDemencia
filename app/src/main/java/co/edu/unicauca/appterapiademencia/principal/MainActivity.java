@@ -3,7 +3,6 @@ package co.edu.unicauca.appterapiademencia.principal;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
@@ -24,15 +25,14 @@ import java.util.List;
 import co.edu.unicauca.appterapiademencia.Item.RowItem;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.Adapter;
-import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
-import co.edu.unicauca.appterapiademencia.domain.dao.UserDao;
 import co.edu.unicauca.appterapiademencia.login.LoginActivity;
 import co.edu.unicauca.appterapiademencia.principal.help.HelpFragment;
 import co.edu.unicauca.appterapiademencia.principal.notification.NotificationListFragment;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientListFragment;
 import co.edu.unicauca.appterapiademencia.principal.tips.TipsListFragment;
 import co.edu.unicauca.appterapiademencia.principal.userprofile.UserProfileFragment;
+import co.edu.unicauca.appterapiademencia.util.CircleTransform;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -66,19 +66,29 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         QueryBuilder queryBuilder = GreenDaoHelper.getUserDao().queryBuilder();
         rowItems = new ArrayList<RowItem>();
          if(loginpreference.getBoolean("supervisor",true))
-            {
+            {Log.e("supervisor","la preferencia es supervisor");
                 for (int i = 0; i < titlessupervisor.length; i++)
                 {
                     RowItem    item = new RowItem(imagessupervisor[i], titlessupervisor[i]);
                     rowItems.add(item);
                 }
                 titleMessage = "Sesión de Supervisor";
-                if(loginpreference.getString("username",username)!=null) {
+                /*
+                if(loginpreference.getString("username",username)!=null)
+                {
+
+                    Log.e("preferencia",username);
                     loginpreference.getString("username", username);
-                    List<User> users = queryBuilder.where(UserDao.Properties.Username.eq(username)).limit(1).list();
+
+
+
+                    List<User> users = queryBuilder.where(UserDao.Properties.Username.eq(username)).list();
                     User user = users.get(0);
-                    String completename = user.getCompleteName().toString();
+                    String completename = user.getCompleteName();
+
                     completeNameNavbar.setText("Supervisor /n"+completename);
+
+
                     if(user.getPhotopath().equals(""))
                     {
                         userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
@@ -89,9 +99,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     }
                 }
                 else{
+                */
                     completeNameNavbar.setText("Supervisor");
-                    userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
-                }
+                Picasso.with(getApplicationContext()).load(R.drawable.emptyuser).resize(50,50).transform(new CircleTransform()).into(userAvatarNavbar);
+                    //userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
+                //}
 
 
 
@@ -107,7 +119,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 titleMessage = "Sesión de Cuidador";
                 completeNameNavbar.setText("Cuidador");
 
-                userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
+                //userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
+                Picasso.with(getApplicationContext()).load(R.drawable.emptyuser).resize(50,50).transform(new CircleTransform()).into(userAvatarNavbar);
             }
 
 
@@ -268,6 +281,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=preferencias.edit();
         editor.putBoolean("sessionValidation", false);
+        editor.putString("username",null);
         editor.commit();
         Intent i2 = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(i2);

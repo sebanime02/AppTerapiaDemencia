@@ -73,4 +73,26 @@ public class PatientListPresenterImplementation implements PatientListPresenter 
 
        showPatients(patienListInteractor.getPatients());
     }
+
+    @Override
+    public void adminRoutes(int option) {
+        switch (option)
+        {
+            case 0:
+                if(patientListView!=null){
+
+                }
+                break;
+            case 1:
+                if(patientListView!=null){
+
+                }
+                break;
+            case 2:
+                if(patientListView!=null){
+
+                }
+                break;
+        }
+    }
 }

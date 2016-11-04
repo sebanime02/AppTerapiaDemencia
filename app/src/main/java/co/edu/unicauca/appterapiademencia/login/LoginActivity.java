@@ -172,7 +172,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     public void setSupervisorPreference() {
         SharedPreferences.Editor editor = loginpreference.edit();
         editor.putBoolean("supervisor",true);
-        editor.putString("username",username);
+        editor.putString("username",input_username.getText().toString());
         editor.commit();
     }
 

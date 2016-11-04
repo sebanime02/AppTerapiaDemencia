@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:name=".SetupActivity"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -56,6 +58,12 @@
             android:name=".principal.patientlist.AddPatient2Activity"
             android:label="Agregar Paciente"
             android:parentActivityName=".principal.patientlist.AddPatientActivity"
+
+            />
+        <activity
+            android:name=".principal.patientlist.PatientProfileActivity"
+            android:label="Detalle Paciente"
+            android:parentActivityName=".principal.MainActivity"
 
             />
 

@@ -13,12 +13,13 @@
    <EditText
        android:drawableTint="@color/colorPrimaryDark"
 
-       android:drawableLeft="@android:drawable/ic_menu_search"
+       android:drawableLeft="@drawable/search"
        android:id="@+id/search_box"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-
+       android:autoLink="none"
        />
+
 
     <android.support.v7.widget.RecyclerView
         android:layout_below="@id/search_box"
@@ -27,6 +28,10 @@
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:headerDividersEnabled="true"
+        android:footerDividersEnabled="true"
+
+
         />
 
     <android.support.design.widget.FloatingActionButton

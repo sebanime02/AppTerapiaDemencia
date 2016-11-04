@@ -17,4 +17,5 @@ public interface PatientListPresenter {
     void showPatients(List<Patient> patient);
     void onEventMainThread(PatientListEvent event);
     void getPatient();
+    void adminRoutes(int option);
 }
