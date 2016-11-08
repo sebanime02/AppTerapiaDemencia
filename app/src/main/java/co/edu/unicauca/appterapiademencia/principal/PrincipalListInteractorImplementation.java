@@ -30,6 +30,12 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
 
     }
 
+    @Override
+    public Patient getPatientData(Long id) {
+        Log.d("Llegue al interactor","El id siguie"+id);
+        return principalListRepository.getPatientData(id);
+    }
+
 
     @Override
     public List<Patient> getPatients() {

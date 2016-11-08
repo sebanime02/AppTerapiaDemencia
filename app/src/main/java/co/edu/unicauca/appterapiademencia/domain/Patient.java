@@ -31,7 +31,7 @@ public class Patient {
     private String eps;
 
     @Unique
-    private int identity;
+    private long identity;
     private String antecedents;
     private String syndromes;
     private String observations;
@@ -73,7 +73,7 @@ public class Patient {
     }
 
     @Generated
-    public Patient(Long id, String name, String birthday, String photopath, String eps, int identity, String antecedents, String syndromes, String observations, Integer mec, Integer gds, Integer visionlimitation, Integer writinglimitation, Integer drawinglimitation) {
+    public Patient(Long id, String name, String birthday, String photopath, String eps, long identity, String antecedents, String syndromes, String observations, Integer mec, Integer gds, Integer visionlimitation, Integer writinglimitation, Integer drawinglimitation) {
         this.id = id;
         this.name = name;
         this.birthday = birthday;
@@ -141,11 +141,11 @@ public class Patient {
         this.eps = eps;
     }
 
-    public int getIdentity() {
+    public long getIdentity() {
         return identity;
     }
 
-    public void setIdentity(int identity) {
+    public void setIdentity(long identity) {
         this.identity = identity;
     }
 

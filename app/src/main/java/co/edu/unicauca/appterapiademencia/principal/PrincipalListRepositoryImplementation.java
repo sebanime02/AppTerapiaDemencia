@@ -25,12 +25,23 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     private UserDao userDao;
     private PatientDao patientDao;
     private boolean accessType;
+    private QueryBuilder queryBuildergeneral;
 
     public PrincipalListRepositoryImplementation(){
         this.helper = GreenDaoHelper.getInstance();
         this.userDao = GreenDaoHelper.getUserDao();
         this.patientDao = GreenDaoHelper.getPatientDao();
+        this.queryBuildergeneral = GreenDaoHelper.getPatientDao().queryBuilder();
     }
+
+    @Override
+    public Patient getPatientData(Long id) {
+       List<Patient> patientList = queryBuildergeneral.where(PatientDao.Properties.Identity.eq(id)).limit(1).list();
+        Log.d("Repositorio","devolvio el nombre: "+patientList.get(0).getName());
+        return patientList.get(0);
+
+    }
+
     @Override
     public void addPatient() {
 

@@ -18,12 +18,12 @@ import co.edu.unicauca.appterapiademencia.R;
  * Created by ENF on 27/10/2016.
  */
 
-public class Adapter extends ArrayAdapter<RowItem>{
+public class MenuAdapter extends ArrayAdapter<RowItem>{
 
     Context context;
 
-    public Adapter(Context context, int resourceId,
-                   List<RowItem> items) {
+    public MenuAdapter(Context context, int resourceId,
+                       List<RowItem> items) {
         super(context, resourceId, items);
         this.context = context;
     }

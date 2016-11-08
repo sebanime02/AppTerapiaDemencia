@@ -32,7 +32,10 @@
                 android:background="@drawable/add"
                 android:id="@+id/foto_paciente"
                 android:layout_width="200dp"
-                android:layout_height="200dp" />
+                android:layout_height="200dp"
+                android:visibility="invisible"
+
+                />
 
             <LinearLayout
                 android:orientation="vertical"

@@ -28,6 +28,8 @@ import co.edu.unicauca.appterapiademencia.util.CircleTransform;
 
 public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.PatientViewHolder> {
 
+    public static final String fotodefault = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser).toString();
+
     private List<Patient> patientList;
     private List<Patient> filteredList;
     private Activity activity;
@@ -69,22 +71,22 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
     public void onBindViewHolder(PatientViewHolder holder, int position) {
 
 
+
         String foto = patientList.get(position).getPhotopath();
         String nombre = patientList.get(position).getName();
-        int id = patientList.get(position).getIdentity();
+        long id = patientList.get(position).getIdentity();
 
+        Log.e("adapter information","Nombre"+nombre+" Foto :"+foto);
         try {
 
             Picasso.with(this.activity).load(activity.getDatabasePath(foto)).resize(imageSize, imageSize).transform(new CircleTransform()).into(holder.img_patient);
         } catch (Exception e) {
 
-            Picasso.with(this.activity).load(Uri.parse(foto)).resize(imageSize, imageSize).transform(new CircleTransform()).into(holder.img_patient);
+            Picasso.with(this.activity).load(Uri.parse(fotodefault)).resize(imageSize, imageSize).transform(new CircleTransform()).into(holder.img_patient);
         }
         holder.patient_name.setText(nombre);
         holder.patient_age.setText("C.C " + id);
         holder.itemView.setLongClickable(true);
-
-
         return;
     }
 
@@ -188,6 +190,8 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
             Intent intent=new Intent(activity,PatientProfileActivity.class);
             intent.putExtra("cedula",PatientListAdapter.this.getItemId(getPosition()));
             view.getContext().startActivity(intent);
+
+            activity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 
             //patientListFragment.navigateToDetail((int)PatientListAdapter.this.getItemId(getPosition()));
 

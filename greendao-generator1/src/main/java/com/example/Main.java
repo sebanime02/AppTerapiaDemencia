@@ -28,7 +28,7 @@ public class Main {
         patient.addStringProperty("birthday").notNull();
         patient.addStringProperty("photopath");
         patient.addStringProperty("eps");
-        patient.addIntProperty("identity").notNull().unique();
+        patient.addLongProperty("identity").notNull().unique();
         patient.addStringProperty("antecedents");
         patient.addStringProperty("syndromes");
         patient.addStringProperty("observations");

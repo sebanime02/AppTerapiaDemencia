@@ -11,9 +11,9 @@ import co.edu.unicauca.appterapiademencia.domain.Patient;
 public interface PatientListView {
     void addPatient();
     void showPatients(List<Patient> patient);
-    void navigateToDetail(int identity);
-    void openMecTest(int identity);
-    void navigateToExercise(int identity);
+    void navigateToDetail(Long identity);
+    void openMecTest(Long identity);
+    void navigateToExercise(Long identity);
     void getPatients();
 
 }

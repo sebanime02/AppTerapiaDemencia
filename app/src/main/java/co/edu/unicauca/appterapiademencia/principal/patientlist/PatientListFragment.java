@@ -145,7 +145,7 @@ public class PatientListFragment extends Fragment implements PatientListView {
     }
 
     @Override
-    public void navigateToDetail(int identity) {
+    public void navigateToDetail(Long identity) {
         Log.e("Volvio a la vista","Le carga la cedula:"+identity);
         Intent intent=new Intent(getActivity(),PatientProfileActivity.class);
         intent.putExtra("cedula",identity);
@@ -154,12 +154,12 @@ public class PatientListFragment extends Fragment implements PatientListView {
     }
 
     @Override
-    public void openMecTest(int identity) {
+    public void openMecTest(Long identity) {
 
     }
 
     @Override
-    public void navigateToExercise(int identity) {
+    public void navigateToExercise(Long identity) {
 
     }
 

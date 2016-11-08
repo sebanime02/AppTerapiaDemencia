@@ -29,7 +29,7 @@ public class PatientDao extends AbstractDao<Patient, Long> {
         public final static Property Birthday = new Property(2, String.class, "birthday", false, "BIRTHDAY");
         public final static Property Photopath = new Property(3, String.class, "photopath", false, "PHOTOPATH");
         public final static Property Eps = new Property(4, String.class, "eps", false, "EPS");
-        public final static Property Identity = new Property(5, int.class, "identity", false, "IDENTITY");
+        public final static Property Identity = new Property(5, long.class, "identity", false, "IDENTITY");
         public final static Property Antecedents = new Property(6, String.class, "antecedents", false, "ANTECEDENTS");
         public final static Property Syndromes = new Property(7, String.class, "syndromes", false, "SYNDROMES");
         public final static Property Observations = new Property(8, String.class, "observations", false, "OBSERVATIONS");
@@ -223,7 +223,7 @@ public class PatientDao extends AbstractDao<Patient, Long> {
             cursor.getString(offset + 2), // birthday
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // photopath
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // eps
-            cursor.getInt(offset + 5), // identity
+            cursor.getLong(offset + 5), // identity
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // antecedents
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // syndromes
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // observations
@@ -243,7 +243,7 @@ public class PatientDao extends AbstractDao<Patient, Long> {
         entity.setBirthday(cursor.getString(offset + 2));
         entity.setPhotopath(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setEps(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setIdentity(cursor.getInt(offset + 5));
+        entity.setIdentity(cursor.getLong(offset + 5));
         entity.setAntecedents(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setSyndromes(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
         entity.setObservations(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));

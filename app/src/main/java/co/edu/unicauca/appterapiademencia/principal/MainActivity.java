@@ -24,7 +24,7 @@ import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.Item.RowItem;
 import co.edu.unicauca.appterapiademencia.R;
-import co.edu.unicauca.appterapiademencia.adapters.Adapter;
+import co.edu.unicauca.appterapiademencia.adapters.MenuAdapter;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.login.LoginActivity;
 import co.edu.unicauca.appterapiademencia.principal.help.HelpFragment;
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
         listView = (ListView) findViewById(R.id.listaPacientes);
-        Adapter adapter = new Adapter(this,
+        MenuAdapter adapter = new MenuAdapter(this,
                 R.layout.item_list, rowItems);
         //listView = (ListView)  findViewById(R.id.lista);
         listView.setOnItemClickListener(this);
@@ -146,10 +146,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         if(loginpreference.getBoolean("supervisor",false)){
             actionBar.setTitle("Sesión de Cuidador");
+            supervisormode=false;
 
         }
         if(loginpreference.getBoolean("supervisor",true)){
             actionBar.setTitle("Sesión de Supervisor");
+            supervisormode=true;
         }
 
 
@@ -192,15 +194,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);
+        /* SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);
         if(preferencias.getBoolean("supervisor",true))
         {
            supervisormode= true;
+            Log.d("modo","Supervisor activado");
         }
-        if(preferencias.getBoolean("supervisor",true)){
+        if(preferencias.getBoolean("supervisor",false)){
             supervisormode=false;
+            Log.d("modo","Supervisor desactivado");
         }
+        */
+
         Log.d("Presionado",position+"");
+
         switch (position) {
             case 0:
 
@@ -281,6 +288,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=preferencias.edit();
         editor.putBoolean("sessionValidation", false);
+        editor.putBoolean("supervisor",false);
         editor.putString("username",null);
         editor.commit();
         Intent i2 = new Intent(MainActivity.this, LoginActivity.class);

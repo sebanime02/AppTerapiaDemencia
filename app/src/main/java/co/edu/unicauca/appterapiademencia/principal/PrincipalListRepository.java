@@ -11,6 +11,8 @@ import co.edu.unicauca.appterapiademencia.domain.Patient;
  */
 
 public interface PrincipalListRepository {
+
+    Patient getPatientData(Long id);
     void addPatient();
     void showPatients();
     List<Patient> getPatients();

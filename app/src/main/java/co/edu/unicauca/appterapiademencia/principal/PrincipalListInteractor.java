@@ -16,6 +16,7 @@ public interface PrincipalListInteractor {
 
     void addPatient();
     void showPatients();
+    Patient getPatientData(Long id);
     List<Patient> getPatients();
     void delete(Patient patient);
 

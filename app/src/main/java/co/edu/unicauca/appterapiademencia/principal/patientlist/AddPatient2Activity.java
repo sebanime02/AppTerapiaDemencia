@@ -103,6 +103,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                 }
 
             }
+
         }
 
 
@@ -127,7 +128,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     }
 
                     String var_id = paciente[0];
-                    int parse_id = Integer.parseInt(var_id);
+                    Long parse_id = Long.parseLong(var_id);
 
                     String var_nombre = paciente[2];
                     String var_fecha = paciente[3];
@@ -179,12 +180,12 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     //-------------------------------
                     Intent ir_main = new Intent(this, MainActivity.class);
                     startActivity(ir_main);
-                    //overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                    overridePendingTransition(R.anim.left_in, R.anim.left_out);
                     finish();
                     break;
                 case R.id.btn_atras_paciente:
                     super.onBackPressed();
-                    //overridePendingTransition(R.anim.right_in, R.anim.right_out);
+                    overridePendingTransition(R.anim.right_in, R.anim.right_out);
                     break;
             }
     }

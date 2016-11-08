@@ -64,8 +64,22 @@
             android:name=".principal.patientlist.PatientProfileActivity"
             android:label="Detalle Paciente"
             android:parentActivityName=".principal.MainActivity"
+            android:theme="@style/MyMaterialTheme.Base"
+            />
+
+        <fragment
+            android:name=".principal.patientlist.PatientProfileFragment"
 
             />
+        <fragment
+            android:name=".principal.cognitiveexercises.GraphicsExercises"
+
+            />
+        <fragment
+            android:name=".principal.patientlist.NotesFragment"
+
+            />
+
 
 
         <meta-data

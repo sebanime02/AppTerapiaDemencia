@@ -16,6 +16,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -102,8 +104,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         */
-        colocarImagen();
-        registerForContextMenu(imgbtn);
+
 
 
         calendar = Calendar.getInstance();
@@ -149,6 +150,25 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 e.printStackTrace();
             }
         }
+        edt_id.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                imgbtn.setVisibility(View.VISIBLE);
+                colocarImagen();
+                registerForContextMenu(imgbtn);
+            }
+        });
     }
 
     public void savePage1(View view)
@@ -168,7 +188,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         }else {
             queryBuilder = GreenDaoHelper.getPatientDao().queryBuilder();
 
-            List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(Integer.parseInt(edt_id.getText().toString()))).limit(1).list();
+            List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(Long.parseLong(edt_id.getText().toString()))).limit(1).list();
             //.limit(1).list();
 
             for(int j=0;j<patientList.size();j++){
@@ -209,8 +229,17 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
                     paciente[0] = edt_id.getText().toString();
                     if(name2==""){
-                        name2=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/drawable/emptyuser").toString();
+                        name2=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser).toString();
                     }
+                    if(name2==Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.mipmap.ic_launcher).toString()){
+                        name2=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser).toString();
+                    }
+                    if(name2.equals(null)){
+                        name2=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser).toString();
+
+                    }
+                    Log.e("name2",name2);
+
                     paciente[1] = name2;
                     paciente[2] = edt_nomb.getText().toString();
                     paciente[3] = btn_fecha.getText().toString();
@@ -222,7 +251,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                     ir_reg.putExtra("paciente", paciente);
 
                     startActivity(ir_reg);
-                    //overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                    overridePendingTransition(R.anim.left_in, R.anim.left_out);
                 } else {
                     Log.e("Agregar paciente","Cedula ya existe");
                     Toast.makeText(this, "La cédula ingresada ya existe, puede  que el paciente haya sido ingresado con anterioridad", Toast.LENGTH_LONG).show();
@@ -326,7 +355,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         } else {
             queryBuilder = GreenDaoHelper.getPatientDao().queryBuilder();
             if (edt_id.getText().toString() != "") {
-                int id = Integer.parseInt(edt_id.getText().toString());
+                Long id = Long.parseLong(edt_id.getText().toString());
 
                 List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(id)).limit(1).list();
 
@@ -336,7 +365,9 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                     name = Environment.getExternalStorageDirectory().getPath() + nombre_foto;
                     getMenuInflater().inflate(R.menu.menu_foto_perfil, menu);
                 } else {
-                    Toast.makeText(this, "La cédula ya ha sido registrada anteriormente, revise la lista de pacientes", Toast.LENGTH_LONG).show();
+                    new MaterialDialog.Builder(this).title("Ya existe un paciente con esa Cèdula").content("La cédula ya ha sido registrada anteriormente, revise la lista de pacientes").positiveText(R.string.dialog_succes_agree).show();
+
+                    //Toast.makeText(this, "La cédula ya ha sido registrada anteriormente, revise la lista de pacientes", Toast.LENGTH_LONG).show();
                 }
             }
         }
@@ -377,7 +408,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 if (resultCode == RESULT_OK) {
                     origin = BitmapUtil.GALERY;
                     if (data == null) {
-                        Toast.makeText(getApplicationContext(), "No se eligio la foto!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "No se eligio la foto!", Toast.LENGTH_LONG).show();
                     } else {
                         Uri selectedImage = data.getData();
 
@@ -396,8 +427,9 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
 
                         name2 = path;
+                        Log.d("pathprimero",name2);
                         //imgbtn.setImageURI(selectedImage);
-                        //imgbtn.setBackground(Drawable.createFromPath(name2));
+                        imgbtn.setBackground(Drawable.createFromPath(name2));
                     }
                 }
                 break;
@@ -410,6 +442,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 e.printStackTrace();
             }
             name2=path;
+            Log.d("path",name2);
             imgbtn.setBackground(Drawable.createFromPath(name2));
         }
 
