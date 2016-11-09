@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.ViewPagerAdapter;
-import co.edu.unicauca.appterapiademencia.principal.NotificationListFragment;
 import co.edu.unicauca.appterapiademencia.principal.cognitiveexercises.GraphicsExercises;
+import co.edu.unicauca.appterapiademencia.principal.notification.NotificationListFragment;
 import co.edu.unicauca.appterapiademencia.principal.patientprofile.PatientProfileFragment;
 
 /**
@@ -22,7 +22,7 @@ public class PatientProfileActivity extends AppCompatActivity{
     private TextView inputprofileidentity;
     private String cedula;
     private Toolbar toolbar;
-    private ViewPager viewPager;
+    public static ViewPager viewPager;
     private TabLayout tabLayout;
     private ActionBar actionBar;
 
@@ -59,13 +59,34 @@ public class PatientProfileActivity extends AppCompatActivity{
 
     }
 
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+        Bundle bundle = getIntent().getExtras();
+        cedula = bundle.get("cedula").toString();
+        final Bundle args = new Bundle();
+        args.putLong("cedula",Long.parseLong(cedula));
+        try {
+            setupViewPager(viewPager,args);
+            tabLayout.setupWithViewPager(viewPager);
+        }catch (Exception e){
+
+        }
+
+
+    }
+
     private void setupViewPager(ViewPager viewPager, Bundle args) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(),args);
         adapter.addFragment(new PatientProfileFragment(), "Ficha");
         adapter.addFragment(new NotificationListFragment(), "Notas");
         adapter.addFragment(new GraphicsExercises(), "Estado de Consciencia ");
-        viewPager.setAdapter(adapter);
-
+        try {
+            viewPager.setAdapter(adapter);
+        }catch (Exception e){
+            adapter.notifyDataSetChanged();
+        }
 
 
     }

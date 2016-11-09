@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    tools:context=".principal.patientprofile.PatientProfileFragment"
     >
 
 <LinearLayout
@@ -21,7 +22,7 @@
 
         >
         <ImageView
-            android:id="@+id/img_patient_profile"
+            android:id="@+id/img_patient_perfil"
             android:layout_width="@dimen/img_patient_profile_size"
             android:layout_height="@dimen/img_patient_profile_size"
             android:background="@color/accent_color"
@@ -29,17 +30,17 @@
 
             />
         <TextView
-            android:id="@+id/name_patient_profile"
+            android:id="@+id/name_patient_perfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:text="Nombre"
             android:textSize="23sp"
             />
         <TextView
-            android:id="@+id/age_patient_profile"
+            android:id="@+id/age_patient_perfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:text="Edad"
             android:textSize="18sp"
             />
 

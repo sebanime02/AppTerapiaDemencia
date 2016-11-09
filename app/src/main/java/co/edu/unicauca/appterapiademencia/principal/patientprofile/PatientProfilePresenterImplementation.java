@@ -6,7 +6,6 @@ import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractor;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractorImplementation;
-import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientListPresenterImplementation;
 
 /**
  * Created by SEBAS on 07/11/2016.
@@ -31,9 +30,9 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
 
     @Override
     public void showPatientData(Patient patient) {
-        if(patientProfileView != null){
+        Log.d("Devuelta presentador","nombre"+patient.getName().toString());
             patientProfileView.showPatientData(patient);
-        }
+
 
     }
 
@@ -44,8 +43,9 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
 
     @Override
     public void getPatientData(Long id) {
+
        showPatientData(principalListInteractor.getPatientData(id));
-        Log.d("Devuelta presentador","nombre"+patientObject.getName());
+
 
     }
 
