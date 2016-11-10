@@ -74,6 +74,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     private ActionBar actionBar;
     private Toolbar toolbar;
 
+
   public AddPatientActivity(){
       this.patientDao = GreenDaoHelper.getPatientDao();
 

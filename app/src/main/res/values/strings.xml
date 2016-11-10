@@ -21,7 +21,7 @@
     <string name="hint_username">Nombre de Usuario</string>
     <string name="hint_password">Contraseña</string>
     <string name="btn_entrar">Entrar</string>
-    <string name="error_loguin">Su usuario y contrasena no son correctos</string>
+    <string name="error_loguin">Su Usuario y Contrasena NO Son Correctos</string>
     <string name="btn_irRegistro">O Regístrate como supervisor</string>
     <string name="dialog_succes_title">Te has registrado!</string>
     <string name="dialog_succes_content">Se ha registrado correctamente, ingrese de nuevo sus datos</string>
@@ -40,6 +40,7 @@
     <string name="hint_password_supervisor">Tu contraseña</string>
     <string name="hint_password_supervisor_aprobar">Contraseña de un supervisor anteriormente registrado</string>
     <string name="back_login">Regresar al inicio de sesión</string>
+
     <string name="dialog_register_error_title">No fue posible registrarse</string>
     <string name="dialog_register_error_content">Intente cambiando el nombre de usuario</string>
     <string name="dialog_register_error_agree">Entiendo</string>
@@ -72,4 +73,11 @@
     <string name="spinner_vision">Limitación de Visión</string>
     <string name="spinner_escritura">Limitación de Escritura</string>
     <string name="spinner_dibujo">Limitación de Dibujo</string>
+
+    <!--TAB PATIENT INFORMATION -->
+    <string name="textview_profile_information">INFORMACIÓN DEL PACIENTE</string>
+    <string name="textview_profile_physics">LIMITACIONES DEL PACIENTE</string>
+
+
+
 </resources>

@@ -12,7 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.io.File;
 
@@ -144,10 +145,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     {
 
         String msgErr = getResources().getString(R.string.error_loguin);
+        new MaterialDialog.Builder(this).title("Supervisor No Encontrado").content(R.string.error_loguin).positiveText(R.string.dialog_succes_agree).icon(getResources().getDrawable(R.drawable.sadface)).show();
+
         //input_password.setError(msgErr);
-        txt_error.setEnabled(true);
+       /* txt_error.setEnabled(true);
         txt_error.setVisibility(View.VISIBLE);
-        txt_error.setText(msgErr);
+        txt_error.setText(msgErr);*/
 
 
     }
@@ -224,13 +227,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         File folder = new File(Environment.getExternalStorageDirectory() + "/ModTerapia");
         boolean success = true;
         if (!folder.exists()) {
-            Toast.makeText(this, "carpeta creada", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "carpeta creada", Toast.LENGTH_SHORT).show();
             success = folder.mkdir();
         }
         if (success) {
-            Toast.makeText(this, "La carpeta ya esxiste", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "La carpeta ya esxiste", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "fallo al crear carpeta", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "fallo al crear carpeta", Toast.LENGTH_SHORT).show();
         }
     }
 

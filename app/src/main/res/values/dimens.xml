@@ -3,7 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="large_title_text_size">30sp</dimen>
-    <dimen name="medium_text_size">20dp</dimen>
+    <dimen name="medium_text_size">20sp</dimen>
+    <dimen name="small_text_size">16sp</dimen>
     <dimen name="activity_horizontal_margin2">86dp</dimen>
     <dimen name="activity_vertical_margin2">30dp</dimen>
 
@@ -40,5 +41,7 @@
     <dimen name="custom_tab_layout_height">72dp</dimen>
     <dimen name="height_banner_profile">200dp</dimen>
     <dimen name="img_patient_profile_size">100dp</dimen>
+    <dimen name="txt_patient_profile_size_large">22sp</dimen>
+    <dimen name="txt_patient_profile_size_medium">18sp</dimen>
 
 </resources>

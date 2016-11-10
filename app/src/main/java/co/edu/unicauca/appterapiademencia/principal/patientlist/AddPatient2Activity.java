@@ -25,9 +25,9 @@ import co.edu.unicauca.appterapiademencia.principal.MainActivity;
 public class AddPatient2Activity extends AppCompatActivity implements View.OnClickListener{
     private Button btn_guardar, btn_atras;
     private Spinner s_vision,s_escritura,s_dibujo;
-    private String[] vision = {"Visión Normal","Baja visión","Ceguera"};
-    private String[] escritura = {"Puede Escribir","No puede escribir"};
-    private String[] dibujo = {"Puede Dibujar","No puede Dibujar"};
+    public static final String[]  vision = {"Visión Normal","Baja visión","Ceguera"};
+    public static final String[] escritura = {"Puede Escribir","No puede escribir"};
+    public static final String[] dibujo = {"Puede Dibujar","No puede Dibujar"};
     private QueryBuilder queryBuilder;
     String[] paciente,datosa;
     private String actualizar="";
