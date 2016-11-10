@@ -73,6 +73,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     private QueryBuilder queryBuilder;
     private ActionBar actionBar;
     private Toolbar toolbar;
+    private long identity;
 
 
   public AddPatientActivity(){
@@ -117,19 +118,31 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         if (bundle != null) {
             try {
 
+                identity = Long.parseLong(bundle.getString("cedula"));
+                Log.e("Add patient","LLego a adpatient, el id es "+identity);
+                queryBuilder= patientDao.queryBuilder();
+                List<Patient> patientList=  queryBuilder.where(PatientDao.Properties.Identity.eq(identity)).limit(1).list();
+                Patient patientone= patientList.get(0);
+
+                Log.e("Add patient","El nombre del paciente devuelvo por dao es "+patientone.getName().toString());
 
                 actualizar = bundle.getString("actualizar");
-
-                datosa = new String[10];
+                datosa = new String[4];
                 datosa = bundle.getStringArray("datosa");
-                edt_id.setText(bundle.getString("Id").toString());
+                datosa[0] = patientone.getId().toString();
+                datosa[1] = patientone.getVisionlimitation().toString();
+                datosa[2] = patientone.getWritinglimitation().toString();
+                datosa[3] = patientone.getDrawinglimitation().toString();
+
+
+                edt_id.setText(patientone.getId().toString());
                 edt_id.setEnabled(false);
-                edt_nomb.setText(datosa[0].toString());
-                btn_fecha.setText(datosa[1].toString());
-                edt_eps.setText(datosa[3].toString());
-                edt_antecedentes.setText(datosa[4].toString());
-                edt_sindromes.setText(datosa[5].toString());
-                edt_observaciones.setText(datosa[6].toString());
+                edt_nomb.setText(patientone.getName());
+                btn_fecha.setText(patientone.getBirthday().toString());
+                edt_eps.setText(patientone.getEps());
+                edt_antecedentes.setText(patientone.getAntecedents());
+                edt_sindromes.setText(patientone.getSyndromes());
+                edt_observaciones.setText(patientone.getObservations());
 
                 /*
                     if(datosa[2].toString().equals("Macho")){
@@ -138,7 +151,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                         rdhembra.setChecked(true);
                     }
                        */
-                if (datosa[2].toString().equalsIgnoreCase("")) {
+                if (patientone.getPhotopath().equalsIgnoreCase("")) {
 
                     imgbtn.setBackgroundResource(R.drawable.add);
 
@@ -151,6 +164,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 e.printStackTrace();
             }
         }
+         /*
         edt_id.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -169,7 +183,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 colocarImagen();
                 registerForContextMenu(imgbtn);
             }
-        });
+        }); */
     }
 
     public void savePage1(View view)
@@ -200,7 +214,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
 
             if (actualizar.equals("actualizar")) {
-                paciente = new String[7];
+                paciente = new String[8];
                 Intent ir_reg = new Intent(this, AddPatient2Activity.class);
 
                 paciente[0] = edt_id.getText().toString();

@@ -1,11 +1,14 @@
 package co.edu.unicauca.appterapiademencia.principal.patientlist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import co.edu.unicauca.appterapiademencia.R;
@@ -60,6 +63,30 @@ public class PatientProfileActivity extends AppCompatActivity{
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_edit,menu);
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_editar:
+
+                Intent intent = new Intent(this, AddPatientActivity.class);
+                intent.putExtra("cedula",cedula);
+                intent.putExtra("actualizar","actualizar");
+
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     protected void onResume() {
 
         super.onResume();
@@ -90,6 +117,8 @@ public class PatientProfileActivity extends AppCompatActivity{
 
 
     }
+
+
 
 
 

@@ -73,29 +73,29 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
             } else {
                 datosa = new String[10];
                 datosa = bundl.getStringArray("datosa");
-                if (datosa[7].toString().equals("0")) {
+                if (datosa[1].toString().equals("0")) {
 
                     s_vision.setSelection(0);
                 }
-                if (datosa[7].toString().equals("1")) {
+                if (datosa[1].toString().equals("1")) {
                     s_vision.setSelection(1);
                 }
-                if (datosa[7].toString().equals("2")) {
+                if (datosa[1].toString().equals("2")) {
 
                     s_vision.setSelection(2);
                 }
 
-                 if (datosa[8].toString().equals("0")) {
+                 if (datosa[2].toString().equals("0")) {
                         s_escritura.setSelection(0);
                     }
-                 if (datosa[8].toString().equals("1")) {
+                 if (datosa[2].toString().equals("1")) {
                         s_escritura.setSelection(1);
                     }
 
-                  if (datosa[9].toString().equals("0")) {
+                  if (datosa[3].toString().equals("0")) {
                         s_dibujo.setSelection(0);
                     }
-                  if (datosa[9].toString().equals("1")) {
+                  if (datosa[3].toString().equals("1")) {
                         s_dibujo.setSelection(1);
                     }
 
