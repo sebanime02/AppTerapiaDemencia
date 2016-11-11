@@ -14,7 +14,7 @@ import android.widget.TextView;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.ViewPagerAdapter;
 import co.edu.unicauca.appterapiademencia.principal.cognitiveexercises.GraphicsExercises;
-import co.edu.unicauca.appterapiademencia.principal.notification.NotificationListFragment;
+import co.edu.unicauca.appterapiademencia.principal.notes.NotesFragment;
 import co.edu.unicauca.appterapiademencia.principal.patientprofile.PatientProfileFragment;
 
 /**
@@ -107,7 +107,7 @@ public class PatientProfileActivity extends AppCompatActivity{
     private void setupViewPager(ViewPager viewPager, Bundle args) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(),args);
         adapter.addFragment(new PatientProfileFragment(), "Ficha");
-        adapter.addFragment(new NotificationListFragment(), "Notas");
+        adapter.addFragment(new NotesFragment(), "Notas");
         adapter.addFragment(new GraphicsExercises(), "Estado de Consciencia ");
         try {
             viewPager.setAdapter(adapter);

@@ -9,6 +9,7 @@
         android:textSize="25sp"
         android:text="AQUI LAS NOTAS"
         android:gravity="center"
+        android:background="@color/colorPrimary"
         />
 
 
