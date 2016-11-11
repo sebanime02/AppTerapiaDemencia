@@ -155,7 +155,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtEps.setText(this.eps);
         txtAntecedentes.setText(this.antecedentes);
         txtSindromes.setText(this.sindromes);
-        txtAntecedentes.setText(this.antecedentes);
+        txtObservaciones.setText(this.observaciones);
         txtVision.setText(this.vision);
         txtEscritura.setText(this.escritura);
         txtDibujo.setText(this.dibujo);
@@ -220,10 +220,12 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         if (dibujoState==0) {
             dibujo=spinners.dibujo[0];
         }
-        if (dibujoState==0) {
+        if (dibujoState==1) {
             dibujo=spinners.dibujo[1];
         }
-
+        if(this.photopath.equals("") || this.photopath.equals(null)){
+            this.photopath= PatientListAdapter.fotodefault;
+        }
 
 
         Log.d("En la vista show:","nombre "+name+" birthday"+birthday+" Path "+photopath);

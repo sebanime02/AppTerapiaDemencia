@@ -18,6 +18,34 @@
         android:background="@color/white"
         tools:context="co.edu.unicauca.appterapiademencia.principal.patientlist.AddPatientActivity"
         >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:background="@color/colorPrimary"
+            >
+            <TextView
+                android:id="@+id/txt_edit"
+                android:layout_gravity="center_horizontal"
+                android:text="INFORMACION DEL NUEVO PACIENTE"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:fontFamily="sans-serif"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+
+                android:layout_gravity="center_horizontal"
+                android:text="Ingrese la siguiente información del Paciente. Asegúrese que la Cédula sea correcta, posteriormente No se podrá cambiar.   "
+                android:textSize="20sp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_edit2" />
+        </LinearLayout>
 
         <LinearLayout
             android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -26,20 +54,17 @@
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="7"
 
-            <ImageButton
-                android:background="@drawable/add"
-                android:id="@+id/foto_paciente"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:visibility="invisible"
+            >
 
-                />
+
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="match_parent"
+                android:layout_weight="4"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content">
 
 
@@ -88,8 +113,25 @@
                     android:hint="Eps"
 
                     />
-            </LinearLayout>
 
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="end"
+                android:layout_weight="3"
+                >
+                <ImageButton
+
+                    android:background="@drawable/add"
+                    android:id="@+id/foto_paciente"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+
+                />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

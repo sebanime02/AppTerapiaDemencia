@@ -77,6 +77,11 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
         long id = patientList.get(position).getIdentity();
 
         Log.e("adapter information","Nombre"+nombre+" Foto :"+foto);
+
+        if(foto.equals("") || foto.equals(null) ){
+            foto= fotodefault;
+        }
+
         try {
 
             Picasso.with(this.activity).load(activity.getDatabasePath(foto)).resize(imageSize, imageSize).transform(new CircleTransform()).into(holder.img_patient);

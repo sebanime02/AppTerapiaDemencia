@@ -101,7 +101,7 @@
 
         <Button
 
-            android:drawableLeft="@drawable/ic_save_white_24dp"
+
             android:id="@+id/btn_guardar_paciente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

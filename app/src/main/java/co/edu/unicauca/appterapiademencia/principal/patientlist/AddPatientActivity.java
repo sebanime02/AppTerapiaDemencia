@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -53,6 +54,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     private String var_genero="";
     private String var_fecha="";
     private EditText edt_id, edt_nomb,edt_eps,edt_antecedentes,edt_sindromes,edt_observaciones;
+    private TextView txt_titulo1,txt_titulo2;
     private String[] paciente;
     int eleccion;
     private Calendar calendar;
@@ -74,7 +76,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     private ActionBar actionBar;
     private Toolbar toolbar;
     private long identity;
-
+    public static final String fotodefault = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser).toString();
 
   public AddPatientActivity(){
       this.patientDao = GreenDaoHelper.getPatientDao();
@@ -95,19 +97,21 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         edt_antecedentes = (EditText) findViewById(R.id.edt_antecedentes);
         edt_sindromes = (EditText) findViewById(R.id.edt_sindromes);
         edt_observaciones = (EditText) findViewById(R.id.edt_observaciones);
+        txt_titulo1 = (TextView) findViewById(R.id.txt_edit);
+        txt_titulo2 = (TextView) findViewById(R.id.txt_edit2);
 
 
 
 
         imgbtn = (ImageButton) findViewById(R.id.foto_paciente);
         imagen = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/drawable/addsmall").toString();
+        //colocarImagen();
+
 /*
         toolbar = (Toolbar) findViewById(R.id.toolbaraddpatient);
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         */
-
-
 
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
@@ -117,7 +121,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             try {
-
+                registerForContextMenu(imgbtn);
                 identity = Long.parseLong(bundle.getString("cedula"));
                 Log.e("Add patient","LLego a adpatient, el id es "+identity);
                 queryBuilder= patientDao.queryBuilder();
@@ -128,43 +132,43 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
                 actualizar = bundle.getString("actualizar");
                 datosa = new String[4];
-                datosa = bundle.getStringArray("datosa");
-                datosa[0] = patientone.getId().toString();
+                //datosa = bundle.getStringArray("datosa");
+                datosa[0] = identity+"";
                 datosa[1] = patientone.getVisionlimitation().toString();
                 datosa[2] = patientone.getWritinglimitation().toString();
                 datosa[3] = patientone.getDrawinglimitation().toString();
 
+                txt_titulo1.setText("ACTUALICE LA INFORMACIÓN DEL PACIENTE");
+                txt_titulo2.setText("Actualice La información que considere pertinente");
 
-                edt_id.setText(patientone.getId().toString());
+                imgbtn.setVisibility(View.VISIBLE);
+
+                edt_id.setText(patientone.getIdentity()+"");
                 edt_id.setEnabled(false);
                 edt_nomb.setText(patientone.getName());
                 btn_fecha.setText(patientone.getBirthday().toString());
                 edt_eps.setText(patientone.getEps());
-                edt_antecedentes.setText(patientone.getAntecedents());
-                edt_sindromes.setText(patientone.getSyndromes());
-                edt_observaciones.setText(patientone.getObservations());
+                edt_antecedentes.setText(patientone.getAntecedents().toString());
+                edt_sindromes.setText(patientone.getSyndromes().toString());
+                edt_observaciones.setText(patientone.getObservations().toString());
 
-                /*
-                    if(datosa[2].toString().equals("Macho")){
-                        rdmacho.setChecked(true);
-                    }else {
-                        rdhembra.setChecked(true);
-                    }
-                       */
-                if (patientone.getPhotopath().equalsIgnoreCase("")) {
 
+
+                if(patientone.getPhotopath().toString().equalsIgnoreCase("")){
                     imgbtn.setBackgroundResource(R.drawable.add);
 
-                } else {
-                    imgbtn.setBackground(Drawable.createFromPath(datosa[2]));
                 }
+                else {
+                    imgbtn.setBackground(Drawable.createFromPath(patientone.getPhotopath()));
+                    name2= patientone.getPhotopath();
+                     }
 
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-         /*
+
         edt_id.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -180,10 +184,11 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void afterTextChanged(Editable s) {
                 imgbtn.setVisibility(View.VISIBLE);
-                colocarImagen();
+                //colocarImagen();
                 registerForContextMenu(imgbtn);
             }
-        }); */
+        });
+
     }
 
     public void savePage1(View view)
@@ -214,10 +219,12 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
 
             if (actualizar.equals("actualizar")) {
+                Log.e("Agregar paciente","Listo para enviar los actualizados");
                 paciente = new String[8];
+                Log.e("name2 a actualizar",name2);
                 Intent ir_reg = new Intent(this, AddPatient2Activity.class);
 
-                paciente[0] = edt_id.getText().toString();
+                paciente[0] = datosa[0];
                 paciente[1] = name2;
                 paciente[2] = edt_nomb.getText().toString();
                 paciente[3] = btn_fecha.getText().toString();
@@ -233,7 +240,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 ir_reg.putExtra("datosa", datosa);
 
                 startActivity(ir_reg);
-                //overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                overridePendingTransition(R.anim.left_in, R.anim.left_out);
             } else {
                 if (patientList.size()==0)
                 {
@@ -243,6 +250,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                     Intent ir_reg = new Intent(this, AddPatient2Activity.class);
 
                     paciente[0] = edt_id.getText().toString();
+                    /*
                     if(name2==""){
                         name2=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser).toString();
                     }
@@ -253,6 +261,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                         name2=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser).toString();
 
                     }
+                    */
                     Log.e("name2",name2);
 
                     paciente[1] = name2;

@@ -3,6 +3,7 @@ package co.edu.unicauca.appterapiademencia.principal.patientlist;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,13 +28,14 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
     private Spinner s_vision,s_escritura,s_dibujo;
     public static final String[]  vision = {"Visión Normal","Baja visión","Ceguera"};
     public static final String[] escritura = {"Puede Escribir","No puede escribir"};
-    public static final String[] dibujo = {"Puede Dibujar","No puede Dibujar"};
+    public static final String[] dibujo = {"Puede Dibujar","No puede dibujar"};
     private QueryBuilder queryBuilder;
     String[] paciente,datosa;
     private String actualizar="";
     private PatientDao patientDao;
     private GreenDaoHelper helper;
     private Patient patientObj;
+
 
     public AddPatient2Activity()
     {
@@ -71,7 +73,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
             if (actualizar == null) {
                 actualizar = "";
             } else {
-                datosa = new String[10];
+                datosa = new String[4];
                 datosa = bundl.getStringArray("datosa");
                 if (datosa[1].toString().equals("0")) {
 
@@ -115,21 +117,29 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                 /*if (validar(e_peso.getText().toString(), e_color.getText().toString(), e_raza.getText().toString(), e_id_padre.getText().toString(), e_id_madre.getText().toString()) == false) {
                     Toast.makeText(this, "Debe Llenar Todos Los Campos", Toast.LENGTH_LONG).show();
                 } else {*/
-                    String var_foto;
+
+
+
+                    /*
+                       String var_foto;
                     if(actualizar.equals(""))
                     {
                         var_foto = paciente[1];
                     }else {
                         if (paciente[1].equals("")) {
+
                             var_foto = datosa[2];
                         } else {
+
                             var_foto = paciente[1];
+                            //}
                         }
                     }
+                              */
 
                     String var_id = paciente[0];
                     Long parse_id = Long.parseLong(var_id);
-
+                    String var_foto = paciente[1];
                     String var_nombre = paciente[2];
                     String var_fecha = paciente[3];
                     String var_eps= paciente[4];
@@ -149,8 +159,9 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         String[] fechas = new String[7];
                         queryBuilder = GreenDaoHelper.getPatientDao().queryBuilder();
 
-                        List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(var_id)).limit(1).list();
+                        List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(parse_id)).limit(1).list();
                         Patient patient = patientList.get(0);
+                        Log.e("Add patient 2","Name "+patient.getName().toString());
                         patient.setName(var_nombre);
                         patient.setBirthday(var_fecha);
                         patient.setEps(var_eps);
@@ -163,7 +174,13 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         patient.setWritinglimitation(var_escritura);
                         patient.setDrawinglimitation(var_dibujo);
 
+                        Log.e("Add patient 2","Dibujo "+var_dibujo);
 
+
+                            if(var_foto.equals("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser))
+                            {
+                                var_foto="";
+                            }
 
                     } else {
                         int var_mec = 0;
