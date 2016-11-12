@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +26,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +62,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     private Calendar calendar;
     private int year, month, day;
     private Button btn_fecha, btn_guardar;
-    private ImageButton imgbtn;
+    private FloatingActionButton imgbtn;
     private String name2 = "";
     private String foto_rq;
     private String name = "";
@@ -76,6 +78,8 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     private ActionBar actionBar;
     private Toolbar toolbar;
     private long identity;
+    private ImageView img;
+    private RelativeLayout containerfoto;
     public static final String fotodefault = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser).toString();
 
   public AddPatientActivity(){
@@ -102,9 +106,11 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
 
 
+        containerfoto = (RelativeLayout) findViewById(R.id.foto_container);
+        img = (ImageView) findViewById(R.id.foto_paciente);
+        imgbtn = (FloatingActionButton) findViewById(R.id.add_foto_paciente);
 
-        imgbtn = (ImageButton) findViewById(R.id.foto_paciente);
-        imagen = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/drawable/addsmall").toString();
+        imagen = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/drawable/empyuser").toString();
         //colocarImagen();
 
 /*
@@ -141,7 +147,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 txt_titulo1.setText("INFORMACIÓN DEL PACIENTE");
                 txt_titulo2.setText("Actualice La información que considere pertinente, Para cambiar la foto, sostenga el dedo sobre ella");
 
-                imgbtn.setVisibility(View.VISIBLE);
+                containerfoto.setVisibility(View.VISIBLE);
 
                 edt_id.setText(patientone.getIdentity()+"");
                 edt_id.setEnabled(false);
@@ -155,11 +161,11 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
 
                 if(patientone.getPhotopath().toString().equalsIgnoreCase("")){
-                    imgbtn.setBackgroundResource(R.drawable.add);
+                    img.setBackgroundResource(R.drawable.add);
 
                 }
                 else {
-                    imgbtn.setBackground(Drawable.createFromPath(patientone.getPhotopath()));
+                    img.setBackground(Drawable.createFromPath(patientone.getPhotopath()));
                     name2= patientone.getPhotopath();
                      }
 
@@ -183,9 +189,9 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
             @Override
             public void afterTextChanged(Editable s) {
-                imgbtn.setVisibility(View.VISIBLE);
-                //colocarImagen();
-                registerForContextMenu(imgbtn);
+                containerfoto.setVisibility(View.VISIBLE);
+                img.setBackgroundResource(R.drawable.emptyuser);
+
             }
         });
 
@@ -287,9 +293,12 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
     public void onClick(View v) {
         switch (v.getId()) {
+            /*
+            case R.id.add_foto_paciente:
 
-            case R.id.foto_paciente:
+                registerForContextMenu(imgbtn);
                 openContextMenu(v);
+                //unregisterForContextMenu(v);
                 break;
                /*
             case R.id.btn_guardar_paso1:
@@ -301,6 +310,12 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 break;
 
         }
+    }
+
+    public void openContextM(View view){
+        imgbtn.performLongClick();
+        registerForContextMenu(imgbtn);
+        openContextMenu(view);
     }
 
     @Override
@@ -364,7 +379,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     }
     private void colocarImagen() {
         name = imagen;
-        imgbtn.setImageURI(Uri.parse(imagen));
+        img.setImageURI(Uri.parse(imagen));
 
     }
     @Override
@@ -453,7 +468,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                         name2 = path;
                         Log.d("pathprimero",name2);
                         //imgbtn.setImageURI(selectedImage);
-                        imgbtn.setBackground(Drawable.createFromPath(name2));
+                        img.setBackground(Drawable.createFromPath(name2));
                     }
                 }
                 break;
@@ -467,7 +482,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
             }
             name2=path;
             Log.d("path",name2);
-            imgbtn.setBackground(Drawable.createFromPath(name2));
+            img.setBackground(Drawable.createFromPath(name2));
         }
 
 

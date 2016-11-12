@@ -38,7 +38,7 @@
             <TextView
 
                 android:layout_gravity="center_horizontal"
-                android:text="Ingrese la siguiente información del Paciente. Asegúrese que la Cédula sea correcta, posteriormente No se podrá cambiar.   "
+                android:text="Ingrese la siguiente información del Paciente. Asegúrese que la Cédula sea correcta, posteriormente NO se podrá cambiar.   "
                 android:textSize="20sp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:textColor="@color/white"
@@ -46,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txt_edit2" />
         </LinearLayout>
+
 
         <LinearLayout
             android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -63,10 +64,9 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content">
-
 
                 <EditText
                     android:imeOptions="actionNext"
@@ -76,6 +76,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Nombre Paciente"
                     />
+
+
 
                 <EditText
                     android:layout_width="match_parent"
@@ -115,23 +117,37 @@
                     />
 
             </LinearLayout>
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/foto_container"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="end"
-                android:layout_weight="3"
+                android:layout_weight="2"
+                android:visibility="gone"
                 >
-                <ImageButton
+                <ImageView
 
-                    android:background="@drawable/add"
                     android:id="@+id/foto_paciente"
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:visibility="gone"
 
                 />
-            </LinearLayout>
+                <android.support.design.widget.FloatingActionButton
+
+                    android:id="@+id/add_foto_paciente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:backgroundTint="@color/colorPrimaryDark"
+                    android:elevation="@dimen/activity_vertical_margin"
+                    android:tint="@color/white"
+                    android:layout_alignBottom="@id/foto_paciente"
+                    android:src="@mipmap/ic_camera_alt_black_24dp"
+                    android:onClick="openContextM"
+
+
+                    />
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
