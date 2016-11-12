@@ -59,7 +59,7 @@
                 android:id="@+id/age_patient_perfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edad"
+                android:text=""
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/txt_patient_profile_size_medium"

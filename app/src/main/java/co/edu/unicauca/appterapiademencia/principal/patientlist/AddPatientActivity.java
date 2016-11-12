@@ -138,8 +138,8 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 datosa[2] = patientone.getWritinglimitation().toString();
                 datosa[3] = patientone.getDrawinglimitation().toString();
 
-                txt_titulo1.setText("ACTUALICE LA INFORMACIÓN DEL PACIENTE");
-                txt_titulo2.setText("Actualice La información que considere pertinente");
+                txt_titulo1.setText("INFORMACIÓN DEL PACIENTE");
+                txt_titulo2.setText("Actualice La información que considere pertinente, Para cambiar la foto, sostenga el dedo sobre ella");
 
                 imgbtn.setVisibility(View.VISIBLE);
 
