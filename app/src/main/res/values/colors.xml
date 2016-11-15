@@ -16,6 +16,9 @@
     <color name="magenta">#F50057</color>
     <color name="md_statusbar_translucent">#4000</color>
     <color name="fondo">#E8F5E9</color>
+    <color name="semaforo_verde">#8BC34A</color>
+    <color name="semaforo_amarillo">#FFEB3B</color>
+
 
 
 

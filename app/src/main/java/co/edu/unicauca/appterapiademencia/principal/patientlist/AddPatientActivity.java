@@ -83,7 +83,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     public static final String fotodefault = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser).toString();
 
   public AddPatientActivity(){
-      this.patientDao = GreenDaoHelper.getPatientDao();
+      this.patientDao = daoHelper.getPatientDao();
 
   }
 
@@ -206,13 +206,13 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         {
             new MaterialDialog.Builder(this).title("Campos Obligagorios Faltantes").content("Debe poner cédula, fecha de nacimiento y nombre completo").positiveText(R.string.dialog_succes_agree).show();
             //Toast.makeText(this,"Debe poner cédula, fecha de nacimiento y nombre completo",Toast.LENGTH_LONG).show();
-            edt_id.setError("Obligatorio");
-            edt_nomb.setError("Obligatorio");
+            //edt_id.setError("Obligatorio");
+            //edt_nomb.setError("Obligatorio");
             btn_fecha.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.red_dark));
 
             Log.e("Agregar paciente","faltan campos obligatorios");
         }else {
-            queryBuilder = GreenDaoHelper.getPatientDao().queryBuilder();
+            queryBuilder = daoHelper.getPatientDao().queryBuilder();
 
             List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(Long.parseLong(edt_id.getText().toString()))).limit(1).list();
             //.limit(1).list();
@@ -392,7 +392,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
             name = Environment.getExternalStorageDirectory().getPath() + nombre_foto;
             getMenuInflater().inflate(R.menu.menu_foto_perfil, menu);
         } else {
-            queryBuilder = GreenDaoHelper.getPatientDao().queryBuilder();
+            queryBuilder = daoHelper.getPatientDao().queryBuilder();
             if (edt_id.getText().toString() != "") {
                 Long id = Long.parseLong(edt_id.getText().toString());
 

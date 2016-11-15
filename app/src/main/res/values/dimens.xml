@@ -30,6 +30,8 @@
     <dimen name="item_width">200dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
+    <!--VIEW PAGER -->
+    <dimen name="scroll_limite">500dp</dimen>
     <!--LIST PATIENT-->
     <dimen name="patient_image_size">15dp</dimen>
     <dimen name="img_size_item_list">100dp</dimen>
@@ -43,5 +45,6 @@
     <dimen name="img_patient_profile_size">100dp</dimen>
     <dimen name="txt_patient_profile_size_large">22sp</dimen>
     <dimen name="txt_patient_profile_size_medium">18sp</dimen>
+
 
 </resources>

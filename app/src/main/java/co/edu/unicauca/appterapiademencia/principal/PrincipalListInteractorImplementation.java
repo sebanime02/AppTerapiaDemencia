@@ -6,6 +6,7 @@ import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.List;
 
+import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 
 /**
@@ -59,6 +60,11 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
     @Override
     public void getTips() {
 
+    }
+
+    @Override
+    public List<Note> getNotes(Long id) {
+        return null;
     }
 
     @Override

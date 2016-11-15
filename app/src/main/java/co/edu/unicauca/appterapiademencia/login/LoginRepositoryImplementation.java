@@ -27,7 +27,7 @@ public class LoginRepositoryImplementation implements LoginRepository {
     public LoginRepositoryImplementation(){
 
         this.helper = GreenDaoHelper.getInstance();
-        this.userDao = GreenDaoHelper.getUserDao();
+        this.userDao = GreenDaoHelper.getInstance().getUserDao();
 
     }
 
@@ -98,7 +98,7 @@ public class LoginRepositoryImplementation implements LoginRepository {
     public void signIn(String username, String password) {
         Log.e("Login","Estoy en el repositorio");
 
-        QueryBuilder qbsignin = GreenDaoHelper.getUserDao().queryBuilder();
+        QueryBuilder qbsignin = helper.getUserDao().queryBuilder();
         qbsignin.where(UserDao.Properties.Username.eq(username), UserDao.Properties.Password.eq(password));
 
         List users = qbsignin.list();

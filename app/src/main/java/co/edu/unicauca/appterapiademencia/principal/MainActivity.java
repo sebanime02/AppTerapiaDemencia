@@ -1,14 +1,18 @@
 package co.edu.unicauca.appterapiademencia.principal;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -25,6 +29,7 @@ import java.util.List;
 import co.edu.unicauca.appterapiademencia.Item.RowItem;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.MenuAdapter;
+import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.login.LoginActivity;
 import co.edu.unicauca.appterapiademencia.principal.help.HelpFragment;
@@ -50,9 +55,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public static final Integer[] imagescarer ={R.drawable.ic_list_black_24dp,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
     public static final String[] titlescarer ={"Lista de Pacientes","Tips para el cuidador","Perfil de usuario","Ayuda","Salir"};
     private String username;
-
+    private GreenDaoHelper helper;
 
     private boolean supervisormode;
+
+    public MainActivity(){
+        this.helper = GreenDaoHelper.getInstance();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,30 +73,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         userAvatarNavbar= (ImageView) findViewById(R.id.image_header);
         completeNameNavbar = (TextView) findViewById(R.id.completename_navbar);
-        QueryBuilder queryBuilder = GreenDaoHelper.getUserDao().queryBuilder();
+        QueryBuilder queryBuilder = helper.getUserDao().queryBuilder();
         rowItems = new ArrayList<RowItem>();
          if(loginpreference.getBoolean("supervisor",true))
-            {Log.e("supervisor","la preferencia es supervisor");
+            {
+                Log.e("supervisor","la preferencia es supervisor");
+
                 for (int i = 0; i < titlessupervisor.length; i++)
                 {
                     RowItem    item = new RowItem(imagessupervisor[i], titlessupervisor[i]);
                     rowItems.add(item);
                 }
                 titleMessage = "Sesión de Supervisor";
-                /*
+
                 if(loginpreference.getString("username",username)!=null)
                 {
-
-                    Log.e("preferencia",username);
-                    loginpreference.getString("username", username);
-
-
-
-                    List<User> users = queryBuilder.where(UserDao.Properties.Username.eq(username)).list();
-                    User user = users.get(0);
+                    username = loginpreference.getString("username","Nombre de Usuario");
+                    User user = helper.getUserInformation(username);
                     String completename = user.getCompleteName();
 
-                    completeNameNavbar.setText("Supervisor /n"+completename);
+                    completeNameNavbar.setText("Supervisor "+completename);
 
 
                     if(user.getPhotopath().equals(""))
@@ -97,10 +103,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     else{
                         userAvatarNavbar.setBackground(Drawable.createFromPath(user.getPhotopath()));
                     }
+
                 }
-                else{
-                */
-                    completeNameNavbar.setText("Supervisor");
+
+                    //completeNameNavbar.setText("Supervisor");
                 Picasso.with(getApplicationContext()).load(R.drawable.emptyuser).resize(50,50).transform(new CircleTransform()).into(userAvatarNavbar);
                     //userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
                 //}
@@ -294,6 +300,29 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Intent i2 = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(i2);
         finish();
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Salir")
+                .setMessage("Estás seguro?").setNegativeButton(android.R.string.cancel, null)//sin listener
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {//un listener que al pulsar, cierre la aplicacion
+                    @Override
+                    public void onClick(DialogInterface dialog, int which){
+                        //Salir
+                        SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor=preferencias.edit();
+                        editor.putBoolean("sessionValidation", false);
+                        editor.putBoolean("supervisor",false);
+                        editor.putString("username",null);
+                        System.runFinalization();
+                        System.exit(0);
+                        MainActivity.this.finish();
+                    }
+                }).show();
+            // Si el listener devuelve true, significa que el evento esta procesado, y nadie debe hacer nada mas
+            return true;
+        }
+        //para las demas cosas, se reenvia el evento al listener habitual
+        return super.onKeyDown(keyCode, event);
     }
 
 }

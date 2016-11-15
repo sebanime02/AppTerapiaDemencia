@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.SetupActivity;
+import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.User;
 
 
@@ -41,39 +42,52 @@ public class GreenDaoHelper {
         this.daoSession = new co.edu.unicauca.appterapiademencia.domain.dao.DaoMaster(db).newSession();
     }
 
-    public static DaoSession getDaoSession(){
+    public  DaoSession getDaoSession(){
         return daoSession;
     }
-    public static UserDao getUserDao(){
+    public UserDao getUserDao(){
         return daoSession.getUserDao();
     }
-    public static PatientDao getPatientDao(){
+    public  PatientDao getPatientDao(){
         return daoSession.getPatientDao();
     }
-    public static ExerciseDao getExerciseDao(){
+    public  ExerciseDao getExerciseDao(){
         return daoSession.getExerciseDao();
     }
-    public static NoteDao getNoteDao(){
+    public  NoteDao getNoteDao(){
         return daoSession.getNoteDao();
     }
-    public static TipDao getTipDao(){
+    public  TipDao getTipDao(){
         return daoSession.getTipDao();
     }
-    public static RecommendationDao getRecommendationDao(){
+    public  RecommendationDao getRecommendationDao(){
         return daoSession.getRecommendationDao();
     }
     public static HistoricDao getHistoricDao(){
         return daoSession.getHistoricDao();
     }
 
-    public HashMap<String,String> getUserInformation(String username)
+
+
+    public User getUserInformation(String username)
     {
         queryBuilder=getUserDao().queryBuilder();
         List<User> listuser = queryBuilder.where(UserDao.Properties.Username.eq(username)).limit(1).list();
-        userinformation.put("completename",listuser.get(0).getCompleteName());
-        //userinformation.put("",listuser.get(0).get());
-        return userinformation;
+        return listuser.get(0);
+
     }
+    public User getUserInformationUsingId(Long id){
+        queryBuilder=getUserDao().queryBuilder();
+        List<User> listuser = queryBuilder.where(UserDao.Properties.Id.eq(id)).limit(1).list();
+        return listuser.get(0);
+    }
+
+    public Patient getPatientInformation(Long id){
+        queryBuilder=getUserDao().queryBuilder();
+        List<Patient> listpatient = queryBuilder.where(PatientDao.Properties.Identity.eq(id)).limit(1).list();
+        return listpatient.get(0);
+    }
+
 
 
 

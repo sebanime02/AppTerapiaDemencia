@@ -4,6 +4,7 @@ import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.List;
 
+import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 
 /**
@@ -25,5 +26,6 @@ public interface PrincipalListRepository {
     void aprobeNotifications(List<Annotation> annotationsList);
 
     void changeUserData(HashMap<String,Object> hashMap);
+    List<Note> getNotes(Long id);
 
 }

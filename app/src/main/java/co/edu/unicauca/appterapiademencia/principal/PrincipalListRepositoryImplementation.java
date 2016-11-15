@@ -8,8 +8,10 @@ import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.List;
 
+import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
+import co.edu.unicauca.appterapiademencia.domain.dao.NoteDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.PatientDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.UserDao;
 import co.edu.unicauca.appterapiademencia.events.PatientListEvent;
@@ -29,9 +31,9 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
 
     public PrincipalListRepositoryImplementation(){
         this.helper = GreenDaoHelper.getInstance();
-        this.userDao = GreenDaoHelper.getUserDao();
-        this.patientDao = GreenDaoHelper.getPatientDao();
-        this.queryBuildergeneral = GreenDaoHelper.getPatientDao().queryBuilder();
+        this.userDao = helper.getUserDao();
+        this.patientDao = helper.getPatientDao();
+        this.queryBuildergeneral = helper.getPatientDao().queryBuilder();
     }
 
     @Override
@@ -48,7 +50,8 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     }
 
     @Override
-    public void showPatients() {
+    public void showPatients()
+    {
 
     }
 
@@ -57,7 +60,7 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
        /*Patient prueba = new Patient(null,"Orlando Ñ","18/04/1995","","cosmitet",11111,"ninguno",null,null,null,null,0,0,0);
         this.patientDao.insert(prueba);
            */
-     QueryBuilder qbpatients = GreenDaoHelper.getPatientDao().queryBuilder();
+     QueryBuilder qbpatients = helper.getPatientDao().queryBuilder();
         List patients = qbpatients.orderDesc(PatientDao.Properties.Id).list();
         List<Patient> patientList = patients;
         int i;
@@ -91,14 +94,34 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     }
 
     @Override
-    public void aprobeNotifications(List<Annotation> annotationsList) {
+    public void aprobeNotifications(List<Annotation> annotationsList)
+    {
 
     }
 
     @Override
-    public void changeUserData(HashMap<String, Object> hashMap) {
+    public void changeUserData(HashMap<String, Object> hashMap)
+    {
 
     }
+
+    @Override
+    public List<Note> getNotes(Long id)
+    {
+        QueryBuilder<Note> queryBuilder = helper.getNoteDao().queryBuilder();
+        queryBuilder.where(NoteDao.Properties.State.eq(true));
+        //queryBuilder.join(Note.class,PatientDao.Properties.Id).where(PatientDao.Properties.Id.eq(id));
+        queryBuilder.join(NoteDao.Properties.PatientId,Patient.class,patientDao.getPkProperty()).where(PatientDao.Properties.Identity.eq(id));
+
+        for(int i=0;i<=queryBuilder.list().size();i++){
+            Log.e("Repositorio notas",queryBuilder.list().get(i).getDescription());
+        }
+        return queryBuilder.list();
+
+
+
+    }
+
     private void postPatientListEvent(List<Patient> patientList){
 
 

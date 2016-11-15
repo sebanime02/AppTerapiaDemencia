@@ -4,7 +4,9 @@ import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.List;
 
+import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.principal.notes.NotesPresenter;
 
 /**
  * Created by ENF on 26/10/2016.
@@ -22,6 +24,7 @@ public interface PrincipalListInteractor {
 
     void insertTip();
     void getTips();
+    List<Note> getNotes(Long id);
 
     void getNotifications();
     void aprobeNotifications(List<Annotation> annotationsList);

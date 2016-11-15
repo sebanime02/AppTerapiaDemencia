@@ -104,6 +104,7 @@ public class PatientProfileActivity extends AppCompatActivity{
 
     }
 
+
     private void setupViewPager(ViewPager viewPager, Bundle args) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(),args);
         adapter.addFragment(new PatientProfileFragment(), "Ficha");
@@ -111,6 +112,7 @@ public class PatientProfileActivity extends AppCompatActivity{
         adapter.addFragment(new GraphicsExercises(), "Estado de Consciencia ");
         try {
             viewPager.setAdapter(adapter);
+            viewPager.endFakeDrag();
         }catch (Exception e){
             adapter.notifyDataSetChanged();
         }

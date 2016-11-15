@@ -40,7 +40,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
     public AddPatient2Activity()
     {
         this.helper= GreenDaoHelper.getInstance();
-        this.patientDao = GreenDaoHelper.getPatientDao();
+        this.patientDao = helper.getPatientDao();
     }
 
     @Override
@@ -157,7 +157,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
 
                         String[] fechas = new String[7];
-                        queryBuilder = GreenDaoHelper.getPatientDao().queryBuilder();
+                        queryBuilder = helper.getPatientDao().queryBuilder();
 
                         List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(parse_id)).limit(1).list();
                         Patient patient = patientList.get(0);

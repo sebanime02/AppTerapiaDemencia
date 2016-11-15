@@ -78,6 +78,21 @@
     <string name="textview_profile_information">INFORMACIÓN DEL PACIENTE</string>
     <string name="textview_profile_physics">LIMITACIONES DEL PACIENTE</string>
 
+    <!--TAB NOTE INFORMATION-->
+    <string name="txt_note_instructions">Ingrese una nota con el Eve</string>
+    <string name="hint_note_title">1. Titulo de la Nota</string>
+    <string name="note_type">1. Escoga El tipo de Evento Presentado</string>
+    <string name="hint_note_description">2. Describa El Evento...</string>
+    <string name="txt_note_late">3. Marque Si La Nota es Tardia </string>
+    <string name="txt_note_color">4. Seleccione si el Evento Es: </string>
+    <string name="rdg_verde">DE MEJORIA</string>
+    <string name="rdg_gris">INCIDENTE, Acontecimiento adverso que NO llega a provocar daño al paciente.</string>
+    <string name="rdg_amarillo">ADVERSO, Acontecimiento inesperado, Tiene o puede tener consecuencias negativas para el paciente, No relacionados al curso normal de la Enfermedad.</string>
+    <string name="rdg_red">CENTINELA, Suceso inesperado que produce serias secuelas físicas o psicológicas.</string>
+    <string name="rdg_white">RUTINARIO</string>
+    <string name="addnote_empty_title">Descripción Vacía</string>
+    <string name="addnote_empty_content">Por favor complete el campo de descripcion del evento presentado</string>
+    <string name="txt_note_responsable">6. Responsable, Escriba su Nombre Completo...</string>
 
 
 </resources>
