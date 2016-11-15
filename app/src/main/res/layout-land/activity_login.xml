@@ -31,6 +31,9 @@
 
 
             <Button
+
+                android:drawableTop="@mipmap/ic_supervisor_account_white_36dp"
+                android:foregroundTint="@color/white"
                 android:id="@+id/btn_soysupervisor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,6 +62,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:onClick="toMain"
+                android:drawableTop="@mipmap/careralone_white"
                 />
 
             <android.support.design.widget.CoordinatorLayout
@@ -135,25 +139,27 @@
 
                         android:gravity="center_horizontal"
                         />
+                    <Button
+                        android:id="@+id/btn_irRegistro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
+                        android:text="@string/btn_irRegistro"
+                        android:background="@color/white"
+                        android:textColor="@color/primary_color"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:textAllCaps="false"
+                        android:fontFamily="sans-serif-black"
+                        android:textSize="@dimen/textsize_btn_irRegistro"
+                        android:onClick="toRegister"
+
+                        />
 
                 </LinearLayout>
 
             </android.support.design.widget.CoordinatorLayout>
-            <Button
-                android:id="@+id/btn_irRegistro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
-                android:text="@string/btn_irRegistro"
-                android:background="@color/white"
-                android:textColor="@color/primary_color"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:textAllCaps="false"
-                android:fontFamily="sans-serif-black"
-                android:textSize="@dimen/textsize_btn_irRegistro"
-                android:onClick="toRegister"
-                />
+
 
 
 

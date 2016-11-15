@@ -4,15 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Switch;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -54,6 +52,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
     public AddNoteActivity(){
         this.helper = GreenDaoHelper.getInstance();
+
     }
 
 
@@ -61,7 +60,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_note);
-
+        Bundle bundl=getIntent().getExtras();
 
         description= (EditText) findViewById(R.id.txt_description);
 
@@ -81,14 +80,18 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             username = loginpreference.getString("username", "");
             if(!username.equals(""))
             {
+                Log.e("addnote","preference username"+username);
                 User user = helper.getUserInformation(username);
                 userId=user.getId();
                 owner.setVisibility(View.GONE);
                 ownertext ="";
             }
         }
-        Bundle bundl=getIntent().getExtras();
-        if(bundl!=null){
+
+        if(bundl!=null)
+        {
+
+            Log.e("addnote","bundle: "+bundl.getString("idpatient"));
             cedula =Long.parseLong(bundl.getString("idpatient")) ;
             Patient patient = helper.getPatientInformation(cedula);
             patientid = patient.getId();

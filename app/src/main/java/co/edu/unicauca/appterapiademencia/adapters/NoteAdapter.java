@@ -1,9 +1,6 @@
 package co.edu.unicauca.appterapiademencia.adapters;
 
 import android.app.Activity;
-import android.content.res.Resources;
-import android.media.Image;
-import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,14 +11,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.util.HashMap;
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.Note;
-import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.util.CircleTransform;
@@ -110,19 +103,17 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             holder.cardView.setBackgroundColor(activity.getResources().getColor(R.color.red_dark));
         }
 
-
-
-
-
-
-
-
-
     }
 
     @Override
     public int getItemCount() {
-        return noteList.size();
+        if(noteList == null){
+            return 0;
+        }
+        else{
+            return noteList.size();
+        }
+
     }
 
     public class NoteViewHolder extends RecyclerView.ViewHolder {

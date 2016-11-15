@@ -46,5 +46,8 @@
     <dimen name="txt_patient_profile_size_large">22sp</dimen>
     <dimen name="txt_patient_profile_size_medium">18sp</dimen>
 
+    <!-- NOTE LIST-->
+    <dimen name="height_type_image">80dp</dimen>
+    <dimen name="separator_line">2dp</dimen>
 
 </resources>

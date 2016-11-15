@@ -166,15 +166,17 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void saveLoginPreference() {
 
+        /*
         SharedPreferences.Editor editor = loginpreference.edit();
         editor.putBoolean("sessionValidation",true);
         editor.commit();
+        */
     }
 
     @Override
     public void setSupervisorPreference() {
         SharedPreferences.Editor editor = loginpreference.edit();
-        editor.putBoolean("supervisor",true);
+        /*editor.putBoolean("supervisor",true);*/
         editor.putString("username",input_username.getText().toString());
         editor.commit();
     }

@@ -40,55 +40,87 @@
                     android:text="@string/note_type"
                     android:textSize="@dimen/small_text_size"
                     android:fontFamily="sans-serif"
-                    android:id="@+id/textView4" />
+                    android:id="@+id/textView4"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    />
 
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:stretchColumns="*"
 
+
                     >
-                    <TableRow>
+                    <TableRow android:layout_height="wrap_content" android:minHeight="@dimen/height_type_image">
+
                         <ImageButton
                             android:id="@+id/btn_movility"
                             android:src="@mipmap/movility72px"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_amber"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
                         />
 
                         <ImageButton
+
                             android:id="@+id/btn_eating"
                             android:src="@mipmap/eating72px"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_green"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
                              />
 
                         <ImageButton
                             android:id="@+id/btn_fall"
                             android:src="@mipmap/caida72px"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_pink"
                              />
                     </TableRow>
-                    <TableRow>
+                    <TableRow android:minHeight="@dimen/height_type_image"  android:layout_marginTop="@dimen/activity_vertical_margin">
+
                         <ImageButton
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
                             android:id="@+id/btn_medication"
                             android:src="@mipmap/medication72px"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_red"
                             />
 
                         <ImageButton
                             android:id="@+id/btn_health"
                             android:src="@mipmap/ic_insert_emoticon_black_48dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_blue"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
                              />
 
                         <ImageButton
 
-
                             android:src="@mipmap/otro72px"
-                            android:id="@+id/btn_other" />
+                            android:id="@+id/btn_other"
+                            android:layout_height="match_parent"
+                            />
                     </TableRow>
-                    <TableRow>
+                    <TableRow android:minHeight="@dimen/height_type_image" android:layout_marginTop="@dimen/activity_vertical_margin">
                         <ImageButton
                             android:id="@+id/btn_changebehaviour"
                             android:src="@mipmap/changebehavior72px"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_purple"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
                             />
                     </TableRow>
 
                 </TableLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/separator_line"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@color/gray_soft"
+                    >
+
+                </View>
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_layout_description"
                     android:layout_width="match_parent"
@@ -105,7 +137,12 @@
 
 
                 </android.support.design.widget.TextInputLayout>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/separator_line"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@color/gray_soft"
+                    />
                 <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -130,6 +167,12 @@
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     />
             </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/separator_line"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@color/gray_soft"
+                    />
              <LinearLayout
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
@@ -206,6 +249,13 @@
                          />
                  </RadioGroup>
              </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/separator_line"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@color/gray_soft"
+                    android:visibility="gone"
+                    />
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_layout_responsable"
                     android:layout_width="match_parent"

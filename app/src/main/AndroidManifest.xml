@@ -66,7 +66,12 @@
             android:parentActivityName=".principal.MainActivity"
             android:theme="@style/MyMaterialTheme.Base"
             />
-
+        <activity
+            android:name=".principal.notes.AddNoteActivity"
+            android:label="Agregar Una nota relacionada a un Evento"
+            android:parentActivityName=".principal.PatientListActivity"
+            android:theme="@style/MyMaterialTheme.Base"
+            />
         <fragment
             android:name=".principal.patientlist.PatientProfileFragment"
 

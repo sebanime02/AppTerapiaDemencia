@@ -83,7 +83,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     public static final String fotodefault = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser).toString();
 
   public AddPatientActivity(){
-      this.patientDao = daoHelper.getPatientDao();
+      this.patientDao = GreenDaoHelper.getInstance().getPatientDao();
 
   }
 
@@ -91,7 +91,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addpatient_personalinformation);
-
+        daoHelper = GreenDaoHelper.getInstance();
         prefs = getSharedPreferences("datos", Context.MODE_PRIVATE);
         edt_id = (EditText) findViewById(R.id.edt_cedula);
        // btn_guardar = (Button) findViewById(R.id.btn_guardar_paso1);
@@ -212,8 +212,9 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
             Log.e("Agregar paciente","faltan campos obligatorios");
         }else {
-            queryBuilder = daoHelper.getPatientDao().queryBuilder();
 
+            //queryBuilder = daoHelper.getPatientDao().queryBuilder();
+            queryBuilder = GreenDaoHelper.getInstance().getPatientDao().queryBuilder();
             List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(Long.parseLong(edt_id.getText().toString()))).limit(1).list();
             //.limit(1).list();
 
@@ -393,6 +394,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
             getMenuInflater().inflate(R.menu.menu_foto_perfil, menu);
         } else {
             queryBuilder = daoHelper.getPatientDao().queryBuilder();
+            //queryBuilder = GreenDaoHelper.getInstance().getPatientDao().queryBuilder();
             if (edt_id.getText().toString() != "") {
                 Long id = Long.parseLong(edt_id.getText().toString());
 

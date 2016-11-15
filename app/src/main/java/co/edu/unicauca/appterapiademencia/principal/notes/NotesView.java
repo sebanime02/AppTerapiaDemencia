@@ -12,5 +12,5 @@ public interface NotesView {
 
     void getNotes(Long id);
     void showNotes(List<Note> noteList);
-    void addNote();
+    void addNote(Long idpatient);
 }

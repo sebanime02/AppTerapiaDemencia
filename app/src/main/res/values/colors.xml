@@ -19,6 +19,14 @@
     <color name="semaforo_verde">#8BC34A</color>
     <color name="semaforo_amarillo">#FFEB3B</color>
 
+    <color name="material_red"> #f44336</color>
+    <color name="material_pink">#e91e63</color>
+    <color name="material_purple"> #9c27b0</color>
+    <color name="material_blue"> #2196f3</color>
+    <color name="material_green"> #4caf50</color>
+    <color name="material_amber">#ffc107</color>
+
+
 
 
 

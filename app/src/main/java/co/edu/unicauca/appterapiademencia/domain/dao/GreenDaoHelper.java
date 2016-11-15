@@ -2,13 +2,11 @@ package co.edu.unicauca.appterapiademencia.domain.dao;
 
 import android.content.Context;
 
-import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.HashMap;
 import java.util.List;
 
-import co.edu.unicauca.appterapiademencia.SetupActivity;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.User;
 
@@ -20,7 +18,7 @@ import co.edu.unicauca.appterapiademencia.domain.User;
 public class GreenDaoHelper {
 
     private static co.edu.unicauca.appterapiademencia.domain.dao.DaoSession daoSession;
-    private static final String DB_NAME="terapiaprueba-db";
+    public static final String DB_NAME="terapiaprueba-db";
     private static Context context;
     private HashMap<String,String> userinformation;
     private QueryBuilder queryBuilder;
@@ -37,13 +35,18 @@ public class GreenDaoHelper {
 
     private GreenDaoHelper()
     {
+        /*
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(SetupActivity.getContext(), DB_NAME);
         Database db = helper.getWritableDb();
         this.daoSession = new co.edu.unicauca.appterapiademencia.domain.dao.DaoMaster(db).newSession();
+        */
     }
 
     public  DaoSession getDaoSession(){
         return daoSession;
+    }
+    public void setDaoSession(DaoSession daoSession){
+        this.daoSession = daoSession;
     }
     public UserDao getUserDao(){
         return daoSession.getUserDao();
@@ -63,7 +66,7 @@ public class GreenDaoHelper {
     public  RecommendationDao getRecommendationDao(){
         return daoSession.getRecommendationDao();
     }
-    public static HistoricDao getHistoricDao(){
+    public  HistoricDao getHistoricDao(){
         return daoSession.getHistoricDao();
     }
 
