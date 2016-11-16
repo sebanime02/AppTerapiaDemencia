@@ -113,11 +113,16 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         imagen = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/drawable/empyuser").toString();
         //colocarImagen();
 
-/*
-        toolbar = (Toolbar) findViewById(R.id.toolbaraddpatient);
+
+         toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+
         actionBar = getSupportActionBar();
+
         actionBar.setDisplayHomeAsUpEnabled(true);
-        */
+        actionBar.setTitle("Agregar Paciente");
+
 
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
@@ -145,8 +150,8 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 datosa[3] = patientone.getDrawinglimitation().toString();
 
                 txt_titulo1.setText("INFORMACIÓN DEL PACIENTE");
-                txt_titulo2.setText("Actualice La información que considere pertinente, Para cambiar la foto, sostenga el dedo sobre ella");
-
+                txt_titulo2.setText("");
+                actionBar.setTitle("Actualizando Paciente");
                 containerfoto.setVisibility(View.VISIBLE);
 
                 edt_id.setText(patientone.getIdentity()+"");
@@ -283,7 +288,8 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
                     startActivity(ir_reg);
                     overridePendingTransition(R.anim.left_in, R.anim.left_out);
-                } else {
+                } else
+                {
                     Log.e("Agregar paciente","Cedula ya existe");
                     Toast.makeText(this, "La cédula ingresada ya existe, puede  que el paciente haya sido ingresado con anterioridad", Toast.LENGTH_LONG).show();
                 }

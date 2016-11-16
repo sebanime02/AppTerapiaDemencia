@@ -91,8 +91,9 @@
     <string name="rdg_red">CENTINELA, Suceso inesperado que produce serias secuelas físicas o psicológicas.</string>
     <string name="rdg_white">RUTINARIO</string>
     <string name="addnote_empty_title">Descripción Vacía</string>
-    <string name="addnote_empty_content">Por favor complete el campo de descripcion del evento presentado</string>
-    <string name="txt_note_responsable">6. Responsable, Escriba su Nombre Completo...</string>
+    <string name="addnote_empty_content">Por favor complete el campo "Descripción del evento"</string>
+    <string name="addnote_empty_content2">Por favor complete los campos "Descripción del evento" y "Responsable"</string>
+    <string name="txt_note_responsable">5. Responsable, Escriba su Nombre Completo...</string>
 
 
 </resources>

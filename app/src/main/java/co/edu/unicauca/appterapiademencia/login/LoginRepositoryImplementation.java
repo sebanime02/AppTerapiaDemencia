@@ -35,23 +35,27 @@ public class LoginRepositoryImplementation implements LoginRepository {
     @Override
     public void signUp(String username, String password, String completeName, String passwordaprobal) {
 
-        /*
-        Log.e("Registro","llego al patron repositorio");
 
+        Log.e("Registro","llego al patron repositorio");
+        /*
         QueryBuilder qbsignup = GreenDaoHelper.getUserDao().queryBuilder();
         qbsignup.where(UserDao.Properties.Password.eq(passwordaprobal));
 
         List users = qbsignup.list();
+*/
 
+        QueryBuilder qbsignup = helper.getUserDao().queryBuilder();
+        qbsignup.where(UserDao.Properties.Username.eq(username));
 
-
+        List users = qbsignup.list();
 
 
         Log.e("Registro", "Numero de contraseñas repetidas: "+users.size()+"");
 
-        if(users.size()>=1){
+        if(users.size()==0)
+        {
             accessType = true; //verdadero es supervisor
-            User user = new User(null,username,password,completeName,accessType);
+            User user = new User(null,username,password,completeName,accessType,"");
             this.userDao.insert(user);
 
             Log.d("RegistroUsuario","Nueva id insertada: "+user.getId());
@@ -72,8 +76,7 @@ public class LoginRepositoryImplementation implements LoginRepository {
             postEvent(RegisterEvent.onSingUpErrorAprobal,2);
         }
 
-*/
-
+        /*
         accessType = true; //verdadero es supervisor
         User user = new User(null,username,password,completeName,accessType,"");
         this.userDao.insert(user);
@@ -90,7 +93,7 @@ public class LoginRepositoryImplementation implements LoginRepository {
             Log.e("Registro","Error al registrar el nuevo usuario");
             postEvent(RegisterEvent.onSingUpError,2);
         }
-
+      */
 
     }
 

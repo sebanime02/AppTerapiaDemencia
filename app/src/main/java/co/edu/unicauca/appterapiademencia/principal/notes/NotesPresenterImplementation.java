@@ -1,8 +1,7 @@
 package co.edu.unicauca.appterapiademencia.principal.notes;
 
-import java.util.List;
+import android.util.Log;
 
-import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractor;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractorImplementation;
@@ -38,9 +37,8 @@ public class NotesPresenterImplementation implements NotesPresenter {
     @Override
     public void getNotes(Long id)
     {
-        if(notesView!=null)
-        {
+        Log.e("addnote","llege a getnotes del presenter");
             notesView.showNotes(principalListInteractor.getNotes(id));
-        }
+
     }
 }

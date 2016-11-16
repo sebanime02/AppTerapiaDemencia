@@ -39,7 +39,10 @@ public class SetupActivity extends Application {
 
 
 
+
     }
+
+
 
     private void setupGreenDaoHelper(Context context) {
 

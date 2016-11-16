@@ -33,8 +33,12 @@ public class PatientProfileActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.patient_profile_activity);
-        Bundle bundle = getIntent().getExtras();
-        cedula = bundle.get("cedula").toString();
+        if(getIntent().getExtras()!=null){
+            Bundle bundle = getIntent().getExtras();
+            cedula = bundle.get("cedula").toString();
+
+        }
+
         final Bundle args = new Bundle();
         args.putLong("cedula",Long.parseLong(cedula));
 
@@ -64,6 +68,7 @@ public class PatientProfileActivity extends AppCompatActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         getMenuInflater().inflate(R.menu.menu_edit,menu);
         return true;
 

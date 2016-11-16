@@ -64,7 +64,8 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
 
     @Override
     public List<Note> getNotes(Long id) {
-        return null;
+        Log.e("addnote","llege a getnotes del interactor");
+        return principalListRepository.getNotes(id);
     }
 
     @Override

@@ -18,6 +18,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import java.io.File;
 
 import co.edu.unicauca.appterapiademencia.R;
+import co.edu.unicauca.appterapiademencia.domain.User;
+import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.principal.MainActivity;
 
 
@@ -61,6 +63,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createFolder();
+        createCarerUser();
 
         loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
         if(loginpreference.getBoolean("sessionValidation",true)){
@@ -237,6 +240,26 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         } else {
             //Toast.makeText(this, "fallo al crear carpeta", Toast.LENGTH_SHORT).show();
         }
+    }
+    private void createCarerUser() {
+
+
+        if(GreenDaoHelper.getInstance().carerIdDetector()==false){
+            String username ="carer";
+            String password ="carer";
+            String completeName ="carer";
+            boolean accessType=false;
+            User user = new User(null,username,password,completeName,accessType,"");
+            GreenDaoHelper.getInstance().getUserDao().insert(user);
+            Log.e("setup","ingreso usuario cuidador");
+        }
+        else{
+            Log.e("setup","usuario carer ya existe");
+        }
+        GreenDaoHelper.getInstance().getUsers();;
+
+
+
     }
 
 }

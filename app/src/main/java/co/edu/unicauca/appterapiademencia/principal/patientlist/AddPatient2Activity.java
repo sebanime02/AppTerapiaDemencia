@@ -2,8 +2,11 @@ package co.edu.unicauca.appterapiademencia.principal.patientlist;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -35,6 +38,8 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
     private PatientDao patientDao;
     private GreenDaoHelper helper;
     private Patient patientObj;
+    private Toolbar toolbar;
+    private ActionBar actionBar;
 
 
     public AddPatient2Activity()
@@ -65,7 +70,14 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
         s_vision.setAdapter(adaptervision);
         s_escritura.setAdapter(adapterescritura);
         s_dibujo.setAdapter(adapterdibujo);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        setSupportActionBar(toolbar);
+
+        actionBar = getSupportActionBar();
+
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Agregar Paciente paso 2");
 
         if (bundl != null) {
             paciente = bundl.getStringArray("paciente");
@@ -73,6 +85,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
             if (actualizar == null) {
                 actualizar = "";
             } else {
+                actionBar.setTitle("Actualizando Paciente paso 2");
                 datosa = new String[4];
                 datosa = bundl.getStringArray("datosa");
                 if (datosa[1].toString().equals("0")) {
@@ -108,6 +121,17 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
         }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                super.onBackPressed();
+                overridePendingTransition(R.anim.right_in, R.anim.right_out);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
     @Override

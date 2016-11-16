@@ -2,37 +2,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:background="@color/white"
     tools:context=".principal.patientlist.AddPatient2Activity">
 
-
     <LinearLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical"
-        >
-        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+            <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ToolbarTheme" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+           <LinearLayout
+           android:layout_marginTop="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="20dp"
             android:background="@color/colorPrimary"
             >
-        <TextView
+                <TextView
 
-            android:layout_gravity="center_horizontal"
-            android:text="LIMITACIONES FISICAS"
-            android:textSize="25sp"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:fontFamily="sans-serif"
-            android:layout_height="wrap_content"/>
+                android:layout_gravity="center_horizontal"
+                android:text="LIMITACIONES FISICAS"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:fontFamily="sans-serif"
+                android:layout_height="wrap_content"/>
 
-            <TextView
+                <TextView
                 android:layout_gravity="center_horizontal"
                 android:text="Califíque las Limitaciones Físicas del paciente, esto será de ayuda para facilitar la experiencia con los ejercicios cognitivos."
                 android:textSize="20sp"
@@ -41,52 +60,52 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:paddingTop="20dp"
-            android:orientation="vertical">
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingTop="20dp"
+                android:orientation="vertical">
 
 
 
 
-        <TextView
-            android:text="Visión"
-            android:drawablePadding="@dimen/activity_horizontal_margin"
-            android:drawableLeft="@mipmap/ic_remove_red_eye_black_24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <Spinner
-            android:id="@+id/spi_vision"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:prompt="@string/spinner_vision"/>
-        <TextView
-            android:text="Escritura"
-            android:drawableLeft="@mipmap/edit"
-            android:drawablePadding="@dimen/activity_horizontal_margin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <Spinner
-            android:id="@+id/spi_escritura"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:prompt="@string/spinner_vision"/>
-        <TextView
-            android:text="Dibujo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/scuadra"
-            android:drawablePadding="@dimen/activity_horizontal_margin"
-            />
-        <Spinner
-            android:id="@+id/spi_dibujo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:prompt="@string/spinner_vision"/>
+                <TextView
+                android:text="Visión"
+                android:drawablePadding="@dimen/activity_horizontal_margin"
+                 android:drawableLeft="@mipmap/ic_remove_red_eye_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+                <Spinner
+                android:id="@+id/spi_vision"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/spinner_vision"/>
+            <TextView
+                android:text="Escritura"
+                android:drawableLeft="@mipmap/edit"
+                android:drawablePadding="@dimen/activity_horizontal_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Spinner
+                android:id="@+id/spi_escritura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/spinner_vision"/>
+            <TextView
+                android:text="Dibujo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/scuadra"
+                android:drawablePadding="@dimen/activity_horizontal_margin"
+                />
+            <Spinner
+                android:id="@+id/spi_dibujo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/spinner_vision"/>
             <TextView
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_width="wrap_content"
@@ -106,7 +125,7 @@
 
                 />
 
-        <Button
+            <Button
 
 
             android:id="@+id/btn_guardar_paciente"
@@ -131,6 +150,8 @@
 
 
         </LinearLayout>
-    </LinearLayout>
 
+            </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+    </LinearLayout>
 </ScrollView>

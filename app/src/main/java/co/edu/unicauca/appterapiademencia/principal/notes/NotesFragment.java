@@ -63,6 +63,7 @@ public class NotesFragment extends Fragment implements NotesView{
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e("Notes","entro al onclick");
                 addNote(idpatient);
             }
         });
@@ -91,11 +92,25 @@ public class NotesFragment extends Fragment implements NotesView{
 
     @Override
     public void getNotes(Long id) {
+        Log.e("addnote","getnotes del fragment");
         notesPresenterImplementation.getNotes(id);
     }
 
     @Override
     public void showNotes(List<Note> list) {
+        Log.e("addnote","de nuevo al fragment, show la lista");
+        if(list.size()>=1){
+            for(int j=0;j<=list.size();j++)
+            {
+
+                Log.e("notelist ","id: "+list.get(j).getId().toString());
+                Log.e("notelist ","description: "+list.get(j).getDescription());
+
+
+            }
+
+        }
+
         this.noteList=list;
 
     }

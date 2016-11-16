@@ -108,14 +108,26 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     @Override
     public List<Note> getNotes(Long id)
     {
+        Log.e("addnote","llege a getnotes del repositorio");
         QueryBuilder<Note> queryBuilder = helper.getNoteDao().queryBuilder();
         queryBuilder.where(NoteDao.Properties.State.eq(true));
         //queryBuilder.join(Note.class,PatientDao.Properties.Id).where(PatientDao.Properties.Id.eq(id));
-        queryBuilder.join(NoteDao.Properties.PatientId,Patient.class,patientDao.getPkProperty()).where(PatientDao.Properties.Identity.eq(id));
+        //queryBuilder.join(NoteDao.Properties.PatientId,Patient.class,patientDao.getPkProperty()).where(PatientDao.Properties.Identity.eq(id));
+        queryBuilder.where(NoteDao.Properties.PatientId.eq(id));
 
-        for(int i=0;i<=queryBuilder.list().size();i++){
-            Log.e("Repositorio notas",queryBuilder.list().get(i).getDescription());
-        }
+
+      try {
+
+
+            for(int i=0;i<=queryBuilder.list().size();i++){
+                Log.e("Repositorio notas",queryBuilder.list().get(i).getDescription());
+            }
+
+      }catch (IndexOutOfBoundsException e)
+      {
+          Log.e("Repositorio notas","ninguno");
+      }
+
         return queryBuilder.list();
 
 
