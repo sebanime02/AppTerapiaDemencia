@@ -37,7 +37,7 @@ public class NotesPresenterImplementation implements NotesPresenter {
     @Override
     public void getNotes(Long id)
     {
-        Log.e("addnote","llege a getnotes del presenter");
+            Log.e("addnote","llege a getnotes del presenter");
             notesView.showNotes(principalListInteractor.getNotes(id));
 
     }

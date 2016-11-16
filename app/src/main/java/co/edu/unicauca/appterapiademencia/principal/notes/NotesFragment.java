@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
@@ -31,6 +32,7 @@ public class NotesFragment extends Fragment implements NotesView{
     private Long idpatient;
     private List<Note> noteList;
     private Intent ir_reg;
+    private List<Note> list = new ArrayList<Note>();
     public NotesFragment(){
         this.noteList = noteList;
     }
@@ -83,6 +85,22 @@ public class NotesFragment extends Fragment implements NotesView{
     @Override
     public void onResume() {
         super.onResume();
+        list.clear();
+        Bundle args = getArguments();
+        idpatient=args.getLong("cedula");
+        getNotes(idpatient);
+
+        try {
+            recycler.setHasFixedSize(true);
+            LManager = new LinearLayoutManager(getActivity().getApplicationContext());
+            recycler.setLayoutManager(LManager);
+            adapter = new NoteAdapter(list, getActivity());
+            recycler.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            //callListenerText();
+        } catch (Exception e) {
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -97,9 +115,15 @@ public class NotesFragment extends Fragment implements NotesView{
     }
 
     @Override
-    public void showNotes(List<Note> list) {
-        Log.e("addnote","de nuevo al fragment, show la lista");
-        if(list.size()>=1){
+    public void showNotes(List<Note> noteList) {
+        Log.e("addnote","de nuevo al fragment, show la lista, tamaño: "+list.size());
+        for (int j = 0; j < noteList.size(); j++) {
+            list.add(noteList.get(j));
+        }
+
+        /*
+        if(list.size()>=1)
+        {
             for(int j=0;j<=list.size();j++)
             {
 
@@ -110,6 +134,7 @@ public class NotesFragment extends Fragment implements NotesView{
             }
 
         }
+        */
 
         this.noteList=list;
 

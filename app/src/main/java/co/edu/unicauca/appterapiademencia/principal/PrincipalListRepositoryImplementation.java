@@ -108,12 +108,16 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     @Override
     public List<Note> getNotes(Long id)
     {
+        Patient patient = helper.getPatientInformationUsingCedula(id);
+
         Log.e("addnote","llege a getnotes del repositorio");
         QueryBuilder<Note> queryBuilder = helper.getNoteDao().queryBuilder();
         queryBuilder.where(NoteDao.Properties.State.eq(true));
+
+
         //queryBuilder.join(Note.class,PatientDao.Properties.Id).where(PatientDao.Properties.Id.eq(id));
         //queryBuilder.join(NoteDao.Properties.PatientId,Patient.class,patientDao.getPkProperty()).where(PatientDao.Properties.Identity.eq(id));
-        queryBuilder.where(NoteDao.Properties.PatientId.eq(id));
+        queryBuilder.where(NoteDao.Properties.PatientId.eq(patient.getId()));
 
 
       try {

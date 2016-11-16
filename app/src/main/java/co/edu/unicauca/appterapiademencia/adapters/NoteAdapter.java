@@ -90,18 +90,22 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             holder.txtLate.setVisibility(View.GONE);
 
         }
+        if(color=="rutinario"){
+            holder.cardView.setCardBackgroundColor(activity.getResources().getColor(R.color.white));
+        }
         if(color=="mejoria"){
             holder.cardView.setCardBackgroundColor(activity.getResources().getColor(R.color.semaforo_verde));
         }
         else if(color=="incidente"){
             holder.cardView.setBackgroundColor(activity.getResources().getColor(R.color.gray));
         }
-        else if(color=="adverso"){
+        else if(color=="centinela"){
             holder.cardView.setBackgroundColor(activity.getResources().getColor(R.color.semaforo_amarillo));
         }
-        else{
+        else if(color=="adverso"){
             holder.cardView.setBackgroundColor(activity.getResources().getColor(R.color.red_dark));
         }
+
 
     }
 
@@ -130,9 +134,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             imgNoteType = (ImageView) itemView.findViewById(R.id.img_note);
             txtDescription = (TextView) itemView.findViewById(R.id.note_description);
             txtOwner = (TextView) itemView.findViewById(R.id.note_type);//El titulo
-            txtDate = (TextView) itemView.findViewById(R.id.note_description);
-            txtHour = (TextView) itemView.findViewById(R.id.note_description);
-            txtLate = (TextView) itemView.findViewById(R.id.note_description);
+            txtDate = (TextView) itemView.findViewById(R.id.note_date);
+            txtHour = (TextView) itemView.findViewById(R.id.note_hour);
+            txtLate = (TextView) itemView.findViewById(R.id.note_late);
             cardView = (CardView) itemView.findViewById(R.id.noteCardview);
 
         }

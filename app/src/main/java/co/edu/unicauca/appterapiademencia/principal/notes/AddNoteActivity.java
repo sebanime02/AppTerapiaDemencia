@@ -178,9 +178,12 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
     public void saveNote(View view){
 
+        Log.e("addnote",""+optionOwner);
 
-        if(optionOwner=true)
+
+        if(optionOwner==true)
         {
+            Log.e("addnote","Entro a owner true");
             if(validar(description.getText().toString(),owner.getText().toString())==false)
             {
 
@@ -194,9 +197,11 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 resultValidation = true;
 
 
+
             }
         }
         if(optionOwner==false){
+            Log.e("addnote","Entro a owner true");
             if(validar(description.getText().toString())==false)
             {
 
@@ -256,6 +261,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             Note note = new Note(null, patientid, userId, election, var_fecha, var_hora, var_description, var_color, var_owner, var_late, var_state);
             noteDao.insert(note);
             Intent ir_main = new Intent(this, PatientProfileActivity.class);
+            ir_main.putExtra("cedula", cedula);
             startActivity(ir_main);
             overridePendingTransition(R.anim.left_in, R.anim.left_out);
             finish();

@@ -80,6 +80,11 @@ public class GreenDaoHelper {
         return listuser.get(0);
 
     }
+    public Patient getPatientInformationUsingCedula(Long id){
+        queryBuilder=getPatientDao().queryBuilder();
+        List<Patient> listpatient = queryBuilder.where(PatientDao.Properties.Identity.eq(id)).limit(1).list();
+        return listpatient.get(0);
+    }
     public User getUserInformationUsingId(Long id){
         queryBuilder=getUserDao().queryBuilder();
         List<User> listuser = queryBuilder.where(UserDao.Properties.Id.eq(id)).limit(1).list();
