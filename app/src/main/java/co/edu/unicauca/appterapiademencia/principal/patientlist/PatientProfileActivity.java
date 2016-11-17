@@ -28,6 +28,7 @@ public class PatientProfileActivity extends AppCompatActivity{
     public static ViewPager viewPager;
     private TabLayout tabLayout;
     private ActionBar actionBar;
+    private boolean supervisorState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

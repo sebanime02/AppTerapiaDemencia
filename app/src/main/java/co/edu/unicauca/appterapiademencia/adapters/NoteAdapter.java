@@ -1,6 +1,7 @@
 package co.edu.unicauca.appterapiademencia.adapters;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,15 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
-import co.edu.unicauca.appterapiademencia.util.CircleTransform;
 
 /**
  * Created by SEBAS on 12/11/2016.
@@ -29,6 +27,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     private Activity activity;
     private List<User> userList;
     private GreenDaoHelper helper;
+    private String description;
 
     private int imageSize;
 
@@ -52,13 +51,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     @Override
     public void onBindViewHolder(NoteViewHolder holder, int position) {
 
-    String description = noteList.get(position).getDescription();
+    //String description = noteList.get(position).getDescription();
     String fecha = noteList.get(position).getDate().toString();
     String hour = noteList.get(position).getHour().toString();
     String noteType= noteList.get(position).getNoteType();
     String color = noteList.get(position).getColor();
     Boolean late = noteList.get(position).getLate();
     String userName;
+
         try{
             Long iduser = noteList.get(position).getUserId();
             userName = helper.getUserInformationUsingId(iduser).getCompleteName().toString();
@@ -67,7 +67,47 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             userName = noteList.get(position).getOwner();
         }
 
+        switch (noteType){
+            case "movility":
+                description="Movilidad";
+                noteType= Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/movility72px").toString();
+                break;
+            case "eating":
+                description="Independencia Alimentaria";
+                noteType=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/eating72px").toString();
 
+                break;
+            case "fall":
+                description="Caida";
+                noteType=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/caida72px").toString();
+
+                break;
+            case "medication":
+
+                description="Medicación";
+                noteType=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/medication72px").toString();
+
+                break;
+            case "otro":
+                description="Otros";
+                noteType=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/otro72px").toString();
+
+                break;
+            case "health":
+                description="Mejora en la salud";
+                noteType=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
+
+                break;
+            case "changebehaviour":
+                description="Comportamiento";
+                noteType=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/changebehavior72px").toString();
+
+                break;
+
+
+
+        }
+      /*
 
         try {
 
@@ -76,11 +116,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
             //Picasso.with(this.activity).load(Uri.parse(fotodefault)).resize(imageSize, imageSize).transform(new CircleTransform()).into(holder.imgNoteType);
         }
+        */
+        holder.imgNoteType.setImageURI(Uri.parse(noteType));
 
-        holder.txtDescription.setText(description);
+        holder.txtDescription.setText("Registrado por "+userName);
         holder.txtHour.setText(hour);
         holder.txtDate.setText(fecha);
-        holder.txtOwner.setText(userName);
+        holder.txtOwner.setText(description);
 
         if(late==true){
             holder.txtLate.setVisibility(View.VISIBLE);

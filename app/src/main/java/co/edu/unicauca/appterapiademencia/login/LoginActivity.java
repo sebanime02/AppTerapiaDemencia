@@ -66,12 +66,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         createCarerUser();
 
         loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
+        /*
         if(loginpreference.getBoolean("sessionValidation",true)){
             SharedPreferences.Editor editor = loginpreference.edit();
             editor.putBoolean("supervisor",true);
             editor.commit();
             navigateToMainScreen();
         }
+        */
 
 
         setContentView(R.layout.activity_login);
@@ -179,7 +181,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void setSupervisorPreference() {
         SharedPreferences.Editor editor = loginpreference.edit();
-        /*editor.putBoolean("supervisor",true);*/
+        editor.putBoolean("supervisor",true);
         editor.putString("username",input_username.getText().toString());
         editor.commit();
     }

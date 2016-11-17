@@ -3,15 +3,15 @@
     android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-   >
+    >
     <LinearLayout
         android:background="@color/white"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
             <android.support.v7.widget.Toolbar
@@ -24,228 +24,228 @@
                 app:theme="@style/ToolbarTheme" />
             <LinearLayout
 
-            xmlns:tools="http://schemas.android.com/tools"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize"
-            android:orientation="vertical"
-            android:background="@color/white"
-            tools:context="co.edu.unicauca.appterapiademencia.principal.patientlist.AddPatientActivity"
-            >
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="20dp"
-            android:background="@color/colorPrimary"
-            >
-            <TextView
-                android:id="@+id/txt_edit"
-                android:layout_gravity="center_horizontal"
-                android:text="INFORMACION DEL NUEVO PACIENTE"
-                android:textSize="25sp"
-                android:textColor="@color/white"
-                android:layout_width="wrap_content"
-                android:fontFamily="sans-serif"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-
-                android:layout_gravity="center_horizontal"
-                android:text="Ingrese la siguiente información del Paciente. Asegúrese que la Cédula sea correcta, posteriormente NO se podrá cambiar.   "
-                android:textSize="20sp"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:textColor="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txt_edit2" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="7"
-
-            >
-
-
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_weight="5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:imeOptions="actionNext"
-                    android:id="@+id/edt_nombre_paciente"
-                    android:inputType="textCapSentences|textImeMultiLine"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nombre Paciente"
-                    />
-
-
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:id="@+id/edt_cedula"
-                    android:inputType="number"
-                    android:hint="Cédula"
-
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fecha de Nacimiento:"/>
-                <Button
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btn_fecha_patiente"
-                    android:text="DD/MM/AAAA"
-                    android:onClick="onClick"
-                    android:gravity="left|center_vertical"
-                    style="@style/Base.Widget.AppCompat.ActionButton.Overflow"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Eps:"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:id="@+id/edt_eps"
-                    android:inputType="textCapSentences|textImeMultiLine"
-                    android:hint="Eps"
-
-                    />
-
-            </LinearLayout>
-            <RelativeLayout
-                android:id="@+id/foto_container"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="end"
-                android:layout_weight="2"
-                android:visibility="gone"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:orientation="vertical"
+                android:background="@color/white"
+                tools:context="co.edu.unicauca.appterapiademencia.principal.patientlist.AddPatientActivity"
                 >
-                <ImageView
 
-                    android:id="@+id/foto_paciente"
-                    android:layout_gravity="center"
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:background="@color/colorPrimary"
+                    >
+                    <TextView
+                        android:id="@+id/txt_edit"
+                        android:layout_gravity="center_horizontal"
+                        android:text="INFORMACION DEL NUEVO PACIENTE"
+                        android:textSize="25sp"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:layout_height="wrap_content"/>
 
-                />
-                <android.support.design.widget.FloatingActionButton
+                    <TextView
 
-                    android:id="@+id/add_foto_paciente"
-                    android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Ingrese la siguiente información del Paciente. Asegúrese que la Cédula sea correcta, posteriormente NO se podrá cambiar.   "
+                        android:textSize="20sp"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_edit2" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:paddingTop="@dimen/activity_vertical_margin"
+                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:backgroundTint="@color/colorPrimaryDark"
-                    android:elevation="@dimen/activity_vertical_margin"
-                    android:tint="@color/white"
-                    android:layout_alignBottom="@id/foto_paciente"
-                    android:src="@mipmap/ic_camera_alt_black_24dp"
-                    android:onClick="openContextM"
+                    android:weightSum="7"
+
+                    >
 
 
-                    />
-            </RelativeLayout>
-        </LinearLayout>
 
-        <LinearLayout
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
+                        <EditText
+                            android:imeOptions="actionNext"
+                            android:id="@+id/edt_nombre_paciente"
+                            android:inputType="textCapSentences|textImeMultiLine"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Nombre Paciente"
+                            />
 
-            android:orientation="vertical">
 
 
-            <TextView
-                android:text="Antecedentes:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView2" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:id="@+id/edt_cedula"
+                            android:inputType="number"
+                            android:hint="Cédula"
 
-            <EditText
-                android:imeOptions="actionNext"
-                android:id="@+id/edt_antecedentes"
-                android:inputType="textCapSentences|textImeMultiLine"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ingrese los Antecedentes del paciente.."/>
-            <TextView
-                android:text="Síndromes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <EditText
-                android:imeOptions="actionNext"
-                android:id="@+id/edt_sindromes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ingrese Síndromes..."
-                android:inputType="textCapSentences|textImeMultiLine"/>
-            <TextView
-                android:text="Observaciones:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                            />
 
-            <EditText
-                android:imeOptions="actionNext"
-                android:id="@+id/edt_observaciones"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ingrese las Observaciones que desee"
-                android:inputType="textCapSentences|textImeMultiLine"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fecha de Nacimiento:"/>
+                        <Button
 
-            <TextView
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"
-                android:text="Paso 1 de 3"
-                android:textSize="20dp"
-                />
-            <ProgressBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="100"
-                android:progress="33"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                style="?android:attr/progressBarStyleHorizontal" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/btn_fecha_patiente"
+                            android:text="DD/MM/AAAA"
+                            android:onClick="onClick"
+                            android:gravity="left|center_vertical"
+                            style="@style/Base.Widget.AppCompat.ActionButton.Overflow"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Eps:"/>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:id="@+id/edt_eps"
+                            android:inputType="textCapSentences|textImeMultiLine"
+                            android:hint="Eps"
+
+                            />
+
+                    </LinearLayout>
+                    <RelativeLayout
+                        android:id="@+id/foto_container"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="end"
+                        android:layout_weight="2"
+                        android:visibility="gone"
+                        >
+                        <ImageView
+
+                            android:id="@+id/foto_paciente"
+                            android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            />
+                        <android.support.design.widget.FloatingActionButton
+
+                            android:id="@+id/add_foto_paciente"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:backgroundTint="@color/colorPrimaryDark"
+                            android:elevation="@dimen/activity_vertical_margin"
+                            android:tint="@color/white"
+                            android:layout_alignBottom="@id/foto_paciente"
+                            android:src="@mipmap/ic_camera_alt_black_24dp"
+                            android:onClick="openContextM"
+
+
+                            />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:text="Antecedentes:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView2" />
+
+                    <EditText
+                        android:imeOptions="actionNext"
+                        android:id="@+id/edt_antecedentes"
+                        android:inputType="textCapSentences|textImeMultiLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingrese los Antecedentes del paciente.."/>
+                    <TextView
+                        android:text="Síndromes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:imeOptions="actionNext"
+                        android:id="@+id/edt_sindromes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingrese Síndromes..."
+                        android:inputType="textCapSentences|textImeMultiLine"/>
+                    <TextView
+                        android:text="Observaciones:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <EditText
+                        android:imeOptions="actionNext"
+                        android:id="@+id/edt_observaciones"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ingrese las Observaciones que desee"
+                        android:inputType="textCapSentences|textImeMultiLine"/>
+
+                    <TextView
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:gravity="center_horizontal"
+                        android:text="Paso 1 de 3"
+                        android:textSize="20dp"
+                        />
+                    <ProgressBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:progress="33"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        style="?android:attr/progressBarStyleHorizontal" />
 
 
                     <Button
-                    android:layout_marginTop="15dp"
+                        android:layout_marginTop="15dp"
 
 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Siguiente"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:textColor="@color/white"
-                    android:layout_alignParentRight="true"
-                    android:onClick="savePage1"
-                    android:background="@color/colorAccent"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Siguiente"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:textColor="@color/white"
+                        android:layout_alignParentRight="true"
+                        android:onClick="savePage1"
+                        android:background="@color/colorAccent"/>
 
                 </LinearLayout>
 

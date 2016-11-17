@@ -197,7 +197,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         /* SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);

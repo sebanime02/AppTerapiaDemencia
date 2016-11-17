@@ -166,7 +166,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
 
                 if(patientone.getPhotopath().toString().equalsIgnoreCase("")){
-                    img.setBackgroundResource(R.drawable.add);
+                    img.setBackgroundResource(R.drawable.emptyuser);
 
                 }
                 else {

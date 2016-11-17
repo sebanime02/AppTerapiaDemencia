@@ -118,6 +118,7 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
         //queryBuilder.join(Note.class,PatientDao.Properties.Id).where(PatientDao.Properties.Id.eq(id));
         //queryBuilder.join(NoteDao.Properties.PatientId,Patient.class,patientDao.getPkProperty()).where(PatientDao.Properties.Identity.eq(id));
         queryBuilder.where(NoteDao.Properties.PatientId.eq(patient.getId()));
+        queryBuilder.orderDesc(NoteDao.Properties.Id);
 
 
       try {

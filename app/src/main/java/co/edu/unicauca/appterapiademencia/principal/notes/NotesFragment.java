@@ -72,6 +72,28 @@ public class NotesFragment extends Fragment implements NotesView{
 
 
 
+
+    }
+
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        list.clear();
+        Bundle args = getArguments();
+        idpatient=args.getLong("cedula");
+        getNotes(idpatient);
+
+        try {
+            recycler.setHasFixedSize(true);
+            LManager = new LinearLayoutManager(getActivity().getApplicationContext());
+            recycler.setLayoutManager(LManager);
+            adapter = new NoteAdapter(list, getActivity());
+            recycler.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            //callListenerText();
+        } catch (Exception e) {
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override

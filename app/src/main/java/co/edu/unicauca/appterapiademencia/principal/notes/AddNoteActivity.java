@@ -3,7 +3,6 @@ package co.edu.unicauca.appterapiademencia.principal.notes;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -107,7 +106,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("Agregar Nota");
         SharedPreferences loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
-        if(loginpreference.getString("username","")!=null)
+        if(loginpreference.getBoolean("supervisor",true) && loginpreference.getString("username","")!=null)
         {
             username = loginpreference.getString("username", "");
             if(!username.equals(""))
@@ -122,10 +121,12 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         else{
 
             Log.e("addnote","va a hacer visible el responsable");
-            owner.setVisibility(View.VISIBLE);
             optionOwner = true;
+            owner.setVisibility(View.VISIBLE);
+
 
         }
+        Log.e("addnote","optionowner"+optionOwner);
 
 
         if(bundl!=null)
@@ -181,7 +182,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         Log.e("addnote",""+optionOwner);
 
 
-        if(optionOwner==true)
+        if(optionOwner)
         {
             Log.e("addnote","Entro a owner true");
             if(validar(description.getText().toString(),owner.getText().toString())==false)
@@ -192,6 +193,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             }
             else{
                 userId = helper.getCarerInformation().getId();
+                Log.e("addnote","userid"+userId);
                 var_owner =owner.getText().toString();
                 var_state = false;
                 resultValidation = true;
@@ -200,8 +202,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         }
-        if(optionOwner==false){
-            Log.e("addnote","Entro a owner true");
+        if(!optionOwner){
+            Log.e("addnote","Entro a owner false");
             if(validar(description.getText().toString())==false)
             {
 
@@ -210,6 +212,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
             }
             else{
+
+
                 var_owner= username;
                 var_state=true;
                 resultValidation = true;
@@ -225,7 +229,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
             Locale spanish = new Locale("es", "ES");
             SimpleDateFormat hourFormat = new SimpleDateFormat("hh:mm a");
-            DateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, ''yy",spanish);
+            DateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy",spanish);
 
             var_hora = hourFormat.format(new Date()).toString();
 
@@ -302,32 +306,46 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_movility:
-                election= Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/movility72px").toString();
+                election = "movility";
+                setDefaultImageButton();
+                //election= Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/movility72px").toString();
                 movility.setBackgroundColor(getResources().getColor(R.color.accent_color));
 
                 break;
             case R.id.btn_eating:
-                election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/eating72px").toString();
+                election="eating";
+                setDefaultImageButton();
+                //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/eating72px").toString();
                 eating.setBackgroundColor(getResources().getColor(R.color.accent_color));
 
                 break;
             case R.id.btn_fall:
-                election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/fall72px").toString();
+                election="fall";
+                setDefaultImageButton();
+                //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/caida72px").toString();
                 fall.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 break;
             case R.id.btn_medication:
-                election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/medication72px").toString();
+                election="medication";
+                setDefaultImageButton();
+                //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/medication72px").toString();
                 medication.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 break;
             case R.id.btn_other:
-                election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/otro72px").toString();
+                election="otro";
+                setDefaultImageButton();
+                //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/otro72px").toString();
                 otro.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 break;
             case R.id.btn_health:
-                election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
+                election="health";
+                setDefaultImageButton();
+                //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
                 health.setBackgroundColor(getResources().getColor(R.color.accent_color));
             case R.id.btn_changebehaviour:
-                election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/changebehavior72px").toString();
+                election="changebehaviour";
+                setDefaultImageButton();
+                //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/changebehavior72px").toString();
                 changeBehaviour.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 break;
 
@@ -335,9 +353,21 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         }
         Log.e("add note","Elección"+election);
     }
-    private void showDate(int year, int month, int day) {
+    private void showDate(int year, int month, int day)
+    {
         var_fecha = (new StringBuilder().append(day).append("/")
                 .append(month).append("/").append(year)).toString();
+
+    }
+
+    public void setDefaultImageButton(){
+        movility.setBackgroundColor(getResources().getColor(R.color.material_amber));
+        eating.setBackgroundColor(getResources().getColor(R.color.material_green));
+        fall.setBackgroundColor(getResources().getColor(R.color.material_pink));
+        medication.setBackgroundColor(getResources().getColor(R.color.material_red));
+        otro.setBackgroundColor(getResources().getColor(R.color.material_blue));
+        health.setBackgroundColor(getResources().getColor(R.color.material_blue));
+        changeBehaviour.setBackgroundColor(getResources().getColor(R.color.white));
 
     }
 }
