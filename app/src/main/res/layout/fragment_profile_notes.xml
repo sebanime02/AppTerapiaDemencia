@@ -1,73 +1,140 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relative"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/gray_soft"
+    >
+
+
+
+<LinearLayout
+    android:id="@+id/relative"
+    android:layout_width="match_parent"
+    android:weightSum="8"
+    android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:background="@color/white"
-    android:orientation="vertical"
+    android:background="@color/gray_soft"
+    android:orientation="horizontal"
 
     tools:context="co.edu.unicauca.appterapiademencia.principal.MainActivity">
 
+<LinearLayout
 
+    android:background="@color/gray_soft"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:layout_gravity="center_horizontal"
+    >
     <TableLayout
-        android:layout_gravity="center_horizontal"
+        android:background="@color/gray_soft"
         android:gravity="center_horizontal"
-        android:padding="@dimen/activity_horizontal_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="*">
-        <TableRow >
-            <ImageView android:background="@color/material_pink"
+        android:stretchColumns="1">
+
+        <TableRow android:gravity="center_horizontal">
+            <ImageButton
                 android:src="@mipmap/caida48px"/>
-            <ImageView android:background="@color/material_amber"
-                android:src="@mipmap/movility48px"/>
-
-            <ImageView  android:background="@color/material_green" android:src="@mipmap/eating48px"
-                android:id="@+id/imageView" />
-
-            <ImageView android:background="@color/material_purple"
-                 android:src="@mipmap/changebehavior72px"/>
-            <ImageView android:src="@mipmap/ic_insert_emoticon_black_48dp"/>
-            <ImageView android:background="@color/material_red"
-                 android:src="@mipmap/medication72px"/>
-
         </TableRow>
-        <TableRow>
+        <TableRow android:gravity="center_horizontal">
             <TextView android:fontFamily="sans-serif" android:textStyle="bold" android:background="@color/material_pink" android:textColor="@color/white" android:textAlignment="center" android:id="@+id/count_caida" android:text="0"/>
+        </TableRow>
+
+
+
+        <TableRow android:gravity="center_horizontal">
+            <ImageButton android:src="@mipmap/movility48px"/>
+        </TableRow>
+        <TableRow android:gravity="center_horizontal">
             <TextView android:fontFamily="sans-serif" android:textStyle="bold" android:background="@color/material_amber" android:textColor="@color/white" android:textAlignment="center" android:id="@+id/count_movilidad" android:text="0"/>
-            <TextView android:background="@color/material_green" android:textAlignment="center" android:id="@+id/count_alimentacion" android:text="0"/>
-            <TextView android:background="@color/material_purple" android:textAlignment="center" android:id="@+id/humor" android:text="0"/>
-            <TextView android:textAlignment="center" android:id="@+id/count_salud" android:text="0"/>
-            <TextView android:background="@color/material_red" android:textAlignment="center" android:id="@+id/count_medicacion" android:text="0"/>
+        </TableRow>
+
+
+        <TableRow android:gravity="center_horizontal">
+
+            <ImageButton  android:src="@mipmap/eating48px"
+                android:id="@+id/imageView" />
+        </TableRow>
+        <TableRow android:gravity="center_horizontal">
+            <TextView android:textColor="@color/white" android:background="@color/material_green" android:textAlignment="center" android:id="@+id/count_alimentacion" android:text="0"/>
+        </TableRow>
+
+
+        <TableRow android:gravity="center_horizontal">
+            <ImageButton
+                android:src="@mipmap/changebehavior72px"/>
+        </TableRow>
+        <TableRow android:gravity="center_horizontal">
+            <TextView android:textColor="@color/white" android:background="@color/material_purple" android:textAlignment="center" android:id="@+id/count_humor" android:text="0"/>
+        </TableRow>
+
+        <TableRow android:gravity="center_horizontal">
+            <ImageButton android:src="@mipmap/ic_insert_emoticon_black_48dp"/>
 
         </TableRow>
+        <TableRow android:gravity="center_horizontal">
+            <TextView android:background="@color/gray"  android:textColor="@color/white" android:textAlignment="center" android:id="@+id/count_salud" android:text="0"/>
+
+        </TableRow>
+
+
+        <TableRow android:gravity="center_horizontal">
+            <ImageButton
+                android:src="@mipmap/medication72px"/>
+        </TableRow>
+        <TableRow android:gravity="center_horizontal">
+            <TextView  android:textColor="@color/white" android:background="@color/material_red" android:textAlignment="center" android:id="@+id/count_medicacion" android:text="0"/>
+
+        </TableRow>
+
 
     </TableLayout>
+</LinearLayout>
 
-<LinearLayout
-    android:layout_width="match_parent"
+    <LinearLayout
+    android:scrollbars="vertical"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    android:minHeight="@dimen/alto_banner_register"
+    android:layout_width="0dp"
+    android:layout_weight="6"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:weightSum="8"
+    android:background="@color/white"
     >
-
-    <android.support.v7.widget.RecyclerView
-
-        android:id="@+id/reciclador"
-        android:gravity="center"
-        android:scrollbars="vertical"
-        android:layout_width="0dp"
-        android:layout_weight="7"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
 
-        />
 
-    <android.support.design.widget.FloatingActionButton
+        <TextView
+            android:id="@+id/txt_vacio_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:text="Vacio, Si desea agregar un evento, por favor presione el Boton de la Derecha."
+            />
+
+        <android.support.v7.widget.RecyclerView
+
+            android:id="@+id/reciclador"
+            android:gravity="center"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+
+
+            />
+        </LinearLayout>
+        <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_note"
         android:layout_width="0dp"
         android:layout_weight="1"
@@ -81,3 +148,4 @@
 
 </LinearLayout>
 </LinearLayout>
+</ScrollView>

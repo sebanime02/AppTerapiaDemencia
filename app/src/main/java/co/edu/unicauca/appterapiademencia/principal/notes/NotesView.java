@@ -13,4 +13,6 @@ public interface NotesView {
     void getNotes(Long id);
     void showNotes(List<Note> noteList);
     void addNote(Long idpatient);
+    void getnotesCount(Long idpatient);
+    void showNotesCount(int[] notescount);
 }

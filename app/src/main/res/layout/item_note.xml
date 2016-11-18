@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="4dp"
-    card_view:cardPreventCornerOverlap="false"
+    card_view:cardElevation="4dp"
     card_view:cardBackgroundColor="@color/white"
+    card_view:cardUseCompatPadding="true"
     android:id="@+id/noteCardview"
     >
 
@@ -49,7 +50,7 @@
             android:layout_alignTop="@id/note_type"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:drawableLeft="@mipmap/ic_event_black_18dp"
-            android:drawableTint="@color/gray"
+            android:drawableTint="@color/gray_soft"
             android:fontFamily="sans-serif"
 
             />
@@ -64,6 +65,7 @@
             android:text="Tardia"
             android:visibility="visible"
             android:textColor="@color/red_dark"
+            android:textStyle="bold"
 
             />
 
@@ -79,6 +81,7 @@
             android:textAppearance="?android:textAppearanceMedium"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:fontFamily="sans-serif"
+            android:drawableTint="@color/gray"
             />
 
         <TextView
@@ -88,7 +91,7 @@
             android:textAppearance="?android:textAppearanceLarge"
             android:text="Titulo Nota"
 
-            android:layout_marginStart="11dp"
+            android:layout_marginStart="20dp"
             android:layout_above="@+id/note_description"
             android:layout_toEndOf="@+id/img_note" />
 

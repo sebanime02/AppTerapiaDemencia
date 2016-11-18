@@ -57,6 +57,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     String noteType= noteList.get(position).getNoteType();
     String color = noteList.get(position).getColor();
     Boolean late = noteList.get(position).getLate();
+
     String userName;
 
         try{
@@ -132,6 +133,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             holder.txtLate.setVisibility(View.GONE);
 
         }
+        /*
         if(color=="rutinario"){
             holder.cardView.setCardBackgroundColor(activity.getResources().getColor(R.color.white));
         }
@@ -147,6 +149,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         else if(color=="adverso"){
             holder.cardView.setBackgroundColor(activity.getResources().getColor(R.color.red_dark));
         }
+        */
+
 
 
     }
@@ -182,5 +186,25 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             cardView = (CardView) itemView.findViewById(R.id.noteCardview);
 
         }
+        /*
+        public void onClick(View holder.itemView) {
+
+            new MaterialDialog.Builder(activity.getApplicationContext()).title(this.getItemId(getPosition())).content(R.string.error_loguin).positiveText(R.string.dialog_succes_agree).icon(activity.getResources().getDrawable(R.drawable.sadface)).show();
+
+            Toast.makeText(view.getContext(), "position = " + PatientListAdapter.this.getItemId(getPosition()), Toast.LENGTH_SHORT).show();
+            Log.e("id del card",""+PatientListAdapter.this.getItemId(getPosition()));
+            Intent intent=new Intent(activity,PatientProfileActivity.class);
+            intent.putExtra("cedula",PatientListAdapter.this.getItemId(getPosition()));
+            view.getContext().startActivity(intent);
+
+            activity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
+
+            //patientListFragment.navigateToDetail((int)PatientListAdapter.this.getItemId(getPosition()));
+
+        }
+        */
+
+
     }
+
 }

@@ -41,4 +41,11 @@ public class NotesPresenterImplementation implements NotesPresenter {
             notesView.showNotes(principalListInteractor.getNotes(id));
 
     }
+
+    @Override
+    public void getnotesCount(Long idpatient) {
+
+       //principalListInteractor.notesCount(idpatient);
+
+    }
 }

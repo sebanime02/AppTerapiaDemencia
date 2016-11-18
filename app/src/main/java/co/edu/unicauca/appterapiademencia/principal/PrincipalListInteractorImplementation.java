@@ -82,4 +82,9 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
     public void changeUserData(HashMap<String, Object> hashMap) {
 
     }
+
+    @Override
+    public int[] notesCount(Long id) {
+        return new int[0];
+    }
 }

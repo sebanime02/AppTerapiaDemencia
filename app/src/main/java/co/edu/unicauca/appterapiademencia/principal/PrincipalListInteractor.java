@@ -6,7 +6,6 @@ import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
-import co.edu.unicauca.appterapiademencia.principal.notes.NotesPresenter;
 
 /**
  * Created by ENF on 26/10/2016.
@@ -30,4 +29,5 @@ public interface PrincipalListInteractor {
     void aprobeNotifications(List<Annotation> annotationsList);
 
     void changeUserData(HashMap<String,Object> hashMap);
+    int[] notesCount(Long id);
 }
