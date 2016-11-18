@@ -36,8 +36,65 @@ public class NotesFragment extends Fragment implements NotesView{
     private Intent ir_reg;
     private List<Note> list = new ArrayList<Note>();
     int movCount=0,caidasCount=0,eatingCount=0,fallCount=0,medicationCount=0,healthCount=0,changeCount=0;
+
+
+
+    public int getMovCount() {
+        return movCount;
+    }
+
+    public void setMovCount(int movCount) {
+        this.movCount = movCount;
+    }
+
+    public int getEatingCount() {
+        return eatingCount;
+    }
+
+    public void setEatingCount(int eatingCount) {
+        this.eatingCount = eatingCount;
+    }
+
+    public int getMedicationCount() {
+        return medicationCount;
+    }
+
+    public void setMedicationCount(int medicationCount) {
+        this.medicationCount = medicationCount;
+    }
+
+    public int getHealthCount() {
+        return healthCount;
+    }
+
+    public void setHealthCount(int healthCount) {
+        this.healthCount = healthCount;
+    }
+
+    public int getChangeCount() {
+        return changeCount;
+    }
+
+    public void setChangeCount(int changeCount) {
+        this.changeCount = changeCount;
+    }
+
+    public int getFallCount() {
+        return fallCount;
+    }
+
+    public void setFallCount(int fallCount) {
+        this.fallCount = fallCount;
+    }
+
     public NotesFragment(){
         this.noteList = noteList;
+        this.fallCount = fallCount;
+        this.eatingCount=eatingCount;
+        this.changeCount = changeCount;
+        this.healthCount = healthCount;
+        this.medicationCount = medicationCount;
+
     }
 
     @Override
@@ -110,7 +167,12 @@ public class NotesFragment extends Fragment implements NotesView{
             adapter = new NoteAdapter(list, getActivity());
             recycler.setAdapter(adapter);
             adapter.notifyDataSetChanged();
-            txt_caida.setText(""+this.fallCount);
+            txt_caida.setText(""+getFallCount());
+            txt_humor.setText(""+getHealthCount());
+            txt_medication.setText(""+getMedicationCount());
+            txt_alimentacion.setText(""+getEatingCount());
+            txt_movilidad.setText(""+getMovCount());
+            txt_salud.setText(""+getHealthCount());
             //callListenerText();
         } catch (Exception e) {
             adapter.notifyDataSetChanged();
@@ -169,26 +231,27 @@ public class NotesFragment extends Fragment implements NotesView{
             switch (noteType){
                 case "movility":
 
-                    this.movCount = movCount+1 ;
+                     setMovCount(movCount+1);
                     break;
                 case "eating":
-                    this.eatingCount = eatingCount+1 ;
+                    setEatingCount(eatingCount+1);
+
                     break;
                 case "fall":
-
-                    this.fallCount = fallCount+1 ;
+                    setFallCount(fallCount+1);
                     break;
                 case "medication":
-                    this.medicationCount = medicationCount+1;
+                    setMedicationCount(medicationCount+1);
+
                     break;
                 case "otro":
 
                     break;
                 case "health":
-                    this.healthCount = healthCount +1;
+                   setHealthCount(healthCount+1);
                     break;
                 case "changebehaviour":
-                    this.changeCount = changeCount +1;
+                    setChangeCount(changeCount+1);
                     break;
 
             }

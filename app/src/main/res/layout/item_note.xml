@@ -64,7 +64,7 @@
             android:fontFamily="sans-serif"
             android:text="Tardia"
             android:visibility="visible"
-            android:textColor="@color/red_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold"
 
             />

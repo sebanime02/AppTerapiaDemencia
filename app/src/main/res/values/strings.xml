@@ -84,16 +84,25 @@
     <string name="note_type">1. Escoga El tipo de Evento Presentado</string>
     <string name="hint_note_description">2. Describa El Evento...</string>
     <string name="txt_note_late">3. Marque Si La Nota es Tardia </string>
-    <string name="txt_note_color">4. Seleccione si el Evento Es: </string>
-    <string name="rdg_verde">DE MEJORIA</string>
+    <string name="txt_note_color">4. Seleccione el Efecto del Evento: </string>
+    <string name="rdg_mejora">MEJORIA</string>
+    <string name="rdg_neutral">NEUTRO</string>
+    <string name="rdg_deterioro">DETERIORO O RETROCESO</string>
     <string name="rdg_gris">INCIDENTE, Acontecimiento adverso que NO llega a provocar daño al paciente.</string>
     <string name="rdg_amarillo">ADVERSO, Acontecimiento inesperado, Tiene o puede tener consecuencias negativas para el paciente, No relacionados al curso normal de la Enfermedad.</string>
-    <string name="rdg_red">CENTINELA, Suceso inesperado que produce serias secuelas físicas o psicológicas.</string>
+    <string name="rdg_centinela">CENTINELA, Error de Medicación.</string>
+    <string name="rdg_adverso">ADVERSO</string>
     <string name="rdg_white">RUTINARIO</string>
     <string name="addnote_empty_title">Descripción Vacía</string>
     <string name="addnote_empty_content">Por favor complete el campo "Descripción del evento"</string>
     <string name="addnote_empty_content2">Por favor complete los campos "Descripción del evento" y "Responsable"</string>
     <string name="txt_note_responsable">5. Responsable, Escriba su Nombre Completo...</string>
+    <string name="add_movilidad">Independencia en\n la movilidad</string>
+    <string name="add_caida">Caida</string>
+    <string name="add_alimentacion">Independencia en\n la alimentación</string>
+    <string name="add_health">Estado de \n Ánimo</string>
+    <string name="add_changebehaviour">Cambios de \n Comportamiento</string>
+    <string name="add_medication">Reacción a la \n Medicación</string>
 
 
 </resources>

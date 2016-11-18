@@ -12,8 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -42,8 +44,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private EditText description,owner;
     private String date;
     private String hour;
-    private RadioButton rdgMejora,rdgRutinario,rdgIncidente,rdgAdverso,rdgCentinela;
-
+    private RadioButton rdgMejora,rdgNeutral,rdgRetroceso,rdgIncidente,rdgAdverso,rdgCentinela;
+    private TextView txt_adverso;
     private ImageButton movility,eating,fall,medication,health,otro,changeBehaviour;
     private RadioGroup rdgGrupo;
     private RadioButton rdgTardia;
@@ -63,6 +65,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private boolean resultValidation=false;
     private boolean var_state;
     private String var_color;
+    private int gravedad;
+    private LinearLayout linear_efecto;
 
     public AddNoteActivity(){
         this.helper = GreenDaoHelper.getInstance();
@@ -86,12 +90,18 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         otro = (ImageButton) findViewById(R.id.btn_other);
         changeBehaviour = (ImageButton) findViewById(R.id.btn_changebehaviour);
 
+        txt_adverso = (TextView) findViewById(R.id.rdgAdverso);
+
         rdgTardia = (RadioButton) findViewById(R.id.rdgTardia);
         rdgGrupo = (RadioGroup) findViewById(R.id.rdgGrupo);
-        rdgRutinario = (RadioButton) findViewById(R.id.rdgRutinario);
-        rdgIncidente = (RadioButton) findViewById(R.id.rdgIncidente);
+        //rdgRutinario = (RadioButton) findViewById(R.id.rdgRutinario);
+
+        rdgMejora = (RadioButton) findViewById(R.id.rdgMejora);
         rdgAdverso = (RadioButton) findViewById(R.id.rdgAdverso);
-        rdgCentinela = (RadioButton) findViewById(R.id.rdgCentinela);
+        rdgRetroceso = (RadioButton) findViewById(R.id.rdgDeterioro);
+        rdgNeutral = (RadioButton) findViewById(R.id.rdgNeutral);
+        rdgMejora = (RadioButton) findViewById(R.id.rdgMejora);
+        linear_efecto = (LinearLayout) findViewById(R.id.linear_efecto);
 
 
 
@@ -161,20 +171,18 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         // TODO Auto-generated method stub
-        if (checkedId == R.id.rdgRutinario) {
-            var_color = "rutinario";
+        if (checkedId == R.id.rdgDeterioro) {
+            var_color = "deterioro";
         } else if (checkedId == R.id.rdgMejora)
         {
             var_color = "mejora";
-        }else if (checkedId == R.id.rdgIncidente) {
-            var_color= "incidente";
+        }else if (checkedId == R.id.rdgNeutral) {
+            var_color= "neutral";
         }
         else if (checkedId == R.id.rdgAdverso) {
             var_color= "adverso";
         }
-        else if (checkedId == R.id.rdgCentinela) {
-            var_color = "centinela";
-        }
+
     }
 
     public void saveNote(View view){
@@ -324,12 +332,21 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 setDefaultImageButton();
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/caida72px").toString();
                 fall.setBackgroundColor(getResources().getColor(R.color.accent_color));
+                gravedad = 2;
+                linear_efecto.setVisibility(View.GONE);
+                rdgMejora.setVisibility(View.GONE);
+                rdgNeutral.setVisibility(View.GONE);
+                rdgRetroceso.setVisibility(View.GONE);
+                var_color= "centinela";
                 break;
             case R.id.btn_medication:
                 election="medication";
                 setDefaultImageButton();
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/medication72px").toString();
                 medication.setBackgroundColor(getResources().getColor(R.color.accent_color));
+                gravedad=1;
+                rdgAdverso.setVisibility(View.VISIBLE);
+
                 break;
             case R.id.btn_other:
                 election="otro";
@@ -342,12 +359,15 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 setDefaultImageButton();
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
                 health.setBackgroundColor(getResources().getColor(R.color.accent_color));
+                break;
             case R.id.btn_changebehaviour:
                 election="changebehaviour";
                 setDefaultImageButton();
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/changebehavior72px").toString();
                 changeBehaviour.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 break;
+
+
 
 
         }
@@ -365,9 +385,10 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         eating.setBackgroundColor(getResources().getColor(R.color.material_green));
         fall.setBackgroundColor(getResources().getColor(R.color.material_pink));
         medication.setBackgroundColor(getResources().getColor(R.color.material_red));
-        otro.setBackgroundColor(getResources().getColor(R.color.material_blue));
+        otro.setBackgroundColor(getResources().getColor(R.color.gray_soft));
         health.setBackgroundColor(getResources().getColor(R.color.material_blue));
-        changeBehaviour.setBackgroundColor(getResources().getColor(R.color.white));
+        changeBehaviour.setBackgroundColor(getResources().getColor(R.color.material_purple));
+        rdgAdverso.setVisibility(View.GONE);
 
     }
 }
