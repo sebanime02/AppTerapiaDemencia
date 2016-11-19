@@ -54,6 +54,9 @@
             android:fontFamily="sans-serif"
 
             />
+
+
+
         <TextView
             android:id="@+id/note_late"
             android:layout_width="wrap_content"
@@ -68,7 +71,22 @@
             android:textStyle="bold"
 
             />
+        <ImageView
+            android:id="@+id/note_calification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/note_late"
+            android:layout_toLeftOf="@id/note_late"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:fontFamily="sans-serif"
+            android:visibility="visible"
 
+            android:textStyle="bold"
+
+
+
+
+            />
         <TextView
             android:id="@+id/note_hour"
             android:layout_width="wrap_content"

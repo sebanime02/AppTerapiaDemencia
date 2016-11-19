@@ -2,6 +2,8 @@ package co.edu.unicauca.appterapiademencia.adapters;
 
 import android.app.Activity;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -68,6 +70,38 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             userName = noteList.get(position).getOwner();
         }
 
+        if(color=="adverso"){
+            DrawableCompat.setTint(holder.imgCalification.getDrawable(), ContextCompat.getColor(activity.getApplicationContext(),R.color.material_red));
+            holder.imgCalification.setImageDrawable(activity.getResources().getDrawable(R.mipmap.ic_priority_high_black_24dp));
+            holder.imgCalification.setBackgroundColor(activity.getResources().getColor(R.color.material_red));
+
+        }
+        else if(color=="centinela"){
+            DrawableCompat.setTint(holder.imgCalification.getDrawable(), ContextCompat.getColor(activity.getApplicationContext(),R.color.red_dark));
+
+            holder.imgCalification.setImageDrawable(activity.getResources().getDrawable(R.mipmap.ic_priority_high_black_24dp));
+            holder.imgCalification.setBackgroundColor(activity.getResources().getColor(R.color.red_dark));
+
+        }
+
+        else if(color=="deterioro"){
+            DrawableCompat.setTint(holder.imgCalification.getDrawable(), ContextCompat.getColor(activity.getApplicationContext(),R.color.material_amber));
+            holder.imgCalification.setImageDrawable(activity.getResources().getDrawable(R.mipmap.ic_arrow_downward_black_24dp));
+            holder.imgCalification.setBackgroundColor(activity.getResources().getColor(R.color.material_amber));
+
+        }
+        else if(color=="mejora"){
+            DrawableCompat.setTint(holder.imgCalification.getDrawable(), ContextCompat.getColor(activity.getApplicationContext(),R.color.material_green));
+
+            holder.imgCalification.setImageDrawable(activity.getResources().getDrawable(R.mipmap.ic_arrow_upward_black_24dp));
+            holder.imgCalification.setBackgroundColor(activity.getResources().getColor(R.color.material_green));
+
+        }
+        else if(color=="neutral"){
+            holder.imgCalification.setBackgroundColor(activity.getResources().getColor(R.color.gray));
+        }
+
+
         switch (noteType){
             case "movility":
                 description="Movilidad";
@@ -95,7 +129,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
                 break;
             case "health":
-                description="Mejora en la salud";
+                description="Estado de animo";
                 noteType=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
 
                 break;
@@ -125,12 +159,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         holder.txtDate.setText(fecha);
         holder.txtOwner.setText(description);
 
+
+
+
         if(late==true){
             holder.txtLate.setVisibility(View.VISIBLE);
 
         }
         else{
-            holder.txtLate.setVisibility(View.GONE);
+            holder.txtLate.setVisibility(View.INVISIBLE);
 
         }
         /*
@@ -174,6 +211,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         TextView txtHour;
         TextView txtLate;
         CardView cardView;
+        ImageView imgCalification;
 
         public NoteViewHolder(View itemView) {
             super(itemView);
@@ -184,6 +222,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             txtHour = (TextView) itemView.findViewById(R.id.note_hour);
             txtLate = (TextView) itemView.findViewById(R.id.note_late);
             cardView = (CardView) itemView.findViewById(R.id.noteCardview);
+            imgCalification = (ImageView) itemView.findViewById(R.id.note_calification);
+
+
 
         }
         /*

@@ -77,6 +77,8 @@
     <!--TAB PATIENT INFORMATION -->
     <string name="textview_profile_information">INFORMACIÓN DEL PACIENTE</string>
     <string name="textview_profile_physics">LIMITACIONES DEL PACIENTE</string>
+    <string name="title_note_added">Evento Registrado</string>
+    <string name="content_note_added">El Evento será notificado a los supervisores para su aprobación</string>
 
     <!--TAB NOTE INFORMATION-->
     <string name="txt_note_instructions">Ingrese una nota con el Eve</string>
@@ -94,6 +96,7 @@
     <string name="rdg_adverso">ADVERSO</string>
     <string name="rdg_white">RUTINARIO</string>
     <string name="addnote_empty_title">Descripción Vacía</string>
+    <string name="addnote_empty_title2">Hay Campos Obligatorios Vacios</string>
     <string name="addnote_empty_content">Por favor complete el campo "Descripción del evento"</string>
     <string name="addnote_empty_content2">Por favor complete los campos "Descripción del evento" y "Responsable"</string>
     <string name="txt_note_responsable">5. Responsable, Escriba su Nombre Completo...</string>
@@ -102,7 +105,7 @@
     <string name="add_alimentacion">Independencia en\n la alimentación</string>
     <string name="add_health">Estado de \n Ánimo</string>
     <string name="add_changebehaviour">Cambios de \n Comportamiento</string>
-    <string name="add_medication">Reacción a la \n Medicación</string>
+    <string name="add_medication">Medicamentos</string>
 
 
 </resources>

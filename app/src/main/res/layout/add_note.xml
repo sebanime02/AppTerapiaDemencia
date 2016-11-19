@@ -134,7 +134,7 @@
                             />
 
                         <ImageButton
-                            android:id="@+id/btn_health"
+                            android:id="@+id/btn_estadodeanimo"
                             android:src="@mipmap/ic_insert_emoticon_black_48dp"
                             android:layout_height="match_parent"
                             android:background="@color/material_blue"

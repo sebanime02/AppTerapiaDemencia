@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -97,6 +98,18 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         Bundle args = getArguments();
         idpatient=args.getLong("cedula");
         Log.d("Vista profile","Cedula: "+idpatient);
+
+        try
+        {
+            if(args.getBoolean("carerIndicator"))
+            {
+                Log.e("carerindicator",""+args.getBoolean("carerIndicator"));
+                new MaterialDialog.Builder(getActivity().getApplicationContext()).title(R.string.title_note_added).content(R.string.content_note_added).positiveText(R.string.dialog_succes_agree).show();
+
+            }
+        }catch (NullPointerException e){
+
+        }
 
         getPatientData(idpatient);
         txtName.setText(this.name);

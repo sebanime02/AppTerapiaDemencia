@@ -46,7 +46,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private String hour;
     private RadioButton rdgMejora,rdgNeutral,rdgRetroceso,rdgIncidente,rdgAdverso,rdgCentinela;
     private TextView txt_adverso;
-    private ImageButton movility,eating,fall,medication,health,otro,changeBehaviour;
+    private ImageButton movility,eating,fall,medication,estadodeanimo,otro,changeBehaviour;
     private RadioGroup rdgGrupo;
     private RadioButton rdgTardia;
     private NoteDao noteDao;
@@ -67,6 +67,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private String var_color;
     private int gravedad;
     private LinearLayout linear_efecto;
+    private Boolean carerMessageIndicator = false;
 
     public AddNoteActivity(){
         this.helper = GreenDaoHelper.getInstance();
@@ -86,11 +87,11 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         eating= (ImageButton) findViewById(R.id.btn_eating);
         fall= (ImageButton) findViewById(R.id.btn_fall);
         medication= (ImageButton) findViewById(R.id.btn_medication);
-        health= (ImageButton) findViewById(R.id.btn_health);
+        estadodeanimo= (ImageButton) findViewById(R.id.btn_estadodeanimo);
         otro = (ImageButton) findViewById(R.id.btn_other);
         changeBehaviour = (ImageButton) findViewById(R.id.btn_changebehaviour);
 
-        txt_adverso = (TextView) findViewById(R.id.rdgAdverso);
+
 
         rdgTardia = (RadioButton) findViewById(R.id.rdgTardia);
         rdgGrupo = (RadioGroup) findViewById(R.id.rdgGrupo);
@@ -102,10 +103,11 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgNeutral = (RadioButton) findViewById(R.id.rdgNeutral);
         rdgMejora = (RadioButton) findViewById(R.id.rdgMejora);
         linear_efecto = (LinearLayout) findViewById(R.id.linear_efecto);
-
+        txt_adverso = (TextView) findViewById(R.id.txt_adverso);
 
 
         rdgGrupo.setOnCheckedChangeListener(this);
+
         owner = (EditText) findViewById(R.id.txt_responsable);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -162,7 +164,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         eating.setOnClickListener(this);
         fall.setOnClickListener(this);
         medication.setOnClickListener(this);
-        health.setOnClickListener(this);
+        estadodeanimo.setOnClickListener(this);
         otro.setOnClickListener(this);
         changeBehaviour.setOnClickListener(this);
 
@@ -196,7 +198,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             if(validar(description.getText().toString(),owner.getText().toString())==false)
             {
 
-                new MaterialDialog.Builder(this).title(R.string.addnote_empty_title).content(R.string.addnote_empty_content2).positiveText(R.string.dialog_succes_agree).icon(getResources().getDrawable(R.drawable.sadface)).show();
+                new MaterialDialog.Builder(this).title(R.string.addnote_empty_title2).content(R.string.addnote_empty_content2).positiveText(R.string.dialog_succes_agree).icon(getResources().getDrawable(R.drawable.sadface)).show();
 
             }
             else{
@@ -225,6 +227,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 var_owner= username;
                 var_state=true;
                 resultValidation = true;
+                carerMessageIndicator=true;
             }
         }
 
@@ -273,6 +276,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             Note note = new Note(null, patientid, userId, election, var_fecha, var_hora, var_description, var_color, var_owner, var_late, var_state);
             noteDao.insert(note);
             Intent ir_main = new Intent(this, PatientProfileActivity.class);
+            ir_main.putExtra("carerIndicator",carerMessageIndicator);
             ir_main.putExtra("cedula", cedula);
             startActivity(ir_main);
             overridePendingTransition(R.anim.left_in, R.anim.left_out);
@@ -330,13 +334,15 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.btn_fall:
                 election="fall";
                 setDefaultImageButton();
-                //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/caida72px").toString();
-                fall.setBackgroundColor(getResources().getColor(R.color.accent_color));
-                gravedad = 2;
                 linear_efecto.setVisibility(View.GONE);
                 rdgMejora.setVisibility(View.GONE);
                 rdgNeutral.setVisibility(View.GONE);
                 rdgRetroceso.setVisibility(View.GONE);
+                txt_adverso.setVisibility(View.GONE);
+                //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/caida72px").toString();
+                fall.setBackgroundColor(getResources().getColor(R.color.accent_color));
+                gravedad = 2;
+
                 var_color= "centinela";
                 break;
             case R.id.btn_medication:
@@ -346,6 +352,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 medication.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 gravedad=1;
                 rdgAdverso.setVisibility(View.VISIBLE);
+                txt_adverso.setVisibility(View.VISIBLE);
 
                 break;
             case R.id.btn_other:
@@ -354,11 +361,11 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/otro72px").toString();
                 otro.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 break;
-            case R.id.btn_health:
+            case R.id.btn_estadodeanimo:
                 election="health";
                 setDefaultImageButton();
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
-                health.setBackgroundColor(getResources().getColor(R.color.accent_color));
+                estadodeanimo.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 break;
             case R.id.btn_changebehaviour:
                 election="changebehaviour";
@@ -386,9 +393,12 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         fall.setBackgroundColor(getResources().getColor(R.color.material_pink));
         medication.setBackgroundColor(getResources().getColor(R.color.material_red));
         otro.setBackgroundColor(getResources().getColor(R.color.gray_soft));
-        health.setBackgroundColor(getResources().getColor(R.color.material_blue));
+        estadodeanimo.setBackgroundColor(getResources().getColor(R.color.material_blue));
         changeBehaviour.setBackgroundColor(getResources().getColor(R.color.material_purple));
-        rdgAdverso.setVisibility(View.GONE);
+        linear_efecto.setVisibility(View.VISIBLE);
+        rdgMejora.setVisibility(View.VISIBLE);
+        rdgNeutral.setVisibility(View.VISIBLE);
+        rdgRetroceso.setVisibility(View.VISIBLE);
 
     }
 }

@@ -30,12 +30,26 @@ public class NotesFragment extends Fragment implements NotesView{
     private RecyclerView.Adapter newadapter;
     private RecyclerView.LayoutManager LManager;
     private NotesPresenterImplementation notesPresenterImplementation;
-    private TextView txt_empty,txt_caida,txt_movilidad,txt_alimentacion,txt_humor,txt_salud,txt_medication;
+    private TextView txt_empty,txt_caida,txt_movilidad,txt_alimentacion,txt_humor,txt_estadodeanimo,txt_medication;
     private Long idpatient;
     private List<Note> noteList;
     private Intent ir_reg;
     private List<Note> list = new ArrayList<Note>();
-    int movCount=0,caidasCount=0,eatingCount=0,fallCount=0,medicationCount=0,healthCount=0,changeCount=0;
+    int movCount=0;
+    int eatingCount=0;
+    int fallCount=0;
+    int medicationCount=0;
+
+    public int getEstadodeanimoCount() {
+        return estadodeanimoCount;
+    }
+
+    public void setEstadodeanimoCount(int estadodeanimoCount) {
+        this.estadodeanimoCount = estadodeanimoCount;
+    }
+
+    int estadodeanimoCount=0;
+    int changeCount=0;
 
 
 
@@ -63,13 +77,7 @@ public class NotesFragment extends Fragment implements NotesView{
         this.medicationCount = medicationCount;
     }
 
-    public int getHealthCount() {
-        return healthCount;
-    }
 
-    public void setHealthCount(int healthCount) {
-        this.healthCount = healthCount;
-    }
 
     public int getChangeCount() {
         return changeCount;
@@ -92,7 +100,7 @@ public class NotesFragment extends Fragment implements NotesView{
         this.fallCount = fallCount;
         this.eatingCount=eatingCount;
         this.changeCount = changeCount;
-        this.healthCount = healthCount;
+        this.estadodeanimoCount = estadodeanimoCount;
         this.medicationCount = medicationCount;
 
     }
@@ -113,12 +121,14 @@ public class NotesFragment extends Fragment implements NotesView{
         Bundle args = getArguments();
         idpatient=args.getLong("cedula");
         Log.e("cedulanotas",": "+idpatient);
+
+
         floatingActionButton = (FloatingActionButton) view.findViewById(R.id.add_note);
         txt_caida= (TextView) view.findViewById(R.id.count_caida);
         txt_movilidad= (TextView) view.findViewById(R.id.count_movilidad);
         txt_alimentacion= (TextView) view.findViewById(R.id.count_alimentacion);
         txt_humor= (TextView) view.findViewById(R.id.count_humor);
-        txt_salud= (TextView) view.findViewById(R.id.count_salud);
+        txt_estadodeanimo= (TextView) view.findViewById(R.id.count_salud);
         txt_medication= (TextView) view.findViewById(R.id.count_medicacion);
         txt_empty = (TextView) view.findViewById(R.id.txt_vacio_note);
 
@@ -168,11 +178,11 @@ public class NotesFragment extends Fragment implements NotesView{
             recycler.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             txt_caida.setText(""+getFallCount());
-            txt_humor.setText(""+getHealthCount());
+            txt_humor.setText(""+getEstadodeanimoCount());
             txt_medication.setText(""+getMedicationCount());
             txt_alimentacion.setText(""+getEatingCount());
             txt_movilidad.setText(""+getMovCount());
-            txt_salud.setText(""+getHealthCount());
+            txt_estadodeanimo.setText(""+getEstadodeanimoCount());
             //callListenerText();
         } catch (Exception e) {
             adapter.notifyDataSetChanged();
@@ -223,10 +233,17 @@ public class NotesFragment extends Fragment implements NotesView{
     public void showNotes(List<Note> noteList) {
 
 
+        movCount=0;
+        eatingCount=0;
+        fallCount=0;
+        medicationCount=0;
+        estadodeanimoCount=0;
+        changeCount=0;
 
         Log.e("addnote","de nuevo al fragment, show la lista, tamaño: "+list.size());
         for (int j = 0; j < noteList.size(); j++)
         {
+
             String noteType = noteList.get(j).getNoteType().toString();
             switch (noteType){
                 case "movility":
@@ -248,7 +265,7 @@ public class NotesFragment extends Fragment implements NotesView{
 
                     break;
                 case "health":
-                   setHealthCount(healthCount+1);
+                   setEstadodeanimoCount(estadodeanimoCount+1);
                     break;
                 case "changebehaviour":
                     setChangeCount(changeCount+1);
