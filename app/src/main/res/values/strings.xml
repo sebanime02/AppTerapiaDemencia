@@ -102,10 +102,32 @@
     <string name="txt_note_responsable">5. Responsable, Escriba su Nombre Completo...</string>
     <string name="add_movilidad">Independencia en\n la movilidad</string>
     <string name="add_caida">Caida</string>
-    <string name="add_alimentacion">Independencia en\n la alimentación</string>
+    <string name="add_alimentacion">Hábitos de\n Alimentación</string>
     <string name="add_health">Estado de \n Ánimo</string>
-    <string name="add_changebehaviour">Cambios de \n Comportamiento</string>
+    <string name="add_changebehaviour">Cambios de \n Personalidad</string>
     <string name="add_medication">Medicamentos</string>
+
+    <string name="addnote_higiene">Higiene y Aseo</string>
+    <string name="addnote_vestimenta">Vestimenta y \nActividades Personales</string>
+    <string name="addnote_lenguaje">Lenguaje</string>
+    <string name="addnote_memoria">Memomoria</string>
+
+
+    <!--CHECKBOXES-->
+   <string name="memoria_sindeficit">Sin déficit</string>
+   <string name="memoria_rememorar">Tendencia a rememorar el pasado</string>
+   <string name="memoria_olvidosbenignos">Olvidos benignos y/o Recientes, por ejemplo la ubicación de objetos</string>
+
+   <string name="orientacion_casa">Incapacidad de Orientarse en el ancianato</string>
+   <string name="orientacion_calles">Incapacidad de orientarse en Calles Familiares</string>
+   <string name="orientacion_entorno">Incapacidad para valorar el entorno (Reconocer que esta ancianato)</string>
+
+    <string name="higiene_baño">Necesita ayuda para bañarse</string>
+    <string name="higiene_inodoro">Necesita ayuda para usar el inodoro</string>
+    <string name="higiene_soltar">Olvida soltar el baño</string>
+    <string name="higiene_incontenencia_urinaria">Incontinencia urinaria Frecuente</string>
+    <string name="higiene_incontinencia_fecal">Incontinencia Fecal</string>
+
 
 
 </resources>

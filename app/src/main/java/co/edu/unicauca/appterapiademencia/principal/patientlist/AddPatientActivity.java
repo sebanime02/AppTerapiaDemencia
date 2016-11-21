@@ -42,7 +42,9 @@ import java.util.Date;
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
+import co.edu.unicauca.appterapiademencia.domain.BlessedIncapacity;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.domain.dao.BlessedIncapacityDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.PatientDao;
 import co.edu.unicauca.appterapiademencia.util.BitmapUtil;
@@ -79,6 +81,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     private Toolbar toolbar;
     private long identity;
     private ImageView img;
+    private Double[] datosb;
     private RelativeLayout containerfoto;
     public static final String fotodefault = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser).toString();
 
@@ -139,15 +142,31 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 List<Patient> patientList=  queryBuilder.where(PatientDao.Properties.Identity.eq(identity)).limit(1).list();
                 Patient patientone= patientList.get(0);
 
+                List<BlessedIncapacity> blessedList = queryBuilder.where(BlessedIncapacityDao.Properties.PatientId.eq(patientone.getId())).limit(1).list();
+                BlessedIncapacity blesedone = blessedList.get(0);
                 Log.e("Add patient","El nombre del paciente devuelvo por dao es "+patientone.getName().toString());
 
                 actualizar = bundle.getString("actualizar");
-                datosa = new String[4];
+                datosa = new String[12];
+                datosb= new  Double[8];
+
                 //datosa = bundle.getStringArray("datosa");
                 datosa[0] = identity+"";
                 datosa[1] = patientone.getVisionlimitation().toString();
                 datosa[2] = patientone.getWritinglimitation().toString();
                 datosa[3] = patientone.getDrawinglimitation().toString();
+
+
+                datosb[0]= blesedone.getTareasdomesticas();
+                datosb[1]= blesedone.getPequenasdinero();
+                datosb[2]= blesedone.getListascortas();
+                datosb[3]= blesedone.getOrientarsecasa();
+                datosb[4]= blesedone.getOrientarsecalle();
+                datosb[5]= blesedone.getValorarentorno();
+                datosb[6]= blesedone.getRecordarrecientes();
+                datosb[7]= blesedone.getRememorarpasado();
+
+
 
                 txt_titulo1.setText("INFORMACIÓN DEL PACIENTE");
                 txt_titulo2.setText("");
@@ -250,6 +269,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
                 ir_reg.putExtra("actualizar", actualizar);
                 ir_reg.putExtra("datosa", datosa);
+                ir_reg.putExtra("datosb", datosb);
 
                 startActivity(ir_reg);
                 overridePendingTransition(R.anim.left_in, R.anim.left_out);

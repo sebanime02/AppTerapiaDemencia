@@ -10,6 +10,7 @@ import org.greenrobot.greendao.internal.DaoConfig;
 
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.domain.BlessedIncapacity;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Tip;
 import co.edu.unicauca.appterapiademencia.domain.Exercise;
@@ -18,6 +19,7 @@ import co.edu.unicauca.appterapiademencia.domain.Recommendation;
 
 import co.edu.unicauca.appterapiademencia.domain.dao.UserDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.PatientDao;
+import co.edu.unicauca.appterapiademencia.domain.dao.BlessedIncapacityDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.NoteDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.TipDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.ExerciseDao;
@@ -35,6 +37,7 @@ public class DaoSession extends AbstractDaoSession {
 
     private final DaoConfig userDaoConfig;
     private final DaoConfig patientDaoConfig;
+    private final DaoConfig blessedIncapacityDaoConfig;
     private final DaoConfig noteDaoConfig;
     private final DaoConfig tipDaoConfig;
     private final DaoConfig exerciseDaoConfig;
@@ -43,6 +46,7 @@ public class DaoSession extends AbstractDaoSession {
 
     private final UserDao userDao;
     private final PatientDao patientDao;
+    private final BlessedIncapacityDao blessedIncapacityDao;
     private final NoteDao noteDao;
     private final TipDao tipDao;
     private final ExerciseDao exerciseDao;
@@ -58,6 +62,9 @@ public class DaoSession extends AbstractDaoSession {
 
         patientDaoConfig = daoConfigMap.get(PatientDao.class).clone();
         patientDaoConfig.initIdentityScope(type);
+
+        blessedIncapacityDaoConfig = daoConfigMap.get(BlessedIncapacityDao.class).clone();
+        blessedIncapacityDaoConfig.initIdentityScope(type);
 
         noteDaoConfig = daoConfigMap.get(NoteDao.class).clone();
         noteDaoConfig.initIdentityScope(type);
@@ -76,6 +83,7 @@ public class DaoSession extends AbstractDaoSession {
 
         userDao = new UserDao(userDaoConfig, this);
         patientDao = new PatientDao(patientDaoConfig, this);
+        blessedIncapacityDao = new BlessedIncapacityDao(blessedIncapacityDaoConfig, this);
         noteDao = new NoteDao(noteDaoConfig, this);
         tipDao = new TipDao(tipDaoConfig, this);
         exerciseDao = new ExerciseDao(exerciseDaoConfig, this);
@@ -84,6 +92,7 @@ public class DaoSession extends AbstractDaoSession {
 
         registerDao(User.class, userDao);
         registerDao(Patient.class, patientDao);
+        registerDao(BlessedIncapacity.class, blessedIncapacityDao);
         registerDao(Note.class, noteDao);
         registerDao(Tip.class, tipDao);
         registerDao(Exercise.class, exerciseDao);
@@ -94,6 +103,7 @@ public class DaoSession extends AbstractDaoSession {
     public void clear() {
         userDaoConfig.clearIdentityScope();
         patientDaoConfig.clearIdentityScope();
+        blessedIncapacityDaoConfig.clearIdentityScope();
         noteDaoConfig.clearIdentityScope();
         tipDaoConfig.clearIdentityScope();
         exerciseDaoConfig.clearIdentityScope();
@@ -107,6 +117,10 @@ public class DaoSession extends AbstractDaoSession {
 
     public PatientDao getPatientDao() {
         return patientDao;
+    }
+
+    public BlessedIncapacityDao getBlessedIncapacityDao() {
+        return blessedIncapacityDao;
     }
 
     public NoteDao getNoteDao() {

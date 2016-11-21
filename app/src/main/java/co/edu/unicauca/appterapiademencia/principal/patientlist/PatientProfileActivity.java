@@ -118,7 +118,7 @@ public class PatientProfileActivity extends AppCompatActivity{
         adapter.addFragment(new GraphicsExercises(), "Estado de Consciencia ");
         try {
             viewPager.setAdapter(adapter);
-            viewPager.endFakeDrag();
+            viewPager.endFakeDrag(); // para hacer swipe
         }catch (Exception e){
             adapter.notifyDataSetChanged();
         }

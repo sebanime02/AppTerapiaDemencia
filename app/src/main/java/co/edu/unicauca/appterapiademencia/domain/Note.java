@@ -21,6 +21,7 @@ public class Note {
     private String hour;
     private String description;
     private String color;
+    private String itemselected;
     private String owner;
     private Boolean late;
     private Boolean state;
@@ -34,7 +35,7 @@ public class Note {
     }
 
     @Generated
-    public Note(Long id, long patientId, long userId, String noteType, String date, String hour, String description, String color, String owner, Boolean late, Boolean state) {
+    public Note(Long id, long patientId, long userId, String noteType, String date, String hour, String description, String color, String itemselected, String owner, Boolean late, Boolean state) {
         this.id = id;
         this.patientId = patientId;
         this.userId = userId;
@@ -43,6 +44,7 @@ public class Note {
         this.hour = hour;
         this.description = description;
         this.color = color;
+        this.itemselected = itemselected;
         this.owner = owner;
         this.late = late;
         this.state = state;
@@ -112,6 +114,14 @@ public class Note {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public String getItemselected() {
+        return itemselected;
+    }
+
+    public void setItemselected(String itemselected) {
+        this.itemselected = itemselected;
     }
 
     public String getOwner() {

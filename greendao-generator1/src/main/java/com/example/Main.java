@@ -39,6 +39,44 @@ public class Main {
         patient.addIntProperty("drawinglimitation");
 
 
+        //BLESSED INCAPACITY TABLE
+
+        Entity blessedIncapacity = schema.addEntity("BlessedIncapacity");
+        blessedIncapacity.addIdProperty().autoincrement();
+
+        Property patientIdblessedincapacity = blessedIncapacity.addLongProperty("patientId").notNull().getProperty();
+        patient.addToMany(blessedIncapacity,patientIdblessedincapacity);
+
+        //ACTIVIDADES DE LA VIDA DIARIA
+
+        blessedIncapacity.addDoubleProperty("tareasdomesticas");
+        blessedIncapacity.addDoubleProperty("pequenasdinero");
+        blessedIncapacity.addDoubleProperty("listascortas");
+        blessedIncapacity.addDoubleProperty("orientarsecasa");
+        blessedIncapacity.addDoubleProperty("orientarsecalle");
+        blessedIncapacity.addDoubleProperty("valorarentorno");
+        blessedIncapacity.addDoubleProperty("recordarrecientes");
+        blessedIncapacity.addDoubleProperty("rememorarpasado");
+
+        //HABITOS
+        blessedIncapacity.addIntProperty("alimentacion");
+        blessedIncapacity.addIntProperty("vestimenta");
+        blessedIncapacity.addIntProperty("esfinteres");
+
+
+        //PERSIONALIDAD Y CONDUCTA
+        blessedIncapacity.addIntProperty("retraimientoconstante");
+        blessedIncapacity.addIntProperty("egocentrismoaumentado");
+        blessedIncapacity.addIntProperty("perdidainteressentimientos");
+        blessedIncapacity.addIntProperty("afectividadembolatada");
+        blessedIncapacity.addIntProperty("perturbacioncontrolemocional");
+        blessedIncapacity.addIntProperty("hilaridadinapropiada");
+        blessedIncapacity.addIntProperty("respuestaemocional");
+        blessedIncapacity.addIntProperty("indiscrecionessexuales");
+        blessedIncapacity.addIntProperty("faltainteresaficiones");
+        blessedIncapacity.addIntProperty("disminucioniniciativaprogresiva");
+        blessedIncapacity.addIntProperty("hiperactividadnojustificada");
+
 
 
 
@@ -60,6 +98,7 @@ public class Main {
         note.addStringProperty("hour");
         note.addStringProperty("description");
         note.addStringProperty("color"); //Importancia
+        note.addStringProperty("itemselected");
         note.addStringProperty("owner");
         note.addBooleanProperty("late"); //Notas tardias
         note.addBooleanProperty("state"); //Notas no aprobadas

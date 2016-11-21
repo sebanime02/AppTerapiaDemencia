@@ -86,7 +86,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         movility= (ImageButton) findViewById(R.id.btn_movility);
         eating= (ImageButton) findViewById(R.id.btn_eating);
         fall= (ImageButton) findViewById(R.id.btn_fall);
-        medication= (ImageButton) findViewById(R.id.btn_medication);
+        medication= (ImageButton) findViewById(R.id.btn_language);
         estadodeanimo= (ImageButton) findViewById(R.id.btn_estadodeanimo);
         otro = (ImageButton) findViewById(R.id.btn_other);
         changeBehaviour = (ImageButton) findViewById(R.id.btn_changebehaviour);
@@ -273,7 +273,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
             Log.e("addnote","");
 
-            Note note = new Note(null, patientid, userId, election, var_fecha, var_hora, var_description, var_color, var_owner, var_late, var_state);
+            Note note = new Note(null, patientid, userId, election, var_fecha, var_hora, var_description,"CUIDADO", var_color, var_owner, var_late, var_state);
             noteDao.insert(note);
             Intent ir_main = new Intent(this, PatientProfileActivity.class);
             ir_main.putExtra("carerIndicator",carerMessageIndicator);
@@ -345,7 +345,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                 var_color= "centinela";
                 break;
-            case R.id.btn_medication:
+            case R.id.btn_language:
                 election="medication";
                 setDefaultImageButton();
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/medication72px").toString();

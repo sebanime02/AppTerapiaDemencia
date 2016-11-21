@@ -25,6 +25,8 @@
     <color name="material_blue"> #2196f3</color>
     <color name="material_green"> #4caf50</color>
     <color name="material_amber">#ffc107</color>
+    <color name="material_brown">#795548</color>
+    <color name="material_teal">#009666</color>
 
 
 

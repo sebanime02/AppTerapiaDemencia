@@ -127,8 +127,8 @@
 
                         <ImageButton
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            android:id="@+id/btn_medication"
-                            android:src="@mipmap/medication72px"
+                            android:id="@+id/btn_language"
+                            android:src="@mipmap/language72px"
                             android:layout_height="match_parent"
                             android:background="@color/material_red"
                             />
@@ -143,8 +143,9 @@
 
                         <ImageButton
 
-                            android:src="@mipmap/otro72px"
+                            android:src="@mipmap/higiene72px"
                             android:id="@+id/btn_other"
+                            android:background="@color/gray_soft"
                             android:layout_height="match_parent"
                             />
                     </TableRow>
@@ -153,7 +154,7 @@
 
                         <TextView
 
-                            android:text="@string/add_medication"
+                            android:text="@string/addnote_lenguaje"
                             android:layout_height="match_parent"
                             android:background="@color/material_red"
                             android:maxLines="10"
@@ -177,9 +178,9 @@
 
                         <TextView
                             android:layout_height="match_parent"
-                            android:background="@color/gray"
-                            android:text="@string/add_caida"
-                            android:textColor="@color/white"
+                            android:background="@color/gray_soft"
+                            android:text="@string/addnote_higiene"
+                            android:textColor="@color/negro"
                             android:textAlignment="center"
                             android:fontFamily="sans-serif"
 
@@ -197,12 +198,46 @@
                             android:background="@color/material_purple"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
                             />
+                        <ImageButton
+                            android:id="@+id/btn_vestimenta"
+                            android:src="@mipmap/clothes72px"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_brown"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            />
+                        <ImageButton
+                            android:id="@+id/btn_memory"
+                            android:src="@mipmap/memory72px"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_teal"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            />
                     </TableRow>
                     <TableRow >
                         <TextView
                             android:text="@string/add_changebehaviour"
                             android:layout_height="match_parent"
                             android:background="@color/material_purple"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            android:fontFamily="sans-serif"
+                            android:textStyle="bold"
+                            />
+                        <TextView
+                            android:text="@string/addnote_vestimenta"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_brown"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            android:fontFamily="sans-serif"
+                            android:textStyle="bold"
+                            />
+                        <TextView
+                            android:text="@string/addnote_memoria"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_teal"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
                             android:textColor="@color/white"
                             android:textAlignment="center"

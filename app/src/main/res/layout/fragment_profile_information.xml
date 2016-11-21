@@ -80,15 +80,22 @@
 
 
 
-
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
-    <LinearLayout
-        android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_weight="8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+        <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="5"
         android:layout_height="wrap_content"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:background="@drawable/rounded_corner"
@@ -99,132 +106,160 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         >
 
-        <LinearLayout
+            <LinearLayout
 
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:orientation="vertical"
-           >
-
-
-           <TextView
-           android:id="@+id/textview_profile_information"
-           android:layout_marginTop="@dimen/activity_vertical_margin"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:drawableLeft="@mipmap/ic_assignment_ind_black_24dp"
-           android:textSize="@dimen/medium_text_size"
-           android:text="@string/textview_profile_information"
-           android:fontFamily="sans-serif"
-           android:textColor="@color/gray"
-           android:textStyle="bold"
-           android:paddingBottom="@dimen/activity_vertical_margin"
-           android:drawablePadding="@dimen/activity_horizontal_margin"
-
-           />
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:orientation="vertical"
+               >
 
 
-            <TextView
-                android:id="@+id/description_eps"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="EPS:"
-                android:textStyle="bold" android:fontFamily="sans-serif"
-                android:textSize="@dimen/small_text_size"
-                android:textColor="@color/gray"
-                android:gravity="center_vertical"
+                    <TextView
+                    android:id="@+id/textview_profile_information"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/ic_assignment_ind_black_24dp"
+                    android:textSize="@dimen/medium_text_size"
+                    android:text="@string/textview_profile_information"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/gray"
+                    android:textStyle="bold"
+                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:drawablePadding="@dimen/activity_horizontal_margin"
 
+                    />
+
+
+                <TextView
+                    android:id="@+id/description_eps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="EPS:"
+                    android:textStyle="bold" android:fontFamily="sans-serif"
+                    android:textSize="@dimen/small_text_size"
+                    android:textColor="@color/gray"
+                    android:gravity="center_vertical"
+
+                   />
+
+                <TextView
+
+                    android:id="@+id/txt_eps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Campo vacío eps"
+                    android:textSize="@dimen/small_text_size"
+                    android:gravity="center_vertical"
+
+                    />
+                <TextView
+
+                    android:id="@+id/description_antecedentes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ANTECEDENTES:"
+                    android:textStyle="bold" android:fontFamily="sans-serif"
+                    android:textSize="@dimen/small_text_size"
+                    android:textColor="@color/gray"
+                    android:gravity="center_vertical"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_antecedentes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/small_text_size"
+                    android:hint="Campo vacío antecedentes"
+                    android:gravity="center_vertical"
+                    android:fontFamily="sans-serif"
+
+                    />
+                <TextView
+
+                    android:id="@+id/description_sindromes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SINDROMES Y PROBLEMAS:"
+                    android:textStyle="bold" android:fontFamily="sans-serif"
+                    android:textSize="@dimen/small_text_size"
+                    android:textColor="@color/gray"
+                    android:gravity="center_vertical"></TextView>
+               <TextView
+                    android:id="@+id/txt_sindromes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Campo vacío sindromes"
+                    android:textSize="@dimen/small_text_size"
+                    android:gravity="center_vertical"
+                    android:layout_below="@+id/description_sindromes"
+                    android:fontFamily="sans-serif"
+                    />
+                <TextView
+                    android:layout_below="@id/txt_sindromes"
+                    android:id="@+id/description_observaciones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="OBSERVACIONES:"
+                    android:textStyle="bold" android:fontFamily="sans-serif"
+                    android:textSize="@dimen/small_text_size"
+                    android:textColor="@color/gray"
+                    android:gravity="center_vertical"/>
+               <TextView
+               android:layout_below="@id/description_observaciones"
+               android:id="@+id/txt_observaciones"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textSize="@dimen/small_text_size"
+                android:fontFamily="sans-serif"
+               android:hint="Campo vacío observaciones"
+
+               android:gravity="center_vertical"
                />
 
-            <TextView
-
-                android:id="@+id/txt_eps"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Campo vacío eps"
-                android:textSize="@dimen/small_text_size"
-                android:gravity="center_vertical"
-
-                />
-            <TextView
-
-                android:id="@+id/description_antecedentes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ANTECEDENTES:"
-                android:textStyle="bold" android:fontFamily="sans-serif"
-                android:textSize="@dimen/small_text_size"
-                android:textColor="@color/gray"
-                android:gravity="center_vertical"></TextView>
-
-            <TextView
-                android:id="@+id/txt_antecedentes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_text_size"
-                android:hint="Campo vacío antecedentes"
-                android:gravity="center_vertical"
-                android:fontFamily="sans-serif"
-
-                />
-            <TextView
-
-                android:id="@+id/description_sindromes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SINDROMES Y PROBLEMAS:"
-                android:textStyle="bold" android:fontFamily="sans-serif"
-                android:textSize="@dimen/small_text_size"
-                android:textColor="@color/gray"
-                android:gravity="center_vertical"></TextView>
-           <TextView
-           android:id="@+id/txt_sindromes"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:hint="Campo vacío sindromes"
-           android:textSize="@dimen/small_text_size"
-           android:gravity="center_vertical"
-           android:layout_below="@+id/description_sindromes"
-           android:fontFamily="sans-serif"
-           />
-            <TextView
-                android:layout_below="@id/txt_sindromes"
-                android:id="@+id/description_observaciones"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="OBSERVACIONES:"
-                android:textStyle="bold" android:fontFamily="sans-serif"
-                android:textSize="@dimen/small_text_size"
-                android:textColor="@color/gray"
-                android:gravity="center_vertical"/>
-           <TextView
-           android:layout_below="@id/description_observaciones"
-           android:id="@+id/txt_observaciones"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:textSize="@dimen/small_text_size"
-            android:fontFamily="sans-serif"
-           android:hint="Campo vacío observaciones"
-
-           android:gravity="center_vertical"
-           />
-
-
-
-
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-    </LinearLayout>
-
-
-
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner"
+        android:elevation="4dp"
+        android:padding="16dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
         >
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/medium_text_size"
+                android:text="BLESSED"
+                />
+            <TextView
+                android:id="@+id/puntajeBlessed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/medium_text_size"
+                />
+
+
+         </LinearLayout>
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

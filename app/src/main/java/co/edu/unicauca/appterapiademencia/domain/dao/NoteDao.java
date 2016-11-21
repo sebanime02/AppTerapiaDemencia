@@ -35,9 +35,10 @@ public class NoteDao extends AbstractDao<Note, Long> {
         public final static Property Hour = new Property(5, String.class, "hour", false, "HOUR");
         public final static Property Description = new Property(6, String.class, "description", false, "DESCRIPTION");
         public final static Property Color = new Property(7, String.class, "color", false, "COLOR");
-        public final static Property Owner = new Property(8, String.class, "owner", false, "OWNER");
-        public final static Property Late = new Property(9, Boolean.class, "late", false, "LATE");
-        public final static Property State = new Property(10, Boolean.class, "state", false, "STATE");
+        public final static Property Itemselected = new Property(8, String.class, "itemselected", false, "ITEMSELECTED");
+        public final static Property Owner = new Property(9, String.class, "owner", false, "OWNER");
+        public final static Property Late = new Property(10, Boolean.class, "late", false, "LATE");
+        public final static Property State = new Property(11, Boolean.class, "state", false, "STATE");
     }
 
     private Query<Note> patient_NoteListQuery;
@@ -63,9 +64,10 @@ public class NoteDao extends AbstractDao<Note, Long> {
                 "\"HOUR\" TEXT," + // 5: hour
                 "\"DESCRIPTION\" TEXT," + // 6: description
                 "\"COLOR\" TEXT," + // 7: color
-                "\"OWNER\" TEXT," + // 8: owner
-                "\"LATE\" INTEGER," + // 9: late
-                "\"STATE\" INTEGER);"); // 10: state
+                "\"ITEMSELECTED\" TEXT," + // 8: itemselected
+                "\"OWNER\" TEXT," + // 9: owner
+                "\"LATE\" INTEGER," + // 10: late
+                "\"STATE\" INTEGER);"); // 11: state
     }
 
     /** Drops the underlying database table. */
@@ -106,19 +108,24 @@ public class NoteDao extends AbstractDao<Note, Long> {
             stmt.bindString(8, color);
         }
  
+        String itemselected = entity.getItemselected();
+        if (itemselected != null) {
+            stmt.bindString(9, itemselected);
+        }
+ 
         String owner = entity.getOwner();
         if (owner != null) {
-            stmt.bindString(9, owner);
+            stmt.bindString(10, owner);
         }
  
         Boolean late = entity.getLate();
         if (late != null) {
-            stmt.bindLong(10, late ? 1L: 0L);
+            stmt.bindLong(11, late ? 1L: 0L);
         }
  
         Boolean state = entity.getState();
         if (state != null) {
-            stmt.bindLong(11, state ? 1L: 0L);
+            stmt.bindLong(12, state ? 1L: 0L);
         }
     }
 
@@ -154,19 +161,24 @@ public class NoteDao extends AbstractDao<Note, Long> {
             stmt.bindString(8, color);
         }
  
+        String itemselected = entity.getItemselected();
+        if (itemselected != null) {
+            stmt.bindString(9, itemselected);
+        }
+ 
         String owner = entity.getOwner();
         if (owner != null) {
-            stmt.bindString(9, owner);
+            stmt.bindString(10, owner);
         }
  
         Boolean late = entity.getLate();
         if (late != null) {
-            stmt.bindLong(10, late ? 1L: 0L);
+            stmt.bindLong(11, late ? 1L: 0L);
         }
  
         Boolean state = entity.getState();
         if (state != null) {
-            stmt.bindLong(11, state ? 1L: 0L);
+            stmt.bindLong(12, state ? 1L: 0L);
         }
     }
 
@@ -186,9 +198,10 @@ public class NoteDao extends AbstractDao<Note, Long> {
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // hour
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // description
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // color
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // owner
-            cursor.isNull(offset + 9) ? null : cursor.getShort(offset + 9) != 0, // late
-            cursor.isNull(offset + 10) ? null : cursor.getShort(offset + 10) != 0 // state
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // itemselected
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // owner
+            cursor.isNull(offset + 10) ? null : cursor.getShort(offset + 10) != 0, // late
+            cursor.isNull(offset + 11) ? null : cursor.getShort(offset + 11) != 0 // state
         );
         return entity;
     }
@@ -203,9 +216,10 @@ public class NoteDao extends AbstractDao<Note, Long> {
         entity.setHour(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setDescription(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setColor(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setOwner(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setLate(cursor.isNull(offset + 9) ? null : cursor.getShort(offset + 9) != 0);
-        entity.setState(cursor.isNull(offset + 10) ? null : cursor.getShort(offset + 10) != 0);
+        entity.setItemselected(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setOwner(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setLate(cursor.isNull(offset + 10) ? null : cursor.getShort(offset + 10) != 0);
+        entity.setState(cursor.isNull(offset + 11) ? null : cursor.getShort(offset + 11) != 0);
      }
     
     @Override
