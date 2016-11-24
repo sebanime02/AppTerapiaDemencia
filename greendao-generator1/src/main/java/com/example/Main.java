@@ -13,7 +13,7 @@ public class Main {
         //USER TABLE
         Entity user = schema.addEntity("User");
 
-        user.addIdProperty().autoincrement();
+        user.addIdProperty().autoincrement().primaryKey();
         user.addStringProperty("username").notNull().unique();
         user.addStringProperty("password").notNull();
         user.addStringProperty("completeName").notNull();
@@ -23,7 +23,7 @@ public class Main {
         //PATIENT TABLE
         Entity patient = schema.addEntity("Patient");
 
-        patient.addIdProperty().autoincrement();
+        patient.addIdProperty().autoincrement().primaryKey();
         patient.addStringProperty("name").notNull();
         patient.addStringProperty("birthday").notNull();
         patient.addStringProperty("photopath");
@@ -44,10 +44,17 @@ public class Main {
         Entity blessedIncapacity = schema.addEntity("BlessedIncapacity");
         blessedIncapacity.addIdProperty().autoincrement();
 
-        Property patientIdblessedincapacity = blessedIncapacity.addLongProperty("patientId").notNull().getProperty();
-        patient.addToMany(blessedIncapacity,patientIdblessedincapacity);
 
+
+        Property patientIdblessedincapacity = blessedIncapacity.addLongProperty("patientId").notNull().getProperty();
+        blessedIncapacity.addToOne(patient,patientIdblessedincapacity);
+
+        //patient.addToMany(blessedIncapacity,patientIdblessedincapacity);
+
+
+         //blessedIncapacity.addLongProperty("patientId").notNull();
         //ACTIVIDADES DE LA VIDA DIARIA
+
 
         blessedIncapacity.addDoubleProperty("tareasdomesticas");
         blessedIncapacity.addDoubleProperty("pequenasdinero");
@@ -82,7 +89,7 @@ public class Main {
 
         //NOTE TABLE
         Entity note = schema.addEntity("Note");
-        note.addIdProperty().autoincrement();
+        note.addIdProperty().autoincrement().primaryKey();
 
         Property patientIdnote = note.addLongProperty("patientId").notNull().getProperty();
         patient.addToMany(note,patientIdnote);
@@ -106,7 +113,7 @@ public class Main {
 
         //SINTOMAS
         Entity sintoma = schema.addEntity("Sintoma");
-        sintoma.addIdProperty().autoincrement();
+        sintoma.addIdProperty().autoincrement().primaryKey();
 
         Property patientIdsintoma = sintoma.addLongProperty("patientId").notNull().getProperty();
         patient.addToMany(sintoma,patientIdsintoma);

@@ -1,16 +1,18 @@
 package co.edu.unicauca.appterapiademencia.domain.dao;
 
 import java.util.List;
+import java.util.ArrayList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.Property;
+import org.greenrobot.greendao.internal.SqlUtils;
 import org.greenrobot.greendao.internal.DaoConfig;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.database.DatabaseStatement;
-import org.greenrobot.greendao.query.Query;
-import org.greenrobot.greendao.query.QueryBuilder;
+
+import co.edu.unicauca.appterapiademencia.domain.Patient;
 
 import co.edu.unicauca.appterapiademencia.domain.BlessedIncapacity;
 
@@ -53,7 +55,8 @@ public class BlessedIncapacityDao extends AbstractDao<BlessedIncapacity, Long> {
         public final static Property Hiperactividadnojustificada = new Property(23, Integer.class, "hiperactividadnojustificada", false, "HIPERACTIVIDADNOJUSTIFICADA");
     }
 
-    private Query<BlessedIncapacity> patient_BlessedIncapacityListQuery;
+    private DaoSession daoSession;
+
 
     public BlessedIncapacityDao(DaoConfig config) {
         super(config);
@@ -61,6 +64,7 @@ public class BlessedIncapacityDao extends AbstractDao<BlessedIncapacity, Long> {
     
     public BlessedIncapacityDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
+        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -342,6 +346,12 @@ public class BlessedIncapacityDao extends AbstractDao<BlessedIncapacity, Long> {
     }
 
     @Override
+    protected final void attachEntity(BlessedIncapacity entity) {
+        super.attachEntity(entity);
+        entity.__setDaoSession(daoSession);
+    }
+
+    @Override
     public Long readKey(Cursor cursor, int offset) {
         return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
     }    
@@ -430,18 +440,97 @@ public class BlessedIncapacityDao extends AbstractDao<BlessedIncapacity, Long> {
         return true;
     }
     
-    /** Internal query to resolve the "blessedIncapacityList" to-many relationship of Patient. */
-    public List<BlessedIncapacity> _queryPatient_BlessedIncapacityList(long patientId) {
-        synchronized (this) {
-            if (patient_BlessedIncapacityListQuery == null) {
-                QueryBuilder<BlessedIncapacity> queryBuilder = queryBuilder();
-                queryBuilder.where(Properties.PatientId.eq(null));
-                patient_BlessedIncapacityListQuery = queryBuilder.build();
-            }
+    private String selectDeep;
+
+    protected String getSelectDeep() {
+        if (selectDeep == null) {
+            StringBuilder builder = new StringBuilder("SELECT ");
+            SqlUtils.appendColumns(builder, "T", getAllColumns());
+            builder.append(',');
+            SqlUtils.appendColumns(builder, "T0", daoSession.getPatientDao().getAllColumns());
+            builder.append(" FROM BLESSED_INCAPACITY T");
+            builder.append(" LEFT JOIN PATIENT T0 ON T.\"PATIENT_ID\"=T0.\"_id\"");
+            builder.append(' ');
+            selectDeep = builder.toString();
         }
-        Query<BlessedIncapacity> query = patient_BlessedIncapacityListQuery.forCurrentThread();
-        query.setParameter(0, patientId);
-        return query.list();
+        return selectDeep;
+    }
+    
+    protected BlessedIncapacity loadCurrentDeep(Cursor cursor, boolean lock) {
+        BlessedIncapacity entity = loadCurrent(cursor, 0, lock);
+        int offset = getAllColumns().length;
+
+        Patient patient = loadCurrentOther(daoSession.getPatientDao(), cursor, offset);
+         if(patient != null) {
+            entity.setPatient(patient);
+        }
+
+        return entity;    
     }
 
+    public BlessedIncapacity loadDeep(Long key) {
+        assertSinglePk();
+        if (key == null) {
+            return null;
+        }
+
+        StringBuilder builder = new StringBuilder(getSelectDeep());
+        builder.append("WHERE ");
+        SqlUtils.appendColumnsEqValue(builder, "T", getPkColumns());
+        String sql = builder.toString();
+        
+        String[] keyArray = new String[] { key.toString() };
+        Cursor cursor = db.rawQuery(sql, keyArray);
+        
+        try {
+            boolean available = cursor.moveToFirst();
+            if (!available) {
+                return null;
+            } else if (!cursor.isLast()) {
+                throw new IllegalStateException("Expected unique result, but count was " + cursor.getCount());
+            }
+            return loadCurrentDeep(cursor, true);
+        } finally {
+            cursor.close();
+        }
+    }
+    
+    /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
+    public List<BlessedIncapacity> loadAllDeepFromCursor(Cursor cursor) {
+        int count = cursor.getCount();
+        List<BlessedIncapacity> list = new ArrayList<BlessedIncapacity>(count);
+        
+        if (cursor.moveToFirst()) {
+            if (identityScope != null) {
+                identityScope.lock();
+                identityScope.reserveRoom(count);
+            }
+            try {
+                do {
+                    list.add(loadCurrentDeep(cursor, false));
+                } while (cursor.moveToNext());
+            } finally {
+                if (identityScope != null) {
+                    identityScope.unlock();
+                }
+            }
+        }
+        return list;
+    }
+    
+    protected List<BlessedIncapacity> loadDeepAllAndCloseCursor(Cursor cursor) {
+        try {
+            return loadAllDeepFromCursor(cursor);
+        } finally {
+            cursor.close();
+        }
+    }
+    
+
+    /** A raw-style query where you can pass any WHERE clause and arguments. */
+    public List<BlessedIncapacity> queryDeep(String where, String... selectionArg) {
+        Cursor cursor = db.rawQuery(getSelectDeep() + where, selectionArg);
+        return loadDeepAllAndCloseCursor(cursor);
+    }
+ 
 }

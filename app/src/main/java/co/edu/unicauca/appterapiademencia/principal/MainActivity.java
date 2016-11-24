@@ -162,6 +162,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
+
+
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new PatientListFragment())
                 .commit();

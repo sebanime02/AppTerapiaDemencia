@@ -112,271 +112,315 @@
                     android:layout_height="wrap_content"
                     android:prompt="@string/spinner_vision"/>
 
-               
-
-
-             <TableLayout
+                <View
                     android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/accent_color"
+                    ></View>
+
+
+                <TextView
+                    android:text="Actividades de la Vida Diaria"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:stretchColumns="
-                    *"
-                    >
+                    android:textAppearance="?android:textAppearanceLarge"
+                    />
 
-                    <TableRow>
-                        <TextView
-                            android:text="Actividades de la Vida Diaria"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:textAppearanceLarge"
-                            />
-                        <TextView
-                            android:text="Total"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            />
-                        <TextView
-                            android:text="Parcial"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            />
-                        <TextView
-                            android:text="Ninguno"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            />
+
+                <TextView
+                    android:text="1. Incapacidad para realizar  tareas domesticas"
+
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
 
 
 
-                    </TableRow>
+                <RadioGroup android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/rdgTareasDomesticas">
+
+                    <RadioButton
+                        android:text="Total"
+                        android:id="@+id/total_tareas_domesticas"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        />
+
+                    <RadioButton
+                        android:text="parcial"
+                        android:id="@+id/parcial_tareas_domesticas"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                        />
+                    <RadioButton
+                        android:text="Ninguno"
+                        android:id="@+id/ninguno_tareas_domesticas"
+                        android:checked="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                        />
+                </RadioGroup>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"></View>
+                <TextView
+
+                    android:text="2. Incapacidad para el uso de pequeñas cantidades de dinero"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+                <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/rdgPequenasDineor">
+                    <RadioButton
+                        android:id="@+id/total_pequenas_dinero"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                        />
+                    <RadioButton
+                        android:id="@+id/parcial_pequenas_dinero"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Parcial"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                        />
+                    <RadioButton
+                        android:id="@+id/ninguno_pequenas_dinero"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ninguna"
+                        android:checked="true"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                        />
+                </RadioGroup>
 
 
-                    <TableRow android:minHeight="@dimen/height_textview_container_limitations">
-                        <RadioGroup  android:orientation="horizontal" android:id="@+id/rdgTareasDomesticas">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"></View>
+                <TextView
 
-                        <TextView
-                            android:text="Incapacidad para realizar  tareas domesticas"
-
-                            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                            <RadioButton
-                            android:id="@+id/total_tareas_domesticas"
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                            <RadioButton
-                            android:id="@+id/parcial_tareas_domesticas"
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                            <RadioButton
-                            android:id="@+id/ninguno_tareas_domesticas"
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        </RadioGroup>
-
-                    </TableRow>
-
-                 <TableRow android:minHeight="@dimen/height_textview_container_limitations"
-                     android:layout_width="match_parent"
-                     android:layout_height="match_parent">
-
-                     <TextView
-                         android:maxLines="20"
-                         android:text="Incapacidad para el uso de \npequeñas cantidades de dinero"
-                         android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                     <RadioGroup android:id="@+id/rdgPequenasDineor">
-                     <RadioButton
-                         android:id="@+id/total_pequenas_dinero"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:text=""
-                         />
-                     <RadioButton
-                         android:id="@+id/parcial_pequenas_dinero"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:text=""
-                         />
-                     <RadioButton
-                         android:id="@+id/ninguno_pequenas_dinero"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:text=""
-                         />
-                     </RadioGroup>
-                 </TableRow>
-
-                 <TableRow android:minHeight="@dimen/height_textview_container_limitations">
-                        <TextView
-                            android:maxLines="20"
-                            android:text="Incapacidad para recordar \nlistas cortas de elementos (ejemplo, compras)"
-                            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                        <RadioGroup android:id="@+id/rdgListasCortas">
+                    android:text="3. ncapacidad para recordar listas cortas de elementos (ejemplo, compras)"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:id="@+id/textView9" />
 
 
-                        <RadioButton
-                            android:id="@+id/total_listas_cortas"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                        <RadioButton
-                            android:id="@+id/parcial_listas_cortas"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                        <RadioButton
-                            android:id="@+id/ninguno_listas_cortas"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-
-                        </RadioGroup>
-                    </TableRow>
-                    <TableRow android:minHeight="@dimen/height_textview_container_limitations">
-                        <TextView
-                            android:maxLines="20"
-                            android:text="Incapacidad para orientarse en casa"
-                            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                        <RadioGroup android:id="@+id/rdgOrientarseCasa">
-
-                        <RadioButton
-                            android:id="@+id/total_orientarse_casa"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                        <RadioButton
-                            android:id="@+id/parcial_orientarse_casa"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                        <RadioButton
-                            android:id="@+id/ninguno_orientarse_casa"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-
-                        </RadioGroup>
-                    </TableRow>
-                    <TableRow android:minHeight="@dimen/height_textview_container_limitations">
-
-                        <TextView
-                            android:maxLines="20"
-                            android:text="Incapacidad para orientarse en \ncalles familiares"
-                            android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:id="@+id/textView5" />
-                        <RadioGroup android:id="@+id/rdgOrientarseCalle">
+                <RadioGroup android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/rdgListasCortas">
 
 
-                        <RadioButton
-                            android:id="@+id/total_orientarse_calle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                        <RadioButton
-                            android:id="@+id/parcial_orientarse_calle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                        <RadioButton
-                            android:id="@+id/ninguno_orientarse_calle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
+                    <RadioButton
+                        android:id="@+id/total_listas_cortas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
 
-                        </RadioGroup>
-                    </TableRow>
-                    <TableRow android:minHeight="@dimen/height_textview_container_limitations">
+                        />
+                    <RadioButton
+                        android:id="@+id/parcial_listas_cortas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Parcial"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
 
-                        <TextView
-                            android:maxLines="20"
-                            android:text="Incapacidad para valorar  \nel entorno (casa, hospitar, hogar de ancianos)"
-                            android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:id="@+id/textView6" />
+                        />
+                    <RadioButton
+                        android:id="@+id/ninguno_listas_cortas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ninguno"
+                        android:checked="true"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
 
-                        <RadioGroup android:id="@+id/rdgValorarEntorno">
+                        />
+
+                </RadioGroup>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"></View>
+                <TextView
+                    android:maxLines="20"
+                    android:text="4. Incapacidad para orientarse en casa"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rdgOrientarseCasa">
+
+                    <RadioButton
+                        android:id="@+id/total_orientarse_casa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        />
+                    <RadioButton
+                        android:id="@+id/parcial_orientarse_casa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Parcial"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        />
+                    <RadioButton
+                        android:id="@+id/ninguno_orientarse_casa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ninguno"
+                        android:checked="true"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        />
+
+                </RadioGroup>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"></View>
+                <TextView
+
+                    android:text="5. Incapacidad para orientarse en calles familiares"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    />
+
+
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rdgOrientarseCalle">
+
+
+                    <RadioButton
+                        android:id="@+id/total_orientarse_calle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        />
+                    <RadioButton
+                        android:id="@+id/parcial_orientarse_calle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Parcial"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        />
+                    <RadioButton
+                        android:id="@+id/ninguno_orientarse_calle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ninguna"
+                        android:checked="true"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        />
+
+                </RadioGroup>
 
 
 
-                        <RadioButton
-                            android:id="@+id/total_valorar_entorno"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                        <RadioButton
-                            android:id="@+id/parcial_valorar_entorno"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                        <RadioButton
-                            android:id="@+id/ninguno_valorar_entorno"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                        </RadioGroup>
-                    </TableRow>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"></View>
+                <TextView
 
-                 <TableRow   android:minHeight="@dimen/height_textview_container_limitations">
-
-                     <TextView  android:text="Incapacidad para recordar hecho recientes"
-                         android:layout_width="wrap_content" android:layout_height="wrap_content"
-                         android:id="@+id/textView7"
-                         />
-                     <RadioGroup android:id="@+id/rdgRecordarRecientes">
-
-                     <RadioButton
-                         android:id="@+id/total_recordar_recientes"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         />
-                     <RadioButton
-                         android:id="@+id/parcial_recordar_recientes"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         />
-                     <RadioButton
-                         android:id="@+id/ninguno_recordar_recientes"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         />
-                     </RadioGroup>
-                 </TableRow>
-
-                 <TableRow android:minHeight="@dimen/height_textview_container_limitations">
-
-                     <TextView  android:text="Tendencia a rememorar el pasado"
-                         android:layout_width="wrap_content" android:layout_height="wrap_content"
-                         android:id="@+id/textView8"
-                         />
-                     <RadioGroup android:id="@+id/rdgRememorarPasado">
-
-                     <RadioButton
-                         android:id="@+id/total_rememorar_pasado"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         />
-                     <RadioButton
-                         android:id="@+id/parcial_rememorar_pasado"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         />
-                     <RadioButton
-                         android:id="@+id/ninguno_rememorar_pasado"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         />
-
-                     </RadioGroup>
-                 </TableRow>
+                    android:text="6. Incapacidad para valorar el entorno (casa, hospitar, hogar de ancianos)"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    />
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rdgValorarEntorno">
 
 
-             </TableLayout>
 
+                    <RadioButton
+                        android:id="@+id/total_valorar_entorno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:text="Total"
+                        />
+                    <RadioButton
+                        android:id="@+id/parcial_valorar_entorno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:text="Parcial"
+                        />
+                    <RadioButton
+                        android:id="@+id/ninguno_valorar_entorno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ninguna"
+                        android:checked="true"
+                        />
+                </RadioGroup>
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"></View>
+                <TextView  android:text="7. Incapacidad para recordar hecho recientes"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+                    />
+
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content"  android:id="@+id/rdgRecordarRecientes">
+
+                    <RadioButton
+                        android:id="@+id/total_recordar_recientes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:text="Total"
+                        />
+                    <RadioButton
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:id="@+id/parcial_recordar_recientes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Parcial"
+                        />
+                    <RadioButton
+                        android:id="@+id/ninguno_recordar_recientes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ninguna"
+                        android:checked="true"
+                        />
+                </RadioGroup>
+
+                <TextView  android:text="8.Tendencia a rememorar el pasado"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+                    />
+
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rdgRememorarPasado">
+
+                    <RadioButton
+                        android:id="@+id/total_rememorar_pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:text="Total"
+                        />
+                    <RadioButton
+                        android:id="@+id/parcial_rememorar_pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:text="Parcial"
+                        />
+                    <RadioButton
+                        android:id="@+id/ninguno_rememorar_pasado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ninguna"
+                        android:checked="true"
+                        />
+
+                </RadioGroup>
 
             <TextView
                 android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -397,19 +441,20 @@
 
                 />
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+
+
+
             <Button
-
-
-            android:id="@+id/btn_guardar_paciente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Guardar"
-            android:textColor="@color/white"
-            android:background="@color/colorAccent"/>
-
-            <Button
+                android:layout_weight="1"
                 android:id="@+id/btn_atras_paciente"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Atras"
                 android:textSize="20sp"
@@ -417,7 +462,19 @@
                 android:textColor="@color/colorPrimaryDark"
                 style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_gravity="center_horizontal"
+                android:visibility="gone"
                  />
+                    <Button
+
+                        android:layout_weight="1"
+                        android:id="@+id/btn_guardar_paciente"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Guardar"
+                        android:textColor="@color/white"
+                        android:background="@color/colorAccent"/>
+
+                </LinearLayout>
 
         </LinearLayout>
 

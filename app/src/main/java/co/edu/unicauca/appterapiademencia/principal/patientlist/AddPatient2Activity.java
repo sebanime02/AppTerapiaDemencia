@@ -44,7 +44,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
     private Patient patientObj;
     private Toolbar toolbar;
     private ActionBar actionBar;
-    private int[] datosb;
+    private String[] datosb;
     private RadioGroup rdgTareasDomesticas;
     private RadioGroup rdgPequenasDinero;
     private RadioGroup rdgListasCortas;
@@ -69,6 +69,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
     private double calificationValorarEntorno;
     private double calificationRecodarPacientes;
     private double calificationRememorarPasado;
+    private BlessedIncapacityDao blessedDao;
 
 
 
@@ -78,6 +79,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
     {
         this.helper= GreenDaoHelper.getInstance();
         this.patientDao = helper.getPatientDao();
+        this.blessedDao = helper.getBlessedIncapacityDao();
     }
 
     @Override
@@ -172,7 +174,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                 actionBar.setTitle("Actualizando Paciente paso 2");
                 datosa = new String[4];
                 datosa = bundl.getStringArray("datosa");
-                datosb = bundl.getIntArray("datosb");
+                datosb = bundl.getStringArray("datosb");
                 if (datosa[1].toString().equals("0")) {
 
                     s_vision.setSelection(0);
@@ -199,97 +201,97 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         s_dibujo.setSelection(1);
                     }
 
-                switch (datosb[0]){
-                    case 0:
-                        rdgTotalTareasDomesticas.isSelected();
+                switch (datosb[0].toString()){
+                    case "0":
+                        rdgTotalTareasDomesticas.setChecked(true);
                         break;
-                    case 1:
-                        rdgParcialTareasDomesticas.isSelected();
+                    case "0.5":
+                        rdgParcialTareasDomesticas.setChecked(true);
                         break;
-                    case 2:
-                        rdgNingunoTareasDomesticas.isSelected();
-                        break;
-                }
-                switch (datosb[1]){
-                    case 0:
-                        rdgTotalPequenasDinero.isSelected();
-                        break;
-                    case 1:
-                        rdgParcialPequenasDinero.isSelected();
-                        break;
-                    case 2:
-                        rdgNingunoPequenasDinero.isSelected();
+                    case "2":
+                        rdgNingunoTareasDomesticas.setChecked(true);
                         break;
                 }
-                switch (datosb[2]){
-                    case 0:
-                        rdgTotalListasCortas.isSelected();
+                switch (datosb[1].toString()){
+                    case "0":
+                        rdgTotalPequenasDinero.setChecked(true);
                         break;
-                    case 1:
-                        rdgParcialListasCortas.isSelected();
+                    case "0.5":
+                        rdgParcialPequenasDinero.setChecked(true);
                         break;
-                    case 2:
-                        rdgNingunoListasCortas.isSelected();
-                        break;
-                }
-                switch (datosb[3]){
-                    case 0:
-                        rdgTotalOrientarseCasa.isSelected();
-                        break;
-                    case 1:
-                        rdgParcialOrientarseCasa.isSelected();
-                        break;
-                    case 2:
-                        rdgNingunoOrientarseCasa.isSelected();
+                    case "2":
+                        rdgNingunoPequenasDinero.setChecked(true);
                         break;
                 }
-                switch (datosb[4]){
-                    case 0:
-                        rdgTotalOrientarseCalle.isSelected();
+                switch (datosb[2].toString()){
+                    case "0":
+                        rdgTotalListasCortas.setChecked(true);
+                        break;
+                    case "0.5":
+                        rdgParcialListasCortas.setChecked(true);
+                        break;
+                    case "2":
+                        rdgNingunoListasCortas.setChecked(true);
+                        break;
+                }
+                switch (datosb[3].toString()){
+                    case "0":
+                        rdgTotalOrientarseCasa.setChecked(true);
+                        break;
+                    case "0.5":
+                        rdgParcialOrientarseCasa.setChecked(true);
+                        break;
+                    case "2":
+                        rdgNingunoOrientarseCasa.setChecked(true);
+                        break;
+                }
+                switch (datosb[4].toString()){
+                    case "0":
+                        rdgTotalOrientarseCalle.setChecked(true);
 
                         break;
-                    case 1:
-                        rdgParcialOrientarseCalle.isSelected();
+                    case "0.5":
+                        rdgParcialOrientarseCalle.setChecked(true);
 
                         break;
-                    case 2:
-                        rdgNingunoOrientarseCalle.isSelected();
-
-                        break;
-                }
-                switch (datosb[5]){
-                    case 0:
-                        rdgTotalValorarEntorno.isSelected();
-                        break;
-                    case 1:
-                        rdgParcialValorarEntorno.isSelected();
-
-                        break;
-                    case 2:
-                        rdgNingunoValorarEntorno.isSelected();
+                    case "2":
+                        rdgNingunoOrientarseCalle.setChecked(true);
 
                         break;
                 }
-                switch (datosb[6]){
-                    case 0:
-                        rdgTotalRecordarPacientes.isSelected();
+                switch (datosb[5].toString()){
+                    case "0":
+                        rdgTotalValorarEntorno.setChecked(true);
                         break;
-                    case 1:
-                        rdgParcialRecordarPacientes.isSelected();
+                    case "0.5":
+                        rdgParcialValorarEntorno.setChecked(true);
+
                         break;
-                    case 2:
-                        rdgNingunoRecordarPacientes.isSelected();
+                    case "2":
+                        rdgNingunoValorarEntorno.setChecked(true);
+
+                        break;
+                }
+                switch (datosb[6].toString()){
+                    case "0":
+                        rdgTotalRecordarPacientes.setChecked(true);
+                        break;
+                    case "0.5":
+                        rdgParcialRecordarPacientes.setChecked(true);
+                        break;
+                    case "2":
+                        rdgNingunoRecordarPacientes.setChecked(true);
                         break;
                 }
                 switch (datosb[7]){
-                    case 0:
-                        rdgTotalRememorarPasado.isSelected();
+                    case "0":
+                        rdgTotalRememorarPasado.setChecked(true);
                         break;
-                    case 1:
-                        rdgParcialRememorarPasado.isSelected();
+                    case "0.5":
+                        rdgParcialRememorarPasado.setChecked(true);
                         break;
-                    case 2:
-                        rdgNingunoRememorarPasado.isSelected();
+                    case "2":
+                        rdgNingunoRememorarPasado.setChecked(true);
                         break;
                 }
 
@@ -498,8 +500,11 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(parse_id)).limit(1).list();
                         Patient patient = patientList.get(0);
 
-                        List<BlessedIncapacity> blessedIncapacities = queryBuilder.where(BlessedIncapacityDao.Properties.PatientId.eq(patientList.get(0).getId())).list();
-                        BlessedIncapacity blessedIncapacity = blessedIncapacities.get(0);
+                        //List<BlessedIncapacity> blessedIncapacities = queryBuilder.where(BlessedIncapacityDao.Properties.PatientId.eq(patientList.get(0).getId())).list();
+                        Long patientid = patient.getId();
+                        BlessedIncapacity blessedIncapacity = helper.getBlessedbyid(patientid);
+
+                        //BlessedIncapacity blessedIncapacity = blessedIncapacities.get(0);
                         Log.e("Add patient 2","Name "+patient.getName().toString());
                         patient.setName(var_nombre);
                         patient.setBirthday(var_fecha);
@@ -551,6 +556,8 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                                 BlessedIncapacity blessedIncapacity = new BlessedIncapacity(null,patient2.getId(),calificationTareasDomesticos,calificationPequenasDinero,calificationListasCortas,calificationOrientarseCasa,calificationOrientarseCalle,calificationValorarEntorno,calificationRecodarPacientes,calificationRememorarPasado,
                                         rdgalimentacion,rdgvestimenta,rdgesfinteres,personalidad[0],personalidad[1],personalidad[2],personalidad[3],personalidad[4],personalidad[5],personalidad[6],personalidad[7],personalidad[8],personalidad[9],personalidad[10]);
+                                this.blessedDao.insert(blessedIncapacity);
+                                Log.e("addpatient blessed",blessedIncapacity.getId()+" con patientid"+blessedIncapacity.getPatientId());
                             }
                         }catch (NullPointerException e){
 

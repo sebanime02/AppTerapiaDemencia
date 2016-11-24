@@ -50,7 +50,6 @@ public class RecommendationDao extends AbstractDao<Recommendation, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"RECOMMENDATION\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"PATIENT_ID\" INTEGER NOT NULL ," + // 1: patientId
-
                 "\"EXERCISE_ID\" INTEGER NOT NULL );"); // 3: exerciseId
     }
 

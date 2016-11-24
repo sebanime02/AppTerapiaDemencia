@@ -118,6 +118,7 @@ public class PatientListFragment extends Fragment implements PatientListView {
 
     @Override
     public void showPatients(List<Patient> patientList) {
+
         Log.e("patient", "" + patientList.size());
         for (int j = 0; j < patientList.size(); j++) {
             list.add(patientList.get(j));

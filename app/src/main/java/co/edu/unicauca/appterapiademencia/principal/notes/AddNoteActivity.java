@@ -236,10 +236,11 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         movility.setOnClickListener(this);
         eating.setOnClickListener(this);
         fall.setOnClickListener(this);
-        medication.setOnClickListener(this);
+        higiene.setOnClickListener(this);
         estadodeanimo.setOnClickListener(this);
-        otro.setOnClickListener(this);
+        memoria.setOnClickListener(this);
         changeBehaviour.setOnClickListener(this);
+        vestimenta.setOnClickListener(this);
 
     }
    /*
