@@ -83,10 +83,10 @@
     <!--TAB NOTE INFORMATION-->
     <string name="txt_note_instructions">Ingrese una nota con el Eve</string>
     <string name="hint_note_title">1. Titulo de la Nota</string>
-    <string name="note_type">1. Escoga El tipo de Evento Presentado</string>
+    <string name="note_type">1. Escoga El tipo de Seguimiento</string>
     <string name="hint_note_description">2. Describa El Evento...</string>
     <string name="txt_note_late">3. Marque Si La Nota es Tardia </string>
-    <string name="txt_note_color">4. Seleccione el Efecto del Evento: </string>
+    <string name="txt_note_color">4. Seleccione los signos o sintomas que presenta actualmente el adulto mayor</string>
     <string name="rdg_mejora">MEJORIA</string>
     <string name="rdg_neutral">NEUTRO</string>
     <string name="rdg_deterioro">DETERIORO O RETROCESO</string>
@@ -101,19 +101,20 @@
     <string name="addnote_empty_content2">Por favor complete los campos "Descripción del evento" y "Responsable"</string>
     <string name="txt_note_responsable">5. Responsable, Escriba su Nombre Completo...</string>
     <string name="add_movilidad">Independencia en\n la movilidad</string>
-    <string name="add_caida">Caida</string>
+    <string name="add_caida">Caida o Fractura</string>
     <string name="add_alimentacion">Hábitos de\n Alimentación</string>
     <string name="add_health">Estado de \n Ánimo</string>
     <string name="add_changebehaviour">Cambios de \n Personalidad</string>
     <string name="add_medication">Medicamentos</string>
 
     <string name="addnote_higiene">Higiene y Aseo</string>
-    <string name="addnote_vestimenta">Vestimenta y \nActividades Personales</string>
+    <string name="addnote_vestimenta">Vestimenta y\nActividades Personales</string>
     <string name="addnote_lenguaje">Lenguaje</string>
-    <string name="addnote_memoria">Memomoria</string>
+    <string name="addnote_memoria">Memoria</string>
 
 
-    <!--CHECKBOXES-->
+    <!--RADIOBUTTONS-->
+   <string name="memoria_otro">Ninguno de los Anteriores</string>
    <string name="memoria_sindeficit">Sin déficit</string>
    <string name="memoria_rememorar">Tendencia a rememorar el pasado</string>
    <string name="memoria_olvidosbenignos">Olvidos benignos y/o Recientes, por ejemplo la ubicación de objetos</string>
@@ -122,11 +123,52 @@
    <string name="orientacion_calles">Incapacidad de orientarse en Calles Familiares</string>
    <string name="orientacion_entorno">Incapacidad para valorar el entorno (Reconocer que esta ancianato)</string>
 
+    <string name="higiene_otro">Ninguno de los Anteriores</string>
+    <string name="higiene_independiente">Independiente con su higiene</string>
     <string name="higiene_baño">Necesita ayuda para bañarse</string>
     <string name="higiene_inodoro">Necesita ayuda para usar el inodoro</string>
     <string name="higiene_soltar">Olvida soltar el baño</string>
-    <string name="higiene_incontenencia_urinaria">Incontinencia urinaria Frecuente</string>
     <string name="higiene_incontinencia_fecal">Incontinencia Fecal</string>
+    <string name="higiene_incontenencia_urinaria">Incontinencia urinaria Frecuente</string>
+
+
+    <string name="vestimenta_otro">Ninguno de los Anteriores</string>
+    <string name="vestimenta_sinproblemas">Independiente con su vestimenta y actividades personales</string>
+    <string name="vestimenta_actividadesdiarias">Le cuestan las actividades diarias como cocinar o manejar dinero</string>
+    <string name="vestimenta_seleccion">Necesita ayuda para usar el inodoro</string>
+    <string name="vestimenta_ayudavestirse">Olvida soltar el baño</string>
+    <string name="vestimenta_incapaz">Incontinencia urinaria Frecuente</string>
+
+
+    <string name="lenguaje_otro">Ninguno de los Anteriores</string>
+    <string name="lenguaje_sinproblemas">Sin dificultades de Lenguaje y Habla</string>
+    <string name="lenguaje_limitado">Habla limitada a 6,5 o menos palabras en promedio por dia</string>
+    <string name="lenguaje_unasolapalabra">Habla limitada al uso de una sola palabra inteligible en un dia promedio o conversación </string>
+
+
+    <string name="movilidad_otro">Ninguno de los Anteriores</string>
+    <string name="movilidad_sinproblemas">Sin dificultad para movilizarse en cualquier situación</string>
+    <string name="movilidad_dificultadsitioslejanos">Dificultad para movilizarse a sitios Lejanos</string>
+    <string name="movilidad_nocaminaasistencia">No puede caminar sin asistencia</string>
+    <string name="movilidad_nosentarseautonoma">No puede sentarse de manera autónoma.</string>
+    <string name="movilidad_nosostienesucabeza">No sostiene su cabeza de manera independiente</string>
+
+
+    <string name="alimentacion_otro">Ninguno de los Anteriores</string>
+    <string name="alimentacion_correcta">Usa los cubiertos correctamente</string>
+    <string name="alimentacion_cuchara">Usa solamente la cuchara,Suele ensuciar.</string>
+    <string name="alimentacion_solidos">De los Alimentos sólidos unicamente consume los simples, por ejemplo galletas</string>
+    <string name="alimentacion_dependiente">Debe ser alimentado por otra persona</string>
+
+
+    <string name="estadoanimo_otro">Ninguno de los Anteriores</string>
+    <string name="estadoanimo_normal">Su estado de ánimo es normal</string>
+    <string name="estadoanimo_sonrisa">No ha sonreido en mucho tiempo</string>
+
+
+
+
+
 
 
 

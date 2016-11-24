@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -21,6 +23,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -28,16 +31,18 @@ import java.util.Locale;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.domain.Sintoma;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.NoteDao;
+import co.edu.unicauca.appterapiademencia.domain.dao.SintomaDao;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientProfileActivity;
 
 /**
  * Created by SEBAS on 14/11/2016.
  */
 
-public class AddNoteActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener{
+public class AddNoteActivity extends AppCompatActivity implements View.OnClickListener, CheckBox.OnCheckedChangeListener{
     private Calendar calendar;
     private int year, month, day;
     private String ownertext;
@@ -46,8 +51,16 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private String hour;
     private RadioButton rdgMejora,rdgNeutral,rdgRetroceso,rdgIncidente,rdgAdverso,rdgCentinela;
     private TextView txt_adverso;
-    private ImageButton movility,eating,fall,medication,estadodeanimo,otro,changeBehaviour;
-    private RadioGroup rdgGrupo;
+    private ImageButton movility,eating,fall,medication,estadodeanimo,otro,changeBehaviour,higiene,memoria,lenguaje,vestimenta;
+    private RadioGroup rdgGrupo,rdgMovilidad,rdgAlimentacion,rdgCambioPersonalidad,rdgOrientacion,rdgLenguaje,rdgMemoria,rdgHigiene,rdgVestimenta,rdgAnimo;
+    private CheckBox rdgMovilidadOtro,rdgMovilidadSitiosLejanos,rdgMovilidadCaminar,rdgMovilidadSentarse,rdgMovilidadCabeza;
+    private CheckBox rdgHigieneAyudaBanarse,rdgHigieneSoltarBano,rdgHigieneAyudaInodoro,rdgHigieneIncontinensiaUrinaria,rdgHigieneIncontinensiaFecal;
+    private CheckBox rdgVestimentaActividades,rdgVestimentaSeleccionar,rdgVestimentaAyudaVestirse,rdgVestimentaIncapaz;
+    private CheckBox rdgMemoriaTendenciaRememorar,rdgMemoriaOlvidosBenignos;
+    private CheckBox rdgLenguajeLimitado,rdgLenguajePalabra;
+    private CheckBox rdgAlimentacionCuchara,rdgAlimentacionSolidos,rdgAlimentacionDependiente;
+    private CheckBox rdgAnimoSonrisa;
+    private ArrayList<String> sintomasList;
     private RadioButton rdgTardia;
     private NoteDao noteDao;
     private Long cedula;
@@ -68,10 +81,15 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private int gravedad;
     private LinearLayout linear_efecto;
     private Boolean carerMessageIndicator = false;
+    private SintomaDao sintomaDao;
+    private int var_tipo;
+    private String var_seleccion;
 
     public AddNoteActivity(){
         this.helper = GreenDaoHelper.getInstance();
         this.noteDao = helper.getNoteDao();
+        this.sintomaDao= helper.getSintomaDao();
+        this.sintomasList = new ArrayList<String>();
     }
 
 
@@ -80,19 +98,21 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_note);
         Bundle bundl=getIntent().getExtras();
-
+        sintomasList.clear();
         description= (EditText) findViewById(R.id.txt_description);
 
         movility= (ImageButton) findViewById(R.id.btn_movility);
         eating= (ImageButton) findViewById(R.id.btn_eating);
         fall= (ImageButton) findViewById(R.id.btn_fall);
-        medication= (ImageButton) findViewById(R.id.btn_language);
+        lenguaje= (ImageButton) findViewById(R.id.btn_language);
         estadodeanimo= (ImageButton) findViewById(R.id.btn_estadodeanimo);
-        otro = (ImageButton) findViewById(R.id.btn_other);
+        higiene = (ImageButton) findViewById(R.id.btn_higiene);
         changeBehaviour = (ImageButton) findViewById(R.id.btn_changebehaviour);
+        vestimenta = (ImageButton) findViewById(R.id.btn_vestimenta);
+        memoria = (ImageButton) findViewById(R.id.btn_memory);
 
 
-
+       /*
         rdgTardia = (RadioButton) findViewById(R.id.rdgTardia);
         rdgGrupo = (RadioGroup) findViewById(R.id.rdgGrupo);
         //rdgRutinario = (RadioButton) findViewById(R.id.rdgRutinario);
@@ -102,11 +122,64 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgRetroceso = (RadioButton) findViewById(R.id.rdgDeterioro);
         rdgNeutral = (RadioButton) findViewById(R.id.rdgNeutral);
         rdgMejora = (RadioButton) findViewById(R.id.rdgMejora);
-        linear_efecto = (LinearLayout) findViewById(R.id.linear_efecto);
+
         txt_adverso = (TextView) findViewById(R.id.txt_adverso);
+        */
+
+        linear_efecto = (LinearLayout) findViewById(R.id.linear_efecto);
+        rdgMovilidad = (RadioGroup) findViewById(R.id.rdgMovilidad);
+        rdgAlimentacion = (RadioGroup) findViewById(R.id.rdgAlimentacion);
+        rdgLenguaje = (RadioGroup) findViewById(R.id.rdgLenguaje);
+        rdgMemoria = (RadioGroup) findViewById(R.id.rdgMemoria);
+        rdgHigiene = (RadioGroup) findViewById(R.id.rdgHigiene);
+        rdgVestimenta = (RadioGroup) findViewById(R.id.rdgVestimenta);
+        rdgAnimo = (RadioGroup) findViewById(R.id.rdgAnimo);
+
+        //rdgGrupo.setOnCheckedChangeListener(this);
 
 
-        rdgGrupo.setOnCheckedChangeListener(this);
+        //HIGIENE
+        rdgHigieneAyudaBanarse = (CheckBox) findViewById(R.id.rdgHigieneAyudaBanarse);
+        rdgHigieneSoltarBano = (CheckBox) findViewById(R.id.rdgHigieneSoltarBano);
+        rdgHigieneAyudaInodoro = (CheckBox) findViewById(R.id.rdgHigieneAyudaInodoro);
+        rdgHigieneIncontinensiaUrinaria = (CheckBox) findViewById(R.id.rdgHigieneIncontinensiaUrinaria);
+        rdgHigieneIncontinensiaFecal = (CheckBox) findViewById(R.id.rdgHigieneIncontinensiaFecal);
+
+        //MOVILIDAD
+
+        rdgMovilidadSitiosLejanos = (CheckBox) findViewById(R.id.rdgMovilidadSitiosLejanos);
+        rdgMovilidadCaminar = (CheckBox) findViewById(R.id.rdgMovilidadCaminar);
+        rdgMovilidadSentarse = (CheckBox) findViewById(R.id.rdgMovilidadSentarse);
+        rdgMovilidadCabeza = (CheckBox) findViewById(R.id.rdgMovilidadCabeza);
+
+
+        //VESTIMENTA
+
+        rdgVestimentaActividades = (CheckBox) findViewById(R.id.rdgVestimentaActividades);
+        rdgVestimentaAyudaVestirse = (CheckBox) findViewById(R.id.rdgVestimentaAyudaVestirse);
+        rdgVestimentaIncapaz = (CheckBox) findViewById(R.id.rdgVestimentaIncapaz);
+
+        //MEMORIA
+
+        rdgMemoriaTendenciaRememorar = (CheckBox) findViewById(R.id.rdgMemoriaTendenciaRememorar);
+        rdgMemoriaOlvidosBenignos = (CheckBox) findViewById(R.id.rdgMemoriaOlvidosBenignos);
+
+
+        //LENGUAJE
+
+        rdgLenguajeLimitado = (CheckBox) findViewById(R.id.rdgLenguajeLimitado);
+        rdgLenguajePalabra= (CheckBox) findViewById(R.id.rdgLenguajePalabra);
+
+        //ALIMENTACION
+        rdgAlimentacionCuchara= (CheckBox) findViewById(R.id.rdgAlimentacionCuchara);
+        rdgAlimentacionSolidos= (CheckBox) findViewById(R.id.rdgAlimentacionSolidos);
+        rdgAlimentacionDependiente= (CheckBox) findViewById(R.id.rdgAlimentacionDependiente);
+
+        //ANIMO SONRISA
+        rdgAnimoSonrisa= (CheckBox) findViewById(R.id.rdgAnimoSonrisa);
+
+
+
 
         owner = (EditText) findViewById(R.id.txt_responsable);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -169,7 +242,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         changeBehaviour.setOnClickListener(this);
 
     }
-
+   /*
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         // TODO Auto-generated method stub
@@ -185,8 +258,9 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             var_color= "adverso";
         }
 
-    }
 
+    }
+         */
     public void saveNote(View view){
 
         Log.e("addnote",""+optionOwner);
@@ -273,8 +347,18 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
             Log.e("addnote","");
 
-            Note note = new Note(null, patientid, userId, election, var_fecha, var_hora, var_description,"CUIDADO", var_color, var_owner, var_late, var_state);
+            Note note = new Note(null, patientid, userId, var_tipo, var_fecha, var_hora, var_description,election, var_seleccion, var_owner, var_late, var_state);
             noteDao.insert(note);
+            if(note!=null){
+                for(int i=0;i<=sintomasList.size();i++)
+                {
+                    Sintoma sintoma = new Sintoma(null,patientid, userId, election,sintomasList.get(i));
+                    sintomaDao.insert(sintoma);
+                    Log.e("sintomadao nuevo",sintoma.getId()+"");
+                }
+            }
+
+
             Intent ir_main = new Intent(this, PatientProfileActivity.class);
             ir_main.putExtra("carerIndicator",carerMessageIndicator);
             ir_main.putExtra("cedula", cedula);
@@ -319,59 +403,85 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()){
             case R.id.btn_movility:
                 election = "movility";
+                var_tipo=1;
                 setDefaultImageButton();
+                rdgMovilidad.setVisibility(View.VISIBLE);
                 //election= Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/movility72px").toString();
                 movility.setBackgroundColor(getResources().getColor(R.color.accent_color));
 
                 break;
             case R.id.btn_eating:
                 election="eating";
+                var_tipo=1;
                 setDefaultImageButton();
+                rdgAlimentacion.setVisibility(View.VISIBLE);
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/eating72px").toString();
                 eating.setBackgroundColor(getResources().getColor(R.color.accent_color));
 
                 break;
             case R.id.btn_fall:
                 election="fall";
+                var_tipo=0;
                 setDefaultImageButton();
-                linear_efecto.setVisibility(View.GONE);
-                rdgMejora.setVisibility(View.GONE);
-                rdgNeutral.setVisibility(View.GONE);
-                rdgRetroceso.setVisibility(View.GONE);
-                txt_adverso.setVisibility(View.GONE);
+                //txt_adverso.setVisibility(View.GONE);
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/caida72px").toString();
                 fall.setBackgroundColor(getResources().getColor(R.color.accent_color));
-                gravedad = 2;
-
+                //gravedad = 2;
                 var_color= "centinela";
                 break;
             case R.id.btn_language:
-                election="medication";
+                election="language";
+                var_tipo=1;
                 setDefaultImageButton();
+                rdgLenguaje.setVisibility(View.VISIBLE);
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/medication72px").toString();
-                medication.setBackgroundColor(getResources().getColor(R.color.accent_color));
+                lenguaje.setBackgroundColor(getResources().getColor(R.color.accent_color));
+
+                /*
                 gravedad=1;
                 rdgAdverso.setVisibility(View.VISIBLE);
                 txt_adverso.setVisibility(View.VISIBLE);
+                */
 
                 break;
-            case R.id.btn_other:
-                election="otro";
+            case R.id.btn_higiene:
+                election="higiene";
+                var_tipo=1;
                 setDefaultImageButton();
+                rdgHigiene.setVisibility(View.VISIBLE);
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/otro72px").toString();
-                otro.setBackgroundColor(getResources().getColor(R.color.accent_color));
+                higiene.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 break;
             case R.id.btn_estadodeanimo:
-                election="health";
+                election="animo";
+                var_tipo=1;
                 setDefaultImageButton();
+                rdgAnimo.setVisibility(View.VISIBLE);
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
                 estadodeanimo.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 break;
+            case R.id.btn_vestimenta:
+                election="vestimenta";
+                var_tipo=1;
+                setDefaultImageButton();
+                rdgVestimenta.setVisibility(View.VISIBLE);
+                //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
+                vestimenta.setBackgroundColor(getResources().getColor(R.color.accent_color));
+                break;
             case R.id.btn_changebehaviour:
                 election="changebehaviour";
+                var_tipo=1;
                 setDefaultImageButton();
+
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/changebehavior72px").toString();
                 changeBehaviour.setBackgroundColor(getResources().getColor(R.color.accent_color));
+                break;
+            case R.id.btn_memory:
+                election="memory";
+                var_tipo=1;
+                setDefaultImageButton();
+                //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/changebehavior72px").toString();
+                memoria.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 break;
 
 
@@ -391,14 +501,178 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         movility.setBackgroundColor(getResources().getColor(R.color.material_amber));
         eating.setBackgroundColor(getResources().getColor(R.color.material_green));
         fall.setBackgroundColor(getResources().getColor(R.color.material_pink));
-        medication.setBackgroundColor(getResources().getColor(R.color.material_red));
-        otro.setBackgroundColor(getResources().getColor(R.color.gray_soft));
+        lenguaje.setBackgroundColor(getResources().getColor(R.color.material_red));
+        higiene.setBackgroundColor(getResources().getColor(R.color.gray_soft));
         estadodeanimo.setBackgroundColor(getResources().getColor(R.color.material_blue));
         changeBehaviour.setBackgroundColor(getResources().getColor(R.color.material_purple));
+        vestimenta.setBackgroundColor(getResources().getColor(R.color.material_brown));
+        memoria.setBackgroundColor(getResources().getColor(R.color.material_teal));
+
+
+        rdgVestimenta.setVisibility(View.VISIBLE);
+        rdgAlimentacion.setVisibility(View.VISIBLE);
+        rdgLenguaje.setVisibility(View.VISIBLE);
+        rdgHigiene.setVisibility(View.VISIBLE);
+        rdgCambioPersonalidad.setVisibility(View.VISIBLE);
+        rdgMemoria.setVisibility(View.VISIBLE);
+        rdgMovilidad.setVisibility(View.VISIBLE);
+
+
+
         linear_efecto.setVisibility(View.VISIBLE);
-        rdgMejora.setVisibility(View.VISIBLE);
-        rdgNeutral.setVisibility(View.VISIBLE);
-        rdgRetroceso.setVisibility(View.VISIBLE);
+
+
+        rdgHigieneAyudaBanarse.setOnCheckedChangeListener(this);
+        rdgHigieneAyudaInodoro.setOnCheckedChangeListener(this);
+        rdgHigieneSoltarBano.setOnCheckedChangeListener(this);
+        rdgHigieneIncontinensiaUrinaria.setOnCheckedChangeListener(this);
+        rdgHigieneIncontinensiaFecal.setOnCheckedChangeListener(this);
+        rdgMovilidadSitiosLejanos.setOnCheckedChangeListener(this);
+        rdgMovilidadCaminar.setOnCheckedChangeListener(this);
+        rdgMovilidadSentarse.setOnCheckedChangeListener(this);
+        rdgMovilidadCabeza.setOnCheckedChangeListener(this);
+        rdgVestimentaActividades.setOnCheckedChangeListener(this);
+        rdgVestimentaSeleccionar.setOnCheckedChangeListener(this);
+        rdgVestimentaAyudaVestirse.setOnCheckedChangeListener(this);
+        rdgVestimentaIncapaz.setOnCheckedChangeListener(this);
+        rdgMemoriaTendenciaRememorar.setOnCheckedChangeListener(this);
+        rdgMemoriaOlvidosBenignos.setOnCheckedChangeListener(this);
+        rdgLenguajeLimitado.setOnCheckedChangeListener(this);
+        rdgLenguajePalabra.setOnCheckedChangeListener(this);
+        rdgAlimentacionCuchara.setOnCheckedChangeListener(this);
+        rdgAlimentacionSolidos.setOnCheckedChangeListener(this);
+        rdgAlimentacionDependiente.setOnCheckedChangeListener(this);
+
+
+
+    }
+
+
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        switch(compoundButton.getId()){
+            //Higiene
+            case R.id.rdgHigieneAyudaBanarse:
+                var_seleccion="higieneayudabanarse";
+                sintomasList.add(var_seleccion);
+                //do stuff
+                break;
+            case R.id.rdgHigieneAyudaInodoro:
+                var_seleccion="higieneayudainodoro";
+                sintomasList.add(var_seleccion);
+                //do stuff
+                break;
+            case R.id.rdgHigieneSoltarBano:
+                var_seleccion="higieneayudasoltarbano";
+                sintomasList.add(var_seleccion);
+                //do stuff
+                break;
+            case R.id.rdgHigieneIncontinensiaUrinaria:
+                var_seleccion="higieneayudaincontinensiaurinaria";
+                sintomasList.add(var_seleccion);
+                //do stuff
+                break;
+            case R.id.rdgHigieneIncontinensiaFecal:
+                var_seleccion="higieneayudaincontinensiafecal";
+                sintomasList.add(var_seleccion);
+                //do stuff
+                break;
+
+
+
+            //Movilidad
+            case R.id.rdgMovilidadSitiosLejanos:
+                var_seleccion="movilidadsitioslejanos";
+                sintomasList.add(var_seleccion);
+                //do stuff
+                break;
+            case R.id.rdgMovilidadCaminar:
+                var_seleccion="movilidadcaminar";
+               sintomasList.add(var_seleccion);
+                //do stuff
+                break;
+            case R.id.rdgMovilidadSentarse:
+                var_seleccion="movilidadsentarse";
+                sintomasList.add(var_seleccion);
+                //do stuff
+                break;
+            case R.id.rdgMovilidadCabeza:
+                var_seleccion="movilidadcabeza";
+                sintomasList.add(var_seleccion);
+                //do stuff
+                break;
+
+            //VESTIMENTA
+
+            case R.id.rdgVestimentaActividades:
+                var_seleccion="vestimentaactividades";
+                sintomasList.add(var_seleccion);
+                break;
+            case R.id.rdgVestimentaSeleccionar:
+                var_seleccion="vestimentaseleccionar";
+                sintomasList.add(var_seleccion);
+                break;
+            case R.id.rdgVestimentaAyudaVestirse:
+                var_seleccion="vestimentaayudavestirse";
+                sintomasList.add(var_seleccion);
+                break;
+            case R.id.rdgVestimentaIncapaz:
+                var_seleccion="vestimentaincapaz";
+                sintomasList.add(var_seleccion);
+                break;
+
+            //LENGUAJE
+
+            case R.id.rdgLenguajeLimitado:
+                var_seleccion="lenguajelimitado";
+                sintomasList.add(var_seleccion);
+                break;
+            case R.id.rdgLenguajePalabra:
+                var_seleccion="lenguajepalabra";
+                sintomasList.add(var_seleccion);
+                break;
+
+            //MEMORIA
+
+            case R.id.rdgMemoriaTendenciaRememorar:
+                var_seleccion="memoriatendenciarememorar";
+                sintomasList.add(var_seleccion);
+                break;
+            case R.id.rdgMemoriaOlvidosBenignos:
+                var_seleccion="memoriaolvidosbenignos";
+                sintomasList.add(var_seleccion);
+                break;
+
+            //ALIMENTACION
+
+
+            case R.id.rdgAlimentacionCuchara:
+                var_seleccion="alimentacioncuchara";
+                sintomasList.add(var_seleccion);
+                break;
+            case R.id.rdgAlimentacionSolidos:
+                var_seleccion="alimentacionsolidos";
+                sintomasList.add(var_seleccion);
+                break;
+            case R.id.rdgAlimentacionDependiente:
+                var_seleccion="alimentaciondependientes";
+                sintomasList.add(var_seleccion);
+                break;
+
+
+            //ESTADO DE ANIMO
+            case R.id.rdgAnimoSonrisa:
+                var_seleccion="animosonrisa";
+                sintomasList.add(var_seleccion);
+                break;
+
+
+
+
+
+
+        }
 
     }
 }

@@ -2,8 +2,6 @@ package co.edu.unicauca.appterapiademencia.adapters;
 
 import android.app.Activity;
 import android.net.Uri;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -56,8 +54,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     //String description = noteList.get(position).getDescription();
     String fecha = noteList.get(position).getDate().toString();
     String hour = noteList.get(position).getHour().toString();
-    String noteType= noteList.get(position).getNoteType();
-    String color = noteList.get(position).getColor();
+    //String noteType= noteList.get(position).getType();
+    String ambito = noteList.get(position).getAmbito();
+    String seleccion = noteList.get(position).getSelection();
     Boolean late = noteList.get(position).getLate();
 
     String userName;
@@ -69,7 +68,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         catch (NullPointerException e){
             userName = noteList.get(position).getOwner();
         }
-
+        /*
         if(color=="adverso"){
             DrawableCompat.setTint(holder.imgCalification.getDrawable(), ContextCompat.getColor(activity.getApplicationContext(),R.color.material_red));
             holder.imgCalification.setImageDrawable(activity.getResources().getDrawable(R.mipmap.ic_priority_high_black_24dp));
@@ -100,42 +99,59 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         else if(color=="neutral"){
             holder.imgCalification.setBackgroundColor(activity.getResources().getColor(R.color.gray));
         }
+        */
 
 
-        switch (noteType){
+        switch (ambito){
             case "movility":
                 description="Movilidad";
-                noteType= Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/movility72px").toString();
+                ambito= Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/movility72px").toString();
                 break;
             case "eating":
                 description="Independencia Alimentaria";
-                noteType=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/eating72px").toString();
+                ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/eating72px").toString();
 
                 break;
             case "fall":
                 description="Caida";
-                noteType=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/caida72px").toString();
+               ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/caida72px").toString();
 
                 break;
             case "medication":
 
                 description="Medicación";
-                noteType=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/medication72px").toString();
+                ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/medication72px").toString();
 
                 break;
-            case "otro":
-                description="Otros";
-                noteType=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/otro72px").toString();
+            case "higiene":
+                description="Higiene y Aseo Personal";
+              ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/higiene72px").toString();
 
                 break;
-            case "health":
-                description="Estado de animo";
-                noteType=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
+            case "animo":
+                description="Estado de Animo";
+                ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
 
                 break;
             case "changebehaviour":
                 description="Comportamiento";
-                noteType=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/changebehavior72px").toString();
+                ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/changebehavior72px").toString();
+
+                break;
+            case "vestimenta":
+                description="Vestimenta y Asuntos personales";
+               ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/clothes72px").toString();
+
+                break;
+            case "memory":
+                description="Memoria";
+                ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/memory72px").toString();
+
+
+                break;
+            case "language":
+                description="Lenguaje";
+                ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/language72px").toString();
 
                 break;
 
@@ -152,7 +168,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             //Picasso.with(this.activity).load(Uri.parse(fotodefault)).resize(imageSize, imageSize).transform(new CircleTransform()).into(holder.imgNoteType);
         }
         */
-        holder.imgNoteType.setImageURI(Uri.parse(noteType));
+        holder.imgNoteType.setImageURI(Uri.parse(ambito));
 
         holder.txtDescription.setText("Registrado por "+userName);
         holder.txtHour.setText(hour);

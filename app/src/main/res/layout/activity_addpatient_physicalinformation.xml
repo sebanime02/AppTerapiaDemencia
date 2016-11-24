@@ -112,6 +112,8 @@
                     android:layout_height="wrap_content"
                     android:prompt="@string/spinner_vision"/>
 
+               
+
 
              <TableLayout
                     android:layout_width="match_parent"
@@ -153,11 +155,12 @@
 
 
                     <TableRow android:minHeight="@dimen/height_textview_container_limitations">
+                        <RadioGroup  android:orientation="horizontal" android:id="@+id/rdgTareasDomesticas">
+
                         <TextView
-                            android:text="Incapacidad para realizar \n tareas domesticas"
-                            android:maxLines="20"
+                            android:text="Incapacidad para realizar  tareas domesticas"
+
                             android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                        <RadioGroup android:id="@+id/rdgTareasDomesticas">
                             <RadioButton
                             android:id="@+id/total_tareas_domesticas"
 
@@ -178,34 +181,38 @@
                         </RadioGroup>
 
                     </TableRow>
-                    <TableRow android:minHeight="@dimen/height_textview_container_limitations">
 
-                        <TextView
-                            android:maxLines="20"
-                            android:text="Incapacidad para el uso de \npequeñas cantidades de dinero"
-                            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                        <RadioGroup android:id="@+id/rdgPequenasDineor">
-                        <RadioButton
-                            android:id="@+id/total_pequenas_dinero"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            />
-                        <RadioButton
-                            android:id="@+id/parcial_pequenas_dinero"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            />
-                        <RadioButton
-                            android:id="@+id/ninguno_pequenas_dinero"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            />
-                        </RadioGroup>
-                    </TableRow>
-                    <TableRow android:minHeight="@dimen/height_textview_container_limitations">
+                 <TableRow android:minHeight="@dimen/height_textview_container_limitations"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent">
+
+                     <TextView
+                         android:maxLines="20"
+                         android:text="Incapacidad para el uso de \npequeñas cantidades de dinero"
+                         android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                     <RadioGroup android:id="@+id/rdgPequenasDineor">
+                     <RadioButton
+                         android:id="@+id/total_pequenas_dinero"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text=""
+                         />
+                     <RadioButton
+                         android:id="@+id/parcial_pequenas_dinero"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text=""
+                         />
+                     <RadioButton
+                         android:id="@+id/ninguno_pequenas_dinero"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text=""
+                         />
+                     </RadioGroup>
+                 </TableRow>
+
+                 <TableRow android:minHeight="@dimen/height_textview_container_limitations">
                         <TextView
                             android:maxLines="20"
                             android:text="Incapacidad para recordar \nlistas cortas de elementos (ejemplo, compras)"

@@ -30,16 +30,18 @@ public class NoteDao extends AbstractDao<Note, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property PatientId = new Property(1, long.class, "patientId", false, "PATIENT_ID");
         public final static Property UserId = new Property(2, long.class, "userId", false, "USER_ID");
-        public final static Property NoteType = new Property(3, String.class, "noteType", false, "NOTE_TYPE");
+        public final static Property Type = new Property(3, Integer.class, "type", false, "TYPE");
         public final static Property Date = new Property(4, String.class, "date", false, "DATE");
         public final static Property Hour = new Property(5, String.class, "hour", false, "HOUR");
         public final static Property Description = new Property(6, String.class, "description", false, "DESCRIPTION");
-        public final static Property Color = new Property(7, String.class, "color", false, "COLOR");
-        public final static Property Itemselected = new Property(8, String.class, "itemselected", false, "ITEMSELECTED");
+        public final static Property Ambito = new Property(7, String.class, "ambito", false, "AMBITO");
+        public final static Property Selection = new Property(8, String.class, "selection", false, "SELECTION");
         public final static Property Owner = new Property(9, String.class, "owner", false, "OWNER");
         public final static Property Late = new Property(10, Boolean.class, "late", false, "LATE");
         public final static Property State = new Property(11, Boolean.class, "state", false, "STATE");
     }
+
+    private DaoSession daoSession;
 
     private Query<Note> patient_NoteListQuery;
     private Query<Note> user_NoteListQuery;
@@ -50,6 +52,7 @@ public class NoteDao extends AbstractDao<Note, Long> {
     
     public NoteDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
+        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -59,12 +62,12 @@ public class NoteDao extends AbstractDao<Note, Long> {
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"PATIENT_ID\" INTEGER NOT NULL ," + // 1: patientId
                 "\"USER_ID\" INTEGER NOT NULL ," + // 2: userId
-                "\"NOTE_TYPE\" TEXT," + // 3: noteType
+                "\"TYPE\" INTEGER," + // 3: type
                 "\"DATE\" TEXT NOT NULL ," + // 4: date
                 "\"HOUR\" TEXT," + // 5: hour
                 "\"DESCRIPTION\" TEXT," + // 6: description
-                "\"COLOR\" TEXT," + // 7: color
-                "\"ITEMSELECTED\" TEXT," + // 8: itemselected
+                "\"AMBITO\" TEXT," + // 7: ambito
+                "\"SELECTION\" TEXT," + // 8: selection
                 "\"OWNER\" TEXT," + // 9: owner
                 "\"LATE\" INTEGER," + // 10: late
                 "\"STATE\" INTEGER);"); // 11: state
@@ -87,9 +90,9 @@ public class NoteDao extends AbstractDao<Note, Long> {
         stmt.bindLong(2, entity.getPatientId());
         stmt.bindLong(3, entity.getUserId());
  
-        String noteType = entity.getNoteType();
-        if (noteType != null) {
-            stmt.bindString(4, noteType);
+        Integer type = entity.getType();
+        if (type != null) {
+            stmt.bindLong(4, type);
         }
         stmt.bindString(5, entity.getDate());
  
@@ -103,14 +106,14 @@ public class NoteDao extends AbstractDao<Note, Long> {
             stmt.bindString(7, description);
         }
  
-        String color = entity.getColor();
-        if (color != null) {
-            stmt.bindString(8, color);
+        String ambito = entity.getAmbito();
+        if (ambito != null) {
+            stmt.bindString(8, ambito);
         }
  
-        String itemselected = entity.getItemselected();
-        if (itemselected != null) {
-            stmt.bindString(9, itemselected);
+        String selection = entity.getSelection();
+        if (selection != null) {
+            stmt.bindString(9, selection);
         }
  
         String owner = entity.getOwner();
@@ -140,9 +143,9 @@ public class NoteDao extends AbstractDao<Note, Long> {
         stmt.bindLong(2, entity.getPatientId());
         stmt.bindLong(3, entity.getUserId());
  
-        String noteType = entity.getNoteType();
-        if (noteType != null) {
-            stmt.bindString(4, noteType);
+        Integer type = entity.getType();
+        if (type != null) {
+            stmt.bindLong(4, type);
         }
         stmt.bindString(5, entity.getDate());
  
@@ -156,14 +159,14 @@ public class NoteDao extends AbstractDao<Note, Long> {
             stmt.bindString(7, description);
         }
  
-        String color = entity.getColor();
-        if (color != null) {
-            stmt.bindString(8, color);
+        String ambito = entity.getAmbito();
+        if (ambito != null) {
+            stmt.bindString(8, ambito);
         }
  
-        String itemselected = entity.getItemselected();
-        if (itemselected != null) {
-            stmt.bindString(9, itemselected);
+        String selection = entity.getSelection();
+        if (selection != null) {
+            stmt.bindString(9, selection);
         }
  
         String owner = entity.getOwner();
@@ -183,6 +186,12 @@ public class NoteDao extends AbstractDao<Note, Long> {
     }
 
     @Override
+    protected final void attachEntity(Note entity) {
+        super.attachEntity(entity);
+        entity.__setDaoSession(daoSession);
+    }
+
+    @Override
     public Long readKey(Cursor cursor, int offset) {
         return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
     }    
@@ -193,12 +202,12 @@ public class NoteDao extends AbstractDao<Note, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getLong(offset + 1), // patientId
             cursor.getLong(offset + 2), // userId
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // noteType
+            cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3), // type
             cursor.getString(offset + 4), // date
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // hour
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // description
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // color
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // itemselected
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // ambito
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // selection
             cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // owner
             cursor.isNull(offset + 10) ? null : cursor.getShort(offset + 10) != 0, // late
             cursor.isNull(offset + 11) ? null : cursor.getShort(offset + 11) != 0 // state
@@ -211,12 +220,12 @@ public class NoteDao extends AbstractDao<Note, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setPatientId(cursor.getLong(offset + 1));
         entity.setUserId(cursor.getLong(offset + 2));
-        entity.setNoteType(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setType(cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3));
         entity.setDate(cursor.getString(offset + 4));
         entity.setHour(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setDescription(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setColor(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setItemselected(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setAmbito(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setSelection(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
         entity.setOwner(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
         entity.setLate(cursor.isNull(offset + 10) ? null : cursor.getShort(offset + 10) != 0);
         entity.setState(cursor.isNull(offset + 11) ? null : cursor.getShort(offset + 11) != 0);

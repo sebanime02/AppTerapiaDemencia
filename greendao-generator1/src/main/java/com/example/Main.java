@@ -93,16 +93,29 @@ public class Main {
 
 
 
-        note.addStringProperty("noteType");
+        note.addIntProperty("type");
         note.addStringProperty("date").notNull();
         note.addStringProperty("hour");
         note.addStringProperty("description");
-        note.addStringProperty("color"); //Importancia
-        note.addStringProperty("itemselected");
+        note.addStringProperty("ambito"); //Tipo de Evento o Sintoma
+        note.addStringProperty("selection"); //Evento especifico
         note.addStringProperty("owner");
         note.addBooleanProperty("late"); //Notas tardias
         note.addBooleanProperty("state"); //Notas no aprobadas
 
+
+        //SINTOMAS
+        Entity sintoma = schema.addEntity("Sintoma");
+        sintoma.addIdProperty().autoincrement();
+
+        Property patientIdsintoma = sintoma.addLongProperty("patientId").notNull().getProperty();
+        patient.addToMany(sintoma,patientIdsintoma);
+
+        Property noteIdSintoma = sintoma.addLongProperty("noteId").notNull().getProperty();
+        note.addToMany(sintoma,noteIdSintoma);
+
+        sintoma.addStringProperty("ambito"); //Tipo de Evento o Sintoma
+        sintoma.addStringProperty("selection"); //Evento especifico
 
         //TIP TABLE
         Entity tip = schema.addEntity("Tip");

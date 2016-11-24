@@ -39,60 +39,43 @@ public class NotesFragment extends Fragment implements NotesView{
     int eatingCount=0;
     int fallCount=0;
     int medicationCount=0;
+    int estadoanimoCount=0;
+    int higieneCount=0;
+    int vestimentaCount=0;
+    int memoryCount=0;
+    int languageCount=0;
 
-    public int getEstadodeanimoCount() {
-        return estadodeanimoCount;
+
+    public int getMemoryCount() {
+        return memoryCount;
     }
 
-    public void setEstadodeanimoCount(int estadodeanimoCount) {
-        this.estadodeanimoCount = estadodeanimoCount;
+    public void setMemoryCount(int memoryCount) {
+        this.memoryCount = memoryCount;
     }
 
-    int estadodeanimoCount=0;
-    int changeCount=0;
-
-
-
-    public int getMovCount() {
-        return movCount;
+    public int getHigieneCount() {
+        return higieneCount;
     }
 
-    public void setMovCount(int movCount) {
-        this.movCount = movCount;
+    public void setHigieneCount(int higieneCount) {
+        this.higieneCount = higieneCount;
     }
 
-    public int getEatingCount() {
-        return eatingCount;
+    public int getVestimentaCount() {
+        return vestimentaCount;
     }
 
-    public void setEatingCount(int eatingCount) {
-        this.eatingCount = eatingCount;
+    public void setVestimentaCount(int vestimentaCount) {
+        this.vestimentaCount = vestimentaCount;
     }
 
-    public int getMedicationCount() {
-        return medicationCount;
+    public int getLanguageCount() {
+        return languageCount;
     }
 
-    public void setMedicationCount(int medicationCount) {
-        this.medicationCount = medicationCount;
-    }
-
-
-
-    public int getChangeCount() {
-        return changeCount;
-    }
-
-    public void setChangeCount(int changeCount) {
-        this.changeCount = changeCount;
-    }
-
-    public int getFallCount() {
-        return fallCount;
-    }
-
-    public void setFallCount(int fallCount) {
-        this.fallCount = fallCount;
+    public void setLanguageCount(int languageCount) {
+        this.languageCount = languageCount;
     }
 
     public NotesFragment(){
@@ -102,6 +85,12 @@ public class NotesFragment extends Fragment implements NotesView{
         this.changeCount = changeCount;
         this.estadodeanimoCount = estadodeanimoCount;
         this.medicationCount = medicationCount;
+
+
+        this.languageCount = languageCount;
+        this.vestimentaCount = vestimentaCount;
+        this.memoryCount = medicationCount;
+        this.higieneCount = higieneCount;
 
     }
 
@@ -240,11 +229,16 @@ public class NotesFragment extends Fragment implements NotesView{
         estadodeanimoCount=0;
         changeCount=0;
 
+        languageCount=0;
+        vestimentaCount=0;
+        memoryCount=0;
+
+
         Log.e("addnote","de nuevo al fragment, show la lista, tamaño: "+list.size());
         for (int j = 0; j < noteList.size(); j++)
         {
 
-            String noteType = noteList.get(j).getNoteType().toString();
+            String noteType = noteList.get(j).getAmbito().toString();
             switch (noteType){
                 case "movility":
 
@@ -261,10 +255,16 @@ public class NotesFragment extends Fragment implements NotesView{
                     setMedicationCount(medicationCount+1);
 
                     break;
-                case "otro":
-
+                case "language":
+                    setLanguageCount(languageCount+1);
                     break;
-                case "health":
+                case "vestimenta":
+                    setVestimentaCount(vestimentaCount+1);
+                    break;
+                case "memory":
+                    setMemoryCount(memoryCount+1);
+                    break;
+                case "animo":
                    setEstadodeanimoCount(estadodeanimoCount+1);
                     break;
                 case "changebehaviour":
@@ -317,6 +317,61 @@ public class NotesFragment extends Fragment implements NotesView{
     public void showNotesCount(int[] notescount) {
 
     }
+    public int getEstadodeanimoCount() {
+        return estadodeanimoCount;
+    }
+
+    public void setEstadodeanimoCount(int estadodeanimoCount) {
+        this.estadodeanimoCount = estadodeanimoCount;
+    }
+
+    int estadodeanimoCount=0;
+    int changeCount=0;
+
+
+
+    public int getMovCount() {
+        return movCount;
+    }
+
+    public void setMovCount(int movCount) {
+        this.movCount = movCount;
+    }
+
+    public int getEatingCount() {
+        return eatingCount;
+    }
+
+    public void setEatingCount(int eatingCount) {
+        this.eatingCount = eatingCount;
+    }
+
+    public int getMedicationCount() {
+        return medicationCount;
+    }
+
+    public void setMedicationCount(int medicationCount) {
+        this.medicationCount = medicationCount;
+    }
+
+
+
+    public int getChangeCount() {
+        return changeCount;
+    }
+
+    public void setChangeCount(int changeCount) {
+        this.changeCount = changeCount;
+    }
+
+    public int getFallCount() {
+        return fallCount;
+    }
+
+    public void setFallCount(int fallCount) {
+        this.fallCount = fallCount;
+    }
+
 
 
 }

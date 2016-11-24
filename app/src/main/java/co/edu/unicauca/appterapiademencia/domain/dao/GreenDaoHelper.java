@@ -70,6 +70,9 @@ public class GreenDaoHelper {
     public  HistoricDao getHistoricDao(){
         return daoSession.getHistoricDao();
     }
+    public  SintomaDao getSintomaDao(){
+        return daoSession.getSintomaDao();
+    }
 
 
 
