@@ -165,6 +165,10 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("Agregar Paciente paso 2");
 
+
+
+
+
         if (bundl != null) {
             paciente = bundl.getStringArray("paciente");
             actualizar = bundl.getString("actualizar");
@@ -200,98 +204,169 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                   if (datosa[3].toString().equals("1")) {
                         s_dibujo.setSelection(1);
                     }
+                Log.e("datosb"," "+datosb[0]+" "+datosb[1]+" "+datosb[2]+ " "+datosb[3]+" "+datosb[4]+" "+datosb[5]+" "+datosb[6]);
+
+
+
+                /*
+                if(datosb[0].toString().equals("0.0"))
+                {
+                    rdgNingunoTareasDomesticas.setChecked(true);
+                    calificationTareasDomesticos=0.0;
+
+                }
+                if(datosb[0].toString().equals("0.5")){
+                    rdgParcialTareasDomesticas.setChecked(true);
+                    calificationTareasDomesticos=0.5;
+
+                }
+                if(datosb[0].toString().equals("1.0")){
+                    rdgTotalTareasDomesticas.setChecked(true);
+                    calificationTareasDomesticos=1.0;
+                }
+
+
+                if(datosb[1].toString().equals("0.0"))
+                {
+                    rdgNingunoPequenasDinero.setChecked(true);
+                }
+                if(datosb[1].toString().equals("0.5")){
+                    rdgParcialPequenasDinero.setChecked(true);
+
+                }
+                if(datosb[1].toString().equals("1.0")){
+
+                    rdgTotalPequenasDinero.setChecked(true);
+                }
+                */
+
+
+
+
 
                 switch (datosb[0].toString()){
-                    case "0":
-                        rdgTotalTareasDomesticas.setChecked(true);
+
+                    case "0.0":
+                        rdgNingunoTareasDomesticas.setChecked(true);
+                        calificationTareasDomesticos=0.0;
                         break;
                     case "0.5":
                         rdgParcialTareasDomesticas.setChecked(true);
+                        calificationTareasDomesticos=0.5;
                         break;
-                    case "2":
-                        rdgNingunoTareasDomesticas.setChecked(true);
+                    case "1.0":
+                        rdgTotalTareasDomesticas.setChecked(true);
+                        calificationTareasDomesticos=1.0;
                         break;
                 }
                 switch (datosb[1].toString()){
-                    case "0":
-                        rdgTotalPequenasDinero.setChecked(true);
+                    case "0.0":
+                        rdgNingunoPequenasDinero.setChecked(true);
+                        calificationPequenasDinero=0.0;
                         break;
                     case "0.5":
                         rdgParcialPequenasDinero.setChecked(true);
+                        calificationPequenasDinero=0.5;
                         break;
-                    case "2":
-                        rdgNingunoPequenasDinero.setChecked(true);
+                    case "1.0":
+
+                        rdgTotalPequenasDinero.setChecked(true);
+                        calificationPequenasDinero=1.0;
                         break;
                 }
+
                 switch (datosb[2].toString()){
-                    case "0":
-                        rdgTotalListasCortas.setChecked(true);
+                    case "0.0":
+                        rdgNingunoListasCortas.setChecked(true);
+                        calificationListasCortas=0.0;
                         break;
                     case "0.5":
                         rdgParcialListasCortas.setChecked(true);
+                        calificationListasCortas=0.5;
                         break;
-                    case "2":
-                        rdgNingunoListasCortas.setChecked(true);
+                    case "1.0":
+                        rdgTotalListasCortas.setChecked(true);
+                        calificationListasCortas=1.0;
                         break;
                 }
                 switch (datosb[3].toString()){
-                    case "0":
-                        rdgTotalOrientarseCasa.setChecked(true);
+                    case "0.0":
+                        rdgNingunoOrientarseCasa.setChecked(true);
+                        calificationOrientarseCasa=0.0;
                         break;
                     case "0.5":
                         rdgParcialOrientarseCasa.setChecked(true);
+                        calificationOrientarseCasa=0.5;
                         break;
-                    case "2":
-                        rdgNingunoOrientarseCasa.setChecked(true);
+                    case "1.0":
+                        rdgTotalOrientarseCasa.setChecked(true);
+                        calificationOrientarseCasa=1.0;
+
                         break;
                 }
                 switch (datosb[4].toString()){
-                    case "0":
-                        rdgTotalOrientarseCalle.setChecked(true);
+                    case "0.0":
 
+                        rdgNingunoOrientarseCalle.setChecked(true);
+                        calificationOrientarseCalle=0.0;
                         break;
                     case "0.5":
                         rdgParcialOrientarseCalle.setChecked(true);
+                        calificationOrientarseCalle=0.5;
 
                         break;
-                    case "2":
-                        rdgNingunoOrientarseCalle.setChecked(true);
+                    case "1.0":
+                        rdgTotalOrientarseCalle.setChecked(true);
+                        calificationOrientarseCalle=1.0;
+
 
                         break;
                 }
                 switch (datosb[5].toString()){
-                    case "0":
-                        rdgTotalValorarEntorno.setChecked(true);
+                    case "0.0":
+                        rdgNingunoValorarEntorno.setChecked(true);
+                        calificationValorarEntorno=0.0;
+
                         break;
                     case "0.5":
                         rdgParcialValorarEntorno.setChecked(true);
+                        calificationValorarEntorno=0.5;
 
                         break;
-                    case "2":
-                        rdgNingunoValorarEntorno.setChecked(true);
+                    case "1.0":
+                        rdgTotalValorarEntorno.setChecked(true);
+                        calificationValorarEntorno=1.0;
 
                         break;
                 }
                 switch (datosb[6].toString()){
-                    case "0":
-                        rdgTotalRecordarPacientes.setChecked(true);
+                    case "0.0":
+                        rdgNingunoRecordarPacientes.setChecked(true);
+                        calificationRecodarPacientes=0.0;
+
                         break;
                     case "0.5":
                         rdgParcialRecordarPacientes.setChecked(true);
+                        calificationRecodarPacientes=0.5;
                         break;
-                    case "2":
-                        rdgNingunoRecordarPacientes.setChecked(true);
+                    case "1.0":
+                        rdgTotalRecordarPacientes.setChecked(true);
+                        calificationRecodarPacientes=1.0;
                         break;
                 }
                 switch (datosb[7]){
-                    case "0":
-                        rdgTotalRememorarPasado.setChecked(true);
+                    case "0.0":
+                        rdgNingunoRememorarPasado.setChecked(true);
+                        calificationRememorarPasado=0.0;
+
                         break;
                     case "0.5":
                         rdgParcialRememorarPasado.setChecked(true);
+                        calificationRememorarPasado=0.5;
                         break;
-                    case "2":
-                        rdgNingunoRememorarPasado.setChecked(true);
+                    case "1.0":
+                        rdgTotalRememorarPasado.setChecked(true);
+                        calificationRememorarPasado=1.0;
                         break;
                 }
 
@@ -306,13 +381,13 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 if(checkedId==R.id.ninguno_tareas_domesticas){
-                    calificationTareasDomesticos=0;
+                    calificationTareasDomesticos=0.0;
                 }
                 if(checkedId==R.id.parcial_tareas_domesticas){
                     calificationTareasDomesticos=0.5;
                 }
                 if(checkedId==R.id.total_tareas_domesticas){
-                    calificationTareasDomesticos=1;
+                    calificationTareasDomesticos=1.0;
                 }
             }
         });
@@ -321,13 +396,16 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 if(checkedId==R.id.ninguno_listas_cortas){
-                    calificationListasCortas=0;
+                    calificationListasCortas=0.0;
+                    Log.e("listas cortas"," "+calificationListasCortas);
                 }
                 if(checkedId==R.id.parcial_listas_cortas){
                     calificationListasCortas=0.5;
+                    Log.e("listas cortas"," "+calificationListasCortas);
                 }
                 if(checkedId==R.id.total_listas_cortas){
-                    calificationListasCortas=1;
+                    calificationListasCortas=1.0;
+                    Log.e("listas cortas"," "+calificationListasCortas);
                 }
             }
         });
@@ -336,13 +414,13 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 if(checkedId==R.id.ninguno_pequenas_dinero){
-                    calificationPequenasDinero=0;
+                    calificationPequenasDinero=0.0;
                 }
                 if(checkedId==R.id.parcial_pequenas_dinero){
                     calificationPequenasDinero=0.5;
                 }
                 if(checkedId==R.id.total_pequenas_dinero){
-                    calificationPequenasDinero=1;
+                    calificationPequenasDinero=1.0;
                 }
             }
         });
@@ -351,13 +429,13 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 if(checkedId==R.id.ninguno_orientarse_casa){
-                    calificationOrientarseCasa=0;
+                    calificationOrientarseCasa=0.0;
                 }
                 if(checkedId==R.id.parcial_orientarse_casa){
                     calificationOrientarseCasa=0.5;
                 }
                 if(checkedId==R.id.total_orientarse_casa){
-                    calificationOrientarseCasa=1;
+                    calificationOrientarseCasa=1.0;
                 }
             }
         });
@@ -366,13 +444,13 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 if(checkedId==R.id.ninguno_orientarse_calle){
-                    calificationOrientarseCalle=0;
+                    calificationOrientarseCalle=0.0;
                 }
                 if(checkedId==R.id.parcial_orientarse_calle){
                     calificationOrientarseCalle=0.5;
                 }
                 if(checkedId==R.id.total_orientarse_calle){
-                    calificationOrientarseCalle=1;
+                    calificationOrientarseCalle=1.0;
                 }
             }
         });
@@ -381,13 +459,13 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 if(checkedId==R.id.ninguno_valorar_entorno){
-                    calificationValorarEntorno=0;
+                    calificationValorarEntorno=0.0;
                 }
                 if(checkedId==R.id.parcial_valorar_entorno){
                     calificationValorarEntorno=0.5;
                 }
                 if(checkedId==R.id.total_valorar_entorno){
-                    calificationValorarEntorno=1;
+                    calificationValorarEntorno=1.0;
                 }
             }
         });
@@ -396,13 +474,13 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 if(checkedId==R.id.ninguno_recordar_recientes){
-                    calificationRecodarPacientes=0;
+                    calificationRecodarPacientes=0.0;
                 }
                 if(checkedId==R.id.parcial_recordar_recientes){
                     calificationRecodarPacientes=0.5;
                 }
                 if(checkedId==R.id.total_recordar_recientes){
-                    calificationRecodarPacientes=1;
+                    calificationRecodarPacientes=1.0;
                 }
             }
         });
@@ -411,13 +489,13 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 if(checkedId==R.id.ninguno_rememorar_pasado){
-                    calificationRememorarPasado=0;
+                    calificationRememorarPasado=0.0;
                 }
                 if(checkedId==R.id.parcial_rememorar_pasado){
                     calificationRememorarPasado=0.5;
                 }
                 if(checkedId==R.id.total_rememorar_pasado){
-                    calificationRememorarPasado=1;
+                    calificationRememorarPasado=1.0;
                 }
             }
         });
@@ -491,6 +569,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     int var_escritura = s_escritura.getSelectedItemPosition();
                     int var_dibujo = s_dibujo.getSelectedItemPosition();
 
+
                     if (actualizar.equals("actualizar")) {
 
 
@@ -525,6 +604,13 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         blessedIncapacity.setValorarentorno(calificationValorarEntorno);
                         blessedIncapacity.setRecordarrecientes(calificationRecodarPacientes);
                         blessedIncapacity.setRememorarpasado(calificationRememorarPasado);
+
+                        Log.e("calificationupdate"," domesticos"+calificationTareasDomesticos);
+                        Log.e("calificationupdate"," pequenasdinero"+calificationPequenasDinero);
+                        Log.e("calificationupdate"," listas cortas"+calificationListasCortas);
+                        Log.e("calificationupdate"," casa"+calificationOrientarseCasa);
+                        Log.e("calificationupdate"," calle"+calificationOrientarseCalle);
+                        Log.e("calificationupdate"," entorno"+calificationValorarEntorno);
 
 
 

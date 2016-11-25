@@ -44,7 +44,7 @@
                 <TextView
 
                 android:layout_gravity="center_horizontal"
-                android:text="LIMITACIONES FISICAS"
+                android:text="LIMITACIONES FISICAS Y DE LA VIDA DIARIA"
                 android:textSize="25sp"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
@@ -85,7 +85,7 @@
                     android:layout_height="wrap_content"/>
                     <Spinner
                     android:id="@+id/spi_vision"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:prompt="@string/spinner_vision"/>
                     <TextView
@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"/>
                     <Spinner
                     android:id="@+id/spi_escritura"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:prompt="@string/spinner_vision"/>
                 <TextView
@@ -108,7 +108,7 @@
                     />
                     <Spinner
                     android:id="@+id/spi_dibujo"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:prompt="@string/spinner_vision"/>
 
@@ -158,7 +158,7 @@
                     <RadioButton
                         android:text="Ninguno"
                         android:id="@+id/ninguno_tareas_domesticas"
-                        android:checked="true"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -196,7 +196,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ninguna"
-                        android:checked="true"
+
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
 
                         />
@@ -237,7 +237,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ninguno"
-                        android:checked="true"
+
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
 
                         />
@@ -274,7 +274,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ninguno"
-                        android:checked="true"
+
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         />
 
@@ -313,7 +313,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ninguna"
-                        android:checked="true"
+
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         />
 
