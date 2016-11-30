@@ -10,9 +10,11 @@ import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.domain.Tip;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.NoteDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.PatientDao;
+import co.edu.unicauca.appterapiademencia.domain.dao.TipDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.UserDao;
 import co.edu.unicauca.appterapiademencia.events.PatientListEvent;
 import co.edu.unicauca.appterapiademencia.lib.EventBus;
@@ -26,6 +28,7 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     private GreenDaoHelper helper;
     private UserDao userDao;
     private PatientDao patientDao;
+    private TipDao tipDao;
     private boolean accessType;
     private QueryBuilder queryBuildergeneral;
 
@@ -33,6 +36,7 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
         this.helper = GreenDaoHelper.getInstance();
         this.userDao = helper.getUserDao();
         this.patientDao = helper.getPatientDao();
+        this.tipDao = helper.getTipDao();
         this.queryBuildergeneral = helper.getPatientDao().queryBuilder();
     }
 
@@ -84,7 +88,11 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     }
 
     @Override
-    public void getTips() {
+    public List<Tip> getTips() {
+        List<Tip> tipList;
+        queryBuildergeneral = tipDao.queryBuilder();
+        tipList = queryBuildergeneral.list();
+        return tipList;
 
     }
 

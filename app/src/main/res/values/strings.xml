@@ -66,6 +66,11 @@
     <string name="title_item_detail">Item Detail</string>
 
 
+    <!-- TIPS -->
+    <string name="txt_tips_supervisor">Aqui puedes Agregar Tips o recomendaciones para tus cuidadores..</string>
+    <string name="txt_tips_cuidador">Aqui puedes ver los Tips o recomendaciones que han dejado tus supervisores</string>
+
+
     <!-- PATIENT LIST -->
 
 
@@ -134,10 +139,12 @@
 
     <string name="vestimenta_otro">Ninguno de los Anteriores</string>
     <string name="vestimenta_sinproblemas">Independiente con su vestimenta y actividades personales</string>
-    <string name="vestimenta_actividadesdiarias">Le cuestan las actividades diarias como cocinar o manejar dinero</string>
-    <string name="vestimenta_seleccion">Necesita ayuda para usar el inodoro</string>
-    <string name="vestimenta_ayudavestirse">Olvida soltar el baño</string>
-    <string name="vestimenta_incapaz">Incontinencia urinaria Frecuente</string>
+    <string name="vestimenta_actividadesdiarias">Le cuestan Manejar dinero (monedas,billetes)</string>
+    <string name="vestimenta_abotonamiento">Fallos ocasionales en el abotonamiento</string>
+    <string name="vestimenta_seleccion">Necesita ayuda para seleccionar su vestimenta</string>
+    <string name="vestimenta_secuencia">Errores y Olvidos frecuentes en la secuencia de vestirse</string>
+    <string name="vestimenta_ayudavestirse">Necesita ayuda para vestirse</string>
+    <string name="vestimenta_incapaz">Incapaz de vestirse</string>
 
 
     <string name="lenguaje_otro">Ninguno de los Anteriores</string>
@@ -166,7 +173,14 @@
     <string name="estadoanimo_sonrisa">No ha sonreido en mucho tiempo</string>
 
 
+   <!--ADD TIP -->
 
+    <string name="txt_title_tip">Escriba el título del Tip o Recomendación</string>
+    <string name="txt_description_tip">Describalo mas detalladamente...</string>
+    <string name="txt_state_tip">Desea Activar las notificaciones para este Tip: NO</string>
+    <string name="txt_state_tip2">SI</string>
+    <string name="txt_save_tip">GUARDAR</string>
+    <string name="txt_cancel_tip">CANCELAR</string>
 
 
 

@@ -4,12 +4,16 @@ import android.content.Context;
 import android.util.Log;
 
 import org.greenrobot.greendao.query.QueryBuilder;
+import org.greenrobot.greendao.query.WhereCondition;
 
 import java.util.HashMap;
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.domain.BlessedIncapacity;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.domain.Scale;
+import co.edu.unicauca.appterapiademencia.domain.Sintoma;
+import co.edu.unicauca.appterapiademencia.domain.Tip;
 import co.edu.unicauca.appterapiademencia.domain.User;
 
 
@@ -77,6 +81,7 @@ public class GreenDaoHelper {
     public  SintomaDao getSintomaDao(){
         return daoSession.getSintomaDao();
     }
+    public ScaleDao getScaleDao(){return daoSession.getScaleDao();}
 
 
 
@@ -167,6 +172,75 @@ public class GreenDaoHelper {
         blesedone = blessedList.get(0);
         return blesedone;
     }
+
+
+
+
+    public Sintoma getSintoma(Long patientId,String escala, String indicador,String signo)
+    {
+        Sintoma sintoma;
+        List<Sintoma> sintomaList;
+
+
+        QueryBuilder<Sintoma> sintomaQueryBuilder = getSintomaDao().queryBuilder();
+        sintomaQueryBuilder.where(SintomaDao.Properties.PatientId.eq(patientId));
+        //sintomaQueryBuilder.where(SintomaDao.Properties.Test.eq(escala));
+        sintomaQueryBuilder.where(SintomaDao.Properties.Ambito.eq(indicador));
+        sintomaQueryBuilder.where(SintomaDao.Properties.Signo.eq(signo));
+        //sintomaQueryBuilder.join(ScaleDao.Properties.SintomaId,Sintoma.class,SintomaDao.Properties.Id);
+        //sintomaQueryBuilder.where(ScaleDao.Properties.Escalaname.eq(escala));
+        //sintomaQueryBuilder.orderDesc(SintomaDao.Properties.Id);
+        sintomaList = sintomaQueryBuilder.list();
+        sintoma = sintomaList.get(0);
+        Log.e("getsintoma",sintoma.getSigno());
+        return  sintoma;
+        //.and(SintomaDao.Properties.Test.eq(escala));
+
+    }
+
+
+    public Scale getScale(Long sintomaId, String escala)
+    {
+        Scale scale;
+        List<Scale> scaleList;
+        QueryBuilder<Scale> scaleQueryBuilder = getScaleDao().queryBuilder();
+        scaleQueryBuilder.where(ScaleDao.Properties.Escalaname.eq(escala));
+        scaleQueryBuilder.where(ScaleDao.Properties.SintomaId.eq(sintomaId));
+
+
+
+        scaleList = scaleQueryBuilder.list();
+        scale = scaleList.get(0);
+        Log.e("getscale",scale.getEscalaname());
+        Log.e("getscale",scale.getPuntaje());
+
+        return  scale;
+
+    }
+    public Tip getTip(Long idtip)
+    {
+        Tip tip;
+        List<Tip> tipList;
+        QueryBuilder<Tip> tipQueryBuilder = getTipDao().queryBuilder();
+        tipQueryBuilder.where(TipDao.Properties.Id.eq(idtip));
+        tipList = tipQueryBuilder.list();
+       tip =tipList.get(0);
+        return tip;
+    }
+
+
+
+
+
+
+    /*
+    public double getBlessedPart1Score(BlessedIncapacity blessedIncapacity){
+
+
+
+
+    }
+    */
 
 
 

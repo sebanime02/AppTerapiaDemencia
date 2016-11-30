@@ -44,6 +44,7 @@ import java.util.List;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.BlessedIncapacity;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.domain.Sintoma;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.PatientDao;
 import co.edu.unicauca.appterapiademencia.util.BitmapUtil;
@@ -140,13 +141,15 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 queryBuilder= patientDao.queryBuilder();
                 List<Patient> patientList=  queryBuilder.where(PatientDao.Properties.Identity.eq(identity)).limit(1).list();
                 Patient patientone= patientList.get(0);
-                daoHelper.getIncapacities();
+
+
+                //daoHelper.getIncapacities();
 
                 Log.e("Add patient","El id long devuelvo por dao es "+patientone.getId().toString());
                 //List<BlessedIncapacity> blessedList = queryBuilder.where(BlessedIncapacityDao.Properties.PatientId.eq(patientone.getId())).limit(1).list();
-                BlessedIncapacity blesedone = daoHelper.getBlessedbyid(patientone.getId());
+                //BlessedIncapacity blesedone = daoHelper.getBlessedbyid(patientone.getId());
                 Log.e("Add patient","El nombre del paciente devuelvo por dao es "+patientone.getName().toString());
-
+                Long patientid = patientone.getId();
                 actualizar = bundle.getString("actualizar");
                 datosa = new String[12];
                 datosb= new  String[8];
@@ -158,14 +161,73 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 datosa[3] = patientone.getDrawinglimitation().toString();
 
 
-                datosb[0]= blesedone.getTareasdomesticas().toString();
-                datosb[1]= blesedone.getPequenasdinero().toString();
-                datosb[2]= blesedone.getListascortas().toString();
-                datosb[3]= blesedone.getOrientarsecasa().toString();
-                datosb[4]= blesedone.getOrientarsecalle().toString();
-                datosb[5]= blesedone.getValorarentorno().toString();
-                datosb[6]= blesedone.getRecordarrecientes().toString();
-                datosb[7]= blesedone.getRememorarpasado().toString();
+                try{
+
+                    Sintoma tareasdomesticas = daoHelper.getSintoma(patientid,"Blessed","vestimenta","incapacidadtareasdomesticas");
+                    datosb[0]= daoHelper.getScale(tareasdomesticas.getId(),"Blessed").getPuntaje().toString();
+
+
+                }catch (Exception e){datosb[0]="0.0";}
+                try{
+                    Sintoma pequenasdinero = daoHelper.getSintoma(patientid,"Blessed","vestimenta","incapacidadpequenasdinero");
+                    datosb[1]=daoHelper.getScale(pequenasdinero.getId(),"Blessed").getPuntaje().toString();
+
+                }catch (Exception e){datosb[1]="0.0";}
+
+                try{
+                    Sintoma memorialistascortas = daoHelper.getSintoma(patientid,"Blessed","memoria","memorialistascortas");
+                    datosb[2]=daoHelper.getScale(memorialistascortas.getId(),"Blessed").getPuntaje().toString();
+
+                }catch (Exception e){datosb[2]="0.0";}
+                try{
+                    Sintoma orientacioncasa = daoHelper.getSintoma(patientid,"Blessed","orientacion","orientacioncasa");
+                    datosb[3]=daoHelper.getScale(orientacioncasa.getId(),"Blessed").getPuntaje().toString();
+
+
+                }catch (Exception e){datosb[3]="0.0";}
+                try{
+                    Sintoma orientacioncalle = daoHelper.getSintoma(patientid,"Blessed","orientacion","orientacioncalle");
+                    datosb[4]=daoHelper.getScale(orientacioncalle.getId(),"Blessed").getPuntaje().toString();
+
+
+                }catch (Exception e){datosb[4]="0.0";}
+                try{
+                    Sintoma orientacionentorno = daoHelper.getSintoma(patientid,"Blessed","orientacion","orientacionentorno");
+                    datosb[5]=  daoHelper.getScale(orientacionentorno.getId(),"Blessed").getPuntaje().toString();
+
+
+                }catch (Exception e){datosb[5]="0.0";}
+
+                try{
+                    Sintoma memoriaolvidosbenignos = daoHelper.getSintoma(patientid,"Blessed","memoria","memoriaolvidosbenignos");
+                    datosb[6]=  daoHelper.getScale(memoriaolvidosbenignos.getId(),"Blessed").getPuntaje().toString();
+
+
+
+                }catch (Exception e){datosb[6]="0.0";}
+
+                try{
+                    Sintoma tendenciarememorar = daoHelper.getSintoma(patientid,"Blessed","memoria","memoriatendenciarememorar");
+                    datosb[7]= daoHelper.getScale(tendenciarememorar.getId(),"Blessed").getPuntaje().toString();
+
+                }catch (Exception e){datosb[7]="0.0";}
+
+
+
+                Log.e("datosb0 ",""+datosb[0]);
+                Log.e("datosb1 ",""+datosb[1]);
+                Log.e("datosb2 ",""+datosb[2]);
+                Log.e("datosb3 ",""+datosb[3]);
+                Log.e("datosb4 ",""+datosb[4]);
+                Log.e("datosb5 ",""+datosb[5]);
+                Log.e("datosb6 ",""+datosb[6]);
+                Log.e("datosb7 ",""+datosb[7]);
+
+
+
+
+
+
 
 
 

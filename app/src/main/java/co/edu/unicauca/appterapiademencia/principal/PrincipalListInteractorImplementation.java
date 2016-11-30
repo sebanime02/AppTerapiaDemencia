@@ -8,6 +8,7 @@ import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.domain.Tip;
 
 /**
  * Created by ENF on 26/10/2016.
@@ -58,8 +59,8 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
     }
 
     @Override
-    public void getTips() {
-
+    public List<Tip> getTips() {
+        return principalListRepository.getTips();
     }
 
     @Override

@@ -78,11 +78,6 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
 
         Log.e("adapter information","Nombre"+nombre+" Foto :"+foto);
 
-        /*
-        if(foto.equals("")  ){
-            foto= fotodefault;
-        }
-        */
 
         try {
 

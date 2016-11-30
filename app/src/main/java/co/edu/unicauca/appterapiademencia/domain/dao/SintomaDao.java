@@ -29,13 +29,14 @@ public class SintomaDao extends AbstractDao<Sintoma, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property PatientId = new Property(1, long.class, "patientId", false, "PATIENT_ID");
-        public final static Property NoteId = new Property(2, long.class, "noteId", false, "NOTE_ID");
-        public final static Property Ambito = new Property(3, String.class, "ambito", false, "AMBITO");
-        public final static Property Selection = new Property(4, String.class, "selection", false, "SELECTION");
+        public final static Property Ambito = new Property(2, String.class, "ambito", false, "AMBITO");
+        public final static Property Signo = new Property(3, String.class, "signo", false, "SIGNO");
+        public final static Property Activo = new Property(4, Boolean.class, "activo", false, "ACTIVO");
     }
 
+    private DaoSession daoSession;
+
     private Query<Sintoma> patient_SintomaListQuery;
-    private Query<Sintoma> note_SintomaListQuery;
 
     public SintomaDao(DaoConfig config) {
         super(config);
@@ -43,6 +44,7 @@ public class SintomaDao extends AbstractDao<Sintoma, Long> {
     
     public SintomaDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
+        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -51,9 +53,9 @@ public class SintomaDao extends AbstractDao<Sintoma, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"SINTOMA\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"PATIENT_ID\" INTEGER NOT NULL ," + // 1: patientId
-                "\"NOTE_ID\" INTEGER NOT NULL ," + // 2: noteId
-                "\"AMBITO\" TEXT," + // 3: ambito
-                "\"SELECTION\" TEXT);"); // 4: selection
+                "\"AMBITO\" TEXT," + // 2: ambito
+                "\"SIGNO\" TEXT," + // 3: signo
+                "\"ACTIVO\" INTEGER);"); // 4: activo
     }
 
     /** Drops the underlying database table. */
@@ -71,16 +73,20 @@ public class SintomaDao extends AbstractDao<Sintoma, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindLong(2, entity.getPatientId());
-        stmt.bindLong(3, entity.getNoteId());
  
         String ambito = entity.getAmbito();
         if (ambito != null) {
-            stmt.bindString(4, ambito);
+            stmt.bindString(3, ambito);
         }
  
-        String selection = entity.getSelection();
-        if (selection != null) {
-            stmt.bindString(5, selection);
+        String signo = entity.getSigno();
+        if (signo != null) {
+            stmt.bindString(4, signo);
+        }
+ 
+        Boolean activo = entity.getActivo();
+        if (activo != null) {
+            stmt.bindLong(5, activo ? 1L: 0L);
         }
     }
 
@@ -93,17 +99,27 @@ public class SintomaDao extends AbstractDao<Sintoma, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindLong(2, entity.getPatientId());
-        stmt.bindLong(3, entity.getNoteId());
  
         String ambito = entity.getAmbito();
         if (ambito != null) {
-            stmt.bindString(4, ambito);
+            stmt.bindString(3, ambito);
         }
  
-        String selection = entity.getSelection();
-        if (selection != null) {
-            stmt.bindString(5, selection);
+        String signo = entity.getSigno();
+        if (signo != null) {
+            stmt.bindString(4, signo);
         }
+ 
+        Boolean activo = entity.getActivo();
+        if (activo != null) {
+            stmt.bindLong(5, activo ? 1L: 0L);
+        }
+    }
+
+    @Override
+    protected final void attachEntity(Sintoma entity) {
+        super.attachEntity(entity);
+        entity.__setDaoSession(daoSession);
     }
 
     @Override
@@ -116,9 +132,9 @@ public class SintomaDao extends AbstractDao<Sintoma, Long> {
         Sintoma entity = new Sintoma( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getLong(offset + 1), // patientId
-            cursor.getLong(offset + 2), // noteId
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // ambito
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // selection
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // ambito
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // signo
+            cursor.isNull(offset + 4) ? null : cursor.getShort(offset + 4) != 0 // activo
         );
         return entity;
     }
@@ -127,9 +143,9 @@ public class SintomaDao extends AbstractDao<Sintoma, Long> {
     public void readEntity(Cursor cursor, Sintoma entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setPatientId(cursor.getLong(offset + 1));
-        entity.setNoteId(cursor.getLong(offset + 2));
-        entity.setAmbito(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setSelection(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setAmbito(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setSigno(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setActivo(cursor.isNull(offset + 4) ? null : cursor.getShort(offset + 4) != 0);
      }
     
     @Override
@@ -168,20 +184,6 @@ public class SintomaDao extends AbstractDao<Sintoma, Long> {
         }
         Query<Sintoma> query = patient_SintomaListQuery.forCurrentThread();
         query.setParameter(0, patientId);
-        return query.list();
-    }
-
-    /** Internal query to resolve the "sintomaList" to-many relationship of Note. */
-    public List<Sintoma> _queryNote_SintomaList(long noteId) {
-        synchronized (this) {
-            if (note_SintomaListQuery == null) {
-                QueryBuilder<Sintoma> queryBuilder = queryBuilder();
-                queryBuilder.where(Properties.NoteId.eq(null));
-                note_SintomaListQuery = queryBuilder.build();
-            }
-        }
-        Query<Sintoma> query = note_SintomaListQuery.forCurrentThread();
-        query.setParameter(0, noteId);
         return query.list();
     }
 

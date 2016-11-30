@@ -19,6 +19,7 @@ import org.greenrobot.greendao.query.QueryBuilder;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.PatientListAdapter;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.AddPatient2Activity;
 import co.edu.unicauca.appterapiademencia.util.CircleTransform;
 
@@ -48,6 +49,8 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private RecyclerView recycler;
     private RecyclerView.LayoutManager LManager;
     private  QueryBuilder queryBuildergeneral;
+    private double blessedScore;
+    private GreenDaoHelper daoHelper;
 
 
     public PatientProfileFragment(){
@@ -59,6 +62,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         */
         this.txtAge = txtAge;
         this.txtName = txtName;
+        daoHelper = GreenDaoHelper.getInstance();
 
 
 
@@ -263,5 +267,21 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         /*List<Patient> patientList = queryBuildergeneral.where(PatientDao.Properties.Identity.eq(id)).limit(1).list();
         Log.d("Repositorio","devolvio el nombre: "+patientList.get(0).getName());
          showPatientData(patientList.get(0)); */
+    }
+
+    @Override
+    public void getBlessedScore(Long id) {
+        //TRES PARTES
+
+        //1. AVD
+
+
+        //2. ALIMENTACION
+
+
+        //3. CAMBIOS DE COMPORTAMIENTO
+
+
+
     }
 }

@@ -111,18 +111,35 @@ public class Main {
         note.addBooleanProperty("state"); //Notas no aprobadas
 
 
-        //SINTOMAS
+        //SINTOMAS O SIGNOS
         Entity sintoma = schema.addEntity("Sintoma");
         sintoma.addIdProperty().autoincrement().primaryKey();
 
         Property patientIdsintoma = sintoma.addLongProperty("patientId").notNull().getProperty();
         patient.addToMany(sintoma,patientIdsintoma);
 
-        Property noteIdSintoma = sintoma.addLongProperty("noteId").notNull().getProperty();
-        note.addToMany(sintoma,noteIdSintoma);
+        /*Property noteIdSintoma = sintoma.addLongProperty("noteId").notNull().getProperty();
+        note.addToMany(sintoma,noteIdSintoma);*/
 
-        sintoma.addStringProperty("ambito"); //Tipo de Evento o Sintoma
-        sintoma.addStringProperty("selection"); //Evento especifico
+        sintoma.addStringProperty("ambito"); //Indicador
+        sintoma.addStringProperty("signo"); //Evento especifico
+        sintoma.addBooleanProperty("activo");//1 activo, 0 inactivo
+        //sintoma.addLongProperty("takegroup");
+        //sintoma.addStringProperty("test");
+        //sintoma.addStringProperty("puntaje");
+
+
+        //CALIFICATION
+        Entity escala = schema.addEntity("Scale");
+        escala.addIdProperty().autoincrement().primaryKey();
+
+        Property sintomaIdescala = escala.addLongProperty("sintomaId").notNull().getProperty();
+        sintoma.addToMany(escala,sintomaIdescala);
+
+        escala.addStringProperty("escalaname");
+        escala.addStringProperty("puntaje");
+
+
 
         //TIP TABLE
         Entity tip = schema.addEntity("Tip");
@@ -135,7 +152,7 @@ public class Main {
 
         tip.addStringProperty("title");
         tip.addStringProperty("description");
-        tip.addDateProperty("date");
+        tip.addBooleanProperty("active");
 
 
         //COGNITIVE EXERCISE TABLE

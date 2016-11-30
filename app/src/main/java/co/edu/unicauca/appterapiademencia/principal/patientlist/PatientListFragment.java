@@ -23,6 +23,7 @@ import java.util.List;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.PatientListAdapter;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.principal.tips.AddTipActivity;
 
 /**
  * Created by ENF on 25/10/2016.
@@ -43,7 +44,8 @@ public class PatientListFragment extends Fragment implements PatientListView {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
 
         View rootView = inflater.inflate(R.layout.fragment_listpatients, container, false);
         floatingActionButton = (FloatingActionButton) rootView.findViewById(R.id.add_patient);
@@ -61,18 +63,12 @@ public class PatientListFragment extends Fragment implements PatientListView {
         registerForContextMenu(recycler);
         callListenerText();
 
-
-
-
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addPatient();
             }
         });
-
-
-
         return rootView;
     }
 
@@ -83,11 +79,11 @@ public class PatientListFragment extends Fragment implements PatientListView {
         patientListPresenter = new PatientListPresenterImplementation(this);
         patientListPresenter.onCreate();
 
-
     }
 
     @Override
-    public void onResume() {
+    public void onResume()
+    {
         super.onResume();
         list.clear();
         getPatients();
@@ -113,7 +109,7 @@ public class PatientListFragment extends Fragment implements PatientListView {
 
     @Override
     public void addPatient() {
-        startActivity(new Intent(getActivity(), AddPatientActivity.class));
+        startActivity(new Intent(getActivity(), AddTipActivity.class));
     }
 
     @Override

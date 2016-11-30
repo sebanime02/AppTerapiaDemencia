@@ -15,7 +15,7 @@ public class Tip {
     private long userId;
     private String title;
     private String description;
-    private java.util.Date date;
+    private Boolean active;
 
     @Generated
     public Tip() {
@@ -26,12 +26,12 @@ public class Tip {
     }
 
     @Generated
-    public Tip(Long id, long userId, String title, String description, java.util.Date date) {
+    public Tip(Long id, long userId, String title, String description, Boolean active) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;
-        this.date = date;
+        this.active = active;
     }
 
     public Long getId() {
@@ -66,12 +66,12 @@ public class Tip {
         this.description = description;
     }
 
-    public java.util.Date getDate() {
-        return date;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setDate(java.util.Date date) {
-        this.date = date;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
 }

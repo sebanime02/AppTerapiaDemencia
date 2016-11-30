@@ -6,6 +6,7 @@ import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.domain.Tip;
 
 /**
  * Created by ENF on 26/10/2016.
@@ -20,7 +21,7 @@ public interface PrincipalListRepository {
     void delete(Patient patient);
 
     void insertTip();
-    void getTips();
+    List<Tip> getTips();
 
     void getNotifications();
     void aprobeNotifications(List<Annotation> annotationsList);

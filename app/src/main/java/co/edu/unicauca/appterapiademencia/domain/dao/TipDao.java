@@ -31,7 +31,7 @@ public class TipDao extends AbstractDao<Tip, Long> {
         public final static Property UserId = new Property(1, long.class, "userId", false, "USER_ID");
         public final static Property Title = new Property(2, String.class, "title", false, "TITLE");
         public final static Property Description = new Property(3, String.class, "description", false, "DESCRIPTION");
-        public final static Property Date = new Property(4, java.util.Date.class, "date", false, "DATE");
+        public final static Property Active = new Property(4, Boolean.class, "active", false, "ACTIVE");
     }
 
     private Query<Tip> user_TipListQuery;
@@ -52,7 +52,7 @@ public class TipDao extends AbstractDao<Tip, Long> {
                 "\"USER_ID\" INTEGER NOT NULL ," + // 1: userId
                 "\"TITLE\" TEXT," + // 2: title
                 "\"DESCRIPTION\" TEXT," + // 3: description
-                "\"DATE\" INTEGER);"); // 4: date
+                "\"ACTIVE\" INTEGER);"); // 4: active
     }
 
     /** Drops the underlying database table. */
@@ -81,9 +81,9 @@ public class TipDao extends AbstractDao<Tip, Long> {
             stmt.bindString(4, description);
         }
  
-        java.util.Date date = entity.getDate();
-        if (date != null) {
-            stmt.bindLong(5, date.getTime());
+        Boolean active = entity.getActive();
+        if (active != null) {
+            stmt.bindLong(5, active ? 1L: 0L);
         }
     }
 
@@ -107,9 +107,9 @@ public class TipDao extends AbstractDao<Tip, Long> {
             stmt.bindString(4, description);
         }
  
-        java.util.Date date = entity.getDate();
-        if (date != null) {
-            stmt.bindLong(5, date.getTime());
+        Boolean active = entity.getActive();
+        if (active != null) {
+            stmt.bindLong(5, active ? 1L: 0L);
         }
     }
 
@@ -125,7 +125,7 @@ public class TipDao extends AbstractDao<Tip, Long> {
             cursor.getLong(offset + 1), // userId
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // title
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // description
-            cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)) // date
+            cursor.isNull(offset + 4) ? null : cursor.getShort(offset + 4) != 0 // active
         );
         return entity;
     }
@@ -136,7 +136,7 @@ public class TipDao extends AbstractDao<Tip, Long> {
         entity.setUserId(cursor.getLong(offset + 1));
         entity.setTitle(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setDescription(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setDate(cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)));
+        entity.setActive(cursor.isNull(offset + 4) ? null : cursor.getShort(offset + 4) != 0);
      }
     
     @Override

@@ -41,8 +41,6 @@ public class NoteDao extends AbstractDao<Note, Long> {
         public final static Property State = new Property(11, Boolean.class, "state", false, "STATE");
     }
 
-    private DaoSession daoSession;
-
     private Query<Note> patient_NoteListQuery;
     private Query<Note> user_NoteListQuery;
 
@@ -52,7 +50,6 @@ public class NoteDao extends AbstractDao<Note, Long> {
     
     public NoteDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
-        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -183,12 +180,6 @@ public class NoteDao extends AbstractDao<Note, Long> {
         if (state != null) {
             stmt.bindLong(12, state ? 1L: 0L);
         }
-    }
-
-    @Override
-    protected final void attachEntity(Note entity) {
-        super.attachEntity(entity);
-        entity.__setDaoSession(daoSession);
     }
 
     @Override

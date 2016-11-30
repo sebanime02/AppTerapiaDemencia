@@ -1,17 +1,16 @@
 package co.edu.unicauca.appterapiademencia.domain.dao;
 
+import java.util.List;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.Property;
+import org.greenrobot.greendao.internal.DaoConfig;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.database.DatabaseStatement;
-import org.greenrobot.greendao.internal.DaoConfig;
 import org.greenrobot.greendao.query.Query;
 import org.greenrobot.greendao.query.QueryBuilder;
-
-import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.domain.Recommendation;
 
@@ -50,6 +49,7 @@ public class RecommendationDao extends AbstractDao<Recommendation, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"RECOMMENDATION\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"PATIENT_ID\" INTEGER NOT NULL ," + // 1: patientId
+
                 "\"EXERCISE_ID\" INTEGER NOT NULL );"); // 3: exerciseId
     }
 

@@ -1,0 +1,144 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".principal.tips.AddTipActivity"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.design.widget.CoordinatorLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:elevation="4dp"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/ToolbarTheme" />
+
+            <LinearLayout
+                android:id="@+id/container_SingUp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                >
+
+                <EditText
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/small_text_size"
+                    android:fontFamily="sans-serif"
+                    android:id="@+id/txt_title"
+                    android:inputType="text"
+                    android:hint="@string/txt_title_tip"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    />
+
+                <EditText
+                    android:lines="5"
+                    android:gravity="top|left"
+                    android:inputType="textMultiLine"
+                    android:scrollHorizontally="false"
+                    android:id="@+id/txt_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/gray_soft"
+                    android:hint="@string/txt_description_tip"
+
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/separator_line"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@color/gray_soft"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_state_tip"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        />
+
+                <Switch
+                    android:id="@+id/switch_notifications"
+                    android:checked="false"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                    <TextView
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_state_tip2"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_width="match_parent"
+                    android:weightSum="8"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+
+                        <Button
+                        android:id="@+id/btn_cancelar"
+                        android:background="@color/colorPrimary"
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:visibility="invisible"
+
+                            />
+
+                        <Button
+                            android:id="@+id/btn_guardar_tip"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:background="@color/colorAccent"
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_save_tip"
+                            android:textColor="@color/white"
+
+
+                            />
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/separator_line"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@color/gray_soft"
+                    />
+
+
+                </LinearLayout>
+            </android.support.design.widget.CoordinatorLayout>
+        </LinearLayout>
+</ScrollView>

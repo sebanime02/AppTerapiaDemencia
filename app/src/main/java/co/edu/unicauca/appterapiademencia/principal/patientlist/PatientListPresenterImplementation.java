@@ -20,7 +20,8 @@ public class PatientListPresenterImplementation implements PatientListPresenter 
     private PrincipalListInteractor patienListInteractor;
     private GreenRobotEventBus eventBus;
 
-    public PatientListPresenterImplementation(PatientListView patientListView){
+    public PatientListPresenterImplementation(PatientListView patientListView)
+    {
         this.patientListView = patientListView;
         this.patienListInteractor = new PrincipalListInteractorImplementation();
         this.eventBus = GreenRobotEventBus.getInstance();

@@ -31,10 +31,12 @@ import java.util.Locale;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.domain.Scale;
 import co.edu.unicauca.appterapiademencia.domain.Sintoma;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.NoteDao;
+import co.edu.unicauca.appterapiademencia.domain.dao.ScaleDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.SintomaDao;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientProfileActivity;
 
@@ -55,14 +57,17 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private RadioGroup rdgGrupo,rdgMovilidad,rdgAlimentacion,rdgCambioPersonalidad,rdgOrientacion,rdgLenguaje,rdgMemoria,rdgHigiene,rdgVestimenta,rdgAnimo;
     private CheckBox rdgMovilidadOtro,rdgMovilidadSitiosLejanos,rdgMovilidadCaminar,rdgMovilidadSentarse,rdgMovilidadCabeza;
     private CheckBox rdgHigieneAyudaBanarse,rdgHigieneSoltarBano,rdgHigieneAyudaInodoro,rdgHigieneIncontinensiaUrinaria,rdgHigieneIncontinensiaFecal;
-    private CheckBox rdgVestimentaActividades,rdgVestimentaSeleccionar,rdgVestimentaAyudaVestirse,rdgVestimentaIncapaz;
+    private CheckBox rdgVestimentaActividades,rdgVestimentaFallosOcasionales,rdgVestimentaSeleccionar,rdgVestimentaSecuencia,rdgVestimentaAyudaVestirse,rdgVestimentaIncapaz;
     private CheckBox rdgMemoriaTendenciaRememorar,rdgMemoriaOlvidosBenignos;
     private CheckBox rdgLenguajeLimitado,rdgLenguajePalabra;
     private CheckBox rdgAlimentacionCuchara,rdgAlimentacionSolidos,rdgAlimentacionDependiente;
     private CheckBox rdgAnimoSonrisa;
     private ArrayList<String> sintomasList;
+    private ArrayList<String> nameTestList;
+    private ArrayList<String> puntajeList;
     private RadioButton rdgTardia;
     private NoteDao noteDao;
+    private ScaleDao scaleDao;
     private Long cedula;
     private GreenDaoHelper helper;
     private Long patientid;
@@ -84,12 +89,23 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private SintomaDao sintomaDao;
     private int var_tipo;
     private String var_seleccion;
+    private String nameTest;
+    private String puntaje;
+    private String nameTest2;
+    private String puntaje2;
+    private String nameTest3;
+    private String puntaje3;
+    private String var_seleccion2;
+    private String var_seleccion3;
 
     public AddNoteActivity(){
         this.helper = GreenDaoHelper.getInstance();
         this.noteDao = helper.getNoteDao();
+        this.scaleDao = helper.getScaleDao();
         this.sintomaDao= helper.getSintomaDao();
         this.sintomasList = new ArrayList<String>();
+        this.puntajeList = new ArrayList<String>();
+        this.nameTestList = new ArrayList<String>();
     }
 
 
@@ -99,6 +115,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.add_note);
         Bundle bundl=getIntent().getExtras();
         sintomasList.clear();
+        puntajeList.clear();
+        nameTestList.clear();
         description= (EditText) findViewById(R.id.txt_description);
 
         movility= (ImageButton) findViewById(R.id.btn_movility);
@@ -156,7 +174,9 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         //VESTIMENTA
 
         rdgVestimentaActividades = (CheckBox) findViewById(R.id.rdgVestimentaActividades);
+        rdgVestimentaFallosOcasionales = (CheckBox) findViewById(R.id.rdgVestimentaFallosOcasionales);
         rdgVestimentaAyudaVestirse = (CheckBox) findViewById(R.id.rdgVestimentaAyudaVestirse);
+        rdgVestimentaSecuencia = (CheckBox) findViewById(R.id.rdgVestimentaSecuenciaVestirse);
         rdgVestimentaIncapaz = (CheckBox) findViewById(R.id.rdgVestimentaIncapaz);
 
         //MEMORIA
@@ -350,12 +370,21 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
             Note note = new Note(null, patientid, userId, var_tipo, var_fecha, var_hora, var_description,election, var_seleccion, var_owner, var_late, var_state);
             noteDao.insert(note);
-            if(note!=null){
+            if(note!=null)
+            {
                 for(int i=0;i<=sintomasList.size();i++)
                 {
-                    Sintoma sintoma = new Sintoma(null,patientid, userId, election,sintomasList.get(i));
+                    Sintoma sintoma = new Sintoma(null,patientid, election, sintomasList.get(i),true);
+                    Scale scale = new Scale(null,sintoma.getId(),nameTestList.get(i),puntajeList.get(i));
                     sintomaDao.insert(sintoma);
+                    scaleDao.insert(scale);
+
                     Log.e("sintomadao nuevo",sintoma.getId()+"");
+                    Log.e("sintomadao nuevo",sintoma.getAmbito()+"");
+                    Log.e("sintomadao nuevo",sintoma.getSigno()+"");
+                    Log.e("sintomadao nuevo"," TEST:"+sintoma.getScaleList().get(0).getEscalaname());
+
+
                 }
             }
 
@@ -403,7 +432,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_movility:
-                election = "movility";
+                election = "movilidad";
                 var_tipo=1;
                 setDefaultImageButton();
                 rdgMovilidad.setVisibility(View.VISIBLE);
@@ -412,7 +441,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                 break;
             case R.id.btn_eating:
-                election="eating";
+                election="alimentacion";
                 var_tipo=1;
                 setDefaultImageButton();
                 rdgAlimentacion.setVisibility(View.VISIBLE);
@@ -421,7 +450,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                 break;
             case R.id.btn_fall:
-                election="fall";
+                election="caidas";
                 var_tipo=0;
                 setDefaultImageButton();
                 //txt_adverso.setVisibility(View.GONE);
@@ -431,7 +460,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 var_color= "centinela";
                 break;
             case R.id.btn_language:
-                election="language";
+                election="lenguaje";
                 var_tipo=1;
                 setDefaultImageButton();
                 rdgLenguaje.setVisibility(View.VISIBLE);
@@ -470,7 +499,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 vestimenta.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 break;
             case R.id.btn_changebehaviour:
-                election="changebehaviour";
+                election="cambiocomportamiento";
                 var_tipo=1;
                 setDefaultImageButton();
 
@@ -478,7 +507,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 changeBehaviour.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 break;
             case R.id.btn_memory:
-                election="memory";
+                election="memoria";
                 var_tipo=1;
                 setDefaultImageButton();
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/changebehavior72px").toString();
@@ -510,13 +539,13 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         memoria.setBackgroundColor(getResources().getColor(R.color.material_teal));
 
 
-        rdgVestimenta.setVisibility(View.VISIBLE);
-        rdgAlimentacion.setVisibility(View.VISIBLE);
-        rdgLenguaje.setVisibility(View.VISIBLE);
-        rdgHigiene.setVisibility(View.VISIBLE);
-        rdgCambioPersonalidad.setVisibility(View.VISIBLE);
-        rdgMemoria.setVisibility(View.VISIBLE);
-        rdgMovilidad.setVisibility(View.VISIBLE);
+        rdgVestimenta.setVisibility(View.INVISIBLE);
+        rdgAlimentacion.setVisibility(View.INVISIBLE);
+        rdgLenguaje.setVisibility(View.INVISIBLE);
+        rdgHigiene.setVisibility(View.INVISIBLE);
+        rdgCambioPersonalidad.setVisibility(View.INVISIBLE);
+        rdgMemoria.setVisibility(View.INVISIBLE);
+        rdgMovilidad.setVisibility(View.INVISIBLE);
 
 
 
@@ -533,7 +562,9 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgMovilidadSentarse.setOnCheckedChangeListener(this);
         rdgMovilidadCabeza.setOnCheckedChangeListener(this);
         rdgVestimentaActividades.setOnCheckedChangeListener(this);
+        rdgVestimentaFallosOcasionales.setOnClickListener(this);
         rdgVestimentaSeleccionar.setOnCheckedChangeListener(this);
+        rdgVestimentaSecuencia.setOnClickListener(this);
         rdgVestimentaAyudaVestirse.setOnCheckedChangeListener(this);
         rdgVestimentaIncapaz.setOnCheckedChangeListener(this);
         rdgMemoriaTendenciaRememorar.setOnCheckedChangeListener(this);
@@ -543,6 +574,9 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgAlimentacionCuchara.setOnCheckedChangeListener(this);
         rdgAlimentacionSolidos.setOnCheckedChangeListener(this);
         rdgAlimentacionDependiente.setOnCheckedChangeListener(this);
+        sintomasList.clear();
+        nameTestList.clear();
+        puntajeList.clear();
 
 
 
@@ -552,31 +586,69 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+        int separator;
         switch(compoundButton.getId()){
+
             //Higiene
             case R.id.rdgHigieneAyudaBanarse:
                 var_seleccion="higieneayudabanarse";
+
+                nameTest = "FAST";
+                puntaje = "6b";
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 //do stuff
                 break;
             case R.id.rdgHigieneAyudaInodoro:
                 var_seleccion="higieneayudainodoro";
+                nameTest = "FAST";
+                puntaje = "6c";
+
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 //do stuff
                 break;
             case R.id.rdgHigieneSoltarBano:
                 var_seleccion="higieneayudasoltarbano";
+                nameTest = "FAST";
+                puntaje = "6c";
                 sintomasList.add(var_seleccion);
+                sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(nameTest2);
+                puntajeList.add(puntaje);
+                puntajeList.add(puntaje2);
                 //do stuff
                 break;
             case R.id.rdgHigieneIncontinensiaUrinaria:
                 var_seleccion="higieneayudaincontinensiaurinaria";
+                nameTest = "FAST";
+                puntaje = "6d";
+                nameTest2="Blessed";
+                puntaje2 ="3";
                 sintomasList.add(var_seleccion);
+                sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(nameTest2);
+                puntajeList.add(puntaje);
+                puntajeList.add(puntaje2);
                 //do stuff
                 break;
             case R.id.rdgHigieneIncontinensiaFecal:
                 var_seleccion="higieneayudaincontinensiafecal";
+                nameTest = "FAST";
+                puntaje = "6e";
+                nameTest2="Blessed";
+                puntaje2 ="2";
                 sintomasList.add(var_seleccion);
+                sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
+                nameTestList.add(nameTest2);
+                puntajeList.add(puntaje2);
                 //do stuff
                 break;
 
@@ -585,22 +657,38 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             //Movilidad
             case R.id.rdgMovilidadSitiosLejanos:
                 var_seleccion="movilidadsitioslejanos";
+                nameTest = "FAST";
+                puntaje = "3";
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 //do stuff
                 break;
             case R.id.rdgMovilidadCaminar:
                 var_seleccion="movilidadcaminar";
-               sintomasList.add(var_seleccion);
+                nameTest = "FAST";
+                puntaje = "7c";
+                sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 //do stuff
                 break;
             case R.id.rdgMovilidadSentarse:
                 var_seleccion="movilidadsentarse";
+                nameTest = "FAST";
+                puntaje = "7d";
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 //do stuff
                 break;
             case R.id.rdgMovilidadCabeza:
                 var_seleccion="movilidadcabeza";
+                nameTest = "FAST";
+                puntaje = "7e";
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 //do stuff
                 break;
 
@@ -608,41 +696,113 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
             case R.id.rdgVestimentaActividades:
                 var_seleccion="vestimentaactividades";
+                var_seleccion2="incapacidadtareasdomesticas";
+                var_seleccion2="incapacidadpequenasdinero";
+                nameTest = "FAST";
+                puntaje = "4";
+                nameTest2="Blessed";
+                puntaje2="1";
+                nameTest3="Blessed";
+                puntaje3="2";
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
+
+                sintomasList.add(var_seleccion2);
+                nameTestList.add(nameTest2);
+                puntajeList.add(puntaje2);
+
+                sintomasList.add(var_seleccion3);
+                nameTestList.add(nameTest3);
+                puntajeList.add(puntaje3);
+
                 break;
+
+            case R.id.rdgVestimentaFallosOcasionales:
+                var_seleccion="vestimentafallosocasionales";
+                nameTest = "Blessed";
+                puntaje = "1";
+                sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
+                break;
+
             case R.id.rdgVestimentaSeleccionar:
                 var_seleccion="vestimentaseleccionar";
+                nameTest = "FAST";
+                puntaje = "5";
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 break;
+
+            case R.id.rdgVestimentaSecuenciaVestirse:
+                var_seleccion="vestimentasecuencia";
+                nameTest = "Blessed";
+                puntaje = "3";
+                sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
+                break;
+
             case R.id.rdgVestimentaAyudaVestirse:
                 var_seleccion="vestimentaayudavestirse";
+                nameTest = "FAST";
+                puntaje = "6a";
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 break;
             case R.id.rdgVestimentaIncapaz:
                 var_seleccion="vestimentaincapaz";
+                nameTest = "Blessed";
+                puntaje = "3";
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 break;
 
             //LENGUAJE
 
             case R.id.rdgLenguajeLimitado:
                 var_seleccion="lenguajelimitado";
+                nameTest = "FAST";
+                puntaje = "7a";
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 break;
             case R.id.rdgLenguajePalabra:
                 var_seleccion="lenguajepalabra";
+                nameTest = "FAST";
+                puntaje = "7b";
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 break;
 
             //MEMORIA
 
             case R.id.rdgMemoriaTendenciaRememorar:
                 var_seleccion="memoriatendenciarememorar";
+                nameTest = "Blessed";
+                puntaje = "1";
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 break;
             case R.id.rdgMemoriaOlvidosBenignos:
                 var_seleccion="memoriaolvidosbenignos";
+                nameTest = "FAST";
+                puntaje = "2";
+                nameTest2 ="Blessed";
+                puntaje2="1";
                 sintomasList.add(var_seleccion);
+                sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
+                nameTestList.add(nameTest2);
+                puntajeList.add(puntaje2);
                 break;
 
             //ALIMENTACION
@@ -650,22 +810,38 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
             case R.id.rdgAlimentacionCuchara:
                 var_seleccion="alimentacioncuchara";
+                nameTest = "Blessed";
+                puntaje = "1";
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 break;
             case R.id.rdgAlimentacionSolidos:
                 var_seleccion="alimentacionsolidos";
+                nameTest = "Blessed";
+                puntaje = "2";
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 break;
             case R.id.rdgAlimentacionDependiente:
                 var_seleccion="alimentaciondependientes";
+                nameTest = "Blessed";
+                puntaje = "3";
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 break;
 
 
             //ESTADO DE ANIMO
             case R.id.rdgAnimoSonrisa:
                 var_seleccion="animosonrisa";
+                nameTest = "FAST";
+                puntaje = "7e";
                 sintomasList.add(var_seleccion);
+                nameTestList.add(nameTest);
+                puntajeList.add(puntaje);
                 break;
 
 

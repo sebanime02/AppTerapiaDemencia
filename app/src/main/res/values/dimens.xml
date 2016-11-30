@@ -51,4 +51,7 @@
     <dimen name="height_type_image">80dp</dimen>
     <dimen name="separator_line">2dp</dimen>
 
+    <!--TIP LIST -->
+    <dimen name="square_state">20dp</dimen>
+
 </resources>
