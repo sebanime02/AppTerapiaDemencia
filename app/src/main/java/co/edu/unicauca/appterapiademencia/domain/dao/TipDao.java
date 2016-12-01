@@ -32,6 +32,7 @@ public class TipDao extends AbstractDao<Tip, Long> {
         public final static Property Title = new Property(2, String.class, "title", false, "TITLE");
         public final static Property Description = new Property(3, String.class, "description", false, "DESCRIPTION");
         public final static Property Active = new Property(4, Boolean.class, "active", false, "ACTIVE");
+        public final static Property Favorite = new Property(5, Boolean.class, "favorite", false, "FAVORITE");
     }
 
     private Query<Tip> user_TipListQuery;
@@ -52,7 +53,8 @@ public class TipDao extends AbstractDao<Tip, Long> {
                 "\"USER_ID\" INTEGER NOT NULL ," + // 1: userId
                 "\"TITLE\" TEXT," + // 2: title
                 "\"DESCRIPTION\" TEXT," + // 3: description
-                "\"ACTIVE\" INTEGER);"); // 4: active
+                "\"ACTIVE\" INTEGER," + // 4: active
+                "\"FAVORITE\" INTEGER);"); // 5: favorite
     }
 
     /** Drops the underlying database table. */
@@ -85,6 +87,11 @@ public class TipDao extends AbstractDao<Tip, Long> {
         if (active != null) {
             stmt.bindLong(5, active ? 1L: 0L);
         }
+ 
+        Boolean favorite = entity.getFavorite();
+        if (favorite != null) {
+            stmt.bindLong(6, favorite ? 1L: 0L);
+        }
     }
 
     @Override
@@ -111,6 +118,11 @@ public class TipDao extends AbstractDao<Tip, Long> {
         if (active != null) {
             stmt.bindLong(5, active ? 1L: 0L);
         }
+ 
+        Boolean favorite = entity.getFavorite();
+        if (favorite != null) {
+            stmt.bindLong(6, favorite ? 1L: 0L);
+        }
     }
 
     @Override
@@ -125,7 +137,8 @@ public class TipDao extends AbstractDao<Tip, Long> {
             cursor.getLong(offset + 1), // userId
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // title
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // description
-            cursor.isNull(offset + 4) ? null : cursor.getShort(offset + 4) != 0 // active
+            cursor.isNull(offset + 4) ? null : cursor.getShort(offset + 4) != 0, // active
+            cursor.isNull(offset + 5) ? null : cursor.getShort(offset + 5) != 0 // favorite
         );
         return entity;
     }
@@ -137,6 +150,7 @@ public class TipDao extends AbstractDao<Tip, Long> {
         entity.setTitle(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setDescription(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setActive(cursor.isNull(offset + 4) ? null : cursor.getShort(offset + 4) != 0);
+        entity.setFavorite(cursor.isNull(offset + 5) ? null : cursor.getShort(offset + 5) != 0);
      }
     
     @Override

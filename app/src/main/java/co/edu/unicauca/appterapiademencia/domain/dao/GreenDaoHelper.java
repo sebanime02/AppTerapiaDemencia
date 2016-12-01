@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import org.greenrobot.greendao.query.QueryBuilder;
-import org.greenrobot.greendao.query.WhereCondition;
 
 import java.util.HashMap;
 import java.util.List;
@@ -223,32 +222,19 @@ public class GreenDaoHelper {
         List<Tip> tipList;
         QueryBuilder<Tip> tipQueryBuilder = getTipDao().queryBuilder();
         tipQueryBuilder.where(TipDao.Properties.Id.eq(idtip));
-        tipList = tipQueryBuilder.list();
-       tip =tipList.get(0);
+        tipList = tipQueryBuilder.limit(1).list();
+        tip =tipList.get(0);
         return tip;
     }
 
-
-
-
-
-
-    /*
-    public double getBlessedPart1Score(BlessedIncapacity blessedIncapacity){
-
-
-
-
+    public List<Tip> getTipsNotifications()
+    {
+        List<Tip> tipList;
+        QueryBuilder<Tip> tipQueryBuilder = getTipDao().queryBuilder();
+        tipQueryBuilder.where(TipDao.Properties.Active.eq(true));
+        tipList = tipQueryBuilder.limit(1).list();
+        return  tipList;
     }
-    */
-
-
-
-
-
-
-
-
 
 
 }

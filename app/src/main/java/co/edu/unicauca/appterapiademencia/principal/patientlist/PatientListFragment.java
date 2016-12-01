@@ -109,7 +109,7 @@ public class PatientListFragment extends Fragment implements PatientListView {
 
     @Override
     public void addPatient() {
-        startActivity(new Intent(getActivity(), AddTipActivity.class));
+        startActivity(new Intent(getActivity(), AddPatientActivity.class));
     }
 
     @Override

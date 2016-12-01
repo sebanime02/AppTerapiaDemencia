@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:hardwareAccelerated="false"
@@ -58,6 +59,18 @@
             android:name=".principal.patientlist.AddPatient2Activity"
             android:label="Agregar Paciente"
             android:parentActivityName=".principal.patientlist.AddPatientActivity"
+
+            />
+        <activity
+            android:name=".principal.tips.AddTipActivity"
+            android:label="Agregar Paciente"
+            android:parentActivityName=".principal.MainActivity"
+
+            />
+        <activity
+            android:name=".principal.tips.TipDetailActivity"
+            android:label="Agregar Paciente"
+            android:parentActivityName=".principal.MainActivity"
 
             />
         <activity

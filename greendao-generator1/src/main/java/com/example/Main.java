@@ -143,7 +143,6 @@ public class Main {
 
         //TIP TABLE
         Entity tip = schema.addEntity("Tip");
-
         tip.addIdProperty().autoincrement();
 
         Property userIdtip = tip.addLongProperty("userId").notNull().getProperty();
@@ -153,6 +152,7 @@ public class Main {
         tip.addStringProperty("title");
         tip.addStringProperty("description");
         tip.addBooleanProperty("active");
+        tip.addBooleanProperty("favorite");
 
 
         //COGNITIVE EXERCISE TABLE

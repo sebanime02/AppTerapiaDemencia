@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -56,24 +55,26 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_note);
+        setContentView(R.layout.add_tip);
         Bundle bundl = getIntent().getExtras();
+
         SharedPreferences loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
         edtTitle = (EditText) findViewById(R.id.txt_title);
         edtDescription = (EditText) findViewById(R.id.txt_description);
         switchNotifications = (Switch) findViewById(R.id.switch_notifications);
         btnSave = (Button) findViewById(R.id.btn_guardar_tip);
-
+        selectedNotifications=false;
         btnSave.setOnClickListener(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        actualizar="";
         setSupportActionBar(toolbar);
 
         actionBar = getSupportActionBar();
 
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("Agregar Tip a Cuidadores");
-        if(loginpreference.getString("username",username)!=null) {
+        if(loginpreference.getString("username",username)!=null)
+        {
             username = loginpreference.getString("username", "Nombre de Usuario");
             User user = helper.getUserInformation(username);
             iduser= user.getId();
@@ -105,7 +106,7 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
 
         if (bundl != null)
         {
-            tip = bundl.getStringArray("tip");
+
             actualizar = bundl.getString("actualizar");
             if (actualizar == null)
             {
@@ -120,16 +121,20 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
 
                 edtTitle.setText(tip.getTitle());
                 edtDescription.setText(tip.getDescription());
+                try {
+                    if(tip.getActive()){
+                        switchNotifications.setChecked(true);
+                        selectedNotifications=true;
+                    }
+                    else{
+                        switchNotifications.setChecked(false);
+                        selectedNotifications=false;
 
-                if(tip.getActive()){
-                    switchNotifications.setChecked(true);
-                    selectedNotifications=true;
-                }
-                else{
-                    switchNotifications.setChecked(false);
-                    selectedNotifications=false;
+                    }
 
-                }
+                }catch (NullPointerException e)
+                {  switchNotifications.setChecked(false);
+                    selectedNotifications=false;}
 
 
             }
@@ -142,7 +147,7 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
     {
         switch (view.getId())
         {
-            case R.id.btn_guardar_paciente:
+            case R.id.btn_guardar_tip:
 
                  if (validar(edtTitle.getText().toString(),edtDescription.getText().toString()) == false)
                  {
@@ -154,8 +159,6 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
                      Long parse_id = idtip;
                      String var_title = edtTitle.getText().toString();
                      String var_description = edtDescription.getText().toString();
-
-
 
                      if (actualizar.equals("actualizar"))
                      {
@@ -171,7 +174,7 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
                      }
                      else
                      {
-                         Tip tip2 = new Tip(null,iduser,var_title,var_description,selectedNotifications);
+                         Tip tip2 = new Tip(null,iduser,var_title,var_description,selectedNotifications,false);
                          tipDao.insert(tip2);
 
 
@@ -186,10 +189,6 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
 
 
                  }
-
-
-
-
 
         }
     }

@@ -51,7 +51,7 @@
                     />
 
                 <EditText
-                    android:lines="5"
+                    android:lines="7"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"

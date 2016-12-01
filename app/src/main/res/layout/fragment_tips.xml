@@ -15,6 +15,7 @@
         android:id="@+id/txt_info_tips"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/medium_text_size"
         android:text="@string/txt_tips_supervisor"
 
        />

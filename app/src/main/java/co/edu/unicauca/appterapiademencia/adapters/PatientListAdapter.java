@@ -100,8 +100,8 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
 
 
     @Override
-    public long getItemId(int arg0 ) {
-
+    public long getItemId(int arg0 )
+    {
         return patientList.get(arg0).getIdentity();
     }
 

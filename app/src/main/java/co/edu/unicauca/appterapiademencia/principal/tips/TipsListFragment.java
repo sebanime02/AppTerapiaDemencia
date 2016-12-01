@@ -2,7 +2,6 @@ package co.edu.unicauca.appterapiademencia.principal.tips;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,7 +16,6 @@ import java.util.List;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.TipAdapter;
 import co.edu.unicauca.appterapiademencia.domain.Tip;
-import co.edu.unicauca.appterapiademencia.principal.patientlist.AddPatientActivity;
 
 /**
  * Created by ENF on 25/10/2016.
@@ -38,11 +36,8 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_tips, container, false);
-        View rootView = inflater.inflate(R.layout.fragment_listpatients, container, false);
         floatingActionButton = (FloatingActionButton) rootView.findViewById(R.id.add_tip);
         recycler = (RecyclerView) rootView.findViewById(R.id.reciclador);
-
-
 
         recycler.setHasFixedSize(true);
         LManager = new LinearLayoutManager(getActivity().getApplicationContext());
@@ -75,7 +70,7 @@ public class TipsListFragment extends Fragment implements  TipsListView {
 
 
     public void addTip() {
-        startActivity(new Intent(getActivity(), AddPatientActivity.class));
+        startActivity(new Intent(getActivity(), AddTipActivity.class));
     }
 
     @Override

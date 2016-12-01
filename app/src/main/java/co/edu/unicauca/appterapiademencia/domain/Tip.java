@@ -16,6 +16,7 @@ public class Tip {
     private String title;
     private String description;
     private Boolean active;
+    private Boolean favorite;
 
     @Generated
     public Tip() {
@@ -26,12 +27,13 @@ public class Tip {
     }
 
     @Generated
-    public Tip(Long id, long userId, String title, String description, Boolean active) {
+    public Tip(Long id, long userId, String title, String description, Boolean active, Boolean favorite) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;
         this.active = active;
+        this.favorite = favorite;
     }
 
     public Long getId() {
@@ -72,6 +74,14 @@ public class Tip {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public Boolean getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Boolean favorite) {
+        this.favorite = favorite;
     }
 
 }
