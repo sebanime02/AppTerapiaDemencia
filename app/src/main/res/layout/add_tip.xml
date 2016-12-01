@@ -81,12 +81,15 @@
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         />
 
-                <Switch
+                <android.support.v7.widget.SwitchCompat
                     android:id="@+id/switch_notifications"
-                    android:checked="false"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:theme="@style/ColorSwitchStyle"
+
+                    android:textOff="OFF"
+                    android:textOn="ON"
+
                     />
                     <TextView
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"

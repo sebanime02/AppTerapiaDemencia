@@ -60,24 +60,29 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
         holder.txtDescription.setText(description);
 
 
-        try {
+        try
+        {
 
-
-            if (noteState) {
+            if (noteState==true)
+            {
                 holder.imgState.setBackgroundColor(activity.getResources().getColor(R.color.material_green));
-            } else {
+            } else
+            {
                 holder.imgState.setBackgroundColor(activity.getResources().getColor(R.color.material_red));
             }
-        }catch (Exception e){
+        }catch (Exception e)
+        {
             holder.imgState.setBackgroundColor(activity.getResources().getColor(R.color.material_red));
         }
         try {
 
 
-            if (favoriteState) {
+            if (favoriteState)
+            {
                 holder.imgFavorite.setVisibility(View.VISIBLE);
             }
-        }catch (Exception e){
+        }catch (Exception e)
+        {
             holder.imgFavorite.setVisibility(View.GONE);
 
         }

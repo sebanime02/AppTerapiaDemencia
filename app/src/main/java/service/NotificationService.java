@@ -1,6 +1,7 @@
 package service;
 
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -36,18 +37,21 @@ public class NotificationService extends Service {
     private GreenDaoHelper helper;
     private TipDao tipDao;
     private  List<Tip> arrayList;
-
+    private Boolean notificar;
+    private Long idselected;
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        throw new UnsupportedOperationException("Not yet implemented");
+
     }
     @Override
     public void onCreate()
     {
         this.helper = GreenDaoHelper.getInstance();
         this.tipDao = helper.getTipDao();
-        this.arrayList = new ArrayList();
+        this.arrayList = new ArrayList<Tip>();
+        prefs = getSharedPreferences("appdata", Context.MODE_PRIVATE);
 
     }
     @Override
@@ -57,10 +61,26 @@ public class NotificationService extends Service {
 
         String hora=new ManagerFechas().horaActual();
 
-        if(hora.equals("09:00")||hora.equals("13:00")||hora.equals("17:00"))
+        if(hora.equals("09:00")||hora.equals("13:00")||hora.equals("17:00")||hora.equals("15:00"))
         {
-             selectNotification();
+            if(prefs.getBoolean("notificaciones",true))
+            {
+                Log.e("Notifications","Detecta hora para notificaciones");
+                selectNotification();
 
+                SharedPreferences preferencias=getSharedPreferences("appdata",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor=preferencias.edit();
+                editor.putBoolean("notificaciones", false);
+                editor.commit();
+            }
+
+
+        }
+        else{
+            SharedPreferences preferencias=getSharedPreferences("appdata",Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor=preferencias.edit();
+            editor.putBoolean("notificaciones", true);
+            editor.commit();
         }
 
         return START_NOT_STICKY;
@@ -68,54 +88,129 @@ public class NotificationService extends Service {
 
     public void selectNotification()
     {
-        arrayList.clear();
-       List<Tip> tipList = helper.getTipsNotifications();
-        for(int m=0; m<=tipList.size();m++)
-        {
-            arrayList.add(tipList.get(m));
-        }
-        Long[] ids = new Long[arrayList.size()+1];
-        //int[] identero = new int[arrayList.size()+1];
+        Runnable runnable = new Runnable() {
 
-        for(int j=0;j<=arrayList.size();j++)
-        {
-            ids[j]=arrayList.get(j).getId();
-            //identero[j] =Integer.parseInt(arrayList.get(j).getId()+"");
-        }
+            @Override
+            public void run()
+            {
+                List<Tip> tipList;
 
-      // int resultadoaleatorio = Math.floor(Math.random()* (identero[arrayList.size()] - identero[0]) )+ identero[arrayList.size()];
+                try {
+                    tipList = helper.getTipsNotifications();
+                    if(tipList.size()==0)
+                    {
+                        //NADA
+                    }
+                    if (tipList.size()==1)
+                    {
+                        publishNotification(tipList.get(0).getId());
+                    }
+                    if (tipList.size()>=2)
+                    {
+                        randomNumberMayor2(tipList);
+                    }
+                }catch (NullPointerException e)
+                {
+                    Log.e("Service","nulo al recibir gettipsnotificacion");
+                }
+            }
+        };
+        new Thread(runnable).start();
 
-
-
-        Random random = new Random();
-
-        Long result;
-
-       while (true)
-       {
-           Long randomLong = ids[0] + (Long)(random.nextLong()*(ids[arrayList.size()]-ids[0]));
-
-           for(int n=0;n<=arrayList.size();n++)
-           {
-               Long id = arrayList.get(n).getId();
-
-               if(id==randomLong)
-               {
-                   Log.e("notificacion","id seleccionado"+randomLong);
-                   break;
-               }
-           }
-
-       }
 
 
 
     }
 
+    public void randomNumberMayor2(List<Tip> list)
+    {
+        Long[] ids = new Long[list.size()];
+        for(int m=0; m < list.size();m++)
+        {
+            Log.e("selectnotification","Titulo "+list.get(m).getId());
+
+            Log.e("selectnotification","Titulo "+list.get(m).getTitle());
+            ids[m]= list.get(m).getId();
+        }
+
+        /*
+        for(int m=0; m < tipList.size();m++)
+        {
+            Log.e("selectnotification","Titulo "+tipList.get(m).getId());
+
+            Log.e("selectnotification","Titulo "+tipList.get(m).getTitle());
+            arrayList.add(tipList.get(m));
+        }
+        Long[] ids = new Long[arrayList.size()+1];
+        //int[] identero = new int[arrayList.size()+1];
+
+        for(int j=0;j<arrayList.size();j++)
+        {
+            ids[j]=arrayList.get(j).getId();
+            Log.e("arraylist","id "+tipList.get(j).getId());
+
+            //identero[j] =Integer.parseInt(arrayList.get(j).getId()+"");
+        }
+        */
+
+        // int resultadoaleatorio = Math.floor(Math.random()* (identero[arrayList.size()] - identero[0]) )+ identero[arrayList.size()];
+
+
+
+
+
+        Long result;
+        int origin =Integer.parseInt(ids[0]+"");
+        int destination = Integer.parseInt(ids[list.size()-1]+"");
+
+        Random ran = new Random();
+
+        Log.e("Entra while","");
+        Log.e("ids[0]",""+ids[0]);
+        Log.e("ids[final]",""+ids[list.size()-1]);
+
+        Long randomLong;
+        Boolean iterator = true;
+
+        while (iterator)
+        {
+
+
+
+            //Long randomLong = ids[0] + (Long)(random.nextLong()*(ids[tipList.size()-1]-ids[0]));
+            //long randomLong =  ThreadLocalRandom.current().nextLong();
+
+            int randomInt = ran.nextInt(destination+1) + origin;
+            randomLong = Long.parseLong(randomInt+"");
+
+
+            for(int n=0;n<ids.length;n++)
+            {
+
+                if(ids[n]==randomLong)
+                {
+                    Log.e("notificacion","id seleccionado"+randomLong);
+                    //publishNotification(ids[n]);
+                     idselected = ids[n];
+                    notificar =true;
+                    iterator=false;
+                }
+            }
+
+        }
+        if(notificar){
+            publishNotification(idselected);
+        }
+    }
+
+
+
 
     public void publishNotification(Long id)
     {
+
         Tip tip;
+        String idstring = id+"";
         tip = helper.getTip(id);
         NotificationCompat.Builder notificacion = new NotificationCompat.Builder(this);
         notificacion.setSmallIcon(R.mipmap.ic_launcher);
@@ -123,6 +218,7 @@ public class NotificationService extends Service {
         notificacion.setWhen(System.currentTimeMillis());
         notificacion.setContentTitle(tip.getTitle());
         notificacion.setContentText(tip.getDescription());
+        notificacion.setAutoCancel(true);
 
         Uri sonido = RingtoneManager.getDefaultUri(Notification.DEFAULT_SOUND);
         notificacion.setSound(sonido);
@@ -130,21 +226,22 @@ public class NotificationService extends Service {
         Bitmap icono = BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_content_report);
         notificacion.setLargeIcon(icono);
         //notificacion.setVibrate(new long[3]);
-        PendingIntent mi_ventana_pendiente;
-        Intent ir_notificacion = new Intent();
-        Context micontexto = getApplicationContext();
-        ir_notificacion.setClass(micontexto, TipDetailActivity.class);
-        int aler=1;
-        ir_notificacion.putExtra("ids",aler);
-        ir_notificacion.putExtra("idtip", id);
+        try {
+            PendingIntent mi_ventana_pendiente;
+            Intent ir_notificacion = new Intent();
+            Context micontexto = getApplicationContext();
+            ir_notificacion.setClass(micontexto, TipDetailActivity.class);
+            int aler = 1;
+            ir_notificacion.putExtra("ids", aler);
+            ir_notificacion.putExtra("idtip", id);
 
-        /* PENDIENTE
-        mi_ventana_pendiente = PendingIntent.getActivity(micontexto, Integer.parseInt(id), ir_notificacion, Intent.FILL_IN_ACTION);
-        notificacion.setContentIntent(mi_ventana_pendiente);
-        Notification n = notificacion.build();
-        NotificationManager nn = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        nn.notify(Integer.parseInt(id), n);
-        */
+            mi_ventana_pendiente = PendingIntent.getActivity(micontexto, Integer.parseInt(idstring), ir_notificacion, Intent.FILL_IN_ACTION);
+            notificacion.setContentIntent(mi_ventana_pendiente);
+            Notification n = notificacion.build();
+            NotificationManager nn = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            nn.notify(Integer.parseInt(idstring) + 1, n);
+        }catch (NullPointerException e){}
+
     }
 
 

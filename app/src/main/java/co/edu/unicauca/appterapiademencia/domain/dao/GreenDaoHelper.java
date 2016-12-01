@@ -5,6 +5,7 @@ import android.util.Log;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -218,22 +219,37 @@ public class GreenDaoHelper {
     }
     public Tip getTip(Long idtip)
     {
-        Tip tip;
-        List<Tip> tipList;
-        QueryBuilder<Tip> tipQueryBuilder = getTipDao().queryBuilder();
-        tipQueryBuilder.where(TipDao.Properties.Id.eq(idtip));
-        tipList = tipQueryBuilder.limit(1).list();
-        tip =tipList.get(0);
-        return tip;
+            Tip tip;
+            List<Tip> tipList;
+            QueryBuilder<Tip> tipQueryBuilder = getTipDao().queryBuilder();
+            tipQueryBuilder.where(TipDao.Properties.Id.eq(idtip));
+            tipList = tipQueryBuilder.limit(1).list();
+            tip = tipList.get(0);
+            return tip;
     }
 
     public List<Tip> getTipsNotifications()
     {
         List<Tip> tipList;
+        List<Tip> arrrayList= new ArrayList<Tip>();
         QueryBuilder<Tip> tipQueryBuilder = getTipDao().queryBuilder();
-        tipQueryBuilder.where(TipDao.Properties.Active.eq(true));
-        tipList = tipQueryBuilder.limit(1).list();
-        return  tipList;
+        //tipList = tipQueryBuilder.where(TipDao.Properties.Active.eq("true")).list();
+        tipList = tipQueryBuilder.list();
+        try
+        {
+            for(int m=0;m<=tipList.size();m++)
+            {
+            Log.e("Helper tips"," "+tipList.get(m).getId());
+            Log.e("Helper tips"," "+tipList.get(m).getTitle());
+            Log.e("Helper tips"," "+tipList.get(m).getActive());
+                if(tipList.get(m).getActive())
+                {
+                    Log.e("Helper tips","aceptados "+tipList.get(m).getId());
+                    arrrayList.add(tipList.get(m));
+                }
+            }
+        }catch (Exception e){}
+        return  arrrayList;
     }
 
 

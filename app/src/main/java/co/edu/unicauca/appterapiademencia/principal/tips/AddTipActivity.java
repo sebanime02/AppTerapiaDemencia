@@ -6,13 +6,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import co.edu.unicauca.appterapiademencia.R;
@@ -30,7 +30,7 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
 
     private EditText edtTitle;
     private EditText edtDescription;
-    private Switch switchNotifications;
+    private SwitchCompat switchNotifications;
     private Button btnSave;
     private GreenDaoHelper helper;
     private TipDao tipDao;
@@ -61,7 +61,7 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
         SharedPreferences loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
         edtTitle = (EditText) findViewById(R.id.txt_title);
         edtDescription = (EditText) findViewById(R.id.txt_description);
-        switchNotifications = (Switch) findViewById(R.id.switch_notifications);
+        switchNotifications = (SwitchCompat) findViewById(R.id.switch_notifications);
         btnSave = (Button) findViewById(R.id.btn_guardar_tip);
         selectedNotifications=false;
         btnSave.setOnClickListener(this);
@@ -167,7 +167,7 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
                          Tip tipactualizar =helper.getTip(idtip);
                          tipactualizar.setTitle(var_title);
                          tipactualizar.setDescription(var_description);
-                         tipactualizar.setActive(selectedNotifications);
+                         tipactualizar.setActive(selectedNotifications.booleanValue());
 
                          Log.e("Add tip","actualizado :"+helper.getTip(idtip).getTitle());
 

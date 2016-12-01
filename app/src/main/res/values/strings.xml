@@ -26,6 +26,7 @@
     <string name="dialog_succes_title">Te has registrado!</string>
     <string name="dialog_succes_content">Se ha registrado correctamente, ingrese de nuevo sus datos</string>
     <string name="dialog_succes_agree">Entiendo</string>
+    <string name="dialog_sucess_agree2">Esta Bien</string>
     <string name="input_empty_username">El campo: nombre de usuario esta vacío</string>
     <string name="input_empty_password">El campo: contraseña esta vacío</string>
     <string name="input_empty_both">Los campos: nombre de usuario y contraseña estan vacíos</string>

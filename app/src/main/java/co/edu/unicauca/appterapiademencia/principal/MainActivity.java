@@ -1,6 +1,8 @@
 package co.edu.unicauca.appterapiademencia.principal;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,6 +26,7 @@ import com.squareup.picasso.Picasso;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.Item.RowItem;
@@ -38,6 +41,7 @@ import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientListFragm
 import co.edu.unicauca.appterapiademencia.principal.tips.TipsListFragment;
 import co.edu.unicauca.appterapiademencia.principal.userprofile.UserProfileFragment;
 import co.edu.unicauca.appterapiademencia.util.CircleTransform;
+import service.NotificationService;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -75,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         completeNameNavbar = (TextView) findViewById(R.id.completename_navbar);
         QueryBuilder queryBuilder = helper.getUserDao().queryBuilder();
         rowItems = new ArrayList<RowItem>();
+
          if(loginpreference.getBoolean("supervisor",true))
             {
                 Log.e("supervisor","la preferencia es supervisor");
@@ -128,8 +133,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 //userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
                 Picasso.with(getApplicationContext()).load(R.drawable.emptyuser).resize(50,50).transform(new CircleTransform()).into(userAvatarNavbar);
             }
-
-
 
 
 
@@ -222,6 +225,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         .replace(R.id.container, new PatientListFragment())
                         .commit();
                 actionBar.setTitle("Lista de Pacientes");
+
+
+                //-----------------------------inicio servicio------------------------------------
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.SECOND, 10);
+                Intent intent = new Intent(this, NotificationService.class);
+                PendingIntent pintent = PendingIntent.getService(this, 0, intent, 0);
+                AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                int j;
+                j=15;
+                alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),j* 1000, pintent);
+                startService(intent);
+                ////-----------------------------final servicio------------------------------------
+
                 break;
             case 1:
                 if(supervisormode==true){
@@ -278,6 +295,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 .replace(R.id.container, new TipsListFragment())
                 .commit();
         actionBar.setTitle("Tips para el cuidador");
+
+        //-----------------------------inicio servicio------------------------------------
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.SECOND, 10);
+        Intent intent = new Intent(this, NotificationService.class);
+        PendingIntent pintent = PendingIntent.getService(this, 0, intent, 0);
+        AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        int j;
+        j=15;
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),j* 1000, pintent);
+        startService(intent);
+        ////-----------------------------final servicio------------------------------------
     }
     public void callUserProfile(){
         getSupportFragmentManager().beginTransaction()

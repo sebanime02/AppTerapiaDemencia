@@ -173,11 +173,16 @@ public class TipDetailActivity extends ActionBarActivity {
             case R.id.menu_favorito:
                 if(helper.getTip(idtip).getFavorite())
                 {
+                    new MaterialDialog.Builder(this).title("Ya no es Favorito").positiveText(R.string.dialog_sucess_agree2).icon(getResources().getDrawable(R.drawable.ic_action_toggle_star)).show();
+
+
                     helper.getTip(idtip).setFavorite(false);
                 }
                 else
                 {
+
                     helper.getTip(idtip).setFavorite(true);
+                    new MaterialDialog.Builder(this).title("Tip Agregado a Favoritos!").positiveText(R.string.dialog_sucess_agree2).icon(getResources().getDrawable(R.drawable.ic_action_toggle_star)).show();
 
                 }
 
