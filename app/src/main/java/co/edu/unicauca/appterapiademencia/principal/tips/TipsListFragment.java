@@ -4,8 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,8 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     private RecyclerView.Adapter newadapter;
     private RecyclerView.LayoutManager LManager;
     private List<Tip> list = new ArrayList<Tip>();
-
+    private StaggeredGridLayoutManager gaggeredGridLayoutManager;
+    private GridLayoutManager lLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,8 +42,11 @@ public class TipsListFragment extends Fragment implements  TipsListView {
         recycler = (RecyclerView) rootView.findViewById(R.id.reciclador);
 
         recycler.setHasFixedSize(true);
-        LManager = new LinearLayoutManager(getActivity().getApplicationContext());
-        recycler.setLayoutManager(LManager);
+        //LManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        //gaggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        lLayout = new GridLayoutManager(getActivity(), 2);
+        //recycler.setLayoutManager(gaggeredGridLayoutManager);
+        recycler.setLayoutManager(lLayout);
         getListTips();
         adapter = new TipAdapter(list, getActivity());
         recycler.setAdapter(adapter);
@@ -63,11 +68,35 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+
         super.onCreate(savedInstanceState);
+        list.clear();
         tipListPresenter = new TipListPresenterImplementation(this);
         tipListPresenter.onCreate();
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        list.clear();
+        getListTips();
+
+
+        try {
+            recycler.setHasFixedSize(true);
+            //LManager = new LinearLayoutManager(getActivity().getApplicationContext());
+            //gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
+            lLayout = new GridLayoutManager(getActivity(), 2);
+            //recycler.setLayoutManager(LManager);
+            recycler.setLayoutManager(lLayout);
+            adapter = new TipAdapter(list, getActivity());
+            recycler.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            //callListenerText();
+        } catch (Exception e) {
+            adapter.notifyDataSetChanged();
+        }
+    }
 
     public void addTip() {
         startActivity(new Intent(getActivity(), AddTipActivity.class));
@@ -83,8 +112,11 @@ public class TipsListFragment extends Fragment implements  TipsListView {
 
         try {
             recycler.setHasFixedSize(true);
-            LManager = new LinearLayoutManager(getActivity().getApplicationContext());
-            recycler.setLayoutManager(LManager);
+            //LManager = new LinearLayoutManager(getActivity().getApplicationContext());
+            //gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
+            lLayout = new GridLayoutManager(getActivity(), 2);
+            //recycler.setLayoutManager(LManager);
+            recycler.setLayoutManager(lLayout);
             adapter = new TipAdapter(list, getActivity());
             recycler.setAdapter(adapter);
             adapter.notifyDataSetChanged();
@@ -108,6 +140,7 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     @Override
     public void showListTips(List<Tip> listTips)
     {
+        list.clear();
         for (int j = 0; j < listTips.size(); j++) {
             list.add(listTips.get(j));
         }

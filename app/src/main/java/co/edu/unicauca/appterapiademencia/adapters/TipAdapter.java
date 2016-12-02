@@ -53,15 +53,15 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
 
         String title = tipList.get(position).getTitle().toString();
         String description = tipList.get(position).getDescription().toString();
-        Boolean noteState = tipList.get(position).getActive();
-        Boolean favoriteState = tipList.get(position).getFavorite();
+        Boolean noteState = tipList.get(position).getActive().booleanValue();
+        Boolean favoriteState = tipList.get(position).getFavorite().booleanValue();
 
         holder.txtTitle.setText(title);
         holder.txtDescription.setText(description);
 
 
-        try
-        {
+        //try
+        //{
 
             if (noteState==true)
             {
@@ -70,22 +70,27 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
             {
                 holder.imgState.setBackgroundColor(activity.getResources().getColor(R.color.material_red));
             }
-        }catch (Exception e)
-        {
-            holder.imgState.setBackgroundColor(activity.getResources().getColor(R.color.material_red));
-        }
-        try {
+       // }catch (Exception e)
+        //{
+        //    holder.imgState.setBackgroundColor(activity.getResources().getColor(R.color.material_red));
+       // }
+       // try {
 
+            Log.e("favoritestate",""+favoriteState);
 
-            if (favoriteState)
+            if (favoriteState==true)
             {
                 holder.imgFavorite.setVisibility(View.VISIBLE);
             }
-        }catch (Exception e)
-        {
-            holder.imgFavorite.setVisibility(View.GONE);
+            else
+            {
+                holder.imgFavorite.setVisibility(View.GONE);
+            }
+       // }catch (Exception e)
+       // {
+          //  holder.imgFavorite.setVisibility(View.GONE);
 
-        }
+        //}
 
 
 

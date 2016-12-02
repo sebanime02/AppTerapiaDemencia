@@ -53,7 +53,7 @@
 
                     android:id="@+id/image_header"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="@dimen/size_image_profile"
                     android:paddingTop="10dp"
                     android:src="@drawable/nursefemaledark"
 

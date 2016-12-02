@@ -133,30 +133,6 @@ public class NotificationService extends Service {
             ids[m]= list.get(m).getId();
         }
 
-        /*
-        for(int m=0; m < tipList.size();m++)
-        {
-            Log.e("selectnotification","Titulo "+tipList.get(m).getId());
-
-            Log.e("selectnotification","Titulo "+tipList.get(m).getTitle());
-            arrayList.add(tipList.get(m));
-        }
-        Long[] ids = new Long[arrayList.size()+1];
-        //int[] identero = new int[arrayList.size()+1];
-
-        for(int j=0;j<arrayList.size();j++)
-        {
-            ids[j]=arrayList.get(j).getId();
-            Log.e("arraylist","id "+tipList.get(j).getId());
-
-            //identero[j] =Integer.parseInt(arrayList.get(j).getId()+"");
-        }
-        */
-
-        // int resultadoaleatorio = Math.floor(Math.random()* (identero[arrayList.size()] - identero[0]) )+ identero[arrayList.size()];
-
-
-
 
 
         Long result;

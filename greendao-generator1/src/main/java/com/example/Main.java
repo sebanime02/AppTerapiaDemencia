@@ -143,7 +143,7 @@ public class Main {
 
         //TIP TABLE
         Entity tip = schema.addEntity("Tip");
-        tip.addIdProperty().autoincrement();
+        tip.addIdProperty().autoincrement().primaryKey();
 
         Property userIdtip = tip.addLongProperty("userId").notNull().getProperty();
         user.addToMany(tip,userIdtip);

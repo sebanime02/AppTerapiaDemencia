@@ -168,6 +168,7 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
                          tipactualizar.setTitle(var_title);
                          tipactualizar.setDescription(var_description);
                          tipactualizar.setActive(selectedNotifications.booleanValue());
+                         tipDao.update(tipactualizar);
 
                          Log.e("Add tip","actualizado :"+helper.getTip(idtip).getTitle());
 

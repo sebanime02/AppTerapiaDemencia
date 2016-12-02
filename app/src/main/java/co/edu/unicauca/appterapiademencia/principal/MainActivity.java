@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private SearchView searchView;
     public static final Integer[] imagessupervisor = {R.drawable.ic_list_black_24dp,R.drawable.ic_action_content_report,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
     public static final String[] titlessupervisor= {"Lista de Pacientes","Notificaciones","Tips para el cuidador","Perfil de usuario","Ayuda","Salir"};
-    public static final Integer[] imagescarer ={R.drawable.ic_list_black_24dp,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
-    public static final String[] titlescarer ={"Lista de Pacientes","Tips para el cuidador","Perfil de usuario","Ayuda","Salir"};
+    public static final Integer[] imagescarer ={R.drawable.ic_list_black_24dp,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
+    public static final String[] titlescarer ={"Lista de Pacientes","Tips para el cuidador","Ayuda","Salir"};
     private String username;
     private GreenDaoHelper helper;
 
@@ -199,6 +199,52 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onResume() {
         super.onResume();
+        SharedPreferences loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
+        if(loginpreference.getBoolean("supervisor",true))
+        {
+            Log.e("supervisor","la preferencia es supervisor");
+
+
+
+            if(loginpreference.getString("username",username)!=null)
+            {
+                username = loginpreference.getString("username","Nombre de Usuario");
+                User user = helper.getUserInformation(username);
+                String completename = user.getCompleteName();
+
+                completeNameNavbar.setText("Supervisor "+completename);
+
+
+                if(user.getPhotopath().equals(""))
+                {
+                    userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
+
+                }
+                else{
+                    userAvatarNavbar.setBackground(Drawable.createFromPath(user.getPhotopath()));
+                }
+
+            }
+
+            //completeNameNavbar.setText("Supervisor");
+            Picasso.with(getApplicationContext()).load(R.drawable.emptyuser).resize(50,50).transform(new CircleTransform()).into(userAvatarNavbar);
+            //userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
+            //}
+
+
+
+
+        }
+        else
+        {
+
+            titleMessage = "Sesión de Cuidador";
+            completeNameNavbar.setText("Cuidador");
+
+            //userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
+            Picasso.with(getApplicationContext()).load(R.drawable.emptyuser).resize(50,50).transform(new CircleTransform()).into(userAvatarNavbar);
+        }
+
     }
 
 
@@ -255,25 +301,25 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     callTips();
                 }
                 else{
-                    callUserProfile();
+                    callHelp();
+
                 }
 
                 break;
             case 3:
-                if(supervisormode==true){
+                if(supervisormode==true)
+                {
                     callUserProfile();
                 }
                 else{
-                    callHelp();
+                    callSignOff();
                 }
                 break;
             case 4:
                 if (supervisormode==true){
                     callHelp();
                 }
-                else{
-                    callSignOff();
-                }
+
                 break;
 
             case 5:

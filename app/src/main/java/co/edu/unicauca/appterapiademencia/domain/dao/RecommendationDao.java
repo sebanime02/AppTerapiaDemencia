@@ -31,7 +31,6 @@ public class RecommendationDao extends AbstractDao<Recommendation, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property PatientId = new Property(1, long.class, "patientId", false, "PATIENT_ID");
         public final static Property ExerciseId = new Property(2, long.class, "exerciseId", false, "EXERCISE_ID");
-
     }
 
     private Query<Recommendation> patient_RecommendationListQuery;
@@ -51,7 +50,6 @@ public class RecommendationDao extends AbstractDao<Recommendation, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"RECOMMENDATION\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"PATIENT_ID\" INTEGER NOT NULL ," + // 1: patientId
-
                 "\"EXERCISE_ID\" INTEGER NOT NULL );"); // 3: exerciseId
     }
 

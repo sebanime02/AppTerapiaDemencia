@@ -54,4 +54,7 @@
     <!--TIP LIST -->
     <dimen name="square_state">20dp</dimen>
 
+    <!-- USER PROFILE-->
+    <dimen name="size_image_profile">80dp</dimen>
+
 </resources>

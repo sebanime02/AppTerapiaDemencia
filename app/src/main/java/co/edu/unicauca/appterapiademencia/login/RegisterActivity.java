@@ -2,10 +2,14 @@ package co.edu.unicauca.appterapiademencia.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -28,6 +32,10 @@ private EditText input_username,input_password_supervisor,input_completename,inp
     int eleccion;
     private FloatingActionButton add_image_user;
     private QueryBuilder queryBuilder;
+    private Button irLogin;
+    private CoordinatorLayout coordinatorLayout;
+    private Toolbar toolbar;
+    private ActionBar actionBar;
 
 
 /*
@@ -48,7 +56,7 @@ private EditText input_username,input_password_supervisor,input_completename,inp
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Bundle bundl = getIntent().getExtras();
         setContentView(R.layout.activity_register);
         //ButterKnife.bind(this);
         input_username = (EditText) findViewById(R.id.txt_username);
@@ -56,8 +64,28 @@ private EditText input_username,input_password_supervisor,input_completename,inp
         input_completename = (EditText) findViewById(R.id.txt_completename);
         input_password_supervisor_aprobal = (EditText) findViewById(R.id.txt_password_supervisor_aprobar);
         add_image_user = (FloatingActionButton) findViewById(R.id.add_user_image);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorRegister);
+        irLogin = (Button) findViewById(R.id.btn_irLogin);
+        toolbar = (Toolbar) findViewById(R.id.toolbarRegister);
         registerPresenter = new RegisterPresenterImplementation(this);
+
         registerPresenter.OnCreate();
+        if(bundl!=null)
+        {
+            if(bundl.getString("msg")!=null)
+            {
+                coordinatorLayout.setVisibility(View.VISIBLE);
+                irLogin.setVisibility(View.GONE);
+
+
+
+                setSupportActionBar(toolbar);
+
+                actionBar = getSupportActionBar();
+
+                actionBar.setDisplayHomeAsUpEnabled(true);
+            }
+        }
     }
 
 
@@ -112,7 +140,19 @@ private EditText input_username,input_password_supervisor,input_completename,inp
 
     @Override
     public void navigateToLogin() {
-        startActivity(new Intent(this, LoginActivity.class));
+
+        Bundle bundl = getIntent().getExtras();
+        if(bundl!=null)
+        {
+            if(bundl.getString("msg")!=null)
+            {
+
+            }
+        }
+        else{
+            startActivity(new Intent(this, LoginActivity.class));
+
+        }
     }
 
     @Override

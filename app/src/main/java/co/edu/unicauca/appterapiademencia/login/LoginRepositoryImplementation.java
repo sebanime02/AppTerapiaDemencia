@@ -104,10 +104,13 @@ public class LoginRepositoryImplementation implements LoginRepository {
         QueryBuilder qbsignin = helper.getUserDao().queryBuilder();
         qbsignin.where(UserDao.Properties.Username.eq(username), UserDao.Properties.Password.eq(password));
 
-        List users = qbsignin.list();
+        List<User> users = qbsignin.listLazyUncached();
+        //Log.e("loginrepo","username aceptada "+users.get(0).getUsername());
+
 
         if(users.size()==1)
         {
+
             Log.e("Login","Hay un usuario que coincide");
             postEvent(LoginEvent.onSingInSuccess,1);
         }

@@ -132,6 +132,8 @@ public class GreenDaoHelper {
         try {
             for (int m = 0; m <= listuser.size(); m++) {
                 Log.e("helper getusers", " " + listuser.get(m).getId());
+                Log.e("helper getusers", " " + listuser.get(m).getUsername());
+                Log.e("helper getusers", " " + listuser.get(m).getPassword());
                 Log.e("helper getusers", " " + listuser.get(m).getCompleteName());
                 Log.e("helper getusers", " " + listuser.get(m).getAccessType());
                 Log.e("helper getusers", "                     ");

@@ -19,7 +19,14 @@
         android:text="@string/txt_tips_supervisor"
 
        />
-
+    <View
+        android:id="@+id/separationLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_below="@id/txt_info_tips"
+        android:paddingBottom="1dp"
+        ></View>
     <android.support.v7.widget.RecyclerView
         android:layout_below="@+id/txt_info_tips"
         android:id="@+id/reciclador"

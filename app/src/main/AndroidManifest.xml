@@ -104,6 +104,10 @@
             android:name=".principal.notification.NotificationListFragment"
 
             />
+        <fragment
+            android:name=".principal.patientlist.PatientListFragment"
+
+            />
 
 
         <meta-data
