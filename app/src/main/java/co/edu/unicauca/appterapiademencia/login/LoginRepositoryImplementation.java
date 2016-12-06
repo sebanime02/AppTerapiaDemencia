@@ -33,7 +33,7 @@ public class LoginRepositoryImplementation implements LoginRepository {
 
 
     @Override
-    public void signUp(String username, String password, String completeName, String passwordaprobal) {
+    public void signUp(String username, String password, String completeName) {
 
 
         Log.e("Registro","llego al patron repositorio");
@@ -54,25 +54,23 @@ public class LoginRepositoryImplementation implements LoginRepository {
 
         if(users.size()==0)
         {
-            accessType = true; //verdadero es supervisor
-            User user = new User(null,username,password,completeName,accessType,"");
-            this.userDao.insert(user);
+            Boolean resultInser;
+            accessType = true;
+            resultInser = helper.insertUser(username,password,completeName,accessType);
 
-            Log.d("RegistroUsuario","Nueva id insertada: "+user.getId());
-
-            if(user.getId()!=null)
-            {
-
-                postEvent(RegisterEvent.onSingUpSuccess,2);
-            }
-            else
+            if(!resultInser.booleanValue())
             {
                 Log.e("Registro","Error al registrar el nuevo usuario");
                 postEvent(RegisterEvent.onSingUpError,2);
+
             }
+            else{
+                postEvent(RegisterEvent.onSingUpSuccess,2);
+            }
+
         }
         else{
-            Log.e("Registro","La contraseña de un supervisor anteriormente registrado no es correcta");
+            Log.e("Registro","Nombre de Usuario ya registrado");
             postEvent(RegisterEvent.onSingUpErrorAprobal,2);
         }
 

@@ -79,6 +79,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
     private String[] sintomasList;
     private String[] puntajeList;
     private String[] electionList;
+    private Boolean[] activeList;
     private String var_seleccion;
     private String  puntaje;
     private SintomaDao sintomaDao;
@@ -166,6 +167,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
         puntajeList = new String[8];
         sintomasList = new String[8];
         electionList = new String[8];
+        activeList = new Boolean[8];
 
 
 
@@ -280,6 +282,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                         electionList[0] = election;
                         sintomasList[0] = "incapacidadtareasdomesticas";
+                        activeList[0]=false;
 
 
                         break;
@@ -292,6 +295,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                         electionList[0] = election;
                         sintomasList[0] = "incapacidadtareasdomesticas";
+                        activeList[0]=true;
 
                         break;
                     case "1.0":
@@ -300,6 +304,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="vestimenta";
                         electionList[0] = election;
                         sintomasList[0] = "incapacidadtareasdomesticas";
+                        activeList[0]=true;
                         break;
                 }
                 switch (datosb[1].toString())
@@ -313,7 +318,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         //sintomasList.add(1,"incapacidadpequenasdinero");
                         electionList[1] = election;
                         sintomasList[1] = "incapacidadpequenasdinero";
-
+                        activeList[1]=false;
                         break;
                     case "0.5":
                         rdgParcialPequenasDinero.setChecked(true);
@@ -324,7 +329,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                         electionList[1] = election;
                         sintomasList[1] = "incapacidadpequenasdinero";
-
+                        activeList[1]=true;
                         break;
                     case "1.0":
 
@@ -336,6 +341,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                         electionList[1] = election;
                         sintomasList[1] = "incapacidadpequenasdinero";
+                        activeList[1]=true;
                         break;
                 }
 
@@ -357,7 +363,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                         electionList[2] = election;
                         sintomasList[2] = "memorialistascortas";
-
+                        activeList[2]=false;
                         //electionList.add(2,election);
                         //sintomasList.add(2,"memorialistascortas");
                         break;
@@ -367,7 +373,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="memoria";
                         electionList[2] = election;
                         sintomasList[2] = "memorialistascortas";
-
+                        activeList[2]=true;
 
                         //electionList.add(2,election);
                         //sintomasList.add(2,"memorialistascortas");
@@ -380,7 +386,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="orientacion";
                         electionList[3] = election;
                         sintomasList[3] = "orientacioncasa";
-
+                        activeList[3]=false;
                         //electionList.add(3,election);
                         //sintomasList.add(3,"orientacioncasa");
                         break;
@@ -390,7 +396,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="orientacion";
                         electionList[3] = election;
                         sintomasList[3] = "orientacioncasa";
-
+                        activeList[3]=true;
                         //electionList.add(3,election);
                         //sintomasList.add(3,"orientacioncasa");
                         break;
@@ -400,7 +406,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="orientacion";
                         electionList[3] = election;
                         sintomasList[3] = "orientacioncasa";
-
+                        activeList[3]=true;
                         /// /electionList.add(3,election);
                         //sintomasList.add(3,"orientacioncasa");
 
@@ -414,6 +420,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="orientacion";
                         electionList[4] = election;
                         sintomasList[4] = "orientacioncalle";
+                        activeList[4]=false;
                         //electionList.add(4,election);
                         //sintomasList.add(4,"orientacioncalle");
                         break;
@@ -423,7 +430,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="orientacion";
                         electionList[4] = election;
                         sintomasList[4] = "orientacioncalle";
-
+                        activeList[4]=true;
                         //electionList.add(4,election);
                         //sintomasList.add(4,"orientacioncalle");
 
@@ -434,7 +441,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="orientacion";
                         electionList[4] = election;
                         sintomasList[4] = "orientacioncalle";
-
+                        activeList[4]=true;
                         /// /electionList.add(4,election);
                         //sintomasList.add(4,"orientacioncalle");
 
@@ -447,7 +454,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="orientacion";
                         electionList[5] = election;
                         sintomasList[5] = "orientacioentorno";
-
+                        activeList[5]=false;
                         //electionList.add(5,election);
                         //sintomasList.add(5,"orientacionentorno");
                         break;
@@ -457,6 +464,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="orientacion";
                         electionList[5] = election;
                         sintomasList[5] = "orientacioentorno";
+                        activeList[5]=true;
                         break;
                     case "1.0":
                         rdgTotalValorarEntorno.setChecked(true);
@@ -464,6 +472,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="orientacion";
                         electionList[5] = election;
                         sintomasList[5] = "orientacionentorno";
+                        activeList[5]=true;
                         break;
                 }
                 switch (datosb[6].toString()){
@@ -473,7 +482,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="memoria";
                         electionList[6] = election;
                         sintomasList[6] = "memoriaolvidosbenignos";
-
+                        activeList[6]=false;
                         //electionList.add(6,election);
                         //sintomasList.add(6,"memoriaolvidosbenignos");
 
@@ -484,7 +493,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="memoria";
                         electionList[6] = election;
                         sintomasList[6] = "memoriaolvidosbenignos";
-
+                        activeList[6]=true;
                         //electionList.add(6,election);
                         //sintomasList.add(6,"memoriaolvidosbenignos");
                         break;
@@ -494,6 +503,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="memoria";
                         electionList[6] = election;
                         sintomasList[6] = "memoriaolvidosbenignos";
+                        activeList[6]=true;
                         //electionList.add(6,election);
                         //sintomasList.add(6,"memoriaolvidosbenignos");
                         break;
@@ -505,7 +515,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="memoria";
                         electionList[7] = election;
                         sintomasList[7] = "memoriatendenciarememorar";
-
+                        activeList[7]=false;
                         //electionList.add(7,election);
                         //sintomasList.add(7,"memoriatendenciarememorar");
 
@@ -516,6 +526,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="memoria";
                         electionList[7] = election;
                         sintomasList[7] = "memoriatendenciarememorar";
+                        activeList[7]=true;
                         break;
                     case "1.0":
                         rdgTotalRememorarPasado.setChecked(true);
@@ -523,6 +534,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         election="memoria";
                         electionList[7] = election;
                         sintomasList[7] = "memoriatendenciarememorar";
+                        activeList[7]=true;
                         break;
                 }
 
@@ -542,6 +554,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                     electionList[0] = election;
                     sintomasList[0] = "incapacidadtareasdomesticas";
+                    activeList[0]=false;
                 }
                 if(checkedId==R.id.parcial_tareas_domesticas){
                     calificationTareasDomesticos="0.5";
@@ -549,6 +562,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                     electionList[0] = election;
                     sintomasList[0] = "incapacidadtareasdomesticas";
+                    activeList[0]=true;
                 }
                 if(checkedId==R.id.total_tareas_domesticas){
                     calificationTareasDomesticos="1.0";
@@ -556,6 +570,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                     electionList[0] = election;
                     sintomasList[0] = "incapacidadtareasdomesticas";
+                    activeList[0]=true;
                 }
             }
         });
@@ -568,18 +583,21 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     election="vestimenta";
                     electionList[1] = election;
                     sintomasList[1] = "incapacidadpequenasdinero";
+                    activeList[1]=false;
                 }
                 if(checkedId==R.id.parcial_pequenas_dinero){
                     calificationPequenasDinero="0.5";
                     election="vestimenta";
                     electionList[1] = election;
                     sintomasList[1] = "incapacidadpequenasdinero";
+                    activeList[1]=true;
                 }
                 if(checkedId==R.id.total_pequenas_dinero){
                     calificationPequenasDinero="1.0";
                     election="vestimenta";
                     electionList[1] = election;
                     sintomasList[1] = "incapacidadpequenasdinero";
+                    activeList[1]=true;
                 }
             }
         });
@@ -592,6 +610,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     election="memoria";
                     electionList[2] = election;
                     sintomasList[2] = "memorialistascortas";
+                    activeList[2]=false;
                     Log.e("listas cortas"," "+calificationListasCortas);
                 }
                 if(checkedId==R.id.parcial_listas_cortas){
@@ -599,6 +618,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     election="memoria";
                     electionList[2] = election;
                     sintomasList[2] = "memorialistascortas";
+                    activeList[2]=true;
                     Log.e("listas cortas"," "+calificationListasCortas);
                 }
                 if(checkedId==R.id.total_listas_cortas){
@@ -606,6 +626,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     election="memoria";
                     electionList[2] = election;
                     sintomasList[2] = "memorialistascortas";
+                    activeList[2]=true;
                     Log.e("listas cortas"," "+calificationListasCortas);
                 }
             }
@@ -621,18 +642,21 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     election="orientacion";
                     electionList[3] = election;
                     sintomasList[3] = "orientacioncasa";
+                    activeList[3]=false;
                 }
                 if(checkedId==R.id.parcial_orientarse_casa){
                     calificationOrientarseCasa="0.5";
                     election="orientacion";
                     electionList[3] = election;
                     sintomasList[3] = "orientacioncasa";
+                    activeList[3]=true;
                 }
                 if(checkedId==R.id.total_orientarse_casa){
                     calificationOrientarseCasa="1.0";
                     election="orientacion";
                     electionList[3] = election;
                     sintomasList[3] = "orientacioncasa";
+                    activeList[3]=true;
                 }
             }
         });
@@ -645,18 +669,21 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     election="orientacion";
                     electionList[4] = election;
                     sintomasList[4] = "orientacioncalle";
+                    activeList[4]=false;
                 }
                 if(checkedId==R.id.parcial_orientarse_calle){
                     calificationOrientarseCalle="0.5";
                     election="orientacion";
                     electionList[4] = election;
                     sintomasList[4] = "orientacioncalle";
+                    activeList[4]=true;
                 }
                 if(checkedId==R.id.total_orientarse_calle){
                     calificationOrientarseCalle="1.0";
                     election="orientacion";
                     electionList[4] = election;
                     sintomasList[4] = "orientacioncalle";
+                    activeList[4]=true;
                 }
             }
         });
@@ -669,18 +696,21 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     election="orientacion";
                     electionList[5] = election;
                     sintomasList[5] = "orientacionentorno";
+                    activeList[5]=false;
                 }
                 if(checkedId==R.id.parcial_valorar_entorno){
                     calificationValorarEntorno="0.5";
                     election="orientacion";
                     electionList[5] = election;
                     sintomasList[5] = "orientacionentorno";
+                    activeList[5]=true;
                 }
                 if(checkedId==R.id.total_valorar_entorno){
                     calificationValorarEntorno="1.0";
                     election="orientacion";
                     electionList[5] = election;
                     sintomasList[5] = "orientacionentorno";
+                    activeList[5]=true;
                 }
             }
         });
@@ -693,6 +723,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     election="memoria";
                     electionList[6] = election;
                     sintomasList[6] = "memoriaolvidosbenignos";
+                    activeList[6]=false;
 
                 }
                 if(checkedId==R.id.parcial_recordar_recientes){
@@ -700,6 +731,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     election="memoria";
                     electionList[6] = election;
                     sintomasList[6] = "memoriaolvidosbenignos";
+                    activeList[6]=true;
 
                 }
                 if(checkedId==R.id.total_recordar_recientes){
@@ -707,6 +739,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     election="memoria";
                     electionList[6] = election;
                     sintomasList[6] = "memoriaolvidosbenignos";
+                    activeList[6]=true;
 
                 }
             }
@@ -721,18 +754,21 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     election="memoria";
                     electionList[7] = election;
                     sintomasList[7] = "memoriatendenciarememorar";
+                    activeList[7]=false;
                 }
                 if(checkedId==R.id.parcial_rememorar_pasado){
                     calificationRememorarPasado="0.5";
                     election="memoria";
                     electionList[7] = election;
                     sintomasList[7] = "memoriatendenciarememorar";
+                    activeList[0]=true;
                 }
                 if(checkedId==R.id.total_rememorar_pasado){
                     calificationRememorarPasado="1.0";
                     election="memoria";
                     electionList[7] = election;
                     sintomasList[7] = "memoriatendenciarememorar";
+                    activeList[7]=true;
                 }
             }
         });
@@ -837,6 +873,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         patientDao.update(patient);
 
 
+
                         Log.e("calificationupdate"," domesticos"+calificationTareasDomesticos);
                         Log.e("calificationupdate"," pequenasdinero"+calificationPequenasDinero);
                         Log.e("calificationupdate"," listas cortas"+calificationListasCortas);
@@ -850,30 +887,40 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                         try{
                             tareasdomesticas = helper.getSintoma(patientid,"Blessed","vestimenta","incapacidadtareasdomesticas");
-                            if(!tareasdomesticas.getActivo().booleanValue()){
-                                tareasdomesticas.setActivo(true);
-                            }
+                            tareasdomesticas.setActivo(activeList[0]);
                             tareasdomesticas.getScaleList().get(0).setPuntaje(calificationTareasDomesticos);
+                            //tareasdomesticas.update();
+                            sintomaDao.update(tareasdomesticas);
+
+                            escalaDao.update(tareasdomesticas.getScaleList().get(0));
+                            //tareasdomesticas.refresh();
                             Log.e("guardado y actualizado",tareasdomesticas.getScaleList().get(0).getPuntaje().toString());
 
 
                         }catch (Exception e){}
                         try{
                             pequenasdinero = helper.getSintoma(patientid,"Blessed","vestimenta","incapacidadpequenasdinero");
-                            if(!pequenasdinero.getActivo().booleanValue()){
-                                pequenasdinero.setActivo(true);
-                            }
+                            pequenasdinero.setActivo(activeList[1]);
                             pequenasdinero.getScaleList().get(0).setPuntaje(calificationPequenasDinero);
+                            //pequenasdinero.update();
+                            sintomaDao.update(pequenasdinero);
+
+                            escalaDao.update(pequenasdinero.getScaleList().get(0));
+                            //pequenasdinero.refresh();
                             Log.e("guardado y actualizado",pequenasdinero.getScaleList().get(0).getPuntaje().toString());
 
                         }catch (Exception e){}
 
                         try{
                             memorialistascortas = helper.getSintoma(patientid,"Blessed","memoria","memorialistascortas");
-                            if(!memorialistascortas.getActivo().booleanValue()){
-                                memorialistascortas.setActivo(true);
-                            }
+                            memorialistascortas.setActivo(activeList[2]);
                             memorialistascortas.getScaleList().get(0).setPuntaje(calificationListasCortas);
+                            //memorialistascortas.update();
+                            sintomaDao.update(memorialistascortas);
+
+                            escalaDao.update(memorialistascortas.getScaleList().get(0));
+
+                            //memorialistascortas.refresh();
                             Log.e("guardado y actualizado",memorialistascortas.getScaleList().get(0).getPuntaje().toString());
 
 
@@ -881,10 +928,14 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         }
                         try{
                             orientacioncasa = helper.getSintoma(patientid,"Blessed","orientacion","orientacioncasa");
-                            if(!orientacioncasa.getActivo().booleanValue()){
-                                orientacioncasa.setActivo(true);
-                            }
+                            orientacioncasa.setActivo(activeList[3]);
                             orientacioncasa.getScaleList().get(0).setPuntaje(calificationOrientarseCasa);
+                            orientacioncasa.update();
+                            sintomaDao.update(orientacioncasa);
+
+                            escalaDao.update(orientacioncasa.getScaleList().get(0));
+
+                            //orientacioncasa.refresh();
                             Log.e("guardado y actualizado",orientacioncasa.getScaleList().get(0).getPuntaje().toString());
 
 
@@ -892,10 +943,13 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         }
                         try{
                             orientacioncalle = helper.getSintoma(patientid,"Blessed","orientacion","orientacioncalle");
-                            if(!orientacioncalle.getActivo().booleanValue()){
-                                orientacioncalle.setActivo(true);
-                            }
+                            orientacioncalle.setActivo(activeList[4]);
                             orientacioncalle.getScaleList().get(0).setPuntaje(calificationOrientarseCalle);
+                            sintomaDao.update(orientacioncalle);
+
+                            escalaDao.update(orientacioncalle.getScaleList().get(0));
+                            //orientacioncalle.update();
+                            //orientacioncalle.refresh();
                             Log.e("guardado y actualizado",orientacioncalle.getScaleList().get(0).getPuntaje().toString());
 
 
@@ -903,10 +957,13 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         }
                         try{
                             orientacionentorno = helper.getSintoma(patientid,"Blessed","orientacion","orientacionentorno");
-                            if(!orientacioncalle.getActivo().booleanValue()){
-                                orientacioncalle.setActivo(true);
-                            }
+                            orientacionentorno.setActivo(activeList[5]);
                             orientacionentorno.getScaleList().get(0).setPuntaje(calificationValorarEntorno);
+                            sintomaDao.update(orientacionentorno);
+
+                            escalaDao.update(orientacionentorno.getScaleList().get(0));
+                            //orientacionentorno.update();
+                            //orientacionentorno.refresh();
                             Log.e("guardado y actualizado",orientacionentorno.getScaleList().get(0).getPuntaje().toString());
 
                         }catch (Exception e){
@@ -914,10 +971,14 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                         try{
                             memoriaolvidosbenignos = helper.getSintoma(patientid,"Blessed","memoria","memoriaolvidosbenignos");
-                            if(!memoriaolvidosbenignos.getActivo().booleanValue()){
-                                memoriaolvidosbenignos.setActivo(true);
-                            }
+                            memoriaolvidosbenignos.setActivo(activeList[6]);
                             memoriaolvidosbenignos.getScaleList().get(0).setPuntaje(calificationRecodarPacientes);
+                            sintomaDao.update(memoriaolvidosbenignos);
+
+                            escalaDao.update(memoriaolvidosbenignos.getScaleList().get(0));
+                            //memoriaolvidosbenignos.update();
+                            //memoriaolvidosbenignos.refresh();
+
                             Log.e("guardado y actualizado", memoriaolvidosbenignos.getScaleList().get(0).getPuntaje().toString());
 
 
@@ -926,31 +987,15 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                         try{
                             tendenciarememorar = helper.getSintoma(patientid,"Blessed","memoria","memoriatendenciarememorar");
-                            if(!tendenciarememorar.getActivo().booleanValue())
-                            {
-                                tendenciarememorar.setActivo(true);
-                            }
+                            tendenciarememorar.setActivo(activeList[7]);
                             tendenciarememorar.getScaleList().get(0).setPuntaje(calificationRememorarPasado);
+                            sintomaDao.update(tendenciarememorar);
+                            escalaDao.update(tendenciarememorar.getScaleList().get(0));
+
+                            //tareasdomesticas.update();
                             Log.e("guardado y actualizado", tendenciarememorar.getScaleList().get(0).getPuntaje().toString());
 
                         }catch (Exception e){    }
-
-
-
-
-                        /*
-
-
-
-                        blessedIncapacity.setTareasdomesticas(calificationTareasDomesticos);
-                        blessedIncapacity.setPequenasdinero(calificationPequenasDinero);
-                        blessedIncapacity.setListascortas(calificationListasCortas);
-                        blessedIncapacity.setOrientarsecasa(calificationOrientarseCasa);
-                        blessedIncapacity.setOrientarsecalle(calificationOrientarseCalle);
-                        blessedIncapacity.setValorarentorno(calificationValorarEntorno);
-                        blessedIncapacity.setRecordarrecientes(calificationRecodarPacientes);
-                        blessedIncapacity.setRememorarpasado(calificationRememorarPasado);
-                        */
 
 
 
@@ -961,10 +1006,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         Log.e("Add patient 2","Dibujo "+var_dibujo);
 
 
-                            if(var_foto.equals("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser))
-                            {
-                                var_foto="";
-                            }
+
 
                     } else {
                         int var_mec = 0;
@@ -972,25 +1014,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         Patient patient2 = new Patient(null,var_nombre,var_fecha,var_foto,var_eps,parse_id,var_antecedentes,var_sindromes,var_observaciones,null,null,var_vision,var_escritura,var_dibujo);
                         patientDao.insert(patient2);
 
-                        /* try{
-                            if(patient2.getId().toString()!=null){
-                            */
 
-                                int rdgalimentacion=0,rdgvestimenta=0,rdgesfinteres=0;
-                                /*
-                                int [] personalidad = new int[11];
-                                for(int m=0;m<personalidad.length;m++)
-                                {
-                                    personalidad[m]=0;
-
-                                }
-                                */
-                                /*
-
-                                BlessedIncapacity blessedIncapacity = new BlessedIncapacity(null,patient2.getId(),calificationTareasDomesticos,calificationPequenasDinero,calificationListasCortas,calificationOrientarseCasa,calificationOrientarseCalle,calificationValorarEntorno,calificationRecodarPacientes,calificationRememorarPasado,
-                                        rdgalimentacion,rdgvestimenta,rdgesfinteres,personalidad[0],personalidad[1],personalidad[2],personalidad[3],personalidad[4],personalidad[5],personalidad[6],personalidad[7],personalidad[8],personalidad[9],personalidad[10]);
-                                this.blessedDao.insert(blessedIncapacity);
-                                */
                                 String var_tareasdomesticas;
 
                                 String[] calificaciones = new String[8];
@@ -1078,9 +1102,24 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                                 Sintoma sintomamemoriatendenciarememorar = new Sintoma(null,patient2.getId(),"memoria","memoriatendenciarememorar",false);
                                 Sintoma sintomamemoriaolvidosbenignos = new Sintoma(null,patient2.getId(),"memoria","memoriaolvidosbenignos",false);
+                                Sintoma sintomamemorialistascortas = new Sintoma(null,patient2.getId(),"memoria","memorialistascortas",false);
+
 
                                 sintomaDao.insert(sintomamemoriatendenciarememorar);
                                 sintomaDao.insert(sintomamemoriaolvidosbenignos);
+                                sintomaDao.insert(sintomamemorialistascortas);
+
+
+                                //ORIENTACION
+
+                                 Sintoma sintomaorientacioncasa= new Sintoma(null,patient2.getId(),"orientacion","orientacioncasa",false);
+                                Sintoma sintomaorientacioncalle = new Sintoma(null,patient2.getId(),"orientacion","orientacioncalle",false);
+                                Sintoma sintomaorientacionentorno = new Sintoma(null,patient2.getId(),"orientacion","orientacionentorno",false);
+
+
+                                sintomaDao.insert(sintomaorientacioncasa);
+                                sintomaDao.insert(sintomaorientacioncalle);
+                                sintomaDao.insert(sintomaorientacionentorno);
 
                                 //ALIMENTACION
                                 Sintoma sintomaalimentacioncuchara = new Sintoma(null,patient2.getId(),"alimentacion","alimentacioncuchara",false);
@@ -1123,14 +1162,16 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 escalaDao.insert(scalemovilidadsentarse);
                                 escalaDao.insert(scalemovilidadcabeza);
 
+
                                 Scale scalevestimentaactividades = new Scale(null,sintomavestimentaactividades.getId(),"FAST","4");
-                                Scale scaleincapacidadtareasdomesticas = new Scale(null,sintomaincapacidadtareasdomesticas.getId(),"Blessed","1");
-                                Scale scaleincapacidadpequenasdinero = new Scale(null,sintomaincapacidadpequenasdinero.getId(),"Blessed","2");
-                                Scale scalevestimentafallosocasionales = new Scale(null,sintomavestimentafallosocasionales.getId(),"Blessed","1");
+
+                                Scale scaleincapacidadtareasdomesticas = new Scale(null,sintomaincapacidadtareasdomesticas.getId(),"Blessed","1.0");
+                                Scale scaleincapacidadpequenasdinero = new Scale(null,sintomaincapacidadpequenasdinero.getId(),"Blessed","1.0");
+                                Scale scalevestimentafallosocasionales = new Scale(null,sintomavestimentafallosocasionales.getId(),"Blessed","1.0");
                                 Scale scalevestimentaseleccionar = new Scale(null,sintomavestimentaseleccionar.getId(),"FAST","5");
-                                Scale scalevestimentasecuencia = new Scale(null,sintomavestimentasecuencia.getId(),"Blessed","3");
+                                Scale scalevestimentasecuencia = new Scale(null,sintomavestimentasecuencia.getId(),"Blessed","2.0");
                                 Scale scalevestimentaayudavestirse = new Scale(null,sintomavestimentaayudavestirse.getId(),"FAST","6A");
-                                Scale scalevestimentaincapaz = new Scale(null,sintomavestimentaincapaz.getId(),"Blessed","3");
+                                Scale scalevestimentaincapaz = new Scale(null,sintomavestimentaincapaz.getId(),"Blessed","3.0");
 
                                 escalaDao.insert(scalevestimentaactividades);
                                 escalaDao.insert(scaleincapacidadtareasdomesticas);
@@ -1142,21 +1183,35 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 escalaDao.insert(scalevestimentaincapaz);
 
                                 Scale scalelenguajelimitado = new Scale(null,sintomalenguajelimitado.getId(),"FAST","7a");
-                                Scale scalelenguajepalabra = new Scale(null,sintomalenguajepalabra.getId(),"Blessed","7b");
+                                Scale scalelenguajepalabra = new Scale(null,sintomalenguajepalabra.getId(),"FAST","7b");
                                 escalaDao.insert(scalelenguajelimitado);
                                 escalaDao.insert(scalelenguajepalabra);
 
-                                Scale scalememoriatendenciarememorar = new Scale(null,sintomamemoriatendenciarememorar.getId(),"Blessed","1");
+                                Scale scalememoriatendenciarememorar = new Scale(null,sintomamemoriatendenciarememorar.getId(),"Blessed","1.0");
                                 Scale scalememoriaolvidosbenignos1 = new Scale(null,sintomamemoriaolvidosbenignos.getId(),"FAST","2");
-                                Scale scalememoriaolvidosbenignos2 = new Scale(null,sintomamemoriaolvidosbenignos.getId(),"Blessed","1");
-                                escalaDao.insert(scalememoriatendenciarememorar);
+                                Scale scalememoriaolvidosbenignos2 = new Scale(null,sintomamemoriaolvidosbenignos.getId(),"Blessed","1.0");
+                                Scale scalememorialistascortas = new Scale(null,sintomamemorialistascortas.getId(),"Blessed","1.0");
+
+                                 escalaDao.insert(scalememoriatendenciarememorar);
                                 escalaDao.insert(scalememoriaolvidosbenignos1);
                                 escalaDao.insert(scalememoriaolvidosbenignos2);
+                                escalaDao.insert(scalememorialistascortas);
 
 
-                                Scale scalealimentacioncuchara = new Scale(null,sintomamemoriatendenciarememorar.getId(),"Blessed","1");
-                                Scale scalealimentacionsolidos = new Scale(null,sintomamemoriaolvidosbenignos.getId(),"Blessed","2");
-                                Scale scalealimentaciondependientes = new Scale(null,sintomamemoriaolvidosbenignos.getId(),"Blessed","3");
+
+                                Scale scaleorientacioncasa = new Scale(null,sintomaorientacioncasa.getId(),"Blessed","1.0");
+                                Scale scaleorientacioncalle = new Scale(null,sintomaorientacioncalle.getId(),"Blessed","1.0");
+                                Scale scaleorientacionentorno = new Scale(null,sintomaorientacionentorno.getId(),"Blessed","1.0");
+                                escalaDao.insert(scaleorientacioncasa);
+                                escalaDao.insert(scaleorientacioncalle);
+                                escalaDao.insert(scaleorientacionentorno);
+
+
+
+
+                                Scale scalealimentacioncuchara = new Scale(null,sintomamemoriatendenciarememorar.getId(),"Blessed","1.0");
+                                Scale scalealimentacionsolidos = new Scale(null,sintomamemoriaolvidosbenignos.getId(),"Blessed","2.0");
+                                Scale scalealimentaciondependientes = new Scale(null,sintomamemoriaolvidosbenignos.getId(),"Blessed","3.0");
                                 escalaDao.insert(scalealimentacioncuchara);
                                 escalaDao.insert(scalealimentacionsolidos);
                                 escalaDao.insert(scalealimentaciondependientes);
@@ -1164,43 +1219,115 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                                 Scale scaleanimosonrisa = new Scale(null,sintomamemoriaolvidosbenignos.getId(),"FAST","7e");
                                 escalaDao.insert(scaleanimosonrisa);
+
                                 Log.e("entra al for","entro");
 
-                                for(int j=0;j<sintomasList.length;j++)
 
-                                {
-                                    Log.e("entra al for","entro");
-                                    Sintoma sintomasagregados = new Sintoma(null,patient2.getId(),electionList[j],sintomasList[j],true);
-                                    sintomaDao.insert(sintomasagregados);
-
-                                    Scale scaleagregado = new Scale(null,sintomasagregados.getId(),"Blessed",calificaciones[j]);
-
-                                    Log.e("blessed a guardar","A ingresar: indicador"+electionList[j]+" signo o sintoma:"+ sintomasList[j]+ "calificacion"+calificaciones[j]);
+                        try{
+                            tareasdomesticas = helper.getSintoma(patient2.getId(),"Blessed","vestimenta","incapacidadtareasdomesticas");
+                            tareasdomesticas.setActivo(activeList[0]);
+                            tareasdomesticas.getScaleList().get(0).setPuntaje(calificationTareasDomesticos);
+                            sintomaDao.update(tareasdomesticas);
+                            escalaDao.update(tareasdomesticas.getScaleList().get(0));
+                            Log.e("guardado y actualizado",tareasdomesticas.getScaleList().get(0).getPuntaje().toString());
 
 
-                                    escalaDao.insert(scaleagregado);
-                                    Log.e("blessed guardado",sintomasagregados.getId()+" indicador "+sintomasagregados.getAmbito()+" sintomas "+sintomasagregados.getSigno()+" calificacion"+scaleagregado.getPuntaje());
+                        }catch (Exception e){}
+                        try{
+                            pequenasdinero = helper.getSintoma(patient2.getId(),"Blessed","vestimenta","incapacidadpequenasdinero");
+                            pequenasdinero.setActivo(activeList[1]);
+                            pequenasdinero.getScaleList().get(0).setPuntaje(calificationPequenasDinero);
+                            sintomaDao.update(pequenasdinero);
+                            escalaDao.update(pequenasdinero.getScaleList().get(0));
+                            //pequenasdinero.update();
+                            //pequenasdinero.refresh();
+                            Log.e("guardado y actualizado",pequenasdinero.getScaleList().get(0).getPuntaje().toString());
+
+                        }catch (Exception e){}
+
+                        try{
+                            memorialistascortas = helper.getSintoma(patient2.getId(),"Blessed","memoria","memorialistascortas");
+                            memorialistascortas.setActivo(activeList[2]);
+                            memorialistascortas.getScaleList().get(0).setPuntaje(calificationListasCortas);
+                            sintomaDao.update(memorialistascortas);
+                            escalaDao.update(memorialistascortas.getScaleList().get(0));
+                            //memorialistascortas.update();
+                            //memorialistascortas.refresh();
+                            Log.e("guardado y actualizado",memorialistascortas.getScaleList().get(0).getPuntaje().toString());
 
 
-
-
-
-
-
-
-
-                                }
-
-
-
-                           /* }
-                         }catch (NullPointerException e){
-
-                        }  */
-
-
-
+                        }catch (Exception e){
                         }
+                        try{
+                            orientacioncasa = helper.getSintoma(patient2.getId(),"Blessed","orientacion","orientacioncasa");
+                            orientacioncasa.setActivo(activeList[3]);
+                            orientacioncasa.getScaleList().get(0).setPuntaje(calificationOrientarseCasa);
+                            sintomaDao.update(orientacioncasa);
+                            escalaDao.update(orientacioncasa.getScaleList().get(0));
+                            //orientacioncasa.update();
+                            //orientacioncasa.refresh();
+                            Log.e("guardado y actualizado",orientacioncasa.getScaleList().get(0).getPuntaje().toString());
+
+
+                        }catch (Exception e){
+                        }
+                        try{
+                            orientacioncalle = helper.getSintoma(patient2.getId(),"Blessed","orientacion","orientacioncalle");
+                            orientacioncalle.setActivo(activeList[4]);
+                            orientacioncalle.getScaleList().get(0).setPuntaje(calificationOrientarseCalle);
+                            sintomaDao.update(orientacioncalle);
+                            escalaDao.update(orientacioncalle.getScaleList().get(0));
+                            //orientacioncalle.update();
+                            //orientacioncalle.refresh();
+                            Log.e("guardado y actualizado",orientacioncalle.getScaleList().get(0).getPuntaje().toString());
+
+
+                        }catch (Exception e){
+                        }
+                        try{
+                            orientacionentorno = helper.getSintoma(patient2.getId(),"Blessed","orientacion","orientacionentorno");
+                            orientacionentorno.setActivo(activeList[5]);
+                            orientacionentorno.getScaleList().get(0).setPuntaje(calificationValorarEntorno);
+                            sintomaDao.update(orientacionentorno);
+                            escalaDao.update(orientacionentorno.getScaleList().get(0));
+                            //orientacionentorno.update();
+                            Log.e("guardado y actualizado",orientacionentorno.getScaleList().get(0).getPuntaje().toString());
+
+                        }catch (Exception e){
+                        }
+
+                        try{
+                            memoriaolvidosbenignos = helper.getSintoma(patient2.getId(),"Blessed","memoria","memoriaolvidosbenignos");
+                            memoriaolvidosbenignos.setActivo(activeList[6]);
+                            memoriaolvidosbenignos.getScaleList().get(0).setPuntaje(calificationRecodarPacientes);
+                            sintomaDao.update(memoriaolvidosbenignos);
+                            escalaDao.update(memoriaolvidosbenignos.getScaleList().get(0));
+                            //memoriaolvidosbenignos.update();
+                            //memoriaolvidosbenignos.refresh();
+
+                            Log.e("guardado y actualizado", memoriaolvidosbenignos.getScaleList().get(0).getPuntaje().toString());
+
+
+                        }catch (Exception e){
+                        }
+
+                        try{
+                            tendenciarememorar = helper.getSintoma(patient2.getId(),"Blessed","memoria","memoriatendenciarememorar");
+                            tendenciarememorar.setActivo(activeList[7]);
+                            tendenciarememorar.getScaleList().get(0).setPuntaje(calificationRememorarPasado);
+                            sintomaDao.update(tendenciarememorar);
+                            escalaDao.update(tendenciarememorar.getScaleList().get(0));
+                            //tareasdomesticas.update();
+                            //tareasdomesticas.refresh();
+                            Log.e("guardado y actualizado", tendenciarememorar.getScaleList().get(0).getPuntaje().toString());
+
+                        }catch (Exception e){    }
+
+
+
+
+
+                    }
 
                     //-------------------------------
                     Intent ir_main = new Intent(this, MainActivity.class);

@@ -34,10 +34,10 @@ public class RegisterPresenterImplementation implements RegisterPresenter{
     }
 
     @Override
-    public void registerUser(String username, String password, String completeName, String passwordaprobal) {
+    public void registerUser(String username, String password, String completeName) {
 
         Log.e("Registro","llego al presentador");
-            registerInteractor.doSingUp(username, password, completeName, passwordaprobal);
+            registerInteractor.doSingUp(username, password, completeName);
 
             //registerView.newUserError(RegisterEvent.onSingUpErrorEmptyInputs);
 
@@ -57,7 +57,7 @@ public class RegisterPresenterImplementation implements RegisterPresenter{
                 onSignUpError(RegisterEvent.onSingUpError);
                 break;
             case RegisterEvent.onSingUpErrorAprobal:
-                Log.e("Registro","en el presentador devolvio error de registro por contraseña de aprobacion");
+                Log.e("Registro","en el presentador devolvio error de username ocupada");
                 onSignUpError(RegisterEvent.onSingUpErrorAprobal);
 
 

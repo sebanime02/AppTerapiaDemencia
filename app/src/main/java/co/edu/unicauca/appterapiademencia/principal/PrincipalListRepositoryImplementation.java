@@ -16,6 +16,7 @@ import co.edu.unicauca.appterapiademencia.domain.dao.NoteDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.PatientDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.TipDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.UserDao;
+import co.edu.unicauca.appterapiademencia.events.BlessedEvent;
 import co.edu.unicauca.appterapiademencia.events.PatientListEvent;
 import co.edu.unicauca.appterapiademencia.lib.EventBus;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
@@ -31,6 +32,8 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     private TipDao tipDao;
     private boolean accessType;
     private QueryBuilder queryBuildergeneral;
+    private Patient patient;
+    private List<Patient> patientList;
 
     public PrincipalListRepositoryImplementation(){
         this.helper = GreenDaoHelper.getInstance();
@@ -42,9 +45,24 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
 
     @Override
     public Patient getPatientData(Long id) {
+        /*
+
        List<Patient> patientList = queryBuildergeneral.where(PatientDao.Properties.Identity.eq(id)).limit(1).list();
         Log.d("Repositorio","devolvio el nombre: "+patientList.get(0).getName());
         return patientList.get(0);
+        */
+        try
+        {
+            patient = helper.getPatientInformationUsingCedula(id);
+            Log.d("Repositorio","devolvio el nombre: "+patient.getName());
+
+        }catch (Exception e)
+        {
+            postEvent(PatientListEvent.onPatientGetDataError,0);
+        }
+        return patient;
+
+
 
     }
 
@@ -61,19 +79,27 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
 
     @Override
     public List<Patient> getPatients() {
-       /*Patient prueba = new Patient(null,"Orlando Ñ","18/04/1995","","cosmitet",11111,"ninguno",null,null,null,null,0,0,0);
+   /*Patient prueba = new Patient(null,"Orlando Ñ","18/04/1995","","cosmitet",11111,"ninguno",null,null,null,null,0,0,0);
         this.patientDao.insert(prueba);
            */
-     QueryBuilder qbpatients = helper.getPatientDao().queryBuilder();
-        List patients = qbpatients.orderDesc(PatientDao.Properties.Id).list();
-        List<Patient> patientList = patients;
-        int i;
-        for(i=0; i<patientList.size();i++){
-            Log.e("List Patients","Paciente con nombre "+patientList.get(i).getName());
+        try
+        {
+            QueryBuilder qbpatients = helper.getPatientDao().queryBuilder();
+            List patients = qbpatients.orderDesc(PatientDao.Properties.Id).list();
+            patientList = patients;
+            int i;
+            for(i=0; i<patientList.size();i++){
+                Log.e("List Patients","Paciente con nombre "+patientList.get(i).getName());
+            }
+            Log.e("List Patients","Envia al postlistevent la lista");
         }
-        Log.e("List Patients","Envia al postlistevent la lista");
-        return patientList;
+        catch (Exception e)
+        {
+            postEvent(PatientListEvent.onPatientListError,1);
 
+        }
+
+        return patientList;
 
     }
 
@@ -147,17 +173,53 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
 
     }
 
-    private void postPatientListEvent(List<Patient> patientList){
+    @Override
+    public Double getBlessedScore(Long id) {
+        Double score;
+       try
+       {
+           score = helper.getBlessedScore(id);
+
+       }catch (Exception e)
+       {
+           score=0.0;
+           postEvent(BlessedEvent.onBlessedScoreError,2);
+
+       }
+        return score;
+    }
+
+    private void postEvent(int type,int typemethod){
+        //typemethod==0 para getPatientData, typemethod==1 para getPatientList
 
 
-            PatientListEvent listEvent = new PatientListEvent();
-            listEvent.setPatientList(patientList);
+        if(typemethod==0)
+        {
+            PatientListEvent patientListEvent = new PatientListEvent();
+            patientListEvent.setEventType(type);
 
             EventBus eventBus = GreenRobotEventBus.getInstance();
-            Log.e("Lista de Pacientes","Va a registrar el evento con lista de pacientes");
+            Log.e("Principal Repository","Va a registrar el evento");
+            eventBus.post(patientListEvent);
+        }
 
+        if(typemethod==1)
+        {
+            PatientListEvent patientListEvent = new PatientListEvent();
+            patientListEvent.setEventType(type);
 
+            EventBus eventBus = GreenRobotEventBus.getInstance();
+            Log.e("Principal Repository","Va a registrar el evento");
+            eventBus.post(patientListEvent);
+        }
+        if(typemethod==2)
+        {
+            BlessedEvent blessedEvent = new BlessedEvent();
+            blessedEvent.setEventType(type);
 
+            EventBus eventBus = GreenRobotEventBus.getInstance();
+            eventBus.post(blessedEvent);
+        }
 
 
     }

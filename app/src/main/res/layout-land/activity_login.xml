@@ -16,18 +16,44 @@
             android:orientation="vertical"
             android:layout_gravity="top"
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                >
 
 
             <ImageView
 
                 android:id="@+id/img_loguin"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="200dp"
-                android:src="@drawable/logologuinletras"
-
-                android:scaleType="fitXY"
+                android:src="@drawable/logobrain"
+                android:background="@color/colorPrimaryDark"
 
                 />
+                <TextView
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/medium_text_size"
+                    android:text="@string/logo_txt"
+                    android:gravity="center"
+                    android:background="@color/colorPrimaryDark"
+
+                    />
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            >
+
+
 
 
             <Button
@@ -35,7 +61,8 @@
                 android:drawableTop="@mipmap/ic_supervisor_account_white_36dp"
                 android:foregroundTint="@color/white"
                 android:id="@+id/btn_soysupervisor"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_soysupervisor"
                 android:fontFamily="sans-serif-black"
@@ -50,7 +77,8 @@
                 />
 
             <Button
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="@string/btn_soycuidador"
@@ -64,6 +92,7 @@
                 android:onClick="toMain"
                 android:drawableTop="@mipmap/careralone_white"
                 />
+        </LinearLayout>
 
             <android.support.design.widget.CoordinatorLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -79,10 +108,12 @@
 
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="?attr/actionBarSize"
+
                     android:orientation="vertical"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
+
                     >
 
 
@@ -116,10 +147,22 @@
                             android:hint="@string/hint_password"
                             android:drawableLeft="@mipmap/ic_lock_black_24dp"/>
                     </android.support.design.widget.TextInputLayout>
-
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        >
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:visibility="invisible"
+                            />
                     <Button
                         android:id="@+id/btn_entrar"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
                         android:text="@string/btn_entrar"
@@ -129,6 +172,7 @@
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:onClick="autenticateUser"
                         />
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/txt_error"

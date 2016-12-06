@@ -12,4 +12,6 @@ public interface PatientProfileView  {
     void editPatientData(Long id);
     void getPatientData(Long id);
     void getBlessedScore(Long id);
+    void showBlessedScore(Double score);
+
 }

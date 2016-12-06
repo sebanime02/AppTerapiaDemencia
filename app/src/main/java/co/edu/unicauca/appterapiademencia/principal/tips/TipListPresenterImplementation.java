@@ -3,6 +3,8 @@ package co.edu.unicauca.appterapiademencia.principal.tips;
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.domain.Tip;
+import co.edu.unicauca.appterapiademencia.lib.EventBus;
+import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractor;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractorImplementation;
 
@@ -12,13 +14,17 @@ import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractorImple
 
 public class TipListPresenterImplementation implements TipsListPresenter {
 
-    TipsListView tipsListView;
-    PrincipalListInteractor principalListInteractor;
+    private TipsListView tipsListView;
+    private PrincipalListInteractor principalListInteractor;
+    private EventBus eventBus;
+
 
     public TipListPresenterImplementation(TipsListView tipsListView)
     {
         this.tipsListView = tipsListView;
         this.principalListInteractor = new PrincipalListInteractorImplementation();
+        this.eventBus = GreenRobotEventBus.getInstance();
+
     }
 
     @Override
@@ -30,11 +36,12 @@ public class TipListPresenterImplementation implements TipsListPresenter {
 
     @Override
     public void onCreate() {
-
+        eventBus.register(this);
     }
 
     @Override
     public void onDestroy() {
+        eventBus.unregister(this);
         tipsListView= null;
 
     }

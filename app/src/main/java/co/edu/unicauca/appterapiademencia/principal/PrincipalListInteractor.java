@@ -32,4 +32,5 @@ public interface PrincipalListInteractor {
 
     void changeUserData(HashMap<String,Object> hashMap);
     int[] notesCount(Long id);
+    Double getBlessedScore(Long id);
 }

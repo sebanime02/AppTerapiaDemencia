@@ -16,10 +16,13 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.io.File;
+import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
+import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
+import co.edu.unicauca.appterapiademencia.lib.EventBus;
 import co.edu.unicauca.appterapiademencia.principal.MainActivity;
 
 
@@ -111,6 +114,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         container.setVisibility(View.VISIBLE);
 
         btn_supervisor.setBackgroundColor(getResources().getColor(R.color.accent_color));
+
 
     }
 

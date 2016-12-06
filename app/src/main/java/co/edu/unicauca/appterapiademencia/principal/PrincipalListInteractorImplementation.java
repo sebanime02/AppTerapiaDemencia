@@ -88,4 +88,9 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
     public int[] notesCount(Long id) {
         return new int[0];
     }
+
+    @Override
+    public Double getBlessedScore(Long id) {
+        return principalListRepository.getBlessedScore(id);
+    }
 }

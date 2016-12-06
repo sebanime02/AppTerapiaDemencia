@@ -3,6 +3,7 @@ package co.edu.unicauca.appterapiademencia.principal.patientprofile;
 import android.util.Log;
 
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.events.BlessedEvent;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractor;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractorImplementation;
@@ -58,16 +59,40 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
 
     @Override
     public void onCreate() {
+        eventBus.register(this);
 
     }
 
     @Override
     public void onDestroy() {
+        eventBus.unregister(this);
         patientProfileView = null;
     }
 
     @Override
     public void onResume() {
 
+    }
+
+    @Override
+    public void getBlessedScore(Long id) {
+
+        Double score;
+        score = principalListInteractor.getBlessedScore(id);
+        if(patientProfileView!=null)
+        {
+            patientProfileView.showBlessedScore(score);
+
+        }
+    }
+
+    @Override
+    public void onEventMainThread(BlessedEvent event) {
+        switch (event.getEventType())
+        {
+            case BlessedEvent.onBlessedScoreError:
+
+            break;
+        }
     }
 }

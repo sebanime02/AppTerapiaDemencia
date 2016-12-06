@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private String titleMessage;
     private TextView completeNameNavbar;
     private ImageView userAvatarNavbar;
-    private SearchView searchView;
+
     public static final Integer[] imagessupervisor = {R.drawable.ic_list_black_24dp,R.drawable.ic_action_content_report,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
     public static final String[] titlessupervisor= {"Lista de Pacientes","Notificaciones","Tips para el cuidador","Perfil de usuario","Ayuda","Salir"};
     public static final Integer[] imagescarer ={R.drawable.ic_list_black_24dp,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
@@ -229,7 +229,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             //completeNameNavbar.setText("Supervisor");
             Picasso.with(getApplicationContext()).load(R.drawable.emptyuser).resize(50,50).transform(new CircleTransform()).into(userAvatarNavbar);
             //userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
-            //}
+            //
+
 
 
 
@@ -289,6 +290,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case 1:
                 if(supervisormode==true){
                     callNotifications();
+
                 }
                 else {
                    callTips();

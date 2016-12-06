@@ -14,6 +14,7 @@
         completions."
     </string>
     <!-- LOGIN 1 LAYOUT-->
+    <string name="logo_txt">APLICACIÓN DE ASISTENCIA AL CUIDADOR Y SUPERVISOR EN INSTITUCIONES CON ADULTOS MAYORES</string>
     <string name="Titulo_aplicacion">Aplicación Para Terapia Demencia</string>
     <string name="btn_soycuidador">Soy Cuidador (Acceso Limitado)</string>
     <string name="btn_soysupervisor">Superviso Cuidadores</string>
@@ -121,7 +122,7 @@
 
     <!--RADIOBUTTONS-->
    <string name="memoria_otro">Ninguno de los Anteriores</string>
-   <string name="memoria_sindeficit">Sin déficit</string>
+   <string name="memoria_listascortas">Incapacidad para recordar listas cortas de elementos</string>
    <string name="memoria_rememorar">Tendencia a rememorar el pasado</string>
    <string name="memoria_olvidosbenignos">Olvidos benignos y/o Recientes, por ejemplo la ubicación de objetos</string>
 
@@ -186,7 +187,7 @@
 
 
   <!--USER PROFILE -->
-    <string name="txt_instructions_go_adduser">Si Desea agregar un nuevo Supervisor puede hacerlo presionando el siguiente botón: </string>
+    <string name="txt_instructions_go_adduser">Si Desea agregar un NUEVO Supervisor puede hacerlo presionando el siguiente botón: </string>
     <string name="txt_save_user">GUARDAR</string>
     <string name="succes_set_user_information_title">Informacion Guardada con Éxito</string>
     <string name="error_set_user_title">Error al Actualizar Datos</string>

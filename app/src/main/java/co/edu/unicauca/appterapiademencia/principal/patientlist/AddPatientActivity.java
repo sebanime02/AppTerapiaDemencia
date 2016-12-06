@@ -164,43 +164,43 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 try{
 
                     Sintoma tareasdomesticas = daoHelper.getSintoma(patientid,"Blessed","vestimenta","incapacidadtareasdomesticas");
-                    datosb[0]= daoHelper.getScale(tareasdomesticas.getId(),"Blessed").getPuntaje().toString();
+                    datosb[0]=tareasdomesticas.getScaleList().get(0).getPuntaje().toString();
 
 
                 }catch (Exception e){datosb[0]="0.0";}
                 try{
                     Sintoma pequenasdinero = daoHelper.getSintoma(patientid,"Blessed","vestimenta","incapacidadpequenasdinero");
-                    datosb[1]=daoHelper.getScale(pequenasdinero.getId(),"Blessed").getPuntaje().toString();
+                    datosb[1]=pequenasdinero.getScaleList().get(0).getPuntaje().toString();
 
                 }catch (Exception e){datosb[1]="0.0";}
 
                 try{
                     Sintoma memorialistascortas = daoHelper.getSintoma(patientid,"Blessed","memoria","memorialistascortas");
-                    datosb[2]=daoHelper.getScale(memorialistascortas.getId(),"Blessed").getPuntaje().toString();
+                    datosb[2]=memorialistascortas.getScaleList().get(0).getPuntaje().toString();
 
                 }catch (Exception e){datosb[2]="0.0";}
                 try{
                     Sintoma orientacioncasa = daoHelper.getSintoma(patientid,"Blessed","orientacion","orientacioncasa");
-                    datosb[3]=daoHelper.getScale(orientacioncasa.getId(),"Blessed").getPuntaje().toString();
+                    datosb[3]=orientacioncasa.getScaleList().get(0).getPuntaje().toString();
 
 
                 }catch (Exception e){datosb[3]="0.0";}
                 try{
                     Sintoma orientacioncalle = daoHelper.getSintoma(patientid,"Blessed","orientacion","orientacioncalle");
-                    datosb[4]=daoHelper.getScale(orientacioncalle.getId(),"Blessed").getPuntaje().toString();
+                    datosb[4]= orientacioncalle.getScaleList().get(0).getPuntaje().toString();
 
 
                 }catch (Exception e){datosb[4]="0.0";}
                 try{
                     Sintoma orientacionentorno = daoHelper.getSintoma(patientid,"Blessed","orientacion","orientacionentorno");
-                    datosb[5]=  daoHelper.getScale(orientacionentorno.getId(),"Blessed").getPuntaje().toString();
+                    datosb[5]= orientacionentorno.getScaleList().get(0).getPuntaje().toString();
 
 
                 }catch (Exception e){datosb[5]="0.0";}
 
                 try{
                     Sintoma memoriaolvidosbenignos = daoHelper.getSintoma(patientid,"Blessed","memoria","memoriaolvidosbenignos");
-                    datosb[6]=  daoHelper.getScale(memoriaolvidosbenignos.getId(),"Blessed").getPuntaje().toString();
+                    datosb[6]= memoriaolvidosbenignos.getScaleList().get(0).getPuntaje().toString();
 
 
 
@@ -208,7 +208,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
                 try{
                     Sintoma tendenciarememorar = daoHelper.getSintoma(patientid,"Blessed","memoria","memoriatendenciarememorar");
-                    datosb[7]= daoHelper.getScale(tendenciarememorar.getId(),"Blessed").getPuntaje().toString();
+                    datosb[7]= tendenciarememorar.getScaleList().get(0).getPuntaje().toString();
 
                 }catch (Exception e){datosb[7]="0.0";}
 
@@ -222,13 +222,6 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 Log.e("datosb5 ",""+datosb[5]);
                 Log.e("datosb6 ",""+datosb[6]);
                 Log.e("datosb7 ",""+datosb[7]);
-
-
-
-
-
-
-
 
 
 

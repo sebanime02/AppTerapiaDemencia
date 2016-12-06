@@ -23,7 +23,7 @@
         <activity
             android:name=".login.LoginActivity"
             android:label="Ingreso al Sistema"
-            android:screenOrientation="portrait">
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,7 +40,7 @@
         <activity
             android:name=".login.RegisterActivity"
             android:label="Registro de Supervisores"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".principal.PrincipalActivity"
             android:label="Principal"
@@ -87,6 +87,7 @@
             android:label="Agregar Una nota relacionada a un Evento"
             android:parentActivityName=".principal.patientlist.PatientProfileActivity"
             android:theme="@style/MyMaterialTheme.Base"
+            android:screenOrientation="landscape"
             />
         <fragment
             android:name=".principal.patientlist.PatientProfileFragment"

@@ -18,6 +18,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import co.edu.unicauca.appterapiademencia.R;
+import co.edu.unicauca.appterapiademencia.principal.MainActivity;
+import co.edu.unicauca.appterapiademencia.principal.patientlist.AddPatient2Activity;
 
 /**
  * Created by ENF on 14/10/2016.
@@ -62,7 +64,7 @@ private EditText input_username,input_password_supervisor,input_completename,inp
         input_username = (EditText) findViewById(R.id.txt_username);
         input_password_supervisor = (EditText) findViewById(R.id.txt_password_supervisor);
         input_completename = (EditText) findViewById(R.id.txt_completename);
-        input_password_supervisor_aprobal = (EditText) findViewById(R.id.txt_password_supervisor_aprobar);
+
         add_image_user = (FloatingActionButton) findViewById(R.id.add_user_image);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorRegister);
         irLogin = (Button) findViewById(R.id.btn_irLogin);
@@ -101,11 +103,12 @@ private EditText input_username,input_password_supervisor,input_completename,inp
         switch (error) {
             case 0:
                 Log.e("Registro","dialog de error de registro por username");
-                new MaterialDialog.Builder(this).title(R.string.dialog_register_error_title).content(R.string.dialog_register_error_content).positiveText(R.string.dialog_succes_agree).show();
+                new MaterialDialog.Builder(this).title("Error al registrar").content("Intente mas tarde").positiveText(R.string.dialog_succes_agree).show();
                 break;
             case 2:
-                Log.e("Registro","dialog de error de registro por contraseña de aprobacion");
-            new MaterialDialog.Builder(this).title(R.string.dialog_register_error_aprobal_title).content(R.string.dialog_register_error_aprobal_content).positiveText(R.string.dialog_succes_agree).show();
+                Log.e("Registro","dialog de error de registro por username");
+                new MaterialDialog.Builder(this).title(R.string.dialog_register_error_title).content(R.string.dialog_register_error_content).positiveText(R.string.dialog_succes_agree).show();
+
             break;
 
 
@@ -116,10 +119,10 @@ private EditText input_username,input_password_supervisor,input_completename,inp
     @Override
     public void handleSingUp() {
         Log.e("Registro","va a validar");
-        if(validateInputs(input_username.getText().toString(),input_password_supervisor.getText().toString(),input_completename.getText().toString(),input_password_supervisor_aprobal.getText().toString())==false)
+        if(validateInputs(input_username.getText().toString(),input_password_supervisor.getText().toString(),input_completename.getText().toString())==false)
         {
             Log.e("Registro","se valido");
-            registerPresenter.registerUser(input_username.getText().toString(),input_password_supervisor.getText().toString(),input_completename.getText().toString(),input_password_supervisor_aprobal.getText().toString());
+            registerPresenter.registerUser(input_username.getText().toString(),input_password_supervisor.getText().toString(),input_completename.getText().toString());
         }
         else
         {
@@ -128,8 +131,8 @@ private EditText input_username,input_password_supervisor,input_completename,inp
             new MaterialDialog.Builder(this).title(R.string.dialog_register_emptyinput_title).content(R.string.dialog_register_emptyinput_content).positiveText(R.string.dialog_succes_agree).show();
         }
     }
-    private boolean validateInputs(String username, String password, String completeName, String passwordaprobal) {
-        if(username.equals("") || password.equals("") || completeName.equals("") || passwordaprobal.equals("")){
+    private boolean validateInputs(String username, String password, String completeName) {
+        if(username.equals("") || password.equals("") || completeName.equals("")){
             return true;
         }
         else{
@@ -141,11 +144,13 @@ private EditText input_username,input_password_supervisor,input_completename,inp
     @Override
     public void navigateToLogin() {
 
+       /*
         Bundle bundl = getIntent().getExtras();
         if(bundl!=null)
         {
             if(bundl.getString("msg")!=null)
             {
+                startActivity(new Intent(this, MainActivity.class));
 
             }
         }
@@ -153,6 +158,13 @@ private EditText input_username,input_password_supervisor,input_completename,inp
             startActivity(new Intent(this, LoginActivity.class));
 
         }
+        */
+        Intent backMain = new Intent(getApplicationContext(), LoginActivity.class);
+
+        startActivity(backMain);
+        overridePendingTransition(R.anim.left_in, R.anim.left_out);
+
+
     }
 
     @Override
@@ -162,11 +174,26 @@ private EditText input_username,input_password_supervisor,input_completename,inp
         builder.onPositive(new MaterialDialog.SingleButtonCallback() {
             @Override
             public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
-                materialDialog.dismiss();
+                Bundle bundl = getIntent().getExtras();
+                if(bundl!=null)
+                {
+                    if(bundl.getString("msg")!=null)
+                    {
+                        Intent backMain = new Intent(getApplicationContext(), MainActivity.class);
+
+                        startActivity(backMain);
+                        overridePendingTransition(R.anim.right_in, R.anim.right_out);
+
+                    }
+                }
+                else{
+                    navigateToLogin();
+
+                }
+
             }
         });
         builder.show();
-        navigateToLogin();
 
 
 

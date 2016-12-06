@@ -22,6 +22,7 @@ import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.AddPatient2Activity;
 import co.edu.unicauca.appterapiademencia.util.CircleTransform;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by SEBAS on 07/11/2016.
@@ -271,17 +272,18 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
 
     @Override
     public void getBlessedScore(Long id) {
-        //TRES PARTES
 
-        //1. AVD
-
-
-        //2. ALIMENTACION
-
-
-        //3. CAMBIOS DE COMPORTAMIENTO
-
-
+        patientProfilePresenter.getBlessedScore(id);
 
     }
+
+    @Override
+    public void showBlessedScore(Double score) {
+
+    }
+    public void showBlessedError()
+    {
+
+    }
+
 }

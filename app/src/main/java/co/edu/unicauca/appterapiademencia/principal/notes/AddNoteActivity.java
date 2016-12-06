@@ -58,13 +58,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private CheckBox rdgMovilidadOtro,rdgMovilidadSitiosLejanos,rdgMovilidadCaminar,rdgMovilidadSentarse,rdgMovilidadCabeza;
     private CheckBox rdgHigieneAyudaBanarse,rdgHigieneSoltarBano,rdgHigieneAyudaInodoro,rdgHigieneIncontinensiaUrinaria,rdgHigieneIncontinensiaFecal;
     private CheckBox rdgVestimentaActividades,rdgVestimentaFallosOcasionales,rdgVestimentaSeleccionar,rdgVestimentaSecuencia,rdgVestimentaAyudaVestirse,rdgVestimentaIncapaz;
-    private CheckBox rdgMemoriaTendenciaRememorar,rdgMemoriaOlvidosBenignos;
+    private CheckBox rdgMemoriaTendenciaRememorar,rdgMemoriaOlvidosBenignos,rdgMemoriaListasCortas;
     private CheckBox rdgLenguajeLimitado,rdgLenguajePalabra;
     private CheckBox rdgAlimentacionCuchara,rdgAlimentacionSolidos,rdgAlimentacionDependiente;
     private CheckBox rdgAnimoSonrisa;
     private ArrayList<String> sintomasList;
     private ArrayList<String> nameTestList;
     private ArrayList<String> puntajeList;
+    private ArrayList<Boolean> stateList;
     private RadioButton rdgTardia;
     private NoteDao noteDao;
     private ScaleDao scaleDao;
@@ -106,6 +107,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         this.sintomasList = new ArrayList<String>();
         this.puntajeList = new ArrayList<String>();
         this.nameTestList = new ArrayList<String>();
+        this.stateList = new ArrayList<Boolean>();
     }
 
 
@@ -117,6 +119,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         sintomasList.clear();
         puntajeList.clear();
         nameTestList.clear();
+        stateList.clear();
         description= (EditText) findViewById(R.id.txt_description);
 
         movility= (ImageButton) findViewById(R.id.btn_movility);
@@ -145,10 +148,11 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         */
 
         linear_efecto = (LinearLayout) findViewById(R.id.linear_efecto);
+
         rdgMovilidad = (RadioGroup) findViewById(R.id.rdgMovilidad);
         rdgAlimentacion = (RadioGroup) findViewById(R.id.rdgAlimentacion);
         rdgLenguaje = (RadioGroup) findViewById(R.id.rdgLenguaje);
-        rdgMemoria = (RadioGroup) findViewById(R.id.rdgMemoria);
+        rdgMemoria = (RadioGroup) findViewById(R.id.rdgMemoria);  //Aceptado
         rdgHigiene = (RadioGroup) findViewById(R.id.rdgHigiene);
         rdgVestimenta = (RadioGroup) findViewById(R.id.rdgVestimenta);
         rdgAnimo = (RadioGroup) findViewById(R.id.rdgAnimo);
@@ -181,12 +185,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
         //MEMORIA
 
+        rdgMemoriaListasCortas = (CheckBox) findViewById(R.id.rdgMemoriaListasCortas);
         rdgMemoriaTendenciaRememorar = (CheckBox) findViewById(R.id.rdgMemoriaTendenciaRememorar);
         rdgMemoriaOlvidosBenignos = (CheckBox) findViewById(R.id.rdgMemoriaOlvidosBenignos);
 
 
         //LENGUAJE
 
+        rdgMemoriaListasCortas = (CheckBox) findViewById(R.id.rdgMemoriaListasCortas);
         rdgLenguajeLimitado = (CheckBox) findViewById(R.id.rdgLenguajeLimitado);
         rdgLenguajePalabra= (CheckBox) findViewById(R.id.rdgLenguajePalabra);
 
@@ -197,8 +203,6 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
         //ANIMO SONRISA
         rdgAnimoSonrisa= (CheckBox) findViewById(R.id.rdgAnimoSonrisa);
-
-
 
 
         owner = (EditText) findViewById(R.id.txt_responsable);
@@ -257,31 +261,17 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         eating.setOnClickListener(this);
         fall.setOnClickListener(this);
         higiene.setOnClickListener(this);
+        lenguaje.setOnClickListener(this);
         estadodeanimo.setOnClickListener(this);
         memoria.setOnClickListener(this);
         changeBehaviour.setOnClickListener(this);
         vestimenta.setOnClickListener(this);
 
     }
-   /*
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        // TODO Auto-generated method stub
-        if (checkedId == R.id.rdgDeterioro) {
-            var_color = "deterioro";
-        } else if (checkedId == R.id.rdgMejora)
-        {
-            var_color = "mejora";
-        }else if (checkedId == R.id.rdgNeutral) {
-            var_color= "neutral";
-        }
-        else if (checkedId == R.id.rdgAdverso) {
-            var_color= "adverso";
-        }
 
 
-    }
-         */
+
+
     public void saveNote(View view){
 
         Log.e("addnote",""+optionOwner);
@@ -349,31 +339,139 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             Log.e("addnote","var_description: "+var_description);
             Log.e("addnote","var_color: "+var_color);
             Log.e("addnote","var_owner: "+var_owner);
-            if(var_late==true)
-            {
-                Log.e("addnote","var_late true ");
-            }
-            else
-            {
-                Log.e("addnote","var_late false");
-            }
-            if(var_state==true)
-            {
-                Log.e("addnote","var_state true");
-            }
-            else
-            {
-                Log.e("addnote","var_state false");
-            }
 
-            Log.e("addnote","");
 
             Note note = new Note(null, patientid, userId, var_tipo, var_fecha, var_hora, var_description,election, var_seleccion, var_owner, var_late, var_state);
             noteDao.insert(note);
+            noteDao.update(note);
             if(note!=null)
             {
                 for(int i=0;i<=sintomasList.size();i++)
                 {
+
+                    switch (sintomasList.get(i).toString())
+                    {
+                        //----------VESTIMENTA-------------
+                        case "incapacidadtareasdomesticas":
+                            Sintoma tareasdomesticas;
+                        try{
+                            tareasdomesticas = helper.getSintoma(patientid,"Blessed","vestimenta","incapacidadtareasdomesticas");
+                            tareasdomesticas.setActivo(stateList.get(i));
+                            sintomaDao.update(tareasdomesticas);
+
+                            Log.e("guardado y actualizado",tareasdomesticas.getScaleList().get(0).getPuntaje().toString());
+
+
+                        }catch (Exception e){}
+                            break;
+                        case "incapacidadpequenasdinero":
+                        try{
+                            Sintoma pequenasdinero;
+                            pequenasdinero = helper.getSintoma(patientid,"Blessed","vestimenta","incapacidadpequenasdinero");
+                            pequenasdinero.setActivo(stateList.get(i));
+                            sintomaDao.update(pequenasdinero);
+
+
+                            Log.e("guardado y actualizado",pequenasdinero.getScaleList().get(0).getPuntaje().toString());
+
+                        }catch (Exception e){}
+                            break;
+
+
+
+
+                        //----------ORIENTACION-------------
+
+                        case "orientacioncasa":
+                        try{
+                            Sintoma orientacioncasa;
+                            orientacioncasa = helper.getSintoma(patientid,"Blessed","orientacion","orientacioncasa");
+                            orientacioncasa.setActivo(stateList.get(i));
+                            sintomaDao.update(orientacioncasa);
+
+                            Log.e("guardado y actualizado",orientacioncasa.getScaleList().get(0).getPuntaje().toString());
+
+
+                        }catch (Exception e){
+                        }
+                            break;
+                        case "orientacioncalle":
+                        try{
+                            Sintoma orientacioncalle;
+                            orientacioncalle = helper.getSintoma(patientid,"Blessed","orientacion","orientacioncalle");
+                            orientacioncalle.setActivo(stateList.get(i));
+                            sintomaDao.update(orientacioncalle);
+
+                            Log.e("guardado y actualizado",orientacioncalle.getScaleList().get(0).getPuntaje().toString());
+
+
+                        }catch (Exception e){
+                        }
+                            break;
+
+                        case "orientacionentorno":
+                        try{
+                            Sintoma orientacionentorno;
+                            orientacionentorno = helper.getSintoma(patientid,"Blessed","orientacion","orientacionentorno");
+                            orientacionentorno.setActivo(stateList.get(i));
+                            sintomaDao.update(orientacionentorno);
+                            Log.e("guardado y actualizado",orientacionentorno.getScaleList().get(0).getPuntaje().toString());
+
+                        }catch (Exception e){
+                        }
+
+                            //----------MEMORIA-------------
+
+                        case "memorialistascortas":
+
+                            try{
+                                Sintoma memorialistascortas;
+                                memorialistascortas = helper.getSintoma(patientid,"Blessed","memoria","memorialistascortas");
+                                memorialistascortas.setActivo(stateList.get(i));
+                                sintomaDao.update(memorialistascortas);
+
+                                Log.e("guardado y actualizado",memorialistascortas.getScaleList().get(0).getPuntaje().toString());
+
+
+                            }catch (Exception e){
+                            }
+                            break;
+
+                        case "memoriaolvidosbenignos":
+
+                        try{
+                            Sintoma memoriaolvidosbenignos;
+                            memoriaolvidosbenignos = helper.getSintoma(patientid,"Blessed","memoria","memoriaolvidosbenignos");
+                            memoriaolvidosbenignos.setActivo(stateList.get(i));
+                            sintomaDao.update(memoriaolvidosbenignos);
+
+                            Log.e("guardado y actualizado", memoriaolvidosbenignos.getScaleList().get(0).getPuntaje().toString());
+
+
+                        }catch (Exception e){
+                        }
+                            break;
+
+                        case "memoriatendenciarememorar":
+
+                        try{
+                            Sintoma tendenciarememorar;
+                            tendenciarememorar = helper.getSintoma(patientid,"Blessed","memoria","memoriatendenciarememorar");
+                            tendenciarememorar.setActivo(stateList.get(i));
+                            sintomaDao.update(tendenciarememorar);
+                            //tareasdomesticas.update();
+                            //tareasdomesticas.refresh();
+                            Log.e("guardado y actualizado", tendenciarememorar.getScaleList().get(0).getPuntaje().toString());
+
+                        }catch (Exception e){    }
+                            break;
+
+                    }
+
+
+
+                    /*
+
                     Sintoma sintoma = new Sintoma(null,patientid, election, sintomasList.get(i),true);
                     Scale scale = new Scale(null,sintoma.getId(),nameTestList.get(i),puntajeList.get(i));
                     sintomaDao.insert(sintoma);
@@ -383,7 +481,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                     Log.e("sintomadao nuevo",sintoma.getAmbito()+"");
                     Log.e("sintomadao nuevo",sintoma.getSigno()+"");
                     Log.e("sintomadao nuevo"," TEST:"+sintoma.getScaleList().get(0).getEscalaname());
-
+                    */
 
                 }
             }
@@ -510,8 +608,39 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 election="memoria";
                 var_tipo=1;
                 setDefaultImageButton();
-                //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/changebehavior72px").toString();
+                try{
+
+                Sintoma tareasdomesticas = helper.getSintoma(patientid,"Blessed","memoria","memorialistascortas");
+                    if(tareasdomesticas.getActivo().booleanValue())
+                    {
+                        rdgMemoriaListasCortas.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgMemoriaListasCortas.setChecked(false);}
+
+                try
+                {
+                    Sintoma pequenasdinero = helper.getSintoma(patientid,"Blessed","memoria","memoriaolvidosbenignos");
+                    if(pequenasdinero.getActivo().booleanValue())
+                    {
+                       rdgMemoriaOlvidosBenignos.setChecked(true);
+                    }
+
+                }catch (Exception e){ rdgMemoriaOlvidosBenignos.setChecked(false);}
+
+                try{
+                    Sintoma tendenciarememorar = helper.getSintoma(patientid,"Blessed","memoria","memoriatendenciarememorar");
+                    if(tendenciarememorar.getActivo().booleanValue())
+                    {
+                        rdgMemoriaTendenciaRememorar.setChecked(true);
+                    }
+
+                }catch (Exception e){rdgMemoriaTendenciaRememorar.setChecked(false);
+                }
+
                 memoria.setBackgroundColor(getResources().getColor(R.color.accent_color));
+                rdgMemoria.setVisibility(View.VISIBLE);
                 break;
 
 
@@ -539,19 +668,19 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         memoria.setBackgroundColor(getResources().getColor(R.color.material_teal));
 
 
-        rdgVestimenta.setVisibility(View.INVISIBLE);
-        rdgAlimentacion.setVisibility(View.INVISIBLE);
-        rdgLenguaje.setVisibility(View.INVISIBLE);
-        rdgHigiene.setVisibility(View.INVISIBLE);
-        rdgCambioPersonalidad.setVisibility(View.INVISIBLE);
-        rdgMemoria.setVisibility(View.INVISIBLE);
-        rdgMovilidad.setVisibility(View.INVISIBLE);
+        rdgVestimenta.setVisibility(View.GONE);
+        rdgAlimentacion.setVisibility(View.GONE);
+        rdgLenguaje.setVisibility(View.GONE);
+        rdgHigiene.setVisibility(View.GONE);
+        //rdgCambioPersonalidad.setVisibility(View.INVISIBLE);
+        rdgMemoria.setVisibility(View.GONE);
+        rdgMovilidad.setVisibility(View.GONE);
 
 
 
         linear_efecto.setVisibility(View.VISIBLE);
 
-
+        /*
         rdgHigieneAyudaBanarse.setOnCheckedChangeListener(this);
         rdgHigieneAyudaInodoro.setOnCheckedChangeListener(this);
         rdgHigieneSoltarBano.setOnCheckedChangeListener(this);
@@ -567,16 +696,23 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgVestimentaSecuencia.setOnClickListener(this);
         rdgVestimentaAyudaVestirse.setOnCheckedChangeListener(this);
         rdgVestimentaIncapaz.setOnCheckedChangeListener(this);
+        */
+        rdgMemoriaListasCortas.setOnCheckedChangeListener(this);
         rdgMemoriaTendenciaRememorar.setOnCheckedChangeListener(this);
         rdgMemoriaOlvidosBenignos.setOnCheckedChangeListener(this);
+
+
+        /*
         rdgLenguajeLimitado.setOnCheckedChangeListener(this);
         rdgLenguajePalabra.setOnCheckedChangeListener(this);
         rdgAlimentacionCuchara.setOnCheckedChangeListener(this);
         rdgAlimentacionSolidos.setOnCheckedChangeListener(this);
         rdgAlimentacionDependiente.setOnCheckedChangeListener(this);
+        */
         sintomasList.clear();
         nameTestList.clear();
         puntajeList.clear();
+        stateList.clear();
 
 
 
@@ -587,68 +723,72 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
+
         int separator;
         switch(compoundButton.getId()){
 
             //Higiene
             case R.id.rdgHigieneAyudaBanarse:
                 var_seleccion="higieneayudabanarse";
-
-                nameTest = "FAST";
-                puntaje = "6b";
+                stateList.add(b);
+                //nameTest = "FAST";
+                //puntaje = "6b";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 //do stuff
                 break;
             case R.id.rdgHigieneAyudaInodoro:
                 var_seleccion="higieneayudainodoro";
-                nameTest = "FAST";
-                puntaje = "6c";
-
-                sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTest = "FAST";
+                //puntaje = "6c";
+                stateList.add(b);
+                //sintomasList.add(var_seleccion);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 //do stuff
                 break;
             case R.id.rdgHigieneSoltarBano:
                 var_seleccion="higieneayudasoltarbano";
-                nameTest = "FAST";
-                puntaje = "6c";
+                stateList.add(b);
+                //nameTest = "FAST";
+                //puntaje = "6c";
                 sintomasList.add(var_seleccion);
-                sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(nameTest2);
-                puntajeList.add(puntaje);
-                puntajeList.add(puntaje2);
+                //sintomasList.add(var_seleccion);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(nameTest2);
+                //puntajeList.add(puntaje);
+                //puntajeList.add(puntaje2);
                 //do stuff
                 break;
             case R.id.rdgHigieneIncontinensiaUrinaria:
                 var_seleccion="higieneayudaincontinensiaurinaria";
-                nameTest = "FAST";
-                puntaje = "6d";
-                nameTest2="Blessed";
-                puntaje2 ="3";
+                stateList.add(b);
+                //nameTest = "FAST";
+                //puntaje = "6d";
+                //nameTest2="Blessed";
+                //puntaje2 ="3";
                 sintomasList.add(var_seleccion);
-                sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(nameTest2);
-                puntajeList.add(puntaje);
-                puntajeList.add(puntaje2);
+                //sintomasList.add(var_seleccion);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(nameTest2);
+                //puntajeList.add(puntaje);
+                //puntajeList.add(puntaje2);
                 //do stuff
                 break;
             case R.id.rdgHigieneIncontinensiaFecal:
                 var_seleccion="higieneayudaincontinensiafecal";
-                nameTest = "FAST";
-                puntaje = "6e";
-                nameTest2="Blessed";
-                puntaje2 ="2";
+                stateList.add(b);
+                //nameTest = "FAST";
+                //puntaje = "6e";
+                //nameTest2="Blessed";
+                //puntaje2 ="2";
                 sintomasList.add(var_seleccion);
-                sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
-                nameTestList.add(nameTest2);
-                puntajeList.add(puntaje2);
+                //sintomasList.add(var_seleccion);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
+                //nameTestList.add(nameTest2);
+                //puntajeList.add(puntaje2);
                 //do stuff
                 break;
 
@@ -657,152 +797,174 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             //Movilidad
             case R.id.rdgMovilidadSitiosLejanos:
                 var_seleccion="movilidadsitioslejanos";
-                nameTest = "FAST";
-                puntaje = "3";
+                stateList.add(b);
+                //nameTest = "FAST";
+                //puntaje = "3";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 //do stuff
                 break;
             case R.id.rdgMovilidadCaminar:
                 var_seleccion="movilidadcaminar";
-                nameTest = "FAST";
-                puntaje = "7c";
+                stateList.add(b);
+                //nameTest = "FAST";
+                //puntaje = "7c";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 //do stuff
                 break;
             case R.id.rdgMovilidadSentarse:
                 var_seleccion="movilidadsentarse";
-                nameTest = "FAST";
-                puntaje = "7d";
+                stateList.add(b);
+                //nameTest = "FAST";
+                //puntaje = "7d";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 //do stuff
                 break;
             case R.id.rdgMovilidadCabeza:
                 var_seleccion="movilidadcabeza";
-                nameTest = "FAST";
-                puntaje = "7e";
+                stateList.add(b);
+                //nameTest = "FAST";
+                //puntaje = "7e";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 //do stuff
                 break;
 
             //VESTIMENTA
 
             case R.id.rdgVestimentaActividades:
+                stateList.add(b);
                 var_seleccion="vestimentaactividades";
                 var_seleccion2="incapacidadtareasdomesticas";
                 var_seleccion2="incapacidadpequenasdinero";
-                nameTest = "FAST";
-                puntaje = "4";
-                nameTest2="Blessed";
-                puntaje2="1";
-                nameTest3="Blessed";
-                puntaje3="2";
+                //nameTest = "FAST";
+                //puntaje = "4";
+                //nameTest2="Blessed";
+                //puntaje2="1";
+                //nameTest3="Blessed";
+                //puntaje3="2";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
 
                 sintomasList.add(var_seleccion2);
-                nameTestList.add(nameTest2);
-                puntajeList.add(puntaje2);
+                //nameTestList.add(nameTest2);
+                //puntajeList.add(puntaje2);
 
                 sintomasList.add(var_seleccion3);
-                nameTestList.add(nameTest3);
-                puntajeList.add(puntaje3);
+                //nameTestList.add(nameTest3);
+                //puntajeList.add(puntaje3);
 
                 break;
 
             case R.id.rdgVestimentaFallosOcasionales:
                 var_seleccion="vestimentafallosocasionales";
-                nameTest = "Blessed";
-                puntaje = "1";
+                stateList.add(b);
+                //nameTest = "Blessed";
+                //puntaje = "1";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 break;
 
             case R.id.rdgVestimentaSeleccionar:
                 var_seleccion="vestimentaseleccionar";
-                nameTest = "FAST";
-                puntaje = "5";
+                stateList.add(b);
+                //nameTest = "FAST";
+                //puntaje = "5";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 break;
 
             case R.id.rdgVestimentaSecuenciaVestirse:
                 var_seleccion="vestimentasecuencia";
-                nameTest = "Blessed";
-                puntaje = "3";
+                stateList.add(b);
+                //nameTest = "Blessed";
+                //puntaje = "3";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 break;
 
             case R.id.rdgVestimentaAyudaVestirse:
                 var_seleccion="vestimentaayudavestirse";
-                nameTest = "FAST";
-                puntaje = "6a";
+                stateList.add(b);
+                //nameTest = "FAST";
+                //puntaje = "6a";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 break;
             case R.id.rdgVestimentaIncapaz:
                 var_seleccion="vestimentaincapaz";
-                nameTest = "Blessed";
-                puntaje = "3";
+                stateList.add(b);
+                //nameTest = "Blessed";
+                //puntaje = "3";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 break;
 
             //LENGUAJE
 
             case R.id.rdgLenguajeLimitado:
                 var_seleccion="lenguajelimitado";
-                nameTest = "FAST";
-                puntaje = "7a";
+                stateList.add(b);
+                //nameTest = "FAST";
+                //puntaje = "7a";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 break;
             case R.id.rdgLenguajePalabra:
                 var_seleccion="lenguajepalabra";
-                nameTest = "FAST";
-                puntaje = "7b";
+                stateList.add(b);
+                //nameTest = "FAST";
+                //puntaje = "7b";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 break;
 
             //MEMORIA
+            case R.id.rdgMemoriaListasCortas:
+                var_seleccion="memorialistascortas";
+                stateList.add(b);
+                //nameTest = "Blessed";
+                //puntaje = "1";
+                sintomasList.add(var_seleccion);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
 
             case R.id.rdgMemoriaTendenciaRememorar:
                 var_seleccion="memoriatendenciarememorar";
-                nameTest = "Blessed";
-                puntaje = "1";
+                stateList.add(b);
+                //nameTest = "Blessed";
+                //puntaje = "1";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 break;
             case R.id.rdgMemoriaOlvidosBenignos:
                 var_seleccion="memoriaolvidosbenignos";
-                nameTest = "FAST";
-                puntaje = "2";
-                nameTest2 ="Blessed";
-                puntaje2="1";
+                stateList.add(b);
+                //nameTest = "FAST";
+                //puntaje = "2";
+                //nameTest2 ="Blessed";
+                //puntaje2="1";
                 sintomasList.add(var_seleccion);
-                sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
-                nameTestList.add(nameTest2);
-                puntajeList.add(puntaje2);
+                //sintomasList.add(var_seleccion);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
+                //nameTestList.add(nameTest2);
+                //puntajeList.add(puntaje2);
                 break;
 
             //ALIMENTACION
@@ -810,38 +972,42 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
             case R.id.rdgAlimentacionCuchara:
                 var_seleccion="alimentacioncuchara";
-                nameTest = "Blessed";
-                puntaje = "1";
+                stateList.add(b);
+                //nameTest = "Blessed";
+                //puntaje = "1";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 break;
             case R.id.rdgAlimentacionSolidos:
                 var_seleccion="alimentacionsolidos";
-                nameTest = "Blessed";
-                puntaje = "2";
+                stateList.add(b);
+                //nameTest = "Blessed";
+                //puntaje = "2";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 break;
             case R.id.rdgAlimentacionDependiente:
                 var_seleccion="alimentaciondependientes";
-                nameTest = "Blessed";
-                puntaje = "3";
+                stateList.add(b);
+                //nameTest = "Blessed";
+                //puntaje = "3";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 break;
 
 
             //ESTADO DE ANIMO
             case R.id.rdgAnimoSonrisa:
                 var_seleccion="animosonrisa";
-                nameTest = "FAST";
-                puntaje = "7e";
+                stateList.add(b);
+                //nameTest = "FAST";
+                //puntaje = "7e";
                 sintomasList.add(var_seleccion);
-                nameTestList.add(nameTest);
-                puntajeList.add(puntaje);
+                //nameTestList.add(nameTest);
+                //puntajeList.add(puntaje);
                 break;
 
 

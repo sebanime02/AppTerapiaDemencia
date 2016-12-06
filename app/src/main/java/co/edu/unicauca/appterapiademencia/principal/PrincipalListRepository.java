@@ -29,4 +29,5 @@ public interface PrincipalListRepository {
     void changeUserData(HashMap<String,Object> hashMap);
     List<Note> getNotes(Long id);
 
+    Double getBlessedScore(Long id);
 }

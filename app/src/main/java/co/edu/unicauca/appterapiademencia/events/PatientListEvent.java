@@ -7,16 +7,18 @@ import co.edu.unicauca.appterapiademencia.domain.Patient;
 /**
  * Created by ENF on 26/10/2016.
  */
-
 public class PatientListEvent {
-    private List<Patient> patientList;
+    public final static int onPatienListSuccess =  0;
+    public final static int onPatientListError = 1;
+    public final static int onPatientGetDataSuccess = 2;
+    public final static int onPatientGetDataError=3;
+    private int eventType;
 
-
-    public List<Patient> getPatientList() {
-        return patientList;
+    public int getEventType() {
+        return eventType;
     }
 
-    public void setPatientList(List<Patient> patientList) {
-        this.patientList = patientList;
+    public void setEventType(int eventType) {
+        this.eventType = eventType;
     }
 }

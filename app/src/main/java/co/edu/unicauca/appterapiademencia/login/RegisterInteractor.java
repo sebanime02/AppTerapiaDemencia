@@ -5,5 +5,5 @@ package co.edu.unicauca.appterapiademencia.login;
  */
 
 public interface RegisterInteractor {
-    void doSingUp(String username, String password, String completeName, String passwordaprobal);
+    void doSingUp(String username, String password, String completeName);
 }

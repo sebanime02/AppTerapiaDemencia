@@ -92,6 +92,24 @@ public class GreenDaoHelper {
         return listuser.get(0);
 
     }
+    public boolean insertUser(String username, String password, String completeName, Boolean accessType)
+    {
+        try {
+            UserDao userDao;
+            userDao = getUserDao();
+            User user = new User(null,username,password,completeName,accessType,"");
+            userDao.insert(user);
+            Log.d("RegistroUsuario","Nueva id insertada: "+user.getId());
+            return true;
+
+        }catch (Exception e)
+        {
+            return false;
+
+        }
+
+    }
+
     public Patient getPatientInformationUsingCedula(Long id){
         queryBuilder=getPatientDao().queryBuilder();
         List<Patient> listpatient = queryBuilder.where(PatientDao.Properties.Identity.eq(id)).limit(1).list();
@@ -199,6 +217,35 @@ public class GreenDaoHelper {
         //.and(SintomaDao.Properties.Test.eq(escala));
 
     }
+    public void printSintomas(Long patientId)
+    {
+        /*
+        Sintoma sintoma;
+        List<Sintoma> sintomaList;
+        List<Tip> arrrayList= new ArrayList<Tip>();
+
+        QueryBuilder<Sintoma> sintomaQueryBuilder = getSintomaDao().queryBuilder();
+        sintomaQueryBuilder.where(SintomaDao.Properties.PatientId.eq(patientId));
+        sintomaQueryBuilder.where(SintomaDao.Properties.Activo.eq(true));
+        sintomaList = sintomaQueryBuilder.list();
+        try
+        {
+            for(int m=0;m<=sintomaList.size();m++)
+            {
+                Log.e("Helper sintomas"," "+sintomaList.get(m).getId());
+                Log.e("Helper sintomas"," "+sintomaList.get(m).getSigno());
+                Log.e("Helper sintomas"," "+sintomaList.get(m).getAmbito());
+                Log.e("Helper sintomas"," "+sintomaList.get(m).getActivo());
+
+                if(sintomaList.get(m).getActivo())
+                {
+                    Log.e("Helper tips","aceptados "+tipList.get(m).getId());
+                    arrrayList.add(tipList.get(m));
+                }
+            }
+        }catch (Exception e){}
+       */
+    }
 
 
     public Scale getScale(Long sintomaId, String escala)
@@ -252,6 +299,22 @@ public class GreenDaoHelper {
             }
         }catch (Exception e){}
         return  arrrayList;
+    }
+    public Double getBlessedScore(Long patientid)
+    {
+        List<Scale> scaleList;
+        QueryBuilder<Scale> scaleQueryBuilder = getScaleDao().queryBuilder();
+        scaleQueryBuilder.where(ScaleDao.Properties.Escalaname.eq("Blessed"));
+        scaleList = scaleQueryBuilder.list();
+
+        Double x=0.0;
+        for(int m=0;m<=scaleList.size();m++)
+        {
+          x = x + Double.parseDouble(scaleList.get(m).getPuntaje());
+        }
+        return x;
+
+
     }
 
 
