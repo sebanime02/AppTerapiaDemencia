@@ -19,6 +19,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.text.DateFormat;
@@ -38,6 +39,7 @@ import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.NoteDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.ScaleDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.SintomaDao;
+import co.edu.unicauca.appterapiademencia.principal.MainActivity;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientProfileActivity;
 
 /**
@@ -131,10 +133,10 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         changeBehaviour = (ImageButton) findViewById(R.id.btn_changebehaviour);
         vestimenta = (ImageButton) findViewById(R.id.btn_vestimenta);
         memoria = (ImageButton) findViewById(R.id.btn_memory);
-
+        rdgTardia = (RadioButton) findViewById(R.id.rdgTardia);
 
        /*
-        rdgTardia = (RadioButton) findViewById(R.id.rdgTardia);
+
         rdgGrupo = (RadioGroup) findViewById(R.id.rdgGrupo);
         //rdgRutinario = (RadioButton) findViewById(R.id.rdgRutinario);
 
@@ -343,13 +345,13 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
             Note note = new Note(null, patientid, userId, var_tipo, var_fecha, var_hora, var_description,election, var_seleccion, var_owner, var_late, var_state);
             noteDao.insert(note);
-            noteDao.update(note);
+            //noteDao.update(note);
             if(note!=null)
             {
-                for(int i=0;i<=sintomasList.size();i++)
+                for(int i=0;i<sintomasList.size();i++)
                 {
 
-                    switch (sintomasList.get(i).toString())
+                    switch (sintomasList.get(i))
                     {
                         //----------VESTIMENTA-------------
                         case "incapacidadtareasdomesticas":
@@ -486,15 +488,41 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 }
             }
 
+            if(!var_state)
+            {
+                MaterialDialog.Builder builder = new MaterialDialog.Builder(this);
+                builder.title("Nota Guardada").content("Su Nota ha sido guardada en la bandeja de supervisores, para aprobación").positiveText(R.string.dialog_succes_agree).show();;
+                builder.onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
 
-            Intent ir_main = new Intent(this, PatientProfileActivity.class);
-            ir_main.putExtra("carerIndicator",carerMessageIndicator);
-            ir_main.putExtra("cedula", cedula);
-            startActivity(ir_main);
-            overridePendingTransition(R.anim.left_in, R.anim.left_out);
-            finish();
+                        goToProfile();
+
+                    }
+                });
+                builder.show();
+            }
+            else
+            {
+                goToProfile();
+            }
+
+
+
+
+
         }
 
+    }
+
+    public void goToProfile()
+    {
+        Intent ir_main = new Intent(this, PatientProfileActivity.class);
+        ir_main.putExtra("carerIndicator",carerMessageIndicator);
+        ir_main.putExtra("cedula", cedula);
+        startActivity(ir_main);
+        overridePendingTransition(R.anim.left_in, R.anim.left_out);
+        finish();
     }
 
     public Boolean validar(String description) {
@@ -680,6 +708,11 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
         linear_efecto.setVisibility(View.VISIBLE);
 
+        sintomasList.clear();
+        nameTestList.clear();
+        puntajeList.clear();
+        stateList.clear();
+
         /*
         rdgHigieneAyudaBanarse.setOnCheckedChangeListener(this);
         rdgHigieneAyudaInodoro.setOnCheckedChangeListener(this);
@@ -709,10 +742,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgAlimentacionSolidos.setOnCheckedChangeListener(this);
         rdgAlimentacionDependiente.setOnCheckedChangeListener(this);
         */
-        sintomasList.clear();
-        nameTestList.clear();
-        puntajeList.clear();
-        stateList.clear();
+
 
 
 
@@ -839,6 +869,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             //VESTIMENTA
 
             case R.id.rdgVestimentaActividades:
+                stateList.add(b);
+                stateList.add(b);
                 stateList.add(b);
                 var_seleccion="vestimentaactividades";
                 var_seleccion2="incapacidadtareasdomesticas";

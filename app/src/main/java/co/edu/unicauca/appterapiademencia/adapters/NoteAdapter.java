@@ -133,7 +133,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
                 ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
 
                 break;
-            case "changebehaviour":
+            case "cambiocomportamiento":
                 description="Comportamiento";
                 ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/changebehavior72px").toString();
 
@@ -143,13 +143,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
                ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/clothes72px").toString();
 
                 break;
-            case "memory":
+            case "memoria":
                 description="Memoria";
                 ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/memory72px").toString();
 
 
                 break;
-            case "language":
+            case "lenguaje":
                 description="Lenguaje";
                 ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/language72px").toString();
 

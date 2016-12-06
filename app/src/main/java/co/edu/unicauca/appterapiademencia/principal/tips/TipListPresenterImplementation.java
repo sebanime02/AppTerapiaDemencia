@@ -36,12 +36,12 @@ public class TipListPresenterImplementation implements TipsListPresenter {
 
     @Override
     public void onCreate() {
-        eventBus.register(this);
+        //eventBus.register(this);
     }
 
     @Override
     public void onDestroy() {
-        eventBus.unregister(this);
+        //eventBus.unregister(this);
         tipsListView= null;
 
     }
