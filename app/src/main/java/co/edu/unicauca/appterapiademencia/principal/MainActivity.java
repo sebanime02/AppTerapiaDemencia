@@ -376,6 +376,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         editor.putString("username",null);
         editor.commit();
         Intent i2 = new Intent(MainActivity.this, LoginActivity.class);
+        i2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i2);
         finish();
     }
@@ -385,15 +386,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {//un listener que al pulsar, cierre la aplicacion
                     @Override
                     public void onClick(DialogInterface dialog, int which){
-                        //Salir
-                        SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor=preferencias.edit();
-                        editor.putBoolean("sessionValidation", false);
-                        editor.putBoolean("supervisor",false);
-                        editor.putString("username",null);
-                        System.runFinalization();
-                        System.exit(0);
-                        MainActivity.this.finish();
+                     callSignOff();
                     }
                 }).show();
             // Si el listener devuelve true, significa que el evento esta procesado, y nadie debe hacer nada mas

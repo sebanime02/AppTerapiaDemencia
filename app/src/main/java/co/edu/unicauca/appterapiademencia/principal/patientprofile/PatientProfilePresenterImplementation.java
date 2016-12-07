@@ -1,7 +1,9 @@
 package co.edu.unicauca.appterapiademencia.principal.patientprofile;
 
+import android.content.res.Resources;
 import android.util.Log;
 
+import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.events.BlessedEvent;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
@@ -78,10 +80,29 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
     public void getBlessedScore(Long id) {
 
         Double score;
+        String comentario = "No presenta demencia por el momento";
         score = principalListInteractor.getBlessedScore(id);
+
         if(patientProfileView!=null)
         {
-            patientProfileView.showBlessedScore(score);
+            if(score>=4.0 || score<=15.0)
+            {
+            comentario ="Hay sospecha de Demencia en el Paciente";
+                patientProfileView.showBlessedScore(score,comentario);
+            }
+            if(score<4.0){
+                comentario = "No presenta demencia por el momento";
+                patientProfileView.showBlessedScore(score,comentario);
+
+            }
+            if(score>=15.0)
+            {
+                comentario = "Es altamente probable que el paciente tenga \\n demencia en etapa moderada o grave";
+                patientProfileView.showBlessedScore(score,comentario);
+
+            }
+
+
 
         }
     }

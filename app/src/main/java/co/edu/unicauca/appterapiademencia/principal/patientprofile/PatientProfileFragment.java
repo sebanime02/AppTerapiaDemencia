@@ -44,6 +44,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private String eps,sindromes,antecedentes,observaciones,vision,escritura,dibujo;
     private int visionState,escrituraState,dibujoState;
     private TextView txtEps,txtSindromes,txtAntecedentes,txtObservaciones,txtVision,txtEscritura,txtDibujo;
+    private TextView txtPuntajeBlessed,txtComentarioBlessed;
     private Long identity;
     private int imageSize;
     private View rootView;
@@ -52,6 +53,9 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private  QueryBuilder queryBuildergeneral;
     private double blessedScore;
     private GreenDaoHelper daoHelper;
+    private Double blessedCount;
+    private String blessedComentario;
+    private Long idsistema;
 
 
     public PatientProfileFragment(){
@@ -98,10 +102,18 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtVision = (TextView) view.findViewById(R.id.txt_vision);
         txtDibujo = (TextView) view.findViewById(R.id.txt_dibujo);
         txtEscritura= (TextView) view.findViewById(R.id.txt_escritura);
+        txtPuntajeBlessed = (TextView) view.findViewById(R.id.puntajeBlessed);
+        txtComentarioBlessed = (TextView) view.findViewById(R.id.demenciaBlessed);
+
 
 
         Bundle args = getArguments();
         idpatient=args.getLong("cedula");
+        try {
+            Patient patient = daoHelper.getPatientInformationUsingCedula(idpatient);
+            idsistema = patient.getId();
+        }
+        catch (Exception e){}
         Log.d("Vista profile","Cedula: "+idpatient);
 
         try
@@ -117,9 +129,12 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         }
 
         getPatientData(idpatient);
+        getBlessedScore(idsistema);
         txtName.setText(this.name);
         txtAge.setText("Nació en: "+this.birthday);
         txtIdentity.setText("  Cédula: "+this.identity);
+        txtPuntajeBlessed.setText(this.blessedCount+"");
+        txtComentarioBlessed.setText(this.blessedComentario);
 
         int imageSize = view.getResources().getDimensionPixelSize(R.dimen.img_patient_profile_size);
 
@@ -148,6 +163,12 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         Log.d("Vista profile","Cedula: "+idpatient);
 
         getPatientData(idpatient);
+        try {
+            Patient patient = daoHelper.getPatientInformationUsingCedula(idpatient);
+            idsistema = patient.getId();
+        }
+        catch (Exception e){}
+        getBlessedScore(idsistema);
 
     }
     public View getRootView(){
@@ -167,6 +188,12 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         Bundle args = getArguments();
         idpatient=args.getLong("cedula");
         getPatientData(idpatient);
+        try {
+            Patient patient = daoHelper.getPatientInformationUsingCedula(idpatient);
+            idsistema = patient.getId();
+        }
+        catch (Exception e){}
+        getBlessedScore(idsistema);
         txtName.setText(this.name);
         txtAge.setText("Nació en: "+this.birthday);
         txtIdentity.setText("  Cédula: "+this.identity);
@@ -177,6 +204,8 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtVision.setText(this.vision);
         txtEscritura.setText(this.escritura);
         txtDibujo.setText(this.dibujo);
+        txtPuntajeBlessed.setText(this.blessedCount+"");
+        txtComentarioBlessed.setText(this.blessedComentario);
 
 
 
@@ -278,7 +307,11 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     }
 
     @Override
-    public void showBlessedScore(Double score) {
+    public void showBlessedScore(Double score,String comentario)
+    {
+
+        this.blessedCount = score;
+        this.blessedComentario = comentario;
 
     }
     public void showBlessedError()

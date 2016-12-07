@@ -86,6 +86,9 @@
     <string name="textview_profile_physics">LIMITACIONES DEL PACIENTE</string>
     <string name="title_note_added">Evento Registrado</string>
     <string name="content_note_added">El Evento será notificado a los supervisores para su aprobación</string>
+    <string name="blessed_no_demencia">No presenta demencia por el momento</string>
+    <string name="blessed_sospecha_demencia">Hay sospecha de Demencia en el Paciente</string>
+    <string name="blessed_moderadagrave_demencia">Es altamente probable que el paciente tenga \n demencia en etapa moderada o grave</string>
 
     <!--TAB NOTE INFORMATION-->
     <string name="txt_note_instructions">Ingrese una nota con el Eve</string>

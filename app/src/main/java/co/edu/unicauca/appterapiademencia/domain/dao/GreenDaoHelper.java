@@ -302,17 +302,103 @@ public class GreenDaoHelper {
     }
     public Double getBlessedScore(Long patientid)
     {
-        List<Scale> scaleList;
+        Log.e("blessed score","patient id "+patientid);
+        List<Scale> scaleList = new ArrayList<Scale>();
+        List<Sintoma> sintomaList;
+        List<Scale> totalList;
+        Double x=0.0;
+        Double z=0.0;
+
+
+
+
+        Log.e("blessed score","Entro a calcular el blessed score");
+        QueryBuilder sintomaQueryBuilder = getSintomaDao().queryBuilder();
+
+
+        sintomaQueryBuilder.where(SintomaDao.Properties.Activo.eq(true),SintomaDao.Properties.PatientId.eq(patientid));
+        sintomaList = sintomaQueryBuilder.list();
+
         QueryBuilder<Scale> scaleQueryBuilder = getScaleDao().queryBuilder();
+        //scaleQueryBuilder.where(ScaleDao.Properties.Escalaname.eq("Blessed"));
+
+
+        for(int y=0;y<sintomaList.size();y++) {
+
+            Log.e("blessed score","paciente: "+sintomaList.get(y).getPatientId());
+            Log.e("blessed score","sintoma: "+sintomaList.get(y).getSigno());
+
+            for(int m=0;m<sintomaList.get(y).getScaleList().size();m++)
+
+            {
+                if(sintomaList.get(y).getScaleList().get(m).getEscalaname().equals("Blessed"))
+                {
+                    x = x + Double.parseDouble(sintomaList.get(y).getScaleList().get(m).getPuntaje());
+                }
+
+               // Log.e("blessed score","puntaje. ."+scaleList.get(m).getPuntaje());
+               // Log.e("blessed score","escala. ."+scaleList.get(m).getEscalaname());
+               // Log.e("blessed score","sintomaid. ."+scaleList.get(m).getSintomaId());
+               //    x = x + Double.parseDouble(scaleList.get(m).getPuntaje());
+
+              //  Log.e("blessed score","suma y suma x. ."+x);
+            }
+            x=0.0;
+            z = z + x;
+
+
+
+
+
+            //scaleList = scaleQueryBuilder.where(ScaleDao.Properties.SintomaId.eq(sintomaList.get(y).getId()),ScaleDao.Properties.Escalaname.eq("Blessed") ).list();
+            //x = x +  Double.parseDouble(scaleList.get(0).getPuntaje());
+
+            /*
+            for(int m=0;m<scaleList.size();m++)
+
+            {
+                Log.e("blessed score","puntaje. ."+scaleList.get(m).getPuntaje());
+                Log.e("blessed score","escala. ."+scaleList.get(m).getEscalaname());
+                Log.e("blessed score","sintomaid. ."+scaleList.get(m).getSintomaId());
+
+                x = x + Double.parseDouble(scaleList.get(m).getPuntaje());
+
+                Log.e("blessed score","suma y suma x. ."+x);
+            }
+
+            z= z + x;
+            x=0.0;
+            scaleList.clear();
+            Log.e("blessed score","suma y suma z .."+z);
+             */
+
+        }
+
+
+        Log.e("blessed score","total "+z);
+
+        return z;
+
+        /*
+
+        QueryBuilder<Scale> scaleQueryBuilder = getScaleDao().queryBuilder();
+        //scaleQueryBuilder.where(ScaleDao.Properties.Escalaname.eq("Blessed"));
+        //QueryBuilder<Sintoma> sintomaQueryBuilder = getSintomaDao().queryBuilder();
+        //sintomaList = sintomaQueryBuilder.where(SintomaDao.Properties.PatientId.eq(patientid)).list();
+        //scaleQueryBuilder.join(ScaleDao.Properties.SintomaId,Sintoma.class,SintomaDao.Properties.o)
+
         scaleQueryBuilder.where(ScaleDao.Properties.Escalaname.eq("Blessed"));
+        scaleQueryBuilder.join(ScaleDao.Properties.SintomaId,Sintoma.class,SintomaDao.Properties.Id).where(SintomaDao.Properties.PatientId.eq(patientid));
         scaleList = scaleQueryBuilder.list();
 
-        Double x=0.0;
-        for(int m=0;m<=scaleList.size();m++)
+        for(int m=0;m<scaleList.size();m++)
         {
-          x = x + Double.parseDouble(scaleList.get(m).getPuntaje());
+            x = x + Double.parseDouble(scaleList.get(m).getPuntaje());
+            Log.e("blessed score","suma y suma x. ."+x);
         }
         return x;
+        */
+
 
 
     }

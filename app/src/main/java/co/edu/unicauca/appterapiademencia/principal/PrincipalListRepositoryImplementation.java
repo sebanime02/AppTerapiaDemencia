@@ -176,16 +176,19 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     @Override
     public Double getBlessedScore(Long id) {
         Double score;
-       try
+        score = helper.getBlessedScore(id);
+       /*try
        {
            score = helper.getBlessedScore(id);
 
        }catch (Exception e)
        {
+           Log.e("repositorio princi","Excepcion getBlessedScore");
            score=0.0;
            postEvent(BlessedEvent.onBlessedScoreError,2);
 
        }
+       */
         return score;
     }
 

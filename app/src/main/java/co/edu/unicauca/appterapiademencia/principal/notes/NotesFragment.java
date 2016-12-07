@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,6 +20,8 @@ import java.util.List;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.NoteAdapter;
 import co.edu.unicauca.appterapiademencia.domain.Note;
+import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientListFragment;
+import co.edu.unicauca.appterapiademencia.principal.tips.TipsListFragment;
 
 /**
  * Created by SEBAS on 07/11/2016.
@@ -302,10 +306,13 @@ public class NotesFragment extends Fragment implements NotesView{
 
     @Override
     public void addNote(Long idpatient) {
+        //Intent ir_reg = new Intent(getContext(), AddNoteActivity.class);
         Intent ir_reg = new Intent(getContext(), AddNoteActivity.class);
         Log.e("idpatient recibido :",""+idpatient);
         ir_reg.putExtra("idpatient", idpatient);
         startActivity(ir_reg);
+        //ir_reg.putExtra("idpatient", idpatient);
+        //startActivity(ir_reg);
     }
 
     @Override

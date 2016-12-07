@@ -51,6 +51,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="2"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
             >
 
 
@@ -99,6 +101,8 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/container_SingIn"
                 android:visibility="gone"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -111,8 +115,8 @@
 
                     android:orientation="vertical"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
 
                     >
 
