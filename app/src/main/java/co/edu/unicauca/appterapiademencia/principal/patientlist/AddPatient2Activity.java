@@ -1167,8 +1167,10 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                                 Scale scaleincapacidadtareasdomesticas = new Scale(null,sintomaincapacidadtareasdomesticas.getId(),"Blessed","1.0");
                                 Scale scaleincapacidadpequenasdinero = new Scale(null,sintomaincapacidadpequenasdinero.getId(),"Blessed","1.0");
+
                                 Scale scalevestimentafallosocasionales = new Scale(null,sintomavestimentafallosocasionales.getId(),"Blessed","1.0");
                                 Scale scalevestimentaseleccionar = new Scale(null,sintomavestimentaseleccionar.getId(),"FAST","5");
+
                                 Scale scalevestimentasecuencia = new Scale(null,sintomavestimentasecuencia.getId(),"Blessed","2.0");
                                 Scale scalevestimentaayudavestirse = new Scale(null,sintomavestimentaayudavestirse.getId(),"FAST","6A");
                                 Scale scalevestimentaincapaz = new Scale(null,sintomavestimentaincapaz.getId(),"Blessed","3.0");
@@ -1192,7 +1194,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 Scale scalememoriaolvidosbenignos2 = new Scale(null,sintomamemoriaolvidosbenignos.getId(),"Blessed","1.0");
                                 Scale scalememorialistascortas = new Scale(null,sintomamemorialistascortas.getId(),"Blessed","1.0");
 
-                                 escalaDao.insert(scalememoriatendenciarememorar);
+                                escalaDao.insert(scalememoriatendenciarememorar);
                                 escalaDao.insert(scalememoriaolvidosbenignos1);
                                 escalaDao.insert(scalememoriaolvidosbenignos2);
                                 escalaDao.insert(scalememorialistascortas);
@@ -1209,15 +1211,15 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
 
 
-                                Scale scalealimentacioncuchara = new Scale(null,sintomamemoriatendenciarememorar.getId(),"Blessed","1.0");
-                                Scale scalealimentacionsolidos = new Scale(null,sintomamemoriaolvidosbenignos.getId(),"Blessed","2.0");
-                                Scale scalealimentaciondependientes = new Scale(null,sintomamemoriaolvidosbenignos.getId(),"Blessed","3.0");
+                                Scale scalealimentacioncuchara = new Scale(null,sintomaalimentacioncuchara.getId(),"Blessed","1.0");
+                                Scale scalealimentacionsolidos = new Scale(null,sintomaalimentacionsolidos.getId(),"Blessed","2.0");
+                                Scale scalealimentaciondependientes = new Scale(null,sintomaalimentaciondependientes.getId(),"Blessed","3.0");
                                 escalaDao.insert(scalealimentacioncuchara);
                                 escalaDao.insert(scalealimentacionsolidos);
                                 escalaDao.insert(scalealimentaciondependientes);
 
 
-                                Scale scaleanimosonrisa = new Scale(null,sintomamemoriaolvidosbenignos.getId(),"FAST","7e");
+                                Scale scaleanimosonrisa = new Scale(null,sintomaanimosonrisa.getId(),"FAST","7e");
                                 escalaDao.insert(scaleanimosonrisa);
 
                                 Log.e("entra al for","entro");

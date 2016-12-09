@@ -323,7 +323,8 @@ public class GreenDaoHelper {
         //scaleQueryBuilder.where(ScaleDao.Properties.Escalaname.eq("Blessed"));
 
 
-        for(int y=0;y<sintomaList.size();y++) {
+        for(int y=0;y<sintomaList.size();y++)
+        {
 
             Log.e("blessed score","paciente: "+sintomaList.get(y).getPatientId());
             Log.e("blessed score","sintoma: "+sintomaList.get(y).getSigno());
@@ -331,20 +332,29 @@ public class GreenDaoHelper {
             for(int m=0;m<sintomaList.get(y).getScaleList().size();m++)
 
             {
-                if(sintomaList.get(y).getScaleList().get(m).getEscalaname().equals("Blessed"))
+                String escalatexto = sintomaList.get(y).getScaleList().get(m).getEscalaname().toString();
+                Log.e("blessed score","Entre al for sintomaList");
+                Log.e("blessed score","getNombreEscala: "+escalatexto);
+
+                if(escalatexto.matches("Blessed"))
+
                 {
+                    Log.e("blessed score","Es blesssed");
+                    Log.e("blessed score","getNombreEscala: "+sintomaList.get(y).getScaleList().get(m).getEscalaname());
+                    Log.e("blessed score","getPuntaje: "+sintomaList.get(y).getScaleList().get(m).getPuntaje());
                     x = x + Double.parseDouble(sintomaList.get(y).getScaleList().get(m).getPuntaje());
+                    Log.e("blessed score","x: "+x);
+
                 }
 
                // Log.e("blessed score","puntaje. ."+scaleList.get(m).getPuntaje());
                // Log.e("blessed score","escala. ."+scaleList.get(m).getEscalaname());
                // Log.e("blessed score","sintomaid. ."+scaleList.get(m).getSintomaId());
                //    x = x + Double.parseDouble(scaleList.get(m).getPuntaje());
-
-              //  Log.e("blessed score","suma y suma x. ."+x);
             }
-            x=0.0;
             z = z + x;
+            Log.e("blessed score ","acumulado z: "+z);
+            x=0.0;
 
 
 

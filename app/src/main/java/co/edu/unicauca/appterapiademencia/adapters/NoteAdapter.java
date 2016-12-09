@@ -103,16 +103,16 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
 
         switch (ambito){
-            case "movility":
+            case "movilidad":
                 description="Movilidad";
                 ambito= Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/movility72px").toString();
                 break;
-            case "eating":
+            case "alimentacion":
                 description="Independencia Alimentaria";
                 ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/eating72px").toString();
 
                 break;
-            case "fall":
+            case "caidas":
                 description="Caida";
                ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/caida72px").toString();
 

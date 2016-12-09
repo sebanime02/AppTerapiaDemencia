@@ -4,67 +4,83 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/colorPrimaryDark"
     tools:context="co.edu.unicauca.appterapiademencia.login.LoginActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+
+        >
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4"
+
+
+
+            >
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+
+                ></View>
+
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_gravity="top"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
             >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="4"
+                android:weightSum="2"
                 >
-
-
             <ImageView
 
                 android:id="@+id/img_loguin"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="200dp"
-                android:src="@drawable/logobrain"
-                android:background="@color/colorPrimaryDark"
+                android:layout_height="150dp"
+                android:src="@drawable/logoaplicationborderwhite"
 
                 />
                 <TextView
-                    android:layout_weight="3"
                     android:layout_width="0dp"
-                    android:layout_height="200dp"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/medium_text_size"
+                    android:layout_weight="1"
                     android:text="@string/logo_txt"
-                    android:gravity="center"
-                    android:background="@color/colorPrimaryDark"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
 
-                    />
+                    android:layout_height="wrap_content" />
+
+
             </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            >
-
-
-
+            <TextView
+               android:layout_width="match_parent"
+                android:text="@string/txt_choose_user"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:layout_height="wrap_content" />
 
             <Button
 
                 android:drawableTop="@mipmap/ic_supervisor_account_white_36dp"
                 android:foregroundTint="@color/white"
                 android:id="@+id/btn_soysupervisor"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"
                 android:text="@string/btn_soysupervisor"
                 android:fontFamily="sans-serif-black"
@@ -77,10 +93,17 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:onClick="deployInputs"
                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/txt_or_choose"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="@string/btn_soycuidador"
@@ -94,7 +117,7 @@
                 android:onClick="toMain"
                 android:drawableTop="@mipmap/careralone_white"
                 />
-        </LinearLayout>
+
 
             <android.support.design.widget.CoordinatorLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -102,6 +125,7 @@
                 android:id="@+id/container_SingIn"
                 android:visibility="gone"
                 android:paddingRight="@dimen/activity_horizontal_margin"
+                android:background="@color/white"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -151,22 +175,10 @@
                             android:hint="@string/hint_password"
                             android:drawableLeft="@mipmap/ic_lock_black_24dp"/>
                     </android.support.design.widget.TextInputLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2"
-                        >
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:visibility="invisible"
-                            />
+
                     <Button
                         android:id="@+id/btn_entrar"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
                         android:text="@string/btn_entrar"
@@ -176,7 +188,7 @@
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:onClick="autenticateUser"
                         />
-                    </LinearLayout>
+
 
                     <TextView
                         android:id="@+id/txt_error"
@@ -208,9 +220,14 @@
 
             </android.support.design.widget.CoordinatorLayout>
 
+        </LinearLayout>
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
 
+                android:layout_height="match_parent"
 
-
+                ></View>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

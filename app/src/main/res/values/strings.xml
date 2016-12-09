@@ -16,8 +16,10 @@
     <!-- LOGIN 1 LAYOUT-->
     <string name="logo_txt">APLICACIÓN DE ASISTENCIA AL CUIDADOR Y SUPERVISOR EN INSTITUCIONES CON ADULTOS MAYORES</string>
     <string name="Titulo_aplicacion">Aplicación Para Terapia Demencia</string>
-    <string name="btn_soycuidador">Soy Cuidador (Acceso Limitado)</string>
-    <string name="btn_soysupervisor">Superviso Cuidadores</string>
+    <string name="txt_choose_user">Ingresa como: </string>
+    <string name="txt_or_choose">O Unicamente eres</string>
+    <string name="btn_soycuidador">Cuidador (Acceso Limitado)</string>
+    <string name="btn_soysupervisor">Supervisor de Cuidadores (Acceso Completo)</string>
     <string name="btn_salir">Salir</string>
     <string name="hint_username">Nombre de Usuario</string>
     <string name="hint_password">Contraseña</string>

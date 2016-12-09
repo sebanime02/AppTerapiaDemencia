@@ -23,9 +23,10 @@
                 android:id="@+id/img_loguin"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/logologuinletras"
+                android:background="@color/colorPrimaryDark"
+                android:src="@drawable/logoaplicationborderblack"
 
-                android:scaleType="fitXY"
+
 
                 />
 

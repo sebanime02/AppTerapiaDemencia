@@ -395,32 +395,7 @@
                      android:visibility="gone"
 
                      >
-                     <android.support.v7.widget.AppCompatCheckBox
-                         android:id="@+id/rdgHigieneOtro"
-                         android:text="@string/higiene_otro"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:textSize="@dimen/small_text_size"
-                         android:fontFamily="sans-serif"
 
-
-                         android:paddingBottom="@dimen/activity_vertical_margin"
-                         android:textStyle="bold"
-                         />
-
-
-                     <android.support.v7.widget.AppCompatCheckBox
-                         android:id="@+id/rdgHigieneSinDificultades"
-                         android:text="@string/higiene_independiente"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:textSize="@dimen/small_text_size"
-                         android:fontFamily="sans-serif"
-
-
-                         android:paddingBottom="@dimen/activity_vertical_margin"
-                         android:textStyle="bold"
-                         />
 
 
 
@@ -497,32 +472,6 @@
                     android:visibility="gone"
 
                      >
-                     <android.support.v7.widget.AppCompatCheckBox
-                         android:id="@+id/rdgVestimentaOtro"
-                         android:text="@string/vestimenta_otro"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:textSize="@dimen/small_text_size"
-                         android:fontFamily="sans-serif"
-
-
-                         android:paddingBottom="@dimen/activity_vertical_margin"
-                         android:textStyle="bold"
-                         />
-
-
-                     <android.support.v7.widget.AppCompatCheckBox
-                         android:id="@+id/rdgVestimentaIndependiente"
-                         android:text="@string/vestimenta_sinproblemas"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:textSize="@dimen/small_text_size"
-                         android:fontFamily="sans-serif"
-
-
-                         android:paddingBottom="@dimen/activity_vertical_margin"
-                         android:textStyle="bold"
-                         />
 
 
 
@@ -610,30 +559,7 @@
 
                     android:visibility="gone"
                      >
-                     <android.support.v7.widget.AppCompatCheckBox
-                         android:id="@+id/rdgLenguajeOtro"
-                         android:text="@string/vestimenta_otro"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:textSize="@dimen/small_text_size"
-                         android:fontFamily="sans-serif"
 
-
-                         android:paddingBottom="@dimen/activity_vertical_margin"
-                         android:textStyle="bold"
-                         />
-                     <android.support.v7.widget.AppCompatCheckBox
-                         android:id="@+id/rdgLenguajeNormal"
-                         android:text="@string/lenguaje_sinproblemas"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:textSize="@dimen/small_text_size"
-                         android:fontFamily="sans-serif"
-
-
-                         android:paddingBottom="@dimen/activity_vertical_margin"
-                         android:textStyle="bold"
-                         />
 
 
                      <android.support.v7.widget.AppCompatCheckBox
@@ -678,18 +604,6 @@
 
 
                      >
-                     <android.support.v7.widget.AppCompatCheckBox
-                         android:id="@+id/rdgMovilidadOtro"
-                         android:text="@string/vestimenta_otro"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:textSize="@dimen/small_text_size"
-                         android:fontFamily="sans-serif"
-
-
-                         android:paddingBottom="@dimen/activity_vertical_margin"
-                         android:textStyle="bold"
-                         />
 
 
                      <android.support.v7.widget.AppCompatCheckBox
@@ -751,32 +665,8 @@
                      android:visibility="gone"
 
                      >
-                     <android.support.v7.widget.AppCompatCheckBox
-                         android:id="@+id/rdgAlimentacionNinguno"
-                         android:text="@string/alimentacion_otro"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:textSize="@dimen/small_text_size"
-                         android:fontFamily="sans-serif"
 
 
-                         android:paddingBottom="@dimen/activity_vertical_margin"
-                         android:textStyle="bold"
-                         />
-
-
-                     <android.support.v7.widget.AppCompatCheckBox
-                         android:id="@+id/rdgAlimentacionCorrectamente"
-                         android:text="@string/alimentacion_correcta"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:textSize="@dimen/small_text_size"
-                         android:fontFamily="sans-serif"
-
-
-                         android:paddingBottom="@dimen/activity_vertical_margin"
-                         android:textStyle="bold"
-                         />
 
 
 
@@ -826,32 +716,9 @@
                      android:layout_height="wrap_content"
                      android:visibility="gone"
                      >
-                     <android.support.v7.widget.AppCompatCheckBox
-                         android:id="@+id/rdgAnimoOtro"
-                         android:text="@string/estadoanimo_otro"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:textSize="@dimen/small_text_size"
-                         android:fontFamily="sans-serif"
 
 
-                         android:paddingBottom="@dimen/activity_vertical_margin"
-                         android:textStyle="bold"
-                         />
 
-
-                     <android.support.v7.widget.AppCompatCheckBox
-                         android:id="@+id/rdgAnimoNormal"
-                         android:text="@string/estadoanimo_normal"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:textSize="@dimen/small_text_size"
-                         android:fontFamily="sans-serif"
-
-
-                         android:paddingBottom="@dimen/activity_vertical_margin"
-                         android:textStyle="bold"
-                         />
                      <android.support.v7.widget.AppCompatCheckBox
                          android:id="@+id/rdgAnimoSonrisa"
                          android:text="@string/estadoanimo_sonrisa"

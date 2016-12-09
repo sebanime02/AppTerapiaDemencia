@@ -179,6 +179,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgVestimentaActividades = (CheckBox) findViewById(R.id.rdgVestimentaActividades);
         rdgVestimentaFallosOcasionales = (CheckBox) findViewById(R.id.rdgVestimentaFallosOcasionales);
         rdgVestimentaAyudaVestirse = (CheckBox) findViewById(R.id.rdgVestimentaAyudaVestirse);
+        rdgVestimentaSeleccionar = (CheckBox) findViewById(R.id.rdgVestimentaSeleccionar);
         rdgVestimentaSecuencia = (CheckBox) findViewById(R.id.rdgVestimentaSecuenciaVestirse);
         rdgVestimentaIncapaz = (CheckBox) findViewById(R.id.rdgVestimentaIncapaz);
 
@@ -191,7 +192,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
         //LENGUAJE
 
-        rdgMemoriaListasCortas = (CheckBox) findViewById(R.id.rdgMemoriaListasCortas);
+
         rdgLenguajeLimitado = (CheckBox) findViewById(R.id.rdgLenguajeLimitado);
         rdgLenguajePalabra= (CheckBox) findViewById(R.id.rdgLenguajePalabra);
 
@@ -350,7 +351,39 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                     switch (sintomasList.get(i))
                     {
-                        //----------VESTIMENTA-------------
+
+
+
+
+                        //----------VESTIMENTA y AVD-------------
+
+                        case "vestimentaactividades":
+
+                            try{
+                                Sintoma vestimentaactividades;
+                                vestimentaactividades = helper.getSintoma(patientid,"FAST","vestimenta","vestimentaactividades");
+                                vestimentaactividades.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    //vestimentaactividades.getScaleList().get(0).setPuntaje("4");
+
+                                }
+                                else
+                                {
+                                    //vestimentaactividades.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(vestimentaactividades);
+                                scaleDao.update(vestimentaactividades.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",vestimentaactividades.getScaleList().get(0).getPuntaje().toString());
+
+
+                            }catch (Exception e){
+                            }
+                            break;
+
                         case "incapacidadtareasdomesticas":
                             Sintoma tareasdomesticas;
                             try{
@@ -374,6 +407,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                             }catch (Exception e){}
                             break;
+
+
                         case "incapacidadpequenasdinero":
                             try{
                                 Sintoma pequenasdinero;
@@ -398,7 +433,203 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                             }catch (Exception e){}
                             break;
 
+                        case "vestimentafallosocasionales":
+                            try{
+                                Sintoma vestimentafallosocasionales;
+                                vestimentafallosocasionales = helper.getSintoma(patientid,"Blessed","vestimenta","vestimentafallosocasionales");
+                                vestimentafallosocasionales.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    //vestimentafallosocasionales.getScaleList().get(0).setPuntaje("1.0");
 
+                                }
+                                else
+                                {
+                                    //vestimentafallosocasionales.getScaleList().get(0).setPuntaje("0.0");
+
+                                }
+                                sintomaDao.update(vestimentafallosocasionales);
+                                scaleDao.update(vestimentafallosocasionales.getScaleList().get(0));
+
+
+                                Log.e("guardado y actualizado",vestimentafallosocasionales.getScaleList().get(0).getPuntaje().toString());
+
+                            }catch (Exception e){}
+                            break;
+
+
+
+                        case "vestimentaseleccionar":
+                            try{
+                                Sintoma vestimentaseleccionar;
+                                vestimentaseleccionar = helper.getSintoma(patientid,"FAST","vestimenta","vestimentaseleccionar");
+                                vestimentaseleccionar.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    //vestimentaseleccionar.getScaleList().get(0).setPuntaje("5");
+
+                                }
+                                else
+                                {
+                                    //vestimentafallosocasionales.getScaleList().get(0).setPuntaje("0");
+
+                                }
+                                sintomaDao.update(vestimentaseleccionar);
+                                scaleDao.update(vestimentaseleccionar.getScaleList().get(0));
+
+
+                                Log.e("guardado y actualizado",vestimentaseleccionar.getScaleList().get(0).getPuntaje().toString());
+
+                            }catch (Exception e){}
+                            break;
+
+
+
+                        case "vestimentasecuencia":
+                            try{
+                                Sintoma vestimentasecuencia;
+                                vestimentasecuencia = helper.getSintoma(patientid,"Blessed","vestimenta","vestimentasecuencia");
+                                vestimentasecuencia.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    vestimentasecuencia.getScaleList().get(0).setPuntaje("2.0");
+
+                                }
+                                else
+                                {
+                                    vestimentasecuencia
+                                            .getScaleList().get(0).setPuntaje("0");
+
+                                }
+                                sintomaDao.update(vestimentasecuencia);
+                                scaleDao.update(vestimentasecuencia.getScaleList().get(0));
+
+
+                                Log.e("guardado y actualizado",vestimentasecuencia.getScaleList().get(0).getPuntaje().toString());
+
+                            }catch (Exception e){}
+                            break;
+                        case "vestimentaayudavestirse":
+                            try{
+                                Sintoma vestimentayudavestirse;
+                                vestimentayudavestirse = helper.getSintoma(patientid,"FAST","vestimenta","vestimentaayudavestirse");
+                                vestimentayudavestirse.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    vestimentayudavestirse.getScaleList().get(0).setPuntaje("6A");
+
+                                }
+                                else
+                                {
+                                    vestimentayudavestirse.getScaleList().get(0).setPuntaje("0");
+
+                                }
+                                sintomaDao.update(vestimentayudavestirse);
+                                scaleDao.update(vestimentayudavestirse.getScaleList().get(0));
+
+
+                                Log.e("guardado y actualizado",vestimentayudavestirse.getScaleList().get(0).getPuntaje().toString());
+
+                            }catch (Exception e){}
+                            break;
+
+                        case "vestimentaincapaz":
+                            try{
+                                Sintoma vestimentaincapaz;
+                                vestimentaincapaz = helper.getSintoma(patientid,"Blessed","vestimenta","vestimentaincapaz");
+                                vestimentaincapaz.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    vestimentaincapaz.getScaleList().get(0).setPuntaje("3.0");
+
+                                }
+                                else
+                                {
+                                    vestimentaincapaz.getScaleList().get(0).setPuntaje("0");
+
+                                }
+                                sintomaDao.update(vestimentaincapaz);
+                                scaleDao.update(vestimentaincapaz.getScaleList().get(0));
+
+
+                                Log.e("guardado y actualizado",vestimentaincapaz.getScaleList().get(0).getPuntaje().toString());
+
+                            }catch (Exception e){}
+                            break;
+
+                        //----------LENGUAJE-------------
+                        case "lenguajelimitado":
+                            try{
+                                Sintoma lenguajelimitado;
+                                lenguajelimitado = helper.getSintoma(patientid,"FAST","lenguaje","lenguajelimitado");
+                                lenguajelimitado.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                   //lenguajelimitado.getScaleList().get(0).setPuntaje("7a");
+
+                                }
+                                else
+                                {
+                                    //lenguajelimitado.getScaleList().get(0).setPuntaje("0");
+
+                                }
+                                sintomaDao.update(lenguajelimitado);
+                                scaleDao.update(lenguajelimitado.getScaleList().get(0));
+
+
+                                Log.e("guardado y actualizado",lenguajelimitado.getScaleList().get(0).getPuntaje().toString());
+
+                            }catch (Exception e){}
+                            break;
+
+                        case "lenguajepalabra":
+                            try{
+                                Sintoma lenguajepalabra;
+                                lenguajepalabra = helper.getSintoma(patientid,"FAST","lenguaje","lenguajepalabra");
+                                lenguajepalabra.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    //lenguajelimitado.getScaleList().get(0).setPuntaje("7b");
+
+                                }
+                                else
+                                {
+                                    //lenguajelimitado.getScaleList().get(0).setPuntaje("0");
+
+                                }
+                                sintomaDao.update(lenguajepalabra);
+                                scaleDao.update(lenguajepalabra.getScaleList().get(0));
+
+
+                                Log.e("guardado y actualizado",lenguajepalabra.getScaleList().get(0).getPuntaje().toString());
+
+                            }catch (Exception e){}
+                            break;
+
+                        //----------CAMBIO DE ANIMO-------------
+
+                        case "animosonrisa":
+                            try{
+                                Sintoma animosonrisa;
+                                animosonrisa = helper.getSintoma(patientid,"Blessed","animo","animosonrisa");
+                                animosonrisa.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    animosonrisa.getScaleList().get(0).setPuntaje("7e");
+                                }else
+                                {
+                                    animosonrisa.getScaleList().get(0).setPuntaje("0");
+
+                                }
+                                sintomaDao.update(animosonrisa);
+                                scaleDao.update(animosonrisa.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",animosonrisa.getScaleList().get(0).getPuntaje().toString());
+
+
+                            }catch (Exception e){
+                            }
+                            break;
 
 
                         //----------ORIENTACION-------------
@@ -468,7 +699,10 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 scaleDao.update(orientacionentorno.getScaleList().get(0));
                                 Log.e("guardado y actualizado",orientacionentorno.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e){
+                            }catch (Exception e)
+                            {
+
+
                             }
 
                             //----------MEMORIA-------------
@@ -556,6 +790,214 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                             }catch (Exception e){    }
                             break;
 
+
+                        //----------MOVILIDAD-------------
+
+                        case "movilidadsitioslejanos":
+
+                            try{
+                                Sintoma movilidadsitiosalejados;
+                                movilidadsitiosalejados = helper.getSintoma(patientid,"FAST","movilidad","movilidadsitioslejanos");
+                                movilidadsitiosalejados.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    //movilidadsitiosalejados.getScaleList().get(0).setPuntaje("3");
+
+                                }
+                                else
+                                {
+                                    //movilidadsitiosalejados.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(movilidadsitiosalejados);
+                                scaleDao.update(movilidadsitiosalejados.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",movilidadsitiosalejados.getScaleList().get(0).getPuntaje().toString());
+
+
+                            }catch (Exception e){
+                            }
+                        case "movilidadcaminar":
+
+                            try{
+                                Sintoma movilidadcaminar;
+                                movilidadcaminar = helper.getSintoma(patientid,"FAST","movilidad","movilidadcaminar");
+                                movilidadcaminar.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    //movilidadcaminar.getScaleList().get(0).setPuntaje("7c");
+
+                                }
+                                else
+                                {
+                                    //movilidadcaminar.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(movilidadcaminar);
+                                scaleDao.update(movilidadcaminar.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",movilidadcaminar.getScaleList().get(0).getPuntaje().toString());
+
+
+                            }catch (Exception e){
+                            }
+
+
+                            break;
+
+                        case "movilidadsentarse":
+
+                            try{
+                                Sintoma movilidadsentarse;
+                                movilidadsentarse = helper.getSintoma(patientid,"FAST","movilidad","movilidadsentarse");
+                                movilidadsentarse.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    //movilidadsentarse.getScaleList().get(0).setPuntaje("7d");
+
+                                }
+                                else
+                                {
+                                    //movilidadsentarse.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(movilidadsentarse);
+                                scaleDao.update(movilidadsentarse.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",movilidadsentarse.getScaleList().get(0).getPuntaje().toString());
+
+
+                            }catch (Exception e){
+                            }
+
+
+                            break;
+
+                        case "movilidadcabeza":
+
+                            try{
+                                Sintoma movilidadcabeza;
+                                movilidadcabeza = helper.getSintoma(patientid,"FAST","movilidad","movilidadcabeza");
+                                movilidadcabeza.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("7e");
+
+                                }
+                                else
+                                {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(movilidadcabeza);
+                                scaleDao.update(movilidadcabeza.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",movilidadcabeza.getScaleList().get(0).getPuntaje().toString());
+
+
+                            }catch (Exception e){
+                            }
+
+
+                            break;
+
+                    //----------ALIMENTACION-------------
+
+                        case "alimentacioncuchara":
+
+                            try{
+                                Sintoma alimentacioncuchara;
+                                alimentacioncuchara = helper.getSintoma(patientid,"FAST","alimentacion","alimentacioncuchara");
+                                alimentacioncuchara.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("7e");
+
+                                }
+                                else
+                                {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(alimentacioncuchara);
+                                scaleDao.update(alimentacioncuchara.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",alimentacioncuchara
+                                        .getScaleList().get(0).getPuntaje().toString());
+
+
+                            }catch (Exception e){
+                            }
+
+
+                            break;
+
+                        case "alimentacionsolidos":
+
+                            try{
+                                Sintoma alimentacionsolidos;
+                                alimentacionsolidos = helper.getSintoma(patientid,"FAST","alimentacion","alimentacionsolidos");
+                                alimentacionsolidos.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("7e");
+
+                                }
+                                else
+                                {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(alimentacionsolidos);
+                                scaleDao.update(alimentacionsolidos.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",alimentacionsolidos.getScaleList().get(0).getPuntaje().toString());
+
+
+                            }catch (Exception e){
+                            }
+
+
+                            break;
+
+                        case "alimentaciondependientes":
+
+                            try{
+                                Sintoma alimentaciondependiente;
+                                alimentaciondependiente = helper.getSintoma(patientid,"FAST","alimentacion","alimentaciondependientes");
+                                alimentaciondependiente.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("7e");
+
+                                }
+                                else
+                                {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(alimentaciondependiente);
+                                scaleDao.update(alimentaciondependiente.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",alimentaciondependiente.getScaleList().get(0).getPuntaje().toString());
+
+
+                            }catch (Exception e){
+                            }
+
+
+                            break;
+
+
+
+
                     }
 
 
@@ -577,7 +1019,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             if(!var_state)
             {
                 MaterialDialog.Builder builder = new MaterialDialog.Builder(this);
-                builder.title("Nota Guardada").content("Su Nota ha sido guardada en la bandeja de supervisores, para aprobación").positiveText(R.string.dialog_succes_agree).show();;
+                builder.title("Nota Guardada").content("Su Nota ha sido guardada en la bandeja de supervisores, para aprobación").positiveText(R.string.dialog_succes_agree).show();
                 builder.onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
@@ -647,6 +1089,52 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 election = "movilidad";
                 var_tipo=1;
                 setDefaultImageButton();
+                try{
+
+                    Sintoma movilidadsitiosalejados = helper.getSintoma(patientid,"FAST","movilidad","movilidadsitioslejanos");
+                    if(movilidadsitiosalejados.getActivo().booleanValue())
+                    {
+                        rdgMovilidadSitiosLejanos.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgMovilidadSitiosLejanos.setChecked(false);}
+
+                try{
+
+                    Sintoma movilidadsinasistencia = helper.getSintoma(patientid,"FAST","movilidad","movilidadcaminar");
+                    if(movilidadsinasistencia.getActivo().booleanValue())
+                    {
+                        rdgMovilidadCaminar.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgMovilidadCaminar.setChecked(false);}
+
+
+                try{
+
+                    Sintoma movilidadsentarse = helper.getSintoma(patientid,"FAST","movilidad","movilidadsentarse");
+                    if(movilidadsentarse.getActivo().booleanValue())
+                    {
+                        rdgMovilidadSentarse.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgMovilidadSentarse.setChecked(false);}
+
+                try{
+
+                    Sintoma movilidadcabeza = helper.getSintoma(patientid,"FAST","movilidad","movilidadcabeza");
+                    if(movilidadcabeza.getActivo().booleanValue())
+                    {
+                        rdgMovilidadCabeza.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgMovilidadCabeza.setChecked(false);}
+
+
                 rdgMovilidad.setVisibility(View.VISIBLE);
                 //election= Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/movility72px").toString();
                 movility.setBackgroundColor(getResources().getColor(R.color.accent_color));
@@ -656,6 +1144,40 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 election="alimentacion";
                 var_tipo=1;
                 setDefaultImageButton();
+
+                try{
+
+                    Sintoma alimentacioncuchara = helper.getSintoma(patientid,"FAST","alimentacion","alimentacioncuchara");
+                    if(alimentacioncuchara.getActivo().booleanValue())
+                    {
+                        rdgAlimentacionCuchara.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgAlimentacionCuchara.setChecked(false);}
+
+                try{
+
+                    Sintoma alimentacionsolidos = helper.getSintoma(patientid,"FAST","alimentacion","alimentacionsolidos");
+                    if(alimentacionsolidos.getActivo().booleanValue())
+                    {
+                        rdgAlimentacionSolidos.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgAlimentacionSolidos.setChecked(false);}
+
+                try{
+
+                    Sintoma alimentaciondependiente= helper.getSintoma(patientid,"FAST","alimentacion","alimentaciondependientes");
+                    if(alimentaciondependiente.getActivo().booleanValue())
+                    {
+                        rdgAlimentacionDependiente.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgAlimentacionDependiente.setChecked(false);}
+
                 rdgAlimentacion.setVisibility(View.VISIBLE);
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/eating72px").toString();
                 eating.setBackgroundColor(getResources().getColor(R.color.accent_color));
@@ -675,6 +1197,28 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 election="lenguaje";
                 var_tipo=1;
                 setDefaultImageButton();
+
+                try
+                {
+                    Sintoma lenguajelimitado = helper.getSintoma(patientid,"FAST","lenguaje","lenguajelimitado");
+                    if(lenguajelimitado.getActivo().booleanValue())
+                    {
+                        rdgLenguajeLimitado.setChecked(true);
+                    }
+
+                }catch (Exception e){ rdgLenguajeLimitado.setChecked(false);}
+
+                try
+                {
+                    Sintoma lenguajepalabra = helper.getSintoma(patientid,"FAST","lenguaje","lenguajepalabra");
+                    if(lenguajepalabra.getActivo().booleanValue())
+                    {
+                        rdgLenguajePalabra.setChecked(true);
+                    }
+
+                }catch (Exception e){ rdgLenguajeLimitado.setChecked(false);}
+
+
                 rdgLenguaje.setVisibility(View.VISIBLE);
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/medication72px").toString();
                 lenguaje.setBackgroundColor(getResources().getColor(R.color.accent_color));
@@ -690,6 +1234,75 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 election="higiene";
                 var_tipo=1;
                 setDefaultImageButton();
+
+                try
+                {
+                    Sintoma higieneayudabanarse = helper.getSintoma(patientid,"FAST","higiene","higieneayudabanarse");
+                    if(higieneayudabanarse.getActivo().booleanValue())
+                    {
+                        rdgHigieneAyudaBanarse.setChecked(true);
+                    }
+
+                }catch (Exception e){ rdgHigieneAyudaBanarse.setChecked(false);}
+
+                try
+                {
+                    Sintoma higieneayudainodoro = helper.getSintoma(patientid,"FAST","higiene","higieneayudainodoro");
+                    if(higieneayudainodoro.getActivo().booleanValue())
+                    {
+                        rdgHigieneAyudaInodoro.setChecked(true);
+                    }
+
+                }catch (Exception e){ rdgHigieneAyudaInodoro.setChecked(false);}
+
+
+                try
+                {
+                    Sintoma higieneayudasoltarbano= helper.getSintoma(patientid,"FAST","higiene","higieneayudasoltarbano");
+                    if(higieneayudasoltarbano.getActivo().booleanValue())
+                    {
+                        rdgHigieneSoltarBano.setChecked(true);
+                    }
+
+                }catch (Exception e){ rdgHigieneSoltarBano.setChecked(false);}
+
+
+                try
+                {
+                    Sintoma higieneayudasoltarbano= helper.getSintoma(patientid,"FAST","higiene","higieneayudasoltarbano");
+                    if(higieneayudasoltarbano.getActivo().booleanValue())
+                    {
+                        rdgHigieneSoltarBano.setChecked(true);
+                    }
+
+                }catch (Exception e){ rdgHigieneSoltarBano.setChecked(false);}
+
+
+                try
+                {
+                    Sintoma higieneaincontinensiaurinaria= helper.getSintoma(patientid,"FAST","higiene","higieneincontinensiaurinaria");
+                    if(higieneaincontinensiaurinaria.getActivo().booleanValue())
+                    {
+                        rdgHigieneIncontinensiaUrinaria.setChecked(true);
+                    }
+
+                }catch (Exception e){ rdgHigieneIncontinensiaUrinaria.setChecked(false);}
+
+
+                try
+                {
+                    Sintoma higieneayudaincontinensiafecal= helper.getSintoma(patientid,"FAST","higiene","higieneayudaincontinensiafecal");
+                    if(higieneayudaincontinensiafecal.getActivo().booleanValue())
+                    {
+                        rdgHigieneIncontinensiaFecal.setChecked(true);
+                    }
+
+                }catch (Exception e){ rdgHigieneIncontinensiaFecal.setChecked(false);}
+
+
+
+
+
                 rdgHigiene.setVisibility(View.VISIBLE);
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/otro72px").toString();
                 higiene.setBackgroundColor(getResources().getColor(R.color.accent_color));
@@ -698,6 +1311,17 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 election="animo";
                 var_tipo=1;
                 setDefaultImageButton();
+
+                try
+                {
+                    Sintoma animosonrisa = helper.getSintoma(patientid,"FAST","animo","animosonrisa");
+                    if(animosonrisa.getActivo().booleanValue())
+                    {
+                        rdgAnimoSonrisa.setChecked(true);
+                    }
+
+                }catch (Exception e){ rdgAnimoSonrisa.setChecked(false);}
+
                 rdgAnimo.setVisibility(View.VISIBLE);
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
                 estadodeanimo.setBackgroundColor(getResources().getColor(R.color.accent_color));
@@ -706,6 +1330,92 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 election="vestimenta";
                 var_tipo=1;
                 setDefaultImageButton();
+                try{
+
+                    Sintoma vestimentaactividades = helper.getSintoma(patientid,"FAST","vestimenta","vestimentaactividades");
+                    Sintoma vestimentaincapacidadtareasdomesticas = helper.getSintoma(patientid,"FAST","vestimenta","incapacidadtareasdomesticas");
+                    Sintoma vestimentaincapacidadpequenasdinero = helper.getSintoma(patientid,"FAST","vestimenta","incapacidadpequenasdinero");
+
+
+                    if(vestimentaactividades.getActivo().booleanValue())
+                    {
+                        rdgVestimentaActividades.setChecked(true);
+                    }
+                    else if(vestimentaincapacidadtareasdomesticas.getActivo().booleanValue())
+                    {
+                        rdgVestimentaActividades.setChecked(true);
+                    }
+                    else if(vestimentaincapacidadpequenasdinero.getActivo().booleanValue())
+                    {
+                        rdgVestimentaActividades.setChecked(true);
+                    }
+
+
+
+                }catch (Exception e){rdgVestimentaActividades.setChecked(false);}
+
+
+                try
+                {
+                    Sintoma vestimentafallosocasionales = helper.getSintoma(patientid,"Blessed","vestimenta","vestimentafallosocasionales");
+                    if(vestimentafallosocasionales.getActivo().booleanValue())
+                    {
+                        rdgVestimentaFallosOcasionales.setChecked(true);
+                    }
+
+                }catch (Exception e){ rdgVestimentaFallosOcasionales.setChecked(false);}
+
+                try{
+                    Sintoma vestimentaseleccionar = helper.getSintoma(patientid,"FAST","vestimenta","vestimentaseleccionar");
+                    if(vestimentaseleccionar.getActivo().booleanValue())
+                    {
+                        rdgVestimentaSeleccionar.setChecked(true);
+                    }
+
+                }catch (Exception e){rdgVestimentaSeleccionar.setChecked(false);
+                }
+
+
+                try{
+                    Sintoma vestimentasecuencia = helper.getSintoma(patientid,"Blessed","vestimenta","vestimentasecuencia");
+                    if(vestimentasecuencia.getActivo().booleanValue())
+                    {
+                        rdgVestimentaSecuencia.setChecked(true);
+                    }
+
+                }catch (Exception e){rdgVestimentaSecuencia.setChecked(false);
+                }
+
+
+                try{
+                    Sintoma vestimentaayudavestirse = helper.getSintoma(patientid,"FAST","vestimenta","vestimentaayudavestirse");
+                    if(vestimentaayudavestirse.getActivo().booleanValue())
+                    {
+                        rdgVestimentaAyudaVestirse.setChecked(true);
+                    }
+
+                }catch (Exception e){rdgVestimentaAyudaVestirse.setChecked(false);
+                }
+
+
+                try{
+                    Sintoma vestimentaincapaz = helper.getSintoma(patientid,"FAST","vestimenta","vestimentaincapaz");
+                    if(vestimentaincapaz.getActivo().booleanValue())
+                    {
+                        rdgVestimentaIncapaz.setChecked(true);
+                    }
+
+                }catch (Exception e){rdgVestimentaIncapaz.setChecked(false);
+                }
+
+
+
+
+
+
+
+
+
                 rdgVestimenta.setVisibility(View.VISIBLE);
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
                 vestimenta.setBackgroundColor(getResources().getColor(R.color.accent_color));
@@ -782,13 +1492,16 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         memoria.setBackgroundColor(getResources().getColor(R.color.material_teal));
 
 
-        rdgVestimenta.setVisibility(View.GONE);
+        rdgMovilidad.setVisibility(View.GONE);
         rdgAlimentacion.setVisibility(View.GONE);
         rdgLenguaje.setVisibility(View.GONE);
         rdgHigiene.setVisibility(View.GONE);
+        rdgAnimo.setVisibility(View.GONE);
+        //rdgCambioPersonalidad.setVisibility(View.GONE);
+        rdgVestimenta.setVisibility(View.GONE);
         //rdgCambioPersonalidad.setVisibility(View.INVISIBLE);
         rdgMemoria.setVisibility(View.GONE);
-        rdgMovilidad.setVisibility(View.GONE);
+
 
 
 
@@ -799,35 +1512,48 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         puntajeList.clear();
         stateList.clear();
 
-        /*
+
+        rdgMovilidadSitiosLejanos.setOnCheckedChangeListener(this);
+        rdgMovilidadCaminar.setOnCheckedChangeListener(this);
+        rdgMovilidadSentarse.setOnCheckedChangeListener(this);
+        rdgMovilidadCabeza.setOnCheckedChangeListener(this);
+
+
+        rdgAlimentacionCuchara.setOnCheckedChangeListener(this);
+        rdgAlimentacionSolidos.setOnCheckedChangeListener(this);
+        rdgAlimentacionDependiente.setOnCheckedChangeListener(this);
+
+        rdgLenguajeLimitado.setOnCheckedChangeListener(this);
+        rdgLenguajePalabra.setOnCheckedChangeListener(this);
+
+
         rdgHigieneAyudaBanarse.setOnCheckedChangeListener(this);
         rdgHigieneAyudaInodoro.setOnCheckedChangeListener(this);
         rdgHigieneSoltarBano.setOnCheckedChangeListener(this);
         rdgHigieneIncontinensiaUrinaria.setOnCheckedChangeListener(this);
         rdgHigieneIncontinensiaFecal.setOnCheckedChangeListener(this);
-        rdgMovilidadSitiosLejanos.setOnCheckedChangeListener(this);
-        rdgMovilidadCaminar.setOnCheckedChangeListener(this);
-        rdgMovilidadSentarse.setOnCheckedChangeListener(this);
-        rdgMovilidadCabeza.setOnCheckedChangeListener(this);
+
+        rdgAnimoSonrisa.setOnCheckedChangeListener(this);
+
+
+
+
         rdgVestimentaActividades.setOnCheckedChangeListener(this);
         rdgVestimentaFallosOcasionales.setOnClickListener(this);
         rdgVestimentaSeleccionar.setOnCheckedChangeListener(this);
         rdgVestimentaSecuencia.setOnClickListener(this);
         rdgVestimentaAyudaVestirse.setOnCheckedChangeListener(this);
         rdgVestimentaIncapaz.setOnCheckedChangeListener(this);
-        */
+
         rdgMemoriaListasCortas.setOnCheckedChangeListener(this);
         rdgMemoriaTendenciaRememorar.setOnCheckedChangeListener(this);
         rdgMemoriaOlvidosBenignos.setOnCheckedChangeListener(this);
 
 
-        /*
-        rdgLenguajeLimitado.setOnCheckedChangeListener(this);
-        rdgLenguajePalabra.setOnCheckedChangeListener(this);
-        rdgAlimentacionCuchara.setOnCheckedChangeListener(this);
-        rdgAlimentacionSolidos.setOnCheckedChangeListener(this);
-        rdgAlimentacionDependiente.setOnCheckedChangeListener(this);
-        */
+
+
+
+
 
 
 
