@@ -2,6 +2,8 @@ package co.edu.unicauca.appterapiademencia.principal.notes;
 
 import android.util.Log;
 
+import co.edu.unicauca.appterapiademencia.events.ItemNoteEvent;
+import co.edu.unicauca.appterapiademencia.events.NoteEvent;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractor;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractorImplementation;
@@ -24,7 +26,7 @@ public class NotesPresenterImplementation implements NotesPresenter {
 
     @Override
     public void onCreate() {
-
+        eventBus.register(this);
     }
 
     @Override
@@ -48,4 +50,25 @@ public class NotesPresenterImplementation implements NotesPresenter {
        //principalListInteractor.notesCount(idpatient);
 
     }
+
+    @Override
+    public void getNote(Long idnote) {
+        principalListInteractor.getNote(idnote);
+
+    }
+
+    @Override
+    public void onEventMainThread(NoteEvent noteEvent) {
+        if(notesView!=null)
+        {
+            notesView.showNote(noteEvent.getNote());
+        }
+    }
+
+    @Override
+    public void onEventMainThread(ItemNoteEvent itemNoteEvent) {
+        principalListInteractor.getNote(itemNoteEvent.idnote);
+    }
+
+
 }

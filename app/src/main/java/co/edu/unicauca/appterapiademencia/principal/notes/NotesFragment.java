@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,14 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.NoteAdapter;
 import co.edu.unicauca.appterapiademencia.domain.Note;
-import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientListFragment;
-import co.edu.unicauca.appterapiademencia.principal.tips.TipsListFragment;
 
 /**
  * Created by SEBAS on 07/11/2016.
@@ -34,7 +32,7 @@ public class NotesFragment extends Fragment implements NotesView{
     private RecyclerView.Adapter newadapter;
     private RecyclerView.LayoutManager LManager;
     private NotesPresenterImplementation notesPresenterImplementation;
-    private TextView txt_empty,txt_caida,txt_movilidad,txt_alimentacion,txt_humor,txt_estadodeanimo,txt_medication;
+    private TextView txt_empty,txt_caida,txt_movilidad,txt_alimentacion,txt_humor,txt_estadodeanimo,txt_higiene;
     private Long idpatient;
     private List<Note> noteList;
     private Intent ir_reg;
@@ -122,7 +120,7 @@ public class NotesFragment extends Fragment implements NotesView{
         txt_alimentacion= (TextView) view.findViewById(R.id.count_alimentacion);
         txt_humor= (TextView) view.findViewById(R.id.count_humor);
         txt_estadodeanimo= (TextView) view.findViewById(R.id.count_salud);
-        txt_medication= (TextView) view.findViewById(R.id.count_medicacion);
+        txt_higiene= (TextView) view.findViewById(R.id.count_higiene);
         txt_empty = (TextView) view.findViewById(R.id.txt_vacio_note);
 
 
@@ -138,7 +136,7 @@ public class NotesFragment extends Fragment implements NotesView{
             recycler.setVisibility(view.VISIBLE);
         }
 
-        adapter = new NoteAdapter(this.noteList, getActivity());
+        adapter = new NoteAdapter(this.noteList, getActivity(),getContext());
         recycler.setAdapter(adapter);
         txt_caida.setText(""+this.fallCount);
 
@@ -167,12 +165,12 @@ public class NotesFragment extends Fragment implements NotesView{
             recycler.setHasFixedSize(true);
             LManager = new LinearLayoutManager(getActivity().getApplicationContext());
             recycler.setLayoutManager(LManager);
-            adapter = new NoteAdapter(list, getActivity());
+            adapter = new NoteAdapter(list, getActivity(),getContext());
             recycler.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             txt_caida.setText(""+getFallCount());
             txt_humor.setText(""+getEstadodeanimoCount());
-            txt_medication.setText(""+getMedicationCount());
+            txt_higiene.setText(""+getMedicationCount());
             txt_alimentacion.setText(""+getEatingCount());
             txt_movilidad.setText(""+getMovCount());
             txt_estadodeanimo.setText(""+getEstadodeanimoCount());
@@ -202,7 +200,7 @@ public class NotesFragment extends Fragment implements NotesView{
             recycler.setHasFixedSize(true);
             LManager = new LinearLayoutManager(getActivity().getApplicationContext());
             recycler.setLayoutManager(LManager);
-            adapter = new NoteAdapter(list, getActivity());
+            adapter = new NoteAdapter(list, getActivity(),getContext());
             recycler.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             //callListenerText();
@@ -232,6 +230,7 @@ public class NotesFragment extends Fragment implements NotesView{
         medicationCount=0;
         estadodeanimoCount=0;
         changeCount=0;
+        higieneCount=0;
 
         languageCount=0;
         vestimentaCount=0;
@@ -241,37 +240,53 @@ public class NotesFragment extends Fragment implements NotesView{
         Log.e("addnote","de nuevo al fragment, show la lista, tamaño: "+list.size());
         for (int j = 0; j < noteList.size(); j++)
         {
+            String noteType;
 
-            String noteType = noteList.get(j).getAmbito().toString();
+            try {
+                noteType = noteList.get(j).getAmbito().toString();
+
+            }
+            catch (Exception e){
+                noteType = "";
+            }
+
+
+
+
+
             switch (noteType){
-                case "movility":
+                case "movilidad":
 
                      setMovCount(movCount+1);
                     break;
-                case "eating":
+                case "alimentacion":
                     setEatingCount(eatingCount+1);
 
                     break;
-                case "fall":
+                case "caidas":
                     setFallCount(fallCount+1);
                     break;
                 case "medication":
                     setMedicationCount(medicationCount+1);
 
                     break;
-                case "language":
+                case "higiene":
+                    setMedicationCount(medicationCount+1);
+
+                    break;
+                case "lenguaje":
                     setLanguageCount(languageCount+1);
                     break;
                 case "vestimenta":
                     setVestimentaCount(vestimentaCount+1);
                     break;
-                case "memory":
+                case "memoria":
                     setMemoryCount(memoryCount+1);
                     break;
                 case "animo":
                    setEstadodeanimoCount(estadodeanimoCount+1);
                     break;
-                case "changebehaviour":
+                case "cambiocomportamiento":
                     setChangeCount(changeCount+1);
                     break;
 
@@ -324,6 +339,15 @@ public class NotesFragment extends Fragment implements NotesView{
     public void showNotesCount(int[] notescount) {
 
     }
+
+    @Override
+    public void showNote(Note note) {
+        Log.e("notesfragment","Va mostrar el materialdialog");
+        new MaterialDialog.Builder(getContext()).title(note.getAmbito()).content(note.getDescription()).positiveText(R.string.dialog_succes_agree).show();
+
+    }
+
+
     public int getEstadodeanimoCount() {
         return estadodeanimoCount;
     }
@@ -380,5 +404,16 @@ public class NotesFragment extends Fragment implements NotesView{
     }
 
 
+    public void onMethodCallback(Long idnote) {
+        Log.e("notesfragment","llego al onMethodCallback");
 
+        Note note;
+        try {
+            Log.e("notesfragment","va a ejecutar la consulta de la nota");
+
+            notesPresenterImplementation.getNotes(idnote);
+        }catch (Exception e){}
+
+
+    }
 }

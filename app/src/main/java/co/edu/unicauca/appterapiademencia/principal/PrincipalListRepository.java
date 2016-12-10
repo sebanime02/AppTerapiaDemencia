@@ -30,4 +30,5 @@ public interface PrincipalListRepository {
     List<Note> getNotes(Long id);
 
     Double getBlessedScore(Long id);
+    void getNote(Long idnote);
 }

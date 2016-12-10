@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import co.edu.unicauca.appterapiademencia.domain.BlessedIncapacity;
+import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.Scale;
 import co.edu.unicauca.appterapiademencia.domain.Sintoma;
@@ -162,35 +162,18 @@ public class GreenDaoHelper {
 
         }
     }
-    public void getIncapacities(){
-        queryBuilder = getBlessedIncapacityDao().queryBuilder();
-        List<BlessedIncapacity> listblessed = queryBuilder.list();
 
-        try {
-            Log.e("size getincapacities",listblessed.size()+"");
-            for (int m = 0; m <= listblessed.size(); m++) {
-                Log.e("helper getincapacities", " " + listblessed.get(m).getId());
-                Log.e("helper getincapacities", " " + listblessed.get(m).getPatientId());
-                Log.e("helper getincapacities", "                     ");
-            }
-        }
-        catch (IndexOutOfBoundsException e){
-            Log.e("helper getincapacities","Sin discapacidades AVD");
 
-        }
 
-    }
-    public BlessedIncapacity getBlessedbyid(Long id){
-        BlessedIncapacity blesedone;
-        QueryBuilder<BlessedIncapacity> blessedquery = getBlessedIncapacityDao().queryBuilder();
-        blessedquery.where(BlessedIncapacityDao.Properties.PatientId.eq(id)).limit(1).list();
-        //blessedquery.join(BlessedIncapacityDao.Properties.PatientId,Patient.class,PatientDao.Properties.Id).where(BlessedIncapacityDao.Properties.PatientId.eq(id));
-        List<BlessedIncapacity> blessedList = blessedquery.limit(1).list();
 
-        //List<BlessedIncapacity> blessedList = queryBuilder.where(BlessedIncapacityDao.Properties.PatientId.eq(patientone.getId())).limit(1).list();
-        //queryBuilder.join(Address.class, AddressDao.Properties.userId)
-        blesedone = blessedList.get(0);
-        return blesedone;
+    public Note getNote(Long idnote)
+    {
+        Note note;
+        List<Note> noteList1;
+        QueryBuilder<Note> noteQueryBuilder = getNoteDao().queryBuilder();
+       noteList1 = noteQueryBuilder.where(NoteDao.Properties.Id.eq(idnote)).limit(1).list();
+        note = noteList1.get(0);
+        return note;
     }
 
 

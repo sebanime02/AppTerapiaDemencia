@@ -11,7 +11,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -29,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import co.edu.unicauca.appterapiademencia.Item.RowItem;
+import co.edu.unicauca.appterapiademencia.items.RowItem;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.MenuAdapter;
 import co.edu.unicauca.appterapiademencia.domain.User;

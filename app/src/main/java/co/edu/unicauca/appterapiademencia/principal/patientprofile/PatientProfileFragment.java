@@ -22,7 +22,6 @@ import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.AddPatient2Activity;
 import co.edu.unicauca.appterapiademencia.util.CircleTransform;
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by SEBAS on 07/11/2016.
@@ -163,12 +162,14 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         Log.d("Vista profile","Cedula: "+idpatient);
 
         getPatientData(idpatient);
+        /*
         try {
             Patient patient = daoHelper.getPatientInformationUsingCedula(idpatient);
             idsistema = patient.getId();
         }
         catch (Exception e){}
-        getBlessedScore(idsistema);
+        */
+        //getBlessedScore(idsistema);
 
     }
     public View getRootView(){

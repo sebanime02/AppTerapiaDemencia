@@ -1,9 +1,11 @@
 package co.edu.unicauca.appterapiademencia.adapters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,8 @@ import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
+import co.edu.unicauca.appterapiademencia.events.ItemNoteEvent;
+import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
 
 /**
  * Created by SEBAS on 12/11/2016.
@@ -28,16 +32,20 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     private List<User> userList;
     private GreenDaoHelper helper;
     private String description;
-
+    private AdapterCallBack adapterCallBack;
     private int imageSize;
-
-    public NoteAdapter(List<Note> noteList, Activity activity){
+    private GreenRobotEventBus eventBus;
+    public NoteAdapter(List<Note> noteList, Activity activity, Context context){
         super();
         this.noteList = noteList;
         layoutInflater = activity.getLayoutInflater();
         this.activity = activity;
         this.helper = GreenDaoHelper.getInstance();
         this.imageSize = activity.getResources().getDimensionPixelSize(R.dimen.img_size_item_list);
+        this.eventBus = GreenRobotEventBus.getInstance();
+
+        //this.adapterCallBack = ((AdapterCallBack) context);
+
 
     }
 
@@ -49,7 +57,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     }
 
     @Override
-    public void onBindViewHolder(NoteViewHolder holder, int position) {
+    public void onBindViewHolder(NoteViewHolder holder, final int position) {
+
+
 
     //String description = noteList.get(position).getDescription();
     String fecha = noteList.get(position).getDate().toString();
@@ -204,7 +214,23 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         }
         */
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Log.e("noteadapter","Entro al onclick");
+                    //adapterCallBack.onMethodCallback(getItemId(position));
+                    ItemNoteEvent itemNoteEvent = new ItemNoteEvent();
+                    itemNoteEvent.setIdnote(getItemId(position));
+                    eventBus.post(itemNoteEvent);
 
+
+                }catch (Exception e)
+                {
+
+                }
+            }
+        });
 
     }
 
@@ -218,6 +244,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         }
 
     }
+    public static interface AdapterCallBack
+    {
+
+        void onMethodCallback(Long id);
+    }
+
 
     public class NoteViewHolder extends RecyclerView.ViewHolder {
         ImageView imgNoteType;
@@ -243,6 +275,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
 
         }
+
+
+
         /*
         public void onClick(View holder.itemView) {
 
@@ -263,5 +298,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
 
     }
+
 
 }

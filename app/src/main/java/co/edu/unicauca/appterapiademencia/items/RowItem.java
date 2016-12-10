@@ -1,4 +1,4 @@
-package co.edu.unicauca.appterapiademencia.Item;
+package co.edu.unicauca.appterapiademencia.items;
 
 /**
  * Created by ENF on 27/10/2016.

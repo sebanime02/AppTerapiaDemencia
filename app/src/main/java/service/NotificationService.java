@@ -167,7 +167,7 @@ public class NotificationService extends Service {
                 {
                     Log.e("notificacion","id seleccionado"+randomLong);
                     //publishNotification(ids[n]);
-                     idselected = ids[n];
+                    idselected = ids[n];
                     notificar =true;
                     iterator=false;
                 }
@@ -189,7 +189,7 @@ public class NotificationService extends Service {
         String idstring = id+"";
         tip = helper.getTip(id);
         NotificationCompat.Builder notificacion = new NotificationCompat.Builder(this);
-        notificacion.setSmallIcon(R.mipmap.ic_launcher);
+        //notificacion.setSmallIcon(R.mipmap.logoaplicationborderwhite);
         notificacion.setTicker("Tip Para Cuidadores");
         notificacion.setWhen(System.currentTimeMillis());
         notificacion.setContentTitle(tip.getTitle());

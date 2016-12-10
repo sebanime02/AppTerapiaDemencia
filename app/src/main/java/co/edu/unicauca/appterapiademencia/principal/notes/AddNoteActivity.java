@@ -32,14 +32,12 @@ import java.util.Locale;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
-import co.edu.unicauca.appterapiademencia.domain.Scale;
 import co.edu.unicauca.appterapiademencia.domain.Sintoma;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.NoteDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.ScaleDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.SintomaDao;
-import co.edu.unicauca.appterapiademencia.principal.MainActivity;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientProfileActivity;
 
 /**
@@ -276,9 +274,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
         Log.e("addnote",""+optionOwner);
 
+        if(validarCategoria(election))
+        {
+
 
         if(optionOwner)
         {
+
+
             Log.e("addnote","Entro a owner true");
             if(validar(description.getText().toString(),owner.getText().toString())==false)
             {
@@ -358,6 +361,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                         //----------VESTIMENTA y AVD-------------
 
                         case "vestimentaactividades":
+
 
                             try{
                                 Sintoma vestimentaactividades;
@@ -454,7 +458,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                                 Log.e("guardado y actualizado",vestimentafallosocasionales.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e){}
+                            }catch (Exception e){ Log.e("AddNote","Error al traer vestimentafallosocasionales");
+                            }
                             break;
 
 
@@ -480,7 +485,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                                 Log.e("guardado y actualizado",vestimentaseleccionar.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e){}
+                            }catch (Exception e){Log.e("AddNote","Error al traer vestimentaseleccionar");}
                             break;
 
 
@@ -507,7 +512,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                                 Log.e("guardado y actualizado",vestimentasecuencia.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e){}
+                            }catch (Exception e){Log.e("AddNote","Error al traer vestimentasecuencia");}
                             break;
                         case "vestimentaayudavestirse":
                             try{
@@ -516,12 +521,13 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 vestimentayudavestirse.setActivo(stateList.get(i));
                                 if(stateList.get(i).booleanValue())
                                 {
-                                    vestimentayudavestirse.getScaleList().get(0).setPuntaje("6A");
+                                    Log.e("higieneayudavestirse","ahora esta activo");
+                                    //vestimentayudavestirse.getScaleList().get(0).setPuntaje("6A");
 
                                 }
                                 else
                                 {
-                                    vestimentayudavestirse.getScaleList().get(0).setPuntaje("0");
+                                    //vestimentayudavestirse.getScaleList().get(0).setPuntaje("0");
 
                                 }
                                 sintomaDao.update(vestimentayudavestirse);
@@ -530,11 +536,12 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                                 Log.e("guardado y actualizado",vestimentayudavestirse.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e){}
+                            }catch (Exception e){Log.e("AddNote","Error al traer vestimentaayudavestirse");}
                             break;
 
                         case "vestimentaincapaz":
                             try{
+
                                 Sintoma vestimentaincapaz;
                                 vestimentaincapaz = helper.getSintoma(patientid,"Blessed","vestimenta","vestimentaincapaz");
                                 vestimentaincapaz.setActivo(stateList.get(i));
@@ -554,7 +561,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                                 Log.e("guardado y actualizado",vestimentaincapaz.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e){}
+                            }catch (Exception e){Log.e("AddNote","Error al traer vestimentaincapaz");}
                             break;
 
                         //----------LENGUAJE-------------
@@ -580,6 +587,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 Log.e("guardado y actualizado",lenguajelimitado.getScaleList().get(0).getPuntaje().toString());
 
                             }catch (Exception e){}
+
                             break;
 
                         case "lenguajepalabra":
@@ -788,6 +796,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 Log.e("guardado y actualizado", tendenciarememorar.getScaleList().get(0).getPuntaje().toString());
 
                             }catch (Exception e){    }
+
                             break;
 
 
@@ -996,6 +1005,166 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                             break;
 
 
+                        //----HIGIENE Y ASEO-----
+
+                        case "higieneayudabanarse":
+                            try{
+                                Sintoma higieneayudabanarse;
+                                higieneayudabanarse = helper.getSintoma(patientid,"FAST","higiene","higieneayudabanarse");
+                                higieneayudabanarse.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    //higieneayudabanarse.getScaleList().get(0).setPuntaje("6b");
+
+                                }
+                                else
+                                {
+                                    //higieneayudabanarse.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(higieneayudabanarse);
+                                scaleDao.update(higieneayudabanarse.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",higieneayudabanarse.getScaleList().get(0).getPuntaje().toString());
+
+
+                            }catch (Exception e){
+                            }
+
+                            break;
+                        case "higieneayudainodoro":
+                            try{
+                                Sintoma higieneayudainodoro;
+                                higieneayudainodoro = helper.getSintoma(patientid,"FAST","higiene","higieneayudainodoro");
+                                Log.e("ayuda inodoro","estado "+higieneayudainodoro.getActivo().toString());
+
+                                higieneayudainodoro.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    Log.e("addnote","Ayuda inodoro activada");
+
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6c");
+
+                                }
+                                else
+                                {
+                                    Log.e("addnote","Incontinensia urinaria desactivada");
+
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(higieneayudainodoro);
+                                scaleDao.update(higieneayudainodoro.getScaleList().get(0));
+                                Log.e("addnote","Necesita ayuda inodoro");
+                                Log.e("guardado y actualizado",higieneayudainodoro.getScaleList().get(0).getPuntaje().toString());
+
+
+                            }catch (Exception e){
+                                Log.e("addnote","Error al actualizar Ayuda Inodoro");
+
+                            }
+
+                            break;
+
+                        case "higieneayudasoltarbano":
+                            try{
+                                Sintoma higieneayudasoltarbano;
+                                higieneayudasoltarbano = helper.getSintoma(patientid,"FAST","higiene","higieneayudasoltarbano");
+                                higieneayudasoltarbano.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6c");
+
+                                }
+                                else
+                                {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(higieneayudasoltarbano);
+                                scaleDao.update(higieneayudasoltarbano.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",higieneayudasoltarbano.getScaleList().get(0).getPuntaje().toString());
+
+
+                            }catch (Exception e){
+                            }
+
+                            break;
+
+
+
+                        case "higieneayudaincontinensiaurinaria":
+                            try{
+                                Sintoma higieneayudaincontinensiaurinaria;
+                                higieneayudaincontinensiaurinaria = helper.getSintoma(patientid,"FAST","higiene","higieneayudaincontinensiaurinaria");
+                                Log.e("ayuda incontinensia","estado "+higieneayudaincontinensiaurinaria.getActivo().toString());
+
+                                higieneayudaincontinensiaurinaria.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    Log.e("addnote","Incontinensia urinaria activada");
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6d");
+
+                                }
+                                else
+                                {
+                                    Log.e("addnote","Incontinensia urinaria desactivada");
+
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(higieneayudaincontinensiaurinaria);
+                                scaleDao.update(higieneayudaincontinensiaurinaria.getScaleList().get(0));
+
+                                Log.e("addnote","Entro higiene incontinensia urinaria");
+                                Log.e("guardado y actualizado",higieneayudaincontinensiaurinaria.getScaleList().get(0).getPuntaje().toString());
+
+
+                            }catch (Exception e){
+                                Log.e("addnote","Error al actualizar incontinensia urinaria");
+
+                            }
+
+                            break;
+
+                        case "higieneayudaincontinensiafecal":
+
+                            try{
+                                Sintoma higieneayudaincontinensiafecal;
+                                higieneayudaincontinensiafecal = helper.getSintoma(patientid,"FAST","higiene","higieneayudaincontinensiafecal");
+                                higieneayudaincontinensiafecal.setActivo(stateList.get(i));
+                                if(stateList.get(i).booleanValue())
+                                {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6e
+                                    //
+                                    //  ");
+
+                                }
+                                else
+                                {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(higieneayudaincontinensiafecal);
+                                scaleDao.update(higieneayudaincontinensiafecal.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",higieneayudaincontinensiafecal.getScaleList().get(0).getPuntaje().toString());
+
+
+                            }catch (Exception e){
+                            }
+
+
+
+                            break;
+
+
 
 
                     }
@@ -1040,6 +1209,12 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
 
         }
+        }
+        else
+        {
+            new MaterialDialog.Builder(this).title(R.string.addnote_empty_title2).content(R.string.addnote_empty_category).positiveText(R.string.dialog_succes_agree).icon(getResources().getDrawable(R.drawable.sadface)).show();
+
+        }
 
     }
 
@@ -1052,6 +1227,15 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         overridePendingTransition(R.anim.left_in, R.anim.left_out);
         finish();
     }
+
+    public Boolean validarCategoria(String election) {
+        if (election.equals("")) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
 
     public Boolean validar(String description) {
         if (description.equals("")) {
@@ -1231,6 +1415,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                 break;
             case R.id.btn_higiene:
+
                 election="higiene";
                 var_tipo=1;
                 setDefaultImageButton();
@@ -1250,43 +1435,44 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                     Sintoma higieneayudainodoro = helper.getSintoma(patientid,"FAST","higiene","higieneayudainodoro");
                     if(higieneayudainodoro.getActivo().booleanValue())
                     {
+                        Log.e("Higiene ayuda","Entro a checkear");
                         rdgHigieneAyudaInodoro.setChecked(true);
                     }
 
-                }catch (Exception e){ rdgHigieneAyudaInodoro.setChecked(false);}
+                }catch (Exception e){
+                    Log.e("Higiene ayuda","No chequeo");
+                    rdgHigieneAyudaInodoro.setChecked(false);}
 
 
                 try
                 {
                     Sintoma higieneayudasoltarbano= helper.getSintoma(patientid,"FAST","higiene","higieneayudasoltarbano");
+
                     if(higieneayudasoltarbano.getActivo().booleanValue())
                     {
+
                         rdgHigieneSoltarBano.setChecked(true);
                     }
 
-                }catch (Exception e){ rdgHigieneSoltarBano.setChecked(false);}
+                }catch (Exception e){
+
+                    rdgHigieneSoltarBano.setChecked(false);}
+
 
 
                 try
                 {
-                    Sintoma higieneayudasoltarbano= helper.getSintoma(patientid,"FAST","higiene","higieneayudasoltarbano");
-                    if(higieneayudasoltarbano.getActivo().booleanValue())
+                    Sintoma higieneincontinensiaurinaria= helper.getSintoma(patientid,"FAST","higiene","higieneincontinensiaurinaria");
+                    Log.e("Higiene urinaria","activo: "+higieneincontinensiaurinaria.getActivo().booleanValue());
+                    if(higieneincontinensiaurinaria.getActivo().booleanValue())
                     {
-                        rdgHigieneSoltarBano.setChecked(true);
-                    }
-
-                }catch (Exception e){ rdgHigieneSoltarBano.setChecked(false);}
-
-
-                try
-                {
-                    Sintoma higieneaincontinensiaurinaria= helper.getSintoma(patientid,"FAST","higiene","higieneincontinensiaurinaria");
-                    if(higieneaincontinensiaurinaria.getActivo().booleanValue())
-                    {
+                        Log.e("Higiene urinaria","Entro a checkear");
                         rdgHigieneIncontinensiaUrinaria.setChecked(true);
                     }
 
-                }catch (Exception e){ rdgHigieneIncontinensiaUrinaria.setChecked(false);}
+                }catch (Exception e){
+                    Log.e("Higiene urinaria","No chequeo");
+                    rdgHigieneIncontinensiaUrinaria.setChecked(false);}
 
 
                 try
@@ -1298,7 +1484,6 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                     }
 
                 }catch (Exception e){ rdgHigieneIncontinensiaFecal.setChecked(false);}
-
 
 
 
@@ -1410,12 +1595,6 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
 
 
-
-
-
-
-
-
                 rdgVestimenta.setVisibility(View.VISIBLE);
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
                 vestimenta.setBackgroundColor(getResources().getColor(R.color.accent_color));
@@ -1492,6 +1671,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         memoria.setBackgroundColor(getResources().getColor(R.color.material_teal));
 
 
+
         rdgMovilidad.setVisibility(View.GONE);
         rdgAlimentacion.setVisibility(View.GONE);
         rdgLenguaje.setVisibility(View.GONE);
@@ -1539,9 +1719,9 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
 
         rdgVestimentaActividades.setOnCheckedChangeListener(this);
-        rdgVestimentaFallosOcasionales.setOnClickListener(this);
+        rdgVestimentaFallosOcasionales.setOnCheckedChangeListener(this);
         rdgVestimentaSeleccionar.setOnCheckedChangeListener(this);
-        rdgVestimentaSecuencia.setOnClickListener(this);
+        rdgVestimentaSecuencia.setOnCheckedChangeListener(this);
         rdgVestimentaAyudaVestirse.setOnCheckedChangeListener(this);
         rdgVestimentaIncapaz.setOnCheckedChangeListener(this);
 
@@ -1681,25 +1861,27 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             //VESTIMENTA
 
             case R.id.rdgVestimentaActividades:
-                stateList.add(b);
-                stateList.add(b);
-                stateList.add(b);
+
                 var_seleccion="vestimentaactividades";
                 var_seleccion2="incapacidadtareasdomesticas";
-                var_seleccion2="incapacidadpequenasdinero";
+                var_seleccion3="incapacidadpequenasdinero";
                 //nameTest = "FAST";
                 //puntaje = "4";
                 //nameTest2="Blessed";
                 //puntaje2="1";
                 //nameTest3="Blessed";
                 //puntaje3="2";
+                stateList.add(b);
+
                 sintomasList.add(var_seleccion);
+                stateList.add(b);
                 //nameTestList.add(nameTest);
                 //puntajeList.add(puntaje);
 
                 sintomasList.add(var_seleccion2);
                 //nameTestList.add(nameTest2);
                 //puntajeList.add(puntaje2);
+                stateList.add(b);
 
                 sintomasList.add(var_seleccion3);
                 //nameTestList.add(nameTest3);

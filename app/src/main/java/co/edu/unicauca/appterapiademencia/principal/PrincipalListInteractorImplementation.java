@@ -93,4 +93,9 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
     public Double getBlessedScore(Long id) {
         return principalListRepository.getBlessedScore(id);
     }
+
+    @Override
+    public void getNote(Long idnote) {
+        principalListRepository.getNote(idnote);
+    }
 }

@@ -156,10 +156,22 @@
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/emptyuser"
                 />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            >
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                />
 
             <Button
                 android:id="@+id/btn_entrar"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
                 android:text="@string/btn_save"
@@ -169,7 +181,7 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:onClick="saveRegister"
                 />
-
+        </LinearLayout>
             <TextView
                 android:id="@+id/txt_error"
                 android:layout_width="match_parent"
@@ -179,6 +191,9 @@
 
                 android:gravity="center_horizontal"
                 />
+
+
+
             <Button
                 android:id="@+id/btn_irLogin"
                 android:layout_width="match_parent"

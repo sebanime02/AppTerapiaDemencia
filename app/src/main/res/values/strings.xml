@@ -111,6 +111,7 @@
     <string name="addnote_empty_title2">Hay Campos Obligatorios Vacios</string>
     <string name="addnote_empty_content">Por favor complete el campo "Descripción del evento"</string>
     <string name="addnote_empty_content2">Por favor complete los campos "Descripción del evento" y "Responsable"</string>
+    <string name="addnote_empty_category">Por favor selecciona una categoria en el punto 1</string>
     <string name="txt_note_responsable">5. Responsable, Escriba su Nombre Completo...</string>
     <string name="add_movilidad">Independencia en\n la movilidad</string>
     <string name="add_caida">Caida o Fractura</string>
@@ -185,6 +186,7 @@
     <string name="txt_title_tip">Escriba el título del Tip o Recomendación</string>
     <string name="txt_description_tip">Describalo mas detalladamente...</string>
     <string name="txt_state_tip">Desea Activar las notificaciones para este Tip: NO</string>
+
     <string name="txt_state_tip2">SI</string>
     <string name="txt_save_tip">GUARDAR</string>
     <string name="txt_cancel_tip">CANCELAR</string>

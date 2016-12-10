@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import co.edu.unicauca.appterapiademencia.Item.RowItem;
+import co.edu.unicauca.appterapiademencia.items.RowItem;
 import co.edu.unicauca.appterapiademencia.R;
 
 /**

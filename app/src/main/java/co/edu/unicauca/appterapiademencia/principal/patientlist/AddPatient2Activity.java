@@ -1053,6 +1053,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 Sintoma sintomahigieneayudasoltarbano = new Sintoma(null,patient2.getId(),"higiene","higieneayudasoltarbano",false);
                                 Sintoma sintomaincontinensiaurinaria = new Sintoma(null,patient2.getId(),"higiene","higieneayudaincontinensiaurinaria",false);
                                 Sintoma sintomahigieneayudaincontinensiafecal = new Sintoma(null,patient2.getId(),"higiene","higieneayudaincontinensiafecal",false);
+
                                 sintomaDao.insert(sintomahigieneayudabanarse);
                                 sintomaDao.insert(sintomahigieneayudainodoro);
                                 sintomaDao.insert(sintomahigieneayudasoltarbano);
@@ -1079,7 +1080,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 Sintoma sintomavestimentafallosocasionales = new Sintoma(null,patient2.getId(),"vestimenta","vestimentafallosocasionales",false);
                                 Sintoma sintomavestimentaseleccionar = new Sintoma(null,patient2.getId(),"vestimenta","vestimentaseleccionar",false);
                                 Sintoma sintomavestimentasecuencia = new Sintoma(null,patient2.getId(),"vestimenta","vestimentasecuencia",false);
-                                Sintoma sintomavestimentaayudavestirse = new Sintoma(null,patient2.getId(),"vestimenta","vestimentaayudavestirse ",false);
+                                Sintoma sintomavestimentaayudavestirse = new Sintoma(null,patient2.getId(),"vestimenta","vestimentaayudavestirse",false);
                                 Sintoma sintomavestimentaincapaz = new Sintoma(null,patient2.getId(),"vestimenta","vestimentaincapaz",false);
 
                                 sintomaDao.insert(sintomavestimentaactividades);
@@ -1134,7 +1135,9 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 Sintoma sintomaanimosonrisa = new Sintoma(null,patient2.getId(),"animo","animosonrisa",false);
                                 sintomaDao.insert(sintomaanimosonrisa);
 
-                                //INICIAR ESCALAS
+
+
+                        //INICIAR ESCALAS
 
 
 

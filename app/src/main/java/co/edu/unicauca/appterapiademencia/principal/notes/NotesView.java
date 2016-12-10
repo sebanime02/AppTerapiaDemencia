@@ -15,4 +15,6 @@ public interface NotesView {
     void addNote(Long idpatient);
     void getnotesCount(Long idpatient);
     void showNotesCount(int[] notescount);
+    void showNote(Note note);
+    void onMethodCallback(Long id);
 }

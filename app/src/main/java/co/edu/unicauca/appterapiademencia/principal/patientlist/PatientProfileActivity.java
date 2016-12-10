@@ -1,8 +1,11 @@
 package co.edu.unicauca.appterapiademencia.principal.patientlist;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -71,6 +74,11 @@ public class PatientProfileActivity extends AppCompatActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.menu_edit,menu);
+        Drawable drawable = menu.findItem(R.id.menu_editar).getIcon();
+
+        drawable = DrawableCompat.wrap(drawable);
+        DrawableCompat.setTint(drawable, ContextCompat.getColor(this,R.color.white));
+        menu.findItem(R.id.menu_editar).setIcon(drawable);
         return true;
 
     }
@@ -79,6 +87,7 @@ public class PatientProfileActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_editar:
+
 
                 Intent intent = new Intent(this, AddPatientActivity.class);
                 intent.putExtra("cedula",cedula);

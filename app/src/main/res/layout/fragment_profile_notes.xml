@@ -94,17 +94,17 @@
 
         </TableRow>
         <TableRow android:gravity="center_horizontal">
-            <TextView android:background="@color/gray"  android:textColor="@color/white" android:textAlignment="center" android:id="@+id/count_salud" android:text="0"/>
+            <TextView android:background="@color/material_blue"  android:textColor="@color/white" android:textAlignment="center" android:id="@+id/count_salud" android:text="0"/>
 
         </TableRow>
 
 
         <TableRow android:gravity="center_horizontal">
             <ImageButton
-                android:src="@mipmap/medication72px"/>
+                android:src="@mipmap/higiene72px"/>
         </TableRow>
         <TableRow android:gravity="center_horizontal">
-            <TextView  android:textColor="@color/white" android:background="@color/material_red" android:textAlignment="center" android:id="@+id/count_medicacion" android:text="0"/>
+            <TextView  android:textColor="@color/white" android:background="@color/gray" android:textAlignment="center" android:id="@+id/count_higiene" android:text="0"/>
 
         </TableRow>
 

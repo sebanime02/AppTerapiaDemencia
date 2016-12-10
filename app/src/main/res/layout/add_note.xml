@@ -763,10 +763,22 @@
 
 
                 </android.support.design.widget.TextInputLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    >
+                   <View
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:visibility="invisible"
+                       ></View>
 
                 <Button
                     android:id="@+id/btn_guardar"
-                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
                     android:text="@string/btn_save"
@@ -777,6 +789,7 @@
                     android:onClick="saveNote"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     />
+                </LinearLayout>
 
 
                 </LinearLayout>

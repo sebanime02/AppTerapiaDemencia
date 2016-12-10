@@ -24,8 +24,8 @@ public class LoginRepositoryImplementation implements LoginRepository {
     private boolean accessType;
 
 
-    public LoginRepositoryImplementation(){
-
+    public LoginRepositoryImplementation()
+    {
         this.helper = GreenDaoHelper.getInstance();
         this.userDao = GreenDaoHelper.getInstance().getUserDao();
 
