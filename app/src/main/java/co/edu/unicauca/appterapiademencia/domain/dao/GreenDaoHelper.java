@@ -171,7 +171,7 @@ public class GreenDaoHelper {
         Note note;
         List<Note> noteList1;
         QueryBuilder<Note> noteQueryBuilder = getNoteDao().queryBuilder();
-       noteList1 = noteQueryBuilder.where(NoteDao.Properties.Id.eq(idnote)).limit(1).list();
+        noteList1 = noteQueryBuilder.where(NoteDao.Properties.Id.eq(idnote)).limit(1).list();
         note = noteList1.get(0);
         return note;
     }

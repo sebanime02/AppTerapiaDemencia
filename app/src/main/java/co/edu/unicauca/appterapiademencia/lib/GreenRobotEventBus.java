@@ -38,9 +38,21 @@ public class GreenRobotEventBus implements EventBus {
         eventBus.post(event);
 
     }
+    public void postSticky(Object event)
+    {
+        eventBus.postSticky(event);
+    }
 
+    @Override
+    public void removeSticky(Object event) {
+        eventBus.removeStickyEvent(event);
 
+    }
 
+    @Override
+    public void removeAllSticky() {
+        eventBus.removeAllStickyEvents();
+    }
 
 
 }

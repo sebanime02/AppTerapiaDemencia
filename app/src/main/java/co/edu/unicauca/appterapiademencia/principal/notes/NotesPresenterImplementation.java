@@ -29,12 +29,30 @@ public class NotesPresenterImplementation implements NotesPresenter {
         eventBus.register(this);
     }
 
+
     @Override
     public void onDestroy() {
         notesView = null;
+        Log.e("notepresenter","ondestroy");
 
         eventBus.unregister(this);
     }
+    public void onResume()
+    {
+        eventBus.removeAllSticky();
+        de.greenrobot.event.EventBus.clearCaches();
+    }
+
+    public void register()
+    {
+        eventBus.register(this);
+
+    }
+    public void unregister()
+    {
+        eventBus.unregister(this);
+    }
+
 
     @Override
     public void getNotes(Long id)
@@ -61,14 +79,46 @@ public class NotesPresenterImplementation implements NotesPresenter {
     public void onEventMainThread(NoteEvent noteEvent) {
         if(notesView!=null)
         {
+            /*
+            if(notesView.checkDialogOpen())
+            {
+                Log.e("notesfragment","Ya hay un dialog abierto");
+
+            }
+            else
+            {
+                Log.e("notesfragment","sin dialogs");
+
+                notesView.showNote(noteEvent.getNote());
+
+            }
+            */
+            eventBus.unregister(this);
             notesView.showNote(noteEvent.getNote());
+
         }
     }
 
     @Override
-    public void onEventMainThread(ItemNoteEvent itemNoteEvent) {
-        principalListInteractor.getNote(itemNoteEvent.idnote);
+    public void onEvent(ItemNoteEvent itemNoteEvent) {
+        if(notesView!=null)
+        {
+            Log.e("notespresenter","LLege al onevent");
+            principalListInteractor.getNote(itemNoteEvent.idnote);
+
+            de.greenrobot.event.EventBus.clearCaches();
+
+
+        }
+
     }
+
+    public void receiveNote(Long idnote)
+    {
+        principalListInteractor.getNote(idnote);
+    }
+
+
 
 
 }

@@ -16,5 +16,7 @@ public interface NotesView {
     void getnotesCount(Long idpatient);
     void showNotesCount(int[] notescount);
     void showNote(Note note);
-    void onMethodCallback(Long id);
+    void onItemClicked(Long position);
+    Boolean checkDialogOpen();
+
 }

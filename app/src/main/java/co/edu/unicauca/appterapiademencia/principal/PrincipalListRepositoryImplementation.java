@@ -198,11 +198,24 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
         Note note;
         try {
             Log.e("notesrepository","llego al repositorio, va a ejecutar el getnote");
+            Log.e("notesrepository","El id es"+idnote);
                 note = helper.getNote(idnote);
+                de.greenrobot.event.EventBus.getDefault().removeAllStickyEvents();
+
                 NoteEvent noteEvent = new NoteEvent();
                 noteEvent.setNote(note);
-                GreenRobotEventBus.getInstance().post(noteEvent);
-        }catch (Exception e){}
+                Log.e("notesrepository","va a enviar el evento noteEvent");
+
+                EventBus eventBus = GreenRobotEventBus.getInstance();
+
+
+
+                Log.e("Principal Repository","Va a registrar el evento");
+                eventBus.post(noteEvent);
+
+
+
+        }catch (Exception e){ Log.e("notesrepository","Error al traer la nota con id");}
     }
 
     private void postEvent(int type,int typemethod){

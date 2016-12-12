@@ -90,7 +90,7 @@
     <string name="content_note_added">El Evento será notificado a los supervisores para su aprobación</string>
     <string name="blessed_no_demencia">No presenta demencia por el momento</string>
     <string name="blessed_sospecha_demencia">Hay sospecha de Demencia en el Paciente</string>
-    <string name="blessed_moderadagrave_demencia">Es altamente probable que el paciente tenga \n demencia en etapa moderada o grave</string>
+    <string name="blessed_moderadagrave_demencia">Es altamente probable que el paciente tenga Demencia en etapa moderada o grave</string>
 
     <!--TAB NOTE INFORMATION-->
     <string name="txt_note_instructions">Ingrese una nota con el Eve</string>
@@ -113,17 +113,21 @@
     <string name="addnote_empty_content2">Por favor complete los campos "Descripción del evento" y "Responsable"</string>
     <string name="addnote_empty_category">Por favor selecciona una categoria en el punto 1</string>
     <string name="txt_note_responsable">5. Responsable, Escriba su Nombre Completo...</string>
-    <string name="add_movilidad">Independencia en\n la movilidad</string>
-    <string name="add_caida">Caida o Fractura</string>
+    <string name="add_movilidad">Independencia en\nla movilidad</string>
+    <string name="add_caida">Caida o Fractura\n</string>
     <string name="add_alimentacion">Hábitos de\n Alimentación</string>
     <string name="add_health">Estado de \n Ánimo</string>
     <string name="add_changebehaviour">Cambios de \n Personalidad</string>
     <string name="add_medication">Medicamentos</string>
 
-    <string name="addnote_higiene">Higiene y Aseo</string>
-    <string name="addnote_vestimenta">Vestimenta y\nActividades Personales</string>
+    <string name="addnote_higiene">Higiene y\nAseo</string>
+    <string name="addnote_vestimenta">Vestimenta y\nActividades \nPersonales</string>
     <string name="addnote_lenguaje">Lenguaje</string>
     <string name="addnote_memoria">Memoria</string>
+
+    <string name="addnote_eventos">Relacionados a Eventos:</string>
+    <string name="addnote_signos">Relacionado a Signos o Sintomas de la Demencia Senil:</string>
+
 
 
     <!--RADIOBUTTONS-->
@@ -179,6 +183,12 @@
     <string name="estadoanimo_otro">Ninguno de los Anteriores</string>
     <string name="estadoanimo_normal">Su estado de ánimo es normal</string>
     <string name="estadoanimo_sonrisa">No ha sonreido en mucho tiempo</string>
+
+
+
+    <string name="medicacion_adverso">Error de Medicación, Evento Adverso</string>
+    <string name="medicacion_rutinario">Evento de Medicación Rutinario</string>
+
 
 
    <!--ADD TIP -->

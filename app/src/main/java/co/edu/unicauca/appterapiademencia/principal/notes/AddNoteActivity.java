@@ -38,7 +38,9 @@ import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.NoteDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.ScaleDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.SintomaDao;
+import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientProfileActivity;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by SEBAS on 14/11/2016.
@@ -54,7 +56,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private RadioButton rdgMejora,rdgNeutral,rdgRetroceso,rdgIncidente,rdgAdverso,rdgCentinela;
     private TextView txt_adverso;
     private ImageButton movility,eating,fall,medication,estadodeanimo,otro,changeBehaviour,higiene,memoria,lenguaje,vestimenta;
-    private RadioGroup rdgGrupo,rdgMovilidad,rdgAlimentacion,rdgCambioPersonalidad,rdgOrientacion,rdgLenguaje,rdgMemoria,rdgHigiene,rdgVestimenta,rdgAnimo;
+    private RadioGroup rdgGrupo,rdgMedicacion,rdgMovilidad,rdgAlimentacion,rdgCambioPersonalidad,rdgOrientacion,rdgLenguaje,rdgMemoria,rdgHigiene,rdgVestimenta,rdgAnimo;
     private CheckBox rdgMovilidadOtro,rdgMovilidadSitiosLejanos,rdgMovilidadCaminar,rdgMovilidadSentarse,rdgMovilidadCabeza;
     private CheckBox rdgHigieneAyudaBanarse,rdgHigieneSoltarBano,rdgHigieneAyudaInodoro,rdgHigieneIncontinensiaUrinaria,rdgHigieneIncontinensiaFecal;
     private CheckBox rdgVestimentaActividades,rdgVestimentaFallosOcasionales,rdgVestimentaSeleccionar,rdgVestimentaSecuencia,rdgVestimentaAyudaVestirse,rdgVestimentaIncapaz;
@@ -62,6 +64,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private CheckBox rdgLenguajeLimitado,rdgLenguajePalabra;
     private CheckBox rdgAlimentacionCuchara,rdgAlimentacionSolidos,rdgAlimentacionDependiente;
     private CheckBox rdgAnimoSonrisa;
+    private RadioButton rdgMedicacionRutinario,rdgMedicacionAdverso;
     private ArrayList<String> sintomasList;
     private ArrayList<String> nameTestList;
     private ArrayList<String> puntajeList;
@@ -125,12 +128,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         movility= (ImageButton) findViewById(R.id.btn_movility);
         eating= (ImageButton) findViewById(R.id.btn_eating);
         fall= (ImageButton) findViewById(R.id.btn_fall);
+        medication = (ImageButton) findViewById(R.id.btn_medication);
         lenguaje= (ImageButton) findViewById(R.id.btn_language);
         estadodeanimo= (ImageButton) findViewById(R.id.btn_estadodeanimo);
         higiene = (ImageButton) findViewById(R.id.btn_higiene);
         changeBehaviour = (ImageButton) findViewById(R.id.btn_changebehaviour);
         vestimenta = (ImageButton) findViewById(R.id.btn_vestimenta);
         memoria = (ImageButton) findViewById(R.id.btn_memory);
+
         rdgTardia = (RadioButton) findViewById(R.id.rdgTardia);
 
        /*
@@ -153,6 +158,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgHigiene = (RadioGroup) findViewById(R.id.rdgHigiene);
         rdgVestimenta = (RadioGroup) findViewById(R.id.rdgVestimenta);
         rdgAnimo = (RadioGroup) findViewById(R.id.rdgAnimo);
+        rdgMedicacion = (RadioGroup) findViewById(R.id.rdgMedicacion);
 
         //rdgGrupo.setOnCheckedChangeListener(this);
 
@@ -201,6 +207,9 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
         //ANIMO SONRISA
         rdgAnimoSonrisa= (CheckBox) findViewById(R.id.rdgAnimoSonrisa);
+
+        rdgMedicacionAdverso = (RadioButton) findViewById(R.id.rdgMedicacionAdverso);
+        rdgMedicacionRutinario = (RadioButton) findViewById(R.id.rdgMedicacionAdverso);
 
 
         owner = (EditText) findViewById(R.id.txt_responsable);
@@ -264,6 +273,9 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         memoria.setOnClickListener(this);
         changeBehaviour.setOnClickListener(this);
         vestimenta.setOnClickListener(this);
+        medication.setOnClickListener(this);
+
+
 
     }
 
@@ -344,18 +356,21 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             Log.e("addnote","var_owner: "+var_owner);
 
 
+
+
             Note note = new Note(null, patientid, userId, var_tipo, var_fecha, var_hora, var_description,election, var_seleccion, var_owner, var_late, var_state);
             noteDao.insert(note);
             //noteDao.update(note);
-            if(note!=null)
+
+
+
+            if(var_tipo==1)
             {
-                for(int i=0;i<sintomasList.size();i++)
-                {
 
-                    switch (sintomasList.get(i))
-                    {
+            if(note!=null) {
+                for (int i = 0; i < sintomasList.size(); i++) {
 
-
+                    switch (sintomasList.get(i)) {
 
 
                         //----------VESTIMENTA y AVD-------------
@@ -363,17 +378,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                         case "vestimentaactividades":
 
 
-                            try{
+                            try {
                                 Sintoma vestimentaactividades;
-                                vestimentaactividades = helper.getSintoma(patientid,"FAST","vestimenta","vestimentaactividades");
+                                vestimentaactividades = helper.getSintoma(patientid, "FAST", "vestimenta", "vestimentaactividades");
                                 vestimentaactividades.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     //vestimentaactividades.getScaleList().get(0).setPuntaje("4");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //vestimentaactividades.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -381,50 +393,45 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 sintomaDao.update(vestimentaactividades);
                                 scaleDao.update(vestimentaactividades.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",vestimentaactividades.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", vestimentaactividades.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
                             break;
 
                         case "incapacidadtareasdomesticas":
                             Sintoma tareasdomesticas;
-                            try{
-                                tareasdomesticas = helper.getSintoma(patientid,"Blessed","vestimenta","incapacidadtareasdomesticas");
+                            try {
+                                tareasdomesticas = helper.getSintoma(patientid, "Blessed", "vestimenta", "incapacidadtareasdomesticas");
                                 tareasdomesticas.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     tareasdomesticas.getScaleList().get(0).setPuntaje("1.0");
 
-                                }
-                                else
-                                {
+                                } else {
                                     tareasdomesticas.getScaleList().get(0).setPuntaje("0.0");
                                 }
 
                                 sintomaDao.update(tareasdomesticas);
                                 scaleDao.update(tareasdomesticas.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",tareasdomesticas.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", tareasdomesticas.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){}
+                            } catch (Exception e) {
+                            }
                             break;
 
 
                         case "incapacidadpequenasdinero":
-                            try{
+                            try {
                                 Sintoma pequenasdinero;
-                                pequenasdinero = helper.getSintoma(patientid,"Blessed","vestimenta","incapacidadpequenasdinero");
+                                pequenasdinero = helper.getSintoma(patientid, "Blessed", "vestimenta", "incapacidadpequenasdinero");
                                 pequenasdinero.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     pequenasdinero.getScaleList().get(0).setPuntaje("1.0");
 
-                                }
-                                else
-                                {
+                                } else {
                                     pequenasdinero.getScaleList().get(0).setPuntaje("0.0");
 
                                 }
@@ -432,23 +439,21 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 scaleDao.update(pequenasdinero.getScaleList().get(0));
 
 
-                                Log.e("guardado y actualizado",pequenasdinero.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", pequenasdinero.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e){}
+                            } catch (Exception e) {
+                            }
                             break;
 
                         case "vestimentafallosocasionales":
-                            try{
+                            try {
                                 Sintoma vestimentafallosocasionales;
-                                vestimentafallosocasionales = helper.getSintoma(patientid,"Blessed","vestimenta","vestimentafallosocasionales");
+                                vestimentafallosocasionales = helper.getSintoma(patientid, "Blessed", "vestimenta", "vestimentafallosocasionales");
                                 vestimentafallosocasionales.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     //vestimentafallosocasionales.getScaleList().get(0).setPuntaje("1.0");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //vestimentafallosocasionales.getScaleList().get(0).setPuntaje("0.0");
 
                                 }
@@ -456,26 +461,23 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 scaleDao.update(vestimentafallosocasionales.getScaleList().get(0));
 
 
-                                Log.e("guardado y actualizado",vestimentafallosocasionales.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", vestimentafallosocasionales.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e){ Log.e("AddNote","Error al traer vestimentafallosocasionales");
+                            } catch (Exception e) {
+                                Log.e("AddNote", "Error al traer vestimentafallosocasionales");
                             }
                             break;
 
 
-
                         case "vestimentaseleccionar":
-                            try{
+                            try {
                                 Sintoma vestimentaseleccionar;
-                                vestimentaseleccionar = helper.getSintoma(patientid,"FAST","vestimenta","vestimentaseleccionar");
+                                vestimentaseleccionar = helper.getSintoma(patientid, "FAST", "vestimenta", "vestimentaseleccionar");
                                 vestimentaseleccionar.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     //vestimentaseleccionar.getScaleList().get(0).setPuntaje("5");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //vestimentafallosocasionales.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -483,25 +485,23 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 scaleDao.update(vestimentaseleccionar.getScaleList().get(0));
 
 
-                                Log.e("guardado y actualizado",vestimentaseleccionar.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", vestimentaseleccionar.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e){Log.e("AddNote","Error al traer vestimentaseleccionar");}
+                            } catch (Exception e) {
+                                Log.e("AddNote", "Error al traer vestimentaseleccionar");
+                            }
                             break;
 
 
-
                         case "vestimentasecuencia":
-                            try{
+                            try {
                                 Sintoma vestimentasecuencia;
-                                vestimentasecuencia = helper.getSintoma(patientid,"Blessed","vestimenta","vestimentasecuencia");
+                                vestimentasecuencia = helper.getSintoma(patientid, "Blessed", "vestimenta", "vestimentasecuencia");
                                 vestimentasecuencia.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     vestimentasecuencia.getScaleList().get(0).setPuntaje("2.0");
 
-                                }
-                                else
-                                {
+                                } else {
                                     vestimentasecuencia
                                             .getScaleList().get(0).setPuntaje("0");
 
@@ -510,23 +510,22 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 scaleDao.update(vestimentasecuencia.getScaleList().get(0));
 
 
-                                Log.e("guardado y actualizado",vestimentasecuencia.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", vestimentasecuencia.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e){Log.e("AddNote","Error al traer vestimentasecuencia");}
+                            } catch (Exception e) {
+                                Log.e("AddNote", "Error al traer vestimentasecuencia");
+                            }
                             break;
                         case "vestimentaayudavestirse":
-                            try{
+                            try {
                                 Sintoma vestimentayudavestirse;
-                                vestimentayudavestirse = helper.getSintoma(patientid,"FAST","vestimenta","vestimentaayudavestirse");
+                                vestimentayudavestirse = helper.getSintoma(patientid, "FAST", "vestimenta", "vestimentaayudavestirse");
                                 vestimentayudavestirse.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
-                                    Log.e("higieneayudavestirse","ahora esta activo");
+                                if (stateList.get(i).booleanValue()) {
+                                    Log.e("higieneayudavestirse", "ahora esta activo");
                                     //vestimentayudavestirse.getScaleList().get(0).setPuntaje("6A");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //vestimentayudavestirse.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -534,24 +533,23 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 scaleDao.update(vestimentayudavestirse.getScaleList().get(0));
 
 
-                                Log.e("guardado y actualizado",vestimentayudavestirse.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", vestimentayudavestirse.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e){Log.e("AddNote","Error al traer vestimentaayudavestirse");}
+                            } catch (Exception e) {
+                                Log.e("AddNote", "Error al traer vestimentaayudavestirse");
+                            }
                             break;
 
                         case "vestimentaincapaz":
-                            try{
+                            try {
 
                                 Sintoma vestimentaincapaz;
-                                vestimentaincapaz = helper.getSintoma(patientid,"Blessed","vestimenta","vestimentaincapaz");
+                                vestimentaincapaz = helper.getSintoma(patientid, "Blessed", "vestimenta", "vestimentaincapaz");
                                 vestimentaincapaz.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     vestimentaincapaz.getScaleList().get(0).setPuntaje("3.0");
 
-                                }
-                                else
-                                {
+                                } else {
                                     vestimentaincapaz.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -559,24 +557,23 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 scaleDao.update(vestimentaincapaz.getScaleList().get(0));
 
 
-                                Log.e("guardado y actualizado",vestimentaincapaz.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", vestimentaincapaz.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e){Log.e("AddNote","Error al traer vestimentaincapaz");}
+                            } catch (Exception e) {
+                                Log.e("AddNote", "Error al traer vestimentaincapaz");
+                            }
                             break;
 
                         //----------LENGUAJE-------------
                         case "lenguajelimitado":
-                            try{
+                            try {
                                 Sintoma lenguajelimitado;
-                                lenguajelimitado = helper.getSintoma(patientid,"FAST","lenguaje","lenguajelimitado");
+                                lenguajelimitado = helper.getSintoma(patientid, "FAST", "lenguaje", "lenguajelimitado");
                                 lenguajelimitado.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
-                                   //lenguajelimitado.getScaleList().get(0).setPuntaje("7a");
+                                if (stateList.get(i).booleanValue()) {
+                                    //lenguajelimitado.getScaleList().get(0).setPuntaje("7a");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //lenguajelimitado.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -584,24 +581,22 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 scaleDao.update(lenguajelimitado.getScaleList().get(0));
 
 
-                                Log.e("guardado y actualizado",lenguajelimitado.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", lenguajelimitado.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e){}
+                            } catch (Exception e) {
+                            }
 
                             break;
 
                         case "lenguajepalabra":
-                            try{
+                            try {
                                 Sintoma lenguajepalabra;
-                                lenguajepalabra = helper.getSintoma(patientid,"FAST","lenguaje","lenguajepalabra");
+                                lenguajepalabra = helper.getSintoma(patientid, "FAST", "lenguaje", "lenguajepalabra");
                                 lenguajepalabra.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     //lenguajelimitado.getScaleList().get(0).setPuntaje("7b");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //lenguajelimitado.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -609,33 +604,32 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 scaleDao.update(lenguajepalabra.getScaleList().get(0));
 
 
-                                Log.e("guardado y actualizado",lenguajepalabra.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", lenguajepalabra.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e){}
+                            } catch (Exception e) {
+                            }
                             break;
 
                         //----------CAMBIO DE ANIMO-------------
 
                         case "animosonrisa":
-                            try{
+                            try {
                                 Sintoma animosonrisa;
-                                animosonrisa = helper.getSintoma(patientid,"Blessed","animo","animosonrisa");
+                                animosonrisa = helper.getSintoma(patientid, "Blessed", "animo", "animosonrisa");
                                 animosonrisa.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     animosonrisa.getScaleList().get(0).setPuntaje("7e");
-                                }else
-                                {
+                                } else {
                                     animosonrisa.getScaleList().get(0).setPuntaje("0");
 
                                 }
                                 sintomaDao.update(animosonrisa);
                                 scaleDao.update(animosonrisa.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",animosonrisa.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", animosonrisa.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
                             break;
 
@@ -643,37 +637,34 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                         //----------ORIENTACION-------------
 
                         case "orientacioncasa":
-                            try{
+                            try {
                                 Sintoma orientacioncasa;
-                                orientacioncasa = helper.getSintoma(patientid,"Blessed","orientacion","orientacioncasa");
+                                orientacioncasa = helper.getSintoma(patientid, "Blessed", "orientacion", "orientacioncasa");
                                 orientacioncasa.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                { orientacioncasa.getScaleList().get(0).setPuntaje("1.0");
-                                }else {
+                                if (stateList.get(i).booleanValue()) {
+                                    orientacioncasa.getScaleList().get(0).setPuntaje("1.0");
+                                } else {
                                     orientacioncasa.getScaleList().get(0).setPuntaje("0.0");
 
                                 }
                                 sintomaDao.update(orientacioncasa);
                                 scaleDao.update(orientacioncasa.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",orientacioncasa.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", orientacioncasa.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
                             break;
                         case "orientacioncalle":
-                            try{
+                            try {
                                 Sintoma orientacioncalle;
-                                orientacioncalle = helper.getSintoma(patientid,"Blessed","orientacion","orientacioncalle");
+                                orientacioncalle = helper.getSintoma(patientid, "Blessed", "orientacion", "orientacioncalle");
                                 orientacioncalle.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     orientacioncalle.getScaleList().get(0).setPuntaje("1.0");
 
-                                }
-                                else
-                                {
+                                } else {
                                     orientacioncalle.getScaleList().get(0).setPuntaje("0.0");
 
                                 }
@@ -681,34 +672,30 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 sintomaDao.update(orientacioncalle);
                                 scaleDao.update(orientacioncalle.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",orientacioncalle.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", orientacioncalle.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
                             break;
 
                         case "orientacionentorno":
-                            try{
+                            try {
                                 Sintoma orientacionentorno;
-                                orientacionentorno = helper.getSintoma(patientid,"Blessed","orientacion","orientacionentorno");
+                                orientacionentorno = helper.getSintoma(patientid, "Blessed", "orientacion", "orientacionentorno");
                                 orientacionentorno.setActivo(stateList.get(i));
-                                if(stateList.get(0).booleanValue())
-                                {
+                                if (stateList.get(0).booleanValue()) {
                                     orientacionentorno.getScaleList().get(0).setPuntaje("1.0");
 
-                                }
-                                else
-                                {
+                                } else {
                                     orientacionentorno.getScaleList().get(0).setPuntaje("0.0");
 
                                 }
                                 sintomaDao.update(orientacionentorno);
                                 scaleDao.update(orientacionentorno.getScaleList().get(0));
-                                Log.e("guardado y actualizado",orientacionentorno.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", orientacionentorno.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e)
-                            {
+                            } catch (Exception e) {
 
 
                             }
@@ -717,17 +704,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                         case "memorialistascortas":
 
-                            try{
+                            try {
                                 Sintoma memorialistascortas;
-                                memorialistascortas = helper.getSintoma(patientid,"Blessed","memoria","memorialistascortas");
+                                memorialistascortas = helper.getSintoma(patientid, "Blessed", "memoria", "memorialistascortas");
                                 memorialistascortas.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     memorialistascortas.getScaleList().get(0).setPuntaje("1.0");
 
-                                }
-                                else
-                                {
+                                } else {
                                     memorialistascortas.getScaleList().get(0).setPuntaje("0.0");
 
                                 }
@@ -735,27 +719,24 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 sintomaDao.update(memorialistascortas);
                                 scaleDao.update(memorialistascortas.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",memorialistascortas.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", memorialistascortas.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
                             break;
 
                         case "memoriaolvidosbenignos":
 
-                            try{
+                            try {
                                 Sintoma memoriaolvidosbenignos;
-                                memoriaolvidosbenignos = helper.getSintoma(patientid,"Blessed","memoria","memoriaolvidosbenignos");
+                                memoriaolvidosbenignos = helper.getSintoma(patientid, "Blessed", "memoria", "memoriaolvidosbenignos");
                                 memoriaolvidosbenignos.setActivo(stateList.get(i));
 
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     memoriaolvidosbenignos.getScaleList().get(0).setPuntaje("1.0");
 
-                                }
-                                else
-                                {
+                                } else {
                                     memoriaolvidosbenignos.getScaleList().get(0).setPuntaje("0.0");
 
                                 }
@@ -766,24 +747,21 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 Log.e("guardado y actualizado", memoriaolvidosbenignos.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
                             break;
 
                         case "memoriatendenciarememorar":
 
-                            try{
+                            try {
                                 Sintoma tendenciarememorar;
-                                tendenciarememorar = helper.getSintoma(patientid,"Blessed","memoria","memoriatendenciarememorar");
+                                tendenciarememorar = helper.getSintoma(patientid, "Blessed", "memoria", "memoriatendenciarememorar");
                                 tendenciarememorar.setActivo(stateList.get(i));
 
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     tendenciarememorar.getScaleList().get(0).setPuntaje("1.0");
 
-                                }
-                                else
-                                {
+                                } else {
                                     tendenciarememorar.getScaleList().get(0).setPuntaje("0.0");
 
                                 }
@@ -795,7 +773,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 //tareasdomesticas.refresh();
                                 Log.e("guardado y actualizado", tendenciarememorar.getScaleList().get(0).getPuntaje().toString());
 
-                            }catch (Exception e){    }
+                            } catch (Exception e) {
+                            }
 
                             break;
 
@@ -804,17 +783,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                         case "movilidadsitioslejanos":
 
-                            try{
+                            try {
                                 Sintoma movilidadsitiosalejados;
-                                movilidadsitiosalejados = helper.getSintoma(patientid,"FAST","movilidad","movilidadsitioslejanos");
+                                movilidadsitiosalejados = helper.getSintoma(patientid, "FAST", "movilidad", "movilidadsitioslejanos");
                                 movilidadsitiosalejados.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     //movilidadsitiosalejados.getScaleList().get(0).setPuntaje("3");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //movilidadsitiosalejados.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -822,24 +798,21 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 sintomaDao.update(movilidadsitiosalejados);
                                 scaleDao.update(movilidadsitiosalejados.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",movilidadsitiosalejados.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", movilidadsitiosalejados.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
                         case "movilidadcaminar":
 
-                            try{
+                            try {
                                 Sintoma movilidadcaminar;
-                                movilidadcaminar = helper.getSintoma(patientid,"FAST","movilidad","movilidadcaminar");
+                                movilidadcaminar = helper.getSintoma(patientid, "FAST", "movilidad", "movilidadcaminar");
                                 movilidadcaminar.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     //movilidadcaminar.getScaleList().get(0).setPuntaje("7c");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //movilidadcaminar.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -847,10 +820,10 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 sintomaDao.update(movilidadcaminar);
                                 scaleDao.update(movilidadcaminar.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",movilidadcaminar.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", movilidadcaminar.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
 
 
@@ -858,17 +831,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                         case "movilidadsentarse":
 
-                            try{
+                            try {
                                 Sintoma movilidadsentarse;
-                                movilidadsentarse = helper.getSintoma(patientid,"FAST","movilidad","movilidadsentarse");
+                                movilidadsentarse = helper.getSintoma(patientid, "FAST", "movilidad", "movilidadsentarse");
                                 movilidadsentarse.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     //movilidadsentarse.getScaleList().get(0).setPuntaje("7d");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //movilidadsentarse.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -876,10 +846,10 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 sintomaDao.update(movilidadsentarse);
                                 scaleDao.update(movilidadsentarse.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",movilidadsentarse.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", movilidadsentarse.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
 
 
@@ -887,17 +857,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                         case "movilidadcabeza":
 
-                            try{
+                            try {
                                 Sintoma movilidadcabeza;
-                                movilidadcabeza = helper.getSintoma(patientid,"FAST","movilidad","movilidadcabeza");
+                                movilidadcabeza = helper.getSintoma(patientid, "FAST", "movilidad", "movilidadcabeza");
                                 movilidadcabeza.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("7e");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -905,30 +872,27 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 sintomaDao.update(movilidadcabeza);
                                 scaleDao.update(movilidadcabeza.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",movilidadcabeza.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", movilidadcabeza.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
 
 
                             break;
 
-                    //----------ALIMENTACION-------------
+                        //----------ALIMENTACION-------------
 
                         case "alimentacioncuchara":
 
-                            try{
+                            try {
                                 Sintoma alimentacioncuchara;
-                                alimentacioncuchara = helper.getSintoma(patientid,"FAST","alimentacion","alimentacioncuchara");
+                                alimentacioncuchara = helper.getSintoma(patientid, "FAST", "alimentacion", "alimentacioncuchara");
                                 alimentacioncuchara.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("7e");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -936,11 +900,11 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 sintomaDao.update(alimentacioncuchara);
                                 scaleDao.update(alimentacioncuchara.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",alimentacioncuchara
+                                Log.e("guardado y actualizado", alimentacioncuchara
                                         .getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
 
 
@@ -948,17 +912,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                         case "alimentacionsolidos":
 
-                            try{
+                            try {
                                 Sintoma alimentacionsolidos;
-                                alimentacionsolidos = helper.getSintoma(patientid,"FAST","alimentacion","alimentacionsolidos");
+                                alimentacionsolidos = helper.getSintoma(patientid, "FAST", "alimentacion", "alimentacionsolidos");
                                 alimentacionsolidos.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("7e");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -966,10 +927,10 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 sintomaDao.update(alimentacionsolidos);
                                 scaleDao.update(alimentacionsolidos.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",alimentacionsolidos.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", alimentacionsolidos.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
 
 
@@ -977,17 +938,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                         case "alimentaciondependientes":
 
-                            try{
+                            try {
                                 Sintoma alimentaciondependiente;
-                                alimentaciondependiente = helper.getSintoma(patientid,"FAST","alimentacion","alimentaciondependientes");
+                                alimentaciondependiente = helper.getSintoma(patientid, "FAST", "alimentacion", "alimentaciondependientes");
                                 alimentaciondependiente.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("7e");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -995,10 +953,10 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 sintomaDao.update(alimentaciondependiente);
                                 scaleDao.update(alimentaciondependiente.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",alimentaciondependiente.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", alimentaciondependiente.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
 
 
@@ -1008,17 +966,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                         //----HIGIENE Y ASEO-----
 
                         case "higieneayudabanarse":
-                            try{
+                            try {
                                 Sintoma higieneayudabanarse;
-                                higieneayudabanarse = helper.getSintoma(patientid,"FAST","higiene","higieneayudabanarse");
+                                higieneayudabanarse = helper.getSintoma(patientid, "FAST", "higiene", "higieneayudabanarse");
                                 higieneayudabanarse.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     //higieneayudabanarse.getScaleList().get(0).setPuntaje("6b");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //higieneayudabanarse.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -1026,30 +981,27 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 sintomaDao.update(higieneayudabanarse);
                                 scaleDao.update(higieneayudabanarse.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",higieneayudabanarse.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", higieneayudabanarse.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
 
                             break;
                         case "higieneayudainodoro":
-                            try{
+                            try {
                                 Sintoma higieneayudainodoro;
-                                higieneayudainodoro = helper.getSintoma(patientid,"FAST","higiene","higieneayudainodoro");
-                                Log.e("ayuda inodoro","estado "+higieneayudainodoro.getActivo().toString());
+                                higieneayudainodoro = helper.getSintoma(patientid, "FAST", "higiene", "higieneayudainodoro");
+                                Log.e("ayuda inodoro", "estado " + higieneayudainodoro.getActivo().toString());
 
                                 higieneayudainodoro.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
-                                    Log.e("addnote","Ayuda inodoro activada");
+                                if (stateList.get(i).booleanValue()) {
+                                    Log.e("addnote", "Ayuda inodoro activada");
 
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("6c");
 
-                                }
-                                else
-                                {
-                                    Log.e("addnote","Incontinensia urinaria desactivada");
+                                } else {
+                                    Log.e("addnote", "Incontinensia urinaria desactivada");
 
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
 
@@ -1057,29 +1009,26 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                                 sintomaDao.update(higieneayudainodoro);
                                 scaleDao.update(higieneayudainodoro.getScaleList().get(0));
-                                Log.e("addnote","Necesita ayuda inodoro");
-                                Log.e("guardado y actualizado",higieneayudainodoro.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("addnote", "Necesita ayuda inodoro");
+                                Log.e("guardado y actualizado", higieneayudainodoro.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
-                                Log.e("addnote","Error al actualizar Ayuda Inodoro");
+                            } catch (Exception e) {
+                                Log.e("addnote", "Error al actualizar Ayuda Inodoro");
 
                             }
 
                             break;
 
                         case "higieneayudasoltarbano":
-                            try{
+                            try {
                                 Sintoma higieneayudasoltarbano;
-                                higieneayudasoltarbano = helper.getSintoma(patientid,"FAST","higiene","higieneayudasoltarbano");
+                                higieneayudasoltarbano = helper.getSintoma(patientid, "FAST", "higiene", "higieneayudasoltarbano");
                                 higieneayudasoltarbano.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("6c");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -1087,32 +1036,28 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 sintomaDao.update(higieneayudasoltarbano);
                                 scaleDao.update(higieneayudasoltarbano.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",higieneayudasoltarbano.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", higieneayudasoltarbano.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
 
                             break;
 
 
-
                         case "higieneayudaincontinensiaurinaria":
-                            try{
+                            try {
                                 Sintoma higieneayudaincontinensiaurinaria;
-                                higieneayudaincontinensiaurinaria = helper.getSintoma(patientid,"FAST","higiene","higieneayudaincontinensiaurinaria");
-                                Log.e("ayuda incontinensia","estado "+higieneayudaincontinensiaurinaria.getActivo().toString());
+                                higieneayudaincontinensiaurinaria = helper.getSintoma(patientid, "FAST", "higiene", "higieneayudaincontinensiaurinaria");
+                                Log.e("ayuda incontinensia", "estado " + higieneayudaincontinensiaurinaria.getActivo().toString());
 
                                 higieneayudaincontinensiaurinaria.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
-                                    Log.e("addnote","Incontinensia urinaria activada");
+                                if (stateList.get(i).booleanValue()) {
+                                    Log.e("addnote", "Incontinensia urinaria activada");
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("6d");
 
-                                }
-                                else
-                                {
-                                    Log.e("addnote","Incontinensia urinaria desactivada");
+                                } else {
+                                    Log.e("addnote", "Incontinensia urinaria desactivada");
 
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
 
@@ -1121,12 +1066,12 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 sintomaDao.update(higieneayudaincontinensiaurinaria);
                                 scaleDao.update(higieneayudaincontinensiaurinaria.getScaleList().get(0));
 
-                                Log.e("addnote","Entro higiene incontinensia urinaria");
-                                Log.e("guardado y actualizado",higieneayudaincontinensiaurinaria.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("addnote", "Entro higiene incontinensia urinaria");
+                                Log.e("guardado y actualizado", higieneayudaincontinensiaurinaria.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
-                                Log.e("addnote","Error al actualizar incontinensia urinaria");
+                            } catch (Exception e) {
+                                Log.e("addnote", "Error al actualizar incontinensia urinaria");
 
                             }
 
@@ -1134,19 +1079,16 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                         case "higieneayudaincontinensiafecal":
 
-                            try{
+                            try {
                                 Sintoma higieneayudaincontinensiafecal;
-                                higieneayudaincontinensiafecal = helper.getSintoma(patientid,"FAST","higiene","higieneayudaincontinensiafecal");
+                                higieneayudaincontinensiafecal = helper.getSintoma(patientid, "FAST", "higiene", "higieneayudaincontinensiafecal");
                                 higieneayudaincontinensiafecal.setActivo(stateList.get(i));
-                                if(stateList.get(i).booleanValue())
-                                {
+                                if (stateList.get(i).booleanValue()) {
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("6e
                                     //
                                     //  ");
 
-                                }
-                                else
-                                {
+                                } else {
                                     //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
 
                                 }
@@ -1154,17 +1096,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 sintomaDao.update(higieneayudaincontinensiafecal);
                                 scaleDao.update(higieneayudaincontinensiafecal.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado",higieneayudaincontinensiafecal.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", higieneayudaincontinensiafecal.getScaleList().get(0).getPuntaje().toString());
 
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                             }
 
 
-
                             break;
-
-
 
 
                     }
@@ -1182,6 +1121,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                     Log.e("sintomadao nuevo"," TEST:"+sintoma.getScaleList().get(0).getEscalaname());
                     */
 
+                }
                 }
             }
 
@@ -1226,6 +1166,9 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         startActivity(ir_main);
         overridePendingTransition(R.anim.left_in, R.anim.left_out);
         finish();
+        EventBus.clearCaches();
+        EventBus.getDefault().removeAllStickyEvents();
+
     }
 
     public Boolean validarCategoria(String election) {
@@ -1259,8 +1202,11 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             case android.R.id.home:
                 Intent intent=new Intent(getApplicationContext(),PatientProfileActivity.class);
                 intent.putExtra("cedula",cedula);
+                EventBus.clearCaches();
+                EventBus.getDefault().removeAllStickyEvents();
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in, R.anim.right_out);
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -1269,6 +1215,16 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+
+            case R.id.btn_medication:
+                election ="medicacion";
+                var_tipo=2;
+                var_seleccion="medicacion";
+                setDefaultImageButton();
+                medication.setBackgroundColor(getResources().getColor(R.color.accent_color));
+                rdgMedicacion.setVisibility(View.VISIBLE);
+                break;
+
             case R.id.btn_movility:
                 election = "movilidad";
                 var_tipo=1;
@@ -1370,12 +1326,13 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.btn_fall:
                 election="caidas";
                 var_tipo=0;
+                var_seleccion="caidas";
                 setDefaultImageButton();
                 //txt_adverso.setVisibility(View.GONE);
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/caida72px").toString();
                 fall.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 //gravedad = 2;
-                var_color= "centinela";
+
                 break;
             case R.id.btn_language:
                 election="lenguaje";
@@ -1669,6 +1626,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         changeBehaviour.setBackgroundColor(getResources().getColor(R.color.material_purple));
         vestimenta.setBackgroundColor(getResources().getColor(R.color.material_brown));
         memoria.setBackgroundColor(getResources().getColor(R.color.material_teal));
+        medication.setBackgroundColor(getResources().getColor(R.color.md_material_blue_800));
+
 
 
 
@@ -2035,6 +1994,17 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 //nameTestList.add(nameTest);
                 //puntajeList.add(puntaje);
                 break;
+
+            //MEDICACION
+
+            case  R.id.rdgMedicacionRutinario:
+                var_seleccion="medicacionrutinaria";
+                break;
+            case R.id.rdgMedicacionAdverso:
+                var_seleccion="medicacionadverso";
+                break;
+
+
 
 
 

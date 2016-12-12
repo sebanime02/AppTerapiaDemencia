@@ -189,7 +189,7 @@ public class NotificationService extends Service {
         String idstring = id+"";
         tip = helper.getTip(id);
         NotificationCompat.Builder notificacion = new NotificationCompat.Builder(this);
-        //notificacion.setSmallIcon(R.mipmap.logoaplicationborderwhite);
+        notificacion.setSmallIcon(R.mipmap.logoaplicationborderwhite);
         notificacion.setTicker("Tip Para Cuidadores");
         notificacion.setWhen(System.currentTimeMillis());
         notificacion.setContentTitle(tip.getTitle());
@@ -199,7 +199,10 @@ public class NotificationService extends Service {
         Uri sonido = RingtoneManager.getDefaultUri(Notification.DEFAULT_SOUND);
         notificacion.setSound(sonido);
 
-        Bitmap icono = BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_content_report);
+        //Bitmap icono = BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_content_report);
+        Bitmap icono = BitmapFactory.decodeResource(getResources(), R.drawable.logoaplication48px);
+
+
         notificacion.setLargeIcon(icono);
         //notificacion.setVibrate(new long[3]);
         try {

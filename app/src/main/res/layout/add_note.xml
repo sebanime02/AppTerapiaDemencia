@@ -55,6 +55,17 @@
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     />
 
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/addnote_eventos"
+                    android:textSize="@dimen/small_text_size"
+                    android:fontFamily="sans-serif"
+
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    />
                 <TableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -63,6 +74,7 @@
 
 
                     >
+
                     <TableRow android:layout_height="wrap_content"    android:minHeight="@dimen/height_type_image">
 
                         <ImageButton
@@ -73,6 +85,68 @@
                             android:background="@color/material_pink"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
                             />
+                        <ImageButton
+                            android:layout_width="20dp"
+                            android:id="@+id/btn_medication"
+                            android:src="@mipmap/medication72px"
+                            android:layout_height="match_parent"
+                            android:background="@color/md_material_blue_800"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            />
+
+
+
+
+
+                    </TableRow>
+
+
+                    <TableRow android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+                        <TextView
+                            android:layout_height="match_parent"
+                            android:background="@color/material_pink"
+                            android:text="@string/add_caida"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            android:fontFamily="sans-serif"
+                            android:textStyle="bold"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                            />
+                        <TextView
+                            android:layout_height="match_parent"
+                            android:background="@color/md_material_blue_800"
+                            android:text="@string/add_medication"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            android:fontFamily="sans-serif"
+                            android:textStyle="bold"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+
+                            />
+
+
+
+                    </TableRow>
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/addnote_signos"
+                        android:textSize="@dimen/small_text_size"
+                        android:fontFamily="sans-serif"
+
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        />
+
+
+                    <TableRow android:layout_marginTop="@dimen/activity_vertical_margin" android:layout_height="wrap_content"    android:minHeight="@dimen/height_type_image">
+
+
 
 
                         <ImageButton
@@ -90,24 +164,38 @@
                             android:src="@mipmap/eating72px"
                             android:layout_height="match_parent"
                             android:background="@color/material_green"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
 
                              />
+                        <ImageButton
+                            android:id="@+id/btn_vestimenta"
+                            android:src="@mipmap/clothes72px"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_brown"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
 
+                            />
+                        <ImageButton
+                            android:id="@+id/btn_changebehaviour"
+                            android:src="@mipmap/changebehavior72px"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_purple"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                            />
+                        <ImageButton
+                            android:padding="@dimen/activity_horizontal_margin"
+                            android:id="@+id/btn_memory"
+                            android:src="@mipmap/memory72px"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_teal"
+                            />
 
                     </TableRow>
 
                     <TableRow android:layout_height="match_parent"
                         android:layout_width="match_parent">
-                        <TextView
-                            android:layout_height="match_parent"
-                            android:background="@color/material_pink"
-                            android:text="@string/add_caida"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:fontFamily="sans-serif"
-                            android:textStyle="bold"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            />
+
                         <TextView
 
                             android:text="@string/add_movilidad"
@@ -130,8 +218,41 @@
                             android:textAlignment="center"
                             android:fontFamily="sans-serif"
                             android:textStyle="bold"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                            />
+                        <TextView
+                            android:text="@string/addnote_vestimenta"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_brown"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            android:fontFamily="sans-serif"
+                            android:textStyle="bold"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                            />
+                        <TextView
+                            android:text="@string/add_changebehaviour"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_purple"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            android:fontFamily="sans-serif"
+                            android:textStyle="bold"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+
                             />
 
+                        <TextView
+                            android:text="@string/addnote_memoria"
+                            android:layout_height="match_parent"
+                            android:background="@color/material_teal"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            android:fontFamily="sans-serif"
+                            android:textStyle="bold"
+                            />
 
                     </TableRow>
 
@@ -160,6 +281,8 @@
                             android:id="@+id/btn_higiene"
                             android:background="@color/gray_soft"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+
                             />
                     </TableRow>
                     <TableRow android:layout_height="match_parent"
@@ -196,6 +319,8 @@
                             android:textColor="@color/negro"
                             android:textAlignment="center"
                             android:fontFamily="sans-serif"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+
 
                             />
                     </TableRow>
@@ -203,62 +328,7 @@
 
 
 
-                    <TableRow android:minHeight="@dimen/height_type_image" android:layout_marginTop="@dimen/activity_vertical_margin">
-                        <ImageButton
-                            android:id="@+id/btn_changebehaviour"
-                            android:src="@mipmap/changebehavior72px"
-                            android:layout_height="match_parent"
-                            android:background="@color/material_purple"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            />
-                        <ImageButton
-                            android:id="@+id/btn_vestimenta"
-                            android:src="@mipmap/clothes72px"
-                            android:layout_height="match_parent"
-                            android:background="@color/material_brown"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            />
-                        <ImageButton
-                            android:padding="@dimen/activity_horizontal_margin"
-                            android:id="@+id/btn_memory"
-                            android:src="@mipmap/memory72px"
-                            android:layout_height="match_parent"
-                            android:background="@color/material_teal"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            />
-                    </TableRow>
-                    <TableRow>
-                        <TextView
-                            android:text="@string/add_changebehaviour"
-                            android:layout_height="match_parent"
-                            android:background="@color/material_purple"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:fontFamily="sans-serif"
-                            android:textStyle="bold"
-                            />
-                        <TextView
-                            android:text="@string/addnote_vestimenta"
-                            android:layout_height="match_parent"
-                            android:background="@color/material_brown"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:fontFamily="sans-serif"
-                            android:textStyle="bold"
-                            />
-                        <TextView
-                            android:text="@string/addnote_memoria"
-                            android:layout_height="match_parent"
-                            android:background="@color/material_teal"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:fontFamily="sans-serif"
-                            android:textStyle="bold"
-                            />
-                    </TableRow>
+
 
 
 
@@ -738,6 +808,47 @@
 
                  </RadioGroup>
 
+                 <!--- ESTADO DE ANIMO-->
+                 <RadioGroup
+                     android:orientation="vertical"
+                     android:id="@+id/rdgMedicacion"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:visibility="gone"
+                     >
+
+
+
+                     <RadioButton
+                         android:id="@+id/rdgMedicacionRutinario"
+                         android:text="@string/medicacion_rutinario"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:textSize="@dimen/small_text_size"
+                         android:fontFamily="sans-serif"
+
+                         android:checked="true"
+                         android:paddingBottom="@dimen/activity_vertical_margin"
+                         android:textStyle="bold"
+                         />
+                     <RadioButton
+                         android:id="@+id/rdgMedicacionAdverso"
+                         android:text="@string/medicacion_adverso"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:textSize="@dimen/small_text_size"
+                         android:fontFamily="sans-serif"
+
+
+                         android:paddingBottom="@dimen/activity_vertical_margin"
+                         android:textStyle="bold"
+                         />
+
+
+
+
+
+                 </RadioGroup>
 
              </LinearLayout>
                 <View

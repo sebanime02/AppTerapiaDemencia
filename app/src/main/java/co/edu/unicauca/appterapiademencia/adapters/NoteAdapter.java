@@ -3,6 +3,7 @@ package co.edu.unicauca.appterapiademencia.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,7 +20,9 @@ import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.events.ItemNoteEvent;
+import co.edu.unicauca.appterapiademencia.lib.EventBus;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
+import co.edu.unicauca.appterapiademencia.principal.notes.NotesPresenterImplementation;
 
 /**
  * Created by SEBAS on 12/11/2016.
@@ -34,7 +37,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     private String description;
     private AdapterCallBack adapterCallBack;
     private int imageSize;
+    private Boolean detectorDialog=true;
     private GreenRobotEventBus eventBus;
+    private Bundle bundle;
     public NoteAdapter(List<Note> noteList, Activity activity, Context context){
         super();
         this.noteList = noteList;
@@ -127,7 +132,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
                ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/caida72px").toString();
 
                 break;
-            case "medication":
+            case "medicacion":
 
                 description="Medicación";
                 ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/medication72px").toString();
@@ -214,23 +219,58 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         }
         */
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    Log.e("noteadapter","Entro al onclick");
-                    //adapterCallBack.onMethodCallback(getItemId(position));
-                    ItemNoteEvent itemNoteEvent = new ItemNoteEvent();
-                    itemNoteEvent.setIdnote(getItemId(position));
-                    eventBus.post(itemNoteEvent);
+
+        if(detectorDialog==true)
+        {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+                        Log.e("noteadapter","Entro al onclick");
+                        //adapterCallBack.onMethodCallback(getItemId(position));
 
 
-                }catch (Exception e)
-                {
+                        /*
+                         String idnote;
+                        Bundle bundle = activity.getIntent().getExtras();
+                        idnote = bundle.get("idnote").toString();
+                        final Bundle args = new Bundle();
+                        args.putLong("idnote",Long.parseLong(idnote));
+                        */
 
+
+
+
+                        //ItemNoteEvent stickyEvent = de.greenrobot.event.EventBus.getDefault().getStickyEvent(ItemNoteEvent.class);
+
+
+                        /*
+                        if(stickyEvent!=null)
+                        {
+                            eventBus.removeSticky(stickyEvent);
+                        }*/
+
+
+
+                        de.greenrobot.event.EventBus.getDefault().removeAllStickyEvents();
+
+                        de.greenrobot.event.EventBus.clearCaches();
+
+                        ItemNoteEvent itemNoteEvent = new ItemNoteEvent();
+                        itemNoteEvent.setIdnote(getItemId(position));
+                        detectorDialog=false;
+                        eventBus.post(itemNoteEvent);
+
+
+                    }catch (Exception e)
+                    {
+
+                    }
                 }
-            }
-        });
+            });
+        }
+
+
 
     }
 
@@ -244,11 +284,20 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         }
 
     }
+    @Override
+    public long getItemId(int arg0 )
+    {
+        return noteList.get(arg0).getId();
+    }
+
+
     public static interface AdapterCallBack
     {
 
         void onMethodCallback(Long id);
     }
+
+
 
 
     public class NoteViewHolder extends RecyclerView.ViewHolder {

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -44,6 +45,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private int visionState,escrituraState,dibujoState;
     private TextView txtEps,txtSindromes,txtAntecedentes,txtObservaciones,txtVision,txtEscritura,txtDibujo;
     private TextView txtPuntajeBlessed,txtComentarioBlessed;
+    private LinearLayout containerBlessed;
     private Long identity;
     private int imageSize;
     private View rootView;
@@ -54,6 +56,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private GreenDaoHelper daoHelper;
     private Double blessedCount;
     private String blessedComentario;
+    private String blessedColor;
     private Long idsistema;
 
 
@@ -103,6 +106,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtEscritura= (TextView) view.findViewById(R.id.txt_escritura);
         txtPuntajeBlessed = (TextView) view.findViewById(R.id.puntajeBlessed);
         txtComentarioBlessed = (TextView) view.findViewById(R.id.demenciaBlessed);
+        containerBlessed = (LinearLayout) view.findViewById(R.id.containerBlessed);
 
 
 
@@ -133,6 +137,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtAge.setText("Nació en: "+this.birthday);
         txtIdentity.setText("  Cédula: "+this.identity);
         txtPuntajeBlessed.setText(this.blessedCount+"");
+
         txtComentarioBlessed.setText(this.blessedComentario);
 
         int imageSize = view.getResources().getDimensionPixelSize(R.dimen.img_patient_profile_size);
@@ -207,6 +212,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtDibujo.setText(this.dibujo);
         txtPuntajeBlessed.setText(this.blessedCount+"");
         txtComentarioBlessed.setText(this.blessedComentario);
+
 
 
 
@@ -308,11 +314,12 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     }
 
     @Override
-    public void showBlessedScore(Double score,String comentario)
+    public void showBlessedScore(Double score,String comentario,String color)
     {
 
         this.blessedCount = score;
         this.blessedComentario = comentario;
+        this.blessedColor = color;
 
     }
     public void showBlessedError()

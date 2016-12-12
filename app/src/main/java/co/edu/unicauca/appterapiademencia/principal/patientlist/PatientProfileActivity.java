@@ -74,11 +74,7 @@ public class PatientProfileActivity extends AppCompatActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.menu_edit,menu);
-        Drawable drawable = menu.findItem(R.id.menu_editar).getIcon();
 
-        drawable = DrawableCompat.wrap(drawable);
-        DrawableCompat.setTint(drawable, ContextCompat.getColor(this,R.color.white));
-        menu.findItem(R.id.menu_editar).setIcon(drawable);
         return true;
 
     }

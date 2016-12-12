@@ -14,7 +14,7 @@ public interface NotesPresenter {
     void getnotesCount(Long idpatient);
     void getNote(Long idnote);
     void onEventMainThread(NoteEvent noteEvent);
-    void onEventMainThread(ItemNoteEvent itemNoteEvent);
+    void onEvent(ItemNoteEvent itemNoteEvent);
 
 
 }

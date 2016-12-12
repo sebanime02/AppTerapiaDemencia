@@ -9,5 +9,9 @@ public interface EventBus {
     void register(Object suscriber);
     void unregister(Object suscriber);
     void post(Object event);
+    void postSticky(Object event);
+    void removeSticky(Object event);
+    void removeAllSticky();
+
 
 }

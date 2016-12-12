@@ -1,5 +1,7 @@
 package co.edu.unicauca.appterapiademencia.principal.notes;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.ArrayList;
@@ -20,6 +23,7 @@ import java.util.List;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.NoteAdapter;
 import co.edu.unicauca.appterapiademencia.domain.Note;
+import co.edu.unicauca.appterapiademencia.principal.MainActivity;
 
 /**
  * Created by SEBAS on 07/11/2016.
@@ -46,7 +50,8 @@ public class NotesFragment extends Fragment implements NotesView{
     int vestimentaCount=0;
     int memoryCount=0;
     int languageCount=0;
-
+    private MaterialDialog dialog;
+    private AlertDialog alertdialog;
 
     public int getMemoryCount() {
         return memoryCount;
@@ -156,6 +161,7 @@ public class NotesFragment extends Fragment implements NotesView{
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
+        notesPresenterImplementation.onResume();
         list.clear();
         Bundle args = getArguments();
         idpatient=args.getLong("cedula");
@@ -191,6 +197,7 @@ public class NotesFragment extends Fragment implements NotesView{
     @Override
     public void onResume() {
         super.onResume();
+       notesPresenterImplementation.onResume();
         list.clear();
         Bundle args = getArguments();
         idpatient=args.getLong("cedula");
@@ -207,11 +214,36 @@ public class NotesFragment extends Fragment implements NotesView{
         } catch (Exception e) {
             adapter.notifyDataSetChanged();
         }
+        waitBundle();
+    }
+
+    private void waitBundle() {
+        Long idnote;
+        Bundle bundle = getActivity().getIntent().getExtras();
+        if (bundle != null) {
+            try {
+                idnote = Long.parseLong(bundle.getString("idnote"));
+                notesPresenterImplementation.getNote(idnote);
+
+            } catch (Exception e) {
+            }
+        }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        final MaterialDialog.Builder builder = new MaterialDialog.Builder(getContext());
+
+        notesPresenterImplementation.onDestroy();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        notesPresenterImplementation.onResume();
+
+
     }
 
     @Override
@@ -266,7 +298,7 @@ public class NotesFragment extends Fragment implements NotesView{
                 case "caidas":
                     setFallCount(fallCount+1);
                     break;
-                case "medication":
+                case "medicacion":
                     setMedicationCount(medicationCount+1);
 
                     break;
@@ -320,6 +352,12 @@ public class NotesFragment extends Fragment implements NotesView{
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+
+    }
+
+    @Override
     public void addNote(Long idpatient) {
         //Intent ir_reg = new Intent(getContext(), AddNoteActivity.class);
         Intent ir_reg = new Intent(getContext(), AddNoteActivity.class);
@@ -339,11 +377,77 @@ public class NotesFragment extends Fragment implements NotesView{
     public void showNotesCount(int[] notescount) {
 
     }
+    public Boolean checkDialogOpen()
+    {
+        if(alertdialog!=null && alertdialog.isShowing())
+        {
+            return  false;
+        }
+        else {
+            return true;
+        }
+
+    }
 
     @Override
     public void showNote(Note note) {
+
         Log.e("notesfragment","Va mostrar el materialdialog");
-        new MaterialDialog.Builder(getContext()).title(note.getAmbito()).content(note.getDescription()).positiveText(R.string.dialog_succes_agree).show();
+        //new MaterialDialog.Builder(getContext()).title(note.getAmbito().toUpperCase()).content("Descripción: "+note.getDescription()+"\nHora:"+note.getHour()+"\nFecha:"+note.getDate()).positiveText(R.string.dialog_succes_agree).show().dismiss();
+
+
+
+            final MaterialDialog.Builder builder = new MaterialDialog.Builder(getContext());
+
+            builder.autoDismiss(true);
+
+            builder.title(note.getAmbito().toUpperCase()).content("Descripción: "+note.getDescription()+"\nHora:"+note.getHour()+"\nFecha:"+note.getDate()).positiveText(R.string.dialog_succes_agree).show();;
+            builder.onPositive(new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                    notesPresenterImplementation.register();
+                    materialDialog.dismiss();
+
+
+                }
+            });
+            MaterialDialog materialdialog = builder.build();
+            materialdialog.show();
+
+
+
+
+
+
+
+
+      /*
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        builder.setIcon(android.R.drawable.ic_dialog_alert).setTitle("Salir")
+                .setMessage("Estás seguro?").setNegativeButton(android.R.string.cancel, null)//sin listener
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {//un listener que al pulsar, cierre la aplicacion
+                    @Override
+                    public void onClick(DialogInterface dialog, int which){
+                        alertdialog.dismiss();
+
+
+                    }
+                });
+
+        alertdialog = builder.create();
+        alertdialog.show();
+        */
+
+
+
+
+
+    }
+
+    @Override
+    public void onItemClicked(Long position) {
 
     }
 
@@ -404,16 +508,5 @@ public class NotesFragment extends Fragment implements NotesView{
     }
 
 
-    public void onMethodCallback(Long idnote) {
-        Log.e("notesfragment","llego al onMethodCallback");
 
-        Note note;
-        try {
-            Log.e("notesfragment","va a ejecutar la consulta de la nota");
-
-            notesPresenterImplementation.getNotes(idnote);
-        }catch (Exception e){}
-
-
-    }
 }

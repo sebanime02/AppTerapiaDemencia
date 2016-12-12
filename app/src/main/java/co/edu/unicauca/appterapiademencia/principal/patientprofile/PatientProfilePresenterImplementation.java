@@ -88,17 +88,17 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
             if(score>=4.0 || score<=15.0)
             {
             comentario ="Hay sospecha de Demencia en el Paciente";
-                patientProfileView.showBlessedScore(score,comentario);
+                patientProfileView.showBlessedScore(score,comentario,"verde");
             }
             if(score<4.0){
                 comentario = "No presenta demencia por el momento";
-                patientProfileView.showBlessedScore(score,comentario);
+                patientProfileView.showBlessedScore(score,comentario,"amarillo");
 
             }
             if(score>=15.0)
             {
-                comentario = "Es altamente probable que el paciente tenga \\n demencia en etapa moderada o grave";
-                patientProfileView.showBlessedScore(score,comentario);
+                comentario = "Es altamente probable que el paciente tenga Demencia en etapa moderada o grave";
+                patientProfileView.showBlessedScore(score,comentario,"rojo");
 
             }
 
