@@ -1127,11 +1127,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
             if(!var_state)
             {
-                MaterialDialog.Builder builder = new MaterialDialog.Builder(this);
+                final MaterialDialog.Builder builder = new MaterialDialog.Builder(this);
+                builder.autoDismiss(true);
                 builder.title("Nota Guardada").content("Su Nota ha sido guardada en la bandeja de supervisores, para aprobación").positiveText(R.string.dialog_succes_agree).show();
                 builder.onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+
+                        builder.show().dismiss();
 
                         goToProfile();
 
@@ -1163,11 +1166,16 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         Intent ir_main = new Intent(this, PatientProfileActivity.class);
         ir_main.putExtra("carerIndicator",carerMessageIndicator);
         ir_main.putExtra("cedula", cedula);
-        startActivity(ir_main);
-        overridePendingTransition(R.anim.left_in, R.anim.left_out);
-        finish();
         EventBus.clearCaches();
         EventBus.getDefault().removeAllStickyEvents();
+        startActivity(ir_main);
+        if(var_state)
+        {
+            overridePendingTransition(R.anim.left_in, R.anim.left_out);
+
+        }
+        finish();
+
 
     }
 
@@ -1640,6 +1648,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgVestimenta.setVisibility(View.GONE);
         //rdgCambioPersonalidad.setVisibility(View.INVISIBLE);
         rdgMemoria.setVisibility(View.GONE);
+        rdgMedicacion.setVisibility(View.GONE);
 
 
 

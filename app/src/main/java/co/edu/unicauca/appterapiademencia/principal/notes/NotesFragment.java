@@ -1,6 +1,7 @@
 package co.edu.unicauca.appterapiademencia.principal.notes;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -193,6 +194,10 @@ public class NotesFragment extends Fragment implements NotesView{
         notesPresenterImplementation.onCreate();
 
     }
+
+
+
+
 
     @Override
     public void onResume() {
@@ -399,13 +404,13 @@ public class NotesFragment extends Fragment implements NotesView{
 
             final MaterialDialog.Builder builder = new MaterialDialog.Builder(getContext());
 
-            builder.autoDismiss(true);
+            //builder.autoDismiss(true);
 
             builder.title(note.getAmbito().toUpperCase()).content("Descripción: "+note.getDescription()+"\nHora:"+note.getHour()+"\nFecha:"+note.getDate()).positiveText(R.string.dialog_succes_agree).show();;
             builder.onPositive(new MaterialDialog.SingleButtonCallback() {
                 @Override
                 public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
-                    notesPresenterImplementation.register();
+                    //notesPresenterImplementation.register();
                     materialDialog.dismiss();
 
 

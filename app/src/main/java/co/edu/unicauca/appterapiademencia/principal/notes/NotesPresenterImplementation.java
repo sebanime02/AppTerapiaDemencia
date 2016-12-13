@@ -2,6 +2,7 @@ package co.edu.unicauca.appterapiademencia.principal.notes;
 
 import android.util.Log;
 
+import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.events.ItemNoteEvent;
 import co.edu.unicauca.appterapiademencia.events.NoteEvent;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
@@ -30,12 +31,19 @@ public class NotesPresenterImplementation implements NotesPresenter {
     }
 
 
+
+
+
+
+
     @Override
     public void onDestroy() {
-        notesView = null;
+
         Log.e("notepresenter","ondestroy");
 
         eventBus.unregister(this);
+        notesView = null;
+
     }
     public void onResume()
     {
@@ -93,7 +101,7 @@ public class NotesPresenterImplementation implements NotesPresenter {
 
             }
             */
-            eventBus.unregister(this);
+            //eventBus.unregister(this);
             notesView.showNote(noteEvent.getNote());
 
         }
@@ -101,17 +109,29 @@ public class NotesPresenterImplementation implements NotesPresenter {
 
     @Override
     public void onEvent(ItemNoteEvent itemNoteEvent) {
+
+        Note note;
         if(notesView!=null)
         {
-            Log.e("notespresenter","LLege al onevent");
-            principalListInteractor.getNote(itemNoteEvent.idnote);
+            try {
+                Log.e("notespresenter","LLege al onevent");
 
-            de.greenrobot.event.EventBus.clearCaches();
+                note = principalListInteractor.getNote(itemNoteEvent.idnote);
+                notesView.showNote(note);
+
+                de.greenrobot.event.EventBus.clearCaches();
+            }catch (Exception e)
+            {}
+
 
 
         }
 
     }
+
+
+
+
 
     public void receiveNote(Long idnote)
     {

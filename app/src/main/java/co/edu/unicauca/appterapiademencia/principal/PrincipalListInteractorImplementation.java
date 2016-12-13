@@ -71,7 +71,7 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
 
     @Override
     public void getNotifications() {
-
+        principalListRepository.getNotifications();
     }
 
     @Override
@@ -95,7 +95,20 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
     }
 
     @Override
-    public void getNote(Long idnote) {
-        principalListRepository.getNote(idnote);
+    public Note getNote(Long idnote) {
+        return principalListRepository.getNote(idnote);
     }
+
+    @Override
+    public void deleteNote(Long idnote) {
+            principalListRepository.deleteNote(idnote);
+    }
+
+    @Override
+    public void aprobeNote(Long idnote) {
+        principalListRepository.aprobeNote(idnote);
+
+    }
+
+
 }

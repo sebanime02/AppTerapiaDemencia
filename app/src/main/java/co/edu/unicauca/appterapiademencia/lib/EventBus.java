@@ -12,6 +12,7 @@ public interface EventBus {
     void postSticky(Object event);
     void removeSticky(Object event);
     void removeAllSticky();
+    void registerSticky(Object event);
 
 
 }

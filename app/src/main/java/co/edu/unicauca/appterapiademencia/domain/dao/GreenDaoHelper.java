@@ -1,5 +1,6 @@
 package co.edu.unicauca.appterapiademencia.domain.dao;
 
+import android.app.Notification;
 import android.content.Context;
 import android.util.Log;
 
@@ -395,6 +396,18 @@ public class GreenDaoHelper {
 
 
     }
+
+    public List<Note> getNotification()
+    {
+        List<Note> noteList;
+        QueryBuilder<Note> noteQueryBuilder= getNoteDao().queryBuilder();
+        noteList = noteQueryBuilder.where(NoteDao.Properties.State.eq(false)).orderDesc(NoteDao.Properties.Id).list();
+        return  noteList;
+
+
+    }
+
+
 
 
 }

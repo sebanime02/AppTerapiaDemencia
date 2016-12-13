@@ -70,6 +70,12 @@
     <string name="title_item_detail">Item Detail</string>
 
 
+    <!--NOTIFICATIONS -->
+    <string name="title_notifications">Aqui puedes Aprobar las notas ingresadas por tus cuidadores</string>
+    <string name="aprobe_note">Eliga si desea aprobar o elimnar la nota?</string>
+
+
+
     <!-- TIPS -->
     <string name="txt_tips_supervisor">Aqui puedes Agregar Tips o recomendaciones para tus cuidadores..</string>
     <string name="txt_tips_cuidador">Aqui puedes ver los Tips o recomendaciones que han dejado tus supervisores</string>

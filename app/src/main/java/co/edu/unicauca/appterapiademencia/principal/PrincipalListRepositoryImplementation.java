@@ -1,5 +1,6 @@
 package co.edu.unicauca.appterapiademencia.principal;
 
+import android.app.Notification;
 import android.util.Log;
 
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -18,6 +19,7 @@ import co.edu.unicauca.appterapiademencia.domain.dao.TipDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.UserDao;
 import co.edu.unicauca.appterapiademencia.events.BlessedEvent;
 import co.edu.unicauca.appterapiademencia.events.NoteEvent;
+import co.edu.unicauca.appterapiademencia.events.NotificationEvent;
 import co.edu.unicauca.appterapiademencia.events.PatientListEvent;
 import co.edu.unicauca.appterapiademencia.lib.EventBus;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
@@ -125,6 +127,30 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
 
     @Override
     public void getNotifications() {
+       List<Note> notificationList;
+        try {
+            notificationList = helper.getNotification();
+
+
+            EventBus eventBus = GreenRobotEventBus.getInstance();
+
+            NotificationEvent stickyevent = de.greenrobot.event.EventBus.getDefault().removeStickyEvent(NotificationEvent.class);
+            if(stickyevent!=null) {
+                eventBus.removeSticky(stickyevent);
+            }
+            if(stickyevent==null)
+            {
+                NotificationEvent notificationEvent = new NotificationEvent();
+                notificationEvent.setNoteList(notificationList);
+                Log.e("notesrepository","va a enviar el evento notificationEvent");
+                Log.e("Principal Repository", "Va a registrar el evento");
+                eventBus.postSticky(notificationEvent);
+
+            }
+
+
+        }catch (Exception e)
+        {}
 
     }
 
@@ -194,13 +220,15 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     }
 
     @Override
-    public void getNote(Long idnote) {
+    public Note getNote(Long idnote) {
         Note note;
-        try {
+        //try {
             Log.e("notesrepository","llego al repositorio, va a ejecutar el getnote");
             Log.e("notesrepository","El id es"+idnote);
                 note = helper.getNote(idnote);
-                de.greenrobot.event.EventBus.getDefault().removeAllStickyEvents();
+                return note;
+
+        /*de.greenrobot.event.EventBus.getDefault().removeAllStickyEvents();
 
                 NoteEvent noteEvent = new NoteEvent();
                 noteEvent.setNote(note);
@@ -213,10 +241,45 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
                 Log.e("Principal Repository","Va a registrar el evento");
                 eventBus.post(noteEvent);
 
+                */
 
 
-        }catch (Exception e){ Log.e("notesrepository","Error al traer la nota con id");}
+
+        //       }catch (Exception e){ Log.e("notesrepository","Error al traer la nota con id");}
     }
+
+    @Override
+    public void deleteNote(Long idnote) {
+
+        NoteDao noteDao;
+        try {
+
+            Note note = helper.getNote(idnote);
+
+            noteDao = helper.getNoteDao();
+            noteDao.delete(note);
+
+
+        }catch (Exception e){}
+
+    }
+
+    @Override
+    public void aprobeNote(Long idnote) {
+        NoteDao noteDao;
+        try {
+
+            Note note = helper.getNote(idnote);
+
+            noteDao = helper.getNoteDao();
+            note.setState(true);
+            noteDao.update(note);
+
+
+
+        }catch (Exception e){}
+    }
+
 
     private void postEvent(int type,int typemethod){
         //typemethod==0 para getPatientData, typemethod==1 para getPatientList

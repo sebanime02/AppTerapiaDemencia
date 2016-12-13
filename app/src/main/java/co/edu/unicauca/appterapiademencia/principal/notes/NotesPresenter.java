@@ -17,4 +17,5 @@ public interface NotesPresenter {
     void onEvent(ItemNoteEvent itemNoteEvent);
 
 
+
 }

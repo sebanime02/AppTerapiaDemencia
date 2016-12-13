@@ -54,5 +54,10 @@ public class GreenRobotEventBus implements EventBus {
         eventBus.removeAllStickyEvents();
     }
 
+    @Override
+    public void registerSticky(Object event) {
+        eventBus.registerSticky(event);
+    }
+
 
 }

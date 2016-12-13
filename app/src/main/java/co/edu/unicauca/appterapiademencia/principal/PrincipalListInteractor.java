@@ -34,5 +34,9 @@ public interface PrincipalListInteractor {
     int[] notesCount(Long id);
     Double getBlessedScore(Long id);
 
-    void getNote(Long idnote);
+    Note getNote(Long idnote);
+
+    void deleteNote(Long idnote);
+    void aprobeNote(Long idnote);
+
 }
