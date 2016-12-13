@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -187,7 +186,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(view.getContext(), "position = " + PatientListAdapter.this.getItemId(getPosition()), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(view.getContext(), "position = " + PatientListAdapter.this.getItemId(getPosition()), Toast.LENGTH_SHORT).show();
             Log.e("id del card",""+PatientListAdapter.this.getItemId(getPosition()));
             Intent intent=new Intent(activity,PatientProfileActivity.class);
             intent.putExtra("cedula",PatientListAdapter.this.getItemId(getPosition()));

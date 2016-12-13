@@ -1,7 +1,5 @@
 package co.edu.unicauca.appterapiademencia.principal.notification;
 
-import android.app.Notification;
-
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.domain.Note;
@@ -13,4 +11,5 @@ import co.edu.unicauca.appterapiademencia.domain.Note;
 public interface NotificationView {
     void getNotifications();
     void showNotifications(List<Note> notificationList);
+    void refreshNotification();
 }

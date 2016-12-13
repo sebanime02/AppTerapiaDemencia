@@ -1,12 +1,7 @@
 package co.edu.unicauca.appterapiademencia.principal.notification;
 
-import android.app.Activity;
-import android.app.Notification;
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,7 +14,6 @@ import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.NotificationsAdapter;
-import co.edu.unicauca.appterapiademencia.adapters.TipAdapter;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 
 /**
@@ -131,5 +125,27 @@ public class NotificationListFragment extends Fragment implements NotificationVi
         {
             this.notificationList.add(notificationList.get(m));
         }
+    }
+
+    @Override
+    public void refreshNotification() {
+        try {
+            this.notificationList.clear();
+            notificationPresenter.onResume();
+            getNotifications();
+            recycler.setHasFixedSize(true);
+            //LManager = new LinearLayoutManager(getActivity().getApplicationContext());
+            //gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
+            lLayout = new LinearLayoutManager(getActivity());
+            //recycler.setLayoutManager(LManager);
+            recycler.setLayoutManager(lLayout);
+            adapter = new NotificationsAdapter(this.notificationList, getActivity());
+            recycler.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            //callListenerText();
+        } catch (Exception e) {
+            adapter.notifyDataSetChanged();
+        }
+
     }
 }

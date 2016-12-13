@@ -153,6 +153,8 @@
             android:src="@mipmap/ic_delete_forever_black_24dp"
             android:layout_below="@id/note_content"
             android:layout_toRightOf="@id/btn_accept_note"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+
             />
 
 

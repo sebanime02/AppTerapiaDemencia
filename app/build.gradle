@@ -5,6 +5,7 @@ android {
     buildToolsVersion '24.0.3'
     defaultConfig {
         applicationId "co.edu.unicauca.appterapiademencia"
+        multiDexEnabled true
         minSdkVersion 18
         targetSdkVersion 24
         versionCode 1

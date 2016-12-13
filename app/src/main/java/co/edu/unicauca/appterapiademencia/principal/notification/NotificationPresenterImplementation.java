@@ -71,10 +71,13 @@ public class NotificationPresenterImplementation implements NotificationPresente
         {
             case 0:
                 principalListInteractor.deleteNote(event.getIdnote());
+                notificationView.refreshNotification();
 
                 break;
             case 1:
                 principalListInteractor.aprobeNote(event.getIdnote());
+                notificationView.refreshNotification();
+
                 break;
         }
     }

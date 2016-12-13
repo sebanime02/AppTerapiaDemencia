@@ -38,7 +38,6 @@ import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.NoteDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.ScaleDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.SintomaDao;
-import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientProfileActivity;
 import de.greenrobot.event.EventBus;
 
@@ -56,13 +55,15 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private RadioButton rdgMejora,rdgNeutral,rdgRetroceso,rdgIncidente,rdgAdverso,rdgCentinela;
     private TextView txt_adverso;
     private ImageButton movility,eating,fall,medication,estadodeanimo,otro,changeBehaviour,higiene,memoria,lenguaje,vestimenta;
-    private RadioGroup rdgGrupo,rdgMedicacion,rdgMovilidad,rdgAlimentacion,rdgCambioPersonalidad,rdgOrientacion,rdgLenguaje,rdgMemoria,rdgHigiene,rdgVestimenta,rdgAnimo;
+    private RadioGroup rdgGrupo,rdgMedicacion,rdgMovilidad,rdgAlimentacion,rdgCambioPersonalidad,rdgOrientacion,rdgLenguaje,rdgMemoria,rdgHigiene,rdgVestimenta,rdgAnimo,rdgPersonalidad;
     private CheckBox rdgMovilidadOtro,rdgMovilidadSitiosLejanos,rdgMovilidadCaminar,rdgMovilidadSentarse,rdgMovilidadCabeza;
     private CheckBox rdgHigieneAyudaBanarse,rdgHigieneSoltarBano,rdgHigieneAyudaInodoro,rdgHigieneIncontinensiaUrinaria,rdgHigieneIncontinensiaFecal;
     private CheckBox rdgVestimentaActividades,rdgVestimentaFallosOcasionales,rdgVestimentaSeleccionar,rdgVestimentaSecuencia,rdgVestimentaAyudaVestirse,rdgVestimentaIncapaz;
     private CheckBox rdgMemoriaTendenciaRememorar,rdgMemoriaOlvidosBenignos,rdgMemoriaListasCortas;
     private CheckBox rdgLenguajeLimitado,rdgLenguajePalabra;
     private CheckBox rdgAlimentacionCuchara,rdgAlimentacionSolidos,rdgAlimentacionDependiente;
+    private CheckBox rdgPersonalidadRetraimiento,rdgPersonalidadEgocentrismo,rdgPersonalidadPerdidaInteres,rdgPersonalidadAfectividadEmbotada,rdgPersonalidadPerturbacionEmocional,rdgPersonalidadHilaridadInapropiada,rdgPersonalidadRespuestaEmocional,rdgPersonalidadIndiscrecionesSexuales,rdgPersonalidadFaltaInteres,rdgPersonalidadDisminucionIniciativa,rdgPersonalidadHiperactividadJustificada;
+
     private CheckBox rdgAnimoSonrisa;
     private RadioButton rdgMedicacionRutinario,rdgMedicacionAdverso;
     private ArrayList<String> sintomasList;
@@ -159,6 +160,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgVestimenta = (RadioGroup) findViewById(R.id.rdgVestimenta);
         rdgAnimo = (RadioGroup) findViewById(R.id.rdgAnimo);
         rdgMedicacion = (RadioGroup) findViewById(R.id.rdgMedicacion);
+        rdgPersonalidad = (RadioGroup) findViewById(R.id.rdgPersonalidad);
+
 
         //rdgGrupo.setOnCheckedChangeListener(this);
 
@@ -211,6 +214,19 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgMedicacionAdverso = (RadioButton) findViewById(R.id.rdgMedicacionAdverso);
         rdgMedicacionRutinario = (RadioButton) findViewById(R.id.rdgMedicacionAdverso);
 
+
+
+        rdgPersonalidadRetraimiento = (CheckBox) findViewById(R.id.rdgPersonalidadRetraimiento);
+         rdgPersonalidadEgocentrismo = (CheckBox) findViewById(R.id.rdgPersonalidadEgocentrismo);
+        rdgPersonalidadPerdidaInteres = (CheckBox) findViewById(R.id.rdgPersonalidadPerdidaInteres);
+        rdgPersonalidadAfectividadEmbotada = (CheckBox) findViewById(R.id.rdgPersonalidadAfectividadEmbotada);
+        rdgPersonalidadPerturbacionEmocional = (CheckBox) findViewById(R.id.rdgPersonalidadPerturbacionEmocional);
+        rdgPersonalidadHilaridadInapropiada = (CheckBox) findViewById(R.id.rdgPersonalidadHilaridadInapropiada);
+        rdgPersonalidadRespuestaEmocional = (CheckBox) findViewById(R.id.rdgPersonalidadRespuestaEmocional);
+        rdgPersonalidadIndiscrecionesSexuales = (CheckBox) findViewById(R.id.rdgPersonalidadIndiscrecionesSexuales);
+        rdgPersonalidadFaltaInteres = (CheckBox) findViewById(R.id.rdgPersonalidadFaltaInteres);
+        rdgPersonalidadDisminucionIniciativa = (CheckBox) findViewById(R.id.rdgPersonalidadDisminucionIniciativa);
+        rdgPersonalidadHiperactividadJustificada = (CheckBox) findViewById(R.id.rdgPersonalidadHiperactividadJustificada);
 
         owner = (EditText) findViewById(R.id.txt_responsable);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -1336,6 +1352,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 var_tipo=0;
                 var_seleccion="caidas";
                 setDefaultImageButton();
+                linear_efecto.setVisibility(View.GONE);
                 //txt_adverso.setVisibility(View.GONE);
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/caida72px").toString();
                 fall.setBackgroundColor(getResources().getColor(R.color.accent_color));
@@ -2005,7 +2022,6 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
             //MEDICACION
-
             case  R.id.rdgMedicacionRutinario:
                 var_seleccion="medicacionrutinaria";
                 break;
@@ -2014,8 +2030,61 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
 
+            //PERSONALIDAD
 
+            case  R.id.rdgPersonalidadRetraimiento:
+                var_seleccion="personalidadretraimiento";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+                break;
+            case R.id.rdgPersonalidadEgocentrismo:
+                var_seleccion="personalidadegocentrismo";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+                break;
+            case R.id.rdgPersonalidadPerdidaInteres:
+                var_seleccion="personalidadperdidainteres";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+                break;
+            case R.id.rdgPersonalidadAfectividadEmbotada:
+                var_seleccion="personalidadafectividadembotada";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+                break;
+            case R.id.rdgPersonalidadPerturbacionEmocional:
+                var_seleccion="personalidadperturbacionemocional";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+                break;
+            case R.id.rdgPersonalidadHilaridadInapropiada:
+                var_seleccion="personalidadhilaridadinapropiada";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+                break;
+            case R.id.rdgPersonalidadRespuestaEmocional:
+                var_seleccion="personalidadrespuestaemocional";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+                break;
 
+            case R.id.rdgPersonalidadFaltaInteres:
+                var_seleccion="personalidadfaltainteres";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+                break;
+
+            case R.id.rdgPersonalidadDisminucionIniciativa:
+                var_seleccion="personalidaddisminucioniniciativa";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+                break;
+
+            case R.id.rdgPersonalidadHiperactividadJustificada:
+                var_seleccion="personalidadhiperactividadjustificada";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+                break;
 
 
 

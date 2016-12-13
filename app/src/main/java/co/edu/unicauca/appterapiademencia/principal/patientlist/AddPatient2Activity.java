@@ -1135,9 +1135,34 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 Sintoma sintomaanimosonrisa = new Sintoma(null,patient2.getId(),"animo","animosonrisa",false);
                                 sintomaDao.insert(sintomaanimosonrisa);
 
+                                //PERSONALIDAD Y COMPORTAMIENTO
+
+                        //    private CheckBox rdgPersonalidadRetraimiento,rdgPersonalidadEgocentrismo,rdgPersonalidadPerdidaInteres,rdgPersonalidadAfectividadEmbotada,rdgPersonalidadPerturbacionEmocional,rdgPersonalidadHilaridadInapropiada,rdgPersonalidadRespuestaEmocional,rdgPersonalidadIndiscrecionesSexuales,rdgPersonalidadFaltaInteres,rdgPersonalidadDisminucionIniciativa,rdgPersonalidadHiperactividadJustificada;
+                                Sintoma sintomapersonalidadretraimiento = new Sintoma(null,patient2.getId(),"personalidad","personalidadretraimiento",false);
+                                Sintoma sintomapersonalidadegocentrismo = new Sintoma(null,patient2.getId(),"personalidad","personalidadegocentrismo",false);
+                                Sintoma sintomapersonalidadperdidainteres = new Sintoma(null,patient2.getId(),"personalidad","personalidadperdidainteres",false);
+                                Sintoma sintomapersonalidadafectividadembotada = new Sintoma(null,patient2.getId(),"personalidad","personalidadafectividadembotada",false);
+                                Sintoma sintomapersonalidadperturbacionemocional = new Sintoma(null,patient2.getId(),"personalidad","personalidadperturbacionemocional",false);
+                                Sintoma sintomapersonalidadhilaridadinapropiada = new Sintoma(null,patient2.getId(),"personalidad","personalidadhilaridadinapropiada",false);
+                                Sintoma sintomapersonalidadrespuestaemocional = new Sintoma(null,patient2.getId(),"personalidad","personalidadrespuestaemocional",false);
+                                Sintoma sintomapersonalidadfaltainteres = new Sintoma(null,patient2.getId(),"personalidad","personalidadfaltainteres",false);
+                                Sintoma sintomapersonalidaddisminucioniniciativa = new Sintoma(null,patient2.getId(),"personalidad","personalidaddisminucioniniciativa",false);
+                                Sintoma sintomapersonalidadhiperactividadjustificada = new Sintoma(null,patient2.getId(),"personalidad","personalidadhiperactividadjustificada",false);
+
+                                sintomaDao.insert(sintomapersonalidadretraimiento);
+                                sintomaDao.insert(sintomapersonalidadegocentrismo);
+                                sintomaDao.insert(sintomapersonalidadperdidainteres);
+                                sintomaDao.insert(sintomapersonalidadafectividadembotada);
+                                sintomaDao.insert(sintomapersonalidadperturbacionemocional);
+                                sintomaDao.insert(sintomapersonalidadhilaridadinapropiada);
+                                sintomaDao.insert(sintomapersonalidadrespuestaemocional);
+                                sintomaDao.insert(sintomapersonalidadfaltainteres);
+                                sintomaDao.insert(sintomapersonalidaddisminucioniniciativa);
+                                sintomaDao.insert(sintomapersonalidadhiperactividadjustificada);
 
 
-                        //INICIAR ESCALAS
+
+                                //INICIAR ESCALAS
 
 
 
@@ -1225,7 +1250,28 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 Scale scaleanimosonrisa = new Scale(null,sintomaanimosonrisa.getId(),"FAST","7e");
                                 escalaDao.insert(scaleanimosonrisa);
 
-                                Log.e("entra al for","entro");
+
+                                Scale scalepersonalidadretraimiento = new Scale(null,sintomapersonalidadretraimiento.getId(),"Blessed","1.0");
+                                Scale scalepersonalidadegocentrismo = new Scale(null,sintomapersonalidadegocentrismo.getId(),"Blessed","1.0");
+                                Scale scalepersonalidadperdidainteres = new Scale(null,sintomapersonalidadperdidainteres.getId(),"Blessed","1.0");
+                                Scale scalepersonalidadafectividadembotada = new Scale(null,sintomapersonalidadafectividadembotada.getId(),"Blessed","1.0");
+                                Scale scalepersonalidadperturbacionemocional  = new Scale(null,sintomapersonalidadperturbacionemocional.getId(),"Blessed","1.0");
+                                Scale scalepersonalidadhilaridadinapropiada= new Scale(null,sintomapersonalidadhilaridadinapropiada.getId(),"Blessed","1.0");
+                                Scale scalepersonalidadrespuestaemocional = new Scale(null,sintomapersonalidadrespuestaemocional.getId(),"Blessed","1.0");
+                                Scale scalepersonalidadfaltainteres = new Scale(null,sintomapersonalidadfaltainteres.getId(),"Blessed","1.0");
+                                Scale scalepersonalidaddisminucioniniciativa = new Scale(null,sintomapersonalidaddisminucioniniciativa.getId(),"Blessed","1.0");
+                                Scale scalepersonalidadhiperactividadjustificada = new Scale(null,sintomapersonalidadhiperactividadjustificada.getId(),"Blessed","1.0");
+
+                                escalaDao.insert(scalepersonalidadretraimiento);
+                                escalaDao.insert(scalepersonalidadegocentrismo);
+                                escalaDao.insert(scalepersonalidadperdidainteres);
+                                escalaDao.insert(scalepersonalidadperturbacionemocional);
+                                escalaDao.insert(scalepersonalidadhilaridadinapropiada);
+                                escalaDao.insert(scalepersonalidadrespuestaemocional);
+                                escalaDao.insert(scalepersonalidadfaltainteres);
+                                escalaDao.insert(scalepersonalidaddisminucioniniciativa);
+                                escalaDao.insert(scalepersonalidadhiperactividadjustificada);
+
 
 
                         try{

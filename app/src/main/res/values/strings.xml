@@ -123,7 +123,7 @@
     <string name="add_caida">Caida o Fractura\n</string>
     <string name="add_alimentacion">Hábitos de\n Alimentación</string>
     <string name="add_health">Estado de \n Ánimo</string>
-    <string name="add_changebehaviour">Cambios de \n Personalidad</string>
+    <string name="add_changebehaviour">Personalidad y Conducta</string>
     <string name="add_medication">Medicamentos</string>
 
     <string name="addnote_higiene">Higiene y\nAseo</string>
@@ -189,6 +189,20 @@
     <string name="estadoanimo_otro">Ninguno de los Anteriores</string>
     <string name="estadoanimo_normal">Su estado de ánimo es normal</string>
     <string name="estadoanimo_sonrisa">No ha sonreido en mucho tiempo</string>
+
+
+    <string name="personalidad_retraimiento">Retraimiento Creciente</string>
+    <string name="personalidad_egocentrismo">Egocentrismo Aumentado</string>
+    <string name="personalidad_perdidainteres">Pérdida de Interes por los sentimientos de otros</string>
+    <string name="personalidad_afectividadembotada">Afectividad Embotada (o Ausente)</string>
+    <string name="personalidad_perturbacionemocional">Perturbación del control Emocional (Aumento Susceptibilidad, irritabilidad)</string>
+    <string name="personalidad_hilaridadinapropiada">Hilaridad inapropiada, Risa descontrolada por lo que se ve u oye</string>
+    <string name="personalidad_respuestaemocional">Respuesta emocional disminuida</string>
+    <string name="personalidad_indiscrecionessexuales">Indiscreciones Sexuales (De aparición reciente)</string>
+    <string name="personalidad_faltainteres">Falta de Interés en las aficiones habituales</string>
+    <string name="personalidad_disminucioniniciativa">Disminución de la Iniciativa O Apatía Progresiva</string>
+    <string name="personalidad_hiperactividadjustificada">Hiperactividad No Justificada</string>
+
 
 
 
