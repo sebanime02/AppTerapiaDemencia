@@ -88,6 +88,7 @@
     <string name="spinner_vision">Limitación de Visión</string>
     <string name="spinner_escritura">Limitación de Escritura</string>
     <string name="spinner_dibujo">Limitación de Dibujo</string>
+    <string name="title_AVD">Evalue las siguientes Actividades de la Vida Diaria:</string>
 
     <!--TAB PATIENT INFORMATION -->
     <string name="textview_profile_information">INFORMACIÓN DEL PACIENTE</string>
@@ -123,7 +124,7 @@
     <string name="add_caida">Caida o Fractura\n</string>
     <string name="add_alimentacion">Hábitos de\n Alimentación</string>
     <string name="add_health">Estado de \n Ánimo</string>
-    <string name="add_changebehaviour">Personalidad y Conducta</string>
+    <string name="add_changebehaviour">Personalidad \ny Conducta</string>
     <string name="add_medication">Medicamentos</string>
 
     <string name="addnote_higiene">Higiene y\nAseo</string>
@@ -133,7 +134,7 @@
 
     <string name="addnote_eventos">Relacionados a Eventos:</string>
     <string name="addnote_signos">Relacionado a Signos o Sintomas de la Demencia Senil:</string>
-
+    <string name="addnote_orientacion">Orientación</string>
 
 
     <!--RADIOBUTTONS-->
@@ -142,9 +143,9 @@
    <string name="memoria_rememorar">Tendencia a rememorar el pasado</string>
    <string name="memoria_olvidosbenignos">Olvidos benignos y/o Recientes, por ejemplo la ubicación de objetos</string>
 
-   <string name="orientacion_casa">Incapacidad de Orientarse en el ancianato</string>
+   <string name="orientacion_casa">Incapacidad de Orientarse en el Hogar de Ancianos</string>
    <string name="orientacion_calles">Incapacidad de orientarse en Calles Familiares</string>
-   <string name="orientacion_entorno">Incapacidad para valorar el entorno (Reconocer que esta ancianato)</string>
+   <string name="orientacion_entorno">Incapacidad para valorar El Entorno (Reconocer que esta en un ancianato)</string>
 
     <string name="higiene_otro">Ninguno de los Anteriores</string>
     <string name="higiene_independiente">Independiente con su higiene</string>

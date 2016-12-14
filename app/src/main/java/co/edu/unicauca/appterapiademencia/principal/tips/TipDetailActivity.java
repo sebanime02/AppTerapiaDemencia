@@ -1,8 +1,10 @@
 package co.edu.unicauca.appterapiademencia.principal.tips;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -128,8 +130,13 @@ public class TipDetailActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_edit,menu);
-        getMenuInflater().inflate(R.menu.menu_delete,menu);
+        SharedPreferences loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
+        if(loginpreference.getBoolean("supervisor",true))
+        {
+            getMenuInflater().inflate(R.menu.menu_edit,menu);
+            getMenuInflater().inflate(R.menu.menu_delete,menu);
+        }
+
         getMenuInflater().inflate(R.menu.menu_favorite,menu);
         return true;
     }

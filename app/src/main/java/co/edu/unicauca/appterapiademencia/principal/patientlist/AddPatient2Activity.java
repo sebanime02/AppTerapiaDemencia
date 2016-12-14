@@ -1143,6 +1143,10 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 Sintoma sintomapersonalidadperdidainteres = new Sintoma(null,patient2.getId(),"personalidad","personalidadperdidainteres",false);
                                 Sintoma sintomapersonalidadafectividadembotada = new Sintoma(null,patient2.getId(),"personalidad","personalidadafectividadembotada",false);
                                 Sintoma sintomapersonalidadperturbacionemocional = new Sintoma(null,patient2.getId(),"personalidad","personalidadperturbacionemocional",false);
+
+                                Sintoma sintomapersonalidadindiscrecionessexuales = new Sintoma(null,patient2.getId(),"personalidad","personalidadindiscrecionessexuales",false);
+
+
                                 Sintoma sintomapersonalidadhilaridadinapropiada = new Sintoma(null,patient2.getId(),"personalidad","personalidadhilaridadinapropiada",false);
                                 Sintoma sintomapersonalidadrespuestaemocional = new Sintoma(null,patient2.getId(),"personalidad","personalidadrespuestaemocional",false);
                                 Sintoma sintomapersonalidadfaltainteres = new Sintoma(null,patient2.getId(),"personalidad","personalidadfaltainteres",false);
@@ -1154,6 +1158,8 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 sintomaDao.insert(sintomapersonalidadperdidainteres);
                                 sintomaDao.insert(sintomapersonalidadafectividadembotada);
                                 sintomaDao.insert(sintomapersonalidadperturbacionemocional);
+                                sintomaDao.insert(sintomapersonalidadindiscrecionessexuales);
+
                                 sintomaDao.insert(sintomapersonalidadhilaridadinapropiada);
                                 sintomaDao.insert(sintomapersonalidadrespuestaemocional);
                                 sintomaDao.insert(sintomapersonalidadfaltainteres);
@@ -1256,6 +1262,10 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 Scale scalepersonalidadperdidainteres = new Scale(null,sintomapersonalidadperdidainteres.getId(),"Blessed","1.0");
                                 Scale scalepersonalidadafectividadembotada = new Scale(null,sintomapersonalidadafectividadembotada.getId(),"Blessed","1.0");
                                 Scale scalepersonalidadperturbacionemocional  = new Scale(null,sintomapersonalidadperturbacionemocional.getId(),"Blessed","1.0");
+
+                                Scale scalepersonalidadindiscrecionessexuales = new Scale(null,sintomapersonalidadindiscrecionessexuales.getId(),"Blessed","1.0");
+
+
                                 Scale scalepersonalidadhilaridadinapropiada= new Scale(null,sintomapersonalidadhilaridadinapropiada.getId(),"Blessed","1.0");
                                 Scale scalepersonalidadrespuestaemocional = new Scale(null,sintomapersonalidadrespuestaemocional.getId(),"Blessed","1.0");
                                 Scale scalepersonalidadfaltainteres = new Scale(null,sintomapersonalidadfaltainteres.getId(),"Blessed","1.0");
@@ -1265,7 +1275,11 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 escalaDao.insert(scalepersonalidadretraimiento);
                                 escalaDao.insert(scalepersonalidadegocentrismo);
                                 escalaDao.insert(scalepersonalidadperdidainteres);
+                                escalaDao.insert(scalepersonalidadafectividadembotada);
                                 escalaDao.insert(scalepersonalidadperturbacionemocional);
+
+                                escalaDao.insert(scalepersonalidadindiscrecionessexuales);
+
                                 escalaDao.insert(scalepersonalidadhilaridadinapropiada);
                                 escalaDao.insert(scalepersonalidadrespuestaemocional);
                                 escalaDao.insert(scalepersonalidadfaltainteres);

@@ -144,12 +144,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
                 break;
             case "animo":
-                description="Estado de Animo";
+                description="Estado de Ànimo";
                 ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
 
                 break;
-            case "cambiocomportamiento":
-                description="Comportamiento";
+            case "personalidad":
+                description="Personalidad y Conducta";
                 ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/changebehavior72px").toString();
 
                 break;

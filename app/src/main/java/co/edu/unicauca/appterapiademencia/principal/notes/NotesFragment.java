@@ -323,7 +323,7 @@ public class NotesFragment extends Fragment implements NotesView{
                 case "animo":
                    setEstadodeanimoCount(estadodeanimoCount+1);
                     break;
-                case "cambiocomportamiento":
+                case "personalidad":
                     setChangeCount(changeCount+1);
                     break;
 

@@ -54,7 +54,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private String hour;
     private RadioButton rdgMejora,rdgNeutral,rdgRetroceso,rdgIncidente,rdgAdverso,rdgCentinela;
     private TextView txt_adverso;
-    private ImageButton movility,eating,fall,medication,estadodeanimo,otro,changeBehaviour,higiene,memoria,lenguaje,vestimenta;
+    private ImageButton orientacion,movility,eating,fall,medication,estadodeanimo,otro,changeBehaviour,higiene,memoria,lenguaje,vestimenta;
     private RadioGroup rdgGrupo,rdgMedicacion,rdgMovilidad,rdgAlimentacion,rdgCambioPersonalidad,rdgOrientacion,rdgLenguaje,rdgMemoria,rdgHigiene,rdgVestimenta,rdgAnimo,rdgPersonalidad;
     private CheckBox rdgMovilidadOtro,rdgMovilidadSitiosLejanos,rdgMovilidadCaminar,rdgMovilidadSentarse,rdgMovilidadCabeza;
     private CheckBox rdgHigieneAyudaBanarse,rdgHigieneSoltarBano,rdgHigieneAyudaInodoro,rdgHigieneIncontinensiaUrinaria,rdgHigieneIncontinensiaFecal;
@@ -63,14 +63,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private CheckBox rdgLenguajeLimitado,rdgLenguajePalabra;
     private CheckBox rdgAlimentacionCuchara,rdgAlimentacionSolidos,rdgAlimentacionDependiente;
     private CheckBox rdgPersonalidadRetraimiento,rdgPersonalidadEgocentrismo,rdgPersonalidadPerdidaInteres,rdgPersonalidadAfectividadEmbotada,rdgPersonalidadPerturbacionEmocional,rdgPersonalidadHilaridadInapropiada,rdgPersonalidadRespuestaEmocional,rdgPersonalidadIndiscrecionesSexuales,rdgPersonalidadFaltaInteres,rdgPersonalidadDisminucionIniciativa,rdgPersonalidadHiperactividadJustificada;
-
+    private CheckBox rdgOrientacionCasa,rdgOrientacionCalle,rdgOrientacionEntorno;
     private CheckBox rdgAnimoSonrisa;
     private RadioButton rdgMedicacionRutinario,rdgMedicacionAdverso;
     private ArrayList<String> sintomasList;
     private ArrayList<String> nameTestList;
     private ArrayList<String> puntajeList;
     private ArrayList<Boolean> stateList;
-    private RadioButton rdgTardia;
+    private CheckBox rdgTardia;
     private NoteDao noteDao;
     private ScaleDao scaleDao;
     private Long cedula;
@@ -136,8 +136,10 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         changeBehaviour = (ImageButton) findViewById(R.id.btn_changebehaviour);
         vestimenta = (ImageButton) findViewById(R.id.btn_vestimenta);
         memoria = (ImageButton) findViewById(R.id.btn_memory);
+        orientacion = (ImageButton) findViewById(R.id.btn_orientation);
 
-        rdgTardia = (RadioButton) findViewById(R.id.rdgTardia);
+
+        rdgTardia = (CheckBox) findViewById(R.id.rdgTardia);
 
        /*
         rdgGrupo = (RadioGroup) findViewById(R.id.rdgGrupo);
@@ -161,6 +163,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgAnimo = (RadioGroup) findViewById(R.id.rdgAnimo);
         rdgMedicacion = (RadioGroup) findViewById(R.id.rdgMedicacion);
         rdgPersonalidad = (RadioGroup) findViewById(R.id.rdgPersonalidad);
+        rdgOrientacion = (RadioGroup) findViewById(R.id.rdgOrientacion);
 
 
         //rdgGrupo.setOnCheckedChangeListener(this);
@@ -215,7 +218,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgMedicacionRutinario = (RadioButton) findViewById(R.id.rdgMedicacionAdverso);
 
 
-
+        //PERSONALIDAD
         rdgPersonalidadRetraimiento = (CheckBox) findViewById(R.id.rdgPersonalidadRetraimiento);
          rdgPersonalidadEgocentrismo = (CheckBox) findViewById(R.id.rdgPersonalidadEgocentrismo);
         rdgPersonalidadPerdidaInteres = (CheckBox) findViewById(R.id.rdgPersonalidadPerdidaInteres);
@@ -227,6 +230,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgPersonalidadFaltaInteres = (CheckBox) findViewById(R.id.rdgPersonalidadFaltaInteres);
         rdgPersonalidadDisminucionIniciativa = (CheckBox) findViewById(R.id.rdgPersonalidadDisminucionIniciativa);
         rdgPersonalidadHiperactividadJustificada = (CheckBox) findViewById(R.id.rdgPersonalidadHiperactividadJustificada);
+
+
+        //ORIENTACION
+
+        rdgOrientacionCalle = (CheckBox) findViewById(R.id.rdgOrientacionCalle);
+        rdgOrientacionCasa = (CheckBox) findViewById(R.id.rdgOrientacionCasa);
+        rdgOrientacionEntorno = (CheckBox) findViewById(R.id.rdgOrientacionEntorno);
+
 
         owner = (EditText) findViewById(R.id.txt_responsable);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -290,7 +301,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         changeBehaviour.setOnClickListener(this);
         vestimenta.setOnClickListener(this);
         medication.setOnClickListener(this);
-
+        orientacion.setOnClickListener(this);
 
 
     }
@@ -1121,21 +1132,324 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                             break;
 
+                        //----PERSONALIDAD Y CONDUCTA-----
+
+                        case "personalidadretraimiento":
+
+                            try {
+                                Sintoma personalidadretraimiento;
+                                personalidadretraimiento = helper.getSintoma(patientid, "Blessed", "personalidad", "personalidadretraimiento");
+                                personalidadretraimiento.setActivo(stateList.get(i));
+                                if (stateList.get(i).booleanValue()) {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6e
+                                    //
+                                    //  ");
+
+                                } else {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(personalidadretraimiento);
+                                scaleDao.update(personalidadretraimiento.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado", personalidadretraimiento.getScaleList().get(0).getPuntaje().toString());
+
+
+                            } catch (Exception e) {
+                            }
+
+                            break;
+
+
+
+                        case "personalidadegocentrismo":
+
+                            try {
+                                Sintoma personalidadegocentrismo;
+                                personalidadegocentrismo = helper.getSintoma(patientid, "Blessed", "personalidad", "personalidadegocentrismo");
+                                personalidadegocentrismo.setActivo(stateList.get(i));
+                                if (stateList.get(i).booleanValue()) {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6e
+                                    //
+                                    //  ");
+
+                                } else {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(personalidadegocentrismo);
+                                scaleDao.update(personalidadegocentrismo.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado", personalidadegocentrismo.getScaleList().get(0).getPuntaje().toString());
+
+
+                            } catch (Exception e) {
+                            }
+
+                            break;
+
+
+
+                        case "personalidadperdidainteres":
+
+                            try {
+                                Sintoma personalidadperdidainteres;
+                                personalidadperdidainteres = helper.getSintoma(patientid, "Blessed", "personalidad", "personalidadperdidainteres");
+                                personalidadperdidainteres.setActivo(stateList.get(i));
+                                if (stateList.get(i).booleanValue()) {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6e
+                                    //
+                                    //  ");
+
+                                } else {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(personalidadperdidainteres);
+                                scaleDao.update(personalidadperdidainteres.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado", personalidadperdidainteres.getScaleList().get(0).getPuntaje().toString());
+
+
+                            } catch (Exception e) {
+                            }
+
+                            break;
+
+
+
+                        case "personalidadafectividadembotada":
+
+                            try {
+                                Sintoma personalidadafectividadembotada;
+                                personalidadafectividadembotada = helper.getSintoma(patientid, "Blessed", "personalidad", "personalidadafectividadembotada");
+                                personalidadafectividadembotada.setActivo(stateList.get(i));
+                                if (stateList.get(i).booleanValue()) {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6e
+                                    //
+                                    //  ");
+
+                                } else {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(personalidadafectividadembotada);
+                                scaleDao.update(personalidadafectividadembotada.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado", personalidadafectividadembotada.getScaleList().get(0).getPuntaje().toString());
+
+
+                            } catch (Exception e) {
+                            }
+
+                            break;
+
+                        case "personalidadperturbacionemocional":
+
+                            try {
+                                Sintoma personalidadperturbacionemocional;
+                                personalidadperturbacionemocional = helper.getSintoma(patientid, "Blessed", "personalidad", "personalidadperturbacionemocional");
+                                personalidadperturbacionemocional.setActivo(stateList.get(i));
+                                if (stateList.get(i).booleanValue()) {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6e
+                                    //
+                                    //  ");
+
+                                } else {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(personalidadperturbacionemocional);
+                                scaleDao.update(personalidadperturbacionemocional.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",personalidadperturbacionemocional.getScaleList().get(0).getPuntaje().toString());
+
+
+                            } catch (Exception e) {
+                            }
+
+                            break;
+
+                        case "personalidadhilaridadinapropiada":
+
+                            try {
+                                Sintoma personalidadhilaridadinapropiada;
+                                personalidadhilaridadinapropiada = helper.getSintoma(patientid, "Blessed", "personalidad", "personalidadhilaridadinapropiada");
+                                personalidadhilaridadinapropiada.setActivo(stateList.get(i));
+                                if (stateList.get(i).booleanValue()) {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6e
+                                    //
+                                    //  ");
+
+                                } else {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(personalidadhilaridadinapropiada);
+                                scaleDao.update(personalidadhilaridadinapropiada.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",personalidadhilaridadinapropiada.getScaleList().get(0).getPuntaje().toString());
+
+
+                            } catch (Exception e) {
+                            }
+
+                            break;
+
+                        case "personalidadrespuestaemocional":
+
+                            try {
+                                Sintoma personalidadrespuestaemocional;
+                                personalidadrespuestaemocional = helper.getSintoma(patientid, "Blessed", "personalidad", "personalidadrespuestaemocional");
+                                personalidadrespuestaemocional.setActivo(stateList.get(i));
+                                if (stateList.get(i).booleanValue()) {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6e
+                                    //
+                                    //  ");
+
+                                } else {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(personalidadrespuestaemocional);
+                                scaleDao.update(personalidadrespuestaemocional.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",personalidadrespuestaemocional.getScaleList().get(0).getPuntaje().toString());
+
+
+                            } catch (Exception e) {
+                            }
+
+                            break;
+
+                        case "personalidadindiscrecionessexuales":
+
+                            try {
+                                Sintoma personalidadindiscrecionessexuales;
+                                personalidadindiscrecionessexuales = helper.getSintoma(patientid, "Blessed", "personalidad", "personalidadindiscrecionessexuales");
+                                personalidadindiscrecionessexuales.setActivo(stateList.get(i));
+                                if (stateList.get(i).booleanValue()) {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6e
+                                    //
+                                    //  ");
+
+                                } else {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(personalidadindiscrecionessexuales);
+                                scaleDao.update(personalidadindiscrecionessexuales.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",personalidadindiscrecionessexuales.getScaleList().get(0).getPuntaje().toString());
+
+
+                            } catch (Exception e) {
+                            }
+
+                            break;
+
+
+                        case "personalidadfaltainteres":
+
+                            try {
+                                Sintoma personalidadfaltainteres;
+                                personalidadfaltainteres= helper.getSintoma(patientid, "Blessed", "personalidad", "personalidadfaltainteres");
+                                personalidadfaltainteres.setActivo(stateList.get(i));
+                                if (stateList.get(i).booleanValue()) {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6e
+                                    //
+                                    //  ");
+
+                                } else {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(personalidadfaltainteres);
+                                scaleDao.update(personalidadfaltainteres.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",personalidadfaltainteres.getScaleList().get(0).getPuntaje().toString());
+
+
+                            } catch (Exception e) {
+                            }
+
+                            break;
+
+
+                        case "personalidaddisminucioniniciativa":
+
+                            try {
+                                Sintoma personalidaddisminucioniniciativa;
+                                personalidaddisminucioniniciativa= helper.getSintoma(patientid, "Blessed", "personalidad", "personalidaddisminucioniniciativa");
+                                personalidaddisminucioniniciativa.setActivo(stateList.get(i));
+                                if (stateList.get(i).booleanValue()) {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6e
+                                    //
+                                    //  ");
+
+                                } else {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(personalidaddisminucioniniciativa);
+                                scaleDao.update(personalidaddisminucioniniciativa.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",personalidaddisminucioniniciativa.getScaleList().get(0).getPuntaje().toString());
+
+
+                            } catch (Exception e) {
+                            }
+
+                            break;
+
+
+                        case "personalidadhiperactividadjustificada":
+
+                            try {
+                                Sintoma personalidadhiperactividadjustificada;
+                                personalidadhiperactividadjustificada= helper.getSintoma(patientid, "Blessed", "personalidad", "personalidadhiperactividadjustificada");
+                                personalidadhiperactividadjustificada.setActivo(stateList.get(i));
+                                if (stateList.get(i).booleanValue()) {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6e
+                                    //
+                                    //  ");
+
+                                } else {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(personalidadhiperactividadjustificada);
+                                scaleDao.update(personalidadhiperactividadjustificada.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",personalidadhiperactividadjustificada.getScaleList().get(0).getPuntaje().toString());
+
+
+                            } catch (Exception e) {
+                            }
+
+                            break;
+
+
+
+
 
                     }
 
 
 
-                    /*
-                    Sintoma sintoma = new Sintoma(null,patientid, election, sintomasList.get(i),true);
-                    Scale scale = new Scale(null,sintoma.getId(),nameTestList.get(i),puntajeList.get(i));
-                    sintomaDao.insert(sintoma);
-                    scaleDao.insert(scale);
-                    Log.e("sintomadao nuevo",sintoma.getId()+"");
-                    Log.e("sintomadao nuevo",sintoma.getAmbito()+"");
-                    Log.e("sintomadao nuevo",sintoma.getSigno()+"");
-                    Log.e("sintomadao nuevo"," TEST:"+sintoma.getScaleList().get(0).getEscalaname());
-                    */
+
+
 
                 }
                 }
@@ -1582,12 +1896,148 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 vestimenta.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 break;
             case R.id.btn_changebehaviour:
-                election="cambiocomportamiento";
+                election="personalidad";
                 var_tipo=1;
                 setDefaultImageButton();
+                try{
+
+                    Sintoma personalidadretraimiento = helper.getSintoma(patientid,"Blessed","personalidad","personalidadretraimiento");
+                    if(personalidadretraimiento.getActivo().booleanValue())
+                    {
+                        rdgPersonalidadRetraimiento.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgPersonalidadRetraimiento.setChecked(false);}
+
+
+                try{
+
+                    Sintoma personalidadegocentrismo = helper.getSintoma(patientid,"Blessed","personalidad","personalidadegocentrismo");
+                    if(personalidadegocentrismo.getActivo().booleanValue())
+                    {
+                        rdgPersonalidadEgocentrismo.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgPersonalidadEgocentrismo.setChecked(false);}
+
+                try{
+
+                    Sintoma personalidadperdidainteres = helper.getSintoma(patientid,"Blessed","personalidad","personalidadperdidainteres");
+                    if(personalidadperdidainteres.getActivo().booleanValue())
+                    {
+                        rdgPersonalidadPerdidaInteres.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgPersonalidadPerdidaInteres.setChecked(false);}
+
+                try{
+
+                    Sintoma personalidadafectividadembotada = helper.getSintoma(patientid,"Blessed","personalidad","personalidadafectividadembotada");
+                    if(personalidadafectividadembotada.getActivo().booleanValue())
+                    {
+                        rdgPersonalidadAfectividadEmbotada.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgPersonalidadAfectividadEmbotada.setChecked(false);}
+
+                try{
+
+                    Sintoma personalidadperturbacionemocional = helper.getSintoma(patientid,"Blessed","personalidad","personalidadperturbacionemocional");
+                    if(personalidadperturbacionemocional.getActivo().booleanValue())
+                    {
+                        rdgPersonalidadPerturbacionEmocional.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgPersonalidadPerturbacionEmocional.setChecked(false);}
+
+                try{
+
+                    Sintoma personalidadhilaridadinapropiada = helper.getSintoma(patientid,"Blessed","personalidad","personalidadhilaridadinapropiada");
+                    if(personalidadhilaridadinapropiada.getActivo().booleanValue())
+                    {
+                        rdgPersonalidadHilaridadInapropiada.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgPersonalidadHilaridadInapropiada.setChecked(false);}
+
+
+
+
+                try{
+
+                    Sintoma personalidadrespuestaemocional = helper.getSintoma(patientid,"Blessed","personalidad","personalidadrespuestaemocional");
+                    if(personalidadrespuestaemocional.getActivo().booleanValue())
+                    {
+                        rdgPersonalidadRespuestaEmocional.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgPersonalidadRespuestaEmocional.setChecked(false);}
+
+
+
+                try{
+
+                    Sintoma personalidadindiscrecionessexuales = helper.getSintoma(patientid,"Blessed","personalidad","personalidadindiscrecionessexuales");
+                    if(personalidadindiscrecionessexuales.getActivo().booleanValue())
+                    {
+                        rdgPersonalidadIndiscrecionesSexuales.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgPersonalidadIndiscrecionesSexuales.setChecked(false);}
+
+
+                try{
+
+                    Sintoma personalidadfaltainteres = helper.getSintoma(patientid,"Blessed","personalidad","personalidadfaltainteres");
+                    if(personalidadfaltainteres.getActivo().booleanValue())
+                    {
+                        rdgPersonalidadFaltaInteres.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgPersonalidadFaltaInteres.setChecked(false);}
+
+
+                try{
+
+                    Sintoma personalidaddisminucioniniciativa = helper.getSintoma(patientid,"Blessed","personalidad","personalidaddisminucioniniciativa");
+                    if(personalidaddisminucioniniciativa.getActivo().booleanValue())
+                    {
+                        rdgPersonalidadDisminucionIniciativa.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgPersonalidadDisminucionIniciativa.setChecked(false);}
+
+
+
+                try{
+
+                    Sintoma personalidadhiperactividadjustificada = helper.getSintoma(patientid,"Blessed","personalidad","personalidadhiperactividadjustificada");
+                    if(personalidadhiperactividadjustificada.getActivo().booleanValue())
+                    {
+                        rdgPersonalidadHiperactividadJustificada.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgPersonalidadHiperactividadJustificada.setChecked(false);}
+
+
+
+
 
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/changebehavior72px").toString();
                 changeBehaviour.setBackgroundColor(getResources().getColor(R.color.accent_color));
+                rdgPersonalidad.setVisibility(View.VISIBLE);
+
                 break;
             case R.id.btn_memory:
                 election="memoria";
@@ -1629,6 +2079,46 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
 
+            case R.id.btn_orientation:
+                election="orientacion";
+                var_tipo=1;
+                setDefaultImageButton();
+                try{
+
+                    Sintoma orientacioncasa = helper.getSintoma(patientid,"Blessed","orientacion","orientacioncasa");
+                    if(orientacioncasa.getActivo().booleanValue())
+                    {
+                        rdgOrientacionCasa.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgOrientacionCasa.setChecked(false);}
+
+                try
+                {
+                    Sintoma orientacioncalle = helper.getSintoma(patientid,"Blessed","orientacion","orientacioncalle");
+                    if(orientacioncalle.getActivo().booleanValue())
+                    {
+                        rdgOrientacionCalle.setChecked(true);
+                    }
+
+                }catch (Exception e){ rdgOrientacionCalle.setChecked(false);}
+
+                try{
+                    Sintoma orientacionentorno = helper.getSintoma(patientid,"Blessed","orientacion","orientacionentorno");
+                    if(orientacionentorno.getActivo().booleanValue())
+                    {
+                        rdgOrientacionEntorno.setChecked(true);
+                    }
+
+                }catch (Exception e){rdgOrientacionEntorno.setChecked(false);
+                }
+
+                orientacion.setBackgroundColor(getResources().getColor(R.color.accent_color));
+                rdgOrientacion.setVisibility(View.VISIBLE);
+                break;
+
+
 
 
         }
@@ -1652,6 +2142,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         vestimenta.setBackgroundColor(getResources().getColor(R.color.material_brown));
         memoria.setBackgroundColor(getResources().getColor(R.color.material_teal));
         medication.setBackgroundColor(getResources().getColor(R.color.md_material_blue_800));
+        orientacion.setBackgroundColor(getResources().getColor(R.color.material_deepblue));
 
 
 
@@ -1666,7 +2157,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         //rdgCambioPersonalidad.setVisibility(View.INVISIBLE);
         rdgMemoria.setVisibility(View.GONE);
         rdgMedicacion.setVisibility(View.GONE);
-
+        rdgPersonalidad.setVisibility(View.GONE);
+        rdgOrientacion.setVisibility(View.GONE);
 
 
 
@@ -1713,6 +2205,23 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgMemoriaListasCortas.setOnCheckedChangeListener(this);
         rdgMemoriaTendenciaRememorar.setOnCheckedChangeListener(this);
         rdgMemoriaOlvidosBenignos.setOnCheckedChangeListener(this);
+
+        rdgOrientacionCalle.setOnCheckedChangeListener(this);
+        rdgOrientacionCasa.setOnCheckedChangeListener(this);
+        rdgOrientacionEntorno.setOnCheckedChangeListener(this);
+
+
+        rdgPersonalidadRetraimiento.setOnCheckedChangeListener(this);
+        rdgPersonalidadEgocentrismo.setOnCheckedChangeListener(this);
+        rdgPersonalidadPerdidaInteres.setOnCheckedChangeListener(this);
+        rdgPersonalidadAfectividadEmbotada.setOnCheckedChangeListener(this);
+        rdgPersonalidadPerturbacionEmocional.setOnCheckedChangeListener(this);
+        rdgPersonalidadHilaridadInapropiada.setOnCheckedChangeListener(this);
+        rdgPersonalidadRespuestaEmocional.setOnCheckedChangeListener(this);
+        rdgPersonalidadIndiscrecionesSexuales.setOnCheckedChangeListener(this);
+        rdgPersonalidadFaltaInteres.setOnCheckedChangeListener(this);
+        rdgPersonalidadDisminucionIniciativa.setOnCheckedChangeListener(this);
+        rdgPersonalidadHiperactividadJustificada.setOnCheckedChangeListener(this);
 
 
 
@@ -2014,12 +2523,35 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.rdgAnimoSonrisa:
                 var_seleccion="animosonrisa";
                 stateList.add(b);
-                //nameTest = "FAST";
-                //puntaje = "7e";
+
                 sintomasList.add(var_seleccion);
-                //nameTestList.add(nameTest);
-                //puntajeList.add(puntaje);
+
                 break;
+
+            //ORIENTACION
+
+            case R.id.rdgOrientacionCalle:
+                var_seleccion="orientacioncalle";
+                stateList.add(b);
+
+                sintomasList.add(var_seleccion);
+
+                break;
+            case R.id.rdgOrientacionCasa:
+                var_seleccion="orientacioncasa";
+                stateList.add(b);
+
+                sintomasList.add(var_seleccion);
+
+                break;
+            case R.id.rdgOrientacionEntorno:
+                var_seleccion="orientacionentorno";
+                stateList.add(b);
+
+                sintomasList.add(var_seleccion);
+
+                break;
+
 
             //MEDICACION
             case  R.id.rdgMedicacionRutinario:
@@ -2064,6 +2596,12 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.rdgPersonalidadRespuestaEmocional:
                 var_seleccion="personalidadrespuestaemocional";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+                break;
+
+            case R.id.rdgPersonalidadIndiscrecionesSexuales:
+                var_seleccion="personalidadindiscrecionessexuales";
                 stateList.add(b);
                 sintomasList.add(var_seleccion);
                 break;

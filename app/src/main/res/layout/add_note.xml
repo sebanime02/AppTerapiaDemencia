@@ -284,6 +284,16 @@
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
 
                             />
+
+                        <ImageButton
+
+                            android:src="@mipmap/orientation72px"
+                            android:id="@+id/btn_orientation"
+                            android:background="@color/material_deepblue"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                            />
                     </TableRow>
                     <TableRow android:layout_height="match_parent"
                         android:layout_width="match_parent">
@@ -317,6 +327,18 @@
                             android:background="@color/gray_soft"
                             android:text="@string/addnote_higiene"
                             android:textColor="@color/negro"
+                            android:textAlignment="center"
+                            android:fontFamily="sans-serif"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+
+                            />
+
+                        <TextView
+                            android:layout_height="match_parent"
+                            android:background="@color/material_deepblue"
+                            android:text="@string/addnote_orientacion"
+                            android:textColor="@color/white"
                             android:textAlignment="center"
                             android:fontFamily="sans-serif"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -378,7 +400,7 @@
 
                         android:id="@+id/textView3" />
 
-                    <RadioButton
+                    <CheckBox
                     android:id="@+id/rdgTardia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -778,6 +800,59 @@
                  </RadioGroup>
 
 
+
+                 <!--  ORIENTACION -->
+                 <RadioGroup
+                     android:orientation="vertical"
+                     android:id="@+id/rdgOrientacion"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:visibility="gone"
+
+                     >
+
+
+
+
+
+                     <android.support.v7.widget.AppCompatCheckBox
+                         android:id="@+id/rdgOrientacionCasa"
+                         android:text="@string/orientacion_casa"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:textSize="@dimen/small_text_size"
+                         android:fontFamily="sans-serif"
+                         android:paddingBottom="@dimen/activity_vertical_margin"
+                         android:textStyle="bold"
+                         />
+
+                     <android.support.v7.widget.AppCompatCheckBox
+                         android:id="@+id/rdgOrientacionCalle"
+                         android:text="@string/orientacion_calles"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:textSize="@dimen/small_text_size"
+                         android:fontFamily="sans-serif"
+                         android:paddingBottom="@dimen/activity_vertical_margin"
+                         android:textStyle="bold"
+                         />
+                     <android.support.v7.widget.AppCompatCheckBox
+                         android:id="@+id/rdgOrientacionEntorno"
+                         android:text="@string/orientacion_entorno"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:textSize="@dimen/small_text_size"
+                         android:fontFamily="sans-serif"
+
+                         android:paddingBottom="@dimen/activity_vertical_margin"
+
+                         android:textStyle="bold"
+                         />
+
+
+                 </RadioGroup>
+
+
                  <!--- ESTADO DE ANIMO-->
                  <RadioGroup
                      android:orientation="vertical"
@@ -854,7 +929,7 @@
                      android:id="@+id/rdgPersonalidad"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-
+                     android:visibility="gone"
 
 
                      >
