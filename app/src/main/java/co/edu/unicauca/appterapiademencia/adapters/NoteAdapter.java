@@ -20,9 +20,7 @@ import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.events.ItemNoteEvent;
-import co.edu.unicauca.appterapiademencia.lib.EventBus;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
-import co.edu.unicauca.appterapiademencia.principal.notes.NotesPresenterImplementation;
 
 /**
  * Created by SEBAS on 12/11/2016.
@@ -125,6 +123,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             case "alimentacion":
                 description="Independencia Alimentaria";
                 ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/eating72px").toString();
+
+                break;
+            case "orientacion":
+                description="Orientación";
+                ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/orientation72px").toString();
 
                 break;
             case "caidas":

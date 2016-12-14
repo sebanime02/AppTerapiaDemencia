@@ -34,5 +34,6 @@ public interface PrincipalListRepository {
 
     void deleteNote(Long idnote);
     void aprobeNote(Long idnote);
+    String getFastScore(Long id);
 
 }

@@ -1,6 +1,5 @@
 package co.edu.unicauca.appterapiademencia.domain.dao;
 
-import android.app.Notification;
 import android.content.Context;
 import android.util.Log;
 
@@ -33,7 +32,7 @@ public class GreenDaoHelper {
 
     private static class SingletonHolder{
 
-        private static final GreenDaoHelper INSTANCE = new GreenDaoHelper();
+     private static final GreenDaoHelper INSTANCE = new GreenDaoHelper();
 
     }
     public static GreenDaoHelper getInstance(){
@@ -42,11 +41,7 @@ public class GreenDaoHelper {
 
     private GreenDaoHelper()
     {
-        /*
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(SetupActivity.getContext(), DB_NAME);
-        Database db = helper.getWritableDb();
-        this.daoSession = new co.edu.unicauca.appterapiademencia.domain.dao.DaoMaster(db).newSession();
-        */
+
     }
 
     public  DaoSession getDaoSession(){
@@ -394,6 +389,139 @@ public class GreenDaoHelper {
         */
 
 
+
+    }
+
+    public String getFASTScore(Long patientid)
+    {
+        Log.e("fast score","patient id "+patientid);
+        List<Scale> scaleList = new ArrayList<Scale>();
+        List<Sintoma> sintomaList;
+        List<Scale> totalList;
+        int x=10;
+        int w=10;
+        int z=10;
+        int t=10;
+
+
+
+        Log.e("fast score","Entro a calcular el FAST score");
+        QueryBuilder sintomaQueryBuilder = getSintomaDao().queryBuilder();
+
+
+        sintomaQueryBuilder.where(SintomaDao.Properties.Activo.eq(true),SintomaDao.Properties.PatientId.eq(patientid));
+        sintomaList = sintomaQueryBuilder.list();
+
+        QueryBuilder<Scale> scaleQueryBuilder = getScaleDao().queryBuilder();
+        //scaleQueryBuilder.where(ScaleDao.Properties.Escalaname.eq("Blessed"));
+
+
+        for(int y=0;y<sintomaList.size();y++)
+        {
+
+            Log.e("fast score","paciente: "+sintomaList.get(y).getPatientId());
+            Log.e("fast score","sintoma: "+sintomaList.get(y).getSigno());
+
+            for(int m=0;m<sintomaList.get(y).getScaleList().size();m++)
+
+            {
+                String escalatexto = sintomaList.get(y).getScaleList().get(m).getEscalaname().toString();
+                Log.e("fast score","Entre al for sintomaList");
+                Log.e("fast score","getNombreEscala: "+escalatexto);
+
+                if(escalatexto.matches("FAST"))
+
+                {
+                    Log.e("blessed score","Es blesssed");
+                    Log.e("blessed score","getNombreEscala: "+sintomaList.get(y).getScaleList().get(m).getEscalaname());
+                    Log.e("blessed score","getPuntaje: "+sintomaList.get(y).getScaleList().get(m).getPuntaje());
+                    try {
+                        z = Integer.parseInt(sintomaList.get(y).getScaleList().get(m).getPuntaje());
+
+                        if (x < z)
+                        {
+                            x = z;
+                        }
+
+                    }catch (Exception e)
+                    {
+
+                    }
+
+
+
+
+                }
+                        w = x;
+                }
+                    t = w;
+                    Log.e("fast score ","acumulado w: "+t);
+
+
+            }
+
+
+        String fastScore;
+
+        fastScore="1";
+
+
+        switch (t)
+        {
+            case 10:
+                fastScore="1";
+            break;
+            case 20:
+                fastScore="2";
+            break;
+            case 30:
+                fastScore="3";
+                break;
+            case 40:
+                fastScore="4";
+                break;
+            case 50:
+                fastScore="5";
+                break;
+            case 61:
+                fastScore="6a";
+                break;
+            case 62:
+                fastScore="6b";
+                break;
+            case 63:
+                fastScore="6c";
+                break;
+            case 64:
+                fastScore="6d";
+                break;
+            case 65:
+                fastScore="6e";
+                break;
+            case 71:
+                fastScore="7a";
+                break;
+            case 72:
+                fastScore="7b";
+                break;
+            case 73:
+                fastScore="7c";
+                break;
+            case 74:
+                fastScore="7d";
+                break;
+            case 75:
+                fastScore="7e";
+                break;
+            case 76:
+                fastScore="7f";
+                break;
+
+
+        }
+
+
+        return fastScore;
 
     }
 

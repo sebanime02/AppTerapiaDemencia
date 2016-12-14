@@ -13,5 +13,7 @@ public interface PatientProfileView  {
     void getPatientData(Long id);
     void getBlessedScore(Long id);
     void showBlessedScore(Double score,String comentario,String color);
+    void getFastScore(Long id);
+    void showFastScore(String score);
 
 }

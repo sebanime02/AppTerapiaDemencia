@@ -645,9 +645,9 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                                 animosonrisa = helper.getSintoma(patientid, "Blessed", "animo", "animosonrisa");
                                 animosonrisa.setActivo(stateList.get(i));
                                 if (stateList.get(i).booleanValue()) {
-                                    animosonrisa.getScaleList().get(0).setPuntaje("7e");
+                                    //animosonrisa.getScaleList().get(0).setPuntaje("7e");
                                 } else {
-                                    animosonrisa.getScaleList().get(0).setPuntaje("0");
+                                    //animosonrisa.getScaleList().get(0).setPuntaje("0");
 
                                 }
                                 sintomaDao.update(animosonrisa);
@@ -756,22 +756,28 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                         case "memoriaolvidosbenignos":
 
                             try {
-                                Sintoma memoriaolvidosbenignos;
-                                memoriaolvidosbenignos = helper.getSintoma(patientid, "Blessed", "memoria", "memoriaolvidosbenignos");
-                                memoriaolvidosbenignos.setActivo(stateList.get(i));
+                                Sintoma memoriaolvidosbenignos1,memoriaolvidosbenignos2;
+                                memoriaolvidosbenignos1 = helper.getSintoma(patientid, "Blessed", "memoria", "memoriaolvidosbenignos");
+                                memoriaolvidosbenignos1.setActivo(stateList.get(i));
+                                memoriaolvidosbenignos2 = helper.getSintoma(patientid, "FAST", "memoria", "memoriaolvidosbenignos");
+                                memoriaolvidosbenignos2.setActivo(stateList.get(i));
 
                                 if (stateList.get(i).booleanValue()) {
-                                    memoriaolvidosbenignos.getScaleList().get(0).setPuntaje("1.0");
+                                    memoriaolvidosbenignos1.getScaleList().get(0).setPuntaje("1.0");
 
                                 } else {
-                                    memoriaolvidosbenignos.getScaleList().get(0).setPuntaje("0.0");
+                                    memoriaolvidosbenignos1.getScaleList().get(0).setPuntaje("0.0");
 
                                 }
 
-                                sintomaDao.update(memoriaolvidosbenignos);
-                                scaleDao.update(memoriaolvidosbenignos.getScaleList().get(0));
+                                sintomaDao.update(memoriaolvidosbenignos1);
+                                sintomaDao.update(memoriaolvidosbenignos2);
+                                scaleDao.update(memoriaolvidosbenignos1.getScaleList().get(0));
+                                scaleDao.update(memoriaolvidosbenignos2.getScaleList().get(0));
 
-                                Log.e("guardado y actualizado", memoriaolvidosbenignos.getScaleList().get(0).getPuntaje().toString());
+
+                                Log.e("guardado y actualizado", memoriaolvidosbenignos1.getScaleList().get(0).getPuntaje().toString());
+                                Log.e("guardado y actualizado", memoriaolvidosbenignos2.getScaleList().get(0).getPuntaje().toString());
 
 
                             } catch (Exception e) {

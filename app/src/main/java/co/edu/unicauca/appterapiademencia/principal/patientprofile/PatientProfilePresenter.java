@@ -17,5 +17,7 @@ public interface PatientProfilePresenter {
     void onResume();
     void getBlessedScore(Long id);
     void onEventMainThread(BlessedEvent event);
+    void getFastScore(Long id);
+
 
 }

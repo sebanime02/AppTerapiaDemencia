@@ -62,6 +62,15 @@
         </TableRow>
 
 
+        <TableRow android:gravity="center_horizontal">
+            <ImageButton
+                android:src="@mipmap/medication72px"/>
+        </TableRow>
+        <TableRow android:gravity="center_horizontal">
+            <TextView android:fontFamily="sans-serif" android:textStyle="bold" android:background="@color/md_material_blue_800" android:textColor="@color/white" android:textAlignment="center" android:id="@+id/count_medicacion" android:text="0"/>
+        </TableRow>
+
+
 
         <TableRow android:gravity="center_horizontal">
             <ImageButton android:src="@mipmap/movility48px"/>
@@ -107,6 +116,47 @@
             <TextView  android:textColor="@color/white" android:background="@color/gray" android:textAlignment="center" android:id="@+id/count_higiene" android:text="0"/>
 
         </TableRow>
+
+
+
+        <TableRow android:gravity="center_horizontal">
+            <ImageButton
+                android:src="@mipmap/clothes72px"/>
+        </TableRow>
+        <TableRow android:gravity="center_horizontal">
+            <TextView  android:textColor="@color/white" android:background="@color/material_brown" android:textAlignment="center" android:id="@+id/count_vestimenta" android:text="0"/>
+
+        </TableRow>
+
+
+        <TableRow android:gravity="center_horizontal">
+            <ImageButton
+                android:src="@mipmap/memory72px"/>
+        </TableRow>
+        <TableRow android:gravity="center_horizontal">
+            <TextView  android:textColor="@color/white" android:background="@color/material_teal" android:textAlignment="center" android:id="@+id/count_memoria" android:text="0"/>
+
+        </TableRow>
+
+
+        <TableRow android:gravity="center_horizontal">
+            <ImageButton
+                android:src="@mipmap/orientation72px"/>
+        </TableRow>
+        <TableRow android:gravity="center_horizontal">
+            <TextView  android:textColor="@color/white" android:background="@color/material_green" android:textAlignment="center" android:id="@+id/count_orientacion" android:text="0"/>
+
+        </TableRow>
+
+        <TableRow android:gravity="center_horizontal">
+            <ImageButton
+                android:src="@mipmap/language72px"/>
+        </TableRow>
+        <TableRow android:gravity="center_horizontal">
+            <TextView  android:textColor="@color/white" android:background="@color/material_red" android:textAlignment="center" android:id="@+id/count_lenguaje" android:text="0"/>
+
+        </TableRow>
+
 
 
     </TableLayout>

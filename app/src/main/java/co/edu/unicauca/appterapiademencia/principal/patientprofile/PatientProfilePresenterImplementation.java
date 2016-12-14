@@ -1,9 +1,7 @@
 package co.edu.unicauca.appterapiademencia.principal.patientprofile;
 
-import android.content.res.Resources;
 import android.util.Log;
 
-import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.events.BlessedEvent;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
@@ -114,6 +112,16 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
             case BlessedEvent.onBlessedScoreError:
 
             break;
+        }
+    }
+
+    @Override
+    public void getFastScore(Long id) {
+        String score;
+        score = principalListInteractor.getFastScore(id);
+        if(patientProfileView!=null)
+        {
+            patientProfileView.showFastScore(score);
         }
     }
 }

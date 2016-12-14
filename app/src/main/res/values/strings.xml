@@ -102,10 +102,10 @@
     <!--TAB NOTE INFORMATION-->
     <string name="txt_note_instructions">Ingrese una nota con el Eve</string>
     <string name="hint_note_title">1. Titulo de la Nota</string>
-    <string name="note_type">1. Escoga El tipo de Seguimiento</string>
+    <string name="note_type">1. Escoga un Evento o Categoria de Actividad Básica o Instrumental de la vida diaria</string>
     <string name="hint_note_description">2. Describa El Evento...</string>
     <string name="txt_note_late">3. Marque Si La Nota es Tardia </string>
-    <string name="txt_note_color">4. Seleccione los signos o sintomas que presenta actualmente el adulto mayor</string>
+    <string name="txt_note_color">4. Si desea puede Actualizar los Signos, Sintomas y Hábitos actuales del adulto mayor</string>
     <string name="rdg_mejora">MEJORIA</string>
     <string name="rdg_neutral">NEUTRO</string>
     <string name="rdg_deterioro">DETERIORO O RETROCESO</string>
@@ -125,7 +125,7 @@
     <string name="add_alimentacion">Hábitos de\n Alimentación</string>
     <string name="add_health">Estado de \n Ánimo</string>
     <string name="add_changebehaviour">Personalidad \ny Conducta</string>
-    <string name="add_medication">Medicamentos</string>
+    <string name="add_medication">Medicación</string>
 
     <string name="addnote_higiene">Higiene y\nAseo</string>
     <string name="addnote_vestimenta">Vestimenta y\nActividades \nPersonales</string>

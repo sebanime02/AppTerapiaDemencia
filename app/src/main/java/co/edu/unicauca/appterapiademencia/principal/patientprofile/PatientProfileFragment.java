@@ -44,7 +44,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private String eps,sindromes,antecedentes,observaciones,vision,escritura,dibujo;
     private int visionState,escrituraState,dibujoState;
     private TextView txtEps,txtSindromes,txtAntecedentes,txtObservaciones,txtVision,txtEscritura,txtDibujo;
-    private TextView txtPuntajeBlessed,txtComentarioBlessed;
+    private TextView txtPuntajeBlessed,txtComentarioBlessed,txtPuntajeFast;
     private LinearLayout containerBlessed;
     private Long identity;
     private int imageSize;
@@ -57,6 +57,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private Double blessedCount;
     private String blessedComentario;
     private String blessedColor;
+    private String fastCount;
     private Long idsistema;
 
 
@@ -107,6 +108,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtPuntajeBlessed = (TextView) view.findViewById(R.id.puntajeBlessed);
         txtComentarioBlessed = (TextView) view.findViewById(R.id.demenciaBlessed);
         containerBlessed = (LinearLayout) view.findViewById(R.id.containerBlessed);
+        txtPuntajeFast = (TextView) view.findViewById(R.id.puntajeFAST);
 
 
 
@@ -133,12 +135,14 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
 
         getPatientData(idpatient);
         getBlessedScore(idsistema);
+        getFastScore(idsistema);
         txtName.setText(this.name);
         txtAge.setText("Nació en: "+this.birthday);
         txtIdentity.setText("  Cédula: "+this.identity);
         txtPuntajeBlessed.setText(this.blessedCount+"");
 
         txtComentarioBlessed.setText(this.blessedComentario);
+        txtPuntajeFast.setText(this.fastCount+"");
 
         int imageSize = view.getResources().getDimensionPixelSize(R.dimen.img_patient_profile_size);
 
@@ -200,6 +204,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         }
         catch (Exception e){}
         getBlessedScore(idsistema);
+        getFastScore(idsistema);
         txtName.setText(this.name);
         txtAge.setText("Nació en: "+this.birthday);
         txtIdentity.setText("  Cédula: "+this.identity);
@@ -322,6 +327,17 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         this.blessedColor = color;
 
     }
+
+    @Override
+    public void getFastScore(Long id) {
+        patientProfilePresenter.getFastScore(id);
+    }
+
+    @Override
+    public void showFastScore(String score) {
+        this.fastCount = score;
+    }
+
     public void showBlessedError()
     {
 

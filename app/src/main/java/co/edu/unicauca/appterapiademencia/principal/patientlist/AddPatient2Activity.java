@@ -1174,11 +1174,11 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
 
 
-                                Scale scalehigieneayudabanarse = new Scale(null,sintomahigieneayudabanarse.getId(),"FAST","6b");
-                                Scale scalehigieneayudainodoro = new Scale(null,sintomahigieneayudainodoro.getId(),"FAST","6c");
-                                Scale scalehigieneayudasoltarbano = new Scale(null,sintomahigieneayudasoltarbano.getId(),"FAST","6c");
-                                Scale scaleincontinensiaurinaria = new Scale(null,sintomaincontinensiaurinaria.getId(),"FAST","6d");
-                                Scale scalehigieneayudaincontinensiafecal = new Scale(null,sintomahigieneayudaincontinensiafecal.getId(),"FAST","6e");
+                                Scale scalehigieneayudabanarse = new Scale(null,sintomahigieneayudabanarse.getId(),"FAST","62");
+                                Scale scalehigieneayudainodoro = new Scale(null,sintomahigieneayudainodoro.getId(),"FAST","63");
+                                Scale scalehigieneayudasoltarbano = new Scale(null,sintomahigieneayudasoltarbano.getId(),"FAST","63");
+                                Scale scaleincontinensiaurinaria = new Scale(null,sintomaincontinensiaurinaria.getId(),"FAST","64");
+                                Scale scalehigieneayudaincontinensiafecal = new Scale(null,sintomahigieneayudaincontinensiafecal.getId(),"FAST","65");
 
                                 escalaDao.insert(scalehigieneayudabanarse);
                                 escalaDao.insert(scalehigieneayudainodoro);
@@ -1187,26 +1187,26 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 escalaDao.insert(scalehigieneayudaincontinensiafecal);
 
 
-                                Scale scalemovilidadsitioslejanos = new Scale(null,sintomamovilidadsitioslejanos.getId(),"FAST","3");
-                                Scale scalemovilidadcaminar = new Scale(null,sintomamovilidadcaminar.getId(),"FAST","7c");
-                                Scale scalemovilidadsentarse = new Scale(null,sintomamovilidadsentarse.getId(),"FAST","7d");
-                                Scale scalemovilidadcabeza = new Scale(null,sintomamovilidadcabeza.getId(),"FAST","7e");
+                                Scale scalemovilidadsitioslejanos = new Scale(null,sintomamovilidadsitioslejanos.getId(),"FAST","30");
+                                Scale scalemovilidadcaminar = new Scale(null,sintomamovilidadcaminar.getId(),"FAST","73");
+                                Scale scalemovilidadsentarse = new Scale(null,sintomamovilidadsentarse.getId(),"FAST","74");
+                                Scale scalemovilidadcabeza = new Scale(null,sintomamovilidadcabeza.getId(),"FAST","76");
                                 escalaDao.insert(scalemovilidadsitioslejanos);
                                 escalaDao.insert(scalemovilidadcaminar);
                                 escalaDao.insert(scalemovilidadsentarse);
                                 escalaDao.insert(scalemovilidadcabeza);
 
 
-                                Scale scalevestimentaactividades = new Scale(null,sintomavestimentaactividades.getId(),"FAST","4");
+                                Scale scalevestimentaactividades = new Scale(null,sintomavestimentaactividades.getId(),"FAST","40");
 
                                 Scale scaleincapacidadtareasdomesticas = new Scale(null,sintomaincapacidadtareasdomesticas.getId(),"Blessed","1.0");
                                 Scale scaleincapacidadpequenasdinero = new Scale(null,sintomaincapacidadpequenasdinero.getId(),"Blessed","1.0");
 
                                 Scale scalevestimentafallosocasionales = new Scale(null,sintomavestimentafallosocasionales.getId(),"Blessed","1.0");
-                                Scale scalevestimentaseleccionar = new Scale(null,sintomavestimentaseleccionar.getId(),"FAST","5");
+                                Scale scalevestimentaseleccionar = new Scale(null,sintomavestimentaseleccionar.getId(),"FAST","50");
 
                                 Scale scalevestimentasecuencia = new Scale(null,sintomavestimentasecuencia.getId(),"Blessed","2.0");
-                                Scale scalevestimentaayudavestirse = new Scale(null,sintomavestimentaayudavestirse.getId(),"FAST","6A");
+                                Scale scalevestimentaayudavestirse = new Scale(null,sintomavestimentaayudavestirse.getId(),"FAST","61");
                                 Scale scalevestimentaincapaz = new Scale(null,sintomavestimentaincapaz.getId(),"Blessed","3.0");
 
                                 escalaDao.insert(scalevestimentaactividades);
@@ -1218,13 +1218,13 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 escalaDao.insert(scalevestimentaayudavestirse);
                                 escalaDao.insert(scalevestimentaincapaz);
 
-                                Scale scalelenguajelimitado = new Scale(null,sintomalenguajelimitado.getId(),"FAST","7a");
-                                Scale scalelenguajepalabra = new Scale(null,sintomalenguajepalabra.getId(),"FAST","7b");
+                                Scale scalelenguajelimitado = new Scale(null,sintomalenguajelimitado.getId(),"FAST","71");
+                                Scale scalelenguajepalabra = new Scale(null,sintomalenguajepalabra.getId(),"FAST","72");
                                 escalaDao.insert(scalelenguajelimitado);
                                 escalaDao.insert(scalelenguajepalabra);
 
                                 Scale scalememoriatendenciarememorar = new Scale(null,sintomamemoriatendenciarememorar.getId(),"Blessed","1.0");
-                                Scale scalememoriaolvidosbenignos1 = new Scale(null,sintomamemoriaolvidosbenignos.getId(),"FAST","2");
+                                Scale scalememoriaolvidosbenignos1 = new Scale(null,sintomamemoriaolvidosbenignos.getId(),"FAST","20");
                                 Scale scalememoriaolvidosbenignos2 = new Scale(null,sintomamemoriaolvidosbenignos.getId(),"Blessed","1.0");
                                 Scale scalememorialistascortas = new Scale(null,sintomamemorialistascortas.getId(),"Blessed","1.0");
 
@@ -1253,7 +1253,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 escalaDao.insert(scalealimentaciondependientes);
 
 
-                                Scale scaleanimosonrisa = new Scale(null,sintomaanimosonrisa.getId(),"FAST","7e");
+                                Scale scaleanimosonrisa = new Scale(null,sintomaanimosonrisa.getId(),"FAST","75");
                                 escalaDao.insert(scaleanimosonrisa);
 
 

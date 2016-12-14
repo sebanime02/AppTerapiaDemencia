@@ -1,6 +1,5 @@
 package co.edu.unicauca.appterapiademencia.principal;
 
-import android.app.Notification;
 import android.util.Log;
 
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -18,7 +17,6 @@ import co.edu.unicauca.appterapiademencia.domain.dao.PatientDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.TipDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.UserDao;
 import co.edu.unicauca.appterapiademencia.events.BlessedEvent;
-import co.edu.unicauca.appterapiademencia.events.NoteEvent;
 import co.edu.unicauca.appterapiademencia.events.NotificationEvent;
 import co.edu.unicauca.appterapiademencia.events.PatientListEvent;
 import co.edu.unicauca.appterapiademencia.lib.EventBus;
@@ -278,6 +276,12 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
 
 
         }catch (Exception e){}
+    }
+
+    @Override
+    public String getFastScore(Long id) {
+
+         return helper.getFASTScore(id);
     }
 
 

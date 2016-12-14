@@ -95,6 +95,11 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
     }
 
     @Override
+    public String getFastScore(Long id) {
+        return principalListRepository.getFastScore(id);
+    }
+
+    @Override
     public Note getNote(Long idnote) {
         return principalListRepository.getNote(idnote);
     }

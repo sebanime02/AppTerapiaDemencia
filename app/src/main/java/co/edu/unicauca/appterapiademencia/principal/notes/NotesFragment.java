@@ -1,8 +1,6 @@
 package co.edu.unicauca.appterapiademencia.principal.notes;
 
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -24,7 +22,6 @@ import java.util.List;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.NoteAdapter;
 import co.edu.unicauca.appterapiademencia.domain.Note;
-import co.edu.unicauca.appterapiademencia.principal.MainActivity;
 
 /**
  * Created by SEBAS on 07/11/2016.
@@ -37,11 +34,12 @@ public class NotesFragment extends Fragment implements NotesView{
     private RecyclerView.Adapter newadapter;
     private RecyclerView.LayoutManager LManager;
     private NotesPresenterImplementation notesPresenterImplementation;
-    private TextView txt_empty,txt_caida,txt_movilidad,txt_alimentacion,txt_humor,txt_estadodeanimo,txt_higiene;
+    private TextView txt_empty,txt_caida,txt_movilidad,txt_alimentacion,txt_humor,txt_estadodeanimo,txt_higiene,txt_orientacion,txt_memoria,txt_lenguaje,txt_medicacion;
     private Long idpatient;
     private List<Note> noteList;
     private Intent ir_reg;
     private List<Note> list = new ArrayList<Note>();
+
     int movCount=0;
     int eatingCount=0;
     int fallCount=0;
@@ -51,8 +49,32 @@ public class NotesFragment extends Fragment implements NotesView{
     int vestimentaCount=0;
     int memoryCount=0;
     int languageCount=0;
+    int orientationCount=0;
+    int personalidadCount=0;
+
+
     private MaterialDialog dialog;
     private AlertDialog alertdialog;
+
+
+    public NotesFragment(){
+        this.noteList = noteList;
+        this.fallCount = fallCount;
+        this.eatingCount=eatingCount;
+        this.changeCount = changeCount;
+        this.estadodeanimoCount = estadodeanimoCount;
+        this.medicationCount = medicationCount;
+
+
+        this.languageCount = languageCount;
+        this.vestimentaCount = vestimentaCount;
+        this.memoryCount = medicationCount;
+        this.higieneCount = higieneCount;
+        this.orientationCount = orientationCount;
+        this.personalidadCount = personalidadCount;
+
+    }
+
 
     public int getMemoryCount() {
         return memoryCount;
@@ -86,21 +108,6 @@ public class NotesFragment extends Fragment implements NotesView{
         this.languageCount = languageCount;
     }
 
-    public NotesFragment(){
-        this.noteList = noteList;
-        this.fallCount = fallCount;
-        this.eatingCount=eatingCount;
-        this.changeCount = changeCount;
-        this.estadodeanimoCount = estadodeanimoCount;
-        this.medicationCount = medicationCount;
-
-
-        this.languageCount = languageCount;
-        this.vestimentaCount = vestimentaCount;
-        this.memoryCount = medicationCount;
-        this.higieneCount = higieneCount;
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -127,6 +134,11 @@ public class NotesFragment extends Fragment implements NotesView{
         txt_humor= (TextView) view.findViewById(R.id.count_humor);
         txt_estadodeanimo= (TextView) view.findViewById(R.id.count_salud);
         txt_higiene= (TextView) view.findViewById(R.id.count_higiene);
+        txt_orientacion = (TextView) view.findViewById(R.id.count_orientacion);
+        txt_medicacion = (TextView) view.findViewById(R.id.count_medicacion);
+        txt_lenguaje = (TextView) view.findViewById(R.id.count_lenguaje);
+        txt_memoria = (TextView) view.findViewById(R.id.count_memoria);
+
         txt_empty = (TextView) view.findViewById(R.id.txt_vacio_note);
 
 
@@ -181,6 +193,11 @@ public class NotesFragment extends Fragment implements NotesView{
             txt_alimentacion.setText(""+getEatingCount());
             txt_movilidad.setText(""+getMovCount());
             txt_estadodeanimo.setText(""+getEstadodeanimoCount());
+            txt_lenguaje.setText(""+getLanguageCount());
+            txt_medicacion.setText(""+getMedicationCount());
+            txt_orientacion.setText(""+getLanguageCount());
+            txt_memoria.setText(""+getMemoryCount());
+
             //callListenerText();
         } catch (Exception e) {
             adapter.notifyDataSetChanged();
@@ -272,6 +289,7 @@ public class NotesFragment extends Fragment implements NotesView{
         languageCount=0;
         vestimentaCount=0;
         memoryCount=0;
+        orientationCount=0;
 
 
         Log.e("addnote","de nuevo al fragment, show la lista, tamaño: "+list.size());
@@ -326,6 +344,10 @@ public class NotesFragment extends Fragment implements NotesView{
                 case "personalidad":
                     setChangeCount(changeCount+1);
                     break;
+                case "orientacion":
+                    setChangeCount(changeCount+1);
+                    break;
+
 
             }
             list.add(noteList.get(j));
@@ -388,7 +410,8 @@ public class NotesFragment extends Fragment implements NotesView{
         {
             return  false;
         }
-        else {
+        else
+        {
             return true;
         }
 
