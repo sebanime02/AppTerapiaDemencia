@@ -86,6 +86,7 @@ private EditText input_username,input_password_supervisor,input_completename,inp
                 actionBar = getSupportActionBar();
 
                 actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setTitle("Volver A Perfil de Usuario");
             }
         }
     }

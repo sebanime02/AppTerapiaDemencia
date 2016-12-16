@@ -16,9 +16,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import co.edu.unicauca.appterapiademencia.R;
+import co.edu.unicauca.appterapiademencia.domain.PreferenceTip;
 import co.edu.unicauca.appterapiademencia.domain.Tip;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
+import co.edu.unicauca.appterapiademencia.domain.dao.PreferenceTipDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.TipDao;
 import co.edu.unicauca.appterapiademencia.principal.MainActivity;
 
@@ -34,6 +36,7 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
     private Button btnSave;
     private GreenDaoHelper helper;
     private TipDao tipDao;
+    private PreferenceTipDao preferenceDao;
     private Toolbar toolbar;
     private ActionBar actionBar;
     private String[] tip;
@@ -49,6 +52,7 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
    {
        this.helper= GreenDaoHelper.getInstance();
        this.tipDao = helper.getTipDao();
+       this.preferenceDao = helper.getTipPreferenceDao();
    }
 
 
@@ -121,6 +125,7 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
 
                 edtTitle.setText(tip.getTitle());
                 edtDescription.setText(tip.getDescription());
+
                 try {
                     if(tip.getActive()){
                         switchNotifications.setChecked(true);
@@ -176,19 +181,26 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
                      else
                      {
                          Tip tip2;
+                         PreferenceTip preferenceTip;
                          if(iduser==null)
                          {
                              String id="1";
                              Long carerId= Long.parseLong(id);
-                             tip2 = new Tip(null,carerId,var_title,var_description,false,0);
+                             tip2 = new Tip(null,carerId,var_title,var_description,selectedNotifications,0);
+                             tipDao.insert(tip2);
+
 
                          }
                          else
                          {
-                            tip2 = new Tip(null,iduser,var_title,var_description,false,0);
+
+                             tip2 = new Tip(null,iduser,var_title,var_description,selectedNotifications,0);
+                             tipDao.insert(tip2);
+                             preferenceTip = new PreferenceTip(null,iduser,tip2.getId(),false);
+                             preferenceDao.insert(preferenceTip);
+
 
                          }
-                         tipDao.insert(tip2);
 
 
 

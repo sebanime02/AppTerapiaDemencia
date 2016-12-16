@@ -16,13 +16,10 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.io.File;
-import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
-import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
-import co.edu.unicauca.appterapiademencia.lib.EventBus;
 import co.edu.unicauca.appterapiademencia.principal.MainActivity;
 
 
@@ -251,9 +248,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
 
         if(GreenDaoHelper.getInstance().carerIdDetector()==false){
-            String username ="carer";
-            String password ="carer";
-            String completeName ="carer";
+            String username ="Cuidador";
+            String password ="Cuidador";
+            String completeName ="Cuidador";
             boolean accessType=false;
             User user = new User(null,username,password,completeName,accessType,"");
             GreenDaoHelper.getInstance().getUserDao().insert(user);

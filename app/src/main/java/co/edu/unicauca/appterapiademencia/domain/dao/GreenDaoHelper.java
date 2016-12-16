@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import co.edu.unicauca.appterapiademencia.domain.DetailFast;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.domain.PreferenceTip;
 import co.edu.unicauca.appterapiademencia.domain.Scale;
 import co.edu.unicauca.appterapiademencia.domain.Sintoma;
 import co.edu.unicauca.appterapiademencia.domain.Tip;
@@ -81,6 +81,7 @@ public class GreenDaoHelper {
     public ScaleDao getScaleDao(){return daoSession.getScaleDao();}
     public DetailFastDao getDetailFastDao(){return daoSession.getDetailFastDao();}
 
+    public PreferenceTipDao getTipPreferenceDao(){return daoSession.getPreferenceTipDao();}
 
 
     public User getUserInformation(String username)
@@ -535,6 +536,49 @@ public class GreenDaoHelper {
         return  noteList;
 
 
+    }
+
+    public int getLikesCount(Long idtip)
+    {
+        List<Tip> tipList;
+        Tip tip;
+        int count;
+        QueryBuilder<Tip> tipQueryBuilder= getTipDao().queryBuilder();
+        tipList = tipQueryBuilder.where(TipDao.Properties.Id.eq(idtip)).list();
+        tip = tipList.get(0);
+        count = tip.getLikes();
+        return count;
+
+    }
+    public void addLike(Long idtip)
+    {
+        List<Tip> tipList;
+        Tip tip;
+        int count;
+        int countadd;
+
+        QueryBuilder<Tip> tipQueryBuilder= getTipDao().queryBuilder();
+        tipList = tipQueryBuilder.where(TipDao.Properties.Id.eq(idtip)).list();
+        count = tipList.get(0).getLikes();
+
+        countadd = count+1;
+
+        tipList.get(0).setLikes(countadd);
+        getTipDao().update(tipList.get(0));
+    }
+
+    public PreferenceTip getPreferenceTip(Long idtip, Long iduser)
+    {
+        PreferenceTip preferenceTip;
+        List<PreferenceTip> preferenceTipList;
+
+
+        QueryBuilder<PreferenceTip> preferenceTipQueryBuilder= getTipPreferenceDao().queryBuilder();
+        preferenceTipQueryBuilder.where(PreferenceTipDao.Properties.TipId.eq(idtip));
+        preferenceTipQueryBuilder.where(PreferenceTipDao.Properties.UserId.eq(iduser));
+
+        preferenceTipList = preferenceTipQueryBuilder.list();
+        return preferenceTip = preferenceTipList.get(0);
     }
 
 

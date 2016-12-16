@@ -118,7 +118,7 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     public List<Tip> getTips() {
         List<Tip> tipList;
         queryBuildergeneral = tipDao.queryBuilder();
-        tipList = queryBuildergeneral.list();
+        tipList = queryBuildergeneral.orderDesc(TipDao.Properties.Likes).list();
         return tipList;
 
     }

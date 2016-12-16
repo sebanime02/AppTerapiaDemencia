@@ -11,18 +11,22 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import co.edu.unicauca.appterapiademencia.R;
+import co.edu.unicauca.appterapiademencia.domain.PreferenceTip;
 import co.edu.unicauca.appterapiademencia.domain.Tip;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
+import co.edu.unicauca.appterapiademencia.domain.dao.PreferenceTipDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.TipDao;
 import co.edu.unicauca.appterapiademencia.principal.MainActivity;
 
@@ -36,15 +40,23 @@ public class TipDetailActivity extends ActionBarActivity {
     private FloatingActionButton floatingActionButton;
     Bundle bundle;
     private GreenDaoHelper helper;
+    private PreferenceTipDao preferenceTipDao;
     private TipDao tipDao;
     private Long idtip;
     private Toolbar toolbar;
     private ActionBar actionBar;
+    private ImageButton btnMakeLike;
+    private TextView likeCount;
+    private SharedPreferences preferences;
+    private Boolean likeInteruptor = false;
+    private String username;
+    private Long iduser;
 
     public TipDetailActivity()
     {
         this.helper = GreenDaoHelper.getInstance();
         this.tipDao = helper.getTipDao();
+        this.preferenceTipDao = helper.getTipPreferenceDao();
 
     }
 
@@ -53,6 +65,8 @@ public class TipDetailActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_tip);
+        preferences = getSharedPreferences("appdata", Context.MODE_PRIVATE);
+
         bundle=getIntent().getExtras();
 
         idtip = bundle.getLong("idtip");
@@ -61,6 +75,8 @@ public class TipDetailActivity extends ActionBarActivity {
         tvAutor = (TextView) findViewById(R.id.detail_tip_autor);
         tvDescription = (TextView) findViewById(R.id.detail_tip_description);
         tvNotificaciones = (TextView) findViewById(R.id.detail_tip_notifications);
+        btnMakeLike = (ImageButton) findViewById(R.id.detail_make_like);
+        likeCount = (TextView) findViewById(R.id.detail_like_count);
 
         //textView=(TextView)findViewById(R.id.datos_tip);
 
@@ -100,6 +116,12 @@ public class TipDetailActivity extends ActionBarActivity {
 
         actionBar.setTitle(man.getTitle());
 
+        int likesCount;
+        likesCount = getLikesCount();
+        Log.e("tipdetail","likesCount"+likesCount);
+
+        likeCount.setText(String.valueOf(likesCount));
+
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +133,37 @@ public class TipDetailActivity extends ActionBarActivity {
                 overridePendingTransition(R.anim.left_in, R.anim.left_out);
             }
         });
+
+        btnMakeLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("tipdetail","Presiono el boton");
+                if(!likeInteruptor) {
+                    try {
+                        Log.e("tipdetail","interruptor en false");
+
+                        helper.addLike(idtip);
+                        reloadView();
+                        likeInteruptor = true;
+                        btnMakeLike.setEnabled(false);
+
+                    } catch (Exception e) {
+                        Log.e("tipdetail","error agregando like");
+
+                    }
+                }
+            }
+
+
+        });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        likeCount.setText(String.valueOf( getLikesCount()));
+    }
+
     public void onClick_delete_tip(View view)
     {
         new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Aceptar")
@@ -128,6 +180,31 @@ public class TipDetailActivity extends ActionBarActivity {
                 }).show();
     }
 
+
+
+    public void reloadView()
+    {
+        likeCount.setText(String.valueOf( getLikesCount()));
+    }
+
+    public int getLikesCount()
+    {
+        int likescount;
+        try {
+            likescount = helper.getLikesCount(idtip);
+
+        }catch (Exception e)
+        {
+            Log.e("tipdetail","error trayendo la cuenta de likes");
+            likescount= 0;
+        }
+        return likescount;
+    }
+
+
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         SharedPreferences loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
@@ -135,9 +212,11 @@ public class TipDetailActivity extends ActionBarActivity {
         {
             getMenuInflater().inflate(R.menu.menu_edit,menu);
             getMenuInflater().inflate(R.menu.menu_delete,menu);
+            getMenuInflater().inflate(R.menu.menu_favorite,menu);
+
         }
 
-        getMenuInflater().inflate(R.menu.menu_favorite,menu);
+
         return true;
     }
 
@@ -177,28 +256,61 @@ public class TipDetailActivity extends ActionBarActivity {
                         }).show()
                         ;
                 return true;
+
             case R.id.menu_favorito:
-                Tip tipfavorite =  helper.getTip(idtip);
-                if(tipfavorite.getFavorite().booleanValue())
-                {
-                    new MaterialDialog.Builder(this).title("Ya no es Favorito").positiveText(R.string.dialog_sucess_agree2).icon(getResources().getDrawable(R.drawable.ic_action_toggle_star)).show();
 
-                    //tipfavorite = helper.getTip(idtip);
-                    tipfavorite.setFavorite(false);
-                    tipDao.update(tipfavorite);
+                    try
+                    {
+                        idtip = bundle.getLong("idtip");
+                        username = preferences.getString("username","Nombre de Usuario");
 
-                }
-                else
-                {
+                        iduser = helper.getUserInformation(username).getId();
+                    }catch (Exception e)
+                    {
+                        Log.e("tipdetail","Error al traer iduser y el idtip");
+                        return false;
+                    }
 
-                    //tipfavorite = helper.getTip(idtip);
-                    tipfavorite.setFavorite(true);
-                    tipDao.update(tipfavorite);
-                    new MaterialDialog.Builder(this).title("Tip Agregado a Favoritos!").positiveText(R.string.dialog_sucess_agree2).icon(getResources().getDrawable(R.drawable.ic_action_toggle_star)).show();
+                    Log.e("tipdetail","iduser "+iduser);
+                    Log.e("tipdetail","idtip "+idtip);
 
-                }
+                    try {
+                        PreferenceTip preferenceTip =  helper.getPreferenceTip(idtip,iduser);
 
-                return true;
+                        if(preferenceTip.getFavorite())
+                        {
+                            Log.e("tipdetail","el preference tip esta en true");
+
+
+                            new MaterialDialog.Builder(this).title("Ya no es Favorito").positiveText(R.string.dialog_sucess_agree2).icon(getResources().getDrawable(R.drawable.ic_action_toggle_star)).show();
+
+                            //tipfavorite = helper.getTip(idtip);
+                            preferenceTip.setFavorite(false);
+                            preferenceTipDao.update(preferenceTip);
+
+                        }
+                        else
+                        {
+                            Log.e("tipdetail","el preference tip esta en false");
+
+                            //tipfavorite = helper.getTip(idtip);
+                            preferenceTip.setFavorite(true);
+                            preferenceTipDao.update(preferenceTip);
+                            new MaterialDialog.Builder(this).title("Tip Agregado a Favoritos!").positiveText(R.string.dialog_sucess_agree2).icon(getResources().getDrawable(R.drawable.ic_action_toggle_star)).show();
+
+                        }
+                        return true;
+                    }catch (Exception e)
+                    {
+                        Log.e("tipdetail","Error al traer el preference tip");
+
+                        return false;
+                    }
+
+
+
+
+
 
             default:
                 return super.onOptionsItemSelected(item);

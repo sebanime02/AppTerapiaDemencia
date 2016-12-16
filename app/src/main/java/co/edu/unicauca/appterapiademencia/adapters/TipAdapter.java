@@ -1,7 +1,9 @@
 package co.edu.unicauca.appterapiademencia.adapters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
+import co.edu.unicauca.appterapiademencia.domain.PreferenceTip;
 import co.edu.unicauca.appterapiademencia.domain.Tip;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
@@ -31,6 +34,11 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
     private List<User> userList;
     private GreenDaoHelper helper;
     private String description;
+    private SharedPreferences preferences;
+    private String username;
+    private Long iduser;
+    private Long idtip;
+
 
     public TipAdapter(List<Tip> tipList, Activity activity){
         super();
@@ -38,6 +46,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
         layoutInflater = activity.getLayoutInflater();
         this.activity = activity;
         this.helper = GreenDaoHelper.getInstance();
+        preferences = activity.getSharedPreferences("appdata", Context.MODE_PRIVATE);
 
 
     }
@@ -54,10 +63,52 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
         String title = tipList.get(position).getTitle().toString();
         String description = tipList.get(position).getDescription().toString();
         Boolean noteState = tipList.get(position).getActive().booleanValue();
-        Boolean favoriteState = tipList.get(position).getFavorite().booleanValue();
+        int likesCount = tipList.get(position).getLikes();
+
+        try {
+            User user;
+
+            username = preferences.getString("username","Nombre de Usuario");
+
+
+            user  = helper.getUserInformation(username);
+
+            iduser = user.getId();
+            idtip = getItemId(position);
+
+            PreferenceTip preferenceTip = helper.getPreferenceTip(idtip,iduser);
+            Boolean favoriteState;
+
+            favoriteState = preferenceTip.getFavorite();
+
+            Log.e("favoritestate",""+favoriteState);
+
+            if (favoriteState==true)
+            {
+                holder.imgFavorite.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                holder.imgFavorite.setVisibility(View.GONE);
+            }
+
+        }catch (Exception e){
+
+        }
+
+
 
         holder.txtTitle.setText(title);
         holder.txtDescription.setText(description);
+
+        if(likesCount==0)
+        {
+            holder.txtLikesCount.setText(" 0 ");
+        }
+        else
+        {
+            holder.txtLikesCount.setText("+"+likesCount);
+        }
 
 
         //try
@@ -76,16 +127,13 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
        // }
        // try {
 
-            Log.e("favoritestate",""+favoriteState);
 
-            if (favoriteState==true)
-            {
-                holder.imgFavorite.setVisibility(View.VISIBLE);
-            }
-            else
-            {
-                holder.imgFavorite.setVisibility(View.GONE);
-            }
+
+
+
+
+
+
        // }catch (Exception e)
        // {
           //  holder.imgFavorite.setVisibility(View.GONE);
@@ -120,6 +168,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
         ImageView imgState;
         CardView cardView;
         ImageView imgFavorite;
+        TextView txtLikesCount;
 
 
 
@@ -131,6 +180,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
             imgState = (ImageView) itemView.findViewById(R.id.tip_state);
             cardView = (CardView) itemView.findViewById(R.id.tipCardView);
             imgFavorite = (ImageView) itemView.findViewById(R.id.tip_favorite);
+            txtLikesCount = (TextView) itemView.findViewById(R.id.tip_likes);
 
         }
 
@@ -141,6 +191,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
 
             Intent intent=new Intent(activity,TipDetailActivity.class);
             intent.putExtra("idtip",TipAdapter.this.getItemId(getPosition()));
+
             view.getContext().startActivity(intent);
 
             activity.overridePendingTransition(R.anim.left_in, R.anim.left_out);

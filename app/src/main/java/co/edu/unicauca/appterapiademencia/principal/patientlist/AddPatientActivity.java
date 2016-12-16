@@ -307,12 +307,13 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
         Log.e("Agregar paciente","Presiono el boton siguiente");
 
-        if(validar(edt_id.getText().toString(),btn_fecha.getText().toString(),edt_nomb.getText().toString())==false)
+        if(validar(edt_id.getText().toString(),btn_fecha.getText().toString(),edt_nomb.getText().toString(),var_sexo)==false)
         {
-            new MaterialDialog.Builder(this).title("Campos Obligagorios Faltantes").content("Debe poner cédula, fecha de nacimiento y nombre completo").positiveText(R.string.dialog_succes_agree).show();
+            new MaterialDialog.Builder(this).title("Campos Obligagorios Faltantes").content("Debe Escribir Cédula, Fecha de Nacimiento, Nombre Completo y Sexo").positiveText(R.string.dialog_succes_agree).show();
             //Toast.makeText(this,"Debe poner cédula, fecha de nacimiento y nombre completo",Toast.LENGTH_LONG).show();
             //edt_id.setError("Obligatorio");
             //edt_nomb.setError("Obligatorio");
+
             btn_fecha.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.red_dark));
 
             Log.e("Agregar paciente","faltan campos obligatorios");
@@ -457,8 +458,8 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         btn_fecha.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.negro));
     }
 
-    public Boolean validar(String id, String fecha, String genero) {
-        if (id.equals("")  || fecha.equals("") || genero.equals("") || fecha.equals("DD/MM/AAAA")) {
+    public Boolean validar(String id, String fecha, String genero,String sexo) {
+        if (id.equals("")  || fecha.equals("") || genero.equals("") || fecha.equals("DD/MM/AAAA") || sexo.equals(null)) {
             return false;
         }else {
             return true;
