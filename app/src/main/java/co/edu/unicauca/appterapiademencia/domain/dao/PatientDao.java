@@ -26,7 +26,7 @@ public class PatientDao extends AbstractDao<Patient, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
-        public final static Property Sex = new Property(2, Boolean.class, "sex", false, "SEX");
+        public final static Property Sex = new Property(2, String.class, "sex", false, "SEX");
         public final static Property Birthday = new Property(3, String.class, "birthday", false, "BIRTHDAY");
         public final static Property Photopath = new Property(4, String.class, "photopath", false, "PHOTOPATH");
         public final static Property Eps = new Property(5, String.class, "eps", false, "EPS");
@@ -59,7 +59,7 @@ public class PatientDao extends AbstractDao<Patient, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"PATIENT\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"NAME\" TEXT NOT NULL ," + // 1: name
-                "\"SEX\" INTEGER," + // 2: sex
+                "\"SEX\" TEXT," + // 2: sex
                 "\"BIRTHDAY\" TEXT NOT NULL ," + // 3: birthday
                 "\"PHOTOPATH\" TEXT," + // 4: photopath
                 "\"EPS\" TEXT," + // 5: eps
@@ -90,9 +90,9 @@ public class PatientDao extends AbstractDao<Patient, Long> {
         }
         stmt.bindString(2, entity.getName());
  
-        Boolean sex = entity.getSex();
+        String sex = entity.getSex();
         if (sex != null) {
-            stmt.bindLong(3, sex ? 1L: 0L);
+            stmt.bindString(3, sex);
         }
         stmt.bindString(4, entity.getBirthday());
  
@@ -158,9 +158,9 @@ public class PatientDao extends AbstractDao<Patient, Long> {
         }
         stmt.bindString(2, entity.getName());
  
-        Boolean sex = entity.getSex();
+        String sex = entity.getSex();
         if (sex != null) {
-            stmt.bindLong(3, sex ? 1L: 0L);
+            stmt.bindString(3, sex);
         }
         stmt.bindString(4, entity.getBirthday());
  
@@ -232,7 +232,7 @@ public class PatientDao extends AbstractDao<Patient, Long> {
         Patient entity = new Patient( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getString(offset + 1), // name
-            cursor.isNull(offset + 2) ? null : cursor.getShort(offset + 2) != 0, // sex
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // sex
             cursor.getString(offset + 3), // birthday
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // photopath
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // eps
@@ -253,7 +253,7 @@ public class PatientDao extends AbstractDao<Patient, Long> {
     public void readEntity(Cursor cursor, Patient entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setName(cursor.getString(offset + 1));
-        entity.setSex(cursor.isNull(offset + 2) ? null : cursor.getShort(offset + 2) != 0);
+        entity.setSex(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setBirthday(cursor.getString(offset + 3));
         entity.setPhotopath(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setEps(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));

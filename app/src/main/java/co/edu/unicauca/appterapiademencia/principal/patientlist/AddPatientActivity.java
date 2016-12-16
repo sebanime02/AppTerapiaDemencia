@@ -44,7 +44,6 @@ import java.util.Date;
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
-import co.edu.unicauca.appterapiademencia.domain.BlessedIncapacity;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.Sintoma;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
@@ -55,7 +54,7 @@ import co.edu.unicauca.appterapiademencia.util.BitmapUtil;
  * Created by ENF on 28/10/2016.
  */
 
-public class AddPatientActivity extends AppCompatActivity implements View.OnClickListener{
+public class AddPatientActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener{
 
     private String var_genero="";
     private String var_fecha="";
@@ -86,7 +85,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     private long identity;
     private ImageView img;
     private String[] datosb;
-    private Boolean var_sexo;
+    private String var_sexo;
     private RelativeLayout containerfoto;
     public static final String fotodefault = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser).toString();
 
@@ -140,6 +139,8 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        rdgSexo.setOnCheckedChangeListener(this);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -233,8 +234,6 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 Log.e("datosb7 ",""+datosb[7]);
 
 
-
-
                 txt_titulo1.setText("INFORMACIÓN DEL PACIENTE");
                 txt_titulo2.setText("");
                 actionBar.setTitle("Actualizando Paciente");
@@ -244,13 +243,15 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 edt_id.setEnabled(false);
                 edt_nomb.setText(patientone.getName());
                 //false hombre, true mujer
-                if(patientone.getSex())
+                if(patientone.getSex()=="masculino")
                 {
                     rdgSexoMasculino.setChecked(true);
+                    rdgSexoFemenino.setChecked(false);
                 }
                 else
                 {
                     rdgSexoFemenino.setChecked(true);
+                    rdgSexoMasculino.setChecked(false);
                 }
 
 
@@ -278,21 +279,6 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         }
 
 
-        rdgSexo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                if(checkedId==R.id.rdgSexoFemenino){
-
-                    var_sexo=true;
-
-                }
-                if(checkedId==R.id.rdgSexoMasculino){
-                    var_sexo=false;
-
-                }
-
-            }
-        });
 
         edt_id.addTextChangedListener(new TextWatcher() {
             @Override
@@ -346,7 +332,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
             if (actualizar.equals("actualizar")) {
                 Log.e("Agregar paciente","Listo para enviar los actualizados");
-                paciente = new String[8];
+                paciente = new String[9];
                 Log.e("name2 a actualizar",name2);
                 Intent ir_reg = new Intent(this, AddPatient2Activity.class);
 
@@ -374,7 +360,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 {
                     Log.e("Agregar paciente","La cedula esta libre");
 
-                    paciente = new String[8];
+                    paciente = new String[9];
                     Intent ir_reg = new Intent(this, AddPatient2Activity.class);
 
                     paciente[0] = edt_id.getText().toString();
@@ -476,6 +462,22 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
             return false;
         }else {
             return true;
+        }
+    }
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        // TODO Auto-generated method stub
+        if(checkedId==R.id.rdgSexoFemenino){
+            Log.e("addpatient","sexo femenino");
+            var_sexo="femenino";
+
+
+        }
+        if(checkedId==R.id.rdgSexoMasculino){
+        Log.e("addpatient","sexo masculino");
+
+        var_sexo="masculino";
+
         }
     }
 

@@ -25,7 +25,7 @@ public class Patient {
 
     @NotNull
     private String name;
-    private Boolean sex;
+    private String sex;
 
     @NotNull
     private String birthday;
@@ -80,7 +80,7 @@ public class Patient {
     }
 
     @Generated
-    public Patient(Long id, String name, Boolean sex, String birthday, String photopath, String eps, long identity, String antecedents, String syndromes, String observations, Integer mec, Integer gds, Integer visionlimitation, Integer writinglimitation, Integer drawinglimitation) {
+    public Patient(Long id, String name, String sex, String birthday, String photopath, String eps, long identity, String antecedents, String syndromes, String observations, Integer mec, Integer gds, Integer visionlimitation, Integer writinglimitation, Integer drawinglimitation) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -123,11 +123,11 @@ public class Patient {
         this.name = name;
     }
 
-    public Boolean getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Boolean sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 

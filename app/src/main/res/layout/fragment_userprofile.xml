@@ -84,7 +84,7 @@
                                 />
                         </android.support.design.widget.TextInputLayout>
 
-                        <ImageButton
+                        <android.support.v7.widget.AppCompatImageButton
                             android:id="@+id/editUsername"
                             android:layout_marginLeft="-60dp"
                             style="?android:buttonBarButtonStyle"
@@ -123,7 +123,7 @@
 
 
                     </android.support.design.widget.TextInputLayout>
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/editPassword"
                         android:layout_marginLeft="-60dp"
                         style="?android:buttonBarButtonStyle"
@@ -164,7 +164,7 @@
                                 />
                         </android.support.design.widget.TextInputLayout>
 
-                        <ImageButton
+                        <android.support.v7.widget.AppCompatImageButton
                             android:id="@+id/editCompleteName"
                             android:layout_marginLeft="-60dp"
                             style="?android:buttonBarButtonStyle"
@@ -264,7 +264,7 @@
                         />
 
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/btn_ir_register"
                     android:layout_above="@id/separationLine"
                     android:baselineAlignBottom="true"

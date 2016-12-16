@@ -25,7 +25,7 @@ public class Main {
 
         patient.addIdProperty().autoincrement().primaryKey();
         patient.addStringProperty("name").notNull();
-        patient.addBooleanProperty("sex");
+        patient.addStringProperty("sex");
         patient.addStringProperty("birthday").notNull();
         patient.addStringProperty("photopath");
         patient.addStringProperty("eps");
@@ -165,7 +165,20 @@ public class Main {
         tip.addStringProperty("title");
         tip.addStringProperty("description");
         tip.addBooleanProperty("active");
-        tip.addBooleanProperty("favorite");
+        //tip.addBooleanProperty("favorite");
+        tip.addIntProperty("likes");
+
+        //PREFERENCETIP
+        Entity preferencetip = schema.addEntity("PreferenceTip");
+        preferencetip.addIdProperty().autoincrement().primaryKey();
+
+        Property userIdpreferencetip = preferencetip.addLongProperty("userId").notNull().getProperty();
+        user.addToMany(preferencetip,userIdpreferencetip);
+
+        Property tipIdpreference = preferencetip.addLongProperty("tipId").notNull().getProperty();
+        tip.addToMany(preferencetip,tipIdpreference);
+
+        preferencetip.addBooleanProperty("favorite");
 
 
         //COGNITIVE EXERCISE TABLE

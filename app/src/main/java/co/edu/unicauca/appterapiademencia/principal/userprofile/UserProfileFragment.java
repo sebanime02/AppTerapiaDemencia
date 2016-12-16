@@ -5,13 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatImageButton;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -29,7 +29,7 @@ import co.edu.unicauca.appterapiademencia.principal.MainActivity;
 public class UserProfileFragment extends Fragment implements View.OnClickListener{
     private View rootView;
     private EditText edtUsername,edtPassword,edtCompleteName;
-    private ImageButton btnEditUsername,btnEditPassword,btnEditCompleteName;
+    private AppCompatImageButton btnEditUsername,btnEditPassword,btnEditCompleteName;
     private Button btnSave;
     private SharedPreferences preferences;
     private GreenDaoHelper helper;
@@ -37,7 +37,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     private String username;
     private User user;
     private Boolean nothingIndicator= false;
-    private ImageButton btnAddUser;
+    private AppCompatImageButton btnAddUser;
 
     public UserProfileFragment()
     {
@@ -54,11 +54,11 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         edtPassword = (EditText) rootView.findViewById(R.id.txt_password_user);
         edtCompleteName = (EditText) rootView.findViewById(R.id.txt_completename);
 
-        btnEditUsername  = (ImageButton) rootView.findViewById(R.id.editUsername);
-        btnEditPassword  = (ImageButton) rootView.findViewById(R.id.editPassword);
-        btnEditCompleteName  = (ImageButton) rootView.findViewById(R.id.editCompleteName);
+        btnEditUsername  = (AppCompatImageButton) rootView.findViewById(R.id.editUsername);
+        btnEditPassword  = (AppCompatImageButton) rootView.findViewById(R.id.editPassword);
+        btnEditCompleteName  = (AppCompatImageButton) rootView.findViewById(R.id.editCompleteName);
         btnSave = (Button) rootView.findViewById(R.id.save_data_user);
-        btnAddUser = (ImageButton) rootView.findViewById(R.id.btn_ir_register);
+        btnAddUser = (AppCompatImageButton) rootView.findViewById(R.id.btn_ir_register);
         btnSave.setOnClickListener(this);
         btnAddUser.setOnClickListener(this);
 

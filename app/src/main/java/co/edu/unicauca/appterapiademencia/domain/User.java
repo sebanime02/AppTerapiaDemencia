@@ -7,6 +7,7 @@ import co.edu.unicauca.appterapiademencia.domain.dao.DaoSession;
 import org.greenrobot.greendao.DaoException;
 
 import co.edu.unicauca.appterapiademencia.domain.dao.NoteDao;
+import co.edu.unicauca.appterapiademencia.domain.dao.PreferenceTipDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.TipDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.UserDao;
 
@@ -50,6 +51,11 @@ public class User {
         @JoinProperty(name = "id", referencedName = "userId")
     })
     private List<Tip> tipList;
+
+    @ToMany(joinProperties = {
+        @JoinProperty(name = "id", referencedName = "userId")
+    })
+    private List<PreferenceTip> preferenceTipList;
 
     @Generated
     public User() {
@@ -172,6 +178,28 @@ public class User {
     @Generated
     public synchronized void resetTipList() {
         tipList = null;
+    }
+
+    /** To-many relationship, resolved on first access (and after reset). Changes to to-many relations are not persisted, make changes to the target entity. */
+    @Generated
+    public List<PreferenceTip> getPreferenceTipList() {
+        if (preferenceTipList == null) {
+            __throwIfDetached();
+            PreferenceTipDao targetDao = daoSession.getPreferenceTipDao();
+            List<PreferenceTip> preferenceTipListNew = targetDao._queryUser_PreferenceTipList(id);
+            synchronized (this) {
+                if(preferenceTipList == null) {
+                    preferenceTipList = preferenceTipListNew;
+                }
+            }
+        }
+        return preferenceTipList;
+    }
+
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated
+    public synchronized void resetPreferenceTipList() {
+        preferenceTipList = null;
     }
 
     /**

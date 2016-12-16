@@ -829,7 +829,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     String var_antecedentes = paciente[5];
                     String var_sindromes = paciente[6];
                     String var_observaciones = paciente[7];
-                    Boolean var_sexo = Boolean.parseBoolean(paciente[8]);
+                    String var_sexo = paciente[8];
 
 
                     /*
@@ -1003,10 +1003,6 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                             Log.e("guardado y actualizado", tendenciarememorar.getScaleList().get(0).getPuntaje().toString());
 
                         }catch (Exception e){    }
-
-
-
-
 
 
 

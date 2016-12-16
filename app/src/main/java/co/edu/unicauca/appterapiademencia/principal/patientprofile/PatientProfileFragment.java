@@ -41,9 +41,9 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private String name;
     private String birthday;
     private String photopath;
-    private String eps,sindromes,antecedentes,observaciones,vision,escritura,dibujo;
+    private String sexo,eps,sindromes,antecedentes,observaciones,vision,escritura,dibujo;
     private int visionState,escrituraState,dibujoState;
-    private TextView txtEps,txtSindromes,txtAntecedentes,txtObservaciones,txtVision,txtEscritura,txtDibujo;
+    private TextView txtSexo,txtEps,txtSindromes,txtAntecedentes,txtObservaciones,txtVision,txtEscritura,txtDibujo;
     private TextView txtPuntajeBlessed,txtComentarioBlessed,txtPuntajeFast,txtComentarioFast;
     private LinearLayout containerBlessed;
     private Long identity;
@@ -51,7 +51,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private View rootView;
     private RecyclerView recycler;
     private RecyclerView.LayoutManager LManager;
-    private  QueryBuilder queryBuildergeneral;
+    private QueryBuilder queryBuildergeneral;
     private double blessedScore;
     private GreenDaoHelper daoHelper;
     private Double blessedCount;
@@ -60,6 +60,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private String fastCount;
     private Long idsistema;
     private String etapa,caracteristicas,edadMental,gds,mec;
+
 
 
     public PatientProfileFragment(){
@@ -93,6 +94,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
 
         txtIdentity = (TextView) view.findViewById(R.id.identity_patient_perfil);
         txtEps = (TextView) view.findViewById(R.id.txt_eps);
+        txtSexo = (TextView) view.findViewById(R.id.sexo_patient_perfil);
         txtAntecedentes = (TextView) view.findViewById(R.id.txt_antecedentes);
         txtObservaciones = (TextView) view.findViewById(R.id.txt_observaciones);
         txtSindromes = (TextView) view.findViewById(R.id.txt_sindromes);
@@ -135,7 +137,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtAge.setText("Nació en: "+this.birthday);
         txtIdentity.setText("  Cédula: "+this.identity);
         txtPuntajeBlessed.setText(this.blessedCount+"");
-
+        txtSexo.setText(" Sexo: "+this.sexo);
         txtComentarioBlessed.setText(this.blessedComentario);
         txtPuntajeFast.setText(this.fastCount+"");
         txtComentarioFast.setText("Etapa: "+etapa+"\nCaracteristica: "+caracteristicas+" \nEdad Mental: "+edadMental+" \nGDS: "+gds+" \nMEC: "+mec);
@@ -204,6 +206,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtName.setText(this.name);
         txtAge.setText("Nació en: "+this.birthday);
         txtIdentity.setText("  Cédula: "+this.identity);
+        txtSexo.setText(" Sexo: "+this.sexo);
         txtEps.setText(this.eps);
         txtAntecedentes.setText(this.antecedentes);
         txtSindromes.setText(this.sindromes);
@@ -246,6 +249,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         this.birthday = patient.getBirthday().toString();
         this.photopath = patient.getPhotopath();
         this.identity= patient.getIdentity();
+        this.sexo = patient.getSex();
         this.eps = patient.getEps();
         this.antecedentes= patient.getAntecedents();
         this.sindromes = patient.getSyndromes();
@@ -254,6 +258,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         this.escrituraState = patient.getWritinglimitation();
         this.dibujoState = patient.getDrawinglimitation();
 
+        Log.e("patientprofile","Sexo :"+sexo);
         AddPatient2Activity spinners = new AddPatient2Activity();
 
         if (visionState==0) {

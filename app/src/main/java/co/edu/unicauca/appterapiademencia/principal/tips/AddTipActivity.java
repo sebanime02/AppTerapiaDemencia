@@ -180,12 +180,12 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
                          {
                              String id="1";
                              Long carerId= Long.parseLong(id);
-                             tip2 = new Tip(null,carerId,var_title,var_description,selectedNotifications,false);
+                             tip2 = new Tip(null,carerId,var_title,var_description,false,0);
 
                          }
                          else
                          {
-                            tip2 = new Tip(null,iduser,var_title,var_description,selectedNotifications,false);
+                            tip2 = new Tip(null,iduser,var_title,var_description,false,0);
 
                          }
                          tipDao.insert(tip2);

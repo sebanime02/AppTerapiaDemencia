@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +20,6 @@ import org.greenrobot.greendao.query.QueryBuilder;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.principal.MainActivity;
-import co.edu.unicauca.appterapiademencia.principal.patientlist.AddPatient2Activity;
 
 /**
  * Created by ENF on 14/10/2016.
@@ -345,6 +345,16 @@ private EditText input_username,input_password_supervisor,input_completename,inp
 
     }
     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 }
