@@ -14,6 +14,6 @@ public interface PatientProfileView  {
     void getBlessedScore(Long id);
     void showBlessedScore(Double score,String comentario,String color);
     void getFastScore(Long id);
-    void showFastScore(String score);
+    void showFastScore(String score,String etapa,String caracteristica,String edadMental,String mec,String gds);
 
 }

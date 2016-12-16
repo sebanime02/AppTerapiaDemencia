@@ -88,7 +88,11 @@
     <string name="spinner_vision">Limitación de Visión</string>
     <string name="spinner_escritura">Limitación de Escritura</string>
     <string name="spinner_dibujo">Limitación de Dibujo</string>
-    <string name="title_AVD">Evalue las siguientes Actividades de la Vida Diaria:</string>
+    <string name="txt_addpatient_fechanacimiento">Fecha de Nacimiento:</string>
+    <string name="txt_addpatient_sexo">Sexo</string>
+    <string name="txt_addpatient_femenino">Femenino</string>
+    <string name="txt_addpatient_masculino">Masculino</string>
+    <string name="title_AIVD">Evalue las siguientes Actividades Instrumentales de La Vida Diaria:</string>
 
     <!--TAB PATIENT INFORMATION -->
     <string name="textview_profile_information">INFORMACIÓN DEL PACIENTE</string>

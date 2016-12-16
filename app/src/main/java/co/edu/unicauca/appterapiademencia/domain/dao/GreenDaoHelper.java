@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import co.edu.unicauca.appterapiademencia.domain.DetailFast;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.Scale;
@@ -78,6 +79,7 @@ public class GreenDaoHelper {
         return daoSession.getSintomaDao();
     }
     public ScaleDao getScaleDao(){return daoSession.getScaleDao();}
+    public DetailFastDao getDetailFastDao(){return daoSession.getDetailFastDao();}
 
 
 

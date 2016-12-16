@@ -25,6 +25,7 @@ public class Patient {
 
     @NotNull
     private String name;
+    private Boolean sex;
 
     @NotNull
     private String birthday;
@@ -79,9 +80,10 @@ public class Patient {
     }
 
     @Generated
-    public Patient(Long id, String name, String birthday, String photopath, String eps, long identity, String antecedents, String syndromes, String observations, Integer mec, Integer gds, Integer visionlimitation, Integer writinglimitation, Integer drawinglimitation) {
+    public Patient(Long id, String name, Boolean sex, String birthday, String photopath, String eps, long identity, String antecedents, String syndromes, String observations, Integer mec, Integer gds, Integer visionlimitation, Integer writinglimitation, Integer drawinglimitation) {
         this.id = id;
         this.name = name;
+        this.sex = sex;
         this.birthday = birthday;
         this.photopath = photopath;
         this.eps = eps;
@@ -119,6 +121,14 @@ public class Patient {
     /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setName(@NotNull String name) {
         this.name = name;
+    }
+
+    public Boolean getSex() {
+        return sex;
+    }
+
+    public void setSex(Boolean sex) {
+        this.sex = sex;
     }
 
     @NotNull

@@ -14,6 +14,7 @@ import co.edu.unicauca.appterapiademencia.domain.BlessedIncapacity;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Sintoma;
 import co.edu.unicauca.appterapiademencia.domain.Scale;
+import co.edu.unicauca.appterapiademencia.domain.DetailFast;
 import co.edu.unicauca.appterapiademencia.domain.Tip;
 import co.edu.unicauca.appterapiademencia.domain.Exercise;
 import co.edu.unicauca.appterapiademencia.domain.Historic;
@@ -25,6 +26,7 @@ import co.edu.unicauca.appterapiademencia.domain.dao.BlessedIncapacityDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.NoteDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.SintomaDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.ScaleDao;
+import co.edu.unicauca.appterapiademencia.domain.dao.DetailFastDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.TipDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.ExerciseDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.HistoricDao;
@@ -45,6 +47,7 @@ public class DaoSession extends AbstractDaoSession {
     private final DaoConfig noteDaoConfig;
     private final DaoConfig sintomaDaoConfig;
     private final DaoConfig scaleDaoConfig;
+    private final DaoConfig detailFastDaoConfig;
     private final DaoConfig tipDaoConfig;
     private final DaoConfig exerciseDaoConfig;
     private final DaoConfig historicDaoConfig;
@@ -56,6 +59,7 @@ public class DaoSession extends AbstractDaoSession {
     private final NoteDao noteDao;
     private final SintomaDao sintomaDao;
     private final ScaleDao scaleDao;
+    private final DetailFastDao detailFastDao;
     private final TipDao tipDao;
     private final ExerciseDao exerciseDao;
     private final HistoricDao historicDao;
@@ -83,6 +87,9 @@ public class DaoSession extends AbstractDaoSession {
         scaleDaoConfig = daoConfigMap.get(ScaleDao.class).clone();
         scaleDaoConfig.initIdentityScope(type);
 
+        detailFastDaoConfig = daoConfigMap.get(DetailFastDao.class).clone();
+        detailFastDaoConfig.initIdentityScope(type);
+
         tipDaoConfig = daoConfigMap.get(TipDao.class).clone();
         tipDaoConfig.initIdentityScope(type);
 
@@ -101,6 +108,7 @@ public class DaoSession extends AbstractDaoSession {
         noteDao = new NoteDao(noteDaoConfig, this);
         sintomaDao = new SintomaDao(sintomaDaoConfig, this);
         scaleDao = new ScaleDao(scaleDaoConfig, this);
+        detailFastDao = new DetailFastDao(detailFastDaoConfig, this);
         tipDao = new TipDao(tipDaoConfig, this);
         exerciseDao = new ExerciseDao(exerciseDaoConfig, this);
         historicDao = new HistoricDao(historicDaoConfig, this);
@@ -112,6 +120,7 @@ public class DaoSession extends AbstractDaoSession {
         registerDao(Note.class, noteDao);
         registerDao(Sintoma.class, sintomaDao);
         registerDao(Scale.class, scaleDao);
+        registerDao(DetailFast.class, detailFastDao);
         registerDao(Tip.class, tipDao);
         registerDao(Exercise.class, exerciseDao);
         registerDao(Historic.class, historicDao);
@@ -125,6 +134,7 @@ public class DaoSession extends AbstractDaoSession {
         noteDaoConfig.clearIdentityScope();
         sintomaDaoConfig.clearIdentityScope();
         scaleDaoConfig.clearIdentityScope();
+        detailFastDaoConfig.clearIdentityScope();
         tipDaoConfig.clearIdentityScope();
         exerciseDaoConfig.clearIdentityScope();
         historicDaoConfig.clearIdentityScope();
@@ -153,6 +163,10 @@ public class DaoSession extends AbstractDaoSession {
 
     public ScaleDao getScaleDao() {
         return scaleDao;
+    }
+
+    public DetailFastDao getDetailFastDao() {
+        return detailFastDao;
     }
 
     public TipDao getTipDao() {

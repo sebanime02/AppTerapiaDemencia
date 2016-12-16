@@ -33,6 +33,8 @@ public class ScaleDao extends AbstractDao<Scale, Long> {
         public final static Property Puntaje = new Property(3, String.class, "puntaje", false, "PUNTAJE");
     }
 
+    private DaoSession daoSession;
+
     private Query<Scale> sintoma_ScaleListQuery;
 
     public ScaleDao(DaoConfig config) {
@@ -41,6 +43,7 @@ public class ScaleDao extends AbstractDao<Scale, Long> {
     
     public ScaleDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
+        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -99,6 +102,12 @@ public class ScaleDao extends AbstractDao<Scale, Long> {
         if (puntaje != null) {
             stmt.bindString(4, puntaje);
         }
+    }
+
+    @Override
+    protected final void attachEntity(Scale entity) {
+        super.attachEntity(entity);
+        entity.__setDaoSession(daoSession);
     }
 
     @Override

@@ -120,7 +120,7 @@
 
 
                 <TextView
-                    android:text="@string/title_AVD"
+                    android:text="@string/title_AIVD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:textAppearanceLarge"

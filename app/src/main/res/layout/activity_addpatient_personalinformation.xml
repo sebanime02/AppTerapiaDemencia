@@ -111,7 +111,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Fecha de Nacimiento:"/>
+                            android:text="@string/txt_addpatient_fechanacimiento"/>
                         <Button
 
                             android:layout_width="match_parent"
@@ -121,6 +121,29 @@
                             android:onClick="onClick"
                             android:gravity="left|center_vertical"
                             style="@style/Base.Widget.AppCompat.ActionButton.Overflow"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_addpatient_sexo"/>
+
+                        <RadioGroup
+                            android:id="@+id/rdgSexo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <RadioButton
+                                android:id="@+id/rdgSexoFemenino"
+                                android:text="@string/txt_addpatient_femenino"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                />
+                            <RadioButton
+                                android:id="@+id/rdgSexoMasculino"
+                                android:text="@string/txt_addpatient_masculino"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RadioGroup>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

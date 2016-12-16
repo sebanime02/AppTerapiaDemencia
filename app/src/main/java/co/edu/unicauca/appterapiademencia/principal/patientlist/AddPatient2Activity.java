@@ -19,10 +19,12 @@ import org.greenrobot.greendao.query.QueryBuilder;
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
+import co.edu.unicauca.appterapiademencia.domain.DetailFast;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.Scale;
 import co.edu.unicauca.appterapiademencia.domain.Sintoma;
 import co.edu.unicauca.appterapiademencia.domain.dao.BlessedIncapacityDao;
+import co.edu.unicauca.appterapiademencia.domain.dao.DetailFastDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.PatientDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.ScaleDao;
@@ -84,6 +86,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
     private String  puntaje;
     private SintomaDao sintomaDao;
     private ScaleDao escalaDao;
+    private DetailFastDao detailFastDao;
 
 
 
@@ -97,6 +100,8 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
         this.blessedDao = helper.getBlessedIncapacityDao();
         this.sintomaDao = helper.getSintomaDao();
         this.escalaDao = helper.getScaleDao();
+        this.detailFastDao = helper.getDetailFastDao();
+
 
     }
 
@@ -824,6 +829,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     String var_antecedentes = paciente[5];
                     String var_sindromes = paciente[6];
                     String var_observaciones = paciente[7];
+                    Boolean var_sexo = Boolean.parseBoolean(paciente[8]);
 
 
                     /*
@@ -861,6 +867,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         Log.e("Add patient 2","Name "+patient.getName().toString());
                         patient.setName(var_nombre);
                         patient.setBirthday(var_fecha);
+                        patient.setSex(var_sexo);
                         patient.setEps(var_eps);
                         patient.setAntecedents(var_antecedentes);
                         patient.setSyndromes(var_sindromes);
@@ -1011,7 +1018,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     } else {
                         int var_mec = 0;
                         int var_gds = 0;
-                        Patient patient2 = new Patient(null,var_nombre,var_fecha,var_foto,var_eps,parse_id,var_antecedentes,var_sindromes,var_observaciones,null,null,var_vision,var_escritura,var_dibujo);
+                        Patient patient2 = new Patient(null,var_nombre,var_sexo,var_fecha,var_foto,var_eps,parse_id,var_antecedentes,var_sindromes,var_observaciones,null,null,var_vision,var_escritura,var_dibujo);
                         patientDao.insert(patient2);
 
 
@@ -1170,6 +1177,10 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                                 //INICIAR ESCALAS
 
+                                /* detallefast.addStringProperty("stagename");
+                                detallefast.addStringProperty("characteristics");
+                                detallefast.addStringProperty("mentalage");
+                                detallefast.addStringProperty("mmsescore");*/
 
 
 
@@ -1185,6 +1196,14 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 escalaDao.insert(scalehigieneayudasoltarbano);
                                 escalaDao.insert(scaleincontinensiaurinaria);
                                 escalaDao.insert(scalehigieneayudaincontinensiafecal);
+
+                                DetailFast detailFast6c = new DetailFast(null,scalehigieneayudabanarse.getId(),"Normal de la Edad","Sin Déficit","Adulto","NORMAL,MEC de Lobo 30-35");
+                                DetailFast detailFast6d = new DetailFast(null,scalehigieneayudabanarse.getId(),"Normal de la Edad","Sin Déficit","Adulto","NORMAL,MEC de Lobo 30-35");
+
+
+
+
+
 
 
                                 Scale scalemovilidadsitioslejanos = new Scale(null,sintomamovilidadsitioslejanos.getId(),"FAST","30");

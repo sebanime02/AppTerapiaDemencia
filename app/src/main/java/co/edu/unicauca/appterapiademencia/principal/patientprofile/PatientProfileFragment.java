@@ -44,7 +44,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private String eps,sindromes,antecedentes,observaciones,vision,escritura,dibujo;
     private int visionState,escrituraState,dibujoState;
     private TextView txtEps,txtSindromes,txtAntecedentes,txtObservaciones,txtVision,txtEscritura,txtDibujo;
-    private TextView txtPuntajeBlessed,txtComentarioBlessed,txtPuntajeFast;
+    private TextView txtPuntajeBlessed,txtComentarioBlessed,txtPuntajeFast,txtComentarioFast;
     private LinearLayout containerBlessed;
     private Long identity;
     private int imageSize;
@@ -59,17 +59,11 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private String blessedColor;
     private String fastCount;
     private Long idsistema;
+    private String etapa,caracteristicas,edadMental,gds,mec;
 
 
     public PatientProfileFragment(){
-        /*
-        this.idpatient = idpatient;
-        this.rootView = rootView;
-        this.queryBuildergeneral  = GreenDaoHelper.getPatientDao().queryBuilder();
-        this.imageProfile = imageProfile;
-        */
-        this.txtAge = txtAge;
-        this.txtName = txtName;
+
         daoHelper = GreenDaoHelper.getInstance();
 
 
@@ -109,6 +103,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtComentarioBlessed = (TextView) view.findViewById(R.id.demenciaBlessed);
         containerBlessed = (LinearLayout) view.findViewById(R.id.containerBlessed);
         txtPuntajeFast = (TextView) view.findViewById(R.id.puntajeFAST);
+        txtComentarioFast = (TextView) view.findViewById(R.id.demenciaFAST);
 
 
 
@@ -143,6 +138,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
 
         txtComentarioBlessed.setText(this.blessedComentario);
         txtPuntajeFast.setText(this.fastCount+"");
+        txtComentarioFast.setText("Etapa: "+etapa+"\nCaracteristica: "+caracteristicas+" \nEdad Mental: "+edadMental+" \nGDS: "+gds+" \nMEC: "+mec);
 
         int imageSize = view.getResources().getDimensionPixelSize(R.dimen.img_patient_profile_size);
 
@@ -217,6 +213,9 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtDibujo.setText(this.dibujo);
         txtPuntajeBlessed.setText(this.blessedCount+"");
         txtComentarioBlessed.setText(this.blessedComentario);
+        txtPuntajeFast.setText(this.fastCount+"");
+
+        txtComentarioFast.setText("Etapa: "+etapa+"\nCaracteristica: "+caracteristicas+" \nEdad Mental: "+edadMental+" \nGDS: "+gds+" \nMEC: "+mec);
 
 
 
@@ -334,8 +333,13 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     }
 
     @Override
-    public void showFastScore(String score) {
+    public void showFastScore(String score,String etapa,String caracteristica,String edadMental,String mec,String gds) {
         this.fastCount = score;
+        this.etapa = etapa;
+        this.caracteristicas = caracteristica;
+        this.edadMental = edadMental;
+        this.mec = mec;
+        this.gds = gds;
     }
 
     public void showBlessedError()

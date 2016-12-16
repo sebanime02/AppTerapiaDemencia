@@ -25,6 +25,7 @@ public class Main {
 
         patient.addIdProperty().autoincrement().primaryKey();
         patient.addStringProperty("name").notNull();
+        patient.addBooleanProperty("sex");
         patient.addStringProperty("birthday").notNull();
         patient.addStringProperty("photopath");
         patient.addStringProperty("eps");
@@ -139,6 +140,18 @@ public class Main {
         escala.addStringProperty("escalaname");
         escala.addStringProperty("puntaje");
 
+
+
+        //FASTDETALLE
+        Entity detallefast= schema.addEntity("DetailFast");
+        detallefast.addIdProperty().autoincrement().primaryKey();
+        Property calificationIddetallefast = detallefast.addLongProperty("escalaId").notNull().getProperty();
+        escala.addToMany(detallefast,calificationIddetallefast);
+
+        detallefast.addStringProperty("stagename");
+        detallefast.addStringProperty("characteristics");
+        detallefast.addStringProperty("mentalage");
+        detallefast.addStringProperty("mmsescore");
 
 
         //TIP TABLE

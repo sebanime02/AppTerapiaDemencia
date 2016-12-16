@@ -27,6 +27,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +61,8 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     private String var_fecha="";
     private EditText edt_id, edt_nomb,edt_eps,edt_antecedentes,edt_sindromes,edt_observaciones;
     private TextView txt_titulo1,txt_titulo2;
+    private RadioGroup rdgSexo;
+    private RadioButton rdgSexoFemenino,rdgSexoMasculino;
     private String[] paciente;
     int eleccion;
     private Calendar calendar;
@@ -82,6 +86,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     private long identity;
     private ImageView img;
     private String[] datosb;
+    private Boolean var_sexo;
     private RelativeLayout containerfoto;
     public static final String fotodefault = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser).toString();
 
@@ -106,6 +111,10 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         edt_observaciones = (EditText) findViewById(R.id.edt_observaciones);
         txt_titulo1 = (TextView) findViewById(R.id.txt_edit);
         txt_titulo2 = (TextView) findViewById(R.id.txt_edit2);
+
+        rdgSexo = (RadioGroup) findViewById(R.id.rdgSexo);
+        rdgSexoFemenino = (RadioButton) findViewById(R.id.rdgSexoFemenino);
+        rdgSexoMasculino = (RadioButton) findViewById(R.id.rdgSexoMasculino);
 
 
 
@@ -234,6 +243,17 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 edt_id.setText(patientone.getIdentity()+"");
                 edt_id.setEnabled(false);
                 edt_nomb.setText(patientone.getName());
+                //false hombre, true mujer
+                if(patientone.getSex())
+                {
+                    rdgSexoMasculino.setChecked(true);
+                }
+                else
+                {
+                    rdgSexoFemenino.setChecked(true);
+                }
+
+
                 btn_fecha.setText(patientone.getBirthday().toString());
                 edt_eps.setText(patientone.getEps());
                 edt_antecedentes.setText(patientone.getAntecedents().toString());
@@ -256,6 +276,23 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 e.printStackTrace();
             }
         }
+
+
+        rdgSexo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                if(checkedId==R.id.rdgSexoFemenino){
+
+                    var_sexo=true;
+
+                }
+                if(checkedId==R.id.rdgSexoMasculino){
+                    var_sexo=false;
+
+                }
+
+            }
+        });
 
         edt_id.addTextChangedListener(new TextWatcher() {
             @Override
@@ -321,6 +358,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 paciente[5] = edt_antecedentes.getText().toString();
                 paciente[6] = edt_sindromes.getText().toString();
                 paciente[7] = edt_observaciones.getText().toString();
+                paciente[8] = var_sexo.toString();
 
 
                 ir_reg.putExtra("paciente", paciente);
@@ -361,6 +399,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                     paciente[5] = edt_antecedentes.getText().toString();
                     paciente[6] = edt_sindromes.getText().toString();
                     paciente[7] = edt_observaciones.getText().toString();
+                    paciente[8] = var_sexo.toString();
 
                     ir_reg.putExtra("paciente", paciente);
 
