@@ -625,6 +625,143 @@ public class GreenDaoHelper {
 
 
     }
+    public int getDowntonScore(Long patientid)
+    {
+
+        Log.e("Downton score","patient id "+patientid);
+        List<Scale> scaleList = new ArrayList<Scale>();
+        List<Sintoma> sintomaList;
+        int x=0;
+        int z=0;
+        boolean caidas=false;
+        boolean medicacion=false;
+        boolean estadomental=false;
+        boolean handlerestadomental=false;
+        boolean movilidad = false;
+
+        Log.e("downton score","Entro a calcular el Lawton score");
+        QueryBuilder sintomaQueryBuilder = getSintomaDao().queryBuilder();
+
+
+        sintomaQueryBuilder.where(SintomaDao.Properties.Activo.eq(true),SintomaDao.Properties.PatientId.eq(patientid));
+        sintomaList = sintomaQueryBuilder.list();
+
+        QueryBuilder<Scale> scaleQueryBuilder = getScaleDao().queryBuilder();
+        //scaleQueryBuilder.where(ScaleDao.Properties.Escalaname.eq("Blessed"));
+
+        for(int y=0;y<sintomaList.size();y++) {
+
+            Log.e("downton score", "paciente: " + sintomaList.get(y).getPatientId());
+            Log.e("downton score", "sintoma: " + sintomaList.get(y).getSigno());
+
+
+            if (sintomaList.get(y).getAmbito().matches("caidas")) {
+
+                caidas = true;
+            }
+
+            if (sintomaList.get(y).getSigno().matches("medicamentosmedicacion")) {
+
+                medicacion = true;
+            }
+
+
+            if (!handlerestadomental) {
+                if (sintomaList.get(y).getAmbito().matches("orientacion")) {
+                    estadomental = true;
+                }
+            }
+
+            if (sintomaList.get(y).getSigno().matches("movilidad")) {
+
+                movilidad = true;
+            }
+        }
+
+        if(movilidad=true)
+        {
+            z = z+1;
+        }
+        if(caidas=true)
+        {
+            z = z+1;
+        }
+        if(estadomental=true)
+        {
+            z = z+1;
+        }
+        if(medicacion=true)
+        {
+            z = z+1;
+        }
+
+
+        Log.e("blessed score","total "+z);
+
+        return z;
+
+
+    }
+
+    public int getLawtonScore(Long patientid)
+    {
+        Log.e("lawton score","patient id "+patientid);
+        List<Scale> scaleList = new ArrayList<Scale>();
+        List<Sintoma> sintomaList;
+        int x=0;
+
+        int z=8;
+
+
+
+        Log.e("lawton score","Entro a calcular el Lawton score");
+        QueryBuilder sintomaQueryBuilder = getSintomaDao().queryBuilder();
+
+
+        sintomaQueryBuilder.where(SintomaDao.Properties.Activo.eq(true),SintomaDao.Properties.PatientId.eq(patientid));
+        sintomaList = sintomaQueryBuilder.list();
+
+        QueryBuilder<Scale> scaleQueryBuilder = getScaleDao().queryBuilder();
+        //scaleQueryBuilder.where(ScaleDao.Properties.Escalaname.eq("Blessed"));
+
+
+        for(int y=0;y<sintomaList.size();y++)
+        {
+
+            Log.e("lawton score","paciente: "+sintomaList.get(y).getPatientId());
+            Log.e("lawton score","sintoma: "+sintomaList.get(y).getSigno());
+
+            for(int m=0;m<sintomaList.get(y).getScaleList().size();m++)
+
+            {
+                String escalatexto = sintomaList.get(y).getScaleList().get(m).getEscalaname().toString();
+                Log.e("lawton score","Entre al for sintomaList");
+                Log.e("lawton score","getNombreEscala: "+escalatexto);
+
+                if(escalatexto.matches("Lawton"))
+
+                {
+
+                    Log.e("lawton score","Es Lawton");
+                    Log.e("lawton score","getNombreEscala: "+sintomaList.get(y).getScaleList().get(m).getEscalaname());
+                    Log.e("lawton score","getPuntaje: "+sintomaList.get(y).getScaleList().get(m).getPuntaje());
+                    x = x + Integer.parseInt(sintomaList.get(y).getScaleList().get(m).getPuntaje());
+                    Log.e("lawton score","x: "+x);
+
+                }
+            }
+            z = z - x;
+
+            Log.e("lawton score ","acumulado z: "+z);
+            x=0;
+
+
+        }
+
+
+        return z;
+
+    }
 
     public int getLikesCount(Long idtip)
     {

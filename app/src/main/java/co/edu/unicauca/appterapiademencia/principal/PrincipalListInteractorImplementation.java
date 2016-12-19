@@ -115,5 +115,15 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
 
     }
 
+    @Override
+    public void getDowntonScore(Long id) {
+        principalListRepository.getDowntonScore(id);
+    }
+
+    @Override
+    public int getLawtonScore(Long id) {
+        return  principalListRepository.getLawtonScore(id);
+    }
+
 
 }

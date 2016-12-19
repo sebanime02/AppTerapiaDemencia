@@ -44,7 +44,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private String sexo,eps,sindromes,antecedentes,observaciones,vision,escritura,dibujo;
     private int visionState,escrituraState,dibujoState;
     private TextView txtSexo,txtEps,txtSindromes,txtAntecedentes,txtObservaciones,txtVision,txtEscritura,txtDibujo;
-    private TextView txtPuntajeBlessed,txtComentarioBlessed,txtPuntajeFast,txtComentarioFast;
+    private TextView txtPuntajeBlessed,txtComentarioBlessed,txtPuntajeFast,txtComentarioFast,txtPuntajeDownton,txtComentarioDownton,txtPuntajeLawton,txtComentarioLawton;
     private LinearLayout containerBlessed;
     private Long identity;
     private int imageSize;
@@ -58,6 +58,8 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private String blessedComentario;
     private String blessedColor;
     private String fastCount;
+    private String lawtonCount;
+    private String comentarioLawton;
     private Long idsistema;
     private String etapa,caracteristicas,edadMental,gds,mec;
 
@@ -106,6 +108,11 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         containerBlessed = (LinearLayout) view.findViewById(R.id.containerBlessed);
         txtPuntajeFast = (TextView) view.findViewById(R.id.puntajeFAST);
         txtComentarioFast = (TextView) view.findViewById(R.id.demenciaFAST);
+        txtPuntajeLawton = (TextView) view.findViewById(R.id.puntajeLawton);
+        txtComentarioLawton = (TextView) view.findViewById(R.id.comentarioLawton);
+        txtPuntajeDownton = (TextView) view.findViewById(R.id.puntajeDowntown);
+        txtComentarioDownton = (TextView) view.findViewById(R.id.comentarioDowntown);
+
 
 
 
@@ -133,6 +140,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         getPatientData(idpatient);
         getBlessedScore(idsistema);
         getFastScore(idsistema);
+        getLawtonScore(idsistema);
         txtName.setText(this.name);
         txtAge.setText("Nació en: "+this.birthday);
         txtIdentity.setText("  Cédula: "+this.identity);
@@ -141,6 +149,9 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtComentarioBlessed.setText(this.blessedComentario);
         txtPuntajeFast.setText(this.fastCount+"");
         txtComentarioFast.setText("Etapa: "+etapa+"\nCaracteristica: "+caracteristicas+" \nEdad Mental: "+edadMental+" \nGDS: "+gds+" \nMEC: "+mec);
+        txtPuntajeLawton.setText(this.lawtonCount);
+        txtComentarioLawton.setText(this.comentarioLawton);
+
 
         int imageSize = view.getResources().getDimensionPixelSize(R.dimen.img_patient_profile_size);
 
@@ -203,6 +214,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         catch (Exception e){}
         getBlessedScore(idsistema);
         getFastScore(idsistema);
+        getLawtonScore(idsistema);
         txtName.setText(this.name);
         txtAge.setText("Nació en: "+this.birthday);
         txtIdentity.setText("  Cédula: "+this.identity);
@@ -217,6 +229,8 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtPuntajeBlessed.setText(this.blessedCount+"");
         txtComentarioBlessed.setText(this.blessedComentario);
         txtPuntajeFast.setText(this.fastCount+"");
+        txtPuntajeLawton.setText("De 0 a 8, donde 0 es el máximo\nvalor de dependencia en AIVD\nPuntaje:"+this.lawtonCount);
+        txtComentarioLawton.setText(this.comentarioLawton);
 
         txtComentarioFast.setText("Etapa: "+etapa+"\nCaracteristica: "+caracteristicas+" \nEdad Mental: "+edadMental+" \nGDS: "+gds+" \nMEC: "+mec);
 
@@ -346,6 +360,30 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         this.mec = mec;
         this.gds = gds;
     }
+
+    @Override
+    public void getDowntonScore(Long id) {
+            patientProfilePresenter.getDowntonScore(id);
+    }
+
+    @Override
+    public void showDowntonScore(int score, String comentario) {
+
+    }
+
+    @Override
+    public void getLawtonScore(Long id) {
+        patientProfilePresenter.getLawtonScore(id);
+    }
+
+    @Override
+    public void showLawtonScore(int score, String comentario) {
+
+        this.lawtonCount = score+"";
+        this.comentarioLawton = comentario;
+
+    }
+
 
     public void showBlessedError()
     {

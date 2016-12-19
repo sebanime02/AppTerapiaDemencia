@@ -284,6 +284,16 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
          return helper.getFASTScore(id);
     }
 
+    @Override
+    public int getLawtonScore(Long id) {
+        return helper.getLawtonScore(id);
+    }
+
+    @Override
+    public void getDowntonScore(Long id) {
+
+    }
+
 
     private void postEvent(int type,int typemethod){
         //typemethod==0 para getPatientData, typemethod==1 para getPatientList

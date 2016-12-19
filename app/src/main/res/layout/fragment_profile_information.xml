@@ -377,7 +377,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/small_text_size"
-                            android:text="HERRAMIENTA DE ASISTENCIA PARA DETERMINAR ETAPA DEMENCIA"
+                            android:text="ESCALA DE ALZHEIMER (FAST-GDS)"
                             android:textStyle="bold"
                             android:textColor="@color/white"
                             />
@@ -401,7 +401,7 @@
 
                     </LinearLayout>
 
-                </LinearLayout>ç
+                </LinearLayout>
 
 
                 <LinearLayout
@@ -456,11 +456,66 @@
                     </LinearLayout>
 
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/containerLawton"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_fast"
+                    android:elevation="4dp"
+
+
+                    android:padding="16dp"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    >
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/small_text_size"
+                            android:text="Escala de Actividades Instrumentales (LAWTON Y BRODY)"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            />
+                        <TextView
+                            android:id="@+id/puntajeLawton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/small_text_size"
+
+                            android:textColor="@color/white"
+                            />
+                        <TextView
+                            android:id="@+id/comentarioLawton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/medium_text_size"
+                            android:textColor="@color/white"
+
+                            />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
 
 
             </LinearLayout>
 
     </LinearLayout>
+
+
 
 
 
@@ -493,5 +548,6 @@
 
 
     </LinearLayout>
+
 </LinearLayout>
 </ScrollView>

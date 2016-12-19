@@ -19,7 +19,6 @@ import org.greenrobot.greendao.query.QueryBuilder;
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
-import co.edu.unicauca.appterapiademencia.domain.DetailFast;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.Scale;
 import co.edu.unicauca.appterapiademencia.domain.Sintoma;
@@ -1107,6 +1106,8 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 Sintoma sintomainstrumentalestelefono = new Sintoma(null,patient2.getId(),"instrumentales","instrumentalestelefono",false);
                                 Sintoma sintomainstrumentalescompras = new Sintoma(null,patient2.getId(),"instrumentales","instrumentalescompras",false);
                                 Sintoma sintomainstrumentalescuidacasa = new Sintoma(null,patient2.getId(),"instrumentales","instrumentalescuidacasa",false);
+                                Sintoma sintomainstrumentalescomida = new Sintoma(null,patient2.getId(),"instrumentales","instrumentalescomida",false);
+
                                 Sintoma sintomainstrumentaleslavaropa = new Sintoma(null,patient2.getId(),"instrumentales","instrumentaleslavaropa",false);
                                 Sintoma sintomainstrumentalestransporte = new Sintoma(null,patient2.getId(),"instrumentales","instrumentalestransporte",false);
                                 Sintoma sintomainstrumentalesmedicacion = new Sintoma(null,patient2.getId(),"instrumentales","instrumentalesmedicacion",false);
@@ -1117,6 +1118,8 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 sintomaDao.insert(sintomaincapacidadpequenasdinero);
                                 sintomaDao.insert(sintomainstrumentalestelefono);
                                 sintomaDao.insert(sintomainstrumentalescompras);
+                                sintomaDao.insert(sintomainstrumentalescomida);
+
                                 sintomaDao.insert(sintomainstrumentalescuidacasa);
                                 sintomaDao.insert(sintomainstrumentaleslavaropa);
                                 sintomaDao.insert(sintomainstrumentalestransporte);
@@ -1336,13 +1339,14 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         //PERSONALIDAD
 
                         Scale scaleincapacidadtareasdomesticas1 = new Scale(null,sintomaincapacidadtareasdomesticas.getId(),"Blessed","1.0");
-                        Scale scaleincapacidadtareasdomesticas2 = new Scale(null,sintomaincapacidadtareasdomesticas.getId(),"Lawton","1");
 
                         Scale scaleincapacidadpequenasdinero1 = new Scale(null,sintomaincapacidadpequenasdinero.getId(),"Blessed","1.0");
                         Scale scaleincapacidadpequenasdinero2 = new Scale(null,sintomaincapacidadpequenasdinero.getId(),"Lawton","1");
 
                         Scale scaleinstrumentalestelefono = new Scale(null,sintomainstrumentalestelefono.getId(),"Lawton","1");
                         Scale scaleinstrumentalescompras = new Scale(null,sintomainstrumentalescompras.getId(),"Lawton","1");
+
+                        Scale scaleinstrumentalescomida = new Scale(null,sintomainstrumentalescomida.getId(),"Lawton","1");
                         Scale scaleinstrumentalescuidacasa = new Scale(null,sintomainstrumentalescuidacasa.getId(),"Lawton","1");
                         Scale scaleinstrumentaleslavaropa = new Scale(null,sintomainstrumentaleslavaropa.getId(),"Lawton","1");
                         Scale scaleinstrumentalestransporte = new Scale(null,sintomainstrumentalestransporte.getId(),"Lawton","1");
@@ -1351,10 +1355,10 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                         escalaDao.insert(scaleincapacidadtareasdomesticas1);
                         escalaDao.insert(scaleincapacidadpequenasdinero1);
-                        escalaDao.insert(scaleincapacidadtareasdomesticas2);
                         escalaDao.insert(scaleincapacidadpequenasdinero2);
                         escalaDao.insert(scaleinstrumentalestelefono);
                         escalaDao.insert(scaleinstrumentalescompras);
+                        escalaDao.insert(scaleinstrumentalescomida);
                         escalaDao.insert(scaleinstrumentalescuidacasa);
                         escalaDao.insert(scaleinstrumentaleslavaropa);
                         escalaDao.insert(scaleinstrumentalestransporte);

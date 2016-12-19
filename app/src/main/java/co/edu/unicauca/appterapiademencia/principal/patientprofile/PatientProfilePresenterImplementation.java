@@ -256,4 +256,40 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
             patientProfileView.showFastScore(score,etapa,caracteristica,edadMental,mec,gds);
         }
     }
+
+    @Override
+    public void getDowntonScore(Long id) {
+        principalListInteractor.getDowntonScore(id);
+    }
+
+    @Override
+    public void getLawtonScore(Long id) {
+        int score;
+        String comentario;
+        try {
+            score = principalListInteractor.getLawtonScore(id);
+
+            if(score==0)
+            {
+                comentario="Máxima Dependencia";
+            }
+            else if(score==8)
+            {
+                comentario="Mínima Dependencia";
+            }
+            else
+            {
+                comentario="";
+            }
+            patientProfileView.showLawtonScore(score,comentario);
+
+
+        }catch (Exception e)
+        {
+
+        }
+
+
+
+    }
 }

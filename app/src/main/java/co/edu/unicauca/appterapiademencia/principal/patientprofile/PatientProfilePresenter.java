@@ -18,6 +18,8 @@ public interface PatientProfilePresenter {
     void getBlessedScore(Long id);
     void onEventMainThread(BlessedEvent event);
     void getFastScore(Long id);
+    void getDowntonScore(Long id);
+    void getLawtonScore(Long id);
 
 
 }

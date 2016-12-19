@@ -215,6 +215,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgInstrumentalesTelefono = (CheckBox) findViewById(R.id.rdgInstrumentalesTelefono);
         rdgInstrumentalesCompras = (CheckBox) findViewById(R.id.rdgInstrumentalesCompras);
         rdgInstrumentalesComida = (CheckBox) findViewById(R.id.rdgInstrumentalesComida);
+        rdgInstrumentalesCasa = (CheckBox) findViewById(R.id.rdgInstrumentalesCasa);
 
         rdgInstrumentalesRopa = (CheckBox) findViewById(R.id.rdgInstrumentalesLavaRopa);
         rdgInstrumentalesTransporte = (CheckBox) findViewById(R.id.rdgInstrumentalesTransporte);
@@ -505,7 +506,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                         case "instrumentalescuidacasa":
                             try {
                                 Sintoma instrumentalescuidacasa;
-                                instrumentalescuidacasa = helper.getSintoma(patientid, "Blessed", "instrumentales", "incapacidadpequenasdinero");
+                                instrumentalescuidacasa = helper.getSintoma(patientid, "Blessed", "instrumentales", "instrumentalescuidacasa");
                                 instrumentalescuidacasa.setActivo(stateList.get(i));
 
                                 sintomaDao.update(instrumentalescuidacasa);
@@ -522,7 +523,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                         case "instrumentaleslavaropa":
                             try {
                                 Sintoma instrumentaleslavaropa;
-                                instrumentaleslavaropa = helper.getSintoma(patientid, "Blessed", "instrumentales", "incapacidadpequenasdinero");
+                                instrumentaleslavaropa = helper.getSintoma(patientid, "Blessed", "instrumentales", "instrumentaleslavaropa");
                                 instrumentaleslavaropa.setActivo(stateList.get(i));
 
                                 sintomaDao.update(instrumentaleslavaropa);
@@ -530,6 +531,23 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
 
                                 Log.e("guardado y actualizado",instrumentaleslavaropa.getScaleList().get(0).getPuntaje().toString());
+
+                            } catch (Exception e) {
+                            }
+                            break;
+
+
+                        case "instrumentalescomida":
+                            try {
+                                Sintoma instrumentalescomida;
+                                instrumentalescomida = helper.getSintoma(patientid, "Blessed", "instrumentales", "instrumentalescomida");
+                                instrumentalescomida.setActivo(stateList.get(i));
+
+                                sintomaDao.update(instrumentalescomida);
+                                scaleDao.update(instrumentalescomida.getScaleList().get(0));
+
+
+                                Log.e("guardado y actualizado",instrumentalescomida.getScaleList().get(0).getPuntaje().toString());
 
                             } catch (Exception e) {
                             }
@@ -568,10 +586,6 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                             } catch (Exception e) {
                             }
                             break;
-
-
-
-
 
 
 
@@ -2068,6 +2082,17 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                 }catch (Exception e){rdgInstrumentalesRopa.setChecked(false);}
 
+                try{
+
+                    Sintoma instrumentalescuidacasa = helper.getSintoma(patientid,"Blessed","instrumentales","instrumentalescuidacasa");
+                    if(instrumentalescuidacasa.getActivo().booleanValue())
+                    {
+                        rdgInstrumentalesCasa.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgInstrumentalesCasa.setChecked(false);}
+
 
 
                 try{
@@ -2092,6 +2117,17 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
 
                 }catch (Exception e){rdgInstrumentalesMedicacion.setChecked(false);}
+
+                try{
+
+                    Sintoma instrumentalescomida = helper.getSintoma(patientid,"Blessed","instrumentales","instrumentalescomida");
+                    if(instrumentalescomida.getActivo().booleanValue())
+                    {
+                        rdgInstrumentalesComida.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgInstrumentalesComida.setChecked(false);}
 
 
 
@@ -2411,6 +2447,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgInstrumentalesComida.setOnCheckedChangeListener(this);
         rdgInstrumentalesTelefono.setOnCheckedChangeListener(this);
         rdgInstrumentalesCompras.setOnCheckedChangeListener(this);
+        rdgInstrumentalesCasa.setOnCheckedChangeListener(this);
 
 
         rdgMedicamentos.setOnCheckedChangeListener(this);
@@ -2514,6 +2551,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 sintomasList.add(var_seleccion);
 
                 break;
+
+            case R.id.rdgInstrumentalesCasa:
+                var_seleccion="instrumentalescuidacasa";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+
+                break;
+
 
             case R.id.rdgInstrumentalesTransporte:
                 var_seleccion="instrumentalestransporte";

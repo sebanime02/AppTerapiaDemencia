@@ -36,4 +36,7 @@ public interface PrincipalListRepository {
     void aprobeNote(Long idnote);
     String getFastScore(Long id);
 
+    int getLawtonScore(Long id);
+    void getDowntonScore(Long id);
+
 }

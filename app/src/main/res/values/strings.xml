@@ -169,10 +169,11 @@
     <string name="instrumentales_tareasdomesticas">Incapacidad para Realizar Tareas Domesticas</string>
     <string name="instrumentales_pequenasdinero">Le cuesta Manejar pequeñas cantidades de dinero (monedas,billetes)</string>
     <string name="instrumentales_telefono">No usa el Telefono</string>
-    <string name="instrumentales_comida">No prepara y sirve comidas adecuadas con independencia</string>
+    <string name="instrumentales_comida">No prepara y Ni sirve comidas adecuadas con independencia</string>
+    <string name="instrumentales_casa">No Participa en Ninguna Labor de La Casa</string>
 
     <string name="instrumentales_compras">Necesita Algun Tipo de ayuda para hacer sus Compras</string>
-    <string name="instrumentales_lavaropa">Necesita que otro se ocupe de lavar su ropa</string>
+    <string name="instrumentales_lavaropa">Necesita que Otra Persona Se ocupe de lavar su ropa</string>
     <string name="instrumentales_transporte">No usa transporte público</string>
     <string name="instrumentales_medicacion">No es Capaz de Responsabilizarse de su propia medicación</string>
 
