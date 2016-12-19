@@ -280,7 +280,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     case "0.0":
                         rdgNingunoTareasDomesticas.setChecked(true);
                         calificationTareasDomesticos="0.0";
-                        election="vestimenta";
+                        election="instrumentales";
 
                         //electionList.add(0,election);
                         //sintomasList.add(0,"incapacidadtareasdomesticas");
@@ -294,7 +294,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     case "0.5":
                         rdgParcialTareasDomesticas.setChecked(true);
                         calificationTareasDomesticos="0.5";
-                        election="vestimenta";
+                        election="instrumentales";
                         //electionList.add(0,election);
                         //sintomasList.add(0,"incapacidadtareasdomesticas");
 
@@ -306,7 +306,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     case "1.0":
                         rdgTotalTareasDomesticas.setChecked(true);
                         calificationTareasDomesticos="1.0";
-                        election="vestimenta";
+                        election="instrumentales";
                         electionList[0] = election;
                         sintomasList[0] = "incapacidadtareasdomesticas";
                         activeList[0]=true;
@@ -318,7 +318,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                         rdgNingunoPequenasDinero.setChecked(true);
                         calificationPequenasDinero="0.0";
-                        election="vestimenta";
+                        election="instrumentales";
                         //electionList.add(1,election);
                         //sintomasList.add(1,"incapacidadpequenasdinero");
                         electionList[1] = election;
@@ -328,7 +328,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     case "0.5":
                         rdgParcialPequenasDinero.setChecked(true);
                         calificationPequenasDinero="0.5";
-                        election="vestimenta";
+                        election="instrumentales";
                         //electionList.add(1,election);
                         //sintomasList.add(1,"incapacidadpequenasdinero");
 
@@ -340,7 +340,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                         rdgTotalPequenasDinero.setChecked(true);
                         calificationPequenasDinero="1.0";
-                        election="vestimenta";
+                        election="instrumentales";
                         //electionList.add(1,election);
                         //sintomasList.add(1,"incapacidadpequenasdinero");
 
@@ -1057,6 +1057,8 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 Sintoma sintomaincontinensiaurinaria = new Sintoma(null,patient2.getId(),"higiene","higieneayudaincontinensiaurinaria",false);
                                 Sintoma sintomahigieneayudaincontinensiafecal = new Sintoma(null,patient2.getId(),"higiene","higieneayudaincontinensiafecal",false);
 
+
+
                                 sintomaDao.insert(sintomahigieneayudabanarse);
                                 sintomaDao.insert(sintomahigieneayudainodoro);
                                 sintomaDao.insert(sintomahigieneayudasoltarbano);
@@ -1075,11 +1077,15 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 sintomaDao.insert(sintomamovilidadsentarse);
                                 sintomaDao.insert(sintomamovilidadcabeza);
 
+
+                                //MEDICACION
+                                Sintoma medicacionmedicamentos = new Sintoma(null,patient2.getId(),"medicacion","medicacionmedicamentos",false);
+                                sintomaDao.insert(medicacionmedicamentos);
+
                                 //VESTIMENTA
 
                                 Sintoma sintomavestimentaactividades = new Sintoma(null,patient2.getId(),"vestimenta","vestimentaactividades",false);
-                                Sintoma sintomaincapacidadtareasdomesticas = new Sintoma(null,patient2.getId(),"vestimenta","incapacidadtareasdomesticas",false);
-                                Sintoma sintomaincapacidadpequenasdinero = new Sintoma(null,patient2.getId(),"vestimenta","incapacidadpequenasdinero",false);
+
                                 Sintoma sintomavestimentafallosocasionales = new Sintoma(null,patient2.getId(),"vestimenta","vestimentafallosocasionales",false);
                                 Sintoma sintomavestimentaseleccionar = new Sintoma(null,patient2.getId(),"vestimenta","vestimentaseleccionar",false);
                                 Sintoma sintomavestimentasecuencia = new Sintoma(null,patient2.getId(),"vestimenta","vestimentasecuencia",false);
@@ -1087,15 +1093,38 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 Sintoma sintomavestimentaincapaz = new Sintoma(null,patient2.getId(),"vestimenta","vestimentaincapaz",false);
 
                                 sintomaDao.insert(sintomavestimentaactividades);
-                                sintomaDao.insert(sintomaincapacidadtareasdomesticas);
-                                sintomaDao.insert(sintomaincapacidadpequenasdinero);
+
                                 sintomaDao.insert(sintomavestimentafallosocasionales);
                                 sintomaDao.insert(sintomavestimentaseleccionar);
                                 sintomaDao.insert(sintomavestimentasecuencia);
                                 sintomaDao.insert(sintomavestimentaayudavestirse);
                                 sintomaDao.insert(sintomavestimentaincapaz);
 
-                                //LENGUAJE
+                                //ACTIVIDADES INSTRUMENTALES DE LA VIDA DIARIA
+                                Sintoma sintomaincapacidadtareasdomesticas = new Sintoma(null,patient2.getId(),"instrumentales","incapacidadtareasdomesticas",false);
+                                Sintoma sintomaincapacidadpequenasdinero = new Sintoma(null,patient2.getId(),"instrumentales","incapacidadpequenasdinero",false);
+
+                                Sintoma sintomainstrumentalestelefono = new Sintoma(null,patient2.getId(),"instrumentales","instrumentalestelefono",false);
+                                Sintoma sintomainstrumentalescompras = new Sintoma(null,patient2.getId(),"instrumentales","instrumentalescompras",false);
+                                Sintoma sintomainstrumentalescuidacasa = new Sintoma(null,patient2.getId(),"instrumentales","instrumentalescuidacasa",false);
+                                Sintoma sintomainstrumentaleslavaropa = new Sintoma(null,patient2.getId(),"instrumentales","instrumentaleslavaropa",false);
+                                Sintoma sintomainstrumentalestransporte = new Sintoma(null,patient2.getId(),"instrumentales","instrumentalestransporte",false);
+                                Sintoma sintomainstrumentalesmedicacion = new Sintoma(null,patient2.getId(),"instrumentales","instrumentalesmedicacion",false);
+
+
+
+                                sintomaDao.insert(sintomaincapacidadtareasdomesticas);
+                                sintomaDao.insert(sintomaincapacidadpequenasdinero);
+                                sintomaDao.insert(sintomainstrumentalestelefono);
+                                sintomaDao.insert(sintomainstrumentalescompras);
+                                sintomaDao.insert(sintomainstrumentalescuidacasa);
+                                sintomaDao.insert(sintomainstrumentaleslavaropa);
+                                sintomaDao.insert(sintomainstrumentalestransporte);
+                                sintomaDao.insert(sintomainstrumentalesmedicacion);
+
+
+
+                        //LENGUAJE
                                 Sintoma sintomalenguajelimitado = new Sintoma(null,patient2.getId(),"lenguaje","lenguajelimitado",false);
                                 Sintoma sintomalenguajepalabra = new Sintoma(null,patient2.getId(),"lenguaje","lenguajepalabra",false);
 
@@ -1182,20 +1211,23 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
 
                                 Scale scalehigieneayudabanarse = new Scale(null,sintomahigieneayudabanarse.getId(),"FAST","62");
-                                Scale scalehigieneayudainodoro = new Scale(null,sintomahigieneayudainodoro.getId(),"FAST","63");
+
+                                //Scale scalehigieneayudainodoro = new Scale(null,sintomahigieneayudainodoro.getId(),"FAST","63");
                                 Scale scalehigieneayudasoltarbano = new Scale(null,sintomahigieneayudasoltarbano.getId(),"FAST","63");
-                                Scale scaleincontinensiaurinaria = new Scale(null,sintomaincontinensiaurinaria.getId(),"FAST","64");
-                                Scale scalehigieneayudaincontinensiafecal = new Scale(null,sintomahigieneayudaincontinensiafecal.getId(),"FAST","65");
+
+                                Scale scaleincontinensiaurinaria1 = new Scale(null,sintomaincontinensiaurinaria.getId(),"FAST","64");
+                                Scale scaleincontinensiaurinaria2 = new Scale(null,sintomaincontinensiaurinaria.getId(),"Blessed","2.0");
+
+                                Scale scalehigieneayudaincontinensiafecal1 = new Scale(null,sintomahigieneayudaincontinensiafecal.getId(),"FAST","65");
+                                Scale scalehigieneayudaincontinensiafecal2 = new Scale(null,sintomahigieneayudaincontinensiafecal.getId(),"Blessed","3.0");
 
                                 escalaDao.insert(scalehigieneayudabanarse);
-                                escalaDao.insert(scalehigieneayudainodoro);
+                                //escalaDao.insert(scalehigieneayudainodoro);
                                 escalaDao.insert(scalehigieneayudasoltarbano);
-                                escalaDao.insert(scaleincontinensiaurinaria);
-                                escalaDao.insert(scalehigieneayudaincontinensiafecal);
-
-                                DetailFast detailFast6c = new DetailFast(null,scalehigieneayudabanarse.getId(),"Normal de la Edad","Sin Déficit","Adulto","NORMAL,MEC de Lobo 30-35");
-                                DetailFast detailFast6d = new DetailFast(null,scalehigieneayudabanarse.getId(),"Normal de la Edad","Sin Déficit","Adulto","NORMAL,MEC de Lobo 30-35");
-
+                                escalaDao.insert(scaleincontinensiaurinaria1);
+                                escalaDao.insert(scaleincontinensiaurinaria2);
+                                escalaDao.insert(scalehigieneayudaincontinensiafecal1);
+                                escalaDao.insert(scalehigieneayudaincontinensiafecal2);
 
 
 
@@ -1214,8 +1246,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
                                 Scale scalevestimentaactividades = new Scale(null,sintomavestimentaactividades.getId(),"FAST","40");
 
-                                Scale scaleincapacidadtareasdomesticas = new Scale(null,sintomaincapacidadtareasdomesticas.getId(),"Blessed","1.0");
-                                Scale scaleincapacidadpequenasdinero = new Scale(null,sintomaincapacidadpequenasdinero.getId(),"Blessed","1.0");
+
 
                                 Scale scalevestimentafallosocasionales = new Scale(null,sintomavestimentafallosocasionales.getId(),"Blessed","1.0");
                                 Scale scalevestimentaseleccionar = new Scale(null,sintomavestimentaseleccionar.getId(),"FAST","50");
@@ -1225,8 +1256,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                                 Scale scalevestimentaincapaz = new Scale(null,sintomavestimentaincapaz.getId(),"Blessed","3.0");
 
                                 escalaDao.insert(scalevestimentaactividades);
-                                escalaDao.insert(scaleincapacidadtareasdomesticas);
-                                escalaDao.insert(scaleincapacidadpequenasdinero);
+
                                 escalaDao.insert(scalevestimentafallosocasionales);
                                 escalaDao.insert(scalevestimentaseleccionar);
                                 escalaDao.insert(scalevestimentasecuencia);
@@ -1303,18 +1333,49 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
 
 
+                        //PERSONALIDAD
+
+                        Scale scaleincapacidadtareasdomesticas1 = new Scale(null,sintomaincapacidadtareasdomesticas.getId(),"Blessed","1.0");
+                        Scale scaleincapacidadtareasdomesticas2 = new Scale(null,sintomaincapacidadtareasdomesticas.getId(),"Lawton","1");
+
+                        Scale scaleincapacidadpequenasdinero1 = new Scale(null,sintomaincapacidadpequenasdinero.getId(),"Blessed","1.0");
+                        Scale scaleincapacidadpequenasdinero2 = new Scale(null,sintomaincapacidadpequenasdinero.getId(),"Lawton","1");
+
+                        Scale scaleinstrumentalestelefono = new Scale(null,sintomainstrumentalestelefono.getId(),"Lawton","1");
+                        Scale scaleinstrumentalescompras = new Scale(null,sintomainstrumentalescompras.getId(),"Lawton","1");
+                        Scale scaleinstrumentalescuidacasa = new Scale(null,sintomainstrumentalescuidacasa.getId(),"Lawton","1");
+                        Scale scaleinstrumentaleslavaropa = new Scale(null,sintomainstrumentaleslavaropa.getId(),"Lawton","1");
+                        Scale scaleinstrumentalestransporte = new Scale(null,sintomainstrumentalestransporte.getId(),"Lawton","1");
+                        Scale scaleinstrumentalesmedicacion = new Scale(null,sintomainstrumentalesmedicacion.getId(),"Lawton","1");
+
+
+                        escalaDao.insert(scaleincapacidadtareasdomesticas1);
+                        escalaDao.insert(scaleincapacidadpequenasdinero1);
+                        escalaDao.insert(scaleincapacidadtareasdomesticas2);
+                        escalaDao.insert(scaleincapacidadpequenasdinero2);
+                        escalaDao.insert(scaleinstrumentalestelefono);
+                        escalaDao.insert(scaleinstrumentalescompras);
+                        escalaDao.insert(scaleinstrumentalescuidacasa);
+                        escalaDao.insert(scaleinstrumentaleslavaropa);
+                        escalaDao.insert(scaleinstrumentalestransporte);
+                        escalaDao.insert(scaleinstrumentalesmedicacion);
+
+
+
+
                         try{
-                            tareasdomesticas = helper.getSintoma(patient2.getId(),"Blessed","vestimenta","incapacidadtareasdomesticas");
+                            tareasdomesticas = helper.getSintoma(patient2.getId(),"Blessed","instrumentales","incapacidadtareasdomesticas");
                             tareasdomesticas.setActivo(activeList[0]);
                             tareasdomesticas.getScaleList().get(0).setPuntaje(calificationTareasDomesticos);
                             sintomaDao.update(tareasdomesticas);
                             escalaDao.update(tareasdomesticas.getScaleList().get(0));
+
                             Log.e("guardado y actualizado",tareasdomesticas.getScaleList().get(0).getPuntaje().toString());
 
 
                         }catch (Exception e){}
                         try{
-                            pequenasdinero = helper.getSintoma(patient2.getId(),"Blessed","vestimenta","incapacidadpequenasdinero");
+                            pequenasdinero = helper.getSintoma(patient2.getId(),"Blessed","instrumentales","incapacidadpequenasdinero");
                             pequenasdinero.setActivo(activeList[1]);
                             pequenasdinero.getScaleList().get(0).setPuntaje(calificationPequenasDinero);
                             sintomaDao.update(pequenasdinero);

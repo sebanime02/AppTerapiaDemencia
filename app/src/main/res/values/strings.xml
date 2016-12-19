@@ -88,6 +88,11 @@
     <string name="spinner_vision">Limitación de Visión</string>
     <string name="spinner_escritura">Limitación de Escritura</string>
     <string name="spinner_dibujo">Limitación de Dibujo</string>
+
+    <string name="txt_alteracionesauditivas">Alteraciones Auditivas</string>
+    <string name="txt_alteracionesextremidades">Alteraciones de las Extremidades</string>
+
+
     <string name="txt_addpatient_fechanacimiento">Fecha de Nacimiento:</string>
     <string name="txt_addpatient_sexo">Sexo</string>
     <string name="txt_addpatient_femenino">Femenino</string>
@@ -124,7 +129,7 @@
     <string name="addnote_empty_content2">Por favor complete los campos "Descripción del evento" y "Responsable"</string>
     <string name="addnote_empty_category">Por favor selecciona una categoria en el punto 1</string>
     <string name="txt_note_responsable">5. Responsable, Escriba su Nombre Completo...</string>
-    <string name="add_movilidad">Independencia en\nla movilidad</string>
+    <string name="add_movilidad">Movilidad y\nDeambulación</string>
     <string name="add_caida">Caida o Fractura\n</string>
     <string name="add_alimentacion">Hábitos de\n Alimentación</string>
     <string name="add_health">Estado de \n Ánimo</string>
@@ -132,9 +137,10 @@
     <string name="add_medication">Medicación</string>
 
     <string name="addnote_higiene">Higiene y\nAseo</string>
-    <string name="addnote_vestimenta">Vestimenta y\nActividades \nPersonales</string>
+    <string name="addnote_vestimenta">Vestimenta</string>
     <string name="addnote_lenguaje">Lenguaje</string>
     <string name="addnote_memoria">Memoria</string>
+    <string name="addnote_instrumentales">Actividades \nInstrumentales</string>
 
     <string name="addnote_eventos">Relacionados a Eventos:</string>
     <string name="addnote_signos">Relacionado a Signos o Sintomas de la Demencia Senil:</string>
@@ -160,9 +166,19 @@
     <string name="higiene_incontenencia_urinaria">Incontinencia urinaria Frecuente</string>
 
 
+    <string name="instrumentales_tareasdomesticas">Incapacidad para Realizar Tareas Domesticas</string>
+    <string name="instrumentales_pequenasdinero">Le cuesta Manejar pequeñas cantidades de dinero (monedas,billetes)</string>
+    <string name="instrumentales_telefono">No usa el Telefono</string>
+    <string name="instrumentales_comida">No prepara y sirve comidas adecuadas con independencia</string>
+
+    <string name="instrumentales_compras">Necesita Algun Tipo de ayuda para hacer sus Compras</string>
+    <string name="instrumentales_lavaropa">Necesita que otro se ocupe de lavar su ropa</string>
+    <string name="instrumentales_transporte">No usa transporte público</string>
+    <string name="instrumentales_medicacion">No es Capaz de Responsabilizarse de su propia medicación</string>
+
+
+
     <string name="vestimenta_otro">Ninguno de los Anteriores</string>
-    <string name="vestimenta_sinproblemas">Independiente con su vestimenta y actividades personales</string>
-    <string name="vestimenta_actividadesdiarias">Le cuestan Manejar dinero (monedas,billetes)</string>
     <string name="vestimenta_abotonamiento">Fallos ocasionales en el abotonamiento</string>
     <string name="vestimenta_seleccion">Necesita ayuda para seleccionar su vestimenta</string>
     <string name="vestimenta_secuencia">Errores y Olvidos frecuentes en la secuencia de vestirse</string>
@@ -176,8 +192,7 @@
     <string name="lenguaje_unasolapalabra">Habla limitada al uso de una sola palabra inteligible en un dia promedio o conversación </string>
 
 
-    <string name="movilidad_otro">Ninguno de los Anteriores</string>
-    <string name="movilidad_sinproblemas">Sin dificultad para movilizarse en cualquier situación</string>
+
     <string name="movilidad_dificultadsitioslejanos">Dificultad para movilizarse a sitios Lejanos</string>
     <string name="movilidad_nocaminaasistencia">No puede caminar sin asistencia</string>
     <string name="movilidad_nosentarseautonoma">No puede sentarse de manera autónoma.</string>
@@ -213,6 +228,16 @@
 
     <string name="medicacion_adverso">Error de Medicación, Evento Adverso</string>
     <string name="medicacion_rutinario">Evento de Medicación Rutinario</string>
+
+    <string name="medicacion_medicamentos">Inguiere Tranquilizantes, Sedantes, Deuréticos, Antidepresivos u Otros</string>
+
+    <string name="medicacion_tranquilizantes">Tranquilizantes o Sedantes</string>
+    <string name="medicacion_diureticos">Diuréticos</string>
+    <string name="medicacion_hipotensores">Hipotensores No Diuréticos</string>
+    <string name="medicacion_antiparkinsonianos">Antiparkinsoneanos</string>
+    <string name="medicacion_antidepresivos">Antidepresivos</string>
+    <string name="medicacion_otros">Otros Medicamentos</string>
+
 
 
 

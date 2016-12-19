@@ -294,6 +294,15 @@
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
 
                             />
+
+                        <ImageButton
+
+                            android:src="@mipmap/instrumentals72px"
+                            android:id="@+id/btn_instrumentals"
+                            android:background="@color/material_grey"
+                            android:layout_height="match_parent"
+
+                            />
                     </TableRow>
                     <TableRow android:layout_height="match_parent"
                         android:layout_width="match_parent">
@@ -345,7 +354,17 @@
 
 
                             />
-                    </TableRow>
+
+                        <TextView
+                            android:layout_height="match_parent"
+                            android:background="@color/material_grey"
+                            android:text="@string/addnote_instrumentales"
+                            android:textColor="@color/negro"
+                            android:textAlignment="center"
+                            android:fontFamily="sans-serif"
+
+
+                            /></TableRow>
 
 
 
@@ -430,6 +449,8 @@
 
                      />
            <!--  MEMORIA -->
+
+
                  <RadioGroup
                      android:orientation="vertical"
                      android:id="@+id/rdgMemoria"
@@ -502,18 +523,7 @@
                          android:textStyle="bold"
                          />
 
-                     <android.support.v7.widget.AppCompatCheckBox
-                         android:id="@+id/rdgHigieneAyudaInodoro"
-                         android:text="@string/higiene_inodoro"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:textSize="@dimen/small_text_size"
-                         android:fontFamily="sans-serif"
 
-                         android:paddingBottom="@dimen/activity_vertical_margin"
-
-                         android:textStyle="bold"
-                         />
                      <android.support.v7.widget.AppCompatCheckBox
                          android:id="@+id/rdgHigieneSoltarBano"
                          android:text="@string/higiene_soltar"
@@ -554,7 +564,7 @@
                  </RadioGroup>
 
 
-                 <!-- VESTIMENTA Y ACTIVIDADES PERSONALES-->
+                 <!-- VESTIMENTA-->
 
                  <RadioGroup
                      android:orientation="vertical"
@@ -567,16 +577,10 @@
 
 
 
-                     <android.support.v7.widget.AppCompatCheckBox
-                         android:id="@+id/rdgVestimentaActividades"
-                         android:text="@string/vestimenta_actividadesdiarias"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:textSize="@dimen/small_text_size"
-                         android:fontFamily="sans-serif"
-                         android:paddingBottom="@dimen/activity_vertical_margin"
-                         android:textStyle="bold"
-                         />
+
+
+
+
                      <android.support.v7.widget.AppCompatCheckBox
                          android:id="@+id/rdgVestimentaFallosOcasionales"
                          android:text="@string/vestimenta_abotonamiento"
@@ -748,7 +752,10 @@
                          />
                  </RadioGroup>
 
+
+
                  <!--  ALIMENTACION -->
+
                  <RadioGroup
                      android:orientation="vertical"
                      android:id="@+id/rdgAlimentacion"
@@ -854,6 +861,7 @@
 
 
                  <!--- ESTADO DE ANIMO-->
+
                  <RadioGroup
                      android:orientation="vertical"
                      android:id="@+id/rdgAnimo"
@@ -879,11 +887,10 @@
 
 
 
-
-
                  </RadioGroup>
 
                  <!--- MEDICACION-->
+
                  <RadioGroup
                      android:orientation="vertical"
                      android:id="@+id/rdgMedicacion"
@@ -893,22 +900,9 @@
                      >
 
 
-
-                     <RadioButton
-                         android:id="@+id/rdgMedicacionRutinario"
-                         android:text="@string/medicacion_rutinario"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:textSize="@dimen/small_text_size"
-                         android:fontFamily="sans-serif"
-
-                         android:checked="true"
-                         android:paddingBottom="@dimen/activity_vertical_margin"
-                         android:textStyle="bold"
-                         />
-                     <RadioButton
-                         android:id="@+id/rdgMedicacionAdverso"
-                         android:text="@string/medicacion_adverso"
+                     <android.support.v7.widget.AppCompatCheckBox
+                         android:id="@+id/rdgMedicacionMedicamentos"
+                         android:text="@string/medicacion_medicamentos"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:textSize="@dimen/small_text_size"
@@ -918,10 +912,16 @@
                          android:paddingBottom="@dimen/activity_vertical_margin"
                          android:textStyle="bold"
                          />
+
+
+
 
                  </RadioGroup>
 
-                 <!--CAMBIOS DE PERSONALIDAD -->
+
+
+
+                 <!--PERSONALIDAD Y CONDUCTA -->
 
 
                  <RadioGroup
@@ -933,6 +933,8 @@
 
 
                      >
+
+
 
 
                      <android.support.v7.widget.AppCompatCheckBox
@@ -1059,6 +1061,118 @@
                          />
 
                  </RadioGroup>
+
+
+
+                 <!--ACTIVIDADES INSTRUMENTALES AIVD-->
+
+
+                 <RadioGroup
+                     android:orientation="vertical"
+                     android:id="@+id/rdgInstrumentales"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:visibility="gone"
+
+
+                     >
+
+                     <android.support.v7.widget.AppCompatCheckBox
+                         android:id="@+id/rdgInstrumentalesTareasDomesticas"
+                         android:text="@string/instrumentales_tareasdomesticas"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:textSize="@dimen/small_text_size"
+                         android:fontFamily="sans-serif"
+                         android:paddingBottom="@dimen/activity_vertical_margin"
+                         android:textStyle="bold"
+                         />
+
+                     <android.support.v7.widget.AppCompatCheckBox
+                         android:id="@+id/rdgInstrumentalesPequenasDinero"
+                         android:text="@string/instrumentales_pequenasdinero"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:textSize="@dimen/small_text_size"
+                         android:fontFamily="sans-serif"
+                         android:paddingBottom="@dimen/activity_vertical_margin"
+                         android:textStyle="bold"
+                         />
+
+                     <android.support.v7.widget.AppCompatCheckBox
+                         android:id="@+id/rdgInstrumentalesTelefono"
+                         android:text="@string/instrumentales_telefono"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:textSize="@dimen/small_text_size"
+                         android:fontFamily="sans-serif"
+                         android:paddingBottom="@dimen/activity_vertical_margin"
+                         android:textStyle="bold"
+                         />
+
+                     <android.support.v7.widget.AppCompatCheckBox
+                         android:id="@+id/rdgInstrumentalesCompras"
+                         android:text="@string/instrumentales_compras"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:textSize="@dimen/small_text_size"
+                         android:fontFamily="sans-serif"
+                         android:paddingBottom="@dimen/activity_vertical_margin"
+                         android:textStyle="bold"
+                         />
+
+                     <android.support.v7.widget.AppCompatCheckBox
+                         android:id="@+id/rdgInstrumentalesComida"
+                         android:text="@string/instrumentales_comida"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:textSize="@dimen/small_text_size"
+                         android:fontFamily="sans-serif"
+                         android:paddingBottom="@dimen/activity_vertical_margin"
+                         android:textStyle="bold"
+                         />
+
+
+
+                     <android.support.v7.widget.AppCompatCheckBox
+                         android:id="@+id/rdgInstrumentalesLavaRopa"
+                         android:text="@string/instrumentales_lavaropa"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:textSize="@dimen/small_text_size"
+                         android:fontFamily="sans-serif"
+                         android:paddingBottom="@dimen/activity_vertical_margin"
+                         android:textStyle="bold"
+                         />
+
+                     <android.support.v7.widget.AppCompatCheckBox
+                         android:id="@+id/rdgInstrumentalesTransporte"
+                         android:text="@string/instrumentales_transporte"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:textSize="@dimen/small_text_size"
+                         android:fontFamily="sans-serif"
+                         android:paddingBottom="@dimen/activity_vertical_margin"
+                         android:textStyle="bold"
+                         />
+
+                     <android.support.v7.widget.AppCompatCheckBox
+                         android:id="@+id/rdgInstrumentalesMedicacion"
+                         android:text="@string/instrumentales_medicacion"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:textSize="@dimen/small_text_size"
+                         android:fontFamily="sans-serif"
+                         android:paddingBottom="@dimen/activity_vertical_margin"
+                         android:textStyle="bold"
+                         />
+
+
+
+                 </RadioGroup>
+
+
+
 
              </LinearLayout>
                 <View

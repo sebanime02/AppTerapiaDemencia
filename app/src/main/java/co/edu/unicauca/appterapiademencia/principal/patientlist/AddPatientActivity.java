@@ -307,7 +307,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
         Log.e("Agregar paciente","Presiono el boton siguiente");
 
-        if(validar(edt_id.getText().toString(),btn_fecha.getText().toString(),edt_nomb.getText().toString(),var_sexo)==false)
+        if(validar(edt_id.getText().toString(),btn_fecha.getText().toString(),edt_nomb.getText().toString())==false)
         {
             new MaterialDialog.Builder(this).title("Campos Obligagorios Faltantes").content("Debe Escribir Cédula, Fecha de Nacimiento, Nombre Completo y Sexo").positiveText(R.string.dialog_succes_agree).show();
             //Toast.makeText(this,"Debe poner cédula, fecha de nacimiento y nombre completo",Toast.LENGTH_LONG).show();
@@ -345,7 +345,9 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 paciente[5] = edt_antecedentes.getText().toString();
                 paciente[6] = edt_sindromes.getText().toString();
                 paciente[7] = edt_observaciones.getText().toString();
-                paciente[8] = var_sexo.toString();
+                try{
+                    paciente[8] = var_sexo.toString();
+                }catch (Exception e){   paciente[8] = "femenino";}
 
 
                 ir_reg.putExtra("paciente", paciente);
@@ -386,7 +388,9 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                     paciente[5] = edt_antecedentes.getText().toString();
                     paciente[6] = edt_sindromes.getText().toString();
                     paciente[7] = edt_observaciones.getText().toString();
-                    paciente[8] = var_sexo.toString();
+                    try{
+                        paciente[8] = var_sexo.toString();
+                    }catch (Exception e){   paciente[8] = "femenino";}
 
                     ir_reg.putExtra("paciente", paciente);
 
@@ -458,8 +462,8 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         btn_fecha.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.negro));
     }
 
-    public Boolean validar(String id, String fecha, String genero,String sexo) {
-        if (id.equals("")  || fecha.equals("") || genero.equals("") || fecha.equals("DD/MM/AAAA") || sexo.equals(null)) {
+    public Boolean validar(String id, String fecha, String genero) {
+        if (id.equals("")  || fecha.equals("") || genero.equals("") || fecha.equals("DD/MM/AAAA")) {
             return false;
         }else {
             return true;

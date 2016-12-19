@@ -54,8 +54,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private String hour;
     private RadioButton rdgMejora,rdgNeutral,rdgRetroceso,rdgIncidente,rdgAdverso,rdgCentinela;
     private TextView txt_adverso;
-    private ImageButton orientacion,movility,eating,fall,medication,estadodeanimo,otro,changeBehaviour,higiene,memoria,lenguaje,vestimenta;
-    private RadioGroup rdgGrupo,rdgMedicacion,rdgMovilidad,rdgAlimentacion,rdgCambioPersonalidad,rdgOrientacion,rdgLenguaje,rdgMemoria,rdgHigiene,rdgVestimenta,rdgAnimo,rdgPersonalidad;
+    private ImageButton instrumentales,orientacion,movility,eating,fall,medication,estadodeanimo,otro,changeBehaviour,higiene,memoria,lenguaje,vestimenta;
+    private RadioGroup rdgGrupo,rdgInstrumentales,rdgMedicacion,rdgMovilidad,rdgAlimentacion,rdgCambioPersonalidad,rdgOrientacion,rdgLenguaje,rdgMemoria,rdgHigiene,rdgVestimenta,rdgAnimo,rdgPersonalidad;
     private CheckBox rdgMovilidadOtro,rdgMovilidadSitiosLejanos,rdgMovilidadCaminar,rdgMovilidadSentarse,rdgMovilidadCabeza;
     private CheckBox rdgHigieneAyudaBanarse,rdgHigieneSoltarBano,rdgHigieneAyudaInodoro,rdgHigieneIncontinensiaUrinaria,rdgHigieneIncontinensiaFecal;
     private CheckBox rdgVestimentaActividades,rdgVestimentaFallosOcasionales,rdgVestimentaSeleccionar,rdgVestimentaSecuencia,rdgVestimentaAyudaVestirse,rdgVestimentaIncapaz;
@@ -65,6 +65,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private CheckBox rdgPersonalidadRetraimiento,rdgPersonalidadEgocentrismo,rdgPersonalidadPerdidaInteres,rdgPersonalidadAfectividadEmbotada,rdgPersonalidadPerturbacionEmocional,rdgPersonalidadHilaridadInapropiada,rdgPersonalidadRespuestaEmocional,rdgPersonalidadIndiscrecionesSexuales,rdgPersonalidadFaltaInteres,rdgPersonalidadDisminucionIniciativa,rdgPersonalidadHiperactividadJustificada;
     private CheckBox rdgOrientacionCasa,rdgOrientacionCalle,rdgOrientacionEntorno;
     private CheckBox rdgAnimoSonrisa;
+    private CheckBox rdgMedicamentos;
+    private CheckBox rdgInstrumentalesTareasDomesticas,rdgInstrumentalesPequenasDinero,rdgInstrumentalesTelefono,rdgInstrumentalesCompras,rdgInstrumentalesComida,rdgInstrumentalesCasa,rdgInstrumentalesRopa,rdgInstrumentalesTransporte,rdgInstrumentalesMedicacion;
     private RadioButton rdgMedicacionRutinario,rdgMedicacionAdverso;
     private ArrayList<String> sintomasList;
     private ArrayList<String> nameTestList;
@@ -137,6 +139,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         vestimenta = (ImageButton) findViewById(R.id.btn_vestimenta);
         memoria = (ImageButton) findViewById(R.id.btn_memory);
         orientacion = (ImageButton) findViewById(R.id.btn_orientation);
+        instrumentales = (ImageButton) findViewById(R.id.btn_instrumentals);
+
 
 
         rdgTardia = (CheckBox) findViewById(R.id.rdgTardia);
@@ -164,6 +168,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgMedicacion = (RadioGroup) findViewById(R.id.rdgMedicacion);
         rdgPersonalidad = (RadioGroup) findViewById(R.id.rdgPersonalidad);
         rdgOrientacion = (RadioGroup) findViewById(R.id.rdgOrientacion);
+        rdgInstrumentales = (RadioGroup) findViewById(R.id.rdgInstrumentales);
 
 
         //rdgGrupo.setOnCheckedChangeListener(this);
@@ -172,7 +177,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         //HIGIENE
         rdgHigieneAyudaBanarse = (CheckBox) findViewById(R.id.rdgHigieneAyudaBanarse);
         rdgHigieneSoltarBano = (CheckBox) findViewById(R.id.rdgHigieneSoltarBano);
-        rdgHigieneAyudaInodoro = (CheckBox) findViewById(R.id.rdgHigieneAyudaInodoro);
+
         rdgHigieneIncontinensiaUrinaria = (CheckBox) findViewById(R.id.rdgHigieneIncontinensiaUrinaria);
         rdgHigieneIncontinensiaFecal = (CheckBox) findViewById(R.id.rdgHigieneIncontinensiaFecal);
 
@@ -186,7 +191,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
         //VESTIMENTA
 
-        rdgVestimentaActividades = (CheckBox) findViewById(R.id.rdgVestimentaActividades);
+        //rdgVestimentaActividades = (CheckBox) findViewById(R.id.rdgVestimentaActividades);
         rdgVestimentaFallosOcasionales = (CheckBox) findViewById(R.id.rdgVestimentaFallosOcasionales);
         rdgVestimentaAyudaVestirse = (CheckBox) findViewById(R.id.rdgVestimentaAyudaVestirse);
         rdgVestimentaSeleccionar = (CheckBox) findViewById(R.id.rdgVestimentaSeleccionar);
@@ -198,6 +203,22 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgMemoriaListasCortas = (CheckBox) findViewById(R.id.rdgMemoriaListasCortas);
         rdgMemoriaTendenciaRememorar = (CheckBox) findViewById(R.id.rdgMemoriaTendenciaRememorar);
         rdgMemoriaOlvidosBenignos = (CheckBox) findViewById(R.id.rdgMemoriaOlvidosBenignos);
+
+        //MEDICACION
+        rdgMedicamentos = (CheckBox) findViewById(R.id.rdgMedicacionMedicamentos);
+
+        //INSTRUMENTALES
+        //    private CheckBox rdgInstrumentalesTareasDomesticas,rdgInstrumentalesPequenasDinero,rdgInstrumentalesTelefono,rdgInstrumentalesCompras,rdgInstrumentalesComida,rdgInstrumentalesCasa,rdgInstrumentalesRopa,rdgInstrumentalesTransporte,rdgInstrumentalesMedicacion;
+
+        rdgInstrumentalesTareasDomesticas = (CheckBox) findViewById(R.id.rdgInstrumentalesTareasDomesticas);
+        rdgInstrumentalesPequenasDinero = (CheckBox) findViewById(R.id.rdgInstrumentalesPequenasDinero);
+        rdgInstrumentalesTelefono = (CheckBox) findViewById(R.id.rdgInstrumentalesTelefono);
+        rdgInstrumentalesCompras = (CheckBox) findViewById(R.id.rdgInstrumentalesCompras);
+        rdgInstrumentalesComida = (CheckBox) findViewById(R.id.rdgInstrumentalesComida);
+
+        rdgInstrumentalesRopa = (CheckBox) findViewById(R.id.rdgInstrumentalesLavaRopa);
+        rdgInstrumentalesTransporte = (CheckBox) findViewById(R.id.rdgInstrumentalesTransporte);
+        rdgInstrumentalesMedicacion = (CheckBox) findViewById(R.id.rdgInstrumentalesMedicacion);
 
 
         //LENGUAJE
@@ -214,8 +235,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         //ANIMO SONRISA
         rdgAnimoSonrisa= (CheckBox) findViewById(R.id.rdgAnimoSonrisa);
 
-        rdgMedicacionAdverso = (RadioButton) findViewById(R.id.rdgMedicacionAdverso);
-        rdgMedicacionRutinario = (RadioButton) findViewById(R.id.rdgMedicacionAdverso);
+        //rdgMedicacionAdverso = (RadioButton) findViewById(R.id.rdgMedicacionAdverso);
+        //rdgMedicacionRutinario = (RadioButton) findViewById(R.id.rdgMedicacionAdverso);
 
 
         //PERSONALIDAD
@@ -302,6 +323,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         vestimenta.setOnClickListener(this);
         medication.setOnClickListener(this);
         orientacion.setOnClickListener(this);
+        instrumentales.setOnClickListener(this);
+
 
 
     }
@@ -400,37 +423,11 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                     switch (sintomasList.get(i)) {
 
 
-                        //----------VESTIMENTA y AVD-------------
-
-                        case "vestimentaactividades":
-
-
-                            try {
-                                Sintoma vestimentaactividades;
-                                vestimentaactividades = helper.getSintoma(patientid, "FAST", "vestimenta", "vestimentaactividades");
-                                vestimentaactividades.setActivo(stateList.get(i));
-                                if (stateList.get(i).booleanValue()) {
-                                    //vestimentaactividades.getScaleList().get(0).setPuntaje("4");
-
-                                } else {
-                                    //vestimentaactividades.getScaleList().get(0).setPuntaje("0");
-
-                                }
-
-                                sintomaDao.update(vestimentaactividades);
-                                scaleDao.update(vestimentaactividades.getScaleList().get(0));
-
-                                Log.e("guardado y actualizado", vestimentaactividades.getScaleList().get(0).getPuntaje().toString());
-
-
-                            } catch (Exception e) {
-                            }
-                            break;
-
+                        //----------INSTRUMENTALES-------------
                         case "incapacidadtareasdomesticas":
                             Sintoma tareasdomesticas;
                             try {
-                                tareasdomesticas = helper.getSintoma(patientid, "Blessed", "vestimenta", "incapacidadtareasdomesticas");
+                                tareasdomesticas = helper.getSintoma(patientid, "Blessed", "instrumentales", "incapacidadtareasdomesticas");
                                 tareasdomesticas.setActivo(stateList.get(i));
                                 if (stateList.get(i).booleanValue()) {
                                     tareasdomesticas.getScaleList().get(0).setPuntaje("1.0");
@@ -453,7 +450,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                         case "incapacidadpequenasdinero":
                             try {
                                 Sintoma pequenasdinero;
-                                pequenasdinero = helper.getSintoma(patientid, "Blessed", "vestimenta", "incapacidadpequenasdinero");
+                                pequenasdinero = helper.getSintoma(patientid, "Blessed", "instrumentales", "incapacidadpequenasdinero");
                                 pequenasdinero.setActivo(stateList.get(i));
                                 if (stateList.get(i).booleanValue()) {
                                     pequenasdinero.getScaleList().get(0).setPuntaje("1.0");
@@ -471,6 +468,117 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                             } catch (Exception e) {
                             }
                             break;
+
+
+                        case "instrumentalestelefono":
+                            try {
+                                Sintoma instrumentalestelefono;
+                                instrumentalestelefono = helper.getSintoma(patientid, "Blessed", "instrumentales", "instrumentalestelefono");
+                                instrumentalestelefono.setActivo(stateList.get(i));
+
+                                sintomaDao.update(instrumentalestelefono);
+                                scaleDao.update(instrumentalestelefono.getScaleList().get(0));
+
+
+                                Log.e("guardado y actualizado", instrumentalestelefono.getScaleList().get(0).getPuntaje().toString());
+
+                            } catch (Exception e) {
+                            }
+                            break;
+
+                        case "instrumentalescompras":
+                            try {
+                                Sintoma instrumentalescompras;
+                                instrumentalescompras = helper.getSintoma(patientid, "Blessed", "instrumentales", "instrumentalescompras");
+                                instrumentalescompras.setActivo(stateList.get(i));
+
+                                sintomaDao.update(instrumentalescompras);
+                                scaleDao.update(instrumentalescompras.getScaleList().get(0));
+
+
+                                Log.e("guardado y actualizado", instrumentalescompras.getScaleList().get(0).getPuntaje().toString());
+
+                            } catch (Exception e) {
+                            }
+                            break;
+
+                        case "instrumentalescuidacasa":
+                            try {
+                                Sintoma instrumentalescuidacasa;
+                                instrumentalescuidacasa = helper.getSintoma(patientid, "Blessed", "instrumentales", "incapacidadpequenasdinero");
+                                instrumentalescuidacasa.setActivo(stateList.get(i));
+
+                                sintomaDao.update(instrumentalescuidacasa);
+                                scaleDao.update(instrumentalescuidacasa.getScaleList().get(0));
+
+
+                                Log.e("guardado y actualizado", instrumentalescuidacasa.getScaleList().get(0).getPuntaje().toString());
+
+                            } catch (Exception e) {
+                            }
+                            break;
+
+
+                        case "instrumentaleslavaropa":
+                            try {
+                                Sintoma instrumentaleslavaropa;
+                                instrumentaleslavaropa = helper.getSintoma(patientid, "Blessed", "instrumentales", "incapacidadpequenasdinero");
+                                instrumentaleslavaropa.setActivo(stateList.get(i));
+
+                                sintomaDao.update(instrumentaleslavaropa);
+                                scaleDao.update(instrumentaleslavaropa.getScaleList().get(0));
+
+
+                                Log.e("guardado y actualizado",instrumentaleslavaropa.getScaleList().get(0).getPuntaje().toString());
+
+                            } catch (Exception e) {
+                            }
+                            break;
+
+
+                        case "instrumentalestransporte":
+                            try {
+                                Sintoma instrumentalestransporte;
+                                instrumentalestransporte = helper.getSintoma(patientid, "Blessed", "instrumentales", "instrumentalestransporte");
+                                instrumentalestransporte.setActivo(stateList.get(i));
+
+                                sintomaDao.update(instrumentalestransporte);
+                                scaleDao.update(instrumentalestransporte.getScaleList().get(0));
+
+
+                                Log.e("guardado y actualizado",instrumentalestransporte.getScaleList().get(0).getPuntaje().toString());
+
+                            } catch (Exception e) {
+                            }
+                            break;
+
+
+                        case "instrumentalesmedicacion":
+                            try {
+                                Sintoma instrumentalesmedicacion;
+                                instrumentalesmedicacion = helper.getSintoma(patientid, "Blessed", "instrumentales", "instrumentalesmedicacion");
+                                instrumentalesmedicacion.setActivo(stateList.get(i));
+
+                                sintomaDao.update(instrumentalesmedicacion);
+                                scaleDao.update(instrumentalesmedicacion.getScaleList().get(0));
+
+
+                                Log.e("guardado y actualizado",instrumentalesmedicacion.getScaleList().get(0).getPuntaje().toString());
+
+                            } catch (Exception e) {
+                            }
+                            break;
+
+
+
+
+
+
+
+                        //----------VESTIMENTA y AVD-------------
+
+
+
 
                         case "vestimentafallosocasionales":
                             try {
@@ -1021,37 +1129,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                             }
 
                             break;
-                        case "higieneayudainodoro":
-                            try {
-                                Sintoma higieneayudainodoro;
-                                higieneayudainodoro = helper.getSintoma(patientid, "FAST", "higiene", "higieneayudainodoro");
-                                Log.e("ayuda inodoro", "estado " + higieneayudainodoro.getActivo().toString());
 
-                                higieneayudainodoro.setActivo(stateList.get(i));
-                                if (stateList.get(i).booleanValue()) {
-                                    Log.e("addnote", "Ayuda inodoro activada");
-
-                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6c");
-
-                                } else {
-                                    Log.e("addnote", "Incontinensia urinaria desactivada");
-
-                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
-
-                                }
-
-                                sintomaDao.update(higieneayudainodoro);
-                                scaleDao.update(higieneayudainodoro.getScaleList().get(0));
-                                Log.e("addnote", "Necesita ayuda inodoro");
-                                Log.e("guardado y actualizado", higieneayudainodoro.getScaleList().get(0).getPuntaje().toString());
-
-
-                            } catch (Exception e) {
-                                Log.e("addnote", "Error al actualizar Ayuda Inodoro");
-
-                            }
-
-                            break;
 
                         case "higieneayudasoltarbano":
                             try {
@@ -1081,7 +1159,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                         case "higieneayudaincontinensiaurinaria":
                             try {
                                 Sintoma higieneayudaincontinensiaurinaria;
-                                higieneayudaincontinensiaurinaria = helper.getSintoma(patientid, "FAST", "higiene", "higieneayudaincontinensiaurinaria");
+                                higieneayudaincontinensiaurinaria = helper.getSintoma(patientid, "Blessed", "higiene", "higieneayudaincontinensiaurinaria");
                                 Log.e("ayuda incontinensia", "estado " + higieneayudaincontinensiaurinaria.getActivo().toString());
 
                                 higieneayudaincontinensiaurinaria.setActivo(stateList.get(i));
@@ -1446,6 +1524,38 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
                             break;
 
+                        //----MEDICACION---
+
+                        case "medicacionmedicamentos":
+
+                            try {
+                                Sintoma medicacionmedicamentos;
+                                medicacionmedicamentos= helper.getSintoma(patientid, "Blessed", "medicacion", "medicacionmedicamentos");
+                                medicacionmedicamentos.setActivo(stateList.get(i));
+                                if (stateList.get(i).booleanValue()) {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("6e
+                                    //
+                                    //  ");
+
+                                } else {
+                                    //movilidadcabeza.getScaleList().get(0).setPuntaje("0");
+
+                                }
+
+                                sintomaDao.update(medicacionmedicamentos);
+                                scaleDao.update(medicacionmedicamentos.getScaleList().get(0));
+
+                                Log.e("guardado y actualizado",medicacionmedicamentos.getScaleList().get(0).getPuntaje().toString());
+
+
+                            } catch (Exception e) {
+                            }
+
+                            break;
+
+
+
+
 
 
 
@@ -1562,9 +1672,20 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
             case R.id.btn_medication:
                 election ="medicacion";
-                var_tipo=2;
+                var_tipo=1;
                 var_seleccion="medicacion";
                 setDefaultImageButton();
+
+                try{
+
+                    Sintoma medicacionmedicamentos = helper.getSintoma(patientid,"Downton","medicacion"," medicacionmedicamentos");
+                    if(medicacionmedicamentos.getActivo().booleanValue())
+                    {
+                        rdgMedicamentos.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgMovilidadSitiosLejanos.setChecked(false);}
                 medication.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 rdgMedicacion.setVisibility(View.VISIBLE);
                 break;
@@ -1817,29 +1938,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 election="vestimenta";
                 var_tipo=1;
                 setDefaultImageButton();
-                try{
 
-                    Sintoma vestimentaactividades = helper.getSintoma(patientid,"FAST","vestimenta","vestimentaactividades");
-                    Sintoma vestimentaincapacidadtareasdomesticas = helper.getSintoma(patientid,"FAST","vestimenta","incapacidadtareasdomesticas");
-                    Sintoma vestimentaincapacidadpequenasdinero = helper.getSintoma(patientid,"FAST","vestimenta","incapacidadpequenasdinero");
-
-
-                    if(vestimentaactividades.getActivo().booleanValue())
-                    {
-                        rdgVestimentaActividades.setChecked(true);
-                    }
-                    else if(vestimentaincapacidadtareasdomesticas.getActivo().booleanValue())
-                    {
-                        rdgVestimentaActividades.setChecked(true);
-                    }
-                    else if(vestimentaincapacidadpequenasdinero.getActivo().booleanValue())
-                    {
-                        rdgVestimentaActividades.setChecked(true);
-                    }
-
-
-
-                }catch (Exception e){rdgVestimentaActividades.setChecked(false);}
 
 
                 try
@@ -1901,6 +2000,108 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
                 vestimenta.setBackgroundColor(getResources().getColor(R.color.accent_color));
                 break;
+
+            case R.id.btn_instrumentals:
+                election="instrumentales";
+                var_tipo=1;
+                setDefaultImageButton();
+
+                try{
+
+                    Sintoma incapacidadtareasdomesticas = helper.getSintoma(patientid,"Blessed","instrumentales","incapacidadtareasdomesticas");
+                    if(incapacidadtareasdomesticas.getActivo().booleanValue())
+                    {
+                        rdgInstrumentalesTareasDomesticas.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgInstrumentalesTareasDomesticas.setChecked(false);}
+
+
+                try{
+
+                    Sintoma incapacidadpequenasdinero = helper.getSintoma(patientid,"Blessed","instrumentales","incapacidadpequenasdinero");
+                    if(incapacidadpequenasdinero.getActivo().booleanValue())
+                    {
+                        rdgInstrumentalesPequenasDinero.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgInstrumentalesPequenasDinero.setChecked(false);}
+
+                try{
+
+                    Sintoma instrumentalestelefono = helper.getSintoma(patientid,"Blessed","instrumentales","instrumentalestelefono");
+                    if(instrumentalestelefono.getActivo().booleanValue())
+                    {
+                        rdgInstrumentalesTelefono.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgInstrumentalesTelefono.setChecked(false);}
+
+
+                try{
+
+                    Sintoma instrumentalescompras = helper.getSintoma(patientid,"Blessed","instrumentales","instrumentalescompras");
+                    if(instrumentalescompras.getActivo().booleanValue())
+                    {
+                        rdgInstrumentalesCompras.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgInstrumentalesCompras.setChecked(false);}
+
+
+
+              
+
+
+                try{
+
+                    Sintoma instrumentaleslavaropa = helper.getSintoma(patientid,"Blessed","instrumentales","instrumentaleslavaropa");
+                    if(instrumentaleslavaropa.getActivo().booleanValue())
+                    {
+                        rdgInstrumentalesRopa.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgInstrumentalesRopa.setChecked(false);}
+
+
+
+                try{
+
+                    Sintoma instrumentalestransporte = helper.getSintoma(patientid,"Blessed","instrumentales","instrumentalestransporte");
+                    if(instrumentalestransporte.getActivo().booleanValue())
+                    {
+                        rdgInstrumentalesTransporte.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgInstrumentalesTransporte.setChecked(false);}
+
+
+                try{
+
+                    Sintoma instrumentalesmedicacion = helper.getSintoma(patientid,"Blessed","instrumentales","instrumentalesmedicacion");
+                    if(instrumentalesmedicacion.getActivo().booleanValue())
+                    {
+                        rdgInstrumentalesMedicacion.setChecked(true);
+                    }
+
+
+                }catch (Exception e){rdgInstrumentalesMedicacion.setChecked(false);}
+
+
+
+                rdgInstrumentales.setVisibility(View.VISIBLE);
+                //election=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
+                vestimenta.setBackgroundColor(getResources().getColor(R.color.accent_color));
+
+                break;
+
+
             case R.id.btn_changebehaviour:
                 election="personalidad";
                 var_tipo=1;
@@ -2149,6 +2350,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         memoria.setBackgroundColor(getResources().getColor(R.color.material_teal));
         medication.setBackgroundColor(getResources().getColor(R.color.md_material_blue_800));
         orientacion.setBackgroundColor(getResources().getColor(R.color.material_deepblue));
+        instrumentales.setBackgroundColor(getResources().getColor(R.color.material_grey));
 
 
 
@@ -2165,6 +2367,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgMedicacion.setVisibility(View.GONE);
         rdgPersonalidad.setVisibility(View.GONE);
         rdgOrientacion.setVisibility(View.GONE);
+        rdgInstrumentales.setVisibility(View.GONE);
 
 
 
@@ -2191,7 +2394,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
 
         rdgHigieneAyudaBanarse.setOnCheckedChangeListener(this);
-        rdgHigieneAyudaInodoro.setOnCheckedChangeListener(this);
+
         rdgHigieneSoltarBano.setOnCheckedChangeListener(this);
         rdgHigieneIncontinensiaUrinaria.setOnCheckedChangeListener(this);
         rdgHigieneIncontinensiaFecal.setOnCheckedChangeListener(this);
@@ -2200,8 +2403,23 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
 
 
+        rdgInstrumentalesMedicacion.setOnCheckedChangeListener(this);
+        rdgInstrumentalesTareasDomesticas.setOnCheckedChangeListener(this);
+        rdgInstrumentalesTransporte.setOnCheckedChangeListener(this);
+        rdgInstrumentalesRopa.setOnCheckedChangeListener(this);
+        rdgInstrumentalesPequenasDinero.setOnCheckedChangeListener(this);
+        rdgInstrumentalesComida.setOnCheckedChangeListener(this);
+        rdgInstrumentalesTelefono.setOnCheckedChangeListener(this);
+        rdgInstrumentalesCompras.setOnCheckedChangeListener(this);
 
-        rdgVestimentaActividades.setOnCheckedChangeListener(this);
+
+        rdgMedicamentos.setOnCheckedChangeListener(this);
+
+
+
+
+
+        //rdgVestimentaActividades.setOnCheckedChangeListener(this);
         rdgVestimentaFallosOcasionales.setOnCheckedChangeListener(this);
         rdgVestimentaSeleccionar.setOnCheckedChangeListener(this);
         rdgVestimentaSecuencia.setOnCheckedChangeListener(this);
@@ -2249,6 +2467,80 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         switch(compoundButton.getId())
         {
 
+            //Instrumentales
+
+
+            case R.id.rdgInstrumentalesTareasDomesticas:
+                var_seleccion="incapacidadtareasdomesticas";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+
+                break;
+
+
+            case R.id.rdgInstrumentalesPequenasDinero:
+                var_seleccion="incapacidadpequenasdinero";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+
+                break;
+
+            case R.id.rdgInstrumentalesTelefono:
+                var_seleccion="instrumentalestelefono";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+
+                break;
+            case R.id.rdgInstrumentalesCompras:
+                var_seleccion="instrumentalescompras";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+
+                break;
+
+
+            case R.id.rdgInstrumentalesComida:
+                var_seleccion="instrumentalescomida";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+
+                break;
+
+
+
+            case R.id.rdgInstrumentalesLavaRopa:
+                var_seleccion="instrumentaleslavaropa";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+
+                break;
+
+            case R.id.rdgInstrumentalesTransporte:
+                var_seleccion="instrumentalestransporte";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+
+                break;
+
+            case R.id.rdgInstrumentalesMedicacion:
+                var_seleccion="instrumentalesmedicacion";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+
+                break;
+
+
+            //Medicacion
+
+
+            case R.id.rdgMedicacionMedicamentos:
+                var_seleccion="medicacionmedicamentos";
+                stateList.add(b);
+                sintomasList.add(var_seleccion);
+
+                break;
+
+
             //Higiene
             case R.id.rdgHigieneAyudaBanarse:
                 var_seleccion="higieneayudabanarse";
@@ -2260,16 +2552,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 //puntajeList.add(puntaje);
                 //do stuff
                 break;
-            case R.id.rdgHigieneAyudaInodoro:
-                var_seleccion="higieneayudainodoro";
-                //nameTest = "FAST";
-                //puntaje = "6c";
-                stateList.add(b);
-                //sintomasList.add(var_seleccion);
-                //nameTestList.add(nameTest);
-                //puntajeList.add(puntaje);
-                //do stuff
-                break;
+
             case R.id.rdgHigieneSoltarBano:
                 var_seleccion="higieneayudasoltarbano";
                 stateList.add(b);
@@ -2360,34 +2643,6 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
             //VESTIMENTA
 
-            case R.id.rdgVestimentaActividades:
-
-                var_seleccion="vestimentaactividades";
-                var_seleccion2="incapacidadtareasdomesticas";
-                var_seleccion3="incapacidadpequenasdinero";
-                //nameTest = "FAST";
-                //puntaje = "4";
-                //nameTest2="Blessed";
-                //puntaje2="1";
-                //nameTest3="Blessed";
-                //puntaje3="2";
-                stateList.add(b);
-
-                sintomasList.add(var_seleccion);
-                stateList.add(b);
-                //nameTestList.add(nameTest);
-                //puntajeList.add(puntaje);
-
-                sintomasList.add(var_seleccion2);
-                //nameTestList.add(nameTest2);
-                //puntajeList.add(puntaje2);
-                stateList.add(b);
-
-                sintomasList.add(var_seleccion3);
-                //nameTestList.add(nameTest3);
-                //puntajeList.add(puntaje3);
-
-                break;
 
             case R.id.rdgVestimentaFallosOcasionales:
                 var_seleccion="vestimentafallosocasionales";
@@ -2560,12 +2815,14 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
 
             //MEDICACION
+            /*
             case  R.id.rdgMedicacionRutinario:
                 var_seleccion="medicacionrutinaria";
                 break;
             case R.id.rdgMedicacionAdverso:
                 var_seleccion="medicacionadverso";
                 break;
+                */
 
 
             //PERSONALIDAD

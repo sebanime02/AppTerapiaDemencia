@@ -173,6 +173,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
                 break;
 
+            case "instrumentales":
+                description="Actividades Instrumentales";
+                ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/instrumentals72px").toString();
+
+                break;
+
 
 
         }

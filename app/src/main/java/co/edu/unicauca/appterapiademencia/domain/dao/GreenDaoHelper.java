@@ -290,6 +290,9 @@ public class GreenDaoHelper {
         List<Scale> totalList;
         Double x=0.0;
         Double z=0.0;
+        Double alimentacion = 0.0;
+        Double vestimenta = 0.0;
+        Double higiene = 0.0;
 
 
 
@@ -311,6 +314,8 @@ public class GreenDaoHelper {
             Log.e("blessed score","paciente: "+sintomaList.get(y).getPatientId());
             Log.e("blessed score","sintoma: "+sintomaList.get(y).getSigno());
 
+
+
             for(int m=0;m<sintomaList.get(y).getScaleList().size();m++)
 
             {
@@ -321,50 +326,133 @@ public class GreenDaoHelper {
                 if(escalatexto.matches("Blessed"))
 
                 {
-                    Log.e("blessed score","Es blesssed");
-                    Log.e("blessed score","getNombreEscala: "+sintomaList.get(y).getScaleList().get(m).getEscalaname());
-                    Log.e("blessed score","getPuntaje: "+sintomaList.get(y).getScaleList().get(m).getPuntaje());
-                    x = x + Double.parseDouble(sintomaList.get(y).getScaleList().get(m).getPuntaje());
-                    Log.e("blessed score","x: "+x);
+
+                    if(sintomaList.get(y).getAmbito().matches("alimentacion")) {
+                        if (sintomaList.get(y).getSigno().matches("alimentacioncuchara")) {
+                            alimentacion=1.0;
+
+                        } else if (sintomaList.get(y).getSigno().matches("alimentacionsolidos")) {
+                            alimentacion=2.0;
+
+                        } else if (  sintomaList.get(y).getSigno().matches("alimentaciondependientes")){
+                            alimentacion = 3.0;
+
+                        }
+                    }
+
+
+
+
+                    else if(sintomaList.get(y).getAmbito().matches("vestimenta"))
+                    {
+                        if (sintomaList.get(y).getSigno().matches("vestimentafallosocasionales")) {
+                            vestimenta=1.0;
+
+                        } else if (sintomaList.get(y).getSigno().matches("vestimentasecuencia")) {
+                            vestimenta=2.0;
+
+                        } else if (  sintomaList.get(y).getSigno().matches("vestimentaincapaz")){
+                            vestimenta = 3.0;
+
+                        }
+                        else
+                        {
+                            Log.e("blessed score","alimentacion: "+alimentacion);
+                            Log.e("blessed score","vestimenta: "+vestimenta);
+
+                            Log.e("blessed score","higiene: "+higiene);
+
+
+                            Log.e("blessed score","Es blesssed");
+                            Log.e("blessed score","getNombreEscala: "+sintomaList.get(y).getScaleList().get(m).getEscalaname());
+                            Log.e("blessed score","getPuntaje: "+sintomaList.get(y).getScaleList().get(m).getPuntaje());
+                            x = x + Double.parseDouble(sintomaList.get(y).getScaleList().get(m).getPuntaje());
+                            Log.e("blessed score","x: "+x);
+                        }
+
+                    }
+                    else if(sintomaList.get(y).getAmbito().matches("higiene"))
+                    {
+                        if (sintomaList.get(y).getSigno().matches("higieneincontinensiaurinaria")) {
+                            higiene=2.0;
+
+                        } else if (sintomaList.get(y).getSigno().matches("higieneayudaincontinensiafecal")) {
+                            if(higiene==2.0)
+                            {
+                                higiene=3.0;
+                            }
+
+                        }
+                        else
+                        {
+                            Log.e("blessed score","alimentacion: "+alimentacion);
+                            Log.e("blessed score","vestimenta: "+vestimenta);
+
+                            Log.e("blessed score","higiene: "+higiene);
+
+
+                            Log.e("blessed score","Es blesssed");
+                            Log.e("blessed score","getNombreEscala: "+sintomaList.get(y).getScaleList().get(m).getEscalaname());
+                            Log.e("blessed score","getPuntaje: "+sintomaList.get(y).getScaleList().get(m).getPuntaje());
+                            x = x + Double.parseDouble(sintomaList.get(y).getScaleList().get(m).getPuntaje());
+                            Log.e("blessed score","x: "+x);
+                        }
+                    }
+
+                    else
+                    {
+                        Log.e("blessed score","alimentacion: "+alimentacion);
+                        Log.e("blessed score","vestimenta: "+vestimenta);
+
+                        Log.e("blessed score","higiene: "+higiene);
+
+
+                            Log.e("blessed score","Es blesssed");
+                            Log.e("blessed score","getNombreEscala: "+sintomaList.get(y).getScaleList().get(m).getEscalaname());
+                            Log.e("blessed score","getPuntaje: "+sintomaList.get(y).getScaleList().get(m).getPuntaje());
+                            x = x + Double.parseDouble(sintomaList.get(y).getScaleList().get(m).getPuntaje());
+                            Log.e("blessed score","x: "+x);
+
+
+                    }
+
+
+
+
+
 
                 }
 
-               // Log.e("blessed score","puntaje. ."+scaleList.get(m).getPuntaje());
-               // Log.e("blessed score","escala. ."+scaleList.get(m).getEscalaname());
-               // Log.e("blessed score","sintomaid. ."+scaleList.get(m).getSintomaId());
-               //    x = x + Double.parseDouble(scaleList.get(m).getPuntaje());
             }
             z = z + x;
+
             Log.e("blessed score ","acumulado z: "+z);
             x=0.0;
 
 
-
-
-
-            //scaleList = scaleQueryBuilder.where(ScaleDao.Properties.SintomaId.eq(sintomaList.get(y).getId()),ScaleDao.Properties.Escalaname.eq("Blessed") ).list();
-            //x = x +  Double.parseDouble(scaleList.get(0).getPuntaje());
-
-            /*
-            for(int m=0;m<scaleList.size();m++)
-
-            {
-                Log.e("blessed score","puntaje. ."+scaleList.get(m).getPuntaje());
-                Log.e("blessed score","escala. ."+scaleList.get(m).getEscalaname());
-                Log.e("blessed score","sintomaid. ."+scaleList.get(m).getSintomaId());
-
-                x = x + Double.parseDouble(scaleList.get(m).getPuntaje());
-
-                Log.e("blessed score","suma y suma x. ."+x);
-            }
-
-            z= z + x;
-            x=0.0;
-            scaleList.clear();
-            Log.e("blessed score","suma y suma z .."+z);
-             */
-
         }
+        if(alimentacion!=0.0)
+        {
+            Log.e("helper greendao","Valor alimentacion:"+alimentacion);
+
+            z = z + alimentacion;
+
+            alimentacion=0.0;
+        }
+        if(vestimenta!=0.0)
+        {
+            Log.e("helper greendao","Valor vestimenta:"+vestimenta);
+
+            z = z + vestimenta;
+            vestimenta=0.0;
+        }
+        if(higiene!=0.0)
+        {
+            Log.e("helper greendao","Valor higiene:"+higiene);
+            z = z + higiene;
+            higiene=0.0;
+        }
+
 
 
         Log.e("blessed score","total "+z);
