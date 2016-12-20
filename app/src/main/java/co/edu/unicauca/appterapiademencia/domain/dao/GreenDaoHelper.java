@@ -6,9 +6,11 @@ import android.util.Log;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import co.edu.unicauca.appterapiademencia.domain.HistoricScore;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.PreferenceTip;
@@ -72,9 +74,7 @@ public class GreenDaoHelper {
     public  HistoricDao getHistoricDao(){
         return daoSession.getHistoricDao();
     }
-    public BlessedIncapacityDao getBlessedIncapacityDao(){
-        return daoSession.getBlessedIncapacityDao();
-    }
+    public  HistoricScoreDao getHistoricScoreDao(){return daoSession.getHistoricScoreDao();}
     public  SintomaDao getSintomaDao(){
         return daoSession.getSintomaDao();
     }
@@ -631,6 +631,7 @@ public class GreenDaoHelper {
         Log.e("Downton score","patient id "+patientid);
         List<Scale> scaleList = new ArrayList<Scale>();
         List<Sintoma> sintomaList;
+        List<Note> noteList;
         int x=0;
         int z=0;
         boolean caidas=false;
@@ -641,24 +642,35 @@ public class GreenDaoHelper {
 
         Log.e("downton score","Entro a calcular el Lawton score");
         QueryBuilder sintomaQueryBuilder = getSintomaDao().queryBuilder();
+        QueryBuilder noteQueryBuilder = getNoteDao().queryBuilder();
+
+        noteQueryBuilder.where(NoteDao.Properties.PatientId.eq(patientid));
+        noteList = noteQueryBuilder.list();
+
+        for(int a=0;a<noteList.size();a++)
+        {
+            if(noteList.get(a).getAmbito().matches("caidas"))
+            caidas = true;
+        }
 
 
         sintomaQueryBuilder.where(SintomaDao.Properties.Activo.eq(true),SintomaDao.Properties.PatientId.eq(patientid));
         sintomaList = sintomaQueryBuilder.list();
 
-        QueryBuilder<Scale> scaleQueryBuilder = getScaleDao().queryBuilder();
-        //scaleQueryBuilder.where(ScaleDao.Properties.Escalaname.eq("Blessed"));
+
 
         for(int y=0;y<sintomaList.size();y++) {
 
             Log.e("downton score", "paciente: " + sintomaList.get(y).getPatientId());
             Log.e("downton score", "sintoma: " + sintomaList.get(y).getSigno());
 
+            if(sintomaList.get(y).getActivo())
+            {
 
-            if (sintomaList.get(y).getAmbito().matches("caidas")) {
 
-                caidas = true;
-            }
+
+
+
 
             if (sintomaList.get(y).getSigno().matches("medicamentosmedicacion")) {
 
@@ -669,6 +681,7 @@ public class GreenDaoHelper {
             if (!handlerestadomental) {
                 if (sintomaList.get(y).getAmbito().matches("orientacion")) {
                     estadomental = true;
+                    handlerestadomental=true;
                 }
             }
 
@@ -677,26 +690,27 @@ public class GreenDaoHelper {
                 movilidad = true;
             }
         }
-
-        if(movilidad=true)
-        {
-            z = z+1;
-        }
-        if(caidas=true)
-        {
-            z = z+1;
-        }
-        if(estadomental=true)
-        {
-            z = z+1;
-        }
-        if(medicacion=true)
-        {
-            z = z+1;
         }
 
+        if(movilidad)
+        {
+            z = z+1;
+        }
+        if(caidas)
+        {
+            z = z+1;
+        }
+        if(estadomental)
+        {
+            z = z+1;
+        }
+        if(medicacion)
+        {
+            z = z+1;
+        }
 
-        Log.e("blessed score","total "+z);
+
+        Log.e("downton score","total "+z);
 
         return z;
 
@@ -804,6 +818,12 @@ public class GreenDaoHelper {
 
         preferenceTipList = preferenceTipQueryBuilder.list();
         return preferenceTip = preferenceTipList.get(0);
+    }
+
+    public void insertHistoricScale(Long patientid,String scale, Double score, Date fecha)
+    {
+        HistoricScore historicScore = new HistoricScore(null,patientid,scale,score,fecha);
+        getHistoricScoreDao().insert(historicScore);
     }
 
 

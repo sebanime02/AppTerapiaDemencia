@@ -1626,6 +1626,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         Intent ir_main = new Intent(this, PatientProfileActivity.class);
         ir_main.putExtra("carerIndicator",carerMessageIndicator);
         ir_main.putExtra("cedula", cedula);
+        ir_main.putExtra("guardar",true);
+
         EventBus.clearCaches();
         EventBus.getDefault().removeAllStickyEvents();
         startActivity(ir_main);
@@ -1670,6 +1672,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             case android.R.id.home:
                 Intent intent=new Intent(getApplicationContext(),PatientProfileActivity.class);
                 intent.putExtra("cedula",cedula);
+
                 EventBus.clearCaches();
                 EventBus.getDefault().removeAllStickyEvents();
                 startActivity(intent);

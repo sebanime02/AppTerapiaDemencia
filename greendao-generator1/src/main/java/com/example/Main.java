@@ -40,51 +40,17 @@ public class Main {
         patient.addIntProperty("drawinglimitation");
 
 
-        //BLESSED INCAPACITY TABLE
+        //HISTORIC SCORE TABLE
 
-        Entity blessedIncapacity = schema.addEntity("BlessedIncapacity");
-        blessedIncapacity.addIdProperty().autoincrement();
+        Entity historicScore = schema.addEntity("HistoricScore");
 
-
-
-        Property patientIdblessedincapacity = blessedIncapacity.addLongProperty("patientId").notNull().getProperty();
-        blessedIncapacity.addToOne(patient,patientIdblessedincapacity);
-
-        //patient.addToMany(blessedIncapacity,patientIdblessedincapacity);
-
-
-         //blessedIncapacity.addLongProperty("patientId").notNull();
-        //ACTIVIDADES DE LA VIDA DIARIA
-
-
-        blessedIncapacity.addDoubleProperty("tareasdomesticas");
-        blessedIncapacity.addDoubleProperty("pequenasdinero");
-        blessedIncapacity.addDoubleProperty("listascortas");
-        blessedIncapacity.addDoubleProperty("orientarsecasa");
-        blessedIncapacity.addDoubleProperty("orientarsecalle");
-        blessedIncapacity.addDoubleProperty("valorarentorno");
-        blessedIncapacity.addDoubleProperty("recordarrecientes");
-        blessedIncapacity.addDoubleProperty("rememorarpasado");
-
-        //HABITOS
-        blessedIncapacity.addIntProperty("alimentacion");
-        blessedIncapacity.addIntProperty("vestimenta");
-        blessedIncapacity.addIntProperty("esfinteres");
-
-
-        //PERSIONALIDAD Y CONDUCTA
-        blessedIncapacity.addIntProperty("retraimientoconstante");
-        blessedIncapacity.addIntProperty("egocentrismoaumentado");
-        blessedIncapacity.addIntProperty("perdidainteressentimientos");
-        blessedIncapacity.addIntProperty("afectividadembolatada");
-        blessedIncapacity.addIntProperty("perturbacioncontrolemocional");
-        blessedIncapacity.addIntProperty("hilaridadinapropiada");
-        blessedIncapacity.addIntProperty("respuestaemocional");
-        blessedIncapacity.addIntProperty("indiscrecionessexuales");
-        blessedIncapacity.addIntProperty("faltainteresaficiones");
-        blessedIncapacity.addIntProperty("disminucioniniciativaprogresiva");
-        blessedIncapacity.addIntProperty("hiperactividadnojustificada");
-
+        historicScore.addIdProperty().autoincrement().primaryKey();
+        Property patientIdhistoricScore = historicScore.addLongProperty("patientId").notNull().getProperty();
+        patient.addToMany(historicScore,patientIdhistoricScore);
+        historicScore.addStringProperty("scale");
+        historicScore.addDoubleProperty("value");
+        historicScore.addDateProperty("date");
+        //historicScore.addIntProperty("hour");
 
 
 

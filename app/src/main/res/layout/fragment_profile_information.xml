@@ -409,7 +409,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_fast"
+                    android:background="@drawable/rounded_score"
                     android:elevation="4dp"
 
 
@@ -433,7 +433,7 @@
                             android:textSize="@dimen/small_text_size"
                             android:text="RIESGO DE CAIDAS (ESCALA DOWNTOWN)"
                             android:textStyle="bold"
-                            android:textColor="@color/white"
+                            android:textColor="@color/negro"
                             />
                         <TextView
                             android:id="@+id/puntajeDowntown"
@@ -441,14 +441,14 @@
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/small_text_size"
 
-                            android:textColor="@color/white"
+                            android:textColor="@color/negro"
                             />
                         <TextView
                             android:id="@+id/comentarioDowntown"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/medium_text_size"
-                            android:textColor="@color/white"
+                            android:textColor="@color/negro"
 
                             />
 

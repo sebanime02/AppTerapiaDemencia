@@ -40,7 +40,7 @@ public interface PrincipalListInteractor {
     void deleteNote(Long idnote);
     void aprobeNote(Long idnote);
 
-    void getDowntonScore(Long id);
+    int getDowntonScore(Long id);
     int getLawtonScore(Long id);
 
 }

@@ -37,6 +37,6 @@ public interface PrincipalListRepository {
     String getFastScore(Long id);
 
     int getLawtonScore(Long id);
-    void getDowntonScore(Long id);
+    int getDowntonScore(Long id);
 
 }

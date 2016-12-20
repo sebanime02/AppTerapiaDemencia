@@ -22,7 +22,6 @@ import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.Scale;
 import co.edu.unicauca.appterapiademencia.domain.Sintoma;
-import co.edu.unicauca.appterapiademencia.domain.dao.BlessedIncapacityDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.DetailFastDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.PatientDao;
@@ -75,7 +74,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
     private String calificationRememorarPasado;
     private Sintoma tareasdomesticas,pequenasdinero,memorialistascortas,orientacioncasa,orientacionentorno,orientacioncalle,memoriaolvidosbenignos,tendenciarememorar;
 
-    private BlessedIncapacityDao blessedDao;
+
     private String election;
     private String[] sintomasList;
     private String[] puntajeList;
@@ -96,7 +95,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
     {
         this.helper= GreenDaoHelper.getInstance();
         this.patientDao = helper.getPatientDao();
-        this.blessedDao = helper.getBlessedIncapacityDao();
+
         this.sintomaDao = helper.getSintomaDao();
         this.escalaDao = helper.getScaleDao();
         this.detailFastDao = helper.getDetailFastDao();

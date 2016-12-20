@@ -10,7 +10,7 @@ import org.greenrobot.greendao.internal.DaoConfig;
 
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
-import co.edu.unicauca.appterapiademencia.domain.BlessedIncapacity;
+import co.edu.unicauca.appterapiademencia.domain.HistoricScore;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Sintoma;
 import co.edu.unicauca.appterapiademencia.domain.Scale;
@@ -23,7 +23,7 @@ import co.edu.unicauca.appterapiademencia.domain.Recommendation;
 
 import co.edu.unicauca.appterapiademencia.domain.dao.UserDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.PatientDao;
-import co.edu.unicauca.appterapiademencia.domain.dao.BlessedIncapacityDao;
+import co.edu.unicauca.appterapiademencia.domain.dao.HistoricScoreDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.NoteDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.SintomaDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.ScaleDao;
@@ -45,7 +45,7 @@ public class DaoSession extends AbstractDaoSession {
 
     private final DaoConfig userDaoConfig;
     private final DaoConfig patientDaoConfig;
-    private final DaoConfig blessedIncapacityDaoConfig;
+    private final DaoConfig historicScoreDaoConfig;
     private final DaoConfig noteDaoConfig;
     private final DaoConfig sintomaDaoConfig;
     private final DaoConfig scaleDaoConfig;
@@ -58,7 +58,7 @@ public class DaoSession extends AbstractDaoSession {
 
     private final UserDao userDao;
     private final PatientDao patientDao;
-    private final BlessedIncapacityDao blessedIncapacityDao;
+    private final HistoricScoreDao historicScoreDao;
     private final NoteDao noteDao;
     private final SintomaDao sintomaDao;
     private final ScaleDao scaleDao;
@@ -79,8 +79,8 @@ public class DaoSession extends AbstractDaoSession {
         patientDaoConfig = daoConfigMap.get(PatientDao.class).clone();
         patientDaoConfig.initIdentityScope(type);
 
-        blessedIncapacityDaoConfig = daoConfigMap.get(BlessedIncapacityDao.class).clone();
-        blessedIncapacityDaoConfig.initIdentityScope(type);
+        historicScoreDaoConfig = daoConfigMap.get(HistoricScoreDao.class).clone();
+        historicScoreDaoConfig.initIdentityScope(type);
 
         noteDaoConfig = daoConfigMap.get(NoteDao.class).clone();
         noteDaoConfig.initIdentityScope(type);
@@ -111,7 +111,7 @@ public class DaoSession extends AbstractDaoSession {
 
         userDao = new UserDao(userDaoConfig, this);
         patientDao = new PatientDao(patientDaoConfig, this);
-        blessedIncapacityDao = new BlessedIncapacityDao(blessedIncapacityDaoConfig, this);
+        historicScoreDao = new HistoricScoreDao(historicScoreDaoConfig, this);
         noteDao = new NoteDao(noteDaoConfig, this);
         sintomaDao = new SintomaDao(sintomaDaoConfig, this);
         scaleDao = new ScaleDao(scaleDaoConfig, this);
@@ -124,7 +124,7 @@ public class DaoSession extends AbstractDaoSession {
 
         registerDao(User.class, userDao);
         registerDao(Patient.class, patientDao);
-        registerDao(BlessedIncapacity.class, blessedIncapacityDao);
+        registerDao(HistoricScore.class, historicScoreDao);
         registerDao(Note.class, noteDao);
         registerDao(Sintoma.class, sintomaDao);
         registerDao(Scale.class, scaleDao);
@@ -139,7 +139,7 @@ public class DaoSession extends AbstractDaoSession {
     public void clear() {
         userDaoConfig.clearIdentityScope();
         patientDaoConfig.clearIdentityScope();
-        blessedIncapacityDaoConfig.clearIdentityScope();
+        historicScoreDaoConfig.clearIdentityScope();
         noteDaoConfig.clearIdentityScope();
         sintomaDaoConfig.clearIdentityScope();
         scaleDaoConfig.clearIdentityScope();
@@ -159,8 +159,8 @@ public class DaoSession extends AbstractDaoSession {
         return patientDao;
     }
 
-    public BlessedIncapacityDao getBlessedIncapacityDao() {
-        return blessedIncapacityDao;
+    public HistoricScoreDao getHistoricScoreDao() {
+        return historicScoreDao;
     }
 
     public NoteDao getNoteDao() {

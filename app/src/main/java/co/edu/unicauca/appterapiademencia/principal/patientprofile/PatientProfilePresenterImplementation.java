@@ -122,8 +122,10 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
         String etapa="Normal";
         String caracteristica="No hay déficit";
         String edadMental="Adulto";
-        String gds="Normal,30-35";
-        String mec="GDS 1, Ausencia de déficit cognitivo";
+        //String gds="GDS 1, Ausencia de déficit cognitivo";
+        String gds="1.0";
+
+        String mec="Normal,30-35";
         score = principalListInteractor.getFastScore(id);
 
         if(patientProfileView!=null)
@@ -135,49 +137,56 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
                     caracteristica="No hay déficit";
                     edadMental="Adulto";
                     mec="Normal,30-35";
-                    gds="GDS 1, Ausencia de déficit cognitivo";
+                    //gds="GDS 1, Ausencia de déficit cognitivo";
+                    gds="1.0";
                     break;
                 case "2":
                     etapa="Normal para su edad";
                     caracteristica="Déficit funcional subjetivo";
                     edadMental="";
                     mec="Normal para su olvido,25-30";
-                    gds="GDS 2, Déficit Cognitivo Muy Leve";
+                    //gds="GDS 2, Déficit Cognitivo Muy Leve";
+                    gds="2.0";
                     break;
                 case "3":
                     etapa="Deterioro Cognitivo Leve";
                     caracteristica="Déficit funcional Objetivo, Interfiere con la mayoria de tareas complejas";
                     edadMental="12+";
                     mec="Deterioro límite, 20-27";
-                    gds="GDS 3, Déficit Cognitivo Leve";
+                    //gds="GDS 3, Déficit Cognitivo Leve";
+                    gds="3.0";
                     break;
                 case "4":
                     etapa="Demencia Leve";
                     caracteristica="Actividades Instrumentales Diarias Afectadas: Pagar, cocinar, limpiar.";
                     edadMental="8-12 años";
                     mec="Deterioro Límite, MEC 16-23";
-                    gds="GDS 4, Déficit Cognitivo Moderado";
+                    //gds="GDS 4, Déficit Cognitivo Moderado";
+                    gds="4.0";
                     break;
                 case "5":
                     etapa="Demencia Moderada";
                     caracteristica="Necesita Ayuda para seleccionar su Ropa.";
                     edadMental="5-7 años";
                     mec="Enfermedad Alzheimer Moderada, MEC 10-19";
-                    gds="GDS 5, Déficit Cognitivo Moderadamente Grave";
+                    //gds="GDS 5, Déficit Cognitivo Moderadamente Grave";
+                    gds="5.0";
                     break;
                 case "6a":
                     etapa="Demencia Moderadamente Severa";
                     caracteristica="Necesita ayuda para vestirse";
                     edadMental="5 años";
                     mec="Enfermedad Alzheimer Moderadamente Grave, MEC 0-12";
-                    gds="GDS 6, Déficit Cognitivo Grave";
+                    //gds="GDS 6, Déficit Cognitivo Grave";
+                    gds="6.0";
                     break;
                 case "6b":
                     etapa="Demencia Moderadamente Severa";
                     caracteristica="Necesita ayuda para bañarse";
                     edadMental="4 años";
                     mec="Enfermedad Alzheimer Moderadamente Grave, MEC 0-12";
-                    gds="GDS 6, Déficit Cognitivo Grave";
+                    //gds="GDS 6, Déficit Cognitivo Grave";
+                    gds="6.0";
                     break;
                 case "6c":
                     etapa="Demencia Moderadamente Severa";
@@ -185,13 +194,15 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
                     edadMental="4 años";
                     mec="Enfermedad Alzheimer Moderadamente Grave, MEC 0-12";
                     gds="GDS 6, Déficit Cognitivo Grave";
+                    gds="6.0";
                     break;
                 case "6d":
                     etapa="Demencia Moderadamente Severa";
                     caracteristica="Incontinensia Urinaria";
                     edadMental="3-4 años";
                     mec="Enfermedad Alzheimer Moderadamente Grave, MEC 0-12";
-                    gds="GDS 6, Déficit Cognitivo Grave";
+                    //gds="GDS 6, Déficit Cognitivo Grave";
+                    gds="6.0";
                     break;
 
                 case "6e":
@@ -199,7 +210,8 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
                     caracteristica="Incontinensia Fecal";
                     edadMental="2-3 años";
                     mec="Enfermedad Alzheimer Moderadamente Grave, MEC 0-12";
-                    gds="GDS 6, Déficit Cognitivo Grave";
+                    //gds="GDS 6, Déficit Cognitivo Grave";
+                    gds="6.0";
                     break;
 
                 case "7a":
@@ -207,7 +219,8 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
                     caracteristica="Habla tan solo 5 a 6 palabras durante el dia";
                     edadMental="1,25 años";
                     mec="Enfermedad de Alzheimer grave, MEC 0";
-                    gds="GDS 7, Déficit Cognitivo Muy Grave";
+                    //gds="GDS 7, Déficit Cognitivo Muy Grave";
+                    gds="7.0";
                     break;
 
 
@@ -216,35 +229,40 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
                     caracteristica="Habla solamente 1 palabra claramente";
                     edadMental="1 años";
                     mec="Enfermedad de Alzheimer grave, MEC 0";
-                    gds="GDS 7, Déficit Cognitivo Muy Grave";
+                    //gds="GDS 7, Déficit Cognitivo Muy Grave";
+                    gds="7.0";
                     break;
                 case "7c":
                     etapa="Demencia Severa";
                     caracteristica="No Puede Caminar";
                     edadMental="1 años";
                     mec="Enfermedad de Alzheimer grave, MEC 0";
-                    gds="GDS 7, Déficit Cognitivo Muy Grave";
+                    //gds="GDS 7, Déficit Cognitivo Muy Grave";
+                    gds="7.0";
                     break;
                 case "7d":
                     etapa="Demencia Severa";
                     caracteristica="No puede sentarse de manera independiente";
                     edadMental="0,5-0,8 años";
                     mec="Enfermedad de Alzheimer grave, MEC 0";
-                    gds="GDS 7, Déficit Cognitivo Muy Grave";
+                    //gds="GDS 7, Déficit Cognitivo Muy Grave";
+                    gds="7.0";
                     break;
                 case "7e":
                     etapa="Demencia Severa";
                     caracteristica="Ya no Sonrie";
                     edadMental="0,2-0,4 años";
                     mec="Enfermedad de Alzheimer grave, MEC 0";
-                    gds="GDS 7, Déficit Cognitivo Muy Grave";
+                    //gds="GDS 7, Déficit Cognitivo Muy Grave";
+                    gds="7.0";
                     break;
                 case "7f":
                     etapa="Demencia Severa";
                     caracteristica="No puede sontener su Cabeza sin asistencia";
                     edadMental="0-0,2 años";
                     mec="Enfermedad de Alzheimer grave, MEC 0";
-                    gds="GDS 7, Déficit Cognitivo Grave";
+                    //gds="GDS 7, Déficit Cognitivo Grave";
+                    gds="7.0";
                     break;
 
 
@@ -259,7 +277,28 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
 
     @Override
     public void getDowntonScore(Long id) {
-        principalListInteractor.getDowntonScore(id);
+        int score;
+        String comentario;
+
+        score = principalListInteractor.getDowntonScore(id);
+
+        try
+        {
+
+            if(score>2)
+            {
+                comentario="Alto Riesgo De Caida";
+            }
+            else
+            {
+                comentario="Riesgo de Caida Bajo";
+
+            }
+
+            patientProfileView.showDowntonScore(score,comentario);
+
+        }catch (Exception e)
+        {}
     }
 
     @Override

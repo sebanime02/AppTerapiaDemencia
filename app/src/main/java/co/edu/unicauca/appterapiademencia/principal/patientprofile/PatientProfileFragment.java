@@ -17,6 +17,8 @@ import com.squareup.picasso.Picasso;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
+import java.sql.Date;
+
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.PatientListAdapter;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
@@ -60,6 +62,8 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private String fastCount;
     private String lawtonCount;
     private String comentarioLawton;
+    private String comentarioDownton;
+    private String puntajeDownton;
     private Long idsistema;
     private String etapa,caracteristicas,edadMental,gds,mec;
 
@@ -125,6 +129,10 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         catch (Exception e){}
         Log.d("Vista profile","Cedula: "+idpatient);
 
+
+
+
+
         try
         {
             if(args.getBoolean("carerIndicator"))
@@ -141,6 +149,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         getBlessedScore(idsistema);
         getFastScore(idsistema);
         getLawtonScore(idsistema);
+        getDowntonScore(idsistema);
         txtName.setText(this.name);
         txtAge.setText("Nació en: "+this.birthday);
         txtIdentity.setText("  Cédula: "+this.identity);
@@ -151,6 +160,8 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtComentarioFast.setText("Etapa: "+etapa+"\nCaracteristica: "+caracteristicas+" \nEdad Mental: "+edadMental+" \nGDS: "+gds+" \nMEC: "+mec);
         txtPuntajeLawton.setText(this.lawtonCount);
         txtComentarioLawton.setText(this.comentarioLawton);
+        txtPuntajeDownton.setText(this.puntajeDownton);
+        txtComentarioDownton.setText(this.comentarioDownton);
 
 
         int imageSize = view.getResources().getDimensionPixelSize(R.dimen.img_patient_profile_size);
@@ -162,6 +173,8 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
 
             Picasso.with(this.getActivity()).load(Uri.parse(PatientListAdapter.fotodefault)).resize(imageSize, imageSize).transform(new CircleTransform()).into(imageProfile);
         }
+
+
 
 
     }
@@ -212,9 +225,15 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
             idsistema = patient.getId();
         }
         catch (Exception e){}
+
+
+
+
+
         getBlessedScore(idsistema);
         getFastScore(idsistema);
         getLawtonScore(idsistema);
+        getDowntonScore(idsistema);
         txtName.setText(this.name);
         txtAge.setText("Nació en: "+this.birthday);
         txtIdentity.setText("  Cédula: "+this.identity);
@@ -231,11 +250,26 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtPuntajeFast.setText(this.fastCount+"");
         txtPuntajeLawton.setText("De 0 a 8, donde 0 es el máximo\nvalor de dependencia en AIVD\nPuntaje:"+this.lawtonCount);
         txtComentarioLawton.setText(this.comentarioLawton);
+        txtPuntajeDownton.setText(this.puntajeDownton);
+        txtComentarioDownton.setText(this.comentarioDownton);
 
         txtComentarioFast.setText("Etapa: "+etapa+"\nCaracteristica: "+caracteristicas+" \nEdad Mental: "+edadMental+" \nGDS: "+gds+" \nMEC: "+mec);
 
 
+        Bundle bundle;
+        try {
+            bundle = getActivity().getIntent().getExtras();
+            if(bundle.getBoolean("guardar"))
+            {
+                java.util.Date date = new java.util.Date();
+                daoHelper.insertHistoricScale(idpatient,"Blessed",this.blessedCount,date);
+                daoHelper.insertHistoricScale(idpatient,"Lawton",Double.parseDouble(this.lawtonCount),date);
+                daoHelper.insertHistoricScale(idpatient,"FAST",Double.parseDouble(this.gds),date);
+                daoHelper.insertHistoricScale(idpatient,"Downton",Double.parseDouble(this.gds),date);
 
+            }
+
+        }catch (Exception e){}
 
         int imageSize = getResources().getDimensionPixelSize(R.dimen.img_patient_profile_size);
 
@@ -368,6 +402,8 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
 
     @Override
     public void showDowntonScore(int score, String comentario) {
+        this.puntajeDownton = score+"";
+        this.comentarioDownton = comentario;
 
     }
 

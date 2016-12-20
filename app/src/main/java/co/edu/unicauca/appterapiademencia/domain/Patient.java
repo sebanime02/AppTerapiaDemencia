@@ -7,6 +7,7 @@ import co.edu.unicauca.appterapiademencia.domain.dao.DaoSession;
 import org.greenrobot.greendao.DaoException;
 
 import co.edu.unicauca.appterapiademencia.domain.dao.HistoricDao;
+import co.edu.unicauca.appterapiademencia.domain.dao.HistoricScoreDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.NoteDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.PatientDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.RecommendationDao;
@@ -50,6 +51,11 @@ public class Patient {
     /** Used for active entity operations. */
     @Generated
     private transient PatientDao myDao;
+
+    @ToMany(joinProperties = {
+        @JoinProperty(name = "id", referencedName = "patientId")
+    })
+    private List<HistoricScore> historicScoreList;
 
     @ToMany(joinProperties = {
         @JoinProperty(name = "id", referencedName = "patientId")
@@ -227,6 +233,28 @@ public class Patient {
 
     public void setDrawinglimitation(Integer drawinglimitation) {
         this.drawinglimitation = drawinglimitation;
+    }
+
+    /** To-many relationship, resolved on first access (and after reset). Changes to to-many relations are not persisted, make changes to the target entity. */
+    @Generated
+    public List<HistoricScore> getHistoricScoreList() {
+        if (historicScoreList == null) {
+            __throwIfDetached();
+            HistoricScoreDao targetDao = daoSession.getHistoricScoreDao();
+            List<HistoricScore> historicScoreListNew = targetDao._queryPatient_HistoricScoreList(id);
+            synchronized (this) {
+                if(historicScoreList == null) {
+                    historicScoreList = historicScoreListNew;
+                }
+            }
+        }
+        return historicScoreList;
+    }
+
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated
+    public synchronized void resetHistoricScoreList() {
+        historicScoreList = null;
     }
 
     /** To-many relationship, resolved on first access (and after reset). Changes to to-many relations are not persisted, make changes to the target entity. */

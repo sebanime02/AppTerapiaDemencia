@@ -290,7 +290,16 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     }
 
     @Override
-    public void getDowntonScore(Long id) {
+    public int getDowntonScore(Long id) {
+
+        int Score;
+
+        Log.e("downscore","llegue repositorio");
+        Score = helper.getDowntonScore(id);
+        Log.e("downscore","el score sacado"+Score);
+
+
+        return Score;
 
     }
 
