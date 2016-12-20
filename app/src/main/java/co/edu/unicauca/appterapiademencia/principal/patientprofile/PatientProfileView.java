@@ -1,6 +1,9 @@
 package co.edu.unicauca.appterapiademencia.principal.patientprofile;
 
+import java.util.List;
+
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.items.BlessedScoreAverage;
 
 /**
  * Created by SEBAS on 07/11/2016.
@@ -19,6 +22,10 @@ public interface PatientProfileView  {
     void showDowntonScore(int score,String comentario);
     void getLawtonScore(Long id);
     void showLawtonScore(int score,String comentario);
+    void graphBlessedScore(List<BlessedScoreAverage> blessedScoreAverageList);
+    void graphLawtonScore();
+    void graphDowntonScore();
+    void graphGDSScore();
 
 
 }

@@ -125,5 +125,10 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
         return  principalListRepository.getLawtonScore(id);
     }
 
+    @Override
+    public void getBlessedData(Long id) {
+        principalListRepository.getBlessedData(id);
+    }
+
 
 }

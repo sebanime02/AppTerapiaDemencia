@@ -49,9 +49,9 @@ public class Main {
         patient.addToMany(historicScore,patientIdhistoricScore);
         historicScore.addStringProperty("scale");
         historicScore.addDoubleProperty("value");
-        historicScore.addDateProperty("date");
-        //historicScore.addIntProperty("hour");
-
+        historicScore.addIntProperty("year");
+        historicScore.addIntProperty("month");
+        historicScore.addIntProperty("day");
 
 
         //NOTE TABLE

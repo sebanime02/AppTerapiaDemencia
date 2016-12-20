@@ -17,6 +17,7 @@ import co.edu.unicauca.appterapiademencia.domain.dao.PatientDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.TipDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.UserDao;
 import co.edu.unicauca.appterapiademencia.events.BlessedEvent;
+import co.edu.unicauca.appterapiademencia.events.BlessedGraphEvent;
 import co.edu.unicauca.appterapiademencia.events.NotificationEvent;
 import co.edu.unicauca.appterapiademencia.events.PatientListEvent;
 import co.edu.unicauca.appterapiademencia.lib.EventBus;
@@ -300,6 +301,23 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
 
 
         return Score;
+
+    }
+
+    @Override
+    public void getBlessedData(Long id) {
+
+        try
+        {
+            BlessedGraphEvent graphEvent = new BlessedGraphEvent();
+            graphEvent.setBlessedScoreAverages(helper.getScoreData(id));
+
+            EventBus eventBus = GreenRobotEventBus.getInstance();
+            Log.e("Principal Repository","Va a registrar el evento");
+            eventBus.post(graphEvent);
+
+        }catch (Exception e){}
+
 
     }
 

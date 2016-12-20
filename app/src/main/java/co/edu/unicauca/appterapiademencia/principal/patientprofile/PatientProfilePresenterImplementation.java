@@ -4,6 +4,7 @@ import android.util.Log;
 
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.events.BlessedEvent;
+import co.edu.unicauca.appterapiademencia.events.BlessedGraphEvent;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractor;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractorImplementation;
@@ -112,6 +113,14 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
             case BlessedEvent.onBlessedScoreError:
 
             break;
+        }
+    }
+
+    @Override
+    public void onEventMainThread(BlessedGraphEvent event) {
+        if(patientProfileView!=null)
+        {
+            patientProfileView.graphBlessedScore(event.getBlessedScoreAverages());
         }
     }
 
@@ -330,5 +339,10 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
 
 
 
+    }
+
+    @Override
+    public void getBlessedData(Long id) {
+        principalListInteractor.getBlessedData(id);
     }
 }

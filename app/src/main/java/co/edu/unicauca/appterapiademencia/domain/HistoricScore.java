@@ -15,7 +15,9 @@ public class HistoricScore {
     private long patientId;
     private String scale;
     private Double value;
-    private java.util.Date date;
+    private Integer year;
+    private Integer month;
+    private Integer day;
 
     @Generated
     public HistoricScore() {
@@ -26,12 +28,14 @@ public class HistoricScore {
     }
 
     @Generated
-    public HistoricScore(Long id, long patientId, String scale, Double value, java.util.Date date) {
+    public HistoricScore(Long id, long patientId, String scale, Double value, Integer year, Integer month, Integer day) {
         this.id = id;
         this.patientId = patientId;
         this.scale = scale;
         this.value = value;
-        this.date = date;
+        this.year = year;
+        this.month = month;
+        this.day = day;
     }
 
     public Long getId() {
@@ -66,12 +70,28 @@ public class HistoricScore {
         this.value = value;
     }
 
-    public java.util.Date getDate() {
-        return date;
+    public Integer getYear() {
+        return year;
     }
 
-    public void setDate(java.util.Date date) {
-        this.date = date;
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public Integer getMonth() {
+        return month;
+    }
+
+    public void setMonth(Integer month) {
+        this.month = month;
+    }
+
+    public Integer getDay() {
+        return day;
+    }
+
+    public void setDay(Integer day) {
+        this.day = day;
     }
 
 }

@@ -13,16 +13,26 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.PatientListAdapter;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
+import co.edu.unicauca.appterapiademencia.items.BlessedScoreAverage;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.AddPatient2Activity;
 import co.edu.unicauca.appterapiademencia.util.CircleTransform;
 
@@ -66,6 +76,9 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private String puntajeDownton;
     private Long idsistema;
     private String etapa,caracteristicas,edadMental,gds,mec;
+    private LineChart blessedChart;
+    private Calendar calendar;
+    private int year,month,day;
 
 
 
@@ -116,7 +129,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtComentarioLawton = (TextView) view.findViewById(R.id.comentarioLawton);
         txtPuntajeDownton = (TextView) view.findViewById(R.id.puntajeDowntown);
         txtComentarioDownton = (TextView) view.findViewById(R.id.comentarioDowntown);
-
+         blessedChart = (LineChart) view.findViewById(R.id.blessedChart);
 
 
 
@@ -149,7 +162,11 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         getBlessedScore(idsistema);
         getFastScore(idsistema);
         getLawtonScore(idsistema);
-        getDowntonScore(idsistema);
+
+        patientProfilePresenter.getBlessedData(idsistema);
+
+
+
         txtName.setText(this.name);
         txtAge.setText("Nació en: "+this.birthday);
         txtIdentity.setText("  Cédula: "+this.identity);
@@ -226,14 +243,13 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         }
         catch (Exception e){}
 
-
-
-
-
         getBlessedScore(idsistema);
         getFastScore(idsistema);
         getLawtonScore(idsistema);
         getDowntonScore(idsistema);
+
+        patientProfilePresenter.getBlessedData(idsistema);
+
         txtName.setText(this.name);
         txtAge.setText("Nació en: "+this.birthday);
         txtIdentity.setText("  Cédula: "+this.identity);
@@ -262,10 +278,20 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
             if(bundle.getBoolean("guardar"))
             {
                 java.util.Date date = new java.util.Date();
-                daoHelper.insertHistoricScale(idpatient,"Blessed",this.blessedCount,date);
-                daoHelper.insertHistoricScale(idpatient,"Lawton",Double.parseDouble(this.lawtonCount),date);
-                daoHelper.insertHistoricScale(idpatient,"FAST",Double.parseDouble(this.gds),date);
-                daoHelper.insertHistoricScale(idpatient,"Downton",Double.parseDouble(this.gds),date);
+
+                calendar = Calendar.getInstance();
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                Log.e("fecha guardada","Año "+year+" mes"+month+" dia"+day);
+
+
+                daoHelper.insertHistoricScale(idpatient,"Blessed",this.blessedCount,year,month,day);
+                daoHelper.insertHistoricScale(idpatient,"Lawton",Double.parseDouble(this.lawtonCount),year,month,day);
+
+                daoHelper.insertHistoricScale(idpatient,"FAST",Double.parseDouble(this.gds),year,month,day);
+                daoHelper.insertHistoricScale(idpatient,"Downton",Double.parseDouble(this.puntajeDownton),year,month,day);
 
             }
 
@@ -417,6 +443,66 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
 
         this.lawtonCount = score+"";
         this.comentarioLawton = comentario;
+
+    }
+
+    @Override
+    public void graphBlessedScore(List<BlessedScoreAverage>  blessedScoreAverages) {
+            List<BlessedScoreAverage> blessedScoreAverageList;
+            blessedScoreAverageList = new ArrayList<BlessedScoreAverage>();
+            blessedScoreAverageList.clear();
+
+            float month;
+            float score;
+
+        List<Entry> entries = new ArrayList<Entry>();
+        final ArrayList<String> labels= new ArrayList<String>();
+            for(int m=0;m<blessedScoreAverages.size();m++)
+            {
+                //month=Float.parseFloat(blessedScoreAverages.get(m).getMonth()+"");
+                score = Float.parseFloat(blessedScoreAverages.get(m).getScore()+"");
+                entries.add(new Entry(m,score));
+                labels.add(blessedScoreAverages.get(m).getMonth());
+                //blessedScoreAverageList.add(blessedScoreAverages.get(m));
+            }
+
+        LineDataSet dataSet = new LineDataSet(entries, "Escala Demencia Blessed");
+        LineData data = new LineData(dataSet);
+
+        XAxis xAxis = blessedChart.getXAxis();
+
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+
+            public int getDecimalDigits() {
+                return 0;
+            }
+
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return labels.get((int)value);
+            }
+        });
+
+        blessedChart.setData(data);
+        blessedChart.invalidate();
+
+
+
+
+    }
+
+    @Override
+    public void graphLawtonScore() {
+
+    }
+
+    @Override
+    public void graphDowntonScore() {
+
+    }
+
+    @Override
+    public void graphGDSScore() {
 
     }
 

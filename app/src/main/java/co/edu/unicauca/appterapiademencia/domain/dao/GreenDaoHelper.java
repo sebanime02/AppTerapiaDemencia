@@ -6,7 +6,7 @@ import android.util.Log;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,6 +18,8 @@ import co.edu.unicauca.appterapiademencia.domain.Scale;
 import co.edu.unicauca.appterapiademencia.domain.Sintoma;
 import co.edu.unicauca.appterapiademencia.domain.Tip;
 import co.edu.unicauca.appterapiademencia.domain.User;
+import co.edu.unicauca.appterapiademencia.items.BlessedScoreAverage;
+import co.edu.unicauca.appterapiademencia.items.BlessedScoreYear;
 
 
 /**
@@ -820,11 +822,270 @@ public class GreenDaoHelper {
         return preferenceTip = preferenceTipList.get(0);
     }
 
-    public void insertHistoricScale(Long patientid,String scale, Double score, Date fecha)
+    public void insertHistoricScale(Long patientid,String scale, Double score, int year,int month,int day)
     {
-        HistoricScore historicScore = new HistoricScore(null,patientid,scale,score,fecha);
+        HistoricScore historicScore = new HistoricScore(null,patientid,scale,score,year,month,day);
         getHistoricScoreDao().insert(historicScore);
     }
+
+    public List<BlessedScoreAverage> getScoreData(Long id)
+    {
+        List<BlessedScoreYear> yearList;
+        List<BlessedScoreAverage> averageList;
+        Calendar calendar;
+        int month;
+        int year;
+        int day;
+        int monthrange;
+
+        yearList = new ArrayList<BlessedScoreYear>();
+        averageList = new ArrayList<BlessedScoreAverage>();
+
+        yearList.clear();
+        averageList.clear();
+
+        int[] meses = new int[6];
+        int[] years = new int[6];
+
+
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        monthrange = month-5;
+        Log.e("Blessed","helper graph monthrange "+monthrange);
+
+        if(monthrange==-1)
+        {
+            //month = 5-1 = 4;
+            meses[0]=4;
+            meses[1]=3;
+            meses[2]=2;
+            meses[3]=1;
+            meses[4]=0;
+            meses[5]=11;
+
+            years[0]=year;
+            years[1]=year;
+            years[2]=year;
+            years[3]=year;
+            years[4]=year;
+            years[5]=year-1;
+
+
+
+
+        }
+        else if(monthrange==-2)
+        {
+            //month = 5-2 = 3;
+            meses[0]=3;
+            meses[1]=2;
+            meses[2]=1;
+            meses[3]=0;
+            meses[4]=11;
+            meses[5]=10;
+
+            years[0]=year;
+            years[1]=year;
+            years[2]=year;
+            years[3]=year;
+            years[4]=year-1;
+            years[5]=year-1;
+        }else if(monthrange==-3)
+        {
+            meses[0]=2;
+            meses[1]=1;
+            meses[2]=0;
+            meses[3]=11;
+            meses[4]=10;
+            meses[5]=9;
+
+            years[0]=year;
+            years[1]=year;
+            years[2]=year;
+            years[3]=year-1;
+            years[4]=year-1;
+            years[5]=year-1;
+
+        }else if (monthrange==-4){
+
+            meses[0]=1;
+            meses[1]=0;
+            meses[2]=11;
+            meses[3]=10;
+            meses[4]=9;
+            meses[5]=8;
+
+            years[0]=year;
+            years[1]=year;
+            years[2]=year-1;
+            years[3]=year-1;
+            years[4]=year-1;
+            years[5]=year-1;
+
+        }else if(monthrange==-5)
+        {
+            meses[0]=0;
+            meses[1]=11;
+            meses[2]=10;
+            meses[3]=9;
+            meses[4]=8;
+            meses[5]=7;
+
+            years[0]=year;
+            years[1]=year-1;
+            years[2]=year-1;
+            years[3]=year-1;
+            years[4]=year-1;
+            years[5]=year-1;
+
+        }
+        else if(monthrange==-6)
+        {
+            meses[0]=11;
+            meses[1]=10;
+            meses[2]=9;
+            meses[3]=8;
+            meses[4]=7;
+            meses[5]=6;
+
+            years[0]=year-1;
+            years[1]=year-1;
+            years[2]=year-1;
+            years[3]=year-1;
+            years[4]=year-1;
+            years[5]=year-1;
+        }
+        else
+        {
+
+            meses[0]=month;
+            meses[1]=month-1;
+            meses[2]=month-2;
+            meses[3]=month-3;
+            meses[4]=month-4;
+            meses[5]=month-5;
+
+            years[0]=year;
+            years[1]=year;
+            years[2]=year;
+            years[3]=year;
+            years[4]=year;
+            years[5]=year;
+        }
+
+        for(int e=0;e<meses.length;e++)
+        {
+
+            Log.e("Blessed","años "+years[e]);
+            Log.e("Blessed","meses "+meses[e]);
+
+            BlessedScoreYear blesedscore = new BlessedScoreYear();
+            blesedscore.setYear(years[e]);
+            blesedscore.setMonth(meses[e]);
+            yearList.add(blesedscore);
+
+        }
+
+        Log.e("Blessed","yearlist size "+yearList.size());
+
+
+        for(int z=0;z<yearList.size();z++)
+        {
+            QueryBuilder<HistoricScore> historicScoreQueryBuilder= getHistoricScoreDao().queryBuilder();
+            historicScoreQueryBuilder.where(HistoricScoreDao.Properties.Scale.eq("Blessed"),HistoricScoreDao.Properties.PatientId.eq(id),HistoricScoreDao.Properties.Month.eq(yearList.get(z).getMonth()),HistoricScoreDao.Properties.Year.eq(yearList.get(z).getYear()));
+            List<HistoricScore> historicList = historicScoreQueryBuilder.list();
+
+            if(historicList.size()>0)
+            {
+                Log.e("Blessed","Hay registros de mes y año"+yearList.size());
+
+                Double resumen;
+                resumen=0.0;
+                Double total = 0.0;
+                String  txtMonth="";
+                Float division;
+
+
+
+                for(int w=0;w<historicList.size();w++)
+                {
+                    resumen = resumen +historicList.get(w).getValue();
+                }
+                resumen = total;
+                Log.e("Blessed","resumen "+resumen);
+
+                resumen=0.0;
+
+                total = (total)/(historicList.size());
+                Log.e("Blessed","promedio "+total);
+
+
+                BlessedScoreAverage average = new BlessedScoreAverage();
+
+               switch (yearList.get(z).getMonth())
+               {
+                   case 0:
+                       txtMonth="Ene";
+                       break;
+                   case 1:
+                       txtMonth="Feb";
+                       break;
+                   case 2:
+                       txtMonth="Mar";
+                       break;
+                   case 3:
+                       txtMonth="Abr";
+                       break;
+                   case 4:
+                       txtMonth="May";
+                       break;
+                   case 5:
+                       txtMonth="Jun";
+                       break;
+                   case 6:
+                       txtMonth="Jul";
+                       break;
+                   case 7:
+                       txtMonth="Ago";
+                       break;
+                   case 8:
+                       txtMonth="Sep";
+                       break;
+                   case 9:
+                       txtMonth="Oct";
+                       break;
+                   case 10:
+                       txtMonth="Nov";
+                       break;
+                   case 11:
+                       txtMonth="Dec";
+                       break;
+
+               }
+                average.setMonth(txtMonth+" "+yearList.get(z).getYear());
+                Log.e("Blessed","Mes "+txtMonth);
+                average.setScore(total);
+                averageList.add(average);
+            }
+
+
+        }
+
+
+
+        return averageList;
+
+
+
+      //historicScoreQueryBuilder.where(new WhereCondition.StringCondition("(SELECT AVG(value) FROM HistoricScore WHERE scale = ? AND patientId = ?)",scale,id)).build().
+
+
+    }
+
+
 
 
 

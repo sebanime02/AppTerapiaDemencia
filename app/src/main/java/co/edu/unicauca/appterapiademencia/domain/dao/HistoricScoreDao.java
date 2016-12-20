@@ -31,7 +31,9 @@ public class HistoricScoreDao extends AbstractDao<HistoricScore, Long> {
         public final static Property PatientId = new Property(1, long.class, "patientId", false, "PATIENT_ID");
         public final static Property Scale = new Property(2, String.class, "scale", false, "SCALE");
         public final static Property Value = new Property(3, Double.class, "value", false, "VALUE");
-        public final static Property Date = new Property(4, java.util.Date.class, "date", false, "DATE");
+        public final static Property Year = new Property(4, Integer.class, "year", false, "YEAR");
+        public final static Property Month = new Property(5, Integer.class, "month", false, "MONTH");
+        public final static Property Day = new Property(6, Integer.class, "day", false, "DAY");
     }
 
     private Query<HistoricScore> patient_HistoricScoreListQuery;
@@ -52,7 +54,9 @@ public class HistoricScoreDao extends AbstractDao<HistoricScore, Long> {
                 "\"PATIENT_ID\" INTEGER NOT NULL ," + // 1: patientId
                 "\"SCALE\" TEXT," + // 2: scale
                 "\"VALUE\" REAL," + // 3: value
-                "\"DATE\" INTEGER);"); // 4: date
+                "\"YEAR\" INTEGER," + // 4: year
+                "\"MONTH\" INTEGER," + // 5: month
+                "\"DAY\" INTEGER);"); // 6: day
     }
 
     /** Drops the underlying database table. */
@@ -81,9 +85,19 @@ public class HistoricScoreDao extends AbstractDao<HistoricScore, Long> {
             stmt.bindDouble(4, value);
         }
  
-        java.util.Date date = entity.getDate();
-        if (date != null) {
-            stmt.bindLong(5, date.getTime());
+        Integer year = entity.getYear();
+        if (year != null) {
+            stmt.bindLong(5, year);
+        }
+ 
+        Integer month = entity.getMonth();
+        if (month != null) {
+            stmt.bindLong(6, month);
+        }
+ 
+        Integer day = entity.getDay();
+        if (day != null) {
+            stmt.bindLong(7, day);
         }
     }
 
@@ -107,9 +121,19 @@ public class HistoricScoreDao extends AbstractDao<HistoricScore, Long> {
             stmt.bindDouble(4, value);
         }
  
-        java.util.Date date = entity.getDate();
-        if (date != null) {
-            stmt.bindLong(5, date.getTime());
+        Integer year = entity.getYear();
+        if (year != null) {
+            stmt.bindLong(5, year);
+        }
+ 
+        Integer month = entity.getMonth();
+        if (month != null) {
+            stmt.bindLong(6, month);
+        }
+ 
+        Integer day = entity.getDay();
+        if (day != null) {
+            stmt.bindLong(7, day);
         }
     }
 
@@ -125,7 +149,9 @@ public class HistoricScoreDao extends AbstractDao<HistoricScore, Long> {
             cursor.getLong(offset + 1), // patientId
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // scale
             cursor.isNull(offset + 3) ? null : cursor.getDouble(offset + 3), // value
-            cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)) // date
+            cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // year
+            cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5), // month
+            cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6) // day
         );
         return entity;
     }
@@ -136,7 +162,9 @@ public class HistoricScoreDao extends AbstractDao<HistoricScore, Long> {
         entity.setPatientId(cursor.getLong(offset + 1));
         entity.setScale(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setValue(cursor.isNull(offset + 3) ? null : cursor.getDouble(offset + 3));
-        entity.setDate(cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)));
+        entity.setYear(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
+        entity.setMonth(cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5));
+        entity.setDay(cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6));
      }
     
     @Override
