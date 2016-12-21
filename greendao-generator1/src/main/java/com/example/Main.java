@@ -45,8 +45,10 @@ public class Main {
         Entity historicScore = schema.addEntity("HistoricScore");
 
         historicScore.addIdProperty().autoincrement().primaryKey();
+
         Property patientIdhistoricScore = historicScore.addLongProperty("patientId").notNull().getProperty();
         patient.addToMany(historicScore,patientIdhistoricScore);
+
         historicScore.addStringProperty("scale");
         historicScore.addDoubleProperty("value");
         historicScore.addIntProperty("year");

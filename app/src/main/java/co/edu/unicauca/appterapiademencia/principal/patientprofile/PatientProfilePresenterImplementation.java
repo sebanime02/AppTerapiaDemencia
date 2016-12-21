@@ -118,8 +118,11 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
 
     @Override
     public void onEventMainThread(BlessedGraphEvent event) {
+        Log.e("Presenter","LLego al presenter de blessedGraphEvent");
         if(patientProfileView!=null)
         {
+            Log.e("Presenter","Ejecuta el metodo para pasar el average a la vista");
+
             patientProfileView.graphBlessedScore(event.getBlessedScoreAverages());
         }
     }

@@ -1468,9 +1468,6 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         }catch (Exception e){    }
 
 
-
-
-
                     }
 
                     //-------------------------------

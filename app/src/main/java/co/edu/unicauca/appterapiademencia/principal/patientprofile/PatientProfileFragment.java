@@ -163,7 +163,11 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         getFastScore(idsistema);
         getLawtonScore(idsistema);
 
-        patientProfilePresenter.getBlessedData(idsistema);
+        try
+        {
+            patientProfilePresenter.getBlessedData(idsistema);
+
+        }catch (Exception e){}
 
 
 
@@ -248,7 +252,19 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         getLawtonScore(idsistema);
         getDowntonScore(idsistema);
 
-        patientProfilePresenter.getBlessedData(idsistema);
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try
+                {
+                    patientProfilePresenter.getBlessedData(idsistema);
+
+                }catch (Exception e){}
+            }
+        }).start();
+
 
         txtName.setText(this.name);
         txtAge.setText("Nació en: "+this.birthday);
@@ -287,11 +303,11 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
                 Log.e("fecha guardada","Año "+year+" mes"+month+" dia"+day);
 
 
-                daoHelper.insertHistoricScale(idpatient,"Blessed",this.blessedCount,year,month,day);
-                daoHelper.insertHistoricScale(idpatient,"Lawton",Double.parseDouble(this.lawtonCount),year,month,day);
+                daoHelper.insertHistoricScale(idsistema,"Blessed",this.blessedCount,year,month,day);
+                daoHelper.insertHistoricScale(idsistema,"Lawton",Double.parseDouble(this.lawtonCount),year,month,day);
 
-                daoHelper.insertHistoricScale(idpatient,"FAST",Double.parseDouble(this.gds),year,month,day);
-                daoHelper.insertHistoricScale(idpatient,"Downton",Double.parseDouble(this.puntajeDownton),year,month,day);
+                daoHelper.insertHistoricScale(idsistema,"FAST",Double.parseDouble(this.gds),year,month,day);
+                daoHelper.insertHistoricScale(idsistema,"Downton",Double.parseDouble(this.puntajeDownton),year,month,day);
 
             }
 

@@ -824,8 +824,10 @@ public class GreenDaoHelper {
 
     public void insertHistoricScale(Long patientid,String scale, Double score, int year,int month,int day)
     {
+        HistoricScoreDao historicScoreDao;
+        historicScoreDao = getHistoricScoreDao();
         HistoricScore historicScore = new HistoricScore(null,patientid,scale,score,year,month,day);
-        getHistoricScoreDao().insert(historicScore);
+        historicScoreDao.insert(historicScore);
     }
 
     public List<BlessedScoreAverage> getScoreData(Long id)
@@ -838,8 +840,8 @@ public class GreenDaoHelper {
         int day;
         int monthrange;
 
-        yearList = new ArrayList<BlessedScoreYear>();
-        averageList = new ArrayList<BlessedScoreAverage>();
+        yearList = new ArrayList<>();
+        averageList = new ArrayList<>();
 
         yearList.clear();
         averageList.clear();
@@ -854,7 +856,7 @@ public class GreenDaoHelper {
         day = calendar.get(Calendar.DAY_OF_MONTH);
 
         monthrange = month-5;
-        Log.e("Blessed","helper graph monthrange "+monthrange);
+        Log.e("Blessed graph","helper graph monthrange "+monthrange);
 
         if(monthrange==-1)
         {
@@ -979,28 +981,36 @@ public class GreenDaoHelper {
         for(int e=0;e<meses.length;e++)
         {
 
-            Log.e("Blessed","años "+years[e]);
-            Log.e("Blessed","meses "+meses[e]);
+            Log.e("Blessed graph","años "+years[e]);
+            Log.e("Blessed graph","meses "+meses[e]);
 
             BlessedScoreYear blesedscore = new BlessedScoreYear();
             blesedscore.setYear(years[e]);
             blesedscore.setMonth(meses[e]);
-            yearList.add(blesedscore);
+            yearList.add(e,blesedscore);
 
         }
 
-        Log.e("Blessed","yearlist size "+yearList.size());
+        Log.e("Blessed graph","yearlist size "+yearList.size());
 
 
         for(int z=0;z<yearList.size();z++)
         {
+            Log.e("Blessed graph","Entro al for de yearlist");
+
             QueryBuilder<HistoricScore> historicScoreQueryBuilder= getHistoricScoreDao().queryBuilder();
-            historicScoreQueryBuilder.where(HistoricScoreDao.Properties.Scale.eq("Blessed"),HistoricScoreDao.Properties.PatientId.eq(id),HistoricScoreDao.Properties.Month.eq(yearList.get(z).getMonth()),HistoricScoreDao.Properties.Year.eq(yearList.get(z).getYear()));
-            List<HistoricScore> historicList = historicScoreQueryBuilder.list();
+            Log.e("Blessed graph","Valores :"+" id"+id+" Mes:"+yearList.get(z).getMonth()+" Ayer"+yearList.get(z).getYear());
+            List<HistoricScore> historicList = historicScoreQueryBuilder.where(HistoricScoreDao.Properties.Scale.eq("Blessed"),HistoricScoreDao.Properties.PatientId.eq(id),HistoricScoreDao.Properties.Month.eq(yearList.get(z).getMonth()),HistoricScoreDao.Properties.Year.eq(yearList.get(z).getYear())).list();
+
+
+            Log.e("Blessed graph","historicList Size"+historicList.size());
+
 
             if(historicList.size()>0)
             {
-                Log.e("Blessed","Hay registros de mes y año"+yearList.size());
+                Log.e("Blessed graph","historicList Size"+historicList.size());
+
+                Log.e("Blessed graph","Hay registros de mes y año"+yearList.size());
 
                 Double resumen;
                 resumen=0.0;
@@ -1012,15 +1022,16 @@ public class GreenDaoHelper {
 
                 for(int w=0;w<historicList.size();w++)
                 {
+                    Log.e("Blessed graph","value "+historicList.get(w).getValue());
                     resumen = resumen +historicList.get(w).getValue();
                 }
-                resumen = total;
-                Log.e("Blessed","resumen "+resumen);
+                total = resumen;
+                Log.e("Blessed graph","resumen "+resumen);
 
                 resumen=0.0;
 
                 total = (total)/(historicList.size());
-                Log.e("Blessed","promedio "+total);
+                Log.e("Blessed graph","promedio "+total);
 
 
                 BlessedScoreAverage average = new BlessedScoreAverage();
@@ -1066,15 +1077,24 @@ public class GreenDaoHelper {
 
                }
                 average.setMonth(txtMonth+" "+yearList.get(z).getYear());
-                Log.e("Blessed","Mes "+txtMonth);
+                Log.e("Blessed graph","Mes "+txtMonth);
                 average.setScore(total);
                 averageList.add(average);
             }
+            historicList.clear();
 
 
         }
 
 
+        Log.e("Blessed graph","AverageList "+averageList.size());
+
+        for(int a=0;a<=averageList.size();a++)
+        {
+            Log.e("Blessed graph","AverageList Month "+averageList.get(a).getMonth());
+            Log.e("Blessed graph","AverageList Score "+averageList.get(a).getScore());
+
+        }
 
         return averageList;
 
