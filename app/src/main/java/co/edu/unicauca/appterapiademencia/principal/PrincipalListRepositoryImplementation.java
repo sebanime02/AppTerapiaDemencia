@@ -20,6 +20,7 @@ import co.edu.unicauca.appterapiademencia.events.BlessedEvent;
 import co.edu.unicauca.appterapiademencia.events.BlessedGraphEvent;
 import co.edu.unicauca.appterapiademencia.events.NotificationEvent;
 import co.edu.unicauca.appterapiademencia.events.PatientListEvent;
+import co.edu.unicauca.appterapiademencia.items.BlessedScoreAverage;
 import co.edu.unicauca.appterapiademencia.lib.EventBus;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
 
@@ -307,16 +308,19 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     @Override
     public void getBlessedData(Long id) {
 
-        try
-        {
+
             BlessedGraphEvent graphEvent = new BlessedGraphEvent();
-            graphEvent.setBlessedScoreAverages(helper.getScoreData(id));
+            List<BlessedScoreAverage> averageList;
+            averageList = helper.getScoreData(id);
+            Log.e("Principal Repository","Trae la Lista");
+
+            graphEvent.setBlessedScoreAverages(averageList);
 
             EventBus eventBus = GreenRobotEventBus.getInstance();
             Log.e("Principal Repository","Va a registrar el evento");
             eventBus.post(graphEvent);
 
-        }catch (Exception e){}
+
 
 
     }

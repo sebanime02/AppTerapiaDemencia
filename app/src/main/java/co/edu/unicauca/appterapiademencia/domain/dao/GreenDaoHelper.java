@@ -861,19 +861,19 @@ public class GreenDaoHelper {
         if(monthrange==-1)
         {
             //month = 5-1 = 4;
-            meses[0]=4;
-            meses[1]=3;
-            meses[2]=2;
-            meses[3]=1;
-            meses[4]=0;
-            meses[5]=11;
+            meses[5]=4;
+            meses[4]=3;
+            meses[3]=2;
+            meses[2]=1;
+            meses[1]=0;
+            meses[0]=11;
 
-            years[0]=year;
-            years[1]=year;
-            years[2]=year;
-            years[3]=year;
+            years[5]=year;
             years[4]=year;
-            years[5]=year-1;
+            years[3]=year;
+            years[2]=year;
+            years[1]=year;
+            years[0]=year-1;
 
 
 
@@ -882,100 +882,100 @@ public class GreenDaoHelper {
         else if(monthrange==-2)
         {
             //month = 5-2 = 3;
-            meses[0]=3;
-            meses[1]=2;
-            meses[2]=1;
-            meses[3]=0;
-            meses[4]=11;
-            meses[5]=10;
+            meses[5]=3;
+            meses[4]=2;
+            meses[3]=1;
+            meses[2]=0;
+            meses[1]=11;
+            meses[0]=10;
 
-            years[0]=year;
-            years[1]=year;
-            years[2]=year;
+            years[5]=year;
+            years[4]=year;
             years[3]=year;
-            years[4]=year-1;
-            years[5]=year-1;
+            years[2]=year;
+            years[1]=year-1;
+            years[0]=year-1;
         }else if(monthrange==-3)
         {
-            meses[0]=2;
-            meses[1]=1;
-            meses[2]=0;
-            meses[3]=11;
-            meses[4]=10;
-            meses[5]=9;
+            meses[5]=2;
+            meses[4]=1;
+            meses[3]=0;
+            meses[2]=11;
+            meses[1]=10;
+            meses[0]=9;
 
-            years[0]=year;
-            years[1]=year;
-            years[2]=year;
-            years[3]=year-1;
-            years[4]=year-1;
-            years[5]=year-1;
+            years[5]=year;
+            years[4]=year;
+            years[3]=year;
+            years[2]=year-1;
+            years[1]=year-1;
+            years[0]=year-1;
 
         }else if (monthrange==-4){
 
-            meses[0]=1;
-            meses[1]=0;
-            meses[2]=11;
-            meses[3]=10;
-            meses[4]=9;
-            meses[5]=8;
+            meses[5]=1;
+            meses[4]=0;
+            meses[3]=11;
+            meses[2]=10;
+            meses[1]=9;
+            meses[0]=8;
 
-            years[0]=year;
-            years[1]=year;
-            years[2]=year-1;
+            years[5]=year;
+            years[4]=year;
             years[3]=year-1;
-            years[4]=year-1;
-            years[5]=year-1;
+            years[2]=year-1;
+            years[1]=year-1;
+            years[0]=year-1;
 
         }else if(monthrange==-5)
         {
-            meses[0]=0;
-            meses[1]=11;
-            meses[2]=10;
-            meses[3]=9;
-            meses[4]=8;
-            meses[5]=7;
+            meses[5]=0;
+            meses[4]=11;
+            meses[3]=10;
+            meses[2]=9;
+            meses[1]=8;
+            meses[0]=7;
 
-            years[0]=year;
-            years[1]=year-1;
-            years[2]=year-1;
-            years[3]=year-1;
+            years[5]=year;
             years[4]=year-1;
-            years[5]=year-1;
+            years[3]=year-1;
+            years[2]=year-1;
+            years[1]=year-1;
+            years[0]=year-1;
 
         }
         else if(monthrange==-6)
         {
-            meses[0]=11;
-            meses[1]=10;
-            meses[2]=9;
-            meses[3]=8;
-            meses[4]=7;
-            meses[5]=6;
+            meses[5]=11;
+            meses[4]=10;
+            meses[3]=9;
+            meses[2]=8;
+            meses[1]=7;
+            meses[0]=6;
 
-            years[0]=year-1;
-            years[1]=year-1;
-            years[2]=year-1;
-            years[3]=year-1;
-            years[4]=year-1;
             years[5]=year-1;
+            years[4]=year-1;
+            years[3]=year-1;
+            years[2]=year-1;
+            years[1]=year-1;
+            years[0]=year-1;
         }
         else
         {
 
-            meses[0]=month;
-            meses[1]=month-1;
-            meses[2]=month-2;
-            meses[3]=month-3;
-            meses[4]=month-4;
-            meses[5]=month-5;
+            meses[5]=month;
+            meses[4]=month-1;
+            meses[3]=month-2;
+            meses[2]=month-3;
+            meses[1]=month-4;
+            meses[0]=month-5;
 
-            years[0]=year;
-            years[1]=year;
-            years[2]=year;
-            years[3]=year;
-            years[4]=year;
             years[5]=year;
+            years[4]=year;
+            years[3]=year;
+            years[2]=year;
+            years[1]=year;
+            years[0]=year;
         }
 
         for(int e=0;e<meses.length;e++)
@@ -1089,7 +1089,7 @@ public class GreenDaoHelper {
 
         Log.e("Blessed graph","AverageList "+averageList.size());
 
-        for(int a=0;a<=averageList.size();a++)
+        for(int a=0;a<averageList.size();a++)
         {
             Log.e("Blessed graph","AverageList Month "+averageList.get(a).getMonth());
             Log.e("Blessed graph","AverageList Score "+averageList.get(a).getScore());

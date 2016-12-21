@@ -536,7 +536,7 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/activity_horizontal_margin"
+
                 android:elevation="4dp"
                 android:orientation="vertical"
 
@@ -545,7 +545,9 @@
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/blessedChart"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="250dp"
+                    android:background="@color/colorPrimary"
+                    />
 
 
 

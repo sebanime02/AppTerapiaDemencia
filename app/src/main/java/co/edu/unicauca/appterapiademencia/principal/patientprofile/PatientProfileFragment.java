@@ -1,5 +1,6 @@
 package co.edu.unicauca.appterapiademencia.principal.patientprofile;
 
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,11 +16,14 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -252,6 +256,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         getLawtonScore(idsistema);
         getDowntonScore(idsistema);
 
+        //patientProfilePresenter.getBlessedData(idsistema);
 
         new Thread(new Runnable() {
 
@@ -261,7 +266,11 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
                 {
                     patientProfilePresenter.getBlessedData(idsistema);
 
-                }catch (Exception e){}
+                }catch (Exception e)
+                {
+                    Log.e("Error blessed","Atrapo la excepcion en blessed data");
+
+                }
             }
         }).start();
 
@@ -465,6 +474,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     @Override
     public void graphBlessedScore(List<BlessedScoreAverage>  blessedScoreAverages) {
             List<BlessedScoreAverage> blessedScoreAverageList;
+            final String[] labels;
             blessedScoreAverageList = new ArrayList<BlessedScoreAverage>();
             blessedScoreAverageList.clear();
 
@@ -472,20 +482,45 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
             float score;
 
         List<Entry> entries = new ArrayList<Entry>();
-        final ArrayList<String> labels= new ArrayList<String>();
+        labels = new String[blessedScoreAverages.size()];
+        //final ArrayList<String> labels= new ArrayList<String>();
             for(int m=0;m<blessedScoreAverages.size();m++)
             {
-                //month=Float.parseFloat(blessedScoreAverages.get(m).getMonth()+"");
+
                 score = Float.parseFloat(blessedScoreAverages.get(m).getScore()+"");
-                entries.add(new Entry(m,score));
-                labels.add(blessedScoreAverages.get(m).getMonth());
-                //blessedScoreAverageList.add(blessedScoreAverages.get(m));
+                Log.e("score graph"," Score"+score);
+                entries.add(new Entry(Float.parseFloat(m+""),score));
+                labels[m] = blessedScoreAverages.get(m).getMonth();
             }
+        entries.size();
+
+        for(int q=0;q<entries.size();q++)
+        {
+            Log.e("score graph"," Entry x"+entries.get(q).getX());
+            Log.e("score graph"," Entry Y"+entries.get(q).getY());
+
+        }
+
+        Log.e("score graph","Tamaño Entries "+entries);
 
         LineDataSet dataSet = new LineDataSet(entries, "Escala Demencia Blessed");
+        dataSet.setDrawFilled(true);
+        dataSet.setDrawCircles(true);
+        //dataSet.setColors();
+
+        dataSet.setColor(getResources().getColor(R.color.white));
+        dataSet.setCircleColor(getResources().getColor(R.color.white));
+        dataSet.setColors(getResources().getColor(R.color.white));
+        dataSet.setCircleColors(getResources().getColor(R.color.white));
+        dataSet.setFillColor(getResources().getColor(R.color.white));
+
         LineData data = new LineData(dataSet);
 
+
         XAxis xAxis = blessedChart.getXAxis();
+        YAxis yAxis = blessedChart.getAxisLeft();
+
+
 
         xAxis.setValueFormatter(new IAxisValueFormatter() {
 
@@ -495,12 +530,36 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
 
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
-                return labels.get((int)value);
+                return labels[((int)value)];
             }
         });
+        xAxis.setGranularity(1f);
+        xAxis.setTextSize(12f);
 
+        xAxis.setGridColor(getResources().getColor(R.color.white));
+        //xAxis.setAxisMinimum(Float.parseFloat(0+""));
+        //xAxis.setAxisMaximum(Float.parseFloat(32+""));
+        yAxis.setTextSize(7f);
+        yAxis.setTextColor(getResources().getColor(R.color.white));
         blessedChart.setData(data);
+
+        Description desc = new Description();
+        desc.setText("Monitoreo del la Demencia Segun Escala Blessed");
+        //desc.setTextAlign(Paint.Align.CENTER);
+        desc.setTextColor(getResources().getColor(R.color.white));
+        desc.setTextSize(12f);
+        blessedChart.setGridBackgroundColor(getResources().getColor(R.color.white));
+
+         blessedChart.setDescription(desc);
+
+
         blessedChart.invalidate();
+        blessedChart.notifyDataSetChanged();
+
+
+
+
+        //blessedChart.invalidate();
 
 
 
