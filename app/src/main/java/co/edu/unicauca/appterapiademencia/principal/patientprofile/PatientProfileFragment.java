@@ -1,6 +1,6 @@
 package co.edu.unicauca.appterapiademencia.principal.patientprofile;
 
-import android.graphics.Paint;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,21 +9,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -44,7 +47,7 @@ import co.edu.unicauca.appterapiademencia.util.CircleTransform;
  * Created by SEBAS on 07/11/2016.
  */
 
-public class PatientProfileFragment extends Fragment implements PatientProfileView {
+public class PatientProfileFragment extends Fragment implements PatientProfileView{
 
     private Long idpatient;
     private PatientProfilePresenter patientProfilePresenter;
@@ -80,10 +83,13 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private String puntajeDownton;
     private Long idsistema;
     private String etapa,caracteristicas,edadMental,gds,mec;
-    private LineChart blessedChart;
+    private BarChart blessedChart;
     private Calendar calendar;
     private int year,month,day;
-
+    private Spinner spiBlessed;
+    private Button btngoMoreStatistics;
+    private static final String[]  estadisticablessed = {"Últimos Meses","Últimos Años"};
+    private Button btnMoreStatistics;
 
 
     public PatientProfileFragment(){
@@ -133,7 +139,9 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtComentarioLawton = (TextView) view.findViewById(R.id.comentarioLawton);
         txtPuntajeDownton = (TextView) view.findViewById(R.id.puntajeDowntown);
         txtComentarioDownton = (TextView) view.findViewById(R.id.comentarioDowntown);
-         blessedChart = (LineChart) view.findViewById(R.id.blessedChart);
+         blessedChart = (BarChart) view.findViewById(R.id.blessedChart);
+        spiBlessed = (Spinner) view.findViewById(R.id.spi_blessed);
+        btngoMoreStatistics = (Button) view.findViewById(R.id.btnMoreStatistics);
 
 
 
@@ -147,6 +155,39 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         Log.d("Vista profile","Cedula: "+idpatient);
 
 
+        btngoMoreStatistics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToStatistics(idsistema);
+            }
+        });
+        ArrayAdapter<String> adaptergraficablessed = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, estadisticablessed);
+        spiBlessed.setAdapter(adaptergraficablessed);
+
+        spiBlessed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.negro));
+                ((TextView) parent.getChildAt(0)).setTextSize(12);
+                Log.e("fragment","item seleccionado"+i);
+
+                if(spiBlessed.getSelectedItemPosition()==0)
+                {
+                    patientProfilePresenter.getBlessedData(idsistema,0);
+                }
+                if(spiBlessed.getSelectedItemPosition()==1)
+                {
+                    patientProfilePresenter.getBlessedData(idsistema,1);
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
 
@@ -167,11 +208,21 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         getFastScore(idsistema);
         getLawtonScore(idsistema);
 
-        try
-        {
-            patientProfilePresenter.getBlessedData(idsistema);
+        new Thread(new Runnable() {
 
-        }catch (Exception e){}
+            @Override
+            public void run() {
+                try
+                {
+                    patientProfilePresenter.getBlessedData(idsistema,1);
+
+                }catch (Exception e)
+                {
+                    Log.e("Error blessed","Atrapo la excepcion en blessed data");
+
+                }
+            }
+        }).start();
 
 
 
@@ -258,13 +309,15 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
 
         //patientProfilePresenter.getBlessedData(idsistema);
 
+
+        /*
         new Thread(new Runnable() {
 
             @Override
             public void run() {
                 try
                 {
-                    patientProfilePresenter.getBlessedData(idsistema);
+                    patientProfilePresenter.getBlessedData(idsistema,0);
 
                 }catch (Exception e)
                 {
@@ -273,6 +326,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
                 }
             }
         }).start();
+        */
 
 
         txtName.setText(this.name);
@@ -472,16 +526,40 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     }
 
     @Override
-    public void graphBlessedScore(List<BlessedScoreAverage>  blessedScoreAverages) {
-            List<BlessedScoreAverage> blessedScoreAverageList;
-            final String[] labels;
-            blessedScoreAverageList = new ArrayList<BlessedScoreAverage>();
+    public void graphBlessedScore(List<BlessedScoreAverage>  blessedScoreAverageList) {
+        final String[] labels;
+        List<BlessedScoreAverage> blessedScoreAverages = new ArrayList<BlessedScoreAverage>();
+
+        /*
+        for(int j=0;j<blessedScoreAverageList.size();j++)
+        {
+            blessedScoreAverages.add(blessedScoreAverageList.get(j));
+        }
             blessedScoreAverageList.clear();
+            */
+
+        if(spiBlessed.getSelectedItemPosition()==1)
+        {
+            blessedScoreAverages.clear();
+            blessedScoreAverages = daoHelper.getScoreYearData(idsistema);
+        }
+        if(spiBlessed.getSelectedItemPosition()==0)
+        {
+            blessedScoreAverages.clear();
+            blessedScoreAverages = daoHelper.getScoreData(idsistema);
+        }
+
+
 
             float month;
             float score;
+        try {
 
-        List<Entry> entries = new ArrayList<Entry>();
+
+         blessedChart.setNoDataText("Gráfico de Monitoreo de la demencia segun Blessed, Vacía");
+        List<BarEntry> entries = new ArrayList<BarEntry>();
+            entries.clear();
+        //List<String> labels = new ArrayList<String>();
         labels = new String[blessedScoreAverages.size()];
         //final ArrayList<String> labels= new ArrayList<String>();
             for(int m=0;m<blessedScoreAverages.size();m++)
@@ -489,79 +567,112 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
 
                 score = Float.parseFloat(blessedScoreAverages.get(m).getScore()+"");
                 Log.e("score graph"," Score"+score);
-                entries.add(new Entry(Float.parseFloat(m+""),score));
+                entries.add(new BarEntry(Float.parseFloat(m+""),score));
                 labels[m] = blessedScoreAverages.get(m).getMonth();
+
             }
         entries.size();
+
 
         for(int q=0;q<entries.size();q++)
         {
             Log.e("score graph"," Entry x"+entries.get(q).getX());
             Log.e("score graph"," Entry Y"+entries.get(q).getY());
+            Log.e("score graph"," Año"+labels[q]);
 
         }
+            if(entries.size()>0)
+            {
 
-        Log.e("score graph","Tamaño Entries "+entries);
+                Log.e("score graph","Tamaño Entries "+entries);
 
-        LineDataSet dataSet = new LineDataSet(entries, "Escala Demencia Blessed");
-        dataSet.setDrawFilled(true);
-        dataSet.setDrawCircles(true);
-        //dataSet.setColors();
+                BarDataSet dataSet = new BarDataSet(entries, "Escala Demencia Blessed, ");
+                //dataSet.setDrawFilled(true);
+                //dataSet.setDrawCircles(true);
+                //dataSet.setColors();
 
-        dataSet.setColor(getResources().getColor(R.color.white));
-        dataSet.setCircleColor(getResources().getColor(R.color.white));
-        dataSet.setColors(getResources().getColor(R.color.white));
-        dataSet.setCircleColors(getResources().getColor(R.color.white));
-        dataSet.setFillColor(getResources().getColor(R.color.white));
+                //dataSet.setColor(getResources().getColor(R.color.white));
+                //dataSet.setCircleColor(getResources().getColor(R.color.colorPrimaryDark));
+                //dataSet.setColors(getResources().getColor(R.color.white));
+                //dataSet.setCircleColors(getResources().getColor(R.color.white));
+                dataSet.setColor(getResources().getColor(R.color.colorPrimaryDark));
+                dataSet.setValueTextSize(12f);
 
-        LineData data = new LineData(dataSet);
+                //dataSet.setValueTextSize(15f);
+
+                //List<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
+                BarData data = new BarData(dataSet);
+                //dataSet.addEntry(dataSet);
+                //LineData data = new LineData(dataSets);
+                data.setBarWidth(0.6f);
+                data.setValueTextSize(15f);
+
+                //blessedChart.setFitBars(true);
+
+                XAxis xAxis = blessedChart.getXAxis();
+                YAxis yAxis = blessedChart.getAxisLeft();
+                YAxis yAxisright = blessedChart.getAxisRight();
 
 
-        XAxis xAxis = blessedChart.getXAxis();
-        YAxis yAxis = blessedChart.getAxisLeft();
+                try {
+                    xAxis.setValueFormatter(new IAxisValueFormatter() {
+
+                        public int getDecimalDigits() {
+                            return 0;
+                        }
+
+                        @Override
+                        public String getFormattedValue(float value, AxisBase axis) {
+                            return labels[((int)value)];
+                        }
+                    });
+                }catch (Exception e){}
+
+
+                xAxis.setGranularity(1f);
+
+                xAxis.setTextSize(15f);
+                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                blessedChart.getAxisLeft().setDrawGridLines(false);
+                blessedChart.getXAxis().setDrawGridLines(false);
+                blessedChart.getAxisLeft().setDrawAxisLine(false);
 
 
 
-        xAxis.setValueFormatter(new IAxisValueFormatter() {
+                //xAxis.setGridColor(getResources().getColor(R.color.white));
+                //xAxis.setAxisMinimum(Float.parseFloat(0+""));
+                //xAxis.setAxisMaximum(Float.parseFloat(32+""));
+                yAxis.setTextSize(15f);
+                yAxisright.setTextSize(15f);
+                yAxisright.setEnabled(false);
+                //yAxis.setTextColor(getResources().getColor(R.color.white));
+                blessedChart.setData(data);
 
-            public int getDecimalDigits() {
-                return 0;
+                Description desc = new Description();
+                desc.setText("Monitoreo del la Demencia Segun Escala Blessed");
+                //desc.setTextAlign(Paint.Align.CENTER);
+                //desc.setTextColor(getResources().getColor(R.color.white));
+                desc.setTextSize(12f);
+                //blessedChart.setGridBackgroundColor(getResources().getColor(R.color.white));
+
+                blessedChart.setDescription(desc);
+
+
+                blessedChart.invalidate();
+                blessedChart.notifyDataSetChanged();
+
             }
-
-            @Override
-            public String getFormattedValue(float value, AxisBase axis) {
-                return labels[((int)value)];
-            }
-        });
-        xAxis.setGranularity(1f);
-        xAxis.setTextSize(12f);
-
-        xAxis.setGridColor(getResources().getColor(R.color.white));
-        //xAxis.setAxisMinimum(Float.parseFloat(0+""));
-        //xAxis.setAxisMaximum(Float.parseFloat(32+""));
-        yAxis.setTextSize(7f);
-        yAxis.setTextColor(getResources().getColor(R.color.white));
-        blessedChart.setData(data);
-
-        Description desc = new Description();
-        desc.setText("Monitoreo del la Demencia Segun Escala Blessed");
-        //desc.setTextAlign(Paint.Align.CENTER);
-        desc.setTextColor(getResources().getColor(R.color.white));
-        desc.setTextSize(12f);
-        blessedChart.setGridBackgroundColor(getResources().getColor(R.color.white));
-
-         blessedChart.setDescription(desc);
-
-
-        blessedChart.invalidate();
-        blessedChart.notifyDataSetChanged();
 
 
 
 
         //blessedChart.invalidate();
 
+        }catch (Exception e)
+        {
 
+        }
+        blessedScoreAverageList.clear();
 
 
     }
@@ -579,6 +690,13 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     @Override
     public void graphGDSScore() {
 
+    }
+
+    @Override
+    public void goToStatistics(Long idsistema) {
+        Intent intent = new Intent(getContext(), StatisticsActivity.class);
+        intent.putExtra("idsistema",idsistema);
+        startActivity(intent);
     }
 
 

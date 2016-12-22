@@ -89,6 +89,13 @@
             android:theme="@style/MyMaterialTheme.Base"
             android:screenOrientation="landscape"
             />
+        <activity
+            android:name=".principal.patientprofile.StatisticsActivity"
+            android:label="Estadisticas"
+            android:parentActivityName=".principal.patientlist.PatientProfileActivity"
+            android:theme="@style/MyMaterialTheme.Base"
+            android:screenOrientation="landscape"
+            />
         <fragment
             android:name=".principal.patientlist.PatientProfileFragment"
 

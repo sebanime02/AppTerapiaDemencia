@@ -22,7 +22,8 @@ public interface PatientProfilePresenter {
     void getFastScore(Long id);
     void getDowntonScore(Long id);
     void getLawtonScore(Long id);
-    void getBlessedData(Long id);
+    void getBlessedData(Long id,int mode);
+    void handleBlessedGraph(int selector);
 
 
 }

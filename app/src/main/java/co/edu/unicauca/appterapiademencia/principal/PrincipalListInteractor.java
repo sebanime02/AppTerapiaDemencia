@@ -43,6 +43,6 @@ public interface PrincipalListInteractor {
     int getDowntonScore(Long id);
     int getLawtonScore(Long id);
 
-    void getBlessedData(Long id);
+    void getBlessedData(Long id,int mode);
 
 }

@@ -107,6 +107,9 @@
     <string name="blessed_no_demencia">No presenta demencia por el momento</string>
     <string name="blessed_sospecha_demencia">Hay sospecha de Demencia en el Paciente</string>
     <string name="blessed_moderadagrave_demencia">Es altamente probable que el paciente tenga Demencia en etapa moderada o grave</string>
+    <string name="blessed_graph_title">Gráfica De Escala de Demencia en los últimos 6 Meses</string>
+    <string name="blessed_more_statistics">Ver Mas Estadísticas</string>
+
 
     <!--TAB NOTE INFORMATION-->
     <string name="txt_note_instructions">Ingrese una nota con el Eve</string>

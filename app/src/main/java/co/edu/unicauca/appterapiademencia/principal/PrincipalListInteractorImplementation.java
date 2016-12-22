@@ -126,9 +126,12 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
     }
 
     @Override
-    public void getBlessedData(Long id) {
-        principalListRepository.getBlessedData(id);
+    public void getBlessedData(Long id,int mode) {
+
+        principalListRepository.getBlessedData(id,mode);
     }
+
+
 
 
 }

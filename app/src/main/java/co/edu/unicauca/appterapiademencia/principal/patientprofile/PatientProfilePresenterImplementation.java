@@ -345,7 +345,15 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
     }
 
     @Override
-    public void getBlessedData(Long id) {
-        principalListInteractor.getBlessedData(id);
+    public void getBlessedData(Long id,int mode) {
+        Log.e("presenter graph","modo "+mode);
+        principalListInteractor.getBlessedData(id,mode);
     }
+
+    @Override
+    public void handleBlessedGraph(int selector) {
+
+    }
+
+
 }

@@ -39,6 +39,7 @@ public interface PrincipalListRepository {
     int getLawtonScore(Long id);
     int getDowntonScore(Long id);
 
-    void getBlessedData(Long id);
+    void getBlessedData(Long id, int mode);
+
 
 }

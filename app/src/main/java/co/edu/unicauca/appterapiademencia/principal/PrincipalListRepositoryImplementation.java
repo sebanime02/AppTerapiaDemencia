@@ -5,6 +5,7 @@ import android.util.Log;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -306,12 +307,32 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
     }
 
     @Override
-    public void getBlessedData(Long id) {
+    public void getBlessedData(Long id,int mode) {
+
 
 
             BlessedGraphEvent graphEvent = new BlessedGraphEvent();
-            List<BlessedScoreAverage> averageList;
-            averageList = helper.getScoreData(id);
+            List<BlessedScoreAverage> averageList = new ArrayList<BlessedScoreAverage>();
+            averageList.clear();
+
+            if(mode==0)
+            {
+
+
+                //averageList = helper.getScoreYearData(id);
+                averageList = helper.getScoreData(id);
+
+                Log.e("Principal Repository","Modo blesse graph 0");
+
+            }
+           if(mode==1)
+           {
+               Log.e("Principal Repository","Modo blesse graph 1");
+
+               averageList = helper.getScoreData(id);
+
+           }
+
             Log.e("Principal Repository","Trae la Lista");
 
             graphEvent.setBlessedScoreAverages(averageList);

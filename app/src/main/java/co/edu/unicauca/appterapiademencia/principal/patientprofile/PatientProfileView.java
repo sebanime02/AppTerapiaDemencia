@@ -26,6 +26,7 @@ public interface PatientProfileView  {
     void graphLawtonScore();
     void graphDowntonScore();
     void graphGDSScore();
+    void goToStatistics(Long idsistema);
 
 
 }

@@ -20,6 +20,7 @@ import co.edu.unicauca.appterapiademencia.domain.Tip;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.items.BlessedScoreAverage;
 import co.edu.unicauca.appterapiademencia.items.BlessedScoreYear;
+import co.edu.unicauca.appterapiademencia.items.BlessedScoreYearJust;
 
 
 /**
@@ -839,6 +840,7 @@ public class GreenDaoHelper {
         int year;
         int day;
         int monthrange;
+        Double lastMonth=0.0;
 
         yearList = new ArrayList<>();
         averageList = new ArrayList<>();
@@ -857,6 +859,8 @@ public class GreenDaoHelper {
 
         monthrange = month-5;
         Log.e("Blessed graph","helper graph monthrange "+monthrange);
+
+
 
         if(monthrange==-1)
         {
@@ -996,6 +1000,11 @@ public class GreenDaoHelper {
 
         for(int z=0;z<yearList.size();z++)
         {
+            Double resumen;
+            resumen=0.0;
+            Double total = 0.0;
+            String  txtMonth="";
+            Float division;
             Log.e("Blessed graph","Entro al for de yearlist");
 
             QueryBuilder<HistoricScore> historicScoreQueryBuilder= getHistoricScoreDao().queryBuilder();
@@ -1012,12 +1021,10 @@ public class GreenDaoHelper {
 
                 Log.e("Blessed graph","Hay registros de mes y año"+yearList.size());
 
-                Double resumen;
-                resumen=0.0;
-                Double total = 0.0;
-                String  txtMonth="";
-                Float division;
 
+                /*
+
+             //1.CALCULO POR PROMEDIO
 
 
                 for(int w=0;w<historicList.size();w++)
@@ -1032,7 +1039,22 @@ public class GreenDaoHelper {
 
                 total = (total)/(historicList.size());
                 Log.e("Blessed graph","promedio "+total);
-
+                */
+                total = historicList.get(historicList.size()-1).getValue();
+                Log.e("Blessed graph","ultimo total "+total);
+                lastMonth=total;
+            }
+            else
+            {
+                if(lastMonth!=0.0)
+                {
+                    total=lastMonth;
+                }
+                else
+                {
+                    total=0.0;
+                }
+            }
 
                 BlessedScoreAverage average = new BlessedScoreAverage();
 
@@ -1076,11 +1098,14 @@ public class GreenDaoHelper {
                        break;
 
                }
+
                 average.setMonth(txtMonth+" "+yearList.get(z).getYear());
+
                 Log.e("Blessed graph","Mes "+txtMonth);
                 average.setScore(total);
                 averageList.add(average);
-            }
+
+
             historicList.clear();
 
 
@@ -1104,6 +1129,151 @@ public class GreenDaoHelper {
 
 
     }
+
+    public List<BlessedScoreAverage> getScoreYearData(Long id)
+    {
+        List<BlessedScoreYearJust> yearList;
+        List<BlessedScoreAverage> averageList;
+        Calendar calendar;
+        int month;
+        int year;
+        int day;
+        int yearrange;
+        Double lastMonth=0.0;
+
+        yearList = new ArrayList<>();
+        averageList = new ArrayList<>();
+
+        yearList.clear();
+        averageList.clear();
+
+
+        int[] years = new int[5];
+
+
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+
+
+        //yearrange = year-5;
+        //Log.e("Blessed graph","helper graph monthrange "+yearrange);
+
+
+
+            years[0]=year-4;
+            years[1]=year-3;
+            years[2]=year-2;
+            years[3]=year-1;
+            years[4]=year;
+
+
+        for(int e=0;e<years.length;e++)
+        {
+
+            Log.e("Blessed graph","años "+years[e]);
+
+
+            BlessedScoreYearJust blesedscore = new BlessedScoreYearJust();
+            blesedscore.setYear(years[e]);
+
+            yearList.add(e,blesedscore);
+
+        }
+
+        Log.e("Blessed graph","yearlist size "+yearList.size());
+
+
+
+
+        Log.e("Blessed graph","yearlist size "+yearList.size());
+
+
+        for(int z=0;z<yearList.size();z++)
+        {
+            Double resumen;
+            resumen=0.0;
+            Double total = 0.0;
+            String  txtMonth="";
+            Float division;
+            Log.e("Blessed graph","Entro al for de yearlist");
+
+            QueryBuilder<HistoricScore> historicScoreQueryBuilder= getHistoricScoreDao().queryBuilder();
+            Log.e("Blessed graph","Valores :"+" id"+id+" Ayer"+yearList.get(z).getYear());
+            List<HistoricScore> historicList = historicScoreQueryBuilder.where(HistoricScoreDao.Properties.Scale.eq("Blessed"),HistoricScoreDao.Properties.PatientId.eq(id),HistoricScoreDao.Properties.Year.eq(yearList.get(z).getYear())).list();
+
+
+            Log.e("Blessed graph","historicList Size"+historicList.size());
+
+
+            if(historicList.size()>0)
+            {
+                Log.e("Blessed graph","historicList Size"+historicList.size());
+
+                //Log.e("Blessed graph","Hay registros de mes y año"+yearList.size());
+
+
+                /*
+
+             //1.CALCULO POR PROMEDIO
+
+
+                for(int w=0;w<historicList.size();w++)
+                {
+                    Log.e("Blessed graph","value "+historicList.get(w).getValue());
+                    resumen = resumen +historicList.get(w).getValue();
+                }
+                total = resumen;
+                Log.e("Blessed graph","resumen "+resumen);
+
+                resumen=0.0;
+
+                total = (total)/(historicList.size());
+                Log.e("Blessed graph","promedio "+total);
+                */
+                total = historicList.get(historicList.size()-1).getValue();
+                Log.e("Blessed graph","ultimo total "+total);
+                lastMonth=total;
+            }
+            else
+            {
+                if(lastMonth!=0.0)
+                {
+                    total=lastMonth;
+                }
+                else
+                {
+                    total=0.0;
+                }
+            }
+
+            BlessedScoreAverage average = new BlessedScoreAverage();
+
+            average.setMonth(yearList.get(z).getYear()+"");
+
+            Log.e("Blessed graph","Año "+yearList.get(z).getYear());
+            average.setScore(total);
+            averageList.add(average);
+
+
+            historicList.clear();
+
+
+        }
+
+
+        Log.e("Blessed graph","AverageList "+averageList.size());
+
+        for(int a=0;a<averageList.size();a++)
+        {
+            Log.e("Blessed graph","AverageList Month "+averageList.get(a).getMonth());
+            Log.e("Blessed graph","AverageList Score "+averageList.get(a).getScore());
+
+        }
+
+        return averageList;
+    }
+
+
 
 
 
