@@ -535,7 +535,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="3"
+                android:layout_weight="4"
                 >
 
 
@@ -549,16 +549,26 @@
                 >
 
             </Spinner>
+                <TextView
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/blessed_graph_title"
+                    android:textSize="@dimen/medium_text_size"
+                    />
 
                 <Button
+                    android:layout_weight="1"
                     android:id="@+id/btnMoreStatistics"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimaryDark"
                     android:text="@string/blessed_more_statistics"
                     android:textColor="@color/white"
                     android:drawableLeft="@mipmap/ic_equalizer_white_24dp"
                     android:layout_gravity="center_vertical"
+                    android:padding="2dp"
 
 
                     />

@@ -39,20 +39,36 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         >
-
         <TextView
-
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/note_type"
-            android:textSize="@dimen/small_text_size"
-            android:fontFamily="sans-serif"
-            android:id="@+id/textView4"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:text="@string/blessed_graph_title_year"
+            android:textSize="@dimen/medium_text_size"
+
             />
+
+
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/blessedYearChart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:text="@string/lawton_graph_title_year"
+            android:textSize="@dimen/medium_text_size"
+
+            />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/LawtonChart"
             android:layout_width="match_parent"
             android:layout_height="300dp"
 

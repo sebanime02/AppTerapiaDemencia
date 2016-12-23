@@ -9,8 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -161,33 +159,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
                 goToStatistics(idsistema);
             }
         });
-        ArrayAdapter<String> adaptergraficablessed = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, estadisticablessed);
-        spiBlessed.setAdapter(adaptergraficablessed);
 
-        spiBlessed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.negro));
-                ((TextView) parent.getChildAt(0)).setTextSize(12);
-                Log.e("fragment","item seleccionado"+i);
-
-                if(spiBlessed.getSelectedItemPosition()==0)
-                {
-                    patientProfilePresenter.getBlessedData(idsistema,0);
-                }
-                if(spiBlessed.getSelectedItemPosition()==1)
-                {
-                    patientProfilePresenter.getBlessedData(idsistema,1);
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
 
 
@@ -528,6 +500,8 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     @Override
     public void graphBlessedScore(List<BlessedScoreAverage>  blessedScoreAverageList) {
         final String[] labels;
+        float month;
+        float score;
         List<BlessedScoreAverage> blessedScoreAverages = new ArrayList<BlessedScoreAverage>();
 
         /*
@@ -538,21 +512,14 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
             blessedScoreAverageList.clear();
             */
 
-        if(spiBlessed.getSelectedItemPosition()==1)
-        {
-            blessedScoreAverages.clear();
-            blessedScoreAverages = daoHelper.getScoreYearData(idsistema);
-        }
-        if(spiBlessed.getSelectedItemPosition()==0)
-        {
+
             blessedScoreAverages.clear();
             blessedScoreAverages = daoHelper.getScoreData(idsistema);
-        }
 
 
 
-            float month;
-            float score;
+
+
         try {
 
 
@@ -696,6 +663,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     public void goToStatistics(Long idsistema) {
         Intent intent = new Intent(getContext(), StatisticsActivity.class);
         intent.putExtra("idsistema",idsistema);
+        intent.putExtra("cedula",idpatient);
         startActivity(intent);
     }
 

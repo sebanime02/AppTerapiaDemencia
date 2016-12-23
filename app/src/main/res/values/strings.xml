@@ -107,7 +107,11 @@
     <string name="blessed_no_demencia">No presenta demencia por el momento</string>
     <string name="blessed_sospecha_demencia">Hay sospecha de Demencia en el Paciente</string>
     <string name="blessed_moderadagrave_demencia">Es altamente probable que el paciente tenga Demencia en etapa moderada o grave</string>
-    <string name="blessed_graph_title">Gráfica De Escala de Demencia en los últimos 6 Meses</string>
+    <string name="blessed_graph_title">Demencia Senil, Últimos 6 meses</string>
+    <string name="blessed_graph_title_year">Demencia Senil, Últimos 5 Años</string>
+    <string name="lawton_graph_title_year">AIVD, Últimos 5 Años</string>
+
+
     <string name="blessed_more_statistics">Ver Mas Estadísticas</string>
 
 

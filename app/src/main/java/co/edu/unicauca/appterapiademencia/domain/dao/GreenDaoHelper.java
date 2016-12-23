@@ -21,6 +21,8 @@ import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.items.BlessedScoreAverage;
 import co.edu.unicauca.appterapiademencia.items.BlessedScoreYear;
 import co.edu.unicauca.appterapiademencia.items.BlessedScoreYearJust;
+import co.edu.unicauca.appterapiademencia.items.LawtonScoreAverage;
+import co.edu.unicauca.appterapiademencia.items.LawtonYearJust;
 
 
 /**
@@ -1274,7 +1276,148 @@ public class GreenDaoHelper {
     }
 
 
+    public List<LawtonScoreAverage> getLawtonYearData(Long id)
+    {
+        List<LawtonYearJust> yearList;
+        List<LawtonScoreAverage> averageList;
+        Calendar calendar;
+        int month;
+        int year;
+        int day;
+        int yearrange;
+        Double lastMonth=0.0;
 
+        yearList = new ArrayList<>();
+        averageList = new ArrayList<>();
+
+        yearList.clear();
+        averageList.clear();
+
+
+        int[] years = new int[5];
+
+
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+
+
+        //yearrange = year-5;
+        //Log.e("Blessed graph","helper graph monthrange "+yearrange);
+
+
+
+        years[0]=year-4;
+        years[1]=year-3;
+        years[2]=year-2;
+        years[3]=year-1;
+        years[4]=year;
+
+
+        for(int e=0;e<years.length;e++)
+        {
+
+            Log.e("Lawton graph","años "+years[e]);
+
+
+            LawtonYearJust lawtonscore = new LawtonYearJust();
+            lawtonscore.setYear(years[e]);
+
+            yearList.add(e,lawtonscore);
+
+        }
+
+        Log.e("Lawton graph","yearlist size "+yearList.size());
+
+
+
+
+        Log.e("Lawton graph","yearlist size "+yearList.size());
+
+
+        for(int z=0;z<yearList.size();z++)
+        {
+            Double resumen;
+            resumen=0.0;
+            Double total = 0.0;
+            String  txtMonth="";
+            Float division;
+            Log.e("Lawton graph","Entro al for de yearlist");
+
+            QueryBuilder<HistoricScore> historicScoreQueryBuilder= getHistoricScoreDao().queryBuilder();
+            Log.e("Lawton graph","Valores :"+" id"+id+" Ayer"+yearList.get(z).getYear());
+            List<HistoricScore> historicList = historicScoreQueryBuilder.where(HistoricScoreDao.Properties.Scale.eq("Lawton"),HistoricScoreDao.Properties.PatientId.eq(id),HistoricScoreDao.Properties.Year.eq(yearList.get(z).getYear())).list();
+
+
+            Log.e("Lawton graph","historicList Size"+historicList.size());
+
+
+            if(historicList.size()>0)
+            {
+                Log.e("Lawton graph","historicList Size"+historicList.size());
+
+                //Log.e("Blessed graph","Hay registros de mes y año"+yearList.size());
+
+
+                /*
+
+             //1.CALCULO POR PROMEDIO
+
+
+                for(int w=0;w<historicList.size();w++)
+                {
+                    Log.e("Blessed graph","value "+historicList.get(w).getValue());
+                    resumen = resumen +historicList.get(w).getValue();
+                }
+                total = resumen;
+                Log.e("Blessed graph","resumen "+resumen);
+
+                resumen=0.0;
+
+                total = (total)/(historicList.size());
+                Log.e("Blessed graph","promedio "+total);
+                */
+                total = historicList.get(historicList.size()-1).getValue();
+                Log.e("Lawton graph","ultimo total "+total);
+                lastMonth=total;
+            }
+            else
+            {
+                if(lastMonth!=0.0)
+                {
+                    total=lastMonth;
+                }
+                else
+                {
+                    total=0.0;
+                }
+            }
+
+            LawtonScoreAverage average = new LawtonScoreAverage();
+
+            average.setMonth(yearList.get(z).getYear()+"");
+
+            Log.e("Lawton graph","Año "+yearList.get(z).getYear());
+            average.setScore(total);
+            averageList.add(average);
+
+
+            historicList.clear();
+
+
+        }
+
+
+        Log.e("Lawton graph","AverageList "+averageList.size());
+
+        for(int a=0;a<averageList.size();a++)
+        {
+            Log.e("Lawton graph","AverageList Month "+averageList.get(a).getMonth());
+            Log.e("Lawton graph","AverageList Score "+averageList.get(a).getScore());
+
+        }
+
+        return averageList;
+    }
 
 
 

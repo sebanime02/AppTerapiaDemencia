@@ -269,8 +269,9 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         actionBar = getSupportActionBar();
 
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Agregar Nota");
+        actionBar.setTitle("Volver A La Ficha de Paciente");
         SharedPreferences loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
+
         if(loginpreference.getBoolean("supervisor",true) && loginpreference.getString("username","")!=null)
         {
             username = loginpreference.getString("username", "");
