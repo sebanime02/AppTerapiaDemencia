@@ -1,15 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    tools:context=".principal.cognitiveexercises.GraphicsExercises"
+    android:background="@color/white"
+
+    >
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
 
+    >
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="25sp"
-        android:text="AQUI LOS GRAFICOS"
-        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_corner"
+        >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_rutina_graficas"
+        android:textStyle="bold"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="2"
+
+        >
+
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/cognitiveResumenChart1"
+            android:layout_width="0dp"
+            android:layout_weight="1.01"
+            android:layout_height="match_parent"
+
+
+
+            />
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/cognitiveResumenChart2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="200dp"
+
+            />
+    </LinearLayout>
+
+        <Button
+            android:layout_width="@dimen/size_historial_button"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_historial"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_rutina_estado"
+            android:textStyle="bold"
+
+            />
+
+        <LinearLayout
+            android:id="@+id/containerLastRutina"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_corner"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_ultima_rutina"
+                android:textStyle="bold"
+                android:id="@+id/textView6" />
+
+            <TextView
+                android:id="@+id/tv_last_rutina_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_ultima_rutina_estado"
+                />
+            <TextView
+                android:id="@+id/tv_last_rutina_starter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_ultima_rutina_autor"
+
+                />
+            <TextView
+                android:id="@+id/tv_last_rutina_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_ultima_rutina_fecha"
+
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_soft"
+                ></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/activity_horizontal_margin"
+                >
+
+                <Button
+                    android:id="@+id/btnLastRutina"
+                    android:layout_width="@dimen/size_media_button"
+                    android:layout_height="wrap_content"
+                    android:background="@color/material_green"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:text="@string/btn_reiniciar"
+                    />
+                <Button
+                    android:layout_width="@dimen/size_media_button"
+                    android:layout_height="wrap_content"
+                    android:background="@color/material_red"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:text="@string/btn_finalizar"
+                    android:visibility="gone"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnNewRutina"
+            android:layout_width="@dimen/size_historial_button"
+            android:layout_height="wrap_content"
+            android:background="@color/material_red"
+            android:textColor="@color/white"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:text="@string/btn_nuevo"
+            android:layout_gravity="center_horizontal"
+
+            />
+
+    </LinearLayout>
 
 
 </LinearLayout>
+
+</ScrollView>

@@ -149,13 +149,33 @@ public class Main {
         preferencetip.addBooleanProperty("favorite");
 
 
+       //RUTINA TABLE
+
+        Entity rutina = schema.addEntity("Rutina");
+        rutina.addIdProperty().autoincrement();
+
+        Property patientIdrutina = rutina.addLongProperty("patientId").notNull().getProperty();
+        patient.addToMany(rutina,patientIdrutina);
+        rutina.addIntProperty("state"); //0 finalizado, 1 paso , 2 paso, 3 paso
+        rutina.addStringProperty("startername");
+        rutina.addStringProperty("datestart");
+        rutina.addIntProperty("mecinicial");
+        rutina.addIntProperty("mecfinal");
+
+
         //COGNITIVE EXERCISE TABLE
         Entity exercise = schema.addEntity("Exercise");
         exercise.addIdProperty().autoincrement();
+        Property rutinaIdexercise = exercise.addLongProperty("rutinaId").notNull().getProperty();
+        rutina.addToMany(exercise,rutinaIdexercise);
         exercise.addStringProperty("workshop").notNull();
         exercise.addIntProperty("level").notNull();
-        exercise.addStringProperty("instructions");
-        exercise.addStringProperty("audioinstructions");
+        exercise.addIntProperty("state");  //0 pendiente, 1 finalizada
+        exercise.addIntProperty("time");
+        exercise.addBooleanProperty("completemen");
+
+        exercise.addStringProperty("observations");
+
 
 
         //HISTORIC TABLE
@@ -177,7 +197,11 @@ public class Main {
 
 
 
+
+
+
         //COGNITIVE RECOMENDATION TABLE
+        /*
         Entity recommendation = schema.addEntity("Recommendation");
         recommendation.addIdProperty().autoincrement();
 
@@ -186,6 +210,7 @@ public class Main {
 
         Property exerciseIdrecommendation = recommendation.addLongProperty("exerciseId").notNull().getProperty();
         exercise.addToMany(recommendation,exerciseIdhistoric);
+        */
 
 
         DaoGenerator dao = new DaoGenerator();

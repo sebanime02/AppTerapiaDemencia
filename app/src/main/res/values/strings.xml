@@ -270,4 +270,97 @@
     <string name="error_disable_inputs">No ha seleccionado ningun editor</string>
 
 
+
+    <!--COGNITIVE EXERCISES MAIN SCREENN -->
+    <string name="txt_rutina_graficas">Estadisticas Generales</string>
+    <string name="txt_rutina_estado">Rutinas De Estimulacion Cognitiva</string>
+    <string name="txt_ultima_rutina">Ùltima Rutina</string>
+    <string name="txt_ultima_rutina_estado">Estado :</string>
+    <string name="txt_ultima_rutina_autor">Iniciado por :</string>
+    <string name="txt_ultima_rutina_fecha">Fecha Iniciacion</string>
+    <string name="btn_reiniciar">Continuar</string>
+    <string name="btn_finalizar">Finalizar</string>
+    <string name="btn_historial">Ver Historial</string>
+    <string name="btn_nuevo">Nueva Rutina</string>
+
+
+    <!-- PROTOCOLO EJERCICIOS COGNITIVOS-->
+    <string name="txt_mec_inicial_instruction">Para el Paso 1, Administre el M.E.C de Lobo con Este Paciente</string>
+    <string name="txt_mec_inicial_puntaje">Ingrese El Puntaje del Test: </string>
+    <string name="txt_mec_final_instruction">Para el Paso Final 3, Administre De nuevo el M.E.C de Lobo con Este Paciente</string>
+    <string name="txt_mec_final_puntaje">Ingrese El Puntaje del Test: </string>
+
+    <string name="txt_paso1">PASO </string>
+    <string name="txt_paso1_logo"> 1 </string>
+    <string name="txt_paso2_logo"> 2 </string>
+    <string name="txt_paso3_logo"> 3 </string>
+    <string name="txt_paso1_description">Administración Test De Cribado Inicial</string>
+    <string name="txt_paso2_description">Realizar Rutina de Estimulación Cognitiva</string>
+    <string name="txt_paso3_description">Administración Test De Cribado Final</string>
+    <string name="txt_rutina">Configure La Rutina de Este Paciente</string>
+    <string name="txt_cancelar_paso1">No Administrar</string>
+    <string name="txt_state_pendiente">Pendiente</string>
+    <string name="txt_state_finalizado">Finalizado</string>
+
+
+    <string name="txt_configurar_ejercicio"></string>
+
+    <string name="txt_taller">Seleccione Taller: </string>
+    <string name="txt_nivel">Seleccione Nivel: </string>
+    <string-array name="talleres">
+       <item>
+           Memoria
+       </item>
+
+        <item>
+            Atención
+
+        </item>
+
+        <item>
+            Lenguaje
+        </item>
+
+        <item>
+            Percepción
+        </item>
+
+        <item>
+            Funciones Ejecutivas
+        </item>
+
+        <item>
+            Lectoescritura y Visoconstrucción
+        </item>
+    </string-array>
+
+    <string-array name="niveles">
+        <item>
+            1
+        </item>
+
+        <item>
+            2
+        </item>
+
+        <item>
+            3
+        </item>
+
+        <item>
+            4
+        </item>
+
+         <item>
+            5
+        </item>
+
+
+    </string-array>
+
+
+
+
+
+
 </resources>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="4dp"
+    card_view:cardBackgroundColor="@color/white"
+    card_view:cardUseCompatPadding="true"
+    android:id="@+id/exerciseCardview"
+    >
+
+
+    <RelativeLayout
+
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+        <ImageView
+
+            android:id="@+id/img_exercise"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+
+
+          />
+
+        <TextView
+            android:id="@+id/exercise_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:text="Memoria"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            />
+
+            <TextView
+                android:id="@+id/exercise_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:text="Nivel 1"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                />
+
+            <TextView
+                android:id="@+id/exercise_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:text="Pendiente"
+                android:textStyle="bold"
+                android:textColor="@color/material_green"
+                android:layout_gravity="center_vertical"
+                />
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

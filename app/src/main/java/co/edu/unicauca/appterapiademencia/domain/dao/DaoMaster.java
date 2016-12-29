@@ -30,9 +30,9 @@ public class DaoMaster extends AbstractDaoMaster {
         DetailFastDao.createTable(db, ifNotExists);
         TipDao.createTable(db, ifNotExists);
         PreferenceTipDao.createTable(db, ifNotExists);
+        RutinaDao.createTable(db, ifNotExists);
         ExerciseDao.createTable(db, ifNotExists);
         HistoricDao.createTable(db, ifNotExists);
-        RecommendationDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -46,9 +46,9 @@ public class DaoMaster extends AbstractDaoMaster {
         DetailFastDao.dropTable(db, ifExists);
         TipDao.dropTable(db, ifExists);
         PreferenceTipDao.dropTable(db, ifExists);
+        RutinaDao.dropTable(db, ifExists);
         ExerciseDao.dropTable(db, ifExists);
         HistoricDao.dropTable(db, ifExists);
-        RecommendationDao.dropTable(db, ifExists);
     }
 
     /**
@@ -76,9 +76,9 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(DetailFastDao.class);
         registerDaoClass(TipDao.class);
         registerDaoClass(PreferenceTipDao.class);
+        registerDaoClass(RutinaDao.class);
         registerDaoClass(ExerciseDao.class);
         registerDaoClass(HistoricDao.class);
-        registerDaoClass(RecommendationDao.class);
     }
 
     public DaoSession newSession() {

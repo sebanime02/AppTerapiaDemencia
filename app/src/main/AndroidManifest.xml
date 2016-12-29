@@ -96,6 +96,31 @@
             android:theme="@style/MyMaterialTheme.Base"
             android:screenOrientation="landscape"
             />
+
+        <activity
+            android:name=".principal.cognitiveexercises.StimulationOneActivity"
+            android:label="Paso 1 Estimulación Cognitiva"
+            android:parentActivityName=".principal.patientlist.PatientProfileActivity"
+            android:theme="@style/MyMaterialTheme.Base"
+            android:screenOrientation="landscape"
+            />
+        <activity
+            android:name=".principal.cognitiveexercises.StimulationTwoActivity"
+            android:label="Paso 2 Estimulación Cognitiva"
+            android:parentActivityName=".principal.patientlist.PatientProfileActivity"
+            android:theme="@style/MyMaterialTheme.Base"
+            android:screenOrientation="landscape"
+            />
+
+        <activity
+            android:name=".principal.cognitiveexercises.StimulationThreeActivity"
+            android:label="Paso 3 Estimulación Cognitiva"
+            android:parentActivityName=".principal.patientlist.PatientProfileActivity"
+            android:theme="@style/MyMaterialTheme.Base"
+            android:screenOrientation="landscape"
+            />
+
+
         <fragment
             android:name=".principal.patientlist.PatientProfileFragment"
 

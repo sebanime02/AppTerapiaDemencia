@@ -10,10 +10,12 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import co.edu.unicauca.appterapiademencia.domain.Exercise;
 import co.edu.unicauca.appterapiademencia.domain.HistoricScore;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.PreferenceTip;
+import co.edu.unicauca.appterapiademencia.domain.Rutina;
 import co.edu.unicauca.appterapiademencia.domain.Scale;
 import co.edu.unicauca.appterapiademencia.domain.Sintoma;
 import co.edu.unicauca.appterapiademencia.domain.Tip;
@@ -73,9 +75,6 @@ public class GreenDaoHelper {
     public  TipDao getTipDao(){
         return daoSession.getTipDao();
     }
-    public  RecommendationDao getRecommendationDao(){
-        return daoSession.getRecommendationDao();
-    }
     public  HistoricDao getHistoricDao(){
         return daoSession.getHistoricDao();
     }
@@ -87,6 +86,10 @@ public class GreenDaoHelper {
     public DetailFastDao getDetailFastDao(){return daoSession.getDetailFastDao();}
 
     public PreferenceTipDao getTipPreferenceDao(){return daoSession.getPreferenceTipDao();}
+
+    public RutinaDao getRutinaDao(){return  daoSession.getRutinaDao();}
+
+
 
 
     public User getUserInformation(String username)
@@ -1421,6 +1424,35 @@ public class GreenDaoHelper {
 
 
 
+
+    public Rutina getLastRutina(Long idpatient)
+    {
+        List<Rutina> rutinaList;
+        QueryBuilder<Rutina> rutinaqueryBuilder = getRutinaDao().queryBuilder();
+
+        rutinaList = rutinaqueryBuilder.where(RutinaDao.Properties.PatientId.eq(idpatient)).orderAsc(RutinaDao.Properties.Id).limit(1).list();
+        return  rutinaList.get(0);
+
+    }
+
+    public Rutina getRutina(Long idrutina)
+    {
+        List<Rutina> rutinaList;
+        QueryBuilder<Rutina> rutinaqueryBuilder = getRutinaDao().queryBuilder();
+        rutinaList = rutinaqueryBuilder.where(RutinaDao.Properties.Id.eq(idrutina)).list();
+        return rutinaList.get(0);
+
+
+    }
+
+    public List<Exercise> getExercises(Long idrutina)
+    {
+        List<Exercise> exerciseList;
+        QueryBuilder<Exercise> exerciseQueryBuilder = getExerciseDao().queryBuilder();
+        exerciseList = exerciseQueryBuilder.where(ExerciseDao.Properties.RutinaId.eq(idrutina)).list();
+        return  exerciseList;
+
+    }
 
 
 }

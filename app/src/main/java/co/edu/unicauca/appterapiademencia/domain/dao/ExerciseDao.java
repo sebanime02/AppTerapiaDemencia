@@ -1,5 +1,6 @@
 package co.edu.unicauca.appterapiademencia.domain.dao;
 
+import java.util.List;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 
@@ -8,6 +9,8 @@ import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.internal.DaoConfig;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.database.DatabaseStatement;
+import org.greenrobot.greendao.query.Query;
+import org.greenrobot.greendao.query.QueryBuilder;
 
 import co.edu.unicauca.appterapiademencia.domain.Exercise;
 
@@ -25,14 +28,18 @@ public class ExerciseDao extends AbstractDao<Exercise, Long> {
      */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property Workshop = new Property(1, String.class, "workshop", false, "WORKSHOP");
-        public final static Property Level = new Property(2, int.class, "level", false, "LEVEL");
-        public final static Property Instructions = new Property(3, String.class, "instructions", false, "INSTRUCTIONS");
-        public final static Property Audioinstructions = new Property(4, String.class, "audioinstructions", false, "AUDIOINSTRUCTIONS");
+        public final static Property RutinaId = new Property(1, long.class, "rutinaId", false, "RUTINA_ID");
+        public final static Property Workshop = new Property(2, String.class, "workshop", false, "WORKSHOP");
+        public final static Property Level = new Property(3, int.class, "level", false, "LEVEL");
+        public final static Property State = new Property(4, Integer.class, "state", false, "STATE");
+        public final static Property Time = new Property(5, Integer.class, "time", false, "TIME");
+        public final static Property Completemen = new Property(6, Boolean.class, "completemen", false, "COMPLETEMEN");
+        public final static Property Observations = new Property(7, String.class, "observations", false, "OBSERVATIONS");
     }
 
     private DaoSession daoSession;
 
+    private Query<Exercise> rutina_ExerciseListQuery;
 
     public ExerciseDao(DaoConfig config) {
         super(config);
@@ -48,10 +55,13 @@ public class ExerciseDao extends AbstractDao<Exercise, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"EXERCISE\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
-                "\"WORKSHOP\" TEXT NOT NULL ," + // 1: workshop
-                "\"LEVEL\" INTEGER NOT NULL ," + // 2: level
-                "\"INSTRUCTIONS\" TEXT," + // 3: instructions
-                "\"AUDIOINSTRUCTIONS\" TEXT);"); // 4: audioinstructions
+                "\"RUTINA_ID\" INTEGER NOT NULL ," + // 1: rutinaId
+                "\"WORKSHOP\" TEXT NOT NULL ," + // 2: workshop
+                "\"LEVEL\" INTEGER NOT NULL ," + // 3: level
+                "\"STATE\" INTEGER," + // 4: state
+                "\"TIME\" INTEGER," + // 5: time
+                "\"COMPLETEMEN\" INTEGER," + // 6: completemen
+                "\"OBSERVATIONS\" TEXT);"); // 7: observations
     }
 
     /** Drops the underlying database table. */
@@ -68,17 +78,28 @@ public class ExerciseDao extends AbstractDao<Exercise, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindString(2, entity.getWorkshop());
-        stmt.bindLong(3, entity.getLevel());
+        stmt.bindLong(2, entity.getRutinaId());
+        stmt.bindString(3, entity.getWorkshop());
+        stmt.bindLong(4, entity.getLevel());
  
-        String instructions = entity.getInstructions();
-        if (instructions != null) {
-            stmt.bindString(4, instructions);
+        Integer state = entity.getState();
+        if (state != null) {
+            stmt.bindLong(5, state);
         }
  
-        String audioinstructions = entity.getAudioinstructions();
-        if (audioinstructions != null) {
-            stmt.bindString(5, audioinstructions);
+        Integer time = entity.getTime();
+        if (time != null) {
+            stmt.bindLong(6, time);
+        }
+ 
+        Boolean completemen = entity.getCompletemen();
+        if (completemen != null) {
+            stmt.bindLong(7, completemen ? 1L: 0L);
+        }
+ 
+        String observations = entity.getObservations();
+        if (observations != null) {
+            stmt.bindString(8, observations);
         }
     }
 
@@ -90,17 +111,28 @@ public class ExerciseDao extends AbstractDao<Exercise, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindString(2, entity.getWorkshop());
-        stmt.bindLong(3, entity.getLevel());
+        stmt.bindLong(2, entity.getRutinaId());
+        stmt.bindString(3, entity.getWorkshop());
+        stmt.bindLong(4, entity.getLevel());
  
-        String instructions = entity.getInstructions();
-        if (instructions != null) {
-            stmt.bindString(4, instructions);
+        Integer state = entity.getState();
+        if (state != null) {
+            stmt.bindLong(5, state);
         }
  
-        String audioinstructions = entity.getAudioinstructions();
-        if (audioinstructions != null) {
-            stmt.bindString(5, audioinstructions);
+        Integer time = entity.getTime();
+        if (time != null) {
+            stmt.bindLong(6, time);
+        }
+ 
+        Boolean completemen = entity.getCompletemen();
+        if (completemen != null) {
+            stmt.bindLong(7, completemen ? 1L: 0L);
+        }
+ 
+        String observations = entity.getObservations();
+        if (observations != null) {
+            stmt.bindString(8, observations);
         }
     }
 
@@ -119,10 +151,13 @@ public class ExerciseDao extends AbstractDao<Exercise, Long> {
     public Exercise readEntity(Cursor cursor, int offset) {
         Exercise entity = new Exercise( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getString(offset + 1), // workshop
-            cursor.getInt(offset + 2), // level
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // instructions
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // audioinstructions
+            cursor.getLong(offset + 1), // rutinaId
+            cursor.getString(offset + 2), // workshop
+            cursor.getInt(offset + 3), // level
+            cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // state
+            cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5), // time
+            cursor.isNull(offset + 6) ? null : cursor.getShort(offset + 6) != 0, // completemen
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // observations
         );
         return entity;
     }
@@ -130,10 +165,13 @@ public class ExerciseDao extends AbstractDao<Exercise, Long> {
     @Override
     public void readEntity(Cursor cursor, Exercise entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setWorkshop(cursor.getString(offset + 1));
-        entity.setLevel(cursor.getInt(offset + 2));
-        entity.setInstructions(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setAudioinstructions(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setRutinaId(cursor.getLong(offset + 1));
+        entity.setWorkshop(cursor.getString(offset + 2));
+        entity.setLevel(cursor.getInt(offset + 3));
+        entity.setState(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
+        entity.setTime(cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5));
+        entity.setCompletemen(cursor.isNull(offset + 6) ? null : cursor.getShort(offset + 6) != 0);
+        entity.setObservations(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
      }
     
     @Override
@@ -161,4 +199,18 @@ public class ExerciseDao extends AbstractDao<Exercise, Long> {
         return true;
     }
     
+    /** Internal query to resolve the "exerciseList" to-many relationship of Rutina. */
+    public List<Exercise> _queryRutina_ExerciseList(long rutinaId) {
+        synchronized (this) {
+            if (rutina_ExerciseListQuery == null) {
+                QueryBuilder<Exercise> queryBuilder = queryBuilder();
+                queryBuilder.where(Properties.RutinaId.eq(null));
+                rutina_ExerciseListQuery = queryBuilder.build();
+            }
+        }
+        Query<Exercise> query = rutina_ExerciseListQuery.forCurrentThread();
+        query.setParameter(0, rutinaId);
+        return query.list();
+    }
+
 }
