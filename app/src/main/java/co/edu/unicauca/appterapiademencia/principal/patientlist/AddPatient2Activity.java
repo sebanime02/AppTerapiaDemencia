@@ -85,6 +85,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
     private SintomaDao sintomaDao;
     private ScaleDao escalaDao;
     private DetailFastDao detailFastDao;
+    private boolean[] checks;
 
 
 
@@ -171,6 +172,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
         sintomasList = new String[8];
         electionList = new String[8];
         activeList = new Boolean[8];
+        checks = new boolean[2];
 
 
 
@@ -198,7 +200,14 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
 
         if (bundl != null) {
             paciente = bundl.getStringArray("paciente");
+            checks = bundl.getBooleanArray("checks");
             actualizar = bundl.getString("actualizar");
+
+            Log.e("Agregar paciente2","boolEscolaridadrecibido "+checks[0]);
+
+            Log.e("Agregar paciente2","boolEscolaridadrecibido "+checks[1]);
+
+
             if (actualizar == null) {
                 actualizar = "";
             } else {
@@ -829,6 +838,9 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     String var_observaciones = paciente[7];
                     String var_sexo = paciente[8];
 
+                    boolean var_escolaridad = checks[0];
+                    boolean var_institucionalizado = checks[1];
+
 
                     /*
                     int var_tareas_domesticas= rdgRecordarPacientes.getCheckedRadioButtonId();
@@ -867,6 +879,8 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                         patient.setBirthday(var_fecha);
                         patient.setSex(var_sexo);
                         patient.setEps(var_eps);
+                        patient.setScolarity(var_escolaridad);
+                        patient.setInstitutional(var_institucionalizado);
                         patient.setAntecedents(var_antecedentes);
                         patient.setSyndromes(var_sindromes);
                         patient.setObservations(var_observaciones);
@@ -1012,7 +1026,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
                     } else {
                         int var_mec = 0;
                         int var_gds = 0;
-                        Patient patient2 = new Patient(null,var_nombre,var_sexo,var_fecha,var_foto,var_eps,parse_id,var_antecedentes,var_sindromes,var_observaciones,null,null,var_vision,var_escritura,var_dibujo);
+                        Patient patient2 = new Patient(null,var_nombre,var_sexo,var_fecha,var_foto,var_eps,parse_id,var_escolaridad,var_institucionalizado,var_antecedentes,var_sindromes,var_observaciones,null,null,var_vision,var_escritura,var_dibujo);
                         patientDao.insert(patient2);
 
 

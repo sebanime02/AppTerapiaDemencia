@@ -93,9 +93,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:background="@color/material_pink"
                                         android:text="@string/txt_paso1_logo"
-                                        android:textColor="@color/white"
                                         android:textSize="@dimen/medium_text_size"
                                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                                         />
@@ -172,7 +170,6 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:background="@color/material_pink"
                                         android:text="@string/txt_paso2_logo"
                                         android:textSize="@dimen/medium_text_size"
                                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -247,9 +244,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:background="@color/material_pink"
                                         android:text="@string/txt_paso3_logo"
-                                        android:textColor="@color/white"
                                         android:textSize="@dimen/medium_text_size"
                                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                                         />
@@ -312,17 +307,38 @@
 
 
                 </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/edt_mec_final_comentario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="5"
+                    android:gravity="top|left"
+                    android:inputType="textMultiLine"
+                    android:scrollHorizontally="false"
+
+                    android:background="@color/gray_soft"
+                    android:hint="@string/txt_mec_comentario"
+
+                    />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="2"
                     >
-                    <View
+                    <Button
+                        android:id="@+id/btn_cancelar_mec_final"
+                        android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:visibility="invisible"
-                        ></View>
+                        android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
+                        android:text="@string/txt_cancelar_paso1"
+                        android:background="@color/colorPrimary"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        />
 
                     <Button
                         android:id="@+id/btn_guardar_mec_final"

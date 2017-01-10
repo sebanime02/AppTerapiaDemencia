@@ -317,13 +317,29 @@
                 android:id="@+id/edt_mec_inicial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="number"
                 android:hint="@string/txt_mec_inicial_puntaje"
 
                 />
 
 
         </android.support.design.widget.TextInputLayout>
+
+            <EditText
+                android:id="@+id/edt_mec_inicial_comentario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="5"
+                android:gravity="top|left"
+                android:inputType="textMultiLine"
+                android:scrollHorizontally="false"
+
+                android:background="@color/gray_soft"
+                android:hint="@string/txt_mec_comentario"
+
+                />
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

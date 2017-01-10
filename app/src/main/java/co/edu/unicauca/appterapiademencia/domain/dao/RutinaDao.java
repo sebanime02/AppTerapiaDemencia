@@ -33,7 +33,9 @@ public class RutinaDao extends AbstractDao<Rutina, Long> {
         public final static Property Startername = new Property(3, String.class, "startername", false, "STARTERNAME");
         public final static Property Datestart = new Property(4, String.class, "datestart", false, "DATESTART");
         public final static Property Mecinicial = new Property(5, Integer.class, "mecinicial", false, "MECINICIAL");
-        public final static Property Mecfinal = new Property(6, Integer.class, "mecfinal", false, "MECFINAL");
+        public final static Property Mecinicialcomentario = new Property(6, String.class, "mecinicialcomentario", false, "MECINICIALCOMENTARIO");
+        public final static Property Mecfinal = new Property(7, Integer.class, "mecfinal", false, "MECFINAL");
+        public final static Property Mecfinalcomentario = new Property(8, String.class, "mecfinalcomentario", false, "MECFINALCOMENTARIO");
     }
 
     private DaoSession daoSession;
@@ -59,7 +61,9 @@ public class RutinaDao extends AbstractDao<Rutina, Long> {
                 "\"STARTERNAME\" TEXT," + // 3: startername
                 "\"DATESTART\" TEXT," + // 4: datestart
                 "\"MECINICIAL\" INTEGER," + // 5: mecinicial
-                "\"MECFINAL\" INTEGER);"); // 6: mecfinal
+                "\"MECINICIALCOMENTARIO\" TEXT," + // 6: mecinicialcomentario
+                "\"MECFINAL\" INTEGER," + // 7: mecfinal
+                "\"MECFINALCOMENTARIO\" TEXT);"); // 8: mecfinalcomentario
     }
 
     /** Drops the underlying database table. */
@@ -98,9 +102,19 @@ public class RutinaDao extends AbstractDao<Rutina, Long> {
             stmt.bindLong(6, mecinicial);
         }
  
+        String mecinicialcomentario = entity.getMecinicialcomentario();
+        if (mecinicialcomentario != null) {
+            stmt.bindString(7, mecinicialcomentario);
+        }
+ 
         Integer mecfinal = entity.getMecfinal();
         if (mecfinal != null) {
-            stmt.bindLong(7, mecfinal);
+            stmt.bindLong(8, mecfinal);
+        }
+ 
+        String mecfinalcomentario = entity.getMecfinalcomentario();
+        if (mecfinalcomentario != null) {
+            stmt.bindString(9, mecfinalcomentario);
         }
     }
 
@@ -134,9 +148,19 @@ public class RutinaDao extends AbstractDao<Rutina, Long> {
             stmt.bindLong(6, mecinicial);
         }
  
+        String mecinicialcomentario = entity.getMecinicialcomentario();
+        if (mecinicialcomentario != null) {
+            stmt.bindString(7, mecinicialcomentario);
+        }
+ 
         Integer mecfinal = entity.getMecfinal();
         if (mecfinal != null) {
-            stmt.bindLong(7, mecfinal);
+            stmt.bindLong(8, mecfinal);
+        }
+ 
+        String mecfinalcomentario = entity.getMecfinalcomentario();
+        if (mecfinalcomentario != null) {
+            stmt.bindString(9, mecfinalcomentario);
         }
     }
 
@@ -160,7 +184,9 @@ public class RutinaDao extends AbstractDao<Rutina, Long> {
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // startername
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // datestart
             cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5), // mecinicial
-            cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6) // mecfinal
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // mecinicialcomentario
+            cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7), // mecfinal
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // mecfinalcomentario
         );
         return entity;
     }
@@ -173,7 +199,9 @@ public class RutinaDao extends AbstractDao<Rutina, Long> {
         entity.setStartername(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setDatestart(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setMecinicial(cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5));
-        entity.setMecfinal(cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6));
+        entity.setMecinicialcomentario(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setMecfinal(cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7));
+        entity.setMecfinalcomentario(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
      }
     
     @Override

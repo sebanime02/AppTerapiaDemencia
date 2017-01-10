@@ -35,6 +35,8 @@ public class Patient {
 
     @Unique
     private long identity;
+    private Boolean institutional;
+    private Boolean scolarity;
     private String antecedents;
     private String syndromes;
     private String observations;
@@ -86,7 +88,7 @@ public class Patient {
     }
 
     @Generated
-    public Patient(Long id, String name, String sex, String birthday, String photopath, String eps, long identity, String antecedents, String syndromes, String observations, Integer mec, Integer gds, Integer visionlimitation, Integer writinglimitation, Integer drawinglimitation) {
+    public Patient(Long id, String name, String sex, String birthday, String photopath, String eps, long identity, Boolean institutional, Boolean scolarity, String antecedents, String syndromes, String observations, Integer mec, Integer gds, Integer visionlimitation, Integer writinglimitation, Integer drawinglimitation) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -94,6 +96,8 @@ public class Patient {
         this.photopath = photopath;
         this.eps = eps;
         this.identity = identity;
+        this.institutional = institutional;
+        this.scolarity = scolarity;
         this.antecedents = antecedents;
         this.syndromes = syndromes;
         this.observations = observations;
@@ -169,6 +173,22 @@ public class Patient {
 
     public void setIdentity(long identity) {
         this.identity = identity;
+    }
+
+    public Boolean getInstitutional() {
+        return institutional;
+    }
+
+    public void setInstitutional(Boolean institutional) {
+        this.institutional = institutional;
+    }
+
+    public Boolean getScolarity() {
+        return scolarity;
+    }
+
+    public void setScolarity(Boolean scolarity) {
+        this.scolarity = scolarity;
     }
 
     public String getAntecedents() {

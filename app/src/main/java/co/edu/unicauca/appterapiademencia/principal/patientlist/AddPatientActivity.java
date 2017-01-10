@@ -24,6 +24,8 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -54,15 +56,20 @@ import co.edu.unicauca.appterapiademencia.util.BitmapUtil;
  * Created by ENF on 28/10/2016.
  */
 
-public class AddPatientActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener{
+public class AddPatientActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener
+{
 
     private String var_genero="";
     private String var_fecha="";
+    private Boolean boolEscolaridad=false;
+    private Boolean boolInstitucionalizad=false;
     private EditText edt_id, edt_nomb,edt_eps,edt_antecedentes,edt_sindromes,edt_observaciones;
     private TextView txt_titulo1,txt_titulo2;
     private RadioGroup rdgSexo;
     private RadioButton rdgSexoFemenino,rdgSexoMasculino;
+    private CheckBox chkEscolaridad,chkInstitucionalizado;
     private String[] paciente;
+    private boolean[] checks;
     int eleccion;
     private Calendar calendar;
     private int year, month, day;
@@ -87,6 +94,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     private String[] datosb;
     private String var_sexo;
     private RelativeLayout containerfoto;
+
     public static final String fotodefault = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser).toString();
 
   public AddPatientActivity(){
@@ -110,6 +118,9 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         edt_observaciones = (EditText) findViewById(R.id.edt_observaciones);
         txt_titulo1 = (TextView) findViewById(R.id.txt_edit);
         txt_titulo2 = (TextView) findViewById(R.id.txt_edit2);
+
+        chkInstitucionalizado = (CheckBox) findViewById(R.id.chk_institucionalizado);
+        chkEscolaridad = (CheckBox) findViewById(R.id.chk_escolaridad);
 
         rdgSexo = (RadioGroup) findViewById(R.id.rdgSexo);
         rdgSexoFemenino = (RadioButton) findViewById(R.id.rdgSexoFemenino);
@@ -255,6 +266,26 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 }
 
 
+                if(patientone.getScolarity())
+                {
+                    chkEscolaridad.setChecked(true);
+                }
+                else
+                {
+                    chkEscolaridad.setChecked(false);
+                }
+
+                if(patientone.getInstitutional())
+                {
+                    chkInstitucionalizado.setChecked(true);
+                }
+                else
+                {
+                    chkInstitucionalizado.setChecked(false);
+                }
+
+
+
                 btn_fecha.setText(patientone.getBirthday().toString());
                 edt_eps.setText(patientone.getEps());
                 edt_antecedentes.setText(patientone.getAntecedents().toString());
@@ -310,16 +341,14 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         if(validar(edt_id.getText().toString(),btn_fecha.getText().toString(),edt_nomb.getText().toString())==false)
         {
             new MaterialDialog.Builder(this).title("Campos Obligagorios Faltantes").content("Debe Escribir Cédula, Fecha de Nacimiento, Nombre Completo y Sexo").positiveText(R.string.dialog_succes_agree).show();
-            //Toast.makeText(this,"Debe poner cédula, fecha de nacimiento y nombre completo",Toast.LENGTH_LONG).show();
-            //edt_id.setError("Obligatorio");
-            //edt_nomb.setError("Obligatorio");
+
 
             btn_fecha.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.red_dark));
 
             Log.e("Agregar paciente","faltan campos obligatorios");
         }else {
 
-            //queryBuilder = daoHelper.getPatientDao().queryBuilder();
+
             queryBuilder = GreenDaoHelper.getInstance().getPatientDao().queryBuilder();
             List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(Long.parseLong(edt_id.getText().toString()))).limit(1).list();
             //.limit(1).list();
@@ -334,6 +363,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
             if (actualizar.equals("actualizar")) {
                 Log.e("Agregar paciente","Listo para enviar los actualizados");
                 paciente = new String[9];
+                checks = new boolean[2];
                 Log.e("name2 a actualizar",name2);
                 Intent ir_reg = new Intent(this, AddPatient2Activity.class);
 
@@ -345,16 +375,22 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 paciente[5] = edt_antecedentes.getText().toString();
                 paciente[6] = edt_sindromes.getText().toString();
                 paciente[7] = edt_observaciones.getText().toString();
+
                 try{
                     paciente[8] = var_sexo.toString();
                 }catch (Exception e){   paciente[8] = "femenino";}
 
+                Log.e("Agregar paciente","boolEscolaridad "+boolEscolaridad);
+                Log.e("Agregar paciente","boolInstitucionalizado "+boolInstitucionalizad);
+                checks[0] = chkEscolaridad.isChecked();
+                checks[1] = chkInstitucionalizado.isChecked();
 
                 ir_reg.putExtra("paciente", paciente);
 
                 ir_reg.putExtra("actualizar", actualizar);
                 ir_reg.putExtra("datosa", datosa);
                 ir_reg.putExtra("datosb", datosb);
+                ir_reg.putExtra("checks",checks);
 
                 startActivity(ir_reg);
                 overridePendingTransition(R.anim.left_in, R.anim.left_out);
@@ -364,6 +400,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                     Log.e("Agregar paciente","La cedula esta libre");
 
                     paciente = new String[9];
+                    checks = new boolean[2];
                     Intent ir_reg = new Intent(this, AddPatient2Activity.class);
 
                     paciente[0] = edt_id.getText().toString();
@@ -392,7 +429,15 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                         paciente[8] = var_sexo.toString();
                     }catch (Exception e){   paciente[8] = "femenino";}
 
+                    Log.e("Agregar paciente","boolEscolaridad "+boolEscolaridad);
+                    Log.e("Agregar paciente","boolInstitucionalizado "+boolInstitucionalizad);
+
+
+                    checks[0] = chkEscolaridad.isChecked();
+                    checks[1] = chkInstitucionalizado.isChecked();
+
                     ir_reg.putExtra("paciente", paciente);
+                    ir_reg.putExtra("checks",checks);
 
                     startActivity(ir_reg);
                     overridePendingTransition(R.anim.left_in, R.anim.left_out);
@@ -485,6 +530,26 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
         }
     }
+
+    /*
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+        if(buttonView.getId()==R.id.chk_escolaridad)
+        {
+
+            boolEscolaridad=true;
+        }
+
+        if(buttonView.getId()==R.id.chk_institucionalizado)
+        {
+            boolInstitucionalizad=true;
+        }
+
+
+    }
+
+    */
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
@@ -619,6 +684,8 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
 
     }
+
+
 }
 
 

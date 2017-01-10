@@ -31,14 +31,16 @@ public class PatientDao extends AbstractDao<Patient, Long> {
         public final static Property Photopath = new Property(4, String.class, "photopath", false, "PHOTOPATH");
         public final static Property Eps = new Property(5, String.class, "eps", false, "EPS");
         public final static Property Identity = new Property(6, long.class, "identity", false, "IDENTITY");
-        public final static Property Antecedents = new Property(7, String.class, "antecedents", false, "ANTECEDENTS");
-        public final static Property Syndromes = new Property(8, String.class, "syndromes", false, "SYNDROMES");
-        public final static Property Observations = new Property(9, String.class, "observations", false, "OBSERVATIONS");
-        public final static Property Mec = new Property(10, Integer.class, "mec", false, "MEC");
-        public final static Property Gds = new Property(11, Integer.class, "gds", false, "GDS");
-        public final static Property Visionlimitation = new Property(12, Integer.class, "visionlimitation", false, "VISIONLIMITATION");
-        public final static Property Writinglimitation = new Property(13, Integer.class, "writinglimitation", false, "WRITINGLIMITATION");
-        public final static Property Drawinglimitation = new Property(14, Integer.class, "drawinglimitation", false, "DRAWINGLIMITATION");
+        public final static Property Institutional = new Property(7, Boolean.class, "institutional", false, "INSTITUTIONAL");
+        public final static Property Scolarity = new Property(8, Boolean.class, "scolarity", false, "SCOLARITY");
+        public final static Property Antecedents = new Property(9, String.class, "antecedents", false, "ANTECEDENTS");
+        public final static Property Syndromes = new Property(10, String.class, "syndromes", false, "SYNDROMES");
+        public final static Property Observations = new Property(11, String.class, "observations", false, "OBSERVATIONS");
+        public final static Property Mec = new Property(12, Integer.class, "mec", false, "MEC");
+        public final static Property Gds = new Property(13, Integer.class, "gds", false, "GDS");
+        public final static Property Visionlimitation = new Property(14, Integer.class, "visionlimitation", false, "VISIONLIMITATION");
+        public final static Property Writinglimitation = new Property(15, Integer.class, "writinglimitation", false, "WRITINGLIMITATION");
+        public final static Property Drawinglimitation = new Property(16, Integer.class, "drawinglimitation", false, "DRAWINGLIMITATION");
     }
 
     private DaoSession daoSession;
@@ -64,14 +66,16 @@ public class PatientDao extends AbstractDao<Patient, Long> {
                 "\"PHOTOPATH\" TEXT," + // 4: photopath
                 "\"EPS\" TEXT," + // 5: eps
                 "\"IDENTITY\" INTEGER NOT NULL UNIQUE ," + // 6: identity
-                "\"ANTECEDENTS\" TEXT," + // 7: antecedents
-                "\"SYNDROMES\" TEXT," + // 8: syndromes
-                "\"OBSERVATIONS\" TEXT," + // 9: observations
-                "\"MEC\" INTEGER," + // 10: mec
-                "\"GDS\" INTEGER," + // 11: gds
-                "\"VISIONLIMITATION\" INTEGER," + // 12: visionlimitation
-                "\"WRITINGLIMITATION\" INTEGER," + // 13: writinglimitation
-                "\"DRAWINGLIMITATION\" INTEGER);"); // 14: drawinglimitation
+                "\"INSTITUTIONAL\" INTEGER," + // 7: institutional
+                "\"SCOLARITY\" INTEGER," + // 8: scolarity
+                "\"ANTECEDENTS\" TEXT," + // 9: antecedents
+                "\"SYNDROMES\" TEXT," + // 10: syndromes
+                "\"OBSERVATIONS\" TEXT," + // 11: observations
+                "\"MEC\" INTEGER," + // 12: mec
+                "\"GDS\" INTEGER," + // 13: gds
+                "\"VISIONLIMITATION\" INTEGER," + // 14: visionlimitation
+                "\"WRITINGLIMITATION\" INTEGER," + // 15: writinglimitation
+                "\"DRAWINGLIMITATION\" INTEGER);"); // 16: drawinglimitation
     }
 
     /** Drops the underlying database table. */
@@ -107,44 +111,54 @@ public class PatientDao extends AbstractDao<Patient, Long> {
         }
         stmt.bindLong(7, entity.getIdentity());
  
+        Boolean institutional = entity.getInstitutional();
+        if (institutional != null) {
+            stmt.bindLong(8, institutional ? 1L: 0L);
+        }
+ 
+        Boolean scolarity = entity.getScolarity();
+        if (scolarity != null) {
+            stmt.bindLong(9, scolarity ? 1L: 0L);
+        }
+ 
         String antecedents = entity.getAntecedents();
         if (antecedents != null) {
-            stmt.bindString(8, antecedents);
+            stmt.bindString(10, antecedents);
         }
  
         String syndromes = entity.getSyndromes();
         if (syndromes != null) {
-            stmt.bindString(9, syndromes);
+            stmt.bindString(11, syndromes);
         }
  
         String observations = entity.getObservations();
         if (observations != null) {
-            stmt.bindString(10, observations);
+            stmt.bindString(12, observations);
         }
  
         Integer mec = entity.getMec();
         if (mec != null) {
-            stmt.bindLong(11, mec);
+            stmt.bindLong(13, mec);
         }
  
         Integer gds = entity.getGds();
         if (gds != null) {
-            stmt.bindLong(12, gds);
+            stmt.bindLong(14, gds);
         }
  
         Integer visionlimitation = entity.getVisionlimitation();
         if (visionlimitation != null) {
-            stmt.bindLong(13, visionlimitation);
+            stmt.bindLong(15, visionlimitation);
         }
  
         Integer writinglimitation = entity.getWritinglimitation();
         if (writinglimitation != null) {
-            stmt.bindLong(14, writinglimitation);
+            stmt.bindLong(16, writinglimitation);
         }
  
         Integer drawinglimitation = entity.getDrawinglimitation();
         if (drawinglimitation != null) {
-            stmt.bindLong(15, drawinglimitation);
+            stmt.bindLong(17, drawinglimitation);
         }
     }
 
@@ -175,44 +189,54 @@ public class PatientDao extends AbstractDao<Patient, Long> {
         }
         stmt.bindLong(7, entity.getIdentity());
  
+        Boolean institutional = entity.getInstitutional();
+        if (institutional != null) {
+            stmt.bindLong(8, institutional ? 1L: 0L);
+        }
+ 
+        Boolean scolarity = entity.getScolarity();
+        if (scolarity != null) {
+            stmt.bindLong(9, scolarity ? 1L: 0L);
+        }
+ 
         String antecedents = entity.getAntecedents();
         if (antecedents != null) {
-            stmt.bindString(8, antecedents);
+            stmt.bindString(10, antecedents);
         }
  
         String syndromes = entity.getSyndromes();
         if (syndromes != null) {
-            stmt.bindString(9, syndromes);
+            stmt.bindString(11, syndromes);
         }
  
         String observations = entity.getObservations();
         if (observations != null) {
-            stmt.bindString(10, observations);
+            stmt.bindString(12, observations);
         }
  
         Integer mec = entity.getMec();
         if (mec != null) {
-            stmt.bindLong(11, mec);
+            stmt.bindLong(13, mec);
         }
  
         Integer gds = entity.getGds();
         if (gds != null) {
-            stmt.bindLong(12, gds);
+            stmt.bindLong(14, gds);
         }
  
         Integer visionlimitation = entity.getVisionlimitation();
         if (visionlimitation != null) {
-            stmt.bindLong(13, visionlimitation);
+            stmt.bindLong(15, visionlimitation);
         }
  
         Integer writinglimitation = entity.getWritinglimitation();
         if (writinglimitation != null) {
-            stmt.bindLong(14, writinglimitation);
+            stmt.bindLong(16, writinglimitation);
         }
  
         Integer drawinglimitation = entity.getDrawinglimitation();
         if (drawinglimitation != null) {
-            stmt.bindLong(15, drawinglimitation);
+            stmt.bindLong(17, drawinglimitation);
         }
     }
 
@@ -237,14 +261,16 @@ public class PatientDao extends AbstractDao<Patient, Long> {
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // photopath
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // eps
             cursor.getLong(offset + 6), // identity
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // antecedents
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // syndromes
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // observations
-            cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10), // mec
-            cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11), // gds
-            cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12), // visionlimitation
-            cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13), // writinglimitation
-            cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14) // drawinglimitation
+            cursor.isNull(offset + 7) ? null : cursor.getShort(offset + 7) != 0, // institutional
+            cursor.isNull(offset + 8) ? null : cursor.getShort(offset + 8) != 0, // scolarity
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // antecedents
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // syndromes
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // observations
+            cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12), // mec
+            cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13), // gds
+            cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14), // visionlimitation
+            cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15), // writinglimitation
+            cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16) // drawinglimitation
         );
         return entity;
     }
@@ -258,14 +284,16 @@ public class PatientDao extends AbstractDao<Patient, Long> {
         entity.setPhotopath(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setEps(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setIdentity(cursor.getLong(offset + 6));
-        entity.setAntecedents(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setSyndromes(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setObservations(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setMec(cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10));
-        entity.setGds(cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11));
-        entity.setVisionlimitation(cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12));
-        entity.setWritinglimitation(cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13));
-        entity.setDrawinglimitation(cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14));
+        entity.setInstitutional(cursor.isNull(offset + 7) ? null : cursor.getShort(offset + 7) != 0);
+        entity.setScolarity(cursor.isNull(offset + 8) ? null : cursor.getShort(offset + 8) != 0);
+        entity.setAntecedents(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setSyndromes(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setObservations(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setMec(cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12));
+        entity.setGds(cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13));
+        entity.setVisionlimitation(cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14));
+        entity.setWritinglimitation(cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15));
+        entity.setDrawinglimitation(cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16));
      }
     
     @Override

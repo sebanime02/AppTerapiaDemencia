@@ -15,6 +15,7 @@ import co.edu.unicauca.appterapiademencia.domain.HistoricScore;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.PreferenceTip;
+import co.edu.unicauca.appterapiademencia.domain.Reminiscence;
 import co.edu.unicauca.appterapiademencia.domain.Rutina;
 import co.edu.unicauca.appterapiademencia.domain.Scale;
 import co.edu.unicauca.appterapiademencia.domain.Sintoma;
@@ -52,6 +53,7 @@ public class GreenDaoHelper {
     private GreenDaoHelper()
     {
 
+
     }
 
     public  DaoSession getDaoSession(){
@@ -88,6 +90,7 @@ public class GreenDaoHelper {
     public PreferenceTipDao getTipPreferenceDao(){return daoSession.getPreferenceTipDao();}
 
     public RutinaDao getRutinaDao(){return  daoSession.getRutinaDao();}
+    public ReminiscenceDao getReminiscenceDao(){return  daoSession.getReminiscenceDao();}
 
 
 
@@ -133,6 +136,14 @@ public class GreenDaoHelper {
         List<Patient> listpatient = queryBuilder.where(PatientDao.Properties.Identity.eq(id)).limit(1).list();
         return listpatient.get(0);
     }
+
+    public Patient getPatientInformationUsingId(Long id){
+        queryBuilder=getPatientDao().queryBuilder();
+        List<Patient> listpatient = queryBuilder.where(PatientDao.Properties.Id.eq(id)).limit(1).list();
+        return listpatient.get(0);
+    }
+
+
     public Boolean carerIdDetector(){
         queryBuilder=getUserDao().queryBuilder();
         try
@@ -1437,10 +1448,12 @@ public class GreenDaoHelper {
 
     public Rutina getRutina(Long idrutina)
     {
+        Rutina rutina;
         List<Rutina> rutinaList;
         QueryBuilder<Rutina> rutinaqueryBuilder = getRutinaDao().queryBuilder();
-        rutinaList = rutinaqueryBuilder.where(RutinaDao.Properties.Id.eq(idrutina)).list();
-        return rutinaList.get(0);
+        rutinaList = rutinaqueryBuilder.where(RutinaDao.Properties.Id.eq(idrutina)).limit(1).list();
+        rutina = rutinaList.get(0);
+        return rutina;
 
 
     }
@@ -1453,6 +1466,42 @@ public class GreenDaoHelper {
         return  exerciseList;
 
     }
+
+    public Long  getExerciseCount()
+    {
+        Long total;
+        List<Exercise> exerciseList;
+        QueryBuilder<Exercise> exerciseQueryBuilder = getExerciseDao().queryBuilder();
+        total = exerciseQueryBuilder.count();
+        return  total;
+    }
+
+    public String[] getReminiscenceTitles()
+    {
+        String[] reminiscenstitles;
+        List<Reminiscence> reminiscenceList;
+        QueryBuilder<Reminiscence> reminiscenceQueryBuilder = getReminiscenceDao().queryBuilder();
+
+        reminiscenceList = reminiscenceQueryBuilder.list();
+
+
+        reminiscenstitles = new String[reminiscenceList.size()];
+       for(int m=0;m<reminiscenstitles.length;m++)
+       {
+           reminiscenstitles[m] = reminiscenceList.get(m).getTitle();
+       }
+        return reminiscenstitles;
+
+    }
+    public Reminiscence getReminiscence(String title)
+    {
+        List<Reminiscence> reminiscenceList;
+        QueryBuilder<Reminiscence> reminiscenceQueryBuilder = getReminiscenceDao().queryBuilder();
+        reminiscenceList = reminiscenceQueryBuilder.where(ReminiscenceDao.Properties.Title.eq(title)).limit(1).list();
+        return  reminiscenceList.get(0);
+
+    }
+
 
 
 }

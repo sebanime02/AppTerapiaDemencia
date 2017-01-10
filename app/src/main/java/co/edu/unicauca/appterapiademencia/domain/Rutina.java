@@ -24,7 +24,9 @@ public class Rutina {
     private String startername;
     private String datestart;
     private Integer mecinicial;
+    private String mecinicialcomentario;
     private Integer mecfinal;
+    private String mecfinalcomentario;
 
     /** Used to resolve relations */
     @Generated
@@ -48,14 +50,16 @@ public class Rutina {
     }
 
     @Generated
-    public Rutina(Long id, long patientId, Integer state, String startername, String datestart, Integer mecinicial, Integer mecfinal) {
+    public Rutina(Long id, long patientId, Integer state, String startername, String datestart, Integer mecinicial, String mecinicialcomentario, Integer mecfinal, String mecfinalcomentario) {
         this.id = id;
         this.patientId = patientId;
         this.state = state;
         this.startername = startername;
         this.datestart = datestart;
         this.mecinicial = mecinicial;
+        this.mecinicialcomentario = mecinicialcomentario;
         this.mecfinal = mecfinal;
+        this.mecfinalcomentario = mecfinalcomentario;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -113,12 +117,28 @@ public class Rutina {
         this.mecinicial = mecinicial;
     }
 
+    public String getMecinicialcomentario() {
+        return mecinicialcomentario;
+    }
+
+    public void setMecinicialcomentario(String mecinicialcomentario) {
+        this.mecinicialcomentario = mecinicialcomentario;
+    }
+
     public Integer getMecfinal() {
         return mecfinal;
     }
 
     public void setMecfinal(Integer mecfinal) {
         this.mecfinal = mecfinal;
+    }
+
+    public String getMecfinalcomentario() {
+        return mecfinalcomentario;
+    }
+
+    public void setMecfinalcomentario(String mecfinalcomentario) {
+        this.mecfinalcomentario = mecfinalcomentario;
     }
 
     /** To-many relationship, resolved on first access (and after reset). Changes to to-many relations are not persisted, make changes to the target entity. */

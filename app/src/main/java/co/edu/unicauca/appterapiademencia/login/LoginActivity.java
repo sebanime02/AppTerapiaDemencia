@@ -3,6 +3,7 @@ package co.edu.unicauca.appterapiademencia.login;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.CoordinatorLayout;
@@ -18,9 +19,12 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import java.io.File;
 
 import co.edu.unicauca.appterapiademencia.R;
+import co.edu.unicauca.appterapiademencia.domain.Reminiscence;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.principal.MainActivity;
+
+import static co.edu.unicauca.appterapiademencia.R.string.reminiscence_demo_autor;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
@@ -248,18 +252,52 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
 
         if(GreenDaoHelper.getInstance().carerIdDetector()==false){
+
             String username ="Cuidador";
             String password ="Cuidador";
             String completeName ="Cuidador";
             boolean accessType=false;
             User user = new User(null,username,password,completeName,accessType,"");
             GreenDaoHelper.getInstance().getUserDao().insert(user);
+            createDemoReminiscence();
             Log.e("setup","ingreso usuario cuidador");
         }
         else{
             Log.e("setup","usuario carer ya existe");
         }
-        GreenDaoHelper.getInstance().getUsers();;
+        GreenDaoHelper.getInstance().getUsers();
+
+
+    }
+
+
+    private void createDemoReminiscence()
+    {
+        String title;
+        String description;
+        String author;
+        String img;
+        String audio;
+
+
+
+        title = getResources().getString(R.string.reminiscence_demo_title);
+        description = getResources().getString(R.string.reminiscence_demo_contenido);
+        author = getResources().getString(reminiscence_demo_autor);
+        img =  Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.popayanimagen).toString();
+        audio = Uri.parse("android.assets://co.edu.unicauca.appterapiademencia/torrereloj").toString();
+
+
+
+        Reminiscence reminiscence = new Reminiscence(null,title,description,img,author,audio);
+        GreenDaoHelper.getInstance().getReminiscenceDao().insert(reminiscence);
+        GreenDaoHelper.getInstance().getReminiscenceDao().update(reminiscence);
+
+        Log.e("createreminis","id "+reminiscence.getId());
+        Log.e("createreminis","title "+reminiscence.getTitle());
+        Log.e("createreminis","photo "+reminiscence.getPhotopath());
+        Log.e("createreminis","audiopath "+reminiscence.getAudiopath());
+
 
 
 

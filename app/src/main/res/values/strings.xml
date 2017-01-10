@@ -68,6 +68,9 @@
     <string name="action_example">Example action</string>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
+    <string name="tab_pager_ficha">Ficha</string>
+    <string name="tab_pager_notas">Notas</string>
+    <string name="tab_pager_terapia">Terapia Cognitiva</string>
 
 
     <!--NOTIFICATIONS -->
@@ -282,57 +285,76 @@
     <string name="btn_finalizar">Finalizar</string>
     <string name="btn_historial">Ver Historial</string>
     <string name="btn_nuevo">Nueva Rutina</string>
+    <string name="txt_cuidador_graphics">Cuidador</string>
 
 
     <!-- PROTOCOLO EJERCICIOS COGNITIVOS-->
-    <string name="txt_mec_inicial_instruction">Para el Paso 1, Administre el M.E.C de Lobo con Este Paciente</string>
+    <string name="txt_mec_inicial_instruction">Para el Paso 1, Administre el Minimental State Examination (MMSE) con Este Paciente</string>
     <string name="txt_mec_inicial_puntaje">Ingrese El Puntaje del Test: </string>
-    <string name="txt_mec_final_instruction">Para el Paso Final 3, Administre De nuevo el M.E.C de Lobo con Este Paciente</string>
+    <string name="txt_mec_final_instruction">Para el Paso Final 3, Administre De nuevo el Minimental State Examination (MMSE) con Este Paciente</string>
     <string name="txt_mec_final_puntaje">Ingrese El Puntaje del Test: </string>
 
     <string name="txt_paso1">PASO </string>
     <string name="txt_paso1_logo"> 1 </string>
     <string name="txt_paso2_logo"> 2 </string>
     <string name="txt_paso3_logo"> 3 </string>
-    <string name="txt_paso1_description">Administración Test De Cribado Inicial</string>
-    <string name="txt_paso2_description">Realizar Rutina de Estimulación Cognitiva</string>
-    <string name="txt_paso3_description">Administración Test De Cribado Final</string>
+    <string name="txt_paso1_description">Administración Opcional MMSE Inicial</string>
+    <string name="txt_paso2_description">Realizacion de Rutina o Programa de Estimulación Cognitiva</string>
+    <string name="txt_paso3_description">Administración Opcional MMSE Final</string>
     <string name="txt_rutina">Configure La Rutina de Este Paciente</string>
     <string name="txt_cancelar_paso1">No Administrar</string>
     <string name="txt_state_pendiente">Pendiente</string>
     <string name="txt_state_finalizado">Finalizado</string>
+    <string name="txt_mec_comentario">Si desea puede hacer unas consideraciones respecto al Minimental State Examination (MMSE) Aplicado</string>
+    <string name="txt_mec_rango_title">Valor Ingresado Fuera de Rango</string>
+    <string name="txt_mec_rango_content">El Valor ingresado no es válido para el Minimental State Examination (MMSE)</string>
+    <string name="txt_mec_incongruente_title">Falta el valor de Minimental</string>
+    <string name="txt_mec_incongruente_content">Por favor establezca un valor de Minimental State Examination(MMSE) o eliga No Administrar</string>
+    <string name="txt_configurar_ejercicio">Escoga La terapia que desee</string>
+    <string name="txt_terapia">Seleccione Una de Las dos\nTerapias Disponibles</string>
+    <string name="txt_terminar">Finalizar Rutina</string>
 
-
-    <string name="txt_configurar_ejercicio"></string>
+    <string name="btn_agregar">Agregar</string>
 
     <string name="txt_taller">Seleccione Taller: </string>
     <string name="txt_nivel">Seleccione Nivel: </string>
     <string-array name="talleres">
-       <item>
-           Memoria
-       </item>
+
 
         <item>
             Atención
 
         </item>
-
+        <item>
+            Funciones Ejecutivas
+        </item>
         <item>
             Lenguaje
         </item>
-
+        <item>
+           Memoria
+       </item>
         <item>
             Percepción
-        </item>
-
-        <item>
-            Funciones Ejecutivas
         </item>
 
         <item>
             Lectoescritura y Visoconstrucción
         </item>
     </string-array>
+
+    <string-array name="terapias"
+        >
+        <item>
+            Fichas de Psicoestimulacion Cognitiva
+        </item>
+        <item>
+            Terapia Reminiscencia
+        </item>
+    </string-array>
+
+    <string name="terapia_psicoestimulacion">Fichas de\nPsicoestimulación</string>
+    <string name="terapia_reminiscencia">Terapia\nReminiscencia</string>
 
     <string-array name="niveles">
         <item>
@@ -358,7 +380,10 @@
 
     </string-array>
 
-
+    <string name="reminiscence_demo_title">Torre del Reloj</string>
+    <string name="reminiscence_demo_contenido">Uno de los Símbolos de Nuestra Ciudad, denominada\nla nariz de Popayán, a su lado se encuentra\nla Catedral Basílica, fue construida entre\n1673 y 1682, tiene un reloj de una solo puntero de fabricación\ninglesa</string>
+    <string name="reminiscence_demo_autor">Psicóloga Sandra Ibarra</string>
+    <string name="txt_reminiscencia">Seleccione el Ejercicio de Reminiscencia que desee </string>
 
 
 

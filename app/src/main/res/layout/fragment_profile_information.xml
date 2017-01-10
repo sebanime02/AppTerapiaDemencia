@@ -105,193 +105,241 @@
             android:orientation="horizontal"
             >
 
-        <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="4"
-        android:layout_height="wrap_content"
-
-        android:background="@drawable/rounded_corner"
-        android:elevation="4dp"
-        android:padding="16dp"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        >
-
             <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
 
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:orientation="vertical"
-               >
+            android:background="@drawable/rounded_corner"
+            android:elevation="4dp"
+            android:padding="16dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            >
+
+                <LinearLayout
+
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical"
+                   >
+
+
+                        <TextView
+                        android:id="@+id/textview_profile_information"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/ic_assignment_ind_black_24dp"
+                        android:textSize="@dimen/medium_text_size"
+                        android:text="@string/textview_profile_information"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/gray"
+                        android:textStyle="bold"
+                        android:paddingBottom="@dimen/activity_vertical_margin"
+                        android:drawablePadding="@dimen/activity_horizontal_margin"
+
+                        />
 
 
                     <TextView
-                    android:id="@+id/textview_profile_information"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/ic_assignment_ind_black_24dp"
-                    android:textSize="@dimen/medium_text_size"
-                    android:text="@string/textview_profile_information"
+                        android:id="@+id/description_escolaridad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ESCOLARIDAD"
+                        android:textStyle="bold" android:fontFamily="sans-serif"
+                        android:textSize="@dimen/small_text_size"
+                        android:textColor="@color/gray"
+                        android:gravity="center_vertical"
+
+                        />
+
+                    <TextView
+
+                        android:id="@+id/txt_escolaridad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Campo vacío Escolaridad"
+                        android:textSize="@dimen/small_text_size"
+                        android:gravity="center_vertical"
+
+                        />
+
+
+                    <TextView
+                        android:id="@+id/description_institucionalizado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Institucionalizado"
+                        android:textStyle="bold" android:fontFamily="sans-serif"
+                        android:textSize="@dimen/small_text_size"
+                        android:textColor="@color/gray"
+                        android:gravity="center_vertical"
+
+                        />
+
+                    <TextView
+
+                        android:id="@+id/txt_institucionalizado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Campo vacío Item Institucionalizado"
+                        android:textSize="@dimen/small_text_size"
+                        android:gravity="center_vertical"
+
+                        />
+
+
+                    <TextView
+                        android:id="@+id/description_eps"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="EPS:"
+                        android:textStyle="bold" android:fontFamily="sans-serif"
+                        android:textSize="@dimen/small_text_size"
+                        android:textColor="@color/gray"
+                        android:gravity="center_vertical"
+
+                       />
+
+                    <TextView
+
+                        android:id="@+id/txt_eps"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Campo vacío eps"
+                        android:textSize="@dimen/small_text_size"
+                        android:gravity="center_vertical"
+
+                        />
+                    <TextView
+
+                        android:id="@+id/description_antecedentes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ANTECEDENTES:"
+                        android:textStyle="bold" android:fontFamily="sans-serif"
+                        android:textSize="@dimen/small_text_size"
+                        android:textColor="@color/gray"
+                        android:gravity="center_vertical"></TextView>
+
+                    <TextView
+                        android:id="@+id/txt_antecedentes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/small_text_size"
+                        android:hint="Campo vacío antecedentes"
+                        android:gravity="center_vertical"
+                        android:fontFamily="sans-serif"
+
+                        />
+                    <TextView
+
+                        android:id="@+id/description_sindromes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="SINDROMES Y PROBLEMAS:"
+                        android:textStyle="bold" android:fontFamily="sans-serif"
+                        android:textSize="@dimen/small_text_size"
+                        android:textColor="@color/gray"
+                        android:gravity="center_vertical"></TextView>
+                   <TextView
+                        android:id="@+id/txt_sindromes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Campo vacío sindromes"
+                        android:textSize="@dimen/small_text_size"
+                        android:gravity="center_vertical"
+                        android:layout_below="@+id/description_sindromes"
+                        android:fontFamily="sans-serif"
+                        />
+                    <TextView
+                        android:layout_below="@id/txt_sindromes"
+                        android:id="@+id/description_observaciones"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="OBSERVACIONES:"
+                        android:textStyle="bold" android:fontFamily="sans-serif"
+                        android:textSize="@dimen/small_text_size"
+                        android:textColor="@color/gray"
+                        android:gravity="center_vertical"/>
+                   <TextView
+                   android:layout_below="@id/description_observaciones"
+                   android:id="@+id/txt_observaciones"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/small_text_size"
                     android:fontFamily="sans-serif"
-                    android:textColor="@color/gray"
-                    android:textStyle="bold"
-                    android:paddingBottom="@dimen/activity_vertical_margin"
-                    android:drawablePadding="@dimen/activity_horizontal_margin"
+                   android:hint="Campo vacío observaciones"
 
-                    />
-
-
-                <TextView
-                    android:id="@+id/description_eps"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="EPS:"
-                    android:textStyle="bold" android:fontFamily="sans-serif"
-                    android:textSize="@dimen/small_text_size"
-                    android:textColor="@color/gray"
-                    android:gravity="center_vertical"
-
+                   android:gravity="center_vertical"
                    />
+                    <TextView
+                        android:id="@+id/txt_info_card"
+                        android:text="@string/textview_profile_physics"
+                        android:layout_marginTop="14dp"
+                        android:textSize="@dimen/medium_text_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/gray"
+                        android:textStyle="bold"
+                        android:drawableLeft="@mipmap/ic_accessible_black_36dp"
+                        android:paddingBottom="@dimen/activity_vertical_margin"
+                        android:drawablePadding="@dimen/activity_horizontal_margin"
 
-                <TextView
+                        />
 
-                    android:id="@+id/txt_eps"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Campo vacío eps"
-                    android:textSize="@dimen/small_text_size"
-                    android:gravity="center_vertical"
+                    <TextView
 
-                    />
-                <TextView
+                        android:id="@+id/txt_vision"
 
-                    android:id="@+id/description_antecedentes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="ANTECEDENTES:"
-                    android:textStyle="bold" android:fontFamily="sans-serif"
-                    android:textSize="@dimen/small_text_size"
-                    android:textColor="@color/gray"
-                    android:gravity="center_vertical"></TextView>
-
-                <TextView
-                    android:id="@+id/txt_antecedentes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/small_text_size"
-                    android:hint="Campo vacío antecedentes"
-                    android:gravity="center_vertical"
-                    android:fontFamily="sans-serif"
-
-                    />
-                <TextView
-
-                    android:id="@+id/description_sindromes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="SINDROMES Y PROBLEMAS:"
-                    android:textStyle="bold" android:fontFamily="sans-serif"
-                    android:textSize="@dimen/small_text_size"
-                    android:textColor="@color/gray"
-                    android:gravity="center_vertical"></TextView>
-               <TextView
-                    android:id="@+id/txt_sindromes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Campo vacío sindromes"
-                    android:textSize="@dimen/small_text_size"
-                    android:gravity="center_vertical"
-                    android:layout_below="@+id/description_sindromes"
-                    android:fontFamily="sans-serif"
-                    />
-                <TextView
-                    android:layout_below="@id/txt_sindromes"
-                    android:id="@+id/description_observaciones"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="OBSERVACIONES:"
-                    android:textStyle="bold" android:fontFamily="sans-serif"
-                    android:textSize="@dimen/small_text_size"
-                    android:textColor="@color/gray"
-                    android:gravity="center_vertical"/>
-               <TextView
-               android:layout_below="@id/description_observaciones"
-               android:id="@+id/txt_observaciones"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:textSize="@dimen/small_text_size"
-                android:fontFamily="sans-serif"
-               android:hint="Campo vacío observaciones"
-
-               android:gravity="center_vertical"
-               />
-                <TextView
-                    android:id="@+id/txt_info_card"
-                    android:text="@string/textview_profile_physics"
-                    android:layout_marginTop="14dp"
-                    android:textSize="@dimen/medium_text_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:textColor="@color/gray"
-                    android:textStyle="bold"
-                    android:drawableLeft="@mipmap/ic_accessible_black_36dp"
-                    android:paddingBottom="@dimen/activity_vertical_margin"
-                    android:drawablePadding="@dimen/activity_horizontal_margin"
-
-                    />
-
-                <TextView
-
-                    android:id="@+id/txt_vision"
-
-                    android:text="Campo Vacío"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:drawableLeft="@mipmap/ic_remove_red_eye_black_24dp"
-                    android:textSize="@dimen/small_text_size"
-                    android:fontFamily="sans-serif"
-                    android:paddingBottom="@dimen/activity_vertical_margin"
-                    android:drawablePadding="@dimen/activity_horizontal_margin"
-                    />
+                        android:text="Campo Vacío"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:drawableLeft="@mipmap/ic_remove_red_eye_black_24dp"
+                        android:textSize="@dimen/small_text_size"
+                        android:fontFamily="sans-serif"
+                        android:paddingBottom="@dimen/activity_vertical_margin"
+                        android:drawablePadding="@dimen/activity_horizontal_margin"
+                        />
 
 
 
-                <TextView
+                    <TextView
 
-                    android:id="@+id/txt_escritura"
-                    android:text="Campo Vacío"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/small_text_size"
-                    android:fontFamily="sans-serif"
-                    android:drawableLeft="@mipmap/edit"
-                    android:paddingBottom="@dimen/activity_vertical_margin"
-                    android:drawablePadding="@dimen/activity_horizontal_margin"
-                    />
+                        android:id="@+id/txt_escritura"
+                        android:text="Campo Vacío"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/small_text_size"
+                        android:fontFamily="sans-serif"
+                        android:drawableLeft="@mipmap/edit"
+                        android:paddingBottom="@dimen/activity_vertical_margin"
+                        android:drawablePadding="@dimen/activity_horizontal_margin"
+                        />
 
-                <TextView
+                    <TextView
 
-                    android:id="@+id/txt_dibujo"
-                    android:text="Campo Vacío"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/small_text_size"
-                    android:fontFamily="sans-serif"
-                    android:drawableLeft="@mipmap/scuadra"
-                    android:paddingBottom="@dimen/activity_vertical_margin"
-                    android:drawablePadding="@dimen/activity_horizontal_margin"
-                    />
+                        android:id="@+id/txt_dibujo"
+                        android:text="Campo Vacío"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/small_text_size"
+                        android:fontFamily="sans-serif"
+                        android:drawableLeft="@mipmap/scuadra"
+                        android:paddingBottom="@dimen/activity_vertical_margin"
+                        android:drawablePadding="@dimen/activity_horizontal_margin"
+                        />
 
 
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"

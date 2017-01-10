@@ -58,9 +58,9 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private String name;
     private String birthday;
     private String photopath;
-    private String sexo,eps,sindromes,antecedentes,observaciones,vision,escritura,dibujo;
+    private String sexo,escolaridad,institucionalizado,eps,sindromes,antecedentes,observaciones,vision,escritura,dibujo;
     private int visionState,escrituraState,dibujoState;
-    private TextView txtSexo,txtEps,txtSindromes,txtAntecedentes,txtObservaciones,txtVision,txtEscritura,txtDibujo;
+    private TextView txtSexo,txtEscolaridad,txtInstitucionalizado,txtEps,txtSindromes,txtAntecedentes,txtObservaciones,txtVision,txtEscritura,txtDibujo;
     private TextView txtPuntajeBlessed,txtComentarioBlessed,txtPuntajeFast,txtComentarioFast,txtPuntajeDownton,txtComentarioDownton,txtPuntajeLawton,txtComentarioLawton;
     private LinearLayout containerBlessed;
     private Long identity;
@@ -122,6 +122,8 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtIdentity = (TextView) view.findViewById(R.id.identity_patient_perfil);
         txtEps = (TextView) view.findViewById(R.id.txt_eps);
         txtSexo = (TextView) view.findViewById(R.id.sexo_patient_perfil);
+        txtEscolaridad = (TextView) view.findViewById(R.id.txt_escolaridad);
+        txtInstitucionalizado = (TextView) view.findViewById(R.id.txt_institucionalizado);
         txtAntecedentes = (TextView) view.findViewById(R.id.txt_antecedentes);
         txtObservaciones = (TextView) view.findViewById(R.id.txt_observaciones);
         txtSindromes = (TextView) view.findViewById(R.id.txt_sindromes);
@@ -305,6 +307,8 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtAge.setText("Nació en: "+this.birthday);
         txtIdentity.setText("  Cédula: "+this.identity);
         txtSexo.setText(" Sexo: "+this.sexo);
+        txtEscolaridad.setText(this.escolaridad);
+        txtInstitucionalizado.setText(this.institucionalizado);
         txtEps.setText(this.eps);
         txtAntecedentes.setText(this.antecedentes);
         txtSindromes.setText(this.sindromes);
@@ -374,6 +378,28 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         this.birthday = patient.getBirthday().toString();
         this.photopath = patient.getPhotopath();
         this.identity= patient.getIdentity();
+
+
+        if(patient.getInstitutional())
+        {
+            institucionalizado = "Institucionalizado";
+        }
+        else
+        {
+            institucionalizado = "No es institucionalizado";
+        }
+
+       if(patient.getScolarity())
+       {
+           escolaridad = "Baja Escolaridad";
+       }
+        else
+       {
+           escolaridad ="Escolarizado";
+       }
+
+
+
         this.sexo = patient.getSex();
         this.eps = patient.getEps();
         this.antecedentes= patient.getAntecedents();

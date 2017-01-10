@@ -65,4 +65,9 @@
     <dimen name="size_historial_button">150dp</dimen>
     <dimen name="size_imagen_check">50dp</dimen>
 
+
+    <!-- ADD COGNITIVE EXERCISE -->
+
+    <dimen name="height_demo">100dp</dimen>
+
 </resources>

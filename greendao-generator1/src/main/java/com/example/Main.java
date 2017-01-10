@@ -30,6 +30,8 @@ public class Main {
         patient.addStringProperty("photopath");
         patient.addStringProperty("eps");
         patient.addLongProperty("identity").notNull().unique();
+        patient.addBooleanProperty("institutional");
+        patient.addBooleanProperty("scolarity");
         patient.addStringProperty("antecedents");
         patient.addStringProperty("syndromes");
         patient.addStringProperty("observations");
@@ -160,7 +162,10 @@ public class Main {
         rutina.addStringProperty("startername");
         rutina.addStringProperty("datestart");
         rutina.addIntProperty("mecinicial");
+        rutina.addStringProperty("mecinicialcomentario");
         rutina.addIntProperty("mecfinal");
+        rutina.addStringProperty("mecfinalcomentario");
+
 
 
         //COGNITIVE EXERCISE TABLE
@@ -168,6 +173,7 @@ public class Main {
         exercise.addIdProperty().autoincrement();
         Property rutinaIdexercise = exercise.addLongProperty("rutinaId").notNull().getProperty();
         rutina.addToMany(exercise,rutinaIdexercise);
+        exercise.addIntProperty("terapy");
         exercise.addStringProperty("workshop").notNull();
         exercise.addIntProperty("level").notNull();
         exercise.addIntProperty("state");  //0 pendiente, 1 finalizada
@@ -175,6 +181,8 @@ public class Main {
         exercise.addBooleanProperty("completemen");
 
         exercise.addStringProperty("observations");
+
+
 
 
 
@@ -194,9 +202,14 @@ public class Main {
         historic.addBooleanProperty("completed");
 
 
-
-
-
+        //REMINISCENCE
+        Entity reminiscence = schema.addEntity("Reminiscence");
+        reminiscence.addIdProperty().autoincrement();
+        reminiscence.addStringProperty("title");
+        reminiscence.addStringProperty("description");
+        reminiscence.addStringProperty("photopath");
+        reminiscence.addStringProperty("author");
+        reminiscence.addStringProperty("audiopath");
 
 
 

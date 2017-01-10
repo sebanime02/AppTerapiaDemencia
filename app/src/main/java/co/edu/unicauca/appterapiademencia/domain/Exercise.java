@@ -20,6 +20,7 @@ public class Exercise {
     @Id(autoincrement = true)
     private Long id;
     private long rutinaId;
+    private Integer terapy;
 
     @NotNull
     private String workshop;
@@ -51,9 +52,10 @@ public class Exercise {
     }
 
     @Generated
-    public Exercise(Long id, long rutinaId, String workshop, int level, Integer state, Integer time, Boolean completemen, String observations) {
+    public Exercise(Long id, long rutinaId, Integer terapy, String workshop, int level, Integer state, Integer time, Boolean completemen, String observations) {
         this.id = id;
         this.rutinaId = rutinaId;
+        this.terapy = terapy;
         this.workshop = workshop;
         this.level = level;
         this.state = state;
@@ -83,6 +85,14 @@ public class Exercise {
 
     public void setRutinaId(long rutinaId) {
         this.rutinaId = rutinaId;
+    }
+
+    public Integer getTerapy() {
+        return terapy;
+    }
+
+    public void setTerapy(Integer terapy) {
+        this.terapy = terapy;
     }
 
     @NotNull

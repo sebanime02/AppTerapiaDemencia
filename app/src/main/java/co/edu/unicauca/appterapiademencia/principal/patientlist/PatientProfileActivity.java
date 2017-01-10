@@ -1,18 +1,22 @@
 package co.edu.unicauca.appterapiademencia.principal.patientlist;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.ViewPagerAdapter;
+import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.principal.cognitiveexercises.GraphicsExercises;
 import co.edu.unicauca.appterapiademencia.principal.notes.NotesFragment;
 import co.edu.unicauca.appterapiademencia.principal.patientprofile.PatientProfileFragment;
@@ -29,11 +33,24 @@ public class PatientProfileActivity extends AppCompatActivity{
     private TabLayout tabLayout;
     private ActionBar actionBar;
     private boolean supervisorState;
+    private SharedPreferences preferences;
+    private String username;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.patient_profile_activity);
+
+        preferences = getSharedPreferences("appdata", Context.MODE_PRIVATE);
+
+        if(preferences.getString("username",username)!=null)
+        {
+            username = preferences.getString("username", "Nombre de Usuario");
+        }
+
         if(getIntent().getExtras()!=null){
             Bundle bundle = getIntent().getExtras();
             cedula = bundle.get("cedula").toString();
@@ -42,6 +59,12 @@ public class PatientProfileActivity extends AppCompatActivity{
 
         final Bundle args = new Bundle();
         args.putLong("cedula",Long.parseLong(cedula));
+        args.putString("username",username);
+
+        Log.e("patienprofile","Cedula "+cedula);
+        Log.e("patienprofile","Username "+username);
+
+
 
 
         //inputprofileidentity= (TextView) findViewById(R.id.txt_profile);
@@ -115,12 +138,12 @@ public class PatientProfileActivity extends AppCompatActivity{
 
     private void setupViewPager(ViewPager viewPager, Bundle args) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(),args);
-        adapter.addFragment(new PatientProfileFragment(), "Ficha");
-        adapter.addFragment(new NotesFragment(), "Notas");
-        adapter.addFragment(new GraphicsExercises(), "Estado de Consciencia ");
+        adapter.addFragment(new PatientProfileFragment(),getResources().getString(R.string.tab_pager_ficha));
+        adapter.addFragment(new NotesFragment(), getResources().getString(R.string.tab_pager_notas));
+        adapter.addFragment(new GraphicsExercises(),getResources().getString(R.string.tab_pager_terapia));
         try {
             viewPager.setAdapter(adapter);
-            viewPager.endFakeDrag(); // para hacer swipe
+            viewPager.endFakeDrag(); // habilita el swipe horizontal
         }catch (Exception e){
             adapter.notifyDataSetChanged();
         }

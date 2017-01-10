@@ -29,12 +29,13 @@ public class ExerciseDao extends AbstractDao<Exercise, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property RutinaId = new Property(1, long.class, "rutinaId", false, "RUTINA_ID");
-        public final static Property Workshop = new Property(2, String.class, "workshop", false, "WORKSHOP");
-        public final static Property Level = new Property(3, int.class, "level", false, "LEVEL");
-        public final static Property State = new Property(4, Integer.class, "state", false, "STATE");
-        public final static Property Time = new Property(5, Integer.class, "time", false, "TIME");
-        public final static Property Completemen = new Property(6, Boolean.class, "completemen", false, "COMPLETEMEN");
-        public final static Property Observations = new Property(7, String.class, "observations", false, "OBSERVATIONS");
+        public final static Property Terapy = new Property(2, Integer.class, "terapy", false, "TERAPY");
+        public final static Property Workshop = new Property(3, String.class, "workshop", false, "WORKSHOP");
+        public final static Property Level = new Property(4, int.class, "level", false, "LEVEL");
+        public final static Property State = new Property(5, Integer.class, "state", false, "STATE");
+        public final static Property Time = new Property(6, Integer.class, "time", false, "TIME");
+        public final static Property Completemen = new Property(7, Boolean.class, "completemen", false, "COMPLETEMEN");
+        public final static Property Observations = new Property(8, String.class, "observations", false, "OBSERVATIONS");
     }
 
     private DaoSession daoSession;
@@ -56,12 +57,13 @@ public class ExerciseDao extends AbstractDao<Exercise, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"EXERCISE\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"RUTINA_ID\" INTEGER NOT NULL ," + // 1: rutinaId
-                "\"WORKSHOP\" TEXT NOT NULL ," + // 2: workshop
-                "\"LEVEL\" INTEGER NOT NULL ," + // 3: level
-                "\"STATE\" INTEGER," + // 4: state
-                "\"TIME\" INTEGER," + // 5: time
-                "\"COMPLETEMEN\" INTEGER," + // 6: completemen
-                "\"OBSERVATIONS\" TEXT);"); // 7: observations
+                "\"TERAPY\" INTEGER," + // 2: terapy
+                "\"WORKSHOP\" TEXT NOT NULL ," + // 3: workshop
+                "\"LEVEL\" INTEGER NOT NULL ," + // 4: level
+                "\"STATE\" INTEGER," + // 5: state
+                "\"TIME\" INTEGER," + // 6: time
+                "\"COMPLETEMEN\" INTEGER," + // 7: completemen
+                "\"OBSERVATIONS\" TEXT);"); // 8: observations
     }
 
     /** Drops the underlying database table. */
@@ -79,27 +81,32 @@ public class ExerciseDao extends AbstractDao<Exercise, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindLong(2, entity.getRutinaId());
-        stmt.bindString(3, entity.getWorkshop());
-        stmt.bindLong(4, entity.getLevel());
+ 
+        Integer terapy = entity.getTerapy();
+        if (terapy != null) {
+            stmt.bindLong(3, terapy);
+        }
+        stmt.bindString(4, entity.getWorkshop());
+        stmt.bindLong(5, entity.getLevel());
  
         Integer state = entity.getState();
         if (state != null) {
-            stmt.bindLong(5, state);
+            stmt.bindLong(6, state);
         }
  
         Integer time = entity.getTime();
         if (time != null) {
-            stmt.bindLong(6, time);
+            stmt.bindLong(7, time);
         }
  
         Boolean completemen = entity.getCompletemen();
         if (completemen != null) {
-            stmt.bindLong(7, completemen ? 1L: 0L);
+            stmt.bindLong(8, completemen ? 1L: 0L);
         }
  
         String observations = entity.getObservations();
         if (observations != null) {
-            stmt.bindString(8, observations);
+            stmt.bindString(9, observations);
         }
     }
 
@@ -112,27 +119,32 @@ public class ExerciseDao extends AbstractDao<Exercise, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindLong(2, entity.getRutinaId());
-        stmt.bindString(3, entity.getWorkshop());
-        stmt.bindLong(4, entity.getLevel());
+ 
+        Integer terapy = entity.getTerapy();
+        if (terapy != null) {
+            stmt.bindLong(3, terapy);
+        }
+        stmt.bindString(4, entity.getWorkshop());
+        stmt.bindLong(5, entity.getLevel());
  
         Integer state = entity.getState();
         if (state != null) {
-            stmt.bindLong(5, state);
+            stmt.bindLong(6, state);
         }
  
         Integer time = entity.getTime();
         if (time != null) {
-            stmt.bindLong(6, time);
+            stmt.bindLong(7, time);
         }
  
         Boolean completemen = entity.getCompletemen();
         if (completemen != null) {
-            stmt.bindLong(7, completemen ? 1L: 0L);
+            stmt.bindLong(8, completemen ? 1L: 0L);
         }
  
         String observations = entity.getObservations();
         if (observations != null) {
-            stmt.bindString(8, observations);
+            stmt.bindString(9, observations);
         }
     }
 
@@ -152,12 +164,13 @@ public class ExerciseDao extends AbstractDao<Exercise, Long> {
         Exercise entity = new Exercise( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getLong(offset + 1), // rutinaId
-            cursor.getString(offset + 2), // workshop
-            cursor.getInt(offset + 3), // level
-            cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // state
-            cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5), // time
-            cursor.isNull(offset + 6) ? null : cursor.getShort(offset + 6) != 0, // completemen
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // observations
+            cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2), // terapy
+            cursor.getString(offset + 3), // workshop
+            cursor.getInt(offset + 4), // level
+            cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5), // state
+            cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6), // time
+            cursor.isNull(offset + 7) ? null : cursor.getShort(offset + 7) != 0, // completemen
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // observations
         );
         return entity;
     }
@@ -166,12 +179,13 @@ public class ExerciseDao extends AbstractDao<Exercise, Long> {
     public void readEntity(Cursor cursor, Exercise entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setRutinaId(cursor.getLong(offset + 1));
-        entity.setWorkshop(cursor.getString(offset + 2));
-        entity.setLevel(cursor.getInt(offset + 3));
-        entity.setState(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
-        entity.setTime(cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5));
-        entity.setCompletemen(cursor.isNull(offset + 6) ? null : cursor.getShort(offset + 6) != 0);
-        entity.setObservations(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setTerapy(cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2));
+        entity.setWorkshop(cursor.getString(offset + 3));
+        entity.setLevel(cursor.getInt(offset + 4));
+        entity.setState(cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5));
+        entity.setTime(cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6));
+        entity.setCompletemen(cursor.isNull(offset + 7) ? null : cursor.getShort(offset + 7) != 0);
+        entity.setObservations(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
      }
     
     @Override

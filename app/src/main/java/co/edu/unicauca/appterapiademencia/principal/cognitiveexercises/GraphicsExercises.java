@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import co.edu.unicauca.appterapiademencia.R;
+import co.edu.unicauca.appterapiademencia.domain.Exercise;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.Rutina;
 import co.edu.unicauca.appterapiademencia.domain.User;
@@ -49,14 +50,15 @@ public class GraphicsExercises extends Fragment{
     private String username;
 
 
-    public GraphicsExercises(){
-
+    public GraphicsExercises()
+    {
         daoHelper = GreenDaoHelper.getInstance();
         rutinaDao = daoHelper.getRutinaDao();
         calendar = java.util.Calendar.getInstance();
-        preferences = getActivity().getSharedPreferences("appdata", Context.MODE_PRIVATE);
+
 
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
@@ -72,6 +74,20 @@ public class GraphicsExercises extends Fragment{
         final Bundle args = getArguments();
         idpatient=args.getLong("cedula");
 
+        try {
+            username = args.getString("username");
+            Log.e("graphics","username "+username);
+
+            User user =daoHelper.getUserInformation(username);
+            starterName = user.getCompleteName();
+            Log.e("graphics","startname traido del helper");
+
+        }catch (Exception e)
+        {
+            starterName= getResources().getString(R.string.txt_cuidador_graphics);
+            Log.e("graphics","startname cuidador por excepcion");
+
+        }
         try {
             Patient patient = daoHelper.getPatientInformationUsingCedula(idpatient);
             idsistema = patient.getId();
@@ -90,8 +106,6 @@ public class GraphicsExercises extends Fragment{
         txtStarter = (TextView) view.findViewById(R.id.tv_last_rutina_starter);
         btnLastRutina = (Button) view.findViewById(R.id.btnLastRutina);
         btnNewRutina = (Button) view.findViewById(R.id.btnNewRutina);
-
-
 
         try
         {
@@ -124,6 +138,7 @@ public class GraphicsExercises extends Fragment{
         btnNewRutina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(preferences.getString("username",username)!=null) {
                     username = preferences.getString("username", "Nombre de Usuario");
 
@@ -137,13 +152,16 @@ public class GraphicsExercises extends Fragment{
 
 
 
+
+
+
                 ManagerFechas managerFechas = new ManagerFechas();
                 rutinaDate = managerFechas.fechaActualCalender();
 
                 Intent intent = new Intent(getActivity().getBaseContext(),StimulationOneActivity.class);
                 intent.putExtra("nuevo",true);
                 intent.putExtra("idpatient",idsistema);
-                Rutina rutina = new Rutina(null,idsistema,1,starterName,rutinaDate,0,0);
+                Rutina rutina = new Rutina(null,idsistema,1,starterName,rutinaDate,null,null,null,null);
                 rutinaDao.insert(rutina);
                 Log.e("Tab Terapia","idrutina ingresado "+rutina.getId());
                 intent.putExtra("idrutina",rutina.getId());
@@ -202,6 +220,8 @@ public class GraphicsExercises extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferences = getActivity().getSharedPreferences("appdata", Context.MODE_PRIVATE);
+
     }
 
     @Override
@@ -209,6 +229,7 @@ public class GraphicsExercises extends Fragment{
         super.onResume();
         Bundle args = getArguments();
         idpatient=args.getLong("cedula");
+        username = args.getString("username");
 
         try {
             Patient patient = daoHelper.getPatientInformationUsingCedula(idpatient);
