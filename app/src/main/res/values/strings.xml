@@ -387,5 +387,10 @@
 
 
 
+    <!-- REMINISCENCE FRAGMENT -->
+
+    <string name="txt_info_reminiscence">Aqui Puedes Agregar Ejercicios de Reminiscencia, para posteriormente hacer tus terapias con pacientes</string>
+
+
 
 </resources>

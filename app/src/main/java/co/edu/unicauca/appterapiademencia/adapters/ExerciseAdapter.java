@@ -52,9 +52,18 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         String taller = exerciseList.get(position).getWorkshop().toString();
         int nivel = exerciseList.get(position).getLevel();
         int estado = exerciseList.get(position).getState();
+        int therapy = exerciseList.get(position).getTerapy();
+
+
 
         holder.txtType.setText(taller);
-        holder.txtLevel.setText(nivel+"");
+
+        if(therapy==2)
+        {
+            holder.txtLevel.setText("Nivel "+nivel);
+
+
+        }
 
 
         if(estado==1)

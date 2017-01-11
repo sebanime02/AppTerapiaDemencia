@@ -69,5 +69,5 @@
     <!-- ADD COGNITIVE EXERCISE -->
 
     <dimen name="height_demo">100dp</dimen>
-
+    <dimen name="height_demo_image">50dp</dimen>
 </resources>

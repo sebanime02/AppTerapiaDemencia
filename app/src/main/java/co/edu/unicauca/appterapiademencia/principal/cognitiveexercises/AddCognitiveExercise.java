@@ -89,6 +89,7 @@ public class AddCognitiveExercise extends AppCompatActivity {
         txtDemoNivel = (TextView) findViewById(R.id.taller_nivel);
         txtDemoTaller = (TextView) findViewById(R.id.taller_description);
         cardTaller = (CardView) findViewById(R.id.cardTalleres);
+        imgDemo = (ImageView) findViewById(R.id.taller_imagen);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -137,6 +138,7 @@ public class AddCognitiveExercise extends AppCompatActivity {
                 paintSelectedButton();
                 btnReminiscencia.setBackgroundColor(getResources().getColor(R.color.accent_color));
                containerDemo.setVisibility(View.VISIBLE);
+               imgDemo.setVisibility(View.VISIBLE);
                 cardTaller.setVisibility(View.GONE);
                containerReminiscencia.setVisibility(View.VISIBLE);
                 containerNivel.setVisibility(View.GONE);
@@ -231,15 +233,32 @@ public class AddCognitiveExercise extends AppCompatActivity {
                     String titlereminiscencia = adapterreminiscencias.getItem(position).toString();
                     Reminiscence reminiscence = daoHelper.getReminiscence(titlereminiscencia);
 
-                    try
-                    {
-                        imgDemo.setBackground(Drawable.createFromPath(reminiscence.getPhotopath()));
+                if(position==0)
+                {
+                    Log.e("spi reminicensia","position 0");
+                    imgDemo.setVisibility(View.VISIBLE);
+                    imgDemo.setBackgroundResource(R.drawable.popayanimagen);
 
-                    }catch (Exception e)
-                    {
-                        imgDemo.setImageURI(Uri.parse(reminiscence.getPhotopath()));
+                }
 
-                    }
+                        try {
+                            imgDemo.setBackground(Drawable.createFromPath(reminiscence.getPhotopath()));
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            try {
+                                imgDemo.setImageURI(Uri.parse(reminiscence.getPhotopath()));
+
+                            } catch (Exception e2) {
+                                e.printStackTrace();
+
+                                imgDemo.setBackgroundResource(Integer.parseInt(reminiscence.getPhotopath()));
+
+                            }
+
+                        }
+
 
 
             }
