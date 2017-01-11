@@ -6,6 +6,7 @@ import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.domain.Reminiscence;
 import co.edu.unicauca.appterapiademencia.domain.Tip;
 
 /**
@@ -44,5 +45,8 @@ public interface PrincipalListInteractor {
     int getLawtonScore(Long id);
 
     void getBlessedData(Long id,int mode);
+
+
+    List<Reminiscence> getReminiscenceList();
 
 }

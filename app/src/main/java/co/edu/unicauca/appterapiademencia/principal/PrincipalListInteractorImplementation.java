@@ -8,6 +8,7 @@ import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.domain.Reminiscence;
 import co.edu.unicauca.appterapiademencia.domain.Tip;
 
 /**
@@ -131,7 +132,10 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
         principalListRepository.getBlessedData(id,mode);
     }
 
-
+    @Override
+    public List<Reminiscence> getReminiscenceList() {
+        return principalListRepository.getReminiscenceList();
+    }
 
 
 }

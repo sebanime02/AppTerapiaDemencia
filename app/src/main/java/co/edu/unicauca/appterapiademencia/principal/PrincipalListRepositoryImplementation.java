@@ -11,6 +11,7 @@ import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
+import co.edu.unicauca.appterapiademencia.domain.Reminiscence;
 import co.edu.unicauca.appterapiademencia.domain.Tip;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.NoteDao;
@@ -344,6 +345,11 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
 
 
 
+    }
+
+    @Override
+    public List<Reminiscence> getReminiscenceList() {
+        return helper.getReminiscenceList();
     }
 
 

@@ -33,12 +33,25 @@
 
             />
 
+
+        <TextView
+            android:id="@+id/reminiscence_author"
+            android:layout_width="@dimen/item_width"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:text="Autor"
+            android:layout_below="@id/reminiscence_title"
+
+
+            />
+
         <ImageView
             android:id="@+id/reminiscence_image"
             android:layout_width="@dimen/height_demo_image"
             android:layout_height="@dimen/height_demo_image"
             android:layout_alignParentRight="true"
-            android:marginRight="@dimen/activity_horizontal_margin"
+            android:background="@color/red_dark"
+
             />
 
 

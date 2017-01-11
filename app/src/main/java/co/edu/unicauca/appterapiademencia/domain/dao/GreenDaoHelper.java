@@ -1503,5 +1503,14 @@ public class GreenDaoHelper {
     }
 
 
+    public List<Reminiscence> getReminiscenceList()
+    {
+        List<Reminiscence> reminiscenceList;
+        QueryBuilder<Reminiscence> reminiscenceQueryBuilder = getReminiscenceDao().queryBuilder();
+        reminiscenceList = reminiscenceQueryBuilder.list();
+        return  reminiscenceList;
+    }
+
+
 
 }

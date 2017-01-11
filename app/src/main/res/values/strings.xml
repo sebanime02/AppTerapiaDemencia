@@ -389,7 +389,15 @@
 
     <!-- REMINISCENCE FRAGMENT -->
 
-    <string name="txt_info_reminiscence">Aqui Puedes Agregar Ejercicios de Reminiscencia, para posteriormente hacer tus terapias con pacientes</string>
+    <string name="txt_info_reminiscence">Aqui Puedes Agregar Ejercicios de Reminiscencia,para\nposteriormente hacer tus terapias con pacientes</string>
+
+
+    <!--ADD REMINISCENCE -->
+    <string name="txt_reminiscence_instructions">Creando un Nuevo Ejercicio Para las Terapias de Reminiscencia</string>
+    <string name="txt_reminiscence_title">1. Introduzca el TÍtulo de este nuevo Ejercicio de Reminiscencia</string>
+    <string name="txt_reminiscence_photo">2. Seleccione un recuerdo Fotográfico</string>
+    <string name="txt_reminiscence_description">3. Agregue La Descripción del Recuerdo Fotográfico</string>
+
 
 
 

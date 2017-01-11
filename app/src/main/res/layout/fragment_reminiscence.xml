@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorPrimaryDark"
-        android:layout_below="@id/txt_info_tips"
+        android:layout_below="@id/txt_info_reminiscence"
         android:paddingBottom="1dp"
         ></View>
     <android.support.v7.widget.RecyclerView
@@ -36,8 +36,6 @@
         android:layout_height="match_parent"
         android:headerDividersEnabled="true"
         android:footerDividersEnabled="true"
-
-
         />
 
     <android.support.design.widget.FloatingActionButton

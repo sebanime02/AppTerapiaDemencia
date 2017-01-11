@@ -1,6 +1,152 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".principal.cognitiveexercises.StimulationOneActivity"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
 
-</LinearLayout>
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.design.widget.CoordinatorLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:elevation="4dp"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/ToolbarTheme" />
+
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:orientation="vertical"
+
+                >
+               <TextView
+
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="@string/txt_reminiscence_instructions"
+                   android:textSize="@dimen/medium_text_size"
+                   android:background="@color/colorPrimary"
+                   android:textColor="@color/white"
+                   android:lines="2"
+                   android:textStyle="bold"
+                   android:padding="@dimen/activity_horizontal_margin"
+
+                   />
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_responsable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/edt_reminiscense_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:hint="@string/txt_reminiscence_title"
+
+                        />
+
+
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/txt_reminiscence_photo"
+                    android:textSize="@dimen/medium_text_size"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    />
+
+                <RelativeLayout
+                    android:id="@+id/foto_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    >
+
+                <ImageButton
+
+                    android:id="@+id/foto_usuario"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/addsmall"
+
+                    />
+
+                </RelativeLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/edt_reminiscense_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:hint="@string/txt_reminiscence_description"
+
+                        />
+
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    >
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:visibility="invisible"
+                        ></View>
+
+                    <Button
+                        android:id="@+id/btn_guardar"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
+                        android:text="@string/btn_save"
+                        android:background="@color/magenta"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:onClick="saveReminiscence"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        />
+                </LinearLayout>
+                </LinearLayout>
+            </android.support.design.widget.CoordinatorLayout>
+
+        </LinearLayout>
+    </ScrollView>

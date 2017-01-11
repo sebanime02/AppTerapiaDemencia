@@ -37,6 +37,7 @@ import co.edu.unicauca.appterapiademencia.login.LoginActivity;
 import co.edu.unicauca.appterapiademencia.principal.help.HelpFragment;
 import co.edu.unicauca.appterapiademencia.principal.notification.NotificationListFragment;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientListFragment;
+import co.edu.unicauca.appterapiademencia.principal.reminiscence.ReminiscenceListFragment;
 import co.edu.unicauca.appterapiademencia.principal.tips.TipsListFragment;
 import co.edu.unicauca.appterapiademencia.principal.userprofile.UserProfileFragment;
 import co.edu.unicauca.appterapiademencia.util.CircleTransform;
@@ -53,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private TextView completeNameNavbar;
     private ImageView userAvatarNavbar;
 
-    public static final Integer[] imagessupervisor = {R.drawable.ic_list_black_24dp,R.drawable.ic_action_content_report,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
-    public static final String[] titlessupervisor= {"Lista de Pacientes","Notificaciones","Tips para el cuidador","Perfil de usuario","Ayuda","Salir"};
+    public static final Integer[] imagessupervisor = {R.drawable.ic_list_black_24dp,R.drawable.ic_action_content_report,R.drawable.ic_action_toggle_star,R.mipmap.ic_extension_black_24dp,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
+    public static final String[] titlessupervisor= {"Lista de Pacientes","Notificaciones","Tips para el cuidador","Ejercicios Reminiscencia","Perfil de usuario","Ayuda","Salir"};
     public static final Integer[] imagescarer ={R.drawable.ic_list_black_24dp,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
     public static final String[] titlescarer ={"Lista de Pacientes","Tips para el cuidador","Ayuda","Salir"};
     private String username;
@@ -310,7 +311,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case 3:
                 if(supervisormode==true)
                 {
-                    callUserProfile();
+                    callReminiscence();
+
                 }
                 else{
                     callSignOff();
@@ -318,15 +320,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             case 4:
                 if (supervisormode==true){
-                    callHelp();
+                    callUserProfile();
+                    ;
                 }
 
                 break;
 
             case 5:
+                if (supervisormode==true){
+                    callHelp();
+                }
 
+
+                break;
+            case 6:
+                if (supervisormode==true){
                     callSignOff();
-
+                }
                 break;
 
         }
@@ -355,6 +365,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         startService(intent);
         ////-----------------------------final servicio------------------------------------
     }
+
+    public void callReminiscence()
+    {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, new ReminiscenceListFragment())
+                .commit();
+        actionBar.setTitle("Ejercicios de Reminiscencia");
+    }
+
     public void callUserProfile(){
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new UserProfileFragment())

@@ -1,10 +1,13 @@
 package co.edu.unicauca.appterapiademencia.adapters;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -44,16 +47,46 @@ public class ReminiscenceAdapter extends RecyclerView.Adapter<ReminiscenceAdapte
     @Override
     public void onBindViewHolder(ReminiscenceViewHolder holder, int position) {
 
+
+        String title = reminiscencesList.get(position).getTitle();
+        String imgpath = reminiscencesList.get(position).getPhotopath();
+        String author = reminiscencesList.get(position).getAuthor();
+
+
+
+        holder.txtTitle.setText(title);
+        holder.txtAuthor.setText(author);
+        holder.img.setBackground(Drawable.createFromPath(imgpath));
+
+
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        if(reminiscencesList == null){
+            return 0;
+        }
+        else{
+            return reminiscencesList.size();
+        }
+    }
+    @Override
+    public long getItemId(int arg0 ) {
+
+        return reminiscencesList.get(arg0).getId();
     }
 
     public class ReminiscenceViewHolder extends RecyclerView.ViewHolder {
+
+        TextView txtTitle;
+        TextView txtAuthor;
+        ImageView img;
+
         public ReminiscenceViewHolder(View itemView) {
             super(itemView);
+            txtTitle = (TextView) itemView.findViewById(R.id.reminiscence_title);
+            img = (ImageView) itemView.findViewById(R.id.reminiscence_image);
+
         }
     }
 }
