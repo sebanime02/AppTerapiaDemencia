@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".principal.cognitiveexercises.StimulationOneActivity"
+    tools:context=".principal.reminiscence.AddReminiscenceExercise"
     android:background="@color/white"
     android:layout_height="wrap_content">
 
@@ -77,45 +77,60 @@
                     android:textSize="@dimen/medium_text_size"
                     android:padding="@dimen/activity_horizontal_margin"
                     />
+                <android.support.design.widget.FloatingActionButton
 
-                <RelativeLayout
-                    android:id="@+id/foto_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center_horizontal"
-                    >
-
-                <ImageButton
-
-                    android:id="@+id/foto_usuario"
-                    android:layout_gravity="center"
+                    android:id="@+id/add_photo_reminiscence"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/addsmall"
+                    app:backgroundTint="@color/colorPrimaryDark"
+                    android:elevation="@dimen/activity_vertical_margin"
+                    android:tint="@color/white"
+                    android:layout_alignBottom="@id/foto_paciente"
+                    android:src="@mipmap/ic_camera_alt_black_24dp"
+                    android:onClick="openContextM"
+                    android:layout_gravity="center_horizontal"
+
 
                     />
 
+                <RelativeLayout
+                    android:id="@+id/foto_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+
+                    >
+                    <ImageView
+
+                        android:id="@+id/reminiscence_photo"
+                        android:layout_gravity="center"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        />
+
                 </RelativeLayout>
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+
 
                     <EditText
                         android:id="@+id/edt_reminiscense_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text"
+
                         android:paddingLeft="@dimen/activity_horizontal_margin"
                         android:paddingRight="@dimen/activity_horizontal_margin"
                         android:hint="@string/txt_reminiscence_description"
+                        android:lines="5"
+                        android:gravity="top|left"
+                        android:inputType="textMultiLine"
+                        android:scrollHorizontally="false"
 
+                        android:background="@color/gray_soft"
                         />
 
 
-                </android.support.design.widget.TextInputLayout>
 
 
                 <LinearLayout

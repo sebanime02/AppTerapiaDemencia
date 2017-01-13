@@ -138,6 +138,14 @@
             android:screenOrientation="landscape"
             />
 
+        <activity
+            android:name=".principal.reminiscence.DetailReminiscenceActivity"
+            android:label="Agregar Ejercicio de Reminiscencia"
+            android:parentActivityName=".principal.MainActivity"
+            android:theme="@style/MyMaterialTheme.Base"
+            android:screenOrientation="landscape"
+            />
+
         <fragment
             android:name=".principal.patientlist.PatientProfileFragment"
 

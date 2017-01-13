@@ -1,7 +1,5 @@
 package co.edu.unicauca.appterapiademencia.principal.reminiscence;
 
-import co.edu.unicauca.appterapiademencia.lib.EventBus;
-import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractor;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractorImplementation;
 
@@ -13,18 +11,17 @@ public class ReminiscencePresenterImplementation implements ReminiscenceListPres
 
     private ReminiscenceListView reminiscenceListView;
     private PrincipalListInteractor principalListInteractor;
-    private EventBus eventBus;
 
     public ReminiscencePresenterImplementation(ReminiscenceListView reminiscenceListView)
     {
         this.reminiscenceListView = reminiscenceListView;
         this.principalListInteractor = new PrincipalListInteractorImplementation();
-        this.eventBus = GreenRobotEventBus.getInstance();
+
     }
 
     @Override
     public void onCreate() {
-            eventBus.register(this);
+
     }
 
     @Override
@@ -34,7 +31,7 @@ public class ReminiscencePresenterImplementation implements ReminiscenceListPres
 
     @Override
     public void onDestroy() {
-        eventBus.unregister(this);
+
     }
 
     @Override

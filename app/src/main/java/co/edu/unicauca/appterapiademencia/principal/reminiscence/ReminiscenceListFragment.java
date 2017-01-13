@@ -17,10 +17,7 @@ import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.ReminiscenceAdapter;
-import co.edu.unicauca.appterapiademencia.adapters.TipAdapter;
 import co.edu.unicauca.appterapiademencia.domain.Reminiscence;
-import co.edu.unicauca.appterapiademencia.principal.tips.AddTipActivity;
-import co.edu.unicauca.appterapiademencia.principal.tips.TipListPresenterImplementation;
 
 /**
  * Created by SEBAS on 10/01/2017.
@@ -46,7 +43,7 @@ public class ReminiscenceListFragment extends Fragment implements ReminiscenceLi
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_reminiscence, container, false);
-        floatingActionButton = (FloatingActionButton) rootView.findViewById(R.id.add_tip);
+        floatingActionButton = (FloatingActionButton) rootView.findViewById(R.id.add_reminiscence);
         recycler = (RecyclerView) rootView.findViewById(R.id.reciclador);
 
         recycler.setHasFixedSize(true);
@@ -55,11 +52,18 @@ public class ReminiscenceListFragment extends Fragment implements ReminiscenceLi
         lLayout = new GridLayoutManager(getActivity(), 2);
         //recycler.setLayoutManager(gaggeredGridLayoutManager);
         recycler.setLayoutManager(lLayout);
-        getReminiscenceList();
-        adapter = new ReminiscenceAdapter(list, getActivity());
-        recycler.setAdapter(adapter);
+        try
+        {
+            getReminiscenceList();
+            adapter = new ReminiscenceAdapter(list, getActivity());
+            recycler.setAdapter(adapter);
 
-        registerForContextMenu(recycler);
+            registerForContextMenu(recycler);
+        }catch (Exception e)
+        {
+
+        }
+
 
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +111,22 @@ public class ReminiscenceListFragment extends Fragment implements ReminiscenceLi
     @Override
     public void onResume() {
         super.onResume();
+        try {
+            getReminiscenceList();
+            recycler.setHasFixedSize(true);
+            //LManager = new LinearLayoutManager(getActivity().getApplicationContext());
+            //gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
+            lLayout = new GridLayoutManager(getActivity(), 2);
+            //recycler.setLayoutManager(LManager);
+            recycler.setLayoutManager(lLayout);
+            adapter = new ReminiscenceAdapter(list, getActivity());
+            recycler.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            //callListenerText();
+        } catch (Exception e) {
+            adapter.notifyDataSetChanged();
+        }
+
     }
 
 

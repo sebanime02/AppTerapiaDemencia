@@ -1,8 +1,10 @@
 package co.edu.unicauca.appterapiademencia.adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.Reminiscence;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
+import co.edu.unicauca.appterapiademencia.principal.reminiscence.DetailReminiscenceActivity;
 
 /**
  * Created by SEBAS on 10/01/2017.
@@ -40,7 +43,7 @@ public class ReminiscenceAdapter extends RecyclerView.Adapter<ReminiscenceAdapte
 
     @Override
     public ReminiscenceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cognitive_exercise, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_reminiscence, parent, false);
         return new ReminiscenceAdapter.ReminiscenceViewHolder(view);
     }
 
@@ -56,6 +59,7 @@ public class ReminiscenceAdapter extends RecyclerView.Adapter<ReminiscenceAdapte
 
         holder.txtTitle.setText(title);
         holder.txtAuthor.setText(author);
+
         holder.img.setBackground(Drawable.createFromPath(imgpath));
 
 
@@ -76,7 +80,7 @@ public class ReminiscenceAdapter extends RecyclerView.Adapter<ReminiscenceAdapte
         return reminiscencesList.get(arg0).getId();
     }
 
-    public class ReminiscenceViewHolder extends RecyclerView.ViewHolder {
+    public class ReminiscenceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView txtTitle;
         TextView txtAuthor;
@@ -84,9 +88,23 @@ public class ReminiscenceAdapter extends RecyclerView.Adapter<ReminiscenceAdapte
 
         public ReminiscenceViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             txtTitle = (TextView) itemView.findViewById(R.id.reminiscence_title);
             img = (ImageView) itemView.findViewById(R.id.reminiscence_image);
+            txtAuthor = (TextView) itemView.findViewById(R.id.reminiscence_author);
 
+        }
+
+        @Override
+        public void onClick(View view) {
+
+                //Toast.makeText(view.getContext(), "position = " + PatientListAdapter.this.getItemId(getPosition()), Toast.LENGTH_SHORT).show();
+                Log.e("id del card",""+ReminiscenceAdapter.this.getItemId(getPosition()));
+                Intent intent=new Intent(activity,DetailReminiscenceActivity.class);
+                intent.putExtra("idreminiscence",ReminiscenceAdapter.this.getItemId(getPosition()));
+                view.getContext().startActivity(intent);
+
+                activity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
         }
     }
 }

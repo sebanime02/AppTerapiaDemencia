@@ -70,4 +70,10 @@
 
     <dimen name="height_demo">100dp</dimen>
     <dimen name="height_demo_image">50dp</dimen>
+
+
+
+    <!--REMINISCENCE EXERCISE -->
+    <dimen name="height_reminiscence_photo">400dp</dimen>
+    <dimen name="size_dementia">40dp</dimen>
 </resources>

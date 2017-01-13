@@ -84,6 +84,9 @@
     <string name="txt_tips_cuidador">Aqui puedes ver los Tips o recomendaciones que han dejado tus supervisores</string>
 
 
+    <!--REMINISCENCES -->
+    <string name="dialog_reminiscence_empty_title">Debes Especificar Un Título</string>
+
     <!-- PATIENT LIST -->
 
 
@@ -393,10 +396,20 @@
 
 
     <!--ADD REMINISCENCE -->
-    <string name="txt_reminiscence_instructions">Creando un Nuevo Ejercicio Para las Terapias de Reminiscencia</string>
+    <string name="txt_reminiscence_instructions">Creando un Nuevo Ejercicio Para las Terapias de Reminiscencia, también puedes modificarlos</string>
     <string name="txt_reminiscence_title">1. Introduzca el TÍtulo de este nuevo Ejercicio de Reminiscencia</string>
     <string name="txt_reminiscence_photo">2. Seleccione un recuerdo Fotográfico</string>
     <string name="txt_reminiscence_description">3. Agregue La Descripción del Recuerdo Fotográfico</string>
+    <string name="txt_carer_type">Cuidador Anónimo</string>
+    <string name="txt_preview">Imagen Preva del Ejercicio:</string>
+
+
+    <!--DETAIL REMINISCENCE -->
+    <string name="txt_detail_reminiscence">Detalle Ejercicio de Reminiscencias</string>
+    <string name="txt_back_reminiscence">Volver al Menu Principal</string>
+    <string name="tab_edit">Editar</string>
+    <string name="tab_erase">Borrar</string>
+
 
 
 

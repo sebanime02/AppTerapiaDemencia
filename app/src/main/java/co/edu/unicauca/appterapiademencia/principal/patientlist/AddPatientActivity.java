@@ -25,7 +25,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -125,8 +124,6 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         rdgSexo = (RadioGroup) findViewById(R.id.rdgSexo);
         rdgSexoFemenino = (RadioButton) findViewById(R.id.rdgSexoFemenino);
         rdgSexoMasculino = (RadioButton) findViewById(R.id.rdgSexoMasculino);
-
-
 
         containerfoto = (RelativeLayout) findViewById(R.id.foto_container);
         img = (ImageView) findViewById(R.id.foto_paciente);
@@ -346,10 +343,13 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
             btn_fecha.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.red_dark));
 
             Log.e("Agregar paciente","faltan campos obligatorios");
-        }else {
-
+        }
+        else
+        {
 
             queryBuilder = GreenDaoHelper.getInstance().getPatientDao().queryBuilder();
+
+
             List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(Long.parseLong(edt_id.getText().toString()))).limit(1).list();
             //.limit(1).list();
 
@@ -359,8 +359,8 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
             }
 
 
-
-            if (actualizar.equals("actualizar")) {
+            if (actualizar.equals("actualizar"))
+            {
                 Log.e("Agregar paciente","Listo para enviar los actualizados");
                 paciente = new String[9];
                 checks = new boolean[2];
@@ -394,7 +394,9 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
                 startActivity(ir_reg);
                 overridePendingTransition(R.anim.left_in, R.anim.left_out);
-            } else {
+            }
+            else
+            {
                 if (patientList.size()==0)
                 {
                     Log.e("Agregar paciente","La cedula esta libre");

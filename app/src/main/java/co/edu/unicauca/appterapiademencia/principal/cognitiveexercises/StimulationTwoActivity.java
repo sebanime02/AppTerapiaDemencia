@@ -1,10 +1,7 @@
 package co.edu.unicauca.appterapiademencia.principal.cognitiveexercises;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,27 +9,24 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.roughike.bottombar.BottomBar;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.ExerciseAdapter;
-import co.edu.unicauca.appterapiademencia.adapters.PatientListAdapter;
 import co.edu.unicauca.appterapiademencia.domain.Exercise;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.Rutina;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.RutinaDao;
-import co.edu.unicauca.appterapiademencia.login.LoginActivity;
-import co.edu.unicauca.appterapiademencia.principal.MainActivity;
-import co.edu.unicauca.appterapiademencia.principal.patientlist.AddPatientActivity;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientProfileActivity;
 
 /**
@@ -53,6 +47,8 @@ public class StimulationTwoActivity extends AppCompatActivity {
     private Bundle bundle;
     private Toolbar toolbar;
     private ActionBar actionBar;
+    private boolean tabRestricter = false;
+    private BottomBar bottomBar;
 
 
     public StimulationTwoActivity()
@@ -81,6 +77,12 @@ public class StimulationTwoActivity extends AppCompatActivity {
         btnAddExercise = (FloatingActionButton) findViewById(R.id.add_exercise);
         recycler = (RecyclerView) findViewById(R.id.recicladorStimulation2);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
+         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+
+
+
 
         setSupportActionBar(toolbar);
 
@@ -112,6 +114,50 @@ public class StimulationTwoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        /*
+        bottomBar.setSelected(false);
+
+
+        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelected(@IdRes int tabId) {
+                Intent intent;
+                switch (tabId)
+                {
+
+                    case R.id.tab_add:
+
+                        bottomBar.getCurrentTab().setSelected(true);
+                        intent = new Intent(getApplicationContext(),AddCognitiveExercise.class);
+                        intent.putExtra("idrutina",idrutina);
+                        intent.putExtra("idpatient",idpatient);
+                        startActivity(intent);
+                        break;
+                    case R.id.tab_finish:
+                        if(tabRestricter)
+                        {
+                            Rutina rutina = helper.getRutina(idrutina);
+                            rutina.setState(0);
+                            RutinaDao rutinaDao = helper.getRutinaDao();
+                            rutinaDao.update(rutina);
+                            goToProfile();
+                        }
+                        else
+                        {
+                            tabRestricter=true;
+                            bottomBar.getCurrentTab().setSelected(true);
+                        }
+
+                        break;
+                }
+            }
+        });
+
+        */
+
+
 
     }
 

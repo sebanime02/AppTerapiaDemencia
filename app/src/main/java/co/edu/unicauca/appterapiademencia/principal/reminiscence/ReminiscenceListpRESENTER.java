@@ -12,5 +12,4 @@ public interface ReminiscenceListPresenter
     void onDestroy();
     void getReminiscence();
     void onEventMainThread();
-
 }
