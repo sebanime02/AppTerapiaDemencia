@@ -20,6 +20,7 @@ public interface PatientProfilePresenter {
     void onEventMainThread(BlessedEvent event);
     void onEventMainThread(BlessedGraphEvent event);
     void getFastScore(Long id);
+    void getMMSEScore(Long id);
     void getDowntonScore(Long id);
     void getLawtonScore(Long id);
     void getBlessedData(Long id,int mode);

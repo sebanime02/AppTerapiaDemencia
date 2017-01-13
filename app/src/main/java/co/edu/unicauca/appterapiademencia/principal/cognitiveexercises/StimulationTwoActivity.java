@@ -2,10 +2,12 @@ package co.edu.unicauca.appterapiademencia.principal.cognitiveexercises;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -14,8 +16,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.roughike.bottombar.BottomBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +48,8 @@ public class StimulationTwoActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ActionBar actionBar;
     private boolean tabRestricter = false;
-    private BottomBar bottomBar;
-
+    private GridLayoutManager lLayout;
+    private BottomNavigationView bottomBar;
 
     public StimulationTwoActivity()
     {
@@ -77,9 +77,11 @@ public class StimulationTwoActivity extends AppCompatActivity {
         btnAddExercise = (FloatingActionButton) findViewById(R.id.add_exercise);
         recycler = (RecyclerView) findViewById(R.id.recicladorStimulation2);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        bottomBar = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
 
-         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+
+        bottomBar = (BottomNavigationView) findViewById(R.id.bottomBar);
 
 
 
@@ -93,8 +95,10 @@ public class StimulationTwoActivity extends AppCompatActivity {
         Log.e("stimulation 2"," Total numero ejercicios "+helper.getExerciseCount()+"");
 
         recycler.setHasFixedSize(true);
-        LManager = new LinearLayoutManager(getApplicationContext());
-        recycler.setLayoutManager(LManager);
+        lLayout = new GridLayoutManager(this, 4);
+        //recycler.setLayoutManager(gaggeredGridLayoutManager);
+        recycler.setLayoutManager(lLayout);
+
 
         try {
             exerciseList = getExercises(idrutina);
@@ -102,6 +106,7 @@ public class StimulationTwoActivity extends AppCompatActivity {
         }catch (Exception e){}
         adapter = new ExerciseAdapter(exerciseList, this);
          recycler.setAdapter(adapter);
+
 
 
 
@@ -116,46 +121,39 @@ public class StimulationTwoActivity extends AppCompatActivity {
         });
 
 
-        /*
-        bottomBar.setSelected(false);
 
-
-        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+        bottomBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onTabSelected(@IdRes int tabId) {
-                Intent intent;
-                switch (tabId)
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId())
                 {
-
-                    case R.id.tab_add:
-
-                        bottomBar.getCurrentTab().setSelected(true);
-                        intent = new Intent(getApplicationContext(),AddCognitiveExercise.class);
+                    case R.id.action_add:
+                        Intent intent = new Intent(getApplicationContext(),AddCognitiveExercise.class);
                         intent.putExtra("idrutina",idrutina);
                         intent.putExtra("idpatient",idpatient);
                         startActivity(intent);
                         break;
-                    case R.id.tab_finish:
-                        if(tabRestricter)
-                        {
-                            Rutina rutina = helper.getRutina(idrutina);
-                            rutina.setState(0);
-                            RutinaDao rutinaDao = helper.getRutinaDao();
-                            rutinaDao.update(rutina);
-                            goToProfile();
-                        }
-                        else
-                        {
-                            tabRestricter=true;
-                            bottomBar.getCurrentTab().setSelected(true);
-                        }
+                    case R.id.action_finish:
 
+                        Log.e("stimulation 2","Presiono el menu finish");
+                        Rutina rutina = helper.getRutina(idrutina);
+                        rutina.setState(0);
+                        RutinaDao rutinaDao = helper.getRutinaDao();
+                        rutinaDao.update(rutina);
+                        goToProfile();
                         break;
                 }
+
+                // handle desired action here
+                // One possibility of action is to replace the contents above the nav bar
+                // return true if you want the item to be displayed as the selected item
+                return true;
             }
         });
 
-        */
+
+
 
 
 

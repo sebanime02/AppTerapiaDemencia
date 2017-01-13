@@ -21,6 +21,8 @@ public interface PatientProfileView  {
     void getDowntonScore(Long id);
     void showDowntonScore(int score,String comentario);
     void getLawtonScore(Long id);
+    void getMMSEScore(Long id);
+    void showMMSEScore(String score,String date);
     void showLawtonScore(int score,String comentario);
     void graphBlessedScore(List<BlessedScoreAverage> blessedScoreAverageList);
     void graphLawtonScore();

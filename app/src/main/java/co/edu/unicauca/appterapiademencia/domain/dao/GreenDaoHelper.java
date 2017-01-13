@@ -1438,11 +1438,31 @@ public class GreenDaoHelper {
 
     public Rutina getLastRutina(Long idpatient)
     {
-        List<Rutina> rutinaList;
+        List<Rutina> rutinaList1;
+        List<Rutina> rutinaList2;
+        Rutina lastrutina;
+
         QueryBuilder<Rutina> rutinaqueryBuilder = getRutinaDao().queryBuilder();
 
-        rutinaList = rutinaqueryBuilder.where(RutinaDao.Properties.PatientId.eq(idpatient)).orderAsc(RutinaDao.Properties.Id).limit(1).list();
-        return  rutinaList.get(0);
+        rutinaList1 = rutinaqueryBuilder.where(RutinaDao.Properties.PatientId.eq(idpatient)).orderDesc(RutinaDao.Properties.Id).list();
+        rutinaList2 = rutinaqueryBuilder.where(RutinaDao.Properties.PatientId.eq(idpatient)).orderAsc(RutinaDao.Properties.Id).list();
+
+        if(rutinaList1.get(0).getId()>rutinaList2.get(0).getId())
+        {
+            lastrutina = rutinaList1.get(0);
+
+        }else if(rutinaList1.get(0).getId()<rutinaList2.get(0).getId())
+        {
+            lastrutina = rutinaList2.get(0);
+        }
+        else
+        {
+            lastrutina = rutinaList1.get(0);
+
+        }
+
+        return  lastrutina;
+
 
     }
 
@@ -1506,7 +1526,7 @@ public class GreenDaoHelper {
         List<Reminiscence> reminiscenceList;
         QueryBuilder<Reminiscence> reminiscenceQueryBuilder = getReminiscenceDao().queryBuilder();
         reminiscenceList = reminiscenceQueryBuilder.where(ReminiscenceDao.Properties.Id.eq(idreminiscence)).limit(1).list();
-        return  reminiscenceList.get(0);
+        return reminiscenceList.get(0);
 
     }
 
@@ -1517,6 +1537,36 @@ public class GreenDaoHelper {
         QueryBuilder<Reminiscence> reminiscenceQueryBuilder = getReminiscenceDao().queryBuilder();
         reminiscenceList = reminiscenceQueryBuilder.list();
         return  reminiscenceList;
+    }
+
+    public HistoricScore getMMSELastScore()
+    {
+        List<HistoricScore> historicScoreList1,historicScoreList2;
+        HistoricScore historic;
+        QueryBuilder<HistoricScore> historicScoreQueryBuilder = getHistoricScoreDao().queryBuilder();
+
+        historicScoreList1 = historicScoreQueryBuilder.where(HistoricScoreDao.Properties.Scale.eq("MMSE")).orderAsc(HistoricScoreDao.Properties.Id).limit(1).list();
+        historicScoreList2 = historicScoreQueryBuilder.where(HistoricScoreDao.Properties.Scale.eq("MMSE")).orderDesc(HistoricScoreDao.Properties.Id).limit(1).list();
+
+
+        if(historicScoreList1.get(0).getId()>historicScoreList2.get(0).getId())
+        {
+            historic = historicScoreList1.get(0);
+        }else if(historicScoreList1.get(0).getId()<historicScoreList2.get(0).getId())
+        {
+            historic = historicScoreList2.get(0);
+
+        }
+        else
+        {
+            historic = historicScoreList1.get(0);
+
+        }
+
+
+        return  historic;
+
+
     }
 
 

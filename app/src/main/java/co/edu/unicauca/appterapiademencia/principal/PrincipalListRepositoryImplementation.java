@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import co.edu.unicauca.appterapiademencia.domain.HistoricScore;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.Reminiscence;
@@ -305,6 +306,11 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
 
         return Score;
 
+    }
+
+    @Override
+    public HistoricScore getMMSEScore(Long id) {
+        return helper.getMMSELastScore();
     }
 
     @Override

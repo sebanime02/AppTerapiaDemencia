@@ -358,6 +358,7 @@
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/add_exercise"
+                        android:visibility="invisible"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="18dp"
@@ -379,15 +380,16 @@
 
     </FrameLayout>
 
-    <com.roughike.bottombar.BottomBar
+    <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:bb_tabXmlResource="@xml/bottombar_rutina"
-        android:background="@color/colorPrimary"
-        app:bb_activeTabColor="@color/white"
-        app:bb_inActiveTabColor="@color/white"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/bottom_navigation_stimulation2"
+
         />
 
 </RelativeLayout>

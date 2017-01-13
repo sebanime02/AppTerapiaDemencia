@@ -2,6 +2,7 @@ package co.edu.unicauca.appterapiademencia.principal.patientprofile;
 
 import android.util.Log;
 
+import co.edu.unicauca.appterapiademencia.domain.HistoricScore;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.events.BlessedEvent;
 import co.edu.unicauca.appterapiademencia.events.BlessedGraphEvent;
@@ -284,6 +285,32 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
 
 
             patientProfileView.showFastScore(score,etapa,caracteristica,edadMental,mec,gds);
+        }
+    }
+
+    @Override
+    public void getMMSEScore(Long id) {
+
+        int score;
+        int day;
+        int month;
+        int year;
+        String fecha;
+        HistoricScore historicScore;
+
+
+        try {
+             historicScore = principalListInteractor.getMMSEScore(id);
+             day = historicScore.getDay();
+             month=historicScore.getMonth()+1;
+            year = historicScore.getYear();
+             patientProfileView.showMMSEScore(historicScore.getValue().toString(),day+"-"+month+"-"+year);
+
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            patientProfileView.showMMSEScore("Sin Valores MMSE","");
+
         }
     }
 

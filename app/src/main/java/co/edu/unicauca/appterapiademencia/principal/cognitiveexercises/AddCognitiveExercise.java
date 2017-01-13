@@ -239,25 +239,29 @@ public class AddCognitiveExercise extends AppCompatActivity {
                     imgDemo.setBackgroundResource(R.drawable.popayanimagen);
 
                 }
+                else
+                {
 
-                        try
-                        {
-                            imgDemo.setBackground(Drawable.createFromPath(reminiscence.getPhotopath()));
+                    try
+                    {
+                        imgDemo.setBackground(Drawable.createFromPath(reminiscence.getPhotopath()));
 
 
-                        } catch (Exception e) {
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        try {
+                            imgDemo.setImageURI(Uri.parse(reminiscence.getPhotopath()));
+
+                        } catch (Exception e2) {
                             e.printStackTrace();
-                            try {
-                                imgDemo.setImageURI(Uri.parse(reminiscence.getPhotopath()));
 
-                            } catch (Exception e2) {
-                                e.printStackTrace();
-
-                                imgDemo.setBackgroundResource(Integer.parseInt(reminiscence.getPhotopath()));
-
-                            }
+                            imgDemo.setBackgroundResource(Integer.parseInt(reminiscence.getPhotopath()));
 
                         }
+
+                    }
+                }
+
 
 
 
@@ -273,25 +277,30 @@ public class AddCognitiveExercise extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int var_nivel;
-                int var_taller;
+                int var_nivel=0;
+                int var_taller =0;
+                String txtTaller ="";
+
 
 
                 if(modeTherapy==2)
                 {
                     var_nivel = spiTaller.getSelectedItemPosition() +1;
                     var_taller = spiTaller.getSelectedItemPosition();
+                    txtTaller = adaptertalleres.getItem(var_taller).toString();
 
-                }else
-                {
-                    var_taller = spiReminiscencia.getSelectedItemPosition()+1;
+                }
+
+                if(modeTherapy==1){
+                    var_taller = spiReminiscencia.getSelectedItemPosition();
                     var_nivel = 1;
+                   txtTaller = adapterreminiscencias.getItem(var_taller).toString();
                 }
 
 
 
 
-                String txtTaller = adaptertalleres.getItem(var_taller).toString();
+                Log.e("Agregar Exer","Tipo terapia "+modeTherapy);
 
                 Log.e("Agregar Exer","idrutina "+idrutina);
                 Log.e("Agregar Exer","Taller "+txtTaller);

@@ -3,11 +3,8 @@ package co.edu.unicauca.appterapiademencia.principal.cognitiveexercises;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.system.ErrnoException;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,13 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import co.edu.unicauca.appterapiademencia.R;
-import co.edu.unicauca.appterapiademencia.domain.Exercise;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.Rutina;
 import co.edu.unicauca.appterapiademencia.domain.User;
@@ -241,6 +232,19 @@ public class GraphicsExercises extends Fragment{
         {
             lastRutina = daoHelper.getLastRutina(idsistema);
             containerLastRutina.setVisibility(View.VISIBLE);
+            if(lastRutina.getState()==0)
+            {
+                txtSate.setText(getResources().getString(R.string.txt_state_0));
+            }else if(lastRutina.getState()==1)
+            {
+                txtSate.setText(getResources().getString(R.string.txt_state_1));
+
+            }else
+            {
+                txtSate.setText(getResources().getString(R.string.txt_state_2));
+
+            }
+
             txtSate.setText(getResources().getString(R.string.txt_ultima_rutina_estado)+" "+lastRutina.getState());
             txtStarter.setText(getResources().getString(R.string.txt_ultima_rutina_autor)+" "+lastRutina.getStartername());
             txtDate.setText(getResources().getString(R.string.txt_ultima_rutina_fecha)+" "+lastRutina.getDatestart());

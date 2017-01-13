@@ -1,7 +1,10 @@
 package co.edu.unicauca.appterapiademencia.adapters;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +15,10 @@ import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.Exercise;
+import co.edu.unicauca.appterapiademencia.domain.Reminiscence;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
+import co.edu.unicauca.appterapiademencia.principal.cognitiveexercises.ReminiscenceExerciseActivity;
 
 /**
  * Created by SEBAS on 28/12/2016.
@@ -53,6 +58,15 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         int nivel = exerciseList.get(position).getLevel();
         int estado = exerciseList.get(position).getState();
         int therapy = exerciseList.get(position).getTerapy();
+
+        try{
+         Reminiscence reminiscence =  helper.getReminiscence(taller);
+            holder.imgExercise.setImageDrawable(Drawable.createFromPath(reminiscence.getPhotopath()));
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
 
 
 
@@ -107,7 +121,17 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
 
         public ExerciseViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.e("id del card",""+ExerciseAdapter.this.getItemId(getPosition()));
+                    Intent intent=new Intent(activity,ReminiscenceExerciseActivity.class);
+                    intent.putExtra("idexercise",ExerciseAdapter.this.getItemId(getPosition()));
+                    view.getContext().startActivity(intent);
 
+                    activity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                }
+            });
             txtType = (TextView) itemView.findViewById(R.id.exercise_type);
             txtLevel = (TextView) itemView.findViewById(R.id.exercise_level);
             txtState = (TextView) itemView.findViewById(R.id.exercise_state);

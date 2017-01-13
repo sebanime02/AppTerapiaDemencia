@@ -1,10 +1,8 @@
 package co.edu.unicauca.appterapiademencia.principal.cognitiveexercises;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,11 +13,13 @@ import android.widget.EditText;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import java.util.concurrent.ExecutionException;
+import java.util.Calendar;
 
 import co.edu.unicauca.appterapiademencia.R;
+import co.edu.unicauca.appterapiademencia.domain.HistoricScore;
 import co.edu.unicauca.appterapiademencia.domain.Rutina;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
+import co.edu.unicauca.appterapiademencia.domain.dao.HistoricScoreDao;
 import co.edu.unicauca.appterapiademencia.domain.dao.RutinaDao;
 
 /**
@@ -40,13 +40,17 @@ public class StimulationOneActivity extends AppCompatActivity {
     private Long idpatient,idrutina;
     private Rutina rutina;
     private RutinaDao rutinaDao;
+    private HistoricScoreDao historicScoreDao;
     private int numberMec;
+    private Calendar calendar;
+    private int year,month,day;
 
 
     public StimulationOneActivity()
     {
         daoHelper = GreenDaoHelper.getInstance();
         rutinaDao = daoHelper.getRutinaDao();
+        historicScoreDao = daoHelper.getHistoricScoreDao();
 
 
         //preferences = getSharedPreferences("appdata", Context.MODE_PRIVATE);
@@ -67,6 +71,10 @@ public class StimulationOneActivity extends AppCompatActivity {
         btnGuardarMecInicial = (Button) findViewById(R.id.btn_guardar_mec_inicial);
         edtMecComentario = (EditText) findViewById(R.id.edt_mec_inicial_comentario);
 
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
 
 
         try
@@ -118,6 +126,7 @@ public class StimulationOneActivity extends AppCompatActivity {
                 rutina = daoHelper.getRutina(idrutina);
 
 
+
                 if(edtMecInicial.getText().toString()=="")
                 {
 
@@ -135,6 +144,7 @@ public class StimulationOneActivity extends AppCompatActivity {
                     setMec(rutina,1);
 
 
+
                 }
 
 
@@ -148,12 +158,17 @@ public class StimulationOneActivity extends AppCompatActivity {
 
    public void setMec(Rutina rutina,int indicator)
    {
+       HistoricScore historic = new HistoricScore(null,idpatient,"MMSE", Double.parseDouble(edtMecInicial.getText().toString()) ,year,month,day);
        rutina.setState(2);
        if(indicator==1)
        {
            if(edtMecComentario.getText().toString()!="")
            {
                rutina.setMecinicialcomentario(edtMecComentario.getText().toString());
+               historicScoreDao.insert(historic);
+               rutinaDao.update(rutina);
+               historicScoreDao.update(historic);
+
 
            }
        }
@@ -162,7 +177,7 @@ public class StimulationOneActivity extends AppCompatActivity {
            new MaterialDialog.Builder(getApplicationContext()).title(getResources().getString(R.string.txt_mec_incongruente_title)).content(R.string.txt_mec_incongruente_content).positiveText(R.string.dialog_succes_agree).icon(getResources().getDrawable(R.drawable.sadface)).show();
 
        }
-       rutinaDao.update(rutina);
+
        intent = new Intent(getApplicationContext(),StimulationTwoActivity.class);
        intent.putExtra("idpatient",idpatient);
        intent.putExtra("idrutina",idrutina);

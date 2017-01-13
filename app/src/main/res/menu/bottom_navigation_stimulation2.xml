@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_finish"
+        android:enabled="true"
+        android:icon="@mipmap/ic_finish"
+        android:title="@string/tab_finish"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_add"
+        android:enabled="true"
+        android:icon="@mipmap/ic_note_add_black_24dp"
+        android:title="@string/tab_add"
+        app:showAsAction="ifRoom" />
+
+
+</menu>

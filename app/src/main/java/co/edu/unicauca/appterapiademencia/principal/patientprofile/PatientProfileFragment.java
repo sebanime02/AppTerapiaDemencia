@@ -61,7 +61,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private String sexo,escolaridad,institucionalizado,eps,sindromes,antecedentes,observaciones,vision,escritura,dibujo;
     private int visionState,escrituraState,dibujoState;
     private TextView txtSexo,txtEscolaridad,txtInstitucionalizado,txtEps,txtSindromes,txtAntecedentes,txtObservaciones,txtVision,txtEscritura,txtDibujo;
-    private TextView txtPuntajeBlessed,txtComentarioBlessed,txtPuntajeFast,txtComentarioFast,txtPuntajeDownton,txtComentarioDownton,txtPuntajeLawton,txtComentarioLawton;
+    private TextView txtPuntajeBlessed,txtPuntajeMMSE,txtDateMMSE,txtComentarioBlessed,txtPuntajeFast,txtComentarioFast,txtPuntajeDownton,txtComentarioDownton,txtPuntajeLawton,txtComentarioLawton;
     private LinearLayout containerBlessed;
     private Long identity;
     private int imageSize;
@@ -76,9 +76,12 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private String blessedColor;
     private String fastCount;
     private String lawtonCount;
+    private String mmseCount;
     private String comentarioLawton;
     private String comentarioDownton;
     private String puntajeDownton;
+    private String puntajeMMSE;
+    private String fechaMMSE;
     private Long idsistema;
     private String etapa,caracteristicas,edadMental,gds,mec;
     private BarChart blessedChart;
@@ -139,9 +142,12 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtComentarioLawton = (TextView) view.findViewById(R.id.comentarioLawton);
         txtPuntajeDownton = (TextView) view.findViewById(R.id.puntajeDowntown);
         txtComentarioDownton = (TextView) view.findViewById(R.id.comentarioDowntown);
+        txtPuntajeMMSE = (TextView) view.findViewById(R.id.mec_value);
+        txtDateMMSE = (TextView) view.findViewById(R.id.mec_date);
          blessedChart = (BarChart) view.findViewById(R.id.blessedChart);
         spiBlessed = (Spinner) view.findViewById(R.id.spi_blessed);
         btngoMoreStatistics = (Button) view.findViewById(R.id.btnMoreStatistics);
+
 
 
 
@@ -181,6 +187,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         getBlessedScore(idsistema);
         getFastScore(idsistema);
         getLawtonScore(idsistema);
+        getMMSEScore(idsistema);
 
         new Thread(new Runnable() {
 
@@ -280,6 +287,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         getFastScore(idsistema);
         getLawtonScore(idsistema);
         getDowntonScore(idsistema);
+        getMMSEScore(idsistema);
 
         //patientProfilePresenter.getBlessedData(idsistema);
 
@@ -323,6 +331,8 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtComentarioLawton.setText(this.comentarioLawton);
         txtPuntajeDownton.setText(this.puntajeDownton);
         txtComentarioDownton.setText(this.comentarioDownton);
+        txtPuntajeMMSE.setText(this.puntajeMMSE);
+        txtDateMMSE.setText("Fecha :"+this.fechaMMSE);
 
         txtComentarioFast.setText("Etapa: "+etapa+"\nCaracteristica: "+caracteristicas+" \nEdad Mental: "+edadMental+" \nGDS: "+gds+" \nMEC: "+mec);
 
@@ -513,6 +523,17 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     @Override
     public void getLawtonScore(Long id) {
         patientProfilePresenter.getLawtonScore(id);
+    }
+
+    @Override
+    public void getMMSEScore(Long id) {
+        patientProfilePresenter.getMMSEScore(id);
+    }
+
+    @Override
+    public void showMMSEScore(String value,String date) {
+        this.puntajeMMSE = value;
+        this.fechaMMSE = date;
     }
 
     @Override

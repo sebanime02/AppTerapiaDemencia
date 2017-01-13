@@ -46,6 +46,7 @@
     <dimen name="txt_patient_profile_size_large">22sp</dimen>
     <dimen name="txt_patient_profile_size_medium">18sp</dimen>
     <dimen name="height_textview_container_limitations">40dp</dimen>
+    <dimen name="extra_large_text_size">40dp</dimen>
 
     <!-- NOTE LIST-->
     <dimen name="height_type_image">80dp</dimen>
@@ -70,7 +71,7 @@
 
     <dimen name="height_demo">100dp</dimen>
     <dimen name="height_demo_image">50dp</dimen>
-
+    <dimen name="little_text_size">14dp</dimen>
 
 
     <!--REMINISCENCE EXERCISE -->

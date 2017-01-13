@@ -102,7 +102,7 @@ public class AddReminiscenceExercise extends AppCompatActivity {
             try
             {
                 registerForContextMenu(imgbtn);
-                idreminiscence =Long.parseLong(bundle.getString("idreminiscence"));
+                idreminiscence =bundle.getLong("idreminiscence");
                 Log.e("Add Reminiscence","el id es "+idreminiscence);
 
                 queryBuilder= reminiscenceDao.queryBuilder();
@@ -163,7 +163,7 @@ public class AddReminiscenceExercise extends AppCompatActivity {
                 queryBuilder = daoHelper.getReminiscenceDao().queryBuilder();
 
                 List<Reminiscence> reminiscenceList1 = queryBuilder.where(ReminiscenceDao.Properties.Id.eq(idreminiscence)).limit(1).list();
-                Reminiscence reminiscence = reminiscenceList.get(0);
+                Reminiscence reminiscence = reminiscenceList1.get(0);
 
                 reminiscence.setDescription(edtDescription.getText().toString());
                 reminiscence.setTitle(edtTitle.getText().toString());

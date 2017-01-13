@@ -69,6 +69,13 @@
                 android:paddingTop="20dp"
                 android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    >
+
                 <TextView
                     android:text="Físicas"
                     android:layout_width="wrap_content"
@@ -111,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:prompt="@string/spinner_vision"/>
-
+                </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -130,9 +137,8 @@
                 <TextView
                     android:text="1. Incapacidad para realizar  tareas domesticas"
 
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-
-
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:id="@+id/textView8" />
 
 
                 <RadioGroup android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/rdgTareasDomesticas">

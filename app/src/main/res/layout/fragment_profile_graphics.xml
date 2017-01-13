@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:text="@string/txt_rutina_graficas"
         android:textStyle="bold"
+        android:visibility="gone"
         />
 
     <LinearLayout
@@ -37,6 +38,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="2"
+        android:visibility="gone"
 
         >
 
@@ -59,15 +61,7 @@
             />
     </LinearLayout>
 
-        <Button
-            android:layout_width="@dimen/size_historial_button"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_historial"
-            android:background="@color/colorPrimaryDark"
-            android:textColor="@color/white"
-            android:layout_gravity="center_horizontal"
 
-            />
 
     </LinearLayout>
     <LinearLayout
@@ -154,18 +148,37 @@
 
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btnNewRutina"
-            android:layout_width="@dimen/size_historial_button"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/material_red"
-            android:textColor="@color/white"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:text="@string/btn_nuevo"
+            android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            >
+            <Button
+                android:id="@+id/btnNewRutina"
+                android:layout_width="@dimen/size_historial_button"
+                android:layout_height="wrap_content"
+                android:background="@color/material_red"
+                android:textColor="@color/white"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:text="@string/btn_nuevo"
+                android:layout_gravity="center_horizontal"
 
-            />
+                />
+            <Button
+                android:layout_width="@dimen/size_historial_button"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_historial"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+
+                />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 

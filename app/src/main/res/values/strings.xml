@@ -117,7 +117,7 @@
     <string name="blessed_graph_title_year">Demencia Senil, Últimos 5 Años</string>
     <string name="lawton_graph_title_year">AIVD, Últimos 5 Años</string>
 
-
+    <string name="txt_last_mec">Último Valor MINIMENTAL (MMSE) Ingresado</string>
     <string name="blessed_more_statistics">Ver Mas Estadísticas</string>
 
 
@@ -393,7 +393,9 @@
     <!-- REMINISCENCE FRAGMENT -->
 
     <string name="txt_info_reminiscence">Aqui Puedes Agregar Ejercicios de Reminiscencia,para\nposteriormente hacer tus terapias con pacientes</string>
-
+    <string name="txt_state_0">Finalizado</string>
+    <string name="txt_state_1">Test MMSE Inicial</string>
+    <string name="txt_state_2">Rutina Activa</string>
 
     <!--ADD REMINISCENCE -->
     <string name="txt_reminiscence_instructions">Creando un Nuevo Ejercicio Para las Terapias de Reminiscencia, también puedes modificarlos</string>
@@ -404,12 +406,14 @@
     <string name="txt_preview">Imagen Preva del Ejercicio:</string>
 
 
+
     <!--DETAIL REMINISCENCE -->
     <string name="txt_detail_reminiscence">Detalle Ejercicio de Reminiscencias</string>
     <string name="txt_back_reminiscence">Volver al Menu Principal</string>
     <string name="tab_edit">Editar</string>
     <string name="tab_erase">Borrar</string>
-
+    <string name="tab_finish">Finalizar Rutina</string>
+    <string name="tab_add">Agregar Ejercicio</string>
 
 
 

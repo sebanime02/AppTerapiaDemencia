@@ -4,6 +4,7 @@ import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.List;
 
+import co.edu.unicauca.appterapiademencia.domain.HistoricScore;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.Reminiscence;
@@ -39,6 +40,7 @@ public interface PrincipalListRepository {
 
     int getLawtonScore(Long id);
     int getDowntonScore(Long id);
+    HistoricScore getMMSEScore(Long id);
 
     void getBlessedData(Long id, int mode);
 

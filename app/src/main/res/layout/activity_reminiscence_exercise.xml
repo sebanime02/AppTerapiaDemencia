@@ -49,13 +49,6 @@
 
 
                 </android.support.design.widget.CoordinatorLayout>
-                <TextView
-                    android:gravity="center_horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:textSize="@dimen/medium_text_size"
-                    android:text="@string/txt_detail_reminiscence"/>
 
                 <TextView
                     android:id="@+id/detail_reminiscence_title"

@@ -6,6 +6,7 @@ import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.List;
 
+import co.edu.unicauca.appterapiademencia.domain.HistoricScore;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.Reminiscence;
@@ -124,6 +125,11 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
     @Override
     public int getLawtonScore(Long id) {
         return  principalListRepository.getLawtonScore(id);
+    }
+
+    @Override
+    public HistoricScore getMMSEScore(Long id) {
+        return principalListRepository.getMMSEScore(id);
     }
 
     @Override
