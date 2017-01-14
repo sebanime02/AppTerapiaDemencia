@@ -1569,6 +1569,16 @@ public class GreenDaoHelper {
 
     }
 
+    public Exercise getExercise(Long idexercise)
+    {
+        List<Exercise> exerciseList;
+        Exercise exercise;
+        QueryBuilder<Exercise> exerciseQueryBuilder = getExerciseDao().queryBuilder();
+        exerciseList = exerciseQueryBuilder.where(ExerciseDao.Properties.Id.eq(idexercise)).limit(1).list();
+        return  exerciseList.get(0);
+    }
+
+
 
 
 }

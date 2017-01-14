@@ -6,7 +6,6 @@
     <item
         android:id="@+id/menu_finalizar"
         android:title="Finalizar"
-        android:icon="@mipmap/ic_check_circle_black_24dp"
         app:showAsAction="ifRoom"
         />
 </menu>

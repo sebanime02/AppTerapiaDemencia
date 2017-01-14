@@ -116,7 +116,7 @@ public class DetailReminiscenceActivity extends AppCompatActivity {
                        break;
                    case R.id.action_delete:
 
-                       new MaterialDialog.Builder(DetailReminiscenceActivity.this).title("Desea Borrar El Ejercicio de Reminiscencias actual?").positiveText("SI").negativeText("NO").negativeColor(getResources().getColor(R.color.colorPrimaryDark)).icon(getResources().getDrawable(R.drawable.trash))
+                       new MaterialDialog.Builder(DetailReminiscenceActivity.this).title(getResources().getString(R.string.dialog_question_delete)).positiveText(getResources().getString(R.string.dialog_positive)).negativeText(getResources().getString(R.string.dialog_negative)).negativeColor(getResources().getColor(R.color.colorPrimaryDark)).icon(getResources().getDrawable(R.drawable.trash))
                                .onPositive(new MaterialDialog.SingleButtonCallback() {
                                    @Override
                                    public void onClick(@NonNull MaterialDialog dialog,DialogAction which) {

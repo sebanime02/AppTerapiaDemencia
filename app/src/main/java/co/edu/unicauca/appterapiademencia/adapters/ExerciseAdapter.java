@@ -114,6 +114,10 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
 
         return exerciseList.get(position).getId();
     }
+    public String getItemTitle(int position)
+    {
+        return exerciseList.get(position).getWorkshop();
+    }
 
     public class ExerciseViewHolder extends RecyclerView.ViewHolder {
         TextView txtType,txtLevel,txtState;
@@ -127,6 +131,8 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
                     Log.e("id del card",""+ExerciseAdapter.this.getItemId(getPosition()));
                     Intent intent=new Intent(activity,ReminiscenceExerciseActivity.class);
                     intent.putExtra("idexercise",ExerciseAdapter.this.getItemId(getPosition()));
+                    intent.putExtra("idtitulo",ExerciseAdapter.this.getItemTitle(getPosition()));
+
                     view.getContext().startActivity(intent);
 
                     activity.overridePendingTransition(R.anim.left_in, R.anim.left_out);

@@ -301,9 +301,9 @@
     <string name="txt_paso1_logo"> 1 </string>
     <string name="txt_paso2_logo"> 2 </string>
     <string name="txt_paso3_logo"> 3 </string>
-    <string name="txt_paso1_description">Administración Opcional MMSE Inicial</string>
+    <string name="txt_paso1_description">Administración Opcional MMSE Inicial(Opcional)</string>
     <string name="txt_paso2_description">Realizacion de Rutina o Programa de Estimulación Cognitiva</string>
-    <string name="txt_paso3_description">Administración Opcional MMSE Final</string>
+    <string name="txt_paso3_description">Administración Opcional MMSE Final(Opcional)</string>
     <string name="txt_rutina">Configure La Rutina de Este Paciente</string>
     <string name="txt_cancelar_paso1">No Administrar</string>
     <string name="txt_state_pendiente">Pendiente</string>
@@ -414,8 +414,21 @@
     <string name="tab_erase">Borrar</string>
     <string name="tab_finish">Finalizar Rutina</string>
     <string name="tab_add">Agregar Ejercicio</string>
+    <string name="dialog_positive">SI</string>
+    <string name="dialog_negative">NO</string>
+    <string name="dialog_question_delete">Desea Borrar El Ejercicio de Reminiscencias actual?</string>
 
 
+
+    <!-- REMINISCENCE EXERCISE-->
+    <string name="dialog_input_comentario_title">Observaciones del Ejercicio</string>
+    <string name="dialog_input_comentario_content">Si desea puede Agregar Observaciones al respecto del Ejercicio Realizado con el Paciente</string>
+    <string name="dialog_input_hint">Observaciones..</string>
+    <string name="dialog_input_pre">""</string>
+    <string name="dialog_input_positive">GUARDAR</string>
+    <string name="dialog_input_neutral">SALIR SIN GUARDAR</string>
+    <string name="dialog_input_negative">CANCELAR</string>
+    <string name="txt_back_exercise">Volver A la Bandeja de Ejercicios</string>
 
 
 </resources>
