@@ -542,11 +542,17 @@
                                 />
 
 
+
                         </LinearLayout>
 
                     </LinearLayout>
 
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/small_text_size"
+                        android:text="Nota: Considerar Solo si esta diagnosticado con alzheimer"
+                        ></TextView>
                 </LinearLayout>
 
 

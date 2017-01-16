@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +16,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 import co.edu.unicauca.appterapiademencia.R;
+import co.edu.unicauca.appterapiademencia.adapters.ExerciseAdapter;
+import co.edu.unicauca.appterapiademencia.adapters.HistorialAdapter;
+import co.edu.unicauca.appterapiademencia.domain.Exercise;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.Rutina;
 import co.edu.unicauca.appterapiademencia.domain.User;
@@ -39,6 +47,13 @@ public class GraphicsExercises extends Fragment{
     private java.util.Calendar calendar;
     private SharedPreferences preferences;
     private String username;
+    private RecyclerView recycler;
+    private HistorialAdapter adapter;
+    private android.support.v7.widget.RecyclerView.Adapter newadapter;
+    private RecyclerView.LayoutManager LManager;
+    private List<Rutina> rutinaList;
+    private LinearLayoutManager lLayout;
+
 
 
     public GraphicsExercises()
@@ -97,6 +112,7 @@ public class GraphicsExercises extends Fragment{
         txtStarter = (TextView) view.findViewById(R.id.tv_last_rutina_starter);
         btnLastRutina = (Button) view.findViewById(R.id.btnLastRutina);
         btnNewRutina = (Button) view.findViewById(R.id.btnNewRutina);
+        recycler = (RecyclerView) view.findViewById(R.id.recicladorHistoric);
 
         try
         {
@@ -125,6 +141,22 @@ public class GraphicsExercises extends Fragment{
 
 
         }
+
+        recycler.setHasFixedSize(true);
+        lLayout = new LinearLayoutManager(getContext());
+        //recycler.setLayoutManager(gaggeredGridLayoutManager);
+        recycler.setLayoutManager(lLayout);
+
+
+        try {
+            rutinaList = daoHelper.getRutinaList(idsistema);
+
+        }catch (Exception e){}
+        adapter = new HistorialAdapter(rutinaList, getActivity());
+        recycler.setAdapter(adapter);
+
+
+
 
         btnNewRutina.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -259,6 +291,28 @@ public class GraphicsExercises extends Fragment{
 
 
         }
+
+        try {
+            recycler.setHasFixedSize(true);
+            lLayout = new LinearLayoutManager(getContext());
+            //recycler.setLayoutManager(gaggeredGridLayoutManager);
+            recycler.setLayoutManager(lLayout);
+
+
+            try {
+                rutinaList = daoHelper.getRutinaList(idsistema);
+
+            }catch (Exception e){}
+            adapter = new HistorialAdapter(rutinaList, getActivity());
+            recycler.setAdapter(adapter);
+
+        }catch (Exception e)
+        {
+
+        }
+        adapter.notifyDataSetChanged();
+
+
     }
 
 

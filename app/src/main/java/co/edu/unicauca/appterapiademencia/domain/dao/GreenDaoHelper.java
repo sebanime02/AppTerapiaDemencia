@@ -1548,6 +1548,11 @@ public class GreenDaoHelper {
         historicScoreList1 = historicScoreQueryBuilder.where(HistoricScoreDao.Properties.Scale.eq("MMSE")).orderAsc(HistoricScoreDao.Properties.Id).limit(1).list();
         historicScoreList2 = historicScoreQueryBuilder.where(HistoricScoreDao.Properties.Scale.eq("MMSE")).orderDesc(HistoricScoreDao.Properties.Id).limit(1).list();
 
+        for(int j=0;j<historicScoreList1.size();j++)
+        {
+            Log.e("Lista MMSE"," valor minimental "+historicScoreList1.get(j).getValue());
+        }
+
 
         if(historicScoreList1.get(0).getId()>historicScoreList2.get(0).getId())
         {
@@ -1576,6 +1581,26 @@ public class GreenDaoHelper {
         QueryBuilder<Exercise> exerciseQueryBuilder = getExerciseDao().queryBuilder();
         exerciseList = exerciseQueryBuilder.where(ExerciseDao.Properties.Id.eq(idexercise)).limit(1).list();
         return  exerciseList.get(0);
+    }
+
+
+    public List<Rutina> getRutinaList(Long idpatient)
+    {
+        List<Rutina> rutinaList;
+        List<Rutina> rutinaListFinal = new ArrayList<>();
+        QueryBuilder<Rutina> rutinaqueryBuilder = getRutinaDao().queryBuilder();
+
+        rutinaList = rutinaqueryBuilder.where(RutinaDao.Properties.PatientId.eq(idpatient)).orderDesc(RutinaDao.Properties.Id).list();
+
+        for(int z=0;z<rutinaList.size();z++)
+        {
+            if(z != rutinaList.size()-1)
+            {
+                rutinaListFinal.add(rutinaList.get(z));
+            }
+        }
+        return rutinaListFinal;
+
     }
 
 

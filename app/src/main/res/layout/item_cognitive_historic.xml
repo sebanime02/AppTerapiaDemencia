@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="4dp"
+    card_view:cardBackgroundColor="@color/white"
+    card_view:cardUseCompatPadding="true"
+    android:id="@+id/historicCardview"
+
+    >
+
+    <LinearLayout
+        android:id="@+id/containerLastRutina"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        >
+
+
+
+        <TextView
+            android:id="@+id/tv_rutina_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_ultima_rutina_estado"
+            />
+        <TextView
+            android:id="@+id/tv_rutina_starter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_ultima_rutina_autor"
+
+            />
+        <TextView
+            android:id="@+id/tv_rutina_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_ultima_rutina_count"
+
+            />
+        <TextView
+            android:id="@+id/tv_rutina_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_ultima_rutina_fecha"
+
+            />
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="4dp"
+            card_view:cardBackgroundColor="@color/white"
+            card_view:cardUseCompatPadding="true"
+            android:id="@+id/mecCardview">
+
+
+
+        <LinearLayout
+            android:id="@+id/containerMec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/tv_rutina_mec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/large_title_text_size"
+                android:textColor="@color/colorPrimaryDark"
+
+
+                />
+            <TextView
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:id="@+id/tv_rutina_mec_comentario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                />
+
+
+        </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+
+        <Button
+            android:id="@+id/btn_detail_historic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/btn_cognitive_ver"
+            android:textSize="@dimen/large_title_text_size"
+            />
+
+</LinearLayout>
+   </android.support.v7.widget.CardView>

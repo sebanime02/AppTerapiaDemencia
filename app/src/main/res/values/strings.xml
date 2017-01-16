@@ -104,6 +104,7 @@
     <string name="txt_addpatient_femenino">Femenino</string>
     <string name="txt_addpatient_masculino">Masculino</string>
     <string name="title_AIVD">Evalue las siguientes Actividades Instrumentales de La Vida Diaria:</string>
+    <string name="tab_AIVD">Establezca de manera preelimnar los siguientes items relacionados a Actividades Instrumentales de la Vida Diaria (AIVD)</string>
 
     <!--TAB PATIENT INFORMATION -->
     <string name="textview_profile_information">INFORMACIÓN DEL PACIENTE</string>
@@ -283,12 +284,14 @@
     <string name="txt_ultima_rutina">Ùltima Rutina</string>
     <string name="txt_ultima_rutina_estado">Estado :</string>
     <string name="txt_ultima_rutina_autor">Iniciado por :</string>
+    <string name="txt_ultima_rutina_count">Cantidad de Ejercicios Completados :</string>
     <string name="txt_ultima_rutina_fecha">Fecha Iniciacion</string>
     <string name="btn_reiniciar">Continuar</string>
     <string name="btn_finalizar">Finalizar</string>
     <string name="btn_historial">Ver Historial</string>
     <string name="btn_nuevo">Nueva Rutina</string>
     <string name="txt_cuidador_graphics">Cuidador</string>
+    <string name="btn_cognitive_ver">VER</string>
 
 
     <!-- PROTOCOLO EJERCICIOS COGNITIVOS-->
@@ -396,6 +399,7 @@
     <string name="txt_state_0">Finalizado</string>
     <string name="txt_state_1">Test MMSE Inicial</string>
     <string name="txt_state_2">Rutina Activa</string>
+    <string name="txt_mmse">Minimental MMSE</string>
 
     <!--ADD REMINISCENCE -->
     <string name="txt_reminiscence_instructions">Creando un Nuevo Ejercicio Para las Terapias de Reminiscencia, también puedes modificarlos</string>
@@ -429,6 +433,7 @@
     <string name="dialog_input_neutral">SALIR SIN GUARDAR</string>
     <string name="dialog_input_negative">CANCELAR</string>
     <string name="txt_back_exercise">Volver A la Bandeja de Ejercicios</string>
+    <string name="txt_exercise_finished">Ejercicio Finalizado</string>
 
 
 </resources>

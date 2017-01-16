@@ -53,7 +53,7 @@
 
                 <TextView
                 android:layout_gravity="center_horizontal"
-                android:text="Califíque las Limitaciones Físicas y relativas a las actividades de la vida diaria (AVD ) del paciente, es sumamente importante que sean completados."
+                android:text="@string/tab_AIVD"
                 android:textSize="20sp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:textColor="@color/white"
@@ -217,7 +217,7 @@
                     android:layout_height="1dp"></View>
                 <TextView
 
-                    android:text="3. ncapacidad para recordar listas cortas de elementos (ejemplo, compras)"
+                    android:text="3. Incapacidad para recordar listas cortas de elementos (ejemplo, compras)"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:id="@+id/textView9" />
 

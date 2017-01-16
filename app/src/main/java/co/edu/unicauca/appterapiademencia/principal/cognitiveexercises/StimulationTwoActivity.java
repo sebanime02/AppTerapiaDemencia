@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -194,7 +195,7 @@ public class StimulationTwoActivity extends AppCompatActivity {
         /*
         MenuInflater menuinflater = getMenuInflater();
         menuinflater.inflate(R.menu.menu_finish, menu);
-       */
+        */
         return true;
 
     }
@@ -204,12 +205,14 @@ public class StimulationTwoActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id){
             case R.id.menu_finalizar:
-                /*Log.e("stimulation 2","Presiono el menu finish");
+                /*
+                Log.e("stimulation 2","Presiono el menu finish");
                 Rutina rutina = helper.getRutina(idrutina);
                 rutina.setState(0);
                 RutinaDao rutinaDao = helper.getRutinaDao();
                 rutinaDao.update(rutina);
-                goToProfile();*/
+                goToProfile();
+                */
                 return  true;
             case android.R.id.home:
                 goToProfile();

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
@@ -180,9 +180,27 @@
 
 
 
-    </LinearLayout>
 
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+    <android.support.v7.widget.RecyclerView
+
+        android:id="@+id/recicladorHistoric"
+        android:gravity="center"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="800dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+
+
+        />
+    </ScrollView>
 
 </LinearLayout>
 
-</ScrollView>
+</LinearLayout>

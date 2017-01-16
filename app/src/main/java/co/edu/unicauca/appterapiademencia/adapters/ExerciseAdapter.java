@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
@@ -24,7 +26,7 @@ import co.edu.unicauca.appterapiademencia.principal.cognitiveexercises.Reminisce
  * Created by SEBAS on 28/12/2016.
  */
 
-public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder> {
+public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>{
 
     private List<Exercise> exerciseList;
     private Activity activity;
@@ -59,9 +61,27 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         int estado = exerciseList.get(position).getState();
         int therapy = exerciseList.get(position).getTerapy();
 
+
+
         try{
-         Reminiscence reminiscence =  helper.getReminiscence(taller);
-            holder.imgExercise.setImageDrawable(Drawable.createFromPath(reminiscence.getPhotopath()));
+            if(taller=="Torre del Reloj")
+            {
+                holder.imgExercise.setImageDrawable(activity.getResources().getDrawable(R.drawable.popayanimagen));
+
+            }else
+            {
+                Reminiscence reminiscence =  helper.getReminiscence(taller);
+                if(reminiscence.getPhotopath()!="")
+                {
+                    holder.imgExercise.setImageDrawable(Drawable.createFromPath(reminiscence.getPhotopath()));
+
+                }else
+                {
+                    holder.imgExercise.setImageDrawable(activity.getResources().getDrawable(R.drawable.cameraempty));
+
+                }
+            }
+
         }catch (Exception e)
         {
             e.printStackTrace();
@@ -119,25 +139,43 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         return exerciseList.get(position).getWorkshop();
     }
 
+    public int getState(int position){return  exerciseList.get(position).getState();}
+
+
+
     public class ExerciseViewHolder extends RecyclerView.ViewHolder {
         TextView txtType,txtLevel,txtState;
         ImageView imgExercise;
 
         public ExerciseViewHolder(View itemView) {
             super(itemView);
+
+
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.e("id del card",""+ExerciseAdapter.this.getItemId(getPosition()));
-                    Intent intent=new Intent(activity,ReminiscenceExerciseActivity.class);
-                    intent.putExtra("idexercise",ExerciseAdapter.this.getItemId(getPosition()));
-                    intent.putExtra("idtitulo",ExerciseAdapter.this.getItemTitle(getPosition()));
 
-                    view.getContext().startActivity(intent);
+                    if(getState(getPosition())!=1)
+                    {
+                        Log.e("id del card",""+ExerciseAdapter.this.getItemId(getPosition()));
 
-                    activity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                        Intent intent=new Intent(activity,ReminiscenceExerciseActivity.class);
+                        intent.putExtra("idexercise",ExerciseAdapter.this.getItemId(getPosition()));
+                        intent.putExtra("idtitulo",ExerciseAdapter.this.getItemTitle(getPosition()));
+
+                        view.getContext().startActivity(intent);
+
+                        activity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                    }else
+                    {
+                        new MaterialDialog.Builder(activity).title(R.string.txt_exercise_finished).show();
+
+                    }
+
                 }
             });
+
             txtType = (TextView) itemView.findViewById(R.id.exercise_type);
             txtLevel = (TextView) itemView.findViewById(R.id.exercise_level);
             txtState = (TextView) itemView.findViewById(R.id.exercise_state);
