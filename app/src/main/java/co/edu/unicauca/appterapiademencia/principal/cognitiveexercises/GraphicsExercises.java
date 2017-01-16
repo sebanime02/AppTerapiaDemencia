@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,9 +18,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
-import co.edu.unicauca.appterapiademencia.adapters.ExerciseAdapter;
 import co.edu.unicauca.appterapiademencia.adapters.HistorialAdapter;
-import co.edu.unicauca.appterapiademencia.domain.Exercise;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.Rutina;
 import co.edu.unicauca.appterapiademencia.domain.User;
@@ -37,7 +34,7 @@ public class GraphicsExercises extends Fragment{
 
     private GreenDaoHelper daoHelper;
     private Long idpatient,idsistema;
-    private TextView txtSate,txtStarter,txtDate;
+    private TextView txtSate,txtStarter,txtDate,txtDemasRutinas;
     private Button btnNewRutina,btnLastRutina;
     private Rutina lastRutina;
     private LinearLayout containerLastRutina;
@@ -113,6 +110,8 @@ public class GraphicsExercises extends Fragment{
         btnLastRutina = (Button) view.findViewById(R.id.btnLastRutina);
         btnNewRutina = (Button) view.findViewById(R.id.btnNewRutina);
         recycler = (RecyclerView) view.findViewById(R.id.recicladorHistoric);
+        txtDemasRutinas = (TextView) view.findViewById(R.id.txt_demas_rutinas);
+
 
         try
         {
@@ -151,8 +150,13 @@ public class GraphicsExercises extends Fragment{
         try {
             rutinaList = daoHelper.getRutinaList(idsistema);
 
+            if(rutinaList.size()==0)
+            {
+                txtDemasRutinas.setText(getResources().getString(R.string.txt_demas_rutinas_vacias));
+            }
+
         }catch (Exception e){}
-        adapter = new HistorialAdapter(rutinaList, getActivity());
+        adapter = new HistorialAdapter(rutinaList, getActivity(),idsistema);
         recycler.setAdapter(adapter);
 
 
@@ -301,9 +305,14 @@ public class GraphicsExercises extends Fragment{
 
             try {
                 rutinaList = daoHelper.getRutinaList(idsistema);
+                if(rutinaList.size()==0)
+                {
+
+                    txtDemasRutinas.setText(getResources().getString(R.string.txt_demas_rutinas_vacias));
+                }
 
             }catch (Exception e){}
-            adapter = new HistorialAdapter(rutinaList, getActivity());
+            adapter = new HistorialAdapter(rutinaList, getActivity(),idsistema);
             recycler.setAdapter(adapter);
 
         }catch (Exception e)

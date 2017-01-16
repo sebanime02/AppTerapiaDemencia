@@ -1,8 +1,6 @@
 package co.edu.unicauca.appterapiademencia.principal.tips;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -51,6 +49,7 @@ public class TipDetailActivity extends ActionBarActivity {
     private Boolean likeInteruptor = false;
     private String username;
     private Long iduser;
+    private Menu menufavorite;
 
     public TipDetailActivity()
     {
@@ -66,7 +65,7 @@ public class TipDetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_tip);
         preferences = getSharedPreferences("appdata", Context.MODE_PRIVATE);
-
+        username = preferences.getString("username","Nombre de Usuario");
         bundle=getIntent().getExtras();
 
         idtip = bundle.getLong("idtip");
@@ -164,6 +163,7 @@ public class TipDetailActivity extends ActionBarActivity {
         likeCount.setText(String.valueOf( getLikesCount()));
     }
 
+    /*
     public void onClick_delete_tip(View view)
     {
         new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Aceptar")
@@ -179,6 +179,7 @@ public class TipDetailActivity extends ActionBarActivity {
                     }
                 }).show();
     }
+    */
 
 
 
@@ -207,12 +208,32 @@ public class TipDetailActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        menufavorite = menu;
         SharedPreferences loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
         if(loginpreference.getBoolean("supervisor",true))
         {
             getMenuInflater().inflate(R.menu.menu_edit,menu);
             getMenuInflater().inflate(R.menu.menu_delete,menu);
+
+
+                idtip = bundle.getLong("idtip");
+                username = loginpreference.getString("username","Nombre de Usuario");
+                iduser = helper.getUserInformation(username).getId();
+
+                PreferenceTip preferenceTip =  helper.getPreferenceTip(idtip,iduser);
+
+
             getMenuInflater().inflate(R.menu.menu_favorite,menu);
+
+            if(preferenceTip.getFavorite())
+            {
+                menu.findItem(R.id.menu_favorito).setIcon(getResources().getDrawable(R.mipmap.ic_star_rate_black_18dp));
+            }else
+            {
+                menu.findItem(R.id.menu_favorito).setIcon(getResources().getDrawable(R.mipmap.ic_star_border_white_24dp));
+
+            }
+
 
         }
 
@@ -258,17 +279,17 @@ public class TipDetailActivity extends ActionBarActivity {
                 return true;
 
             case R.id.menu_favorito:
+                    MenuItem menuItem = menufavorite.findItem(R.id.menu_favorito);
 
                     try
                     {
                         idtip = bundle.getLong("idtip");
-                        username = preferences.getString("username","Nombre de Usuario");
 
                         iduser = helper.getUserInformation(username).getId();
                     }catch (Exception e)
                     {
                         Log.e("tipdetail","Error al traer iduser y el idtip");
-                        return false;
+
                     }
 
                     Log.e("tipdetail","iduser "+iduser);
@@ -282,6 +303,10 @@ public class TipDetailActivity extends ActionBarActivity {
                             Log.e("tipdetail","el preference tip esta en true");
 
 
+                            //MenuItem menuItem = menufavorite.findItem(R.id.menu_favorito);
+                            menuItem.setIcon(getResources().getDrawable(R.mipmap.ic_star_border_white_24dp));
+
+
                             new MaterialDialog.Builder(this).title("Ya no es Favorito").positiveText(R.string.dialog_sucess_agree2).icon(getResources().getDrawable(R.drawable.ic_action_toggle_star)).show();
 
                             //tipfavorite = helper.getTip(idtip);
@@ -293,9 +318,13 @@ public class TipDetailActivity extends ActionBarActivity {
                         {
                             Log.e("tipdetail","el preference tip esta en false");
 
+
+                            menuItem.setIcon(getResources().getDrawable(R.mipmap.ic_star_rate_black_18dp));
+
                             //tipfavorite = helper.getTip(idtip);
                             preferenceTip.setFavorite(true);
                             preferenceTipDao.update(preferenceTip);
+
                             new MaterialDialog.Builder(this).title("Tip Agregado a Favoritos!").positiveText(R.string.dialog_sucess_agree2).icon(getResources().getDrawable(R.drawable.ic_action_toggle_star)).show();
 
                         }
@@ -304,7 +333,7 @@ public class TipDetailActivity extends ActionBarActivity {
                     {
                         Log.e("tipdetail","Error al traer el preference tip");
 
-                        return false;
+
                     }
 
 

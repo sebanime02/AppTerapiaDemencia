@@ -100,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     completeNameNavbar.setText("Supervisor "+completename);
 
 
+                    /*
+
                     if(user.getPhotopath().equals(""))
                     {
                         userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
@@ -108,11 +110,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     else{
                         userAvatarNavbar.setBackground(Drawable.createFromPath(user.getPhotopath()));
                     }
+                    */
 
                 }
 
                     //completeNameNavbar.setText("Supervisor");
-                Picasso.with(getApplicationContext()).load(R.drawable.emptyuser).resize(50,50).transform(new CircleTransform()).into(userAvatarNavbar);
+                //Picasso.with(getApplicationContext()).load(R.drawable.emptyuser).resize(50,50).transform(new CircleTransform()).into(userAvatarNavbar);
                     //userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
                 //}
 
@@ -131,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 completeNameNavbar.setText("Cuidador");
 
                 //userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
-                Picasso.with(getApplicationContext()).load(R.drawable.emptyuser).resize(50,50).transform(new CircleTransform()).into(userAvatarNavbar);
+                //Picasso.with(getApplicationContext()).load(R.drawable.emptyuser).resize(50,50).transform(new CircleTransform()).into(userAvatarNavbar);
             }
 
 

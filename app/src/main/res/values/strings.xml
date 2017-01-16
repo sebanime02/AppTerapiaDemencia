@@ -95,6 +95,21 @@
     <string name="spinner_escritura">Limitación de Escritura</string>
     <string name="spinner_dibujo">Limitación de Dibujo</string>
 
+    <string name="txt_patient_name">Nombre Paciente</string>
+    <string name="txt_patient_identity">Documento de Identidad</string>
+    <string name="txt_patient_formato_fecha">DD/MM/AAAA</string>
+    <string name="txt_patient_eps">Entidad Prestadora de Salud</string>
+    <string name="txt_patient_antecedents">Antecedentes</string>
+    <string name="txt_patient_antecedents_edt">Ingrese los Antecedentes del paciente..</string>
+
+    <string name="txt_patient_syndromes">Síndromes</string>
+    <string name="txt_patient_syndromes_edt">Ingrese Síndromes...</string>
+
+    <string name="txt_patient_observaciones">Observaciones</string>
+    <string name="txt_patient_observaciones_edt">Ingrese las Observaciones que desee</string>
+
+    <string name="txt_patient"></string>
+
     <string name="txt_alteracionesauditivas">Alteraciones Auditivas</string>
     <string name="txt_alteracionesextremidades">Alteraciones de las Extremidades</string>
 
@@ -109,6 +124,7 @@
     <!--TAB PATIENT INFORMATION -->
     <string name="textview_profile_information">INFORMACIÓN DEL PACIENTE</string>
     <string name="textview_profile_physics">LIMITACIONES DEL PACIENTE</string>
+    <string name="txt_info_listpatients">Aqui Puedes Ingresar tus pacientes, Al entrar en ellos puedes ver detalles e indicadores, ingresar notas y eventos, finalmente hacer tus terapias de reminiscencias</string>
     <string name="title_note_added">Evento Registrado</string>
     <string name="content_note_added">El Evento será notificado a los supervisores para su aprobación</string>
     <string name="blessed_no_demencia">No presenta demencia por el momento</string>
@@ -280,7 +296,7 @@
 
     <!--COGNITIVE EXERCISES MAIN SCREENN -->
     <string name="txt_rutina_graficas">Estadisticas Generales</string>
-    <string name="txt_rutina_estado">Rutinas De Estimulacion Cognitiva</string>
+    <string name="txt_rutina_estado">Rutinas De Estimulacion Cognitiva por medio de Terapias de Reminiscencias</string>
     <string name="txt_ultima_rutina">Ùltima Rutina</string>
     <string name="txt_ultima_rutina_estado">Estado :</string>
     <string name="txt_ultima_rutina_autor">Iniciado por :</string>
@@ -292,6 +308,7 @@
     <string name="btn_nuevo">Nueva Rutina</string>
     <string name="txt_cuidador_graphics">Cuidador</string>
     <string name="btn_cognitive_ver">VER</string>
+    <string name="txt_demas_rutinas">Rutinas Anteriores</string>
 
 
     <!-- PROTOCOLO EJERCICIOS COGNITIVOS-->
@@ -399,6 +416,7 @@
     <string name="txt_state_0">Finalizado</string>
     <string name="txt_state_1">Test MMSE Inicial</string>
     <string name="txt_state_2">Rutina Activa</string>
+    <string name="txt_last_rutinas">Anteriores Rutinas</string>
     <string name="txt_mmse">Minimental MMSE</string>
 
     <!--ADD REMINISCENCE -->
@@ -421,6 +439,7 @@
     <string name="dialog_positive">SI</string>
     <string name="dialog_negative">NO</string>
     <string name="dialog_question_delete">Desea Borrar El Ejercicio de Reminiscencias actual?</string>
+    <string name="txt_rutina_finished_instructions">La rutina ya ha sido finalizada, Por favor presione atras y siga con la Última o Inicie una nueva</string>
 
 
 
@@ -434,6 +453,13 @@
     <string name="dialog_input_negative">CANCELAR</string>
     <string name="txt_back_exercise">Volver A la Bandeja de Ejercicios</string>
     <string name="txt_exercise_finished">Ejercicio Finalizado</string>
+    <string name="txt_rutina_finished">Rutina Finalizada</string>
+    <string name="txt_rutina_pass_1">Ingresando Minimental MMSE Inicial</string>
+    <string name="txt_rutina_pass_2">Rutina en Proceso</string>
+    <string name="txt_observations_empty">Sin Observaciones</string>
+    <string name="txt_demas_rutinas_vacias">No se han creado rutinas para este paciente, para empezar una pulse en el boton NUEVA RUTINA</string>
+
+
 
 
 </resources>

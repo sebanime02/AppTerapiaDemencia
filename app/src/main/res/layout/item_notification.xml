@@ -55,7 +55,6 @@
             android:layout_alignTop="@id/note_type"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:drawableLeft="@mipmap/ic_event_black_18dp"
-            android:drawableTint="@color/gray_soft"
             android:fontFamily="sans-serif"
 
             />
@@ -104,7 +103,6 @@
             android:textAppearance="?android:textAppearanceMedium"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:fontFamily="sans-serif"
-            android:drawableTint="@color/gray"
             />
 
         <TextView

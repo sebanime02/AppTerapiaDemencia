@@ -16,7 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="4dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ToolbarTheme" />
 
@@ -45,7 +44,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="60dp"
                 android:orientation="vertical"
                 android:background="@color/colorPrimaryDark">
 
@@ -56,8 +55,8 @@
                     android:layout_height="@dimen/size_image_profile"
                     android:paddingTop="10dp"
                     android:src="@drawable/nursefemaledark"
+                    android:visibility="gone"
 
-                    android:backgroundTintMode="add"
                     />
 
                 <TextView
@@ -67,7 +66,10 @@
                         android:text="Usuario"
                         android:fontFamily="sans-serif-smallcaps"
                         android:textColor="@color/white"
-                        android:gravity="center_horizontal"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/medium_text_size"
+                        android:lines="2"
                         />
 
             </LinearLayout>

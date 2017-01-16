@@ -67,8 +67,17 @@
             android:id="@+id/containerMec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             >
+            <TextView
+                android:id="@+id/tv_rutina_mec_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/little_text_size"
+                android:text="@string/txt_mmse"
+
+
+                />
             <TextView
                 android:id="@+id/tv_rutina_mec"
                 android:layout_width="wrap_content"
@@ -79,10 +88,10 @@
 
                 />
             <TextView
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:id="@+id/tv_rutina_mec_comentario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minLines="1"
 
                 />
 
@@ -90,7 +99,6 @@
         </LinearLayout>
 
         </android.support.v7.widget.CardView>
-
 
 
         <Button
@@ -106,4 +114,4 @@
             />
 
 </LinearLayout>
-   </android.support.v7.widget.CardView>
+</android.support.v7.widget.CardView>

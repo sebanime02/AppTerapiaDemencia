@@ -14,7 +14,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/gray_soft"
     android:layout_marginBottom="@dimen/activity_vertical_margin"
 
     >
@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/rounded_corner"
+        android:visibility="gone"
         >
     <TextView
         android:layout_width="match_parent"
@@ -74,6 +75,7 @@
             android:layout_height="wrap_content"
             android:text="@string/txt_rutina_estado"
             android:textStyle="bold"
+            android:textSize="@dimen/medium_text_size"
 
             />
 
@@ -117,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray_soft"
-                ></View>
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -166,19 +168,19 @@
                 android:layout_gravity="center_horizontal"
 
                 />
-            <Button
-                android:layout_width="@dimen/size_historial_button"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_historial"
-                android:background="@color/colorPrimaryDark"
-                android:textColor="@color/white"
-                android:layout_gravity="center_horizontal"
 
-                />
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/txt_demas_rutinas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_demas_rutinas"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
 
+            />
 
 
     </LinearLayout>

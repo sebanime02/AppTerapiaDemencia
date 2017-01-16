@@ -127,6 +127,7 @@ public class StimulationOneActivity extends AppCompatActivity {
 
 
 
+
                 if(edtMecInicial.getText().toString()=="")
                 {
 
@@ -158,13 +159,14 @@ public class StimulationOneActivity extends AppCompatActivity {
 
    public void setMec(Rutina rutina,int indicator)
    {
-       HistoricScore historic = new HistoricScore(null,idpatient,"MMSE", Double.parseDouble(edtMecInicial.getText().toString()) ,year,month,day);
-       rutina.setState(2);
+
        if(indicator==1)
        {
            if(edtMecComentario.getText().toString()!="")
            {
                rutina.setMecinicialcomentario(edtMecComentario.getText().toString());
+               HistoricScore historic = new HistoricScore(null,idpatient,"MMSE", Double.parseDouble(edtMecInicial.getText().toString()) ,year,month,day);
+               rutina.setState(2);
                historicScoreDao.insert(historic);
                rutinaDao.update(rutina);
                historicScoreDao.update(historic);

@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -186,7 +185,6 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(view.getContext(), "position = " + TipAdapter.this.getItemId(getPosition()), Toast.LENGTH_SHORT).show();
             Log.e("id del card",""+TipAdapter.this.getItemId(getPosition()));
 
             Intent intent=new Intent(activity,TipDetailActivity.class);

@@ -24,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:background="?attr/colorPrimary"
-            android:elevation="4dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ToolbarTheme" />
             <LinearLayout
@@ -123,7 +122,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/accent_color"
-                    ></View>
+                   />
 
 
                 <TextView
@@ -176,7 +175,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"></View>
+                    android:layout_height="1dp"/>
                 <TextView
 
                     android:text="2. Incapacidad para el uso de pequeñas cantidades de dinero"
@@ -214,7 +213,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"></View>
+                    android:layout_height="1dp"/>
                 <TextView
 
                     android:text="3. Incapacidad para recordar listas cortas de elementos (ejemplo, compras)"
@@ -257,7 +256,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"></View>
+                    android:layout_height="1dp"/>
                 <TextView
                     android:maxLines="20"
                     android:text="4. Incapacidad para orientarse en casa"
@@ -294,7 +293,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"></View>
+                    android:layout_height="1dp"/>
                 <TextView
 
                     android:text="5. Incapacidad para orientarse en calles familiares"
@@ -335,7 +334,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"></View>
+                    android:layout_height="1dp"/>
                 <TextView
 
                     android:text="6. Incapacidad para valorar el entorno (casa, hospitar, hogar de ancianos)"
@@ -372,7 +371,9 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"></View>
+                    android:layout_height="1dp"/>
+
+
                 <TextView  android:text="7. Incapacidad para recordar hecho recientes"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
 

@@ -9,6 +9,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -93,7 +94,7 @@
                             android:inputType="textCapSentences|textImeMultiLine"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Nombre Paciente"
+                            android:hint="@string/txt_patient_name"
                             />
 
 
@@ -104,7 +105,7 @@
                             android:imeOptions="actionNext"
                             android:id="@+id/edt_cedula"
                             android:inputType="number"
-                            android:hint="Cédula"
+                            android:hint="@string/txt_patient_identity"
 
                             />
 
@@ -117,7 +118,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/btn_fecha_patiente"
-                            android:text="DD/MM/AAAA"
+                            android:text="@string/txt_patient_formato_fecha"
                             android:onClick="onClick"
                             android:gravity="left|center_vertical"
                             style="@style/Base.Widget.AppCompat.ActionButton.Overflow"/>
@@ -148,14 +149,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Eps:"/>
+                            android:text="@string/txt_patient_eps"/>
+
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:imeOptions="actionNext"
                             android:id="@+id/edt_eps"
                             android:inputType="textCapSentences|textImeMultiLine"
-                            android:hint="Eps"
+                            android:hint="@string/txt_patient_eps"
 
                             />
 
@@ -230,7 +232,7 @@
 
 
                     <TextView
-                        android:text="Antecedentes:"
+                        android:text="@string/txt_patient_antecedents"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView2" />
@@ -241,7 +243,7 @@
                         android:inputType="textCapSentences|textImeMultiLine"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ingrese los Antecedentes del paciente.."/>
+                        android:hint="@string/txt_patient_antecedents_edt"/>
                     <TextView
                         android:text="Síndromes"
                         android:layout_width="wrap_content"
@@ -251,10 +253,10 @@
                         android:id="@+id/edt_sindromes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ingrese Síndromes..."
+                        android:hint="@string/txt_patient_antecedents_edt"
                         android:inputType="textCapSentences|textImeMultiLine"/>
                     <TextView
-                        android:text="Observaciones:"
+                        android:text="@string/txt_patient_observaciones"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
@@ -263,7 +265,7 @@
                         android:id="@+id/edt_observaciones"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Ingrese las Observaciones que desee"
+                        android:hint="@string/txt_patient_observaciones_edt"
                         android:inputType="textCapSentences|textImeMultiLine"/>
 
                     <TextView

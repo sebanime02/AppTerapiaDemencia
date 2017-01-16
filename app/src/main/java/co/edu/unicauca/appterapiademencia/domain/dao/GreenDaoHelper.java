@@ -836,7 +836,7 @@ public class GreenDaoHelper {
         preferenceTipQueryBuilder.where(PreferenceTipDao.Properties.UserId.eq(iduser));
 
         preferenceTipList = preferenceTipQueryBuilder.list();
-        return preferenceTip = preferenceTipList.get(0);
+        return preferenceTipList.get(0);
     }
 
     public void insertHistoricScale(Long patientid,String scale, Double score, int year,int month,int day)
@@ -1539,21 +1539,35 @@ public class GreenDaoHelper {
         return  reminiscenceList;
     }
 
-    public HistoricScore getMMSELastScore()
+    public HistoricScore getMMSELastScore(Long idpatient)
     {
         List<HistoricScore> historicScoreList1,historicScoreList2;
         HistoricScore historic;
         QueryBuilder<HistoricScore> historicScoreQueryBuilder = getHistoricScoreDao().queryBuilder();
 
-        historicScoreList1 = historicScoreQueryBuilder.where(HistoricScoreDao.Properties.Scale.eq("MMSE")).orderAsc(HistoricScoreDao.Properties.Id).limit(1).list();
-        historicScoreList2 = historicScoreQueryBuilder.where(HistoricScoreDao.Properties.Scale.eq("MMSE")).orderDesc(HistoricScoreDao.Properties.Id).limit(1).list();
+        historicScoreList1 = historicScoreQueryBuilder.where(HistoricScoreDao.Properties.PatientId.eq(idpatient),HistoricScoreDao.Properties.Scale.eq("MMSE")).orderAsc(HistoricScoreDao.Properties.Id).list();
+        historicScoreList2 = historicScoreQueryBuilder.where(HistoricScoreDao.Properties.PatientId.eq(idpatient),HistoricScoreDao.Properties.Scale.eq("MMSE")).orderDesc(HistoricScoreDao.Properties.Id).list();
+
+        Log.e("Lista MMSE"," Inicio");
 
         for(int j=0;j<historicScoreList1.size();j++)
         {
             Log.e("Lista MMSE"," valor minimental "+historicScoreList1.get(j).getValue());
         }
+        Log.e("Lista MMSE"," Termino ");
 
 
+        if(historicScoreList1.size()>0)
+        {
+            historic = historicScoreList1.get(historicScoreList1.size()-1);
+        }else
+        {
+            historic = historicScoreList1.get(0);
+
+        }
+
+
+        /*
         if(historicScoreList1.get(0).getId()>historicScoreList2.get(0).getId())
         {
             historic = historicScoreList1.get(0);
@@ -1567,6 +1581,9 @@ public class GreenDaoHelper {
             historic = historicScoreList1.get(0);
 
         }
+                historic = historicScoreList1.get(0);
+
+        */
 
 
         return  historic;

@@ -13,7 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -50,6 +49,7 @@ public class StimulationTwoActivity extends AppCompatActivity {
     private boolean tabRestricter = false;
     private GridLayoutManager lLayout;
     private BottomNavigationView bottomBar;
+    private boolean finished=false;
 
     public StimulationTwoActivity()
     {
@@ -67,6 +67,7 @@ public class StimulationTwoActivity extends AppCompatActivity {
             bundle = getIntent().getExtras();
             idpatient = bundle.getLong("idpatient");
             idrutina = bundle.getLong("idrutina");
+            finished = bundle.getBoolean("rutinaterminada");
 
         }catch (Exception e)
         {
@@ -82,8 +83,6 @@ public class StimulationTwoActivity extends AppCompatActivity {
 
 
         bottomBar = (BottomNavigationView) findViewById(R.id.bottomBar);
-
-
 
 
         setSupportActionBar(toolbar);
@@ -104,7 +103,7 @@ public class StimulationTwoActivity extends AppCompatActivity {
             exerciseList = getExercises(idrutina);
 
         }catch (Exception e){}
-        adapter = new ExerciseAdapter(exerciseList, this);
+        adapter = new ExerciseAdapter(exerciseList, this,finished);
          recycler.setAdapter(adapter);
 
 
@@ -121,6 +120,10 @@ public class StimulationTwoActivity extends AppCompatActivity {
         });
 
 
+        if(finished==true)
+        {
+            bottomBar.setVisibility(View.GONE);
+        }
 
         bottomBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -176,9 +179,10 @@ public class StimulationTwoActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
 
         } catch (Exception e) {
-            adapter.notifyDataSetChanged();
+
         }
         */
+        adapter.notifyDataSetChanged();
     }
 
     public List<Exercise> getExercises(Long idrutina)

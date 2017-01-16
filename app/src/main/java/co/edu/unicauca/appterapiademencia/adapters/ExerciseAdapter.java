@@ -33,8 +33,9 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
     private LayoutInflater layoutInflater;
     private GreenDaoHelper helper;
     private GreenRobotEventBus eventBus;
+    private Boolean finished;
 
-    public ExerciseAdapter(List<Exercise> exerciseList, Activity activity)
+    public ExerciseAdapter(List<Exercise> exerciseList, Activity activity,boolean finished)
     {
 
         super();
@@ -43,6 +44,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         this.layoutInflater = activity.getLayoutInflater();
         this.helper = GreenDaoHelper.getInstance();
         this.eventBus = GreenRobotEventBus.getInstance();
+        this.finished = finished;
 
     }
 
@@ -63,6 +65,9 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
 
 
 
+
+
+
         try{
             if(taller=="Torre del Reloj")
             {
@@ -71,15 +76,23 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
             }else
             {
                 Reminiscence reminiscence =  helper.getReminiscence(taller);
-                if(reminiscence.getPhotopath()!="")
-                {
-                    holder.imgExercise.setImageDrawable(Drawable.createFromPath(reminiscence.getPhotopath()));
 
-                }else
+                try {
+                    if(reminiscence.getPhotopath()!="")
+                    {
+                        holder.imgExercise.setImageDrawable(Drawable.createFromPath(reminiscence.getPhotopath()));
+
+                    }else
+                    {
+                        holder.imgExercise.setImageDrawable(activity.getResources().getDrawable(R.drawable.cameraempty));
+
+                    }
+                }catch (Exception e)
                 {
                     holder.imgExercise.setImageDrawable(activity.getResources().getDrawable(R.drawable.cameraempty));
 
                 }
+
             }
 
         }catch (Exception e)
@@ -141,6 +154,13 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
 
     public int getState(int position){return  exerciseList.get(position).getState();}
 
+    public String getItemObservations(int position)
+    {
+        return exerciseList.get(position).getObservations();
+    }
+
+
+
 
 
     public class ExerciseViewHolder extends RecyclerView.ViewHolder {
@@ -156,22 +176,37 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
                 @Override
                 public void onClick(View view) {
 
-                    if(getState(getPosition())!=1)
+                    if(!finished)
                     {
-                        Log.e("id del card",""+ExerciseAdapter.this.getItemId(getPosition()));
+                        if(getState(getPosition())!=1)
+                        {
+                            Log.e("id del card",""+ExerciseAdapter.this.getItemId(getPosition()));
 
-                        Intent intent=new Intent(activity,ReminiscenceExerciseActivity.class);
-                        intent.putExtra("idexercise",ExerciseAdapter.this.getItemId(getPosition()));
-                        intent.putExtra("idtitulo",ExerciseAdapter.this.getItemTitle(getPosition()));
+                            Intent intent=new Intent(activity,ReminiscenceExerciseActivity.class);
+                            intent.putExtra("idexercise",ExerciseAdapter.this.getItemId(getPosition()));
+                            intent.putExtra("idtitulo",ExerciseAdapter.this.getItemTitle(getPosition()));
 
-                        view.getContext().startActivity(intent);
+                            view.getContext().startActivity(intent);
 
-                        activity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
-                    }else
-                    {
-                        new MaterialDialog.Builder(activity).title(R.string.txt_exercise_finished).show();
+                            activity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                        }else
+                        {
+                            if(ExerciseAdapter.this.getItemObservations(getPosition())!=""||ExerciseAdapter.this.getItemObservations(getPosition())!=null)
+                            {
+                                new MaterialDialog.Builder(activity).title(R.string.txt_exercise_finished).content(ExerciseAdapter.this.getItemObservations(getPosition())).show();
 
+                            }
+                            else
+                            {
+                                new MaterialDialog.Builder(activity).title(R.string.txt_exercise_finished).content(activity.getResources().getString(R.string.txt_observations_empty)).show();
+
+                            }
+
+
+                        }
                     }
+
+
 
                 }
             });

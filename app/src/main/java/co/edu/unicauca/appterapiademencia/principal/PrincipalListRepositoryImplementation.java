@@ -310,7 +310,7 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
 
     @Override
     public HistoricScore getMMSEScore(Long id) {
-        return helper.getMMSELastScore();
+        return helper.getMMSELastScore(id);
     }
 
     @Override

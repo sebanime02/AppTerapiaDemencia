@@ -34,7 +34,7 @@
             <Button
 
                 android:drawableTop="@mipmap/ic_supervisor_account_white_36dp"
-                android:foregroundTint="@color/white"
+
                 android:id="@+id/btn_soysupervisor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

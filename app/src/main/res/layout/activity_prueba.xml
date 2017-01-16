@@ -135,7 +135,7 @@
 
                                 <TextView
                                     android:text="1. Incapacidad para realizar  tareas domesticas"
-
+                                    android:textSize="@dimen/medium_text_size"
                                     android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
 
@@ -174,11 +174,13 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"></View>
+                        android:layout_height="1dp"/>
                     <TextView
 
                         android:text="2. Incapacidad para el uso de pequeñas cantidades de dinero"
-                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/medium_text_size"
+                        android:layout_height="wrap_content"/>
 
                     <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/rdgPequenasDineor">
                         <RadioButton
@@ -210,12 +212,15 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"></View>
+                        android:layout_height="1dp"/>
                     <TextView
 
-                        android:text="3. ncapacidad para recordar listas cortas de elementos (ejemplo, compras)"
+                        android:text="3. Incapacidad para recordar listas cortas de elementos (ejemplo, compras)"
                         android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:id="@+id/textView9" />
+                        android:id="@+id/textView9"
+
+                        android:textSize="@dimen/medium_text_size"
+                        />
 
 
                     <RadioGroup android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/rdgListasCortas">
@@ -251,10 +256,11 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"></View>
+                        android:layout_height="1dp"/>
                     <TextView
                         android:maxLines="20"
-                        android:text="4. Incapacidad para orientarse en casa"
+                        android:text="4. Incapacidad para orientarse en Casa"
+                        android:textSize="@dimen/medium_text_size"
                         android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
                     <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rdgOrientarseCasa">
@@ -286,16 +292,16 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"></View>
+                        android:layout_height="1dp"/>
                     <TextView
 
                         android:text="5. Incapacidad para orientarse en calles familiares"
                         android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textSize="@dimen/medium_text_size"
                         />
 
 
                     <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rdgOrientarseCalle">
-
 
                         <RadioButton
                             android:id="@+id/total_orientarse_calle"
@@ -325,11 +331,12 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"></View>
+                        android:layout_height="1dp"/>
                     <TextView
 
                         android:text="6. Incapacidad para valorar el entorno (casa, hospitar, hogar de ancianos)"
                         android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textSize="@dimen/medium_text_size"
                         />
                     <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rdgValorarEntorno">
 
@@ -361,10 +368,10 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"></View>
+                        android:layout_height="1dp"/>
                     <TextView  android:text="7. Incapacidad para recordar hecho recientes"
                         android:layout_width="wrap_content" android:layout_height="wrap_content"
-
+                        android:textSize="@dimen/medium_text_size"
                         />
 
                     <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content"  android:id="@+id/rdgRecordarRecientes">
@@ -393,7 +400,7 @@
 
                     <TextView  android:text="8.Tendencia a rememorar el pasado"
                         android:layout_width="wrap_content" android:layout_height="wrap_content"
-
+                        android:textSize="@dimen/medium_text_size"
                         />
 
                     <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rdgRememorarPasado">
