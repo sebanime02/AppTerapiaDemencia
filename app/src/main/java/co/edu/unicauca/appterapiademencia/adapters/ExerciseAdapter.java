@@ -204,6 +204,13 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
 
 
                         }
+                    }else
+                    {
+                        if(ExerciseAdapter.this.getItemObservations(getPosition())!=""||ExerciseAdapter.this.getItemObservations(getPosition())!=null)
+                        {
+                            new MaterialDialog.Builder(activity).title(R.string.txt_exercise_finished).content("Observaciones del Ejercicio\n"+ExerciseAdapter.this.getItemObservations(getPosition())).show();
+
+                        }
                     }
 
 

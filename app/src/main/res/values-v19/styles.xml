@@ -3,7 +3,7 @@
 
     <style name="AppTheme" parent="Base.AppTheme">
         <item name="android:windowTranslucentStatus">true</item>
-
+        <item name="android:actionMenuTextColor">@color/white</item>
     </style>
 
 </resources>

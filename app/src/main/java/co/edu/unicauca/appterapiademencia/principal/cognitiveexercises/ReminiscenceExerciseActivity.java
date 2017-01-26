@@ -51,6 +51,8 @@ public class ReminiscenceExerciseActivity extends AppCompatActivity {
     private String titleWorkshop;
     private Reminiscence reminiscence;
     private MaterialDialog.Builder builder;
+    private Menu menuFinish;
+
     private boolean dialogIndicator = false;
     private boolean navigateIndicator = false;
     @Override
@@ -132,9 +134,10 @@ public class ReminiscenceExerciseActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-
+        menuFinish = menu;
         MenuInflater menuinflater = getMenuInflater();
         menuinflater.inflate(R.menu.menu_finish, menu);
+        MenuItem menuItem = menu.findItem(R.id.menu_finalizar);
 
         return true;
 
@@ -165,47 +168,49 @@ public class ReminiscenceExerciseActivity extends AppCompatActivity {
         builder = new MaterialDialog.Builder(this);
 
                 builder.title(R.string.dialog_input_comentario_title)
-                .content(R.string.dialog_input_comentario_content)
+                .content(R.string.dialog_input_comentario_content).positiveText(getResources().getString(R.string.dialog_input_positive)).negativeText(getResources().getString(R.string.dialog_input_neutral)).neutralText( getResources().getString(R.string.dialog_input_negative))
                 .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE)
                 .input(R.string.dialog_input_hint, R.string.dialog_input_pre, new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                        txtComentario = input.toString();
-                        dialogIndicator =true;
-                        navigateIndicator=true;
+
+                        Log.e("add observations"," txtcomentario "+txtComentario);
+                        goToStimulation2();
+
                     }
-                }).positiveText(getResources().getString(R.string.dialog_input_positive)).negativeText(getResources().getString(R.string.dialog_input_negative)).neutralText(getResources().getString(R.string.dialog_input_neutral)).onPositive(new MaterialDialog.SingleButtonCallback() {
+                })
+
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
             @Override
             public void onClick(@NonNull MaterialDialog dialog, DialogAction which) {
 
-                if(txtComentario!=null)
-                {
-                    exercise.setObservations(txtComentario);
 
 
-                }
-                dialogIndicator =true;
-                navigateIndicator=true;
+
+
 
             }}).onNegative(new MaterialDialog.SingleButtonCallback() {
             @Override
             public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                goToStimulation2();
 
             }
         }).onNeutral(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        dialogIndicator =true;
-                        navigateIndicator=false;
+
 
                     }
                 }).show();
 
-
+     /*
         if(dialogIndicator)
     {
         builder.show().dismiss();
     }
+
+
         if(navigateIndicator)
         {
             Log.e("navigateIndicator"," navigateindicator "+navigateIndicator);
@@ -215,6 +220,7 @@ public class ReminiscenceExerciseActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+        */
 
 
 
@@ -223,12 +229,32 @@ public class ReminiscenceExerciseActivity extends AppCompatActivity {
 
     }
 
+
+
+
+
+
     public void goToStimulation2()
+
     {
+        Log.e("add observations"," txtcomentario gotostimulation "+txtComentario);
+
+
+        if(txtComentario!="")
+        {
+            exercise.setObservations(txtComentario);
+            exerciseDao.update(exercise);
+
+            Log.e("add observations"," Observation: "+exercise.getObservations());
+
+
+        }
+
         Intent intent = new Intent(ReminiscenceExerciseActivity.this,StimulationTwoActivity.class);
         intent.putExtra("idpatient",idpatient);
         intent.putExtra("idrutina",idrutina);
         startActivity(intent);
+        overridePendingTransition(R.anim.left_in, R.anim.left_out);
         finish();
     }
 

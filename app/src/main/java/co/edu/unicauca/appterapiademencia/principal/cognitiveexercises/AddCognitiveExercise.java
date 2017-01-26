@@ -127,21 +127,13 @@ public class AddCognitiveExercise extends AppCompatActivity {
                 Log.e("add exercise","Error al traer bundle");
             }
         }
-
-        //btnPsicoestimulacion.setPressed(true); //Que arranque presionado
+        /*
+        btnPsicoestimulacion.setPressed(true);
 
        btnReminiscencia.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-                modeTherapy=1;
-                paintSelectedButton();
-                btnReminiscencia.setBackgroundColor(getResources().getColor(R.color.accent_color));
-               containerDemo.setVisibility(View.VISIBLE);
-               imgDemo.setVisibility(View.VISIBLE);
-                cardTaller.setVisibility(View.GONE);
-               containerReminiscencia.setVisibility(View.VISIBLE);
-                containerNivel.setVisibility(View.GONE);
-                containerTaller.setVisibility(View.GONE);
+
 
 
 
@@ -153,20 +145,23 @@ public class AddCognitiveExercise extends AppCompatActivity {
         btnPsicoestimulacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                modeTherapy=2;
-                paintSelectedButton();
-                btnPsicoestimulacion.setBackgroundColor(getResources().getColor(R.color.accent_color));
-                containerDemo.setVisibility(View.VISIBLE);
-                cardTaller.setVisibility(View.VISIBLE);
 
-                containerReminiscencia.setVisibility(View.GONE);
-                containerNivel.setVisibility(View.VISIBLE);
-                containerTaller.setVisibility(View.VISIBLE);
+ modeTherapy=2;
+        paintSelectedButton();
+        btnPsicoestimulacion.setBackgroundColor(getResources().getColor(R.color.accent_color));
+        containerDemo.setVisibility(View.VISIBLE);
+        cardTaller.setVisibility(View.VISIBLE);
 
+        containerReminiscencia.setVisibility(View.GONE);
+        containerNivel.setVisibility(View.VISIBLE);
+        containerTaller.setVisibility(View.VISIBLE);
 
             }
         });
 
+
+
+*/      representReminiscence();
 
 
         spiTaller.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -359,6 +354,19 @@ public class AddCognitiveExercise extends AppCompatActivity {
     }
 
 
+
+    public void representReminiscence()
+    {
+        modeTherapy=1;
+        paintSelectedButton();
+        btnReminiscencia.setBackgroundColor(getResources().getColor(R.color.accent_color));
+        containerDemo.setVisibility(View.VISIBLE);
+        imgDemo.setVisibility(View.VISIBLE);
+        cardTaller.setVisibility(View.GONE);
+        containerReminiscencia.setVisibility(View.VISIBLE);
+        containerNivel.setVisibility(View.GONE);
+        containerTaller.setVisibility(View.GONE);
+    }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK)

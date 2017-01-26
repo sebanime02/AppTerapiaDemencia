@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +16,8 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +49,9 @@ public class StimulationTwoActivity extends AppCompatActivity {
     private Bundle bundle;
     private Toolbar toolbar;
     private ActionBar actionBar;
+    private TextView tvRutinaInstructions,tvLabelpass2,tvComentarioPass2,tvNumberpass2;
+    private CardView cardPass2;
+    private ImageView imgCheckPass2;
     private boolean tabRestricter = false;
     private GridLayoutManager lLayout;
     private BottomNavigationView bottomBar;
@@ -79,6 +85,13 @@ public class StimulationTwoActivity extends AppCompatActivity {
         recycler = (RecyclerView) findViewById(R.id.recicladorStimulation2);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         bottomBar = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        tvRutinaInstructions = (TextView) findViewById(R.id.tv_rutina_instructions);
+
+        tvComentarioPass2 = (TextView) findViewById(R.id.comentario_paso_2);
+        tvLabelpass2 = (TextView) findViewById(R.id.label_pass_2);
+        tvNumberpass2 = (TextView) findViewById(R.id.number_pass_2);
+        cardPass2 = (CardView) findViewById(R.id.cardPass2);
+        imgCheckPass2 = (ImageView) findViewById(R.id.img_check_pass_2);
 
 
 
@@ -123,6 +136,13 @@ public class StimulationTwoActivity extends AppCompatActivity {
         if(finished==true)
         {
             bottomBar.setVisibility(View.GONE);
+            tvRutinaInstructions.setText(getResources().getString(R.string.txt_rutina_finished_instructions));
+            tvRutinaInstructions.setTextColor(getResources().getColor(R.color.material_red));
+            tvComentarioPass2.setTextColor(getResources().getColor(R.color.gray));
+            tvLabelpass2.setTextColor(getResources().getColor(R.color.gray));
+            tvNumberpass2.setTextColor(getResources().getColor(R.color.gray));
+            cardPass2.setCardBackgroundColor(getResources().getColor(R.color.white));
+            imgCheckPass2.setVisibility(View.VISIBLE);
         }
 
         bottomBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -244,6 +264,8 @@ public class StimulationTwoActivity extends AppCompatActivity {
         cedula = patient.getIdentity();
         i2.putExtra("cedula",cedula);
         startActivity(i2);
+        overridePendingTransition(R.anim.left_in, R.anim.left_out);
+
         finish();
     }
 
@@ -259,6 +281,7 @@ public class StimulationTwoActivity extends AppCompatActivity {
             cedula = patient.getIdentity();
             i2.putExtra("cedula",cedula);
             startActivity(i2);
+            overridePendingTransition(R.anim.left_in, R.anim.left_out);
             finish();
             return true;
         }

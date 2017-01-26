@@ -18,8 +18,8 @@
     <string name="Titulo_aplicacion">Aplicación Para Terapia Demencia</string>
     <string name="txt_choose_user">Ingresa como: </string>
     <string name="txt_or_choose">O Unicamente eres</string>
-    <string name="btn_soycuidador">Cuidador (Acceso Limitado)</string>
-    <string name="btn_soysupervisor">Supervisor de Cuidadores (Acceso Completo)</string>
+    <string name="btn_soycuidador">Cuidador (Acceso de Invitado)</string>
+    <string name="btn_soysupervisor">Supervisor de Cuidadores (Jefe Area,Psicologia,Gerontologia,Pediatria)</string>
     <string name="btn_salir">Salir</string>
     <string name="hint_username">Nombre de Usuario</string>
     <string name="hint_password">Contraseña</string>
@@ -439,7 +439,7 @@
     <string name="dialog_positive">SI</string>
     <string name="dialog_negative">NO</string>
     <string name="dialog_question_delete">Desea Borrar El Ejercicio de Reminiscencias actual?</string>
-    <string name="txt_rutina_finished_instructions">La rutina ya ha sido finalizada, Por favor presione atras y siga con la Última o Inicie una nueva</string>
+    <string name="txt_rutina_finished_instructions">La rutina ya ha sido finalizada, Por favor presione atrás y Continue con la Última rutina o Inicie una nueva</string>
 
 
 
