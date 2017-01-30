@@ -121,7 +121,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
                 ambito= Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/movility72px").toString();
                 break;
             case "alimentacion":
-                description="Independencia Alimentaria";
+                description="Independencia\nAlimentaria";
                 ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/eating72px").toString();
 
                 break;
@@ -142,22 +142,22 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
                 break;
             case "higiene":
-                description="Higiene y Aseo Personal";
+                description="Higiene y\nAseo Personal";
               ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/higiene72px").toString();
 
                 break;
             case "animo":
-                description="Estado de Ànimo";
+                description="Estado de\nÀnimo";
                 ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/ic_insert_emoticon_black_48dp").toString();
 
                 break;
             case "personalidad":
-                description="Personalidad y Conducta";
+                description="Personalidad y\nConducta";
                 ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/changebehavior72px").toString();
 
                 break;
             case "vestimenta":
-                description="Vestimenta y Asuntos personales";
+                description="Vestimenta y\nAsuntos personales";
                ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/clothes72px").toString();
 
                 break;
@@ -174,7 +174,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
                 break;
 
             case "instrumentales":
-                description="Actividades Instrumentales";
+                description="Actividades\nInstrumentales";
                 ambito=Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/mipmap/instrumentals72px").toString();
 
                 break;

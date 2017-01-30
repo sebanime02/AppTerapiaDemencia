@@ -1,6 +1,7 @@
 package co.edu.unicauca.appterapiademencia.principal.patientprofile;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -39,6 +40,7 @@ import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.items.BlessedScoreAverage;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.AddPatient2Activity;
+import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientProfileActivity;
 import co.edu.unicauca.appterapiademencia.util.CircleTransform;
 
 /**
@@ -88,7 +90,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private Calendar calendar;
     private int year,month,day;
     private Spinner spiBlessed;
-    private Button btngoMoreStatistics;
+    private Button btngoMoreStatistics,btnMoreBlessed,btnMoreLawton,btnMoreDownton,btnMoreFast,btnMoreMinimenta;
     private static final String[]  estadisticablessed = {"Últimos Meses","Últimos Años"};
     private Button btnMoreStatistics;
 
@@ -116,7 +118,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
 
 
     @Override
-    public void onViewCreated(View view,Bundle savedInstanceState) {
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         imageProfile = (ImageView) view.findViewById(R.id.img_patient_perfil);
         txtName = (TextView) view.findViewById(R.id.name_patient_perfil);
@@ -147,6 +149,12 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
          blessedChart = (BarChart) view.findViewById(R.id.blessedChart);
         spiBlessed = (Spinner) view.findViewById(R.id.spi_blessed);
         btngoMoreStatistics = (Button) view.findViewById(R.id.btnMoreStatistics);
+        btnMoreBlessed = (Button) view.findViewById(R.id.btn_more_blessed);
+        btnMoreDownton = (Button) view.findViewById(R.id.btn_more_downton);
+        btnMoreFast = (Button) view.findViewById(R.id.btn_more_fast);
+        btnMoreLawton = (Button) view.findViewById(R.id.btn_more_lawton);
+        btnMoreMinimenta = (Button) view.findViewById(R.id.btn_more_minimental);
+
 
 
 
@@ -168,6 +176,13 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
             }
         });
 
+        containerBlessed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new MaterialDialog.Builder(getActivity().getBaseContext()).title("Rangos Blessed").content(R.string.error_loguin).positiveText(R.string.dialog_succes_agree).icon(getResources().getDrawable(R.drawable.sadface)).show();
+
+            }
+        });
 
 
 
@@ -234,11 +249,48 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
 
 
 
+        btnMoreLawton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view2) {
+                showDetailsTest(view2,"lawton");
+            }
+        });
+        btnMoreMinimenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view2) {
+                showDetailsTest(view2,"minimental");
+            }
+        });
+
+        btnMoreDownton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view2) {
+                showDetailsTest(view2,"downton");
+            }
+        });
+        btnMoreFast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view2) {
+                showDetailsTest(view2,"fast");
+            }
+        });
+        btnMoreBlessed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view2) {
+                showDetailsTest(view2,"blessed");
+            }
+        });
+
+
+
+
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+        Log.e("Pasa la app","Arranca el fragment");
         super.onCreate(savedInstanceState);
 
         patientProfilePresenter = new PatientProfilePresenterImplementation(this);
@@ -327,7 +379,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtPuntajeBlessed.setText(this.blessedCount+"");
         txtComentarioBlessed.setText(this.blessedComentario);
         txtPuntajeFast.setText(this.fastCount+"");
-        txtPuntajeLawton.setText("De 0 a 8, donde 0 es el máximo\nvalor de dependencia en AIVD\nPuntaje:"+this.lawtonCount);
+        txtPuntajeLawton.setText(this.lawtonCount);
         txtComentarioLawton.setText(this.comentarioLawton);
         txtPuntajeDownton.setText(this.puntajeDownton);
         txtComentarioDownton.setText(this.comentarioDownton);
@@ -371,6 +423,9 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
 
             Picasso.with(this.getActivity()).load(Uri.parse(PatientListAdapter.fotodefault)).resize(imageSize, imageSize).transform(new CircleTransform()).into(imageProfile);
         }
+
+
+
     }
 
     @Override
@@ -712,6 +767,44 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         intent.putExtra("idsistema",idsistema);
         intent.putExtra("cedula",idpatient);
         startActivity(intent);
+    }
+
+    public String[] showDetailsTest(View view,String test)
+    {
+        String[] array = new String[2];
+        String title="",description="";
+        Resources resources;
+        resources = view.getResources();
+        switch (test)
+        {
+            case "minimental":
+                title = resources.getString(R.string.minimental_range_information_title);
+                description = resources.getString(R.string.minimental_range_information_description);
+                break;
+            case "fast":
+                title = resources.getString(R.string.fast_range_information_title);
+                description = resources.getString(R.string.fast_range_information_description);
+                break;
+            case "blessed":
+                title = resources.getString(R.string.blessed_range_information_title);
+                description = resources.getString(R.string.blessed_range_information_description);
+                break;
+            case "lawton":
+                title = resources.getString(R.string.lawton_range_information_title);
+                description = resources.getString(R.string.lawton_range_information_description);
+                break;
+            case "downton":
+                title = resources.getString(R.string.downton_range_information_title);
+                description = resources.getString(R.string.downton_range_information_description);
+                break;
+        }
+        array[0] = title;
+        array[1] = description;
+        new MaterialDialog.Builder(view.getContext()).title(title).content(description).positiveText(R.string.dialog_succes_agree).show();
+
+
+        return array;
+
     }
 
 

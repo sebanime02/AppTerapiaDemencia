@@ -46,10 +46,10 @@
             android:layout_height="wrap_content"
             android:text="Fecha"
             android:textAppearance="?android:textAppearanceMedium"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignTop="@id/note_type"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:drawableLeft="@mipmap/ic_event_black_18dp"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:drawableStart="@mipmap/ic_event_black_18dp"
             android:fontFamily="sans-serif"
 
             />
@@ -61,8 +61,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/note_date"
-            android:layout_toLeftOf="@id/note_date"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_toStartOf="@id/note_date"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:fontFamily="sans-serif"
             android:text="Tardia"
             android:visibility="visible"
@@ -75,8 +75,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/note_late"
-            android:layout_toLeftOf="@id/note_late"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_toStartOf="@id/note_late"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:fontFamily="sans-serif"
             android:visibility="visible"
 
@@ -92,11 +92,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/note_date"
             android:text="Hora"
-            android:layout_alignParentRight="true"
-            android:layout_alignLeft="@id/note_date"
-            android:drawableLeft="@mipmap/ic_alarm_black_18dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignStart="@id/note_date"
+            android:drawableStart="@mipmap/ic_alarm_black_18dp"
             android:textAppearance="?android:textAppearanceMedium"
-            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
             android:fontFamily="sans-serif"
             />
 
@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:textAppearanceLarge"
             android:text="Titulo Nota"
-
+            android:lines="2"
             android:layout_marginStart="20dp"
             android:layout_above="@+id/note_description"
             android:layout_toEndOf="@+id/img_note" />

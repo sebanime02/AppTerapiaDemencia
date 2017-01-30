@@ -359,7 +359,8 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
             {
                 comentario="";
             }
-            patientProfileView.showLawtonScore(score,comentario);
+
+
 
 
         }catch (Exception e)

@@ -14,7 +14,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_soft"
+
     android:layout_marginBottom="@dimen/activity_vertical_margin"
 
     >
@@ -25,6 +25,7 @@
         android:orientation="vertical"
         android:background="@drawable/rounded_corner"
         android:visibility="gone"
+
         >
     <TextView
         android:layout_width="match_parent"
@@ -40,6 +41,7 @@
         android:orientation="horizontal"
         android:layout_weight="2"
         android:visibility="gone"
+
 
         >
 
@@ -92,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/txt_ultima_rutina"
                 android:textStyle="bold"
+                android:textSize="@dimen/medium_text_size"
                 android:id="@+id/textView6" />
 
             <TextView
@@ -99,12 +102,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_ultima_rutina_estado"
+                android:textSize="@dimen/medium_text_size"
+                android:textStyle="bold"
                 />
             <TextView
                 android:id="@+id/tv_last_rutina_starter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_ultima_rutina_autor"
+                android:textStyle="bold"
+                android:textSize="@dimen/medium_text_size"
 
                 />
             <TextView
@@ -112,6 +119,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_ultima_rutina_fecha"
+                android:textStyle="bold"
+                android:textSize="@dimen/medium_text_size"
 
                 />
 
@@ -165,6 +174,7 @@
                 android:textColor="@color/white"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:text="@string/btn_nuevo"
+                android:drawableLeft="@mipmap/ic_content_paste_white_18dp"
                 android:layout_gravity="center_horizontal"
 
                 />

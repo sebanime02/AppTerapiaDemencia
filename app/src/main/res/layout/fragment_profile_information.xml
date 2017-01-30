@@ -330,6 +330,15 @@
                         </LinearLayout>
 
                     </LinearLayout>
+                    <Button
+                        android:id="@+id/btn_more_minimental"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimaryDark"
+                        android:text="@string/txt_see_more"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:textColor="@color/white"
+                        />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -401,9 +410,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-
-
 
 
             <LinearLayout
@@ -480,6 +486,14 @@
 
          </LinearLayout>
         </LinearLayout>
+        <Button
+            android:id="@+id/btn_more_blessed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/txt_see_more"
+            android:textColor="@color/white"
+            />
     </LinearLayout>
 
 
@@ -551,8 +565,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/small_text_size"
-                        android:text="Nota: Considerar Solo si esta diagnosticado con alzheimer"
+                        android:text="@string/txt_fast_note_information"
                         ></TextView>
+                    <Button
+                        android:id="@+id/btn_more_fast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimaryDark"
+                        android:text="@string/txt_see_more"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:textColor="@color/white"
+                        />
                 </LinearLayout>
 
 
@@ -623,7 +646,15 @@
 
 
                     </LinearLayout>
-
+                    <Button
+                        android:id="@+id/btn_more_downton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimaryDark"
+                        android:text="@string/txt_see_more"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:textColor="@color/white"
+                        />
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/containerLawton"
@@ -646,34 +677,54 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
-                        android:orientation="vertical"
+                        android:weightSum="4"
+                        android:orientation="horizontal"
                         >
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/small_text_size"
-                            android:text="Escala de Actividades Instrumentales (LAWTON Y BRODY)"
-                            android:textStyle="bold"
-                            />
-                        <TextView
                             android:id="@+id/puntajeLawton"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/small_text_size"
 
                             />
-                        <TextView
-                            android:id="@+id/comentarioLawton"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/medium_text_size"
+                            android:layout_weight="3"
+                            android:orientation="vertical"
+                            >
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/small_text_size"
+                                android:text="Escala de Actividades Instrumentales (LAWTON Y BRODY)"
+                                android:textStyle="bold"
+                                />
 
-                            />
+                            <TextView
+                                android:id="@+id/comentarioLawton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/medium_text_size"
+
+                                />
+
+
+                        </LinearLayout>
+
 
 
                     </LinearLayout>
-
+                    <Button
+                        android:id="@+id/btn_more_lawton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimaryDark"
+                        android:text="@string/txt_see_more"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:textColor="@color/white"
+                        />
                 </LinearLayout>
 
 

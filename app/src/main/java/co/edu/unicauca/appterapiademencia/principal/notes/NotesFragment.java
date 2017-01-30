@@ -156,12 +156,13 @@ public class NotesFragment extends Fragment implements NotesView{
 
         adapter = new NoteAdapter(this.noteList, getActivity(),getContext());
         recycler.setAdapter(adapter);
-        txt_caida.setText(""+this.fallCount);
+
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.e("Notes","entro al onclick");
+                Log.e("Calculo","Arranca a contar");
                 addNote(idpatient);
             }
         });
@@ -187,6 +188,7 @@ public class NotesFragment extends Fragment implements NotesView{
             adapter = new NoteAdapter(list, getActivity(),getContext());
             recycler.setAdapter(adapter);
             adapter.notifyDataSetChanged();
+            /*
             txt_caida.setText(""+getFallCount());
             txt_humor.setText(""+getEstadodeanimoCount());
             txt_higiene.setText(""+getMedicationCount());
@@ -197,6 +199,7 @@ public class NotesFragment extends Fragment implements NotesView{
             txt_medicacion.setText(""+getMedicationCount());
             txt_orientacion.setText(""+getLanguageCount());
             txt_memoria.setText(""+getMemoryCount());
+            */
 
             //callListenerText();
         } catch (Exception e) {
@@ -387,6 +390,7 @@ public class NotesFragment extends Fragment implements NotesView{
     @Override
     public void addNote(Long idpatient) {
         //Intent ir_reg = new Intent(getContext(), AddNoteActivity.class);
+
         Intent ir_reg = new Intent(getContext(), AddNoteActivity.class);
         Log.e("idpatient recibido :",""+idpatient);
         ir_reg.putExtra("idpatient", idpatient);

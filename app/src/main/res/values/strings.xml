@@ -14,18 +14,18 @@
         completions."
     </string>
     <!-- LOGIN 1 LAYOUT-->
-    <string name="logo_txt">APLICACIÓN DE ASISTENCIA AL CUIDADOR Y SUPERVISOR EN INSTITUCIONES CON ADULTOS MAYORES</string>
+    <string name="logo_txt">APLICACIÓN MÓVIL ESPECIALIZADA EN LA ASISTENCIA DE INVOLUCRADOS EN LA TERAPIA COGNITIVA DE ADULTOS MAYORES </string>
     <string name="Titulo_aplicacion">Aplicación Para Terapia Demencia</string>
     <string name="txt_choose_user">Ingresa como: </string>
-    <string name="txt_or_choose">O Unicamente eres</string>
+    <string name="txt_or_choose"> O </string>
     <string name="btn_soycuidador">Cuidador (Acceso de Invitado)</string>
-    <string name="btn_soysupervisor">Supervisor de Cuidadores (Jefe Area,Psicologia,Gerontologia,Pediatria)</string>
+    <string name="btn_soysupervisor">Supervisor de Cuidadores o Profesional en Psicología</string>
     <string name="btn_salir">Salir</string>
     <string name="hint_username">Nombre de Usuario</string>
     <string name="hint_password">Contraseña</string>
     <string name="btn_entrar">Entrar</string>
     <string name="error_loguin">Su Usuario y Contrasena NO Son Correctos</string>
-    <string name="btn_irRegistro">O Regístrate como supervisor</string>
+    <string name="btn_irRegistro">Regístrate</string>
     <string name="dialog_succes_title">Te has registrado!</string>
     <string name="dialog_succes_content">Se ha registrado correctamente, ingrese de nuevo sus datos</string>
     <string name="dialog_succes_agree">Entiendo</string>
@@ -88,7 +88,7 @@
     <string name="dialog_reminiscence_empty_title">Debes Especificar Un Título</string>
 
     <!-- PATIENT LIST -->
-
+    <string name="txt_find_patient">Busque por Nombre...</string>
 
     <!--ADD PATIENT  -->
     <string name="spinner_vision">Limitación de Visión</string>
@@ -137,6 +137,98 @@
     <string name="txt_last_mec">Último Valor MINIMENTAL (MMSE) Ingresado</string>
     <string name="blessed_more_statistics">Ver Mas Estadísticas</string>
 
+    <string name="blessed_range_information_title">Escala de Demencia de Blessed</string>
+    <string name="blessed_range_information_description">
+        Publicado en 1968,cuantifica la capacidad de los pacientes\n
+        para llevar a cabo las tareas de la vida diaria,las funciones\n
+        evaluadas son: cambios en la ejecucion de actividades dia la\n
+        vida diaria(AVD), hábitos, personalidad y conducta\n\n
+        Puntuaciones Superiores a 4 indican presencia de deterioro cognitivo\n
+        Superiores a 15 pueden mostrar alta probabilidad que el paciente\n
+        tenga Demencia en etapa moderada o grave.
+
+    </string>
+
+    <string name="fast_range_information_title">Prueba Functional Assesment Staging Test(FAST)</string>
+    <string name="fast_range_information_description">
+        Es una de las medidas mas validadas en la literatura cientifica para\n
+        evaluar el curso del Alzhéimer.\n\n
+        Establece 7 etapas de la demencia, y especificamente del Alzheimer\n
+        1. Normal de la Edad\n
+        2. Posible Deterioro Cognitivo\n
+        3. Deterioro Cognitivo\n
+        4. Demencia Leve\n
+        5. Demencia Moderada\n
+        6. Demencia Moderadamente Severa (5 subetapas)\n
+        7. Demencia Severa (6 subetapas)\n\n
+        Es necesario mencionar que si un paciente tiene Alzheimer,\n
+        debera seguir la progresion de las etapas pasadas.
+
+    </string>
+
+    <string name="lawton_range_information_title">Escala de Lawton Y Brody</string>
+    <string name="lawton_range_information_description">
+        Escala que sirve para monitorear aspectos relacionados\n
+        con las actividades instrumentales de la vida Diaria(AIVD)\n
+        Los factores que puntuan son:\n
+        -Capacidad para usar el Teléfono\n
+        -Hacer compras\n
+        -Preparación de La Comida\n
+        -Cuidado de la Casa\n
+        -Lavado de La Ropa\n
+        -Uso de Medios de Transporte\n
+        -Responsabilidad Respecto A su Medicación\n
+        -Manejo de Asuntos Económicos\n
+        -El rango de la escala va de 0 a 8, donde\n
+        0 es el máximo valor de dependencia en AIVD\n
+
+
+    </string>
+
+    <string name="downton_range_information_title">Escala de Downton Para Riesgo de Caidas</string>
+    <string name="downton_range_information_description">
+        Las caidas representan la segunda causa de muerte en todo\n
+        el mundo por lesiones accidentales o no intencionales. Se\n
+        calcula que anualmente se producen 37,3 millones de caidas\n
+        que necesitaran atención médica, resultando mortales en el\n
+        8.8% de los casos.\n\n
+        La escala de downton se calcula con los siguientes factores:\n
+        Caidas Previas\n
+        Medicación\n
+        Déficit Sensorial\n
+        Estado Mental\n
+        Deambulación\n
+        El riesgo de caidas se debe controlar y mantener bajo\n\n
+
+
+    </string>
+
+    <string name="minimental_range_information_title">Mini Prueba del Estado Mental</string>
+    <string name="minimental_range_information_description">
+
+        Test cognitivo abreviado de mayor validez y difusión internacional,\n
+        consiste en proporcionar un instrumento para la detección del\n
+        deterioro cognitivo, requiere poco tiempo para su administración.\n\n
+        Evalua las siguientes areas:\n
+        -Orientación\n
+        -Memoria\n
+        -Atención\n
+        -Capacidad para seguir ordenes orales y escritas\n
+        -Habilidades visoconstructivas\n\n
+        Máxima puntacion del Minimental : 30\n
+        Puntacion Normal: 27 o mas.\n
+        Sospecha patológica: 23 o 24 (punto de corte)\n
+        Deterioro: 24-12\n
+        Demencia: 9-12\n
+
+
+    </string>
+
+
+
+    <string name="txt_see_more">Mas información</string>
+    <string name="txt_fast_note_information">Nota: Considerar Solo si el paciente esta diagnosticado con Alzheimer</string>
+
 
     <!--TAB NOTE INFORMATION-->
     <string name="txt_note_instructions">Ingrese una nota con el Eve</string>
@@ -175,6 +267,7 @@
     <string name="addnote_eventos">Relacionados a Eventos:</string>
     <string name="addnote_signos">Relacionado a Signos o Sintomas de la Demencia Senil:</string>
     <string name="addnote_orientacion">Orientación</string>
+    <string name="notelist_banner_tips">ATENCIÓN!! Los signos, sintomas y eventos relacionados a la demencia senil que puedes ingresar con el botón rojo son los siguientes:</string>
 
 
     <!--RADIOBUTTONS-->

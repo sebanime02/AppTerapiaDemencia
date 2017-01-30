@@ -7,7 +7,7 @@
     android:layout_marginRight="5dp"
     android:layout_marginEnd="5dp"
     >
-    
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,10 +15,10 @@
         android:layout_centerHorizontal="true"
 
         >
-    
+
 
 <ScrollView
- 
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/gray_soft"
@@ -41,11 +41,41 @@
 <LinearLayout
 
     android:background="@color/gray_soft"
-    android:layout_width="wrap_content"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:layout_weight="1"
+    android:layout_weight="2"
     android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
     >
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_green"
+        android:layout_gravity="center_horizontal"
+        >
+
+
+        <TextView
+            android:id="@+id/mec_value"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:gravity="center_horizontal"
+            android:text="@string/notelist_banner_tips"
+            android:textStyle="bold"
+
+            />
+
+
+
+    </LinearLayout>
+
+
+
+
     <TableLayout
         android:background="@color/gray_soft"
         android:gravity="center_horizontal"
@@ -53,108 +83,163 @@
         android:layout_height="wrap_content"
         android:stretchColumns="1">
 
-        <TableRow android:gravity="center_horizontal">
-            <ImageButton
+        <TableRow  android:gravity="center_horizontal">
+            <ImageView
+                android:layout_marginEnd="@dimen/separator_images"
                 android:src="@mipmap/caida48px"/>
-        </TableRow>
-        <TableRow android:gravity="center_horizontal">
-            <TextView android:fontFamily="sans-serif" android:textStyle="bold" android:background="@color/material_pink" android:textColor="@color/white" android:textAlignment="center" android:id="@+id/count_caida" android:text="0"/>
-        </TableRow>
-
-
-        <TableRow android:gravity="center_horizontal">
-            <ImageButton
+            <ImageView
                 android:src="@mipmap/medication72px"/>
         </TableRow>
         <TableRow android:gravity="center_horizontal">
-            <TextView android:fontFamily="sans-serif" android:textStyle="bold" android:background="@color/md_material_blue_800" android:textColor="@color/white" android:textAlignment="center" android:id="@+id/count_medicacion" android:text="0"/>
-        </TableRow>
+            <TextView
+                android:layout_marginEnd="@dimen/separator_images"
 
+                android:fontFamily="sans-serif" android:textStyle="bold" android:background="@color/material_pink" android:textColor="@color/white" android:textAlignment="center" android:id="@+id/count_caida" android:text="@string/add_caida"/>
+            <TextView
+                android:lines="2"
+                android:fontFamily="sans-serif" android:textStyle="bold" android:background="@color/md_material_blue_800" android:textColor="@color/white" android:textAlignment="center" android:id="@+id/count_medicacion" android:text="@string/add_medication"/>
 
-
-        <TableRow android:gravity="center_horizontal">
-            <ImageButton android:src="@mipmap/movility48px"/>
-        </TableRow>
-        <TableRow android:gravity="center_horizontal">
-            <TextView android:fontFamily="sans-serif" android:textStyle="bold" android:background="@color/material_amber" android:textColor="@color/white" android:textAlignment="center" android:id="@+id/count_movilidad" android:text="0"/>
         </TableRow>
 
 
         <TableRow android:gravity="center_horizontal">
 
-            <ImageButton  android:src="@mipmap/eating48px"
+        </TableRow>
+        <TableRow android:gravity="center_horizontal">
+        </TableRow>
+
+
+
+        <TableRow android:gravity="center_horizontal">
+            <ImageView android:layout_marginEnd="@dimen/separator_images"
+                 android:src="@mipmap/movility48px"/>
+            <ImageView  android:src="@mipmap/eating48px"
                 android:id="@+id/imageView" />
         </TableRow>
         <TableRow android:gravity="center_horizontal">
-            <TextView android:textColor="@color/white" android:background="@color/material_green" android:textAlignment="center" android:id="@+id/count_alimentacion" android:text="0"/>
+            <TextView
+                android:layout_marginEnd="@dimen/separator_images"
+                android:fontFamily="sans-serif" android:textStyle="bold" android:background="@color/material_amber" android:textColor="@color/white" android:textAlignment="center" android:id="@+id/count_movilidad" android:text="@string/add_movilidad"/>
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/white" android:background="@color/material_green" android:textAlignment="center" android:id="@+id/count_alimentacion" android:text="@string/add_alimentacion"/>
+
         </TableRow>
 
 
         <TableRow android:gravity="center_horizontal">
-            <ImageButton
+
+
+        </TableRow>
+        <TableRow android:gravity="center_horizontal">
+        </TableRow>
+
+
+        <TableRow android:gravity="center_horizontal">
+            <ImageView
+                android:layout_marginEnd="@dimen/separator_images"
                 android:src="@mipmap/changebehavior72px"/>
-        </TableRow>
-        <TableRow android:gravity="center_horizontal">
-            <TextView android:textColor="@color/white" android:background="@color/material_purple" android:textAlignment="center" android:id="@+id/count_humor" android:text="0"/>
-        </TableRow>
-
-        <TableRow android:gravity="center_horizontal">
-            <ImageButton android:src="@mipmap/ic_insert_emoticon_black_48dp"/>
+            <ImageView android:src="@mipmap/ic_insert_emoticon_black_48dp"/>
 
         </TableRow>
         <TableRow android:gravity="center_horizontal">
-            <TextView android:background="@color/material_blue"  android:textColor="@color/white" android:textAlignment="center" android:id="@+id/count_salud" android:text="0"/>
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginEnd="@dimen/separator_images"
+                android:textColor="@color/white" android:background="@color/material_purple" android:textAlignment="center" android:id="@+id/count_humor" android:text="@string/add_changebehaviour"/>
+            <TextView
+                android:textStyle="bold"
+                android:background="@color/material_blue"  android:textColor="@color/white" android:textAlignment="center" android:id="@+id/count_salud" android:text="@string/add_health"/>
+
+        </TableRow>
+
+        <TableRow android:gravity="center_horizontal">
+
+        </TableRow>
+        <TableRow android:gravity="center_horizontal">
 
         </TableRow>
 
 
         <TableRow android:gravity="center_horizontal">
-            <ImageButton
+            <ImageView
+                android:layout_marginEnd="@dimen/separator_images"
                 android:src="@mipmap/higiene72px"/>
-        </TableRow>
-        <TableRow android:gravity="center_horizontal">
-            <TextView  android:textColor="@color/white" android:background="@color/gray" android:textAlignment="center" android:id="@+id/count_higiene" android:text="0"/>
-
-        </TableRow>
-
-
-
-        <TableRow android:gravity="center_horizontal">
-            <ImageButton
+            <ImageView
                 android:src="@mipmap/clothes72px"/>
         </TableRow>
         <TableRow android:gravity="center_horizontal">
-            <TextView  android:textColor="@color/white" android:background="@color/material_brown" android:textAlignment="center" android:id="@+id/count_vestimenta" android:text="0"/>
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginEnd="@dimen/separator_images"
+                android:textColor="@color/white" android:background="@color/gray" android:textAlignment="center" android:id="@+id/count_higiene" android:text="@string/addnote_higiene"/>
+            <TextView
+                android:textStyle="bold"
+                android:lines="2"
+                android:textColor="@color/white" android:background="@color/material_brown" android:textAlignment="center" android:id="@+id/count_vestimenta" android:text="@string/addnote_vestimenta"/>
+
+        </TableRow>
+
+
+
+        <TableRow android:gravity="center_horizontal">
+
+        </TableRow>
+        <TableRow android:gravity="center_horizontal">
 
         </TableRow>
 
 
         <TableRow android:gravity="center_horizontal">
-            <ImageButton
+            <ImageView
+                android:layout_marginEnd="@dimen/separator_images"
                 android:src="@mipmap/memory72px"/>
-        </TableRow>
-        <TableRow android:gravity="center_horizontal">
-            <TextView  android:textColor="@color/white" android:background="@color/material_teal" android:textAlignment="center" android:id="@+id/count_memoria" android:text="0"/>
-
-        </TableRow>
-
-
-        <TableRow android:gravity="center_horizontal">
-            <ImageButton
+            <ImageView
                 android:src="@mipmap/orientation72px"/>
         </TableRow>
         <TableRow android:gravity="center_horizontal">
-            <TextView  android:textColor="@color/white" android:background="@color/material_green" android:textAlignment="center" android:id="@+id/count_orientacion" android:text="0"/>
+            <TextView
+                android:textStyle="bold"
+                android:lines="2"
+                android:layout_marginEnd="@dimen/separator_images"
+                android:textColor="@color/white" android:background="@color/material_teal" android:textAlignment="center" android:id="@+id/count_memoria" android:text="@string/addnote_memoria"/>
+            <TextView
+                android:textStyle="bold"
+                android:lines="2"
+                android:textColor="@color/white" android:background="@color/material_green" android:textAlignment="center" android:id="@+id/count_orientacion" android:text="@string/addnote_orientacion"/>
 
         </TableRow>
 
+
         <TableRow android:gravity="center_horizontal">
-            <ImageButton
+
+        </TableRow>
+        <TableRow android:gravity="center_horizontal">
+
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/activity_vertical_margin" android:gravity="center_horizontal">
+            <ImageView
                 android:src="@mipmap/language72px"/>
+            <ImageView
+                android:src="@mipmap/instrumentals72px"/>
         </TableRow>
         <TableRow android:gravity="center_horizontal">
-            <TextView  android:textColor="@color/white" android:background="@color/material_red" android:textAlignment="center" android:id="@+id/count_lenguaje" android:text="0"/>
+            <TextView
+                android:lines="2"
+                android:textStyle="bold"
+                android:textColor="@color/white" android:background="@color/material_red" android:textAlignment="center" android:id="@+id/count_lenguaje" android:text="@string/addnote_lenguaje"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@color/material_grey"
+                android:text="@string/addnote_instrumentales"
+                android:textColor="@color/negro"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif"
 
+
+                />
         </TableRow>
 
 
@@ -167,7 +252,8 @@
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:minHeight="@dimen/alto_banner_register"
     android:layout_width="0dp"
-    android:layout_weight="6"
+    android:layout_weight="5"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@color/white"
