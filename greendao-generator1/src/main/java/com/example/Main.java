@@ -17,7 +17,7 @@ public class Main {
         user.addStringProperty("username").notNull().unique();
         user.addStringProperty("password").notNull();
         user.addStringProperty("completeName").notNull();
-        user.addBooleanProperty("accessType"); //Booleano para determinar si es supervisor
+        user.addBooleanProperty("accessType"); //0 Supervisor, 1 Profesional en Psicologia
         user.addStringProperty("photopath");
 
         //PATIENT TABLE

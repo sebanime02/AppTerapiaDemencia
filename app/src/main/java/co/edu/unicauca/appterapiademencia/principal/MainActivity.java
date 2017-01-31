@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         */
 
-        Log.d("Presionado",position+"");
+        Log.d("Time count","Fragment to fragment empieza a contar");
 
         switch (position) {
             case 0:

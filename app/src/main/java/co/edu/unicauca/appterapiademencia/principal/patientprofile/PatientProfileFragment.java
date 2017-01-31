@@ -109,6 +109,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_profile_information,container,false);
+        Log.d("Time count","Activity to activity termino de contar");
 
         //setRootView(rootView);
         return rootView;
@@ -271,6 +272,8 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         btnMoreFast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view2) {
+                Log.d("Time count","Empieza a contar vista superpuesta");
+
                 showDetailsTest(view2,"fast");
             }
         });
@@ -801,6 +804,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         array[0] = title;
         array[1] = description;
         new MaterialDialog.Builder(view.getContext()).title(title).content(description).positiveText(R.string.dialog_succes_agree).show();
+        Log.d("Time count","Termina de contar vista superpuesta");
 
 
         return array;

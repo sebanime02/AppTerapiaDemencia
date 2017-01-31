@@ -186,6 +186,8 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
 
         @Override
         public void onClick(View view) {
+            Log.d("Time count","Activity to activity empieza a contar");
+
             //Toast.makeText(view.getContext(), "position = " + PatientListAdapter.this.getItemId(getPosition()), Toast.LENGTH_SHORT).show();
             Log.e("id del card",""+PatientListAdapter.this.getItemId(getPosition()));
             Intent intent=new Intent(activity,PatientProfileActivity.class);

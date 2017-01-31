@@ -1,5 +1,6 @@
 package co.edu.unicauca.appterapiademencia.principal.tips;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +41,8 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_tips, container, false);
         floatingActionButton = (FloatingActionButton) rootView.findViewById(R.id.add_tip);
+        Log.d("Time count","Fragment to fragment termina de contar");
+
         recycler = (RecyclerView) rootView.findViewById(R.id.reciclador);
 
         recycler.setHasFixedSize(true);
@@ -64,6 +68,7 @@ public class TipsListFragment extends Fragment implements  TipsListView {
 
         return rootView;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState)

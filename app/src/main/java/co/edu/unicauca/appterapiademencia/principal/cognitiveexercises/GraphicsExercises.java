@@ -125,7 +125,25 @@ public class GraphicsExercises extends Fragment{
             {
                 btnLastRutina.setVisibility(View.INVISIBLE);
             }
-            txtSate.setText(getResources().getString(R.string.txt_ultima_rutina_estado)+" "+lastRutina.getState());
+
+            if(lastRutina.getState()==0)
+            {
+                txtSate.setText(getResources().getString(R.string.txt_ultima_rutina_estado) +getResources().getString(R.string.txt_rutina_finished));
+
+            }
+            else if(lastRutina.getState()==1)
+            {
+                txtSate.setText(getResources().getString(R.string.txt_ultima_rutina_estado) + getResources().getString(R.string.txt_rutina_pass_1));
+
+
+            }
+            else
+            {
+                txtSate.setText(getResources().getString(R.string.txt_ultima_rutina_estado) + getResources().getString(R.string.txt_rutina_pass_2));
+
+            }
+
+
             txtStarter.setText(getResources().getString(R.string.txt_ultima_rutina_autor)+" "+lastRutina.getStartername());
             txtDate.setText(getResources().getString(R.string.txt_ultima_rutina_fecha)+" "+lastRutina.getDatestart());
 

@@ -161,6 +161,7 @@ public class NotesFragment extends Fragment implements NotesView{
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Log.e("Notes","entro al onclick");
                 Log.e("Calculo","Arranca a contar");
                 addNote(idpatient);

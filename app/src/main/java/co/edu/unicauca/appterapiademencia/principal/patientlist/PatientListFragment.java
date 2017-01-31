@@ -120,24 +120,6 @@ public class PatientListFragment extends Fragment implements PatientListView {
             list.add(patientList.get(j));
         }
 
-      /*
-        for (int m=0;m<patientList.size();m++){
-            Log.e("Patient in fragment",": "+patientList.get(m).getName());
-        }
-
-        try {
-
-
-            recycler.setHasFixedSize(true);
-            LManager = new LinearLayoutManager(getContext());
-
-
-
-        }catch (Exception e){
-            adapter.notifyDataSetChanged();
-        }
-        */
-
 
     }
 

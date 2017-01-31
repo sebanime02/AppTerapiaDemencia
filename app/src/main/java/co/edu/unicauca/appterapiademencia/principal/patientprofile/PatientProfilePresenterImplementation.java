@@ -360,6 +360,13 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
                 comentario="";
             }
 
+            if(patientProfileView!=null)
+            {
+                patientProfileView.showLawtonScore(score,comentario);
+
+            }
+
+
 
 
 

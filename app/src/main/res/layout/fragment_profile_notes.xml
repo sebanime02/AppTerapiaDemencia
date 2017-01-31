@@ -219,7 +219,7 @@
         </TableRow>
 
         <TableRow android:layout_marginTop="@dimen/activity_vertical_margin" android:gravity="center_horizontal">
-            <ImageView
+            <ImageView android:layout_marginEnd="@dimen/separator_images"
                 android:src="@mipmap/language72px"/>
             <ImageView
                 android:src="@mipmap/instrumentals72px"/>
@@ -228,6 +228,7 @@
             <TextView
                 android:lines="2"
                 android:textStyle="bold"
+                android:layout_marginEnd="@dimen/separator_images"
                 android:textColor="@color/white" android:background="@color/material_red" android:textAlignment="center" android:id="@+id/count_lenguaje" android:text="@string/addnote_lenguaje"/>
             <TextView
                 android:layout_height="match_parent"
