@@ -163,7 +163,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     {
 
         String msgErr = getResources().getString(R.string.error_loguin);
-        new MaterialDialog.Builder(this).title("Supervisor No Encontrado").content(R.string.error_loguin).positiveText(R.string.dialog_succes_agree).icon(getResources().getDrawable(R.drawable.sadface)).show();
+        new MaterialDialog.Builder(this).title("Usuario no Encontrado").content(R.string.error_loguin).positiveText(R.string.dialog_succes_agree).icon(getResources().getDrawable(R.drawable.sadface)).show();
 
         //input_password.setError(msgErr);
        /* txt_error.setEnabled(true);
@@ -267,17 +267,19 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             String username ="Cuidador";
             String password ="Cuidador";
             String completeName ="Cuidador";
-            boolean accessType=false;
+            int accessType=0;
             User user = new User(null,username,password,completeName,accessType,"");
             GreenDaoHelper.getInstance().getUserDao().insert(user);
 
 
+            /*
             try {
                 createDemoReminiscence();
             }catch (FileNotFoundException e)
             {
                 e.printStackTrace();
             }
+            */
             Log.e("setup","ingreso usuario cuidador");
         }
         else{

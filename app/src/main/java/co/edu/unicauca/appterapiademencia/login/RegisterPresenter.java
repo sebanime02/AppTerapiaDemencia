@@ -10,7 +10,7 @@ import co.edu.unicauca.appterapiademencia.events.RegisterEvent;
 public interface RegisterPresenter {
     void OnDestroy();
     void OnCreate();
-    void registerUser(String username,String password,String completeName);
+    void registerUser(String username,String password,String completeName,int accessType);
     void onEventMainThread(RegisterEvent event);
 
 

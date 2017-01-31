@@ -299,7 +299,7 @@ public class GraphicsExercises extends Fragment{
 
             }
 
-            txtSate.setText(getResources().getString(R.string.txt_ultima_rutina_estado)+" "+lastRutina.getState());
+
             txtStarter.setText(getResources().getString(R.string.txt_ultima_rutina_autor)+" "+lastRutina.getStartername());
             txtDate.setText(getResources().getString(R.string.txt_ultima_rutina_fecha)+" "+lastRutina.getDatestart());
 

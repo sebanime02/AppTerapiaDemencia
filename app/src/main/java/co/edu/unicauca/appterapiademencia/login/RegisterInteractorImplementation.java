@@ -15,8 +15,8 @@ public class RegisterInteractorImplementation implements RegisterInteractor{
     }
 
     @Override
-    public void doSingUp(String username, String password, String completeName) {
+    public void doSingUp(String username, String password, String completeName,int accessType) {
         Log.e("Registro","llego al interactor");
-        loginRepository.signUp(username,password,completeName);
+        loginRepository.signUp(username,password,completeName,accessType);
     }
 }

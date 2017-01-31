@@ -34,10 +34,10 @@ public class RegisterPresenterImplementation implements RegisterPresenter{
     }
 
     @Override
-    public void registerUser(String username, String password, String completeName) {
+    public void registerUser(String username, String password, String completeName,int accessType) {
 
         Log.e("Registro","llego al presentador");
-            registerInteractor.doSingUp(username, password, completeName);
+            registerInteractor.doSingUp(username, password, completeName,accessType);
 
             //registerView.newUserError(RegisterEvent.onSingUpErrorEmptyInputs);
 

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.ViewPagerAdapter;
 import co.edu.unicauca.appterapiademencia.domain.User;
+import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.principal.cognitiveexercises.GraphicsExercises;
 import co.edu.unicauca.appterapiademencia.principal.notes.NotesFragment;
 import co.edu.unicauca.appterapiademencia.principal.patientprofile.PatientProfileFragment;
@@ -35,6 +36,8 @@ public class PatientProfileActivity extends AppCompatActivity{
     private boolean supervisorState;
     private SharedPreferences preferences;
     private String username;
+    private GreenDaoHelper helper;
+    private boolean tabCondition = true;
 
 
 
@@ -43,12 +46,24 @@ public class PatientProfileActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.patient_profile_activity);
-
+        helper = GreenDaoHelper.getInstance();
         preferences = getSharedPreferences("appdata", Context.MODE_PRIVATE);
 
         if(preferences.getString("username",username)!=null)
         {
             username = preferences.getString("username", "Nombre de Usuario");
+            User user = helper.getUserInformation(username);
+            int usermode = user.getAccessType();
+
+            if(usermode==1)
+            {
+                tabCondition = false;
+            }else{tabCondition=true;}
+
+        }else
+        {
+            tabCondition=false;
+
         }
 
         if(getIntent().getExtras()!=null){
@@ -140,7 +155,11 @@ public class PatientProfileActivity extends AppCompatActivity{
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(),args);
         adapter.addFragment(new PatientProfileFragment(),getResources().getString(R.string.tab_pager_ficha));
         adapter.addFragment(new NotesFragment(), getResources().getString(R.string.tab_pager_notas));
-        adapter.addFragment(new GraphicsExercises(),getResources().getString(R.string.tab_pager_terapia));
+        if(tabCondition)
+        {
+            adapter.addFragment(new GraphicsExercises(),getResources().getString(R.string.tab_pager_terapia));
+
+        }
         try {
             viewPager.setAdapter(adapter);
             viewPager.endFakeDrag(); // habilita el swipe horizontal

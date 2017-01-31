@@ -102,7 +102,7 @@ public class GreenDaoHelper {
         return listuser.get(0);
 
     }
-    public boolean insertUser(String username, String password, String completeName, Boolean accessType)
+    public boolean insertUser(String username, String password, String completeName, int accessType)
     {
         try {
             UserDao userDao;
@@ -148,7 +148,7 @@ public class GreenDaoHelper {
         queryBuilder=getUserDao().queryBuilder();
         try
         {
-            List<User> listuser = queryBuilder.where(UserDao.Properties.AccessType.eq(false)).limit(1).list();
+            List<User> listuser = queryBuilder.where(UserDao.Properties.AccessType.eq(0)).limit(1).list();
             Log.e("helper name carer",listuser.get(0).getCompleteName());
             return true;
         }catch (IndexOutOfBoundsException e)
@@ -158,7 +158,7 @@ public class GreenDaoHelper {
     }
     public User getCarerInformation(){
         queryBuilder=getUserDao().queryBuilder();
-        List<User> listuser = queryBuilder.where(UserDao.Properties.AccessType.eq(false)).limit(1).list();
+        List<User> listuser = queryBuilder.where(UserDao.Properties.AccessType.eq(0)).limit(1).list();
         return listuser.get(0);
     }
 

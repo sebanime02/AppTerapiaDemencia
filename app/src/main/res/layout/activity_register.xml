@@ -117,6 +117,46 @@
                     />
             </android.support.design.widget.TextInputLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/medium_text_size"
+                    android:text="@string/register_mode"
+                    android:textStyle="bold"
+                    />
+
+            <RadioGroup android:layout_marginLeft="@dimen/activity_horizontal_margin" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/rdgUserMode">
+
+                <RadioButton
+                    android:text="Supervisor de Cuidadores"
+                    android:id="@+id/rdg_user_supervisor"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+                    />
+
+
+                <RadioButton
+                    android:text="Profesional en Psicologia"
+                    android:id="@+id/rdg_user_psicologia"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+
+
+                    />
+            </RadioGroup>
+
+            </LinearLayout>
 
 
             <LinearLayout

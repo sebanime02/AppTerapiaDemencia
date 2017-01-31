@@ -33,7 +33,7 @@ public class LoginRepositoryImplementation implements LoginRepository {
 
 
     @Override
-    public void signUp(String username, String password, String completeName) {
+    public void signUp(String username, String password, String completeName, int accessType) {
 
 
         Log.e("Registro","llego al patron repositorio");
@@ -55,7 +55,7 @@ public class LoginRepositoryImplementation implements LoginRepository {
         if(users.size()==0)
         {
             Boolean resultInser;
-            accessType = true;
+
             resultInser = helper.insertUser(username,password,completeName,accessType);
 
             if(!resultInser.booleanValue())

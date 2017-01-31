@@ -24,7 +24,7 @@
     <string name="hint_username">Nombre de Usuario</string>
     <string name="hint_password">Contraseña</string>
     <string name="btn_entrar">Entrar</string>
-    <string name="error_loguin">Su Usuario y Contrasena NO Son Correctos</string>
+    <string name="error_loguin">Su Usuario y Contraseña NO Son Correctos</string>
     <string name="btn_irRegistro">Regístrate</string>
     <string name="dialog_succes_title">Te has registrado!</string>
     <string name="dialog_succes_content">Se ha registrado correctamente, ingrese de nuevo sus datos</string>
@@ -35,7 +35,7 @@
     <string name="input_empty_both">Los campos: nombre de usuario y contraseña estan vacíos</string>
     <!--REGISTER -->
 
-    <string name="title_register">Registro de Supervisor</string>
+    <string name="title_register">Registro</string>
     <string name="btn_save">Guardar</string>
     <string name="txt_register_instructions">Por favor, Complete los siguientes datos :</string>
 
@@ -43,6 +43,7 @@
     <string name="hint_complename_supervisor">Primer Nombre y Apellido</string>
     <string name="hint_password_supervisor">Tu contraseña</string>
     <string name="hint_password_supervisor_aprobar">Contraseña de un supervisor anteriormente registrado</string>
+    <string name="register_mode">Eliga su cargo en la institución: </string>
     <string name="back_login">Regresar al inicio de sesión</string>
 
     <string name="dialog_register_error_title">No fue posible registrarse</string>
@@ -394,7 +395,7 @@
     <string name="txt_ultima_rutina_estado">Estado :</string>
     <string name="txt_ultima_rutina_autor">Iniciado por :</string>
     <string name="txt_ultima_rutina_count">Cantidad de Ejercicios Completados :</string>
-    <string name="txt_ultima_rutina_fecha">Fecha Iniciacion</string>
+    <string name="txt_ultima_rutina_fecha">Fecha Iniciación :</string>
     <string name="btn_reiniciar">Continuar</string>
     <string name="btn_finalizar">Finalizar</string>
     <string name="btn_historial">Ver Historial</string>
@@ -431,6 +432,8 @@
     <string name="txt_terminar">Finalizar Rutina</string>
 
     <string name="btn_agregar">Agregar</string>
+
+    <string name="txt_empty_exercises">No se han creado ejercicios !! Regresa al menu principal y dirigete a "Ejercicios de Reminiscencias"</string>
 
     <string name="txt_taller">Seleccione Taller: </string>
     <string name="txt_nivel">Seleccione Nivel: </string>

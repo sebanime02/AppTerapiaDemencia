@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -38,6 +40,10 @@ private EditText input_username,input_password_supervisor,input_completename,inp
     private CoordinatorLayout coordinatorLayout;
     private Toolbar toolbar;
     private ActionBar actionBar;
+    private RadioGroup rdgModeUser;
+    private RadioButton rdgModeSupervisor;
+    private RadioButton rdgModePsicologia;
+    private int modeUser;
 
 
 /*
@@ -69,6 +75,11 @@ private EditText input_username,input_password_supervisor,input_completename,inp
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorRegister);
         irLogin = (Button) findViewById(R.id.btn_irLogin);
         toolbar = (Toolbar) findViewById(R.id.toolbarRegister);
+        rdgModeUser = (RadioGroup) findViewById(R.id.rdgUserMode);
+        rdgModePsicologia = (RadioButton) findViewById(R.id.rdg_user_psicologia);
+        rdgModeSupervisor = (RadioButton) findViewById(R.id.rdg_user_supervisor);
+
+
         registerPresenter = new RegisterPresenterImplementation(this);
 
         registerPresenter.OnCreate();
@@ -89,6 +100,22 @@ private EditText input_username,input_password_supervisor,input_completename,inp
                 actionBar.setTitle("Volver A Perfil de Usuario");
             }
         }
+
+        rdgModeUser.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+
+                if(checkedId==R.id.rdg_user_supervisor)
+                {
+                 modeUser=1;
+                }
+                if(checkedId==R.id.rdg_user_psicologia)
+                {
+                 modeUser=2;
+                }
+
+            }
+        });
     }
 
 
@@ -119,11 +146,13 @@ private EditText input_username,input_password_supervisor,input_completename,inp
 
     @Override
     public void handleSingUp() {
+
         Log.e("Registro","va a validar");
         if(validateInputs(input_username.getText().toString(),input_password_supervisor.getText().toString(),input_completename.getText().toString())==false)
         {
             Log.e("Registro","se valido");
-            registerPresenter.registerUser(input_username.getText().toString(),input_password_supervisor.getText().toString(),input_completename.getText().toString());
+            Log.e("Registro","Modo de usuario "+modeUser);
+            registerPresenter.registerUser(input_username.getText().toString(),input_password_supervisor.getText().toString(),input_completename.getText().toString(),modeUser);
         }
         else
         {

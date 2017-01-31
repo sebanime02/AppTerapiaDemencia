@@ -31,7 +31,7 @@ public class User {
 
     @NotNull
     private String completeName;
-    private Boolean accessType;
+    private Integer accessType;
     private String photopath;
 
     /** Used to resolve relations */
@@ -66,7 +66,7 @@ public class User {
     }
 
     @Generated
-    public User(Long id, String username, String password, String completeName, Boolean accessType, String photopath) {
+    public User(Long id, String username, String password, String completeName, Integer accessType, String photopath) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -120,11 +120,11 @@ public class User {
         this.completeName = completeName;
     }
 
-    public Boolean getAccessType() {
+    public Integer getAccessType() {
         return accessType;
     }
 
-    public void setAccessType(Boolean accessType) {
+    public void setAccessType(Integer accessType) {
         this.accessType = accessType;
     }
 

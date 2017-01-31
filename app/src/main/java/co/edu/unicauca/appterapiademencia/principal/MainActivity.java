@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ImageView userAvatarNavbar;
 
     public static final Integer[] imagessupervisor = {R.drawable.ic_list_black_24dp,R.drawable.ic_action_content_report,R.drawable.ic_action_toggle_star,R.mipmap.ic_extension_black_48dp,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
-    public static final String[] titlessupervisor= {"Lista de Pacientes","Notificaciones","Tips para el cuidador","Ejercicios Reminiscencia","Perfil de usuario","Ayuda","Salir"};
+    public static final String[] titlessupervisor= {"Lista de Pacientes","Notas Por Aprobar","Tips para el cuidador","Ejercicios Reminiscencia","Perfil de usuario","Ayuda","Salir"};
     public static final Integer[] imagescarer ={R.drawable.ic_list_black_24dp,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
     public static final String[] titlescarer ={"Lista de Pacientes","Tips para el cuidador","Ayuda","Salir"};
     private String username;
@@ -89,15 +89,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     RowItem    item = new RowItem(imagessupervisor[i], titlessupervisor[i]);
                     rowItems.add(item);
                 }
-                titleMessage = "Sesión de Supervisor";
+
 
                 if(loginpreference.getString("username",username)!=null)
                 {
                     username = loginpreference.getString("username","Nombre de Usuario");
                     User user = helper.getUserInformation(username);
                     String completename = user.getCompleteName();
+                    int usermode = user.getAccessType();
 
-                    completeNameNavbar.setText("Supervisor "+completename);
+                    Log.e("MainActivity"," Accesstype :"+usermode);
+
+                    if(usermode==1)
+                    {
+                        completeNameNavbar.setText("Supervisor "+completename);
+                        titleMessage = "Sesión de Supervisor";
+
+                    }
+                    else
+                    {
+                        completeNameNavbar.setText("Profesional en\nPsicología "+completename);
+                        titleMessage = "Sesión de Profesional en Psicología";
+
+                    }
+
 
 
                     /*
@@ -156,6 +171,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         actionBar.setDisplayHomeAsUpEnabled(false);
 
 
+
+        /*
         if(loginpreference.getBoolean("supervisor",false)){
             actionBar.setTitle("Sesión de Cuidador");
             supervisormode=false;
@@ -165,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             actionBar.setTitle("Sesión de Supervisor");
             supervisormode=true;
         }
+        */
 
 
 
@@ -214,8 +232,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 username = loginpreference.getString("username","Nombre de Usuario");
                 User user = helper.getUserInformation(username);
                 String completename = user.getCompleteName();
+                int usermode = user.getAccessType();
 
-                completeNameNavbar.setText("Supervisor "+completename);
+                Log.e("MainActivity"," Accesstype :"+usermode);
+
+                if(usermode==1)
+                {
+                    completeNameNavbar.setText("Supervisor "+completename);
+                    titleMessage = "Sesión de Supervisor";
+
+                }
+                else
+                {
+                    completeNameNavbar.setText("Profesional en\nPsicología "+completename);
+                    titleMessage = "Sesión de Profesional en Psicología";
+
+                }
+
 
 
                 if(user.getPhotopath().equals(""))
@@ -348,7 +381,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new NotificationListFragment())
                 .commit();
-        actionBar.setTitle("Notificaciones de Supervisor");
+        actionBar.setTitle("Notas por Aprobar");
     }
     public void callTips(){
         getSupportFragmentManager().beginTransaction()

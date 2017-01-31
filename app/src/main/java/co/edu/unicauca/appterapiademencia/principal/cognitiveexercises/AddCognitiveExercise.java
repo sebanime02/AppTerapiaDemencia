@@ -56,6 +56,7 @@ public class AddCognitiveExercise extends AppCompatActivity {
     private TextView txtDemoTaller,txtDemoNivel;
     private CardView cardTaller;
     private ImageView imgDemo;
+    private TextView msgEmptyExercises;
     private String[] arrayTalleres;
     public static final String[]  niveles = {"Atencion","Funciones Ejecutivas","Lenguaje","Memoria","Percepción","Lectoescritura y Visoconstrucción"};
     public static final String[]  talleres = {"Visión Normal","Baja visión","Ceguera"};
@@ -89,7 +90,7 @@ public class AddCognitiveExercise extends AppCompatActivity {
         txtDemoTaller = (TextView) findViewById(R.id.taller_description);
         cardTaller = (CardView) findViewById(R.id.cardTalleres);
         imgDemo = (ImageView) findViewById(R.id.taller_imagen);
-
+        msgEmptyExercises = (TextView) findViewById(R.id.msg_empty);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -163,6 +164,14 @@ public class AddCognitiveExercise extends AppCompatActivity {
 
 */      representReminiscence();
 
+        if(spiTaller.getChildCount()==0)
+        {
+            btnGuardar.setVisibility(View.GONE);
+            msgEmptyExercises.setVisibility(View.VISIBLE);
+            spiTaller.setVisibility(View.GONE);
+            containerDemo.setVisibility(View.GONE);
+
+        }
 
         spiTaller.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

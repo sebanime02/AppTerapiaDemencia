@@ -5,7 +5,7 @@ package co.edu.unicauca.appterapiademencia.login;
  */
 
 public interface LoginRepository {
-    void signUp(String username, String password, String completeName);
+    void signUp(String username, String password, String completeName,int accessType);
     void signIn(String username, String password);
     void checkSession();
 }

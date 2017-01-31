@@ -28,7 +28,7 @@ public class UserDao extends AbstractDao<User, Long> {
         public final static Property Username = new Property(1, String.class, "username", false, "USERNAME");
         public final static Property Password = new Property(2, String.class, "password", false, "PASSWORD");
         public final static Property CompleteName = new Property(3, String.class, "completeName", false, "COMPLETE_NAME");
-        public final static Property AccessType = new Property(4, Boolean.class, "accessType", false, "ACCESS_TYPE");
+        public final static Property AccessType = new Property(4, Integer.class, "accessType", false, "ACCESS_TYPE");
         public final static Property Photopath = new Property(5, String.class, "photopath", false, "PHOTOPATH");
     }
 
@@ -74,9 +74,9 @@ public class UserDao extends AbstractDao<User, Long> {
         stmt.bindString(3, entity.getPassword());
         stmt.bindString(4, entity.getCompleteName());
  
-        Boolean accessType = entity.getAccessType();
+        Integer accessType = entity.getAccessType();
         if (accessType != null) {
-            stmt.bindLong(5, accessType ? 1L: 0L);
+            stmt.bindLong(5, accessType);
         }
  
         String photopath = entity.getPhotopath();
@@ -97,9 +97,9 @@ public class UserDao extends AbstractDao<User, Long> {
         stmt.bindString(3, entity.getPassword());
         stmt.bindString(4, entity.getCompleteName());
  
-        Boolean accessType = entity.getAccessType();
+        Integer accessType = entity.getAccessType();
         if (accessType != null) {
-            stmt.bindLong(5, accessType ? 1L: 0L);
+            stmt.bindLong(5, accessType);
         }
  
         String photopath = entity.getPhotopath();
@@ -126,7 +126,7 @@ public class UserDao extends AbstractDao<User, Long> {
             cursor.getString(offset + 1), // username
             cursor.getString(offset + 2), // password
             cursor.getString(offset + 3), // completeName
-            cursor.isNull(offset + 4) ? null : cursor.getShort(offset + 4) != 0, // accessType
+            cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // accessType
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // photopath
         );
         return entity;
@@ -138,7 +138,7 @@ public class UserDao extends AbstractDao<User, Long> {
         entity.setUsername(cursor.getString(offset + 1));
         entity.setPassword(cursor.getString(offset + 2));
         entity.setCompleteName(cursor.getString(offset + 3));
-        entity.setAccessType(cursor.isNull(offset + 4) ? null : cursor.getShort(offset + 4) != 0);
+        entity.setAccessType(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
         entity.setPhotopath(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
      }
     
