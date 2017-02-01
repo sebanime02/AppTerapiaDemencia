@@ -309,7 +309,7 @@ public class PatientProfilePresenterImplementation implements PatientProfilePres
         }catch (Exception e)
         {
             e.printStackTrace();
-            patientProfileView.showMMSEScore("Sin Valores MMSE","");
+            patientProfileView.showMMSEScore("","");
 
         }
     }

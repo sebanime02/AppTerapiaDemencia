@@ -11,6 +11,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class ReminiscenceListFragment extends Fragment implements ReminiscenceLi
     private List<Reminiscence> list = new ArrayList<Reminiscence>();
     private StaggeredGridLayoutManager gaggeredGridLayoutManager;
     private GridLayoutManager lLayout;
+    private LinearLayout linearReminiscenceListEmpty;
 
 
     @Nullable
@@ -45,6 +47,7 @@ public class ReminiscenceListFragment extends Fragment implements ReminiscenceLi
         rootView = inflater.inflate(R.layout.fragment_reminiscence, container, false);
         floatingActionButton = (FloatingActionButton) rootView.findViewById(R.id.add_reminiscence);
         recycler = (RecyclerView) rootView.findViewById(R.id.reciclador);
+        linearReminiscenceListEmpty = (LinearLayout) rootView.findViewById(R.id.containerEmptyReminiscenceList);
 
         recycler.setHasFixedSize(true);
         //LManager = new LinearLayoutManager(getActivity().getApplicationContext());
@@ -136,17 +139,27 @@ public class ReminiscenceListFragment extends Fragment implements ReminiscenceLi
     }
 
     @Override
-    public void showReminiscenceList(List<Reminiscence> reminiscenceList) {
+    public int showReminiscenceList(List<Reminiscence> reminiscenceList) {
         {
             list.clear();
             for (int j = 0; j < reminiscenceList.size(); j++) {
                 list.add(reminiscenceList.get(j));
             }
+            return list.size();
+
+
         }
     }
 
     @Override
     public void getReminiscenceList() {
         reminiscenceListPresenter.getReminiscence();
+    }
+
+    @Override
+    public void emtpyReminiscenceList()
+    {
+        linearReminiscenceListEmpty.setVisibility(View.VISIBLE);
+
     }
 }

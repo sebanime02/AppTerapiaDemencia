@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Log.e("supervisor","la preferencia es supervisor");
 
 
-
+            supervisormode= true;
             if(loginpreference.getString("username",username)!=null)
             {
                 username = loginpreference.getString("username","Nombre de Usuario");
@@ -277,8 +277,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             titleMessage = "Sesión de Cuidador";
             completeNameNavbar.setText("Cuidador");
-
-            //userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
+            supervisormode= false;
             Picasso.with(getApplicationContext()).load(R.drawable.emptyuser).resize(50,50).transform(new CircleTransform()).into(userAvatarNavbar);
         }
 

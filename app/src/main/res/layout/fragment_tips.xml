@@ -27,8 +27,41 @@
         android:layout_below="@id/txt_info_tips"
         android:paddingBottom="1dp"
         />
+    <LinearLayout
+        android:id="@+id/containerEmptyTipsList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_tips_empty_title"
+            android:textSize="@dimen/large_title_text_size"
+            android:lines="2"
+            android:gravity="center"
+            android:textStyle="bold"
+            />
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_tips_empty_description"
+            android:textSize="@dimen/medium_text_size"
+            android:lines="2"
+            android:gravity="center_vertical"
+
+            />
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/arrowblue"
+            />
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
-        android:layout_below="@+id/txt_info_tips"
+        android:layout_below="@id/separationLine"
         android:id="@+id/reciclador"
         android:gravity="center"
         android:scrollbars="vertical"

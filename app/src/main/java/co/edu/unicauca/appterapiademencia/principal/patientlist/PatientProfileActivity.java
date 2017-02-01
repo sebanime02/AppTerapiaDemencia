@@ -38,6 +38,8 @@ public class PatientProfileActivity extends AppCompatActivity{
     private String username;
     private GreenDaoHelper helper;
     private boolean tabCondition = true;
+    private boolean editCondition = true;
+
 
 
 
@@ -45,7 +47,7 @@ public class PatientProfileActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.patient_profile_activity);
+        setContentView(R.layout.activity_patient_profile);
         helper = GreenDaoHelper.getInstance();
         preferences = getSharedPreferences("appdata", Context.MODE_PRIVATE);
 
@@ -58,10 +60,15 @@ public class PatientProfileActivity extends AppCompatActivity{
             if(usermode==1)
             {
                 tabCondition = false;
-            }else{tabCondition=true;}
+                editCondition=true;
+            }else{
+                tabCondition=true;
+                editCondition=true;
+            }
 
         }else
         {
+            editCondition=false;
             tabCondition=false;
 
         }
@@ -92,6 +99,8 @@ public class PatientProfileActivity extends AppCompatActivity{
 
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        actionBar.setTitle(getResources().getString(R.string.txt_back_principal));
+
         //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -101,14 +110,16 @@ public class PatientProfileActivity extends AppCompatActivity{
 
 
 
-
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu_edit,menu);
+        if(editCondition)
+        {
+            getMenuInflater().inflate(R.menu.menu_edit,menu);
+
+        }
 
         return true;
 
@@ -118,6 +129,7 @@ public class PatientProfileActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_editar:
+
 
 
                 Intent intent = new Intent(this, AddPatientActivity.class);

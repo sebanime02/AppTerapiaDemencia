@@ -10,5 +10,7 @@ import co.edu.unicauca.appterapiademencia.domain.Tip;
 
 public interface TipsListView {
     void getListTips();
-    void showListTips(List<Tip> listTips);
+    int showListTips(List<Tip> listTips);
+    void showTipsListEmpty();
+
 }

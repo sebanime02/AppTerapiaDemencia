@@ -11,6 +11,7 @@ import co.edu.unicauca.appterapiademencia.domain.Reminiscence;
 public interface ReminiscenceListView {
 
     void addReminiscence();
-    void showReminiscenceList(List<Reminiscence> reminiscenceList);
+    int showReminiscenceList(List<Reminiscence> reminiscenceList);
     void getReminiscenceList();
+    void emtpyReminiscenceList();
 }

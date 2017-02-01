@@ -10,6 +10,7 @@ import co.edu.unicauca.appterapiademencia.domain.Note;
 
 public interface NotificationView {
     void getNotifications();
-    void showNotifications(List<Note> notificationList);
+    int showNotifications(List<Note> notificationList);
     void refreshNotification();
+    void showEmptyNotificationList();
 }

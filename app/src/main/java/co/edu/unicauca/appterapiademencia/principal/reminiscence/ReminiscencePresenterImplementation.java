@@ -36,7 +36,13 @@ public class ReminiscencePresenterImplementation implements ReminiscenceListPres
 
     @Override
     public void getReminiscence() {
-            reminiscenceListView.showReminiscenceList(principalListInteractor.getReminiscenceList());
+           int countRemniscenceList = reminiscenceListView.showReminiscenceList(principalListInteractor.getReminiscenceList());
+
+        if(countRemniscenceList==0)
+        {
+            reminiscenceListView.emtpyReminiscenceList();
+        }
+
     }
 
     @Override

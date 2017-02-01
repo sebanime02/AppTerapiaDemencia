@@ -40,7 +40,6 @@ import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.items.BlessedScoreAverage;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.AddPatient2Activity;
-import co.edu.unicauca.appterapiademencia.principal.patientlist.PatientProfileActivity;
 import co.edu.unicauca.appterapiademencia.util.CircleTransform;
 
 /**
@@ -93,6 +92,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private Button btngoMoreStatistics,btnMoreBlessed,btnMoreLawton,btnMoreDownton,btnMoreFast,btnMoreMinimenta;
     private static final String[]  estadisticablessed = {"Últimos Meses","Últimos Años"};
     private Button btnMoreStatistics;
+    private LinearLayout linearMinimental;
 
 
     public PatientProfileFragment(){
@@ -124,7 +124,6 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         imageProfile = (ImageView) view.findViewById(R.id.img_patient_perfil);
         txtName = (TextView) view.findViewById(R.id.name_patient_perfil);
         txtAge = (TextView) view.findViewById(R.id.age_patient_perfil);
-
         txtIdentity = (TextView) view.findViewById(R.id.identity_patient_perfil);
         txtEps = (TextView) view.findViewById(R.id.txt_eps);
         txtSexo = (TextView) view.findViewById(R.id.sexo_patient_perfil);
@@ -155,6 +154,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         btnMoreFast = (Button) view.findViewById(R.id.btn_more_fast);
         btnMoreLawton = (Button) view.findViewById(R.id.btn_more_lawton);
         btnMoreMinimenta = (Button) view.findViewById(R.id.btn_more_minimental);
+        linearMinimental = (LinearLayout) view.findViewById(R.id.minimentalcontainer);
 
 
 
@@ -386,8 +386,23 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         txtComentarioLawton.setText(this.comentarioLawton);
         txtPuntajeDownton.setText(this.puntajeDownton);
         txtComentarioDownton.setText(this.comentarioDownton);
-        txtPuntajeMMSE.setText(this.puntajeMMSE);
-        txtDateMMSE.setText("Fecha :"+this.fechaMMSE);
+
+
+
+        if(this.puntajeMMSE=="")
+        {
+            txtPuntajeMMSE.setText("Sin Valores MMSE");
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+            //linearMinimental.setLayoutParams(params);
+            txtPuntajeMMSE.setLayoutParams(params);
+            txtDateMMSE.setText("");
+
+        }else
+        {
+            txtPuntajeMMSE.setText(this.puntajeMMSE);
+            txtDateMMSE.setText("Fecha :"+this.fechaMMSE);
+        }
+
 
         txtComentarioFast.setText("Etapa: "+etapa+"\nCaracteristica: "+caracteristicas+" \nEdad Mental: "+edadMental+" \nGDS: "+gds+" \nMEC: "+mec);
 

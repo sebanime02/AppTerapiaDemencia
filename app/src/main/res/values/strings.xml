@@ -77,6 +77,7 @@
     <!--NOTIFICATIONS -->
     <string name="title_notifications">Aqui puedes Aprobar las notas ingresadas por tus cuidadores</string>
     <string name="aprobe_note">Eliga si desea aprobar o elimnar la nota?</string>
+    <string name="txt_notifications_empty_title">No hay Notas por Aprobar</string>
 
 
 
@@ -84,9 +85,14 @@
     <string name="txt_tips_supervisor">Aqui puedes Agregar Tips o recomendaciones para tus cuidadores..</string>
     <string name="txt_tips_cuidador">Aqui puedes ver los Tips o recomendaciones que han dejado tus supervisores</string>
 
+    <string name="txt_tips_empty_title">No hay Tips Registrados</string>
+    <string name="txt_tips_empty_description">Si deseas puedes agregar una, presionando el boton rojo, asi compartes conocimiento!</string>
+
 
     <!--REMINISCENCES -->
     <string name="dialog_reminiscence_empty_title">Debes Especificar Un Título</string>
+    <string name="txt_reminiscence_empty_title">Lista De Ejercicios de Reminiscencia Vacia</string>
+    <string name="txt_reminiscence_empty_descripcion">No se han creado ejercicios de reminiscencias, Con el botón rojo de la esquina inferior derecha puede agregar uno y asi desarrollar tus terapias cognitivas</string>
 
     <!-- PATIENT LIST -->
     <string name="txt_find_patient">Busque por Nombre...</string>
@@ -109,7 +115,7 @@
     <string name="txt_patient_observaciones">Observaciones</string>
     <string name="txt_patient_observaciones_edt">Ingrese las Observaciones que desee</string>
 
-    <string name="txt_patient"></string>
+
 
     <string name="txt_alteracionesauditivas">Alteraciones Auditivas</string>
     <string name="txt_alteracionesextremidades">Alteraciones de las Extremidades</string>
@@ -125,6 +131,7 @@
     <!--TAB PATIENT INFORMATION -->
     <string name="textview_profile_information">INFORMACIÓN DEL PACIENTE</string>
     <string name="textview_profile_physics">LIMITACIONES DEL PACIENTE</string>
+    <string name="txt_back_principal">Regresar Al Menu Principal</string>
     <string name="txt_info_listpatients">Aqui Puedes Ingresar tus pacientes, Al entrar en ellos puedes ver detalles e indicadores, ingresar notas y eventos, finalmente hacer tus terapias de reminiscencias</string>
     <string name="title_note_added">Evento Registrado</string>
     <string name="content_note_added">El Evento será notificado a los supervisores para su aprobación</string>
@@ -233,6 +240,8 @@
 
     <!--TAB NOTE INFORMATION-->
     <string name="txt_note_instructions">Ingrese una nota con el Eve</string>
+    <string name="txt_note_empty">Vacio, Si desea agregar una nota de paciente por favor presione el Botón rojo de la Derecha.</string>
+
     <string name="hint_note_title">1. Titulo de la Nota</string>
     <string name="note_type">1. Escoga un Evento o Categoria de Actividad Básica o Instrumental de la vida diaria</string>
     <string name="hint_note_description">2. Describa El Evento...</string>
@@ -379,7 +388,7 @@
 
 
   <!--USER PROFILE -->
-    <string name="txt_instructions_go_adduser">Si Desea agregar un NUEVO Supervisor puede hacerlo presionando el siguiente botón: </string>
+    <string name="txt_instructions_go_adduser">Si Desea agregar un NUEVO Supervisor o Profesional en Psicologia, puedes hacerlo presionando el siguiente botón: </string>
     <string name="txt_save_user">GUARDAR</string>
     <string name="succes_set_user_information_title">Informacion Guardada con Éxito</string>
     <string name="error_set_user_title">Error al Actualizar Datos</string>

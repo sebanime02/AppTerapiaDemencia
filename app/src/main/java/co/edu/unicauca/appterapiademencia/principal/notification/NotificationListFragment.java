@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,8 @@ public class NotificationListFragment extends Fragment implements NotificationVi
     private RecyclerView recycler;
     private LinearLayoutManager lLayout;
     private NotificationsAdapter adapter;
+    private LinearLayout linearNotificationsListEmpty;
+
 
     public NotificationListFragment()
     {
@@ -37,6 +40,7 @@ public class NotificationListFragment extends Fragment implements NotificationVi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_notifications, container, false);
         notificationPresenter = new NotificationPresenterImplementation(this);
+        linearNotificationsListEmpty = (LinearLayout) rootView.findViewById(R.id.containerEmptyNotificationsList);
 
 
         return rootView;
@@ -114,17 +118,19 @@ public class NotificationListFragment extends Fragment implements NotificationVi
 
     @Override
     public void getNotifications() {
+
         notificationPresenter.getNotification();
     }
 
     @Override
-    public void showNotifications(List<Note> notificationList) {
+    public int showNotifications(List<Note> notificationList) {
         Log.e("shownotifications","va a mostrar las notificaciones");
         this.notificationList.clear();
         for(int m=0;m<notificationList.size();m++)
         {
             this.notificationList.add(notificationList.get(m));
         }
+        return this.notificationList.size();
     }
 
     @Override
@@ -147,5 +153,10 @@ public class NotificationListFragment extends Fragment implements NotificationVi
             adapter.notifyDataSetChanged();
         }
 
+    }
+
+    @Override
+    public void showEmptyNotificationList() {
+        linearNotificationsListEmpty.setVisibility(View.VISIBLE);
     }
 }

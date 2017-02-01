@@ -1,6 +1,5 @@
 package co.edu.unicauca.appterapiademencia.principal.tips;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,12 +36,14 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     private List<Tip> list = new ArrayList<Tip>();
     private StaggeredGridLayoutManager gaggeredGridLayoutManager;
     private GridLayoutManager lLayout;
+    private LinearLayout linearTipsListEmpty;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_tips, container, false);
         floatingActionButton = (FloatingActionButton) rootView.findViewById(R.id.add_tip);
         Log.d("Time count","Fragment to fragment termina de contar");
+        linearTipsListEmpty = (LinearLayout) rootView.findViewById(R.id.containerEmptyTipsList);
 
         recycler = (RecyclerView) rootView.findViewById(R.id.reciclador);
 
@@ -143,11 +145,19 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     }
 
     @Override
-    public void showListTips(List<Tip> listTips)
+    public int showListTips(List<Tip> listTips)
     {
         list.clear();
-        for (int j = 0; j < listTips.size(); j++) {
+        for (int j = 0; j < listTips.size(); j++)
+        {
             list.add(listTips.get(j));
         }
+        return list.size();
+    }
+
+    @Override
+    public void showTipsListEmpty()
+    {
+        linearTipsListEmpty.setVisibility(View.VISIBLE);
     }
 }

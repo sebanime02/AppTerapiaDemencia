@@ -283,6 +283,7 @@
                         android:background="@color/negro"
                         ></View>
                     <LinearLayout
+                        android:id="@+id/minimentalcontainer"
                         android:layout_marginTop="@dimen/activity_horizontal_margin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -321,6 +322,7 @@
                                 />
 
                             <TextView
+
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:layout_weight="2"
@@ -370,7 +372,7 @@
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/large_title_text_size"
-                                android:layout_gravity="center"
+                                android:gravity="center"
                                 android:textColor="@color/colorPrimaryDark"
 
                                 />
@@ -410,6 +412,7 @@
                             android:text="@string/txt_see_more"
                             android:layout_marginTop="@dimen/activity_vertical_margin"
                             android:textColor="@color/white"
+
                             />
                     </LinearLayout>
 
@@ -528,8 +531,9 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:textSize="@dimen/large_title_text_size"
-                android:layout_gravity="center"
+                android:gravity="center"
                 android:textColor="@color/colorPrimaryDark"
+
                 />
 
 
@@ -570,6 +574,7 @@
             android:background="@color/colorPrimaryDark"
             android:text="@string/txt_see_more"
             android:textColor="@color/white"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             />
     </LinearLayout>
 
@@ -604,7 +609,7 @@
                             android:layout_weight="1"
                             android:layout_height="match_parent"
                             android:textSize="@dimen/large_title_text_size"
-                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
                             android:textColor="@color/colorPrimaryDark"
                             />
 
@@ -687,7 +692,7 @@
                             android:layout_weight="1"
                             android:layout_height="match_parent"
                             android:textSize="@dimen/large_title_text_size"
-                            android:layout_gravity="center"
+                            android:gravity="center"
                             android:textColor="@color/colorPrimaryDark"
 
                             />
@@ -723,6 +728,7 @@
 
 
                     </LinearLayout>
+
                     <Button
                         android:id="@+id/btn_more_downton"
                         android:layout_width="match_parent"
@@ -731,6 +737,7 @@
                         android:text="@string/txt_see_more"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:textColor="@color/white"
+
                         />
                 </LinearLayout>
 

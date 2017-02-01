@@ -34,12 +34,14 @@ public class NotificationPresenterImplementation implements NotificationPresente
 
     @Override
     public void getNotification() {
+
         principalListInteractor.getNotifications();
 
     }
 
     @Override
     public void onEventMainThread(NotificationEvent event) {
+
 
         noteList.clear();
 
@@ -59,7 +61,11 @@ public class NotificationPresenterImplementation implements NotificationPresente
 
             if (notificationView != null) {
                 Log.e("presenter", "va a llamar el metodo de la vista para despejar las notas");
-                notificationView.showNotifications(noteList);
+
+                int countResultados = notificationView.showNotifications(noteList);
+                if(countResultados==0){notificationView.showEmptyNotificationList();}
+
+
             }
 
 

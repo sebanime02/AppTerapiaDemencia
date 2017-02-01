@@ -260,6 +260,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:gravity="center_vertical"
                         android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/medium_text_size"
 
                         />
 

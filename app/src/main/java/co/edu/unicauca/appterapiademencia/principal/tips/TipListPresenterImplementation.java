@@ -1,8 +1,5 @@
 package co.edu.unicauca.appterapiademencia.principal.tips;
 
-import java.util.List;
-
-import co.edu.unicauca.appterapiademencia.domain.Tip;
 import co.edu.unicauca.appterapiademencia.lib.EventBus;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractor;
@@ -30,7 +27,13 @@ public class TipListPresenterImplementation implements TipsListPresenter {
     @Override
     public void getTips()
     {
-      tipsListView.showListTips(principalListInteractor.getTips());
+      int countResultados;
+
+      countResultados = tipsListView.showListTips(principalListInteractor.getTips());
+        if(countResultados==0)
+        {
+            tipsListView.showTipsListEmpty();
+        }
 
     }
 
