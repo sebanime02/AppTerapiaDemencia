@@ -16,7 +16,7 @@
     <dimen name="ancho_imagen_loguin">300dp</dimen>
     <dimen name="alto_imagen_loguin">200dp</dimen>
     <dimen name="padding_imagen_loguin">20dp</dimen>
-    <dimen name="textsize_btn_irRegistro">16dp</dimen>
+    <dimen name="textsize_btn_irRegistro">16sp</dimen>
 
     <!-- REGISTER LAYOUT-->
     <dimen name="alto_banner_register">200dp</dimen>

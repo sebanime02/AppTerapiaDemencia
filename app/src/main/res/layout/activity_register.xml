@@ -81,6 +81,7 @@
                     android:hint="@string/hint_username_supervisor"
                     android:nextFocusDown="@+id/txt_password_supervisor"
                     android:drawableLeft="@mipmap/ic_account_circle_black_24dp"
+                    android:maxLength="15"
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -219,6 +220,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:onClick="saveRegister"
+                android:textSize="@dimen/medium_text_size"
                 />
         </LinearLayout>
             <TextView
@@ -245,8 +247,9 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:textAllCaps="false"
                 android:fontFamily="sans-serif-black"
-                android:textSize="@dimen/textsize_btn_irRegistro"
+                android:textSize="@dimen/medium_text_size"
                 android:onClick="toLogin"
+
                 />
 
         </LinearLayout>

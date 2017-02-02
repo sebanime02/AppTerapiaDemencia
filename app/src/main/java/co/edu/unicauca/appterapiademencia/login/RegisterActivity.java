@@ -44,6 +44,8 @@ private EditText input_username,input_password_supervisor,input_completename,inp
     private RadioButton rdgModeSupervisor;
     private RadioButton rdgModePsicologia;
     private int modeUser;
+    private boolean textErrorSyntaxis = false;
+    private boolean textShortSyntaxis = false;
 
 
 /*
@@ -116,6 +118,147 @@ private EditText input_username,input_password_supervisor,input_completename,inp
 
             }
         });
+
+
+        input_username.addTextChangedListener(new LoginValidator(input_username) {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void validate(EditText editText, String text) {
+                //Implementamos la validación que queramos
+                if( text.length() < 6 ){
+                    input_username.setError(getResources().getString(R.string.txt_username_short));
+                    textShortSyntaxis=true;
+                }else
+                {
+                    textShortSyntaxis=false;
+                }
+
+                if(text.matches("[a-zA-Z0-9\\s]"))
+                {
+                    textErrorSyntaxis = false;
+
+
+                }else
+                {  input_username.setError(getResources().getString(R.string.txt_username_specialcharacter));
+                    textErrorSyntaxis = true;
+                }
+
+
+            }
+
+            @Override
+            public void validateSpecialCharacters(EditText editText, String text) {
+
+
+            }
+
+
+        });
+
+
+
+        input_password_supervisor.addTextChangedListener(new LoginValidator(input_password_supervisor) {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void validate(EditText editText, String text) {
+                //Implementamos la validación que queramos
+
+                if (text.length() < 8)
+                {
+                    input_password_supervisor.setError(getResources().getString(R.string.txt_password_short));
+                    textShortSyntaxis = true;
+                } else
+                {
+                    textShortSyntaxis = false;
+                }
+            }
+
+            @Override
+            public void validateSpecialCharacters(EditText editText, String text) {
+                /*if(!editText.getText().toString().matches("[a-zA-Z0-9_]"))
+                {
+                    input_password_supervisor.setError(getResources().getString(R.string.txt_password_specialcharacter));
+                    textErrorSyntaxis = true;
+
+                }else
+                {
+                    textErrorSyntaxis=false;
+                }*/
+
+            }
+
+
+        });
+
+
+        input_completename.addTextChangedListener(new LoginValidator(input_completename) {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void validate(EditText editText, String text) {
+                //Implementamos la validación que queramos
+                if( text.length() < 6 ){
+                    input_completename.setError(getResources().getString(R.string.txt_name_short));
+                    textShortSyntaxis = true;
+                }else
+                {
+                    textShortSyntaxis = false;
+                }
+                if(text.matches("[a-zA-Z_\\s]"))
+                {
+
+                    textErrorSyntaxis = false;
+                }
+                else
+                {
+                    input_completename.setError(getResources().getString(R.string.txt_name_specialcharacter));
+                    textErrorSyntaxis = true;
+
+                }
+
+            }
+
+            @Override
+            public void validateSpecialCharacters(EditText editText, String text) {
+
+
+            }
+
+
+        });
+
+
+
+
     }
 
 
@@ -148,11 +291,28 @@ private EditText input_username,input_password_supervisor,input_completename,inp
     public void handleSingUp() {
 
         Log.e("Registro","va a validar");
+
+
+
         if(validateInputs(input_username.getText().toString(),input_password_supervisor.getText().toString(),input_completename.getText().toString())==false)
         {
             Log.e("Registro","se valido");
             Log.e("Registro","Modo de usuario "+modeUser);
-            registerPresenter.registerUser(input_username.getText().toString(),input_password_supervisor.getText().toString(),input_completename.getText().toString(),modeUser);
+
+            if(textShortSyntaxis)
+            {
+                new MaterialDialog.Builder(this).title(R.string.dialog_register_short_title).content(R.string.dialog_register_short_content).positiveText(R.string.dialog_succes_agree).show();
+
+            }else if(textErrorSyntaxis)
+            {
+                new MaterialDialog.Builder(this).title(R.string.dialog_register_sintaxis_title).content(R.string.dialog_register_sintaxis_content).positiveText(R.string.dialog_succes_agree).show();
+
+            }else
+            {
+                registerPresenter.registerUser(input_username.getText().toString(),input_password_supervisor.getText().toString(),input_completename.getText().toString(),modeUser);
+
+            }
+
         }
         else
         {
@@ -190,9 +350,9 @@ private EditText input_username,input_password_supervisor,input_completename,inp
         }
         */
         Intent backMain = new Intent(getApplicationContext(), LoginActivity.class);
-
-        startActivity(backMain);
         overridePendingTransition(R.anim.left_in, R.anim.left_out);
+        startActivity(backMain);
+
 
 
     }

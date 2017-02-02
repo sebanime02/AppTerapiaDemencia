@@ -5,4 +5,9 @@
 
 <!-- NAVIGATION DRAWER-->
     <dimen name="dimen_drawer">400dp</dimen>
+
+
+    <dimen name="large_title_text_size">34sp</dimen>
+    <dimen name="medium_text_size">24sp</dimen>
+    <dimen name="small_text_size">18sp</dimen>
 </resources>

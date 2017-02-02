@@ -16,8 +16,8 @@
     <!-- LOGIN 1 LAYOUT-->
     <string name="logo_txt">APLICACIÓN MÓVIL ESPECIALIZADA EN LA ASISTENCIA DE INVOLUCRADOS EN LA TERAPIA COGNITIVA DE ADULTOS MAYORES </string>
     <string name="Titulo_aplicacion">Aplicación Para Terapia Demencia</string>
-    <string name="txt_choose_user">Ingresa como: </string>
-    <string name="txt_or_choose"> O </string>
+    <string name="txt_choose_user">Eligue una opción dependiendo de tu perfil</string>
+    <string name="txt_or_choose">---------- O Eres --------</string>
     <string name="btn_soycuidador">Cuidador (Acceso de Invitado)</string>
     <string name="btn_soysupervisor">Supervisor de Cuidadores o Profesional en Psicología</string>
     <string name="btn_salir">Salir</string>
@@ -38,19 +38,34 @@
     <string name="title_register">Registro</string>
     <string name="btn_save">Guardar</string>
     <string name="txt_register_instructions">Por favor, Complete los siguientes datos :</string>
-
-    <string name="hint_username_supervisor">Nombre de usuario corto que te identifique </string>
-    <string name="hint_complename_supervisor">Primer Nombre y Apellido</string>
-    <string name="hint_password_supervisor">Tu contraseña</string>
+    <string name="txt_password_short">La contraseña Es muy corta, Debe Tener Minimo 8 Letras</string>
+    <string name="txt_name_short">Nombre muy corto, debe tener al menos 6 letras</string>
+    <string name="txt_username_short">Nombre muy corto, debe tener al menos 6 caracteres</string>
+    <string name="txt_password_specialcharacter">Use unicamente letras y numeros</string>
+    <string name="txt_username_specialcharacter">Use unicamente letras del abecedario</string>
+    <string name="txt_name_specialcharacter">El nombre completo debe Contener Unicamente Letras</string>
+    <string name="hint_username_supervisor">Nombre de usuario corto que te identifique, Minimo 6 Letras del Abecedario</string>
+    <string name="hint_complename_supervisor">Primer Nombre y Apellido, Minimo 6 Letras</string>
+    <string name="hint_password_supervisor">Tu contraseña, Minimo 8 Letras</string>
     <string name="hint_password_supervisor_aprobar">Contraseña de un supervisor anteriormente registrado</string>
     <string name="register_mode">Eliga su cargo en la institución: </string>
     <string name="back_login">Regresar al inicio de sesión</string>
+    <string name="txt_error_syntaxis">Has usado caracteres (*,/,?) no permitidos, por favor revisa tus datos</string>
 
     <string name="dialog_register_error_title">No fue posible registrarse</string>
     <string name="dialog_register_error_content">Intente cambiando el nombre de usuario</string>
     <string name="dialog_register_error_agree">Entiendo</string>
     <string name="dialog_register_emptyinput_title">Faltan campos</string>
     <string name="dialog_register_emptyinput_content">Debe completar todos los campos</string>
+    
+    
+    <string name="dialog_register_short_title">Hay Campos No Válidos</string>
+    <string name="dialog_register_short_content">Revise si hay campos que no cumplen el mínimo de caracteres</string>
+
+    <string name="dialog_register_sintaxis_title">Hay Campos No Válidos</string>
+    <string name="dialog_register_sintaxis_content">Revise si hay campos con caracteres no válidos (*,"",)</string>
+
+
 
     <string name="dialog_register_error_aprobal_title">El último campo no es válido</string>
     <string name="dialog_register_error_aprobal_content">Pídale a un supervisor registrado que digite su contraseña de nuevo</string>
