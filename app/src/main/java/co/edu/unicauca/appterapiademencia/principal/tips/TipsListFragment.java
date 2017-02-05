@@ -1,6 +1,7 @@
 package co.edu.unicauca.appterapiademencia.principal.tips;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -37,6 +39,7 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     private StaggeredGridLayoutManager gaggeredGridLayoutManager;
     private GridLayoutManager lLayout;
     private LinearLayout linearTipsListEmpty;
+    private ImageView imgArrowTip;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +47,8 @@ public class TipsListFragment extends Fragment implements  TipsListView {
         floatingActionButton = (FloatingActionButton) rootView.findViewById(R.id.add_tip);
         Log.d("Time count","Fragment to fragment termina de contar");
         linearTipsListEmpty = (LinearLayout) rootView.findViewById(R.id.containerEmptyTipsList);
+        imgArrowTip = (ImageView) rootView.findViewById(R.id.arrow_tip);
+
 
         recycler = (RecyclerView) rootView.findViewById(R.id.reciclador);
 
@@ -158,6 +163,8 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     @Override
     public void showTipsListEmpty()
     {
+        recycler.setVisibility(View.GONE);
         linearTipsListEmpty.setVisibility(View.VISIBLE);
+        imgArrowTip.setVisibility(View.VISIBLE);
     }
 }

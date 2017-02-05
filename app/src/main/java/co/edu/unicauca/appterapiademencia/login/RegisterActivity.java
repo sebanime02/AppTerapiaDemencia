@@ -143,15 +143,19 @@ private EditText input_username,input_password_supervisor,input_completename,inp
                     textShortSyntaxis=false;
                 }
 
+                /*
+
                 if(text.matches("[a-zA-Z0-9\\s]"))
                 {
                     textErrorSyntaxis = false;
 
 
                 }else
-                {  input_username.setError(getResources().getString(R.string.txt_username_specialcharacter));
+                {
+                    //input_username.setError(getResources().getString(R.string.txt_username_specialcharacter));
                     textErrorSyntaxis = true;
                 }
+                */
 
 
             }
@@ -233,6 +237,8 @@ private EditText input_username,input_password_supervisor,input_completename,inp
                 {
                     textShortSyntaxis = false;
                 }
+
+                /*
                 if(text.matches("[a-zA-Z_\\s]"))
                 {
 
@@ -240,10 +246,13 @@ private EditText input_username,input_password_supervisor,input_completename,inp
                 }
                 else
                 {
-                    input_completename.setError(getResources().getString(R.string.txt_name_specialcharacter));
+
+
+                    //input_completename.setError(getResources().getString(R.string.txt_name_specialcharacter));
                     textErrorSyntaxis = true;
 
                 }
+                */
 
             }
 

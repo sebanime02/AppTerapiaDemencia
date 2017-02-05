@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private TextView completeNameNavbar;
     private ImageView userAvatarNavbar;
 
-    public static final Integer[] imagessupervisor = {R.drawable.ic_list_black_24dp,R.drawable.ic_action_content_report,R.drawable.ic_action_toggle_star,R.mipmap.ic_extension_black_48dp,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
+    public static final Integer[] imagessupervisor = {R.drawable.ic_list_black_24dp,R.drawable.ic_action_content_report,R.drawable.ic_action_toggle_star,R.mipmap.ic_extension_black_48dp,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.mipmap.ic_signout};
     public static final String[] titlessupervisor= {"Lista de Pacientes","Notas Por Aprobar","Tips para el cuidador","Ejercicios Reminiscencia","Perfil de usuario","Ayuda","Salir"};
-    public static final Integer[] imagescarer ={R.drawable.ic_list_black_24dp,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_help,R.drawable.ic_action_content_report};
+    public static final Integer[] imagescarer ={R.drawable.ic_list_black_24dp,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_help,R.mipmap.ic_signout};
     public static final String[] titlescarer ={"Lista de Pacientes","Tips para el cuidador","Ayuda","Salir"};
     private String username;
     private GreenDaoHelper helper;

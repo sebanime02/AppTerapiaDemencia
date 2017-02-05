@@ -1,6 +1,7 @@
 package co.edu.unicauca.appterapiademencia.principal.reminiscence;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +12,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -39,6 +41,7 @@ public class ReminiscenceListFragment extends Fragment implements ReminiscenceLi
     private StaggeredGridLayoutManager gaggeredGridLayoutManager;
     private GridLayoutManager lLayout;
     private LinearLayout linearReminiscenceListEmpty;
+    private ImageView imgArrowReminiscence;
 
 
     @Nullable
@@ -48,6 +51,7 @@ public class ReminiscenceListFragment extends Fragment implements ReminiscenceLi
         floatingActionButton = (FloatingActionButton) rootView.findViewById(R.id.add_reminiscence);
         recycler = (RecyclerView) rootView.findViewById(R.id.reciclador);
         linearReminiscenceListEmpty = (LinearLayout) rootView.findViewById(R.id.containerEmptyReminiscenceList);
+        imgArrowReminiscence = (ImageView) rootView.findViewById(R.id.arrow_reminiscence);
 
         recycler.setHasFixedSize(true);
         //LManager = new LinearLayoutManager(getActivity().getApplicationContext());
@@ -159,7 +163,9 @@ public class ReminiscenceListFragment extends Fragment implements ReminiscenceLi
     @Override
     public void emtpyReminiscenceList()
     {
+        recycler.setVisibility(View.GONE);
         linearReminiscenceListEmpty.setVisibility(View.VISIBLE);
+        imgArrowReminiscence.setVisibility(View.VISIBLE);
 
     }
 }

@@ -14,7 +14,9 @@
         completions."
     </string>
     <!-- LOGIN 1 LAYOUT-->
-    <string name="logo_txt">APLICACIÓN MÓVIL ESPECIALIZADA EN LA ASISTENCIA DE INVOLUCRADOS EN LA TERAPIA COGNITIVA DE ADULTOS MAYORES </string>
+    <string name="logo_txt">APLICACIÓN MÓVIL ESPECIALIZADA EN LA ASISTENCIA DE INVOLUCRADOS EN LA TERAPIA DE ESTIMUACIÓN COGNITIVA DE ADULTOS MAYORES CON DEMENCIA EN DIVERSAS ETAPAS</string>
+    <string name="logo_txt2">Aplicación Móvil Especializada En La Asistencia DE Involucrados En La Terapia De Estimulación Cognitiva De Adultos Mayores Con Demencia Senil En Diversas Etapas</string>
+
     <string name="Titulo_aplicacion">Aplicación Para Terapia Demencia</string>
     <string name="txt_choose_user">Eligue una opción dependiendo de tu perfil</string>
     <string name="txt_or_choose">---------- O Eres --------</string>
@@ -44,9 +46,9 @@
     <string name="txt_password_specialcharacter">Use unicamente letras y numeros</string>
     <string name="txt_username_specialcharacter">Use unicamente letras del abecedario</string>
     <string name="txt_name_specialcharacter">El nombre completo debe Contener Unicamente Letras</string>
-    <string name="hint_username_supervisor">Nombre de usuario corto que te identifique, Minimo 6 Letras del Abecedario</string>
-    <string name="hint_complename_supervisor">Primer Nombre y Apellido, Minimo 6 Letras</string>
-    <string name="hint_password_supervisor">Tu contraseña, Minimo 8 Letras</string>
+    <string name="hint_username_supervisor">Nombre de usuario que te identifique</string>
+    <string name="hint_complename_supervisor">Primer Nombre y Apellido</string>
+    <string name="hint_password_supervisor">Tu contraseña (Minimo 8 caracteres)</string>
     <string name="hint_password_supervisor_aprobar">Contraseña de un supervisor anteriormente registrado</string>
     <string name="register_mode">Eliga su cargo en la institución: </string>
     <string name="back_login">Regresar al inicio de sesión</string>
@@ -63,9 +65,7 @@
     <string name="dialog_register_short_content">Revise si hay campos que no cumplen el mínimo de caracteres</string>
 
     <string name="dialog_register_sintaxis_title">Hay Campos No Válidos</string>
-    <string name="dialog_register_sintaxis_content">Revise si hay campos con caracteres no válidos (*,"",)</string>
-
-
+    <string name="dialog_register_sintaxis_content">Revise si hay campos con caracteres no válidos (*,"",?,/..)</string>
 
     <string name="dialog_register_error_aprobal_title">El último campo no es válido</string>
     <string name="dialog_register_error_aprobal_content">Pídale a un supervisor registrado que digite su contraseña de nuevo</string>

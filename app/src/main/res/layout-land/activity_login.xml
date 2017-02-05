@@ -59,7 +59,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:text="@string/logo_txt"
+                    android:text="@string/logo_txt2"
                     android:layout_gravity="center_vertical"
                     android:textStyle="bold"
 
@@ -163,6 +163,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textEmailAddress"
                             android:hint="@string/hint_username"
+                            android:textSize="@dimen/medium_text_size"
 
                             android:drawableLeft="@mipmap/ic_account_circle_black_24dp"
                             />
@@ -179,6 +180,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPassword"
                             android:hint="@string/hint_password"
+                            android:textSize="@dimen/medium_text_size"
                             android:drawableStart="@mipmap/ic_lock_black_24dp"/>
                     </android.support.design.widget.TextInputLayout>
 
