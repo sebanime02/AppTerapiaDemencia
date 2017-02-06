@@ -14,4 +14,5 @@ public interface ReminiscenceListView {
     int showReminiscenceList(List<Reminiscence> reminiscenceList);
     void getReminiscenceList();
     void emtpyReminiscenceList();
+    void refreshView();
 }

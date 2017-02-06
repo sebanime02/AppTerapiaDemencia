@@ -30,18 +30,29 @@ public class ReminiscencePresenterImplementation implements ReminiscenceListPres
     }
 
     @Override
-    public void onDestroy() {
+    public void onDestroy()
+    {
 
     }
 
     @Override
     public void getReminiscence() {
-           int countRemniscenceList = reminiscenceListView.showReminiscenceList(principalListInteractor.getReminiscenceList());
+        int countRemniscenceList;
 
-        if(countRemniscenceList==0)
+        if(reminiscenceListView!=null)
         {
-            reminiscenceListView.emtpyReminiscenceList();
+            countRemniscenceList= reminiscenceListView.showReminiscenceList(principalListInteractor.getReminiscenceList());
+
+            if(countRemniscenceList==0)
+            {
+                reminiscenceListView.emtpyReminiscenceList();
+            }
+            else
+            {
+                reminiscenceListView.refreshView();
+            }
         }
+
 
     }
 

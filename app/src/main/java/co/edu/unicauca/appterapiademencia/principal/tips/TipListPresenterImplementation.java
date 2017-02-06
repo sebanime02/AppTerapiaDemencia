@@ -29,11 +29,21 @@ public class TipListPresenterImplementation implements TipsListPresenter {
     {
       int countResultados;
 
-      countResultados = tipsListView.showListTips(principalListInteractor.getTips());
-        if(countResultados==0)
+        if(tipsListView!=null)
         {
-            tipsListView.showTipsListEmpty();
+            countResultados = tipsListView.showListTips(principalListInteractor.getTips());
+
+
+            if(countResultados==0)
+            {
+                tipsListView.showTipsListEmpty();
+            }
+            else
+            {
+                tipsListView.refreshView();
+            }
         }
+
 
     }
 

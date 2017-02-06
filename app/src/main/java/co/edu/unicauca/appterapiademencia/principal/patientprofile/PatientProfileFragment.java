@@ -177,13 +177,20 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
             }
         });
 
-        containerBlessed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new MaterialDialog.Builder(getActivity().getBaseContext()).title("Rangos Blessed").content(R.string.error_loguin).positiveText(R.string.dialog_succes_agree).icon(getResources().getDrawable(R.drawable.sadface)).show();
+        try {
+            containerBlessed.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    new MaterialDialog.Builder(view.getContext()).title("Rangos Blessed").content(R.string.error_loguin).positiveText(R.string.dialog_succes_agree).icon(getResources().getDrawable(R.drawable.sadface)).show();
 
-            }
-        });
+                }
+            });
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+
 
 
 

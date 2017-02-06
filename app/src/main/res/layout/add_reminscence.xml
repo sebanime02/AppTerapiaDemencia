@@ -28,7 +28,6 @@
                 app:theme="@style/ToolbarTheme" />
 
 
-
             <LinearLayout
 
                 android:layout_width="match_parent"
@@ -63,7 +62,8 @@
                         android:paddingLeft="@dimen/activity_horizontal_margin"
                         android:paddingRight="@dimen/activity_horizontal_margin"
                         android:hint="@string/txt_reminiscence_title"
-
+                        android:textSize="@dimen/medium_text_size"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
                         />
 
 
@@ -75,7 +75,9 @@
                     android:layout_height="match_parent"
                     android:text="@string/txt_reminiscence_photo"
                     android:textSize="@dimen/medium_text_size"
+
                     android:padding="@dimen/activity_horizontal_margin"
+
                     />
                 <android.support.design.widget.FloatingActionButton
 
@@ -93,44 +95,40 @@
 
                     />
 
+                <EditText
+                    android:id="@+id/edt_reminiscense_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:hint="@string/txt_reminiscence_description"
+                    android:lines="5"
+                    android:gravity="top|left"
+                    android:inputType="textMultiLine"
+                    android:scrollHorizontally="false"
+
+                    android:background="@color/gray_soft"
+                    />
+
                 <RelativeLayout
                     android:id="@+id/foto_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
                     >
                     <ImageView
 
                         android:id="@+id/reminiscence_photo"
                         android:layout_gravity="center"
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
 
                         />
 
                 </RelativeLayout>
-
-
-
-                    <EditText
-                        android:id="@+id/edt_reminiscense_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:paddingLeft="@dimen/activity_horizontal_margin"
-                        android:paddingRight="@dimen/activity_horizontal_margin"
-                        android:hint="@string/txt_reminiscence_description"
-                        android:lines="5"
-                        android:gravity="top|left"
-                        android:inputType="textMultiLine"
-                        android:scrollHorizontally="false"
-
-                        android:background="@color/gray_soft"
-                        />
-
-
 
 
                 <LinearLayout
@@ -158,10 +156,12 @@
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:onClick="saveReminiscence"
                         android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        android:textSize="@dimen/medium_text_size"
+
                         />
                 </LinearLayout>
                 </LinearLayout>
-            </android.support.design.widget.CoordinatorLayout>
+        </android.support.design.widget.CoordinatorLayout>
 
         </LinearLayout>
     </ScrollView>

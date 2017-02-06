@@ -62,8 +62,17 @@ public class NotificationPresenterImplementation implements NotificationPresente
             if (notificationView != null) {
                 Log.e("presenter", "va a llamar el metodo de la vista para despejar las notas");
 
-                int countResultados = notificationView.showNotifications(noteList);
-                if(countResultados==0){notificationView.showEmptyNotificationList();}
+
+
+                int countResultados = noteList.size();
+                if(countResultados==0){
+                    notificationView.showEmptyNotificationList();
+                }
+                else
+                {
+                    notificationView.disableEmptyNotificationList();
+                    notificationView.showNotifications(noteList);
+                }
 
 
             }

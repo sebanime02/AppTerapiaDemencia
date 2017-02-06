@@ -159,4 +159,10 @@ public class NotificationListFragment extends Fragment implements NotificationVi
     public void showEmptyNotificationList() {
         linearNotificationsListEmpty.setVisibility(View.VISIBLE);
     }
+
+    @Override
+    public void disableEmptyNotificationList() {
+        linearNotificationsListEmpty.setVisibility(View.GONE);
+
+    }
 }

@@ -164,7 +164,7 @@ public class AddCognitiveExercise extends AppCompatActivity {
 
 */      representReminiscence();
 
-        if(spiTaller.getChildCount()==0)
+        if(spiTaller.getAdapter().getCount()==0)
         {
             btnGuardar.setVisibility(View.GONE);
             msgEmptyExercises.setVisibility(View.VISIBLE);
@@ -236,15 +236,6 @@ public class AddCognitiveExercise extends AppCompatActivity {
                     String titlereminiscencia = adapterreminiscencias.getItem(position).toString();
                     Reminiscence reminiscence = daoHelper.getReminiscence(titlereminiscencia);
 
-                if(position==0)
-                {
-                    Log.e("spi reminicensia","position 0");
-                    imgDemo.setVisibility(View.VISIBLE);
-                    imgDemo.setBackgroundResource(R.drawable.popayanimagen);
-
-                }
-                else
-                {
 
                     try
                     {
@@ -264,7 +255,7 @@ public class AddCognitiveExercise extends AppCompatActivity {
                         }
 
                     }
-                }
+
 
 
 

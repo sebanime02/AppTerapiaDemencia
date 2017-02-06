@@ -143,71 +143,81 @@ public class AddReminiscenceExercise extends AppCompatActivity {
 
         }else
         {
+            if(validar(name2)==false)
+            {
+                new MaterialDialog.Builder(this).title(getResources().getString(R.string.dialog_reminiscence_empty_photo)).positiveText(R.string.dialog_succes_agree).show();
 
-            if(prefs.getBoolean("supervisor",true)) {
-
-                username = prefs.getString("username","Nombre de Usuario");
             }
             else
+
             {
-                username = getResources().getString(R.string.txt_carer_type);
-            }
+                if(prefs.getBoolean("supervisor",true)) {
+
+                    username = prefs.getString("username","Nombre de Usuario");
+                }
+                else
+                {
+                    username = getResources().getString(R.string.txt_carer_type);
+                }
                 queryBuilder = GreenDaoHelper.getInstance().getReminiscenceDao().queryBuilder();
 
 
-            List<Reminiscence> reminiscenceList = queryBuilder.where(ReminiscenceDao.Properties.Title.eq(edtTitle.getText().toString())).limit(1).list();
+                List<Reminiscence> reminiscenceList = queryBuilder.where(ReminiscenceDao.Properties.Title.eq(edtTitle.getText().toString())).limit(1).list();
 
-            if (actualizar.equals("actualizar"))
-            {
-
-                queryBuilder = daoHelper.getReminiscenceDao().queryBuilder();
-
-                List<Reminiscence> reminiscenceList1 = queryBuilder.where(ReminiscenceDao.Properties.Id.eq(idreminiscence)).limit(1).list();
-                Reminiscence reminiscence = reminiscenceList1.get(0);
-
-                reminiscence.setDescription(edtDescription.getText().toString());
-                reminiscence.setTitle(edtTitle.getText().toString());
-                reminiscence.setPhotopath(name2);
-
-
-            }
-            else
-            {
-                String var_title_final;
-                if (reminiscenceList.size()==0)
+                if (actualizar.equals("actualizar"))
                 {
-                  var_title_final = edtTitle.getText().toString();
-                }else
-                {
-                    if(var_title=="")
-                    {
-                        String nombre_foto_nueva;
-                        String title_nuevo;
-                        int contador = 0;
-                        do
-                        {
-                            title_nuevo = edtTitle.getText().toString()+contador;
-                            reminiscenceList = queryBuilder.where(ReminiscenceDao.Properties.Title.eq(title_nuevo)).limit(1).list();
-                            contador = contador +1;
-                        }
-                        while (reminiscenceList.size()>0);
-                        var_title = title_nuevo;
 
+                    queryBuilder = daoHelper.getReminiscenceDao().queryBuilder();
 
-                    }
+                    List<Reminiscence> reminiscenceList1 = queryBuilder.where(ReminiscenceDao.Properties.Id.eq(idreminiscence)).limit(1).list();
+                    Reminiscence reminiscence = reminiscenceList1.get(0);
 
-                    var_title_final = var_title;
+                    reminiscence.setDescription(edtDescription.getText().toString());
+                    reminiscence.setTitle(edtTitle.getText().toString());
+                    reminiscence.setPhotopath(name2);
 
 
                 }
-                Reminiscence reminiscence = new Reminiscence(null,var_title_final,edtDescription.getText().toString(),name2,username,"");
-                reminiscenceDao.insert(reminiscence);
-                reminiscenceDao.update(reminiscence);
+                else
+                {
+                    String var_title_final;
+                    if (reminiscenceList.size()==0)
+                    {
+                        var_title_final = edtTitle.getText().toString();
+                    }else
+                    {
+                        if(var_title=="")
+                        {
+                            String nombre_foto_nueva;
+                            String title_nuevo;
+                            int contador = 0;
+                            do
+                            {
+                                title_nuevo = edtTitle.getText().toString()+contador;
+                                reminiscenceList = queryBuilder.where(ReminiscenceDao.Properties.Title.eq(title_nuevo)).limit(1).list();
+                                contador = contador +1;
+                            }
+                            while (reminiscenceList.size()>0);
+                            var_title = title_nuevo;
+
+
+                        }
+
+                        var_title_final = var_title;
+
+
+                    }
+                    Reminiscence reminiscence = new Reminiscence(null,var_title_final,edtDescription.getText().toString(),name2,username,"");
+                    reminiscenceDao.insert(reminiscence);
+                    reminiscenceDao.update(reminiscence);
+                }
+                Intent ir_reg = new Intent(this, MainActivity.class);
+                startActivity(ir_reg);
+                overridePendingTransition(R.anim.left_in, R.anim.left_out);
             }
-            Intent ir_reg = new Intent(this, MainActivity.class);
-            startActivity(ir_reg);
-            overridePendingTransition(R.anim.left_in, R.anim.left_out);
-        }
+            }
+
+
 
     }
 

@@ -115,6 +115,8 @@
                     android:hint="@string/hint_complename_supervisor"
                     android:nextFocusDown="@+id/txt_password_supervisor_aprobar"
                     android:drawableLeft="@mipmap/ic_account_circle_black_24dp"
+
+                    android:digits="@string/abecedario"
                     />
             </android.support.design.widget.TextInputLayout>
 

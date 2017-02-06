@@ -89,7 +89,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
 
         setContentView(R.layout.activity_login);
-        //ButterKnife.bind(this);
         input_username = (EditText) findViewById(R.id.txt_username);
         input_password = (EditText) findViewById(R.id.txt_password);
         btn_cuidador= (Button) findViewById(R.id.btn_soycuidador);
@@ -101,6 +100,19 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         loginPresenter = new LoginPresenterImplementation(this);
         loginPresenter.OnCreate();
         //loginPresenter.checkForAuthenticatedUser();
+
+        try
+        {
+            Bundle bundle = getIntent().getExtras();
+
+            if(bundle.getBoolean("registrado"))
+            {
+                enableInputs();
+            }
+        }catch (Exception e)
+        {
+
+        }
 
     }
 

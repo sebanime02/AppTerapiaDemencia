@@ -25,11 +25,12 @@
         <TextView
             android:id="@+id/tip_title"
             android:layout_width="@dimen/item_width"
-            android:maxLines="3"
+
             android:layout_height="wrap_content"
             android:textAppearance="?android:textAppearanceLarge"
-            android:text="Medium text"
-
+            android:maxLength="14"
+            android:ellipsize="end"
+            android:ems="2"
 
             android:layout_alignBottom="@+id/img_patient"
             android:layout_alignStart="@+id/patient_name" />
@@ -50,6 +51,7 @@
             android:layout_toLeftOf="@id/tip_state"
             android:visibility="invisible"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
+
 
             />
         <TextView

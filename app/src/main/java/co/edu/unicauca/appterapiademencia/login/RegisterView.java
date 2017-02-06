@@ -8,7 +8,7 @@ public interface RegisterView {
 
     void newUserError(int error);
     void handleSingUp();
-    void navigateToLogin();
+    void navigateToLogin(boolean backRegistered);
     void newUserSuccess();
 
 

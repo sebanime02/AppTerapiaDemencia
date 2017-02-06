@@ -341,7 +341,7 @@ private EditText input_username,input_password_supervisor,input_completename,inp
 
 
     @Override
-    public void navigateToLogin() {
+    public void navigateToLogin(boolean backRegistered) {
 
        /*
         Bundle bundl = getIntent().getExtras();
@@ -359,6 +359,12 @@ private EditText input_username,input_password_supervisor,input_completename,inp
         }
         */
         Intent backMain = new Intent(getApplicationContext(), LoginActivity.class);
+
+        if(backRegistered)
+        {
+            backMain.putExtra("registrado",true);
+
+        }
         overridePendingTransition(R.anim.left_in, R.anim.left_out);
         startActivity(backMain);
 
@@ -386,7 +392,7 @@ private EditText input_username,input_password_supervisor,input_completename,inp
                     }
                 }
                 else{
-                    navigateToLogin();
+                    navigateToLogin(true);
 
                 }
 
@@ -405,7 +411,7 @@ private EditText input_username,input_password_supervisor,input_completename,inp
 
     }
     public void toLogin(View v){
-        navigateToLogin();
+        navigateToLogin(false);
     }
 
 

@@ -567,9 +567,24 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 return true;
 
             case R.id.opc_galeria:
-                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-                eleccion = 2;
-                startActivityForResult(intent, eleccion);
+
+                new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        try
+                        {
+                            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+                            eleccion = 2;
+                            startActivityForResult(intent, eleccion);
+
+                        }catch (Exception e)
+                        {
+                            Log.e("Error blessed","Atrapo la excepcion en blessed data");
+
+                        }
+                    }
+                }).start();
                 return true;
             default:
                 return super.onContextItemSelected(item);

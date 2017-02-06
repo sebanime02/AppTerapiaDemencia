@@ -61,6 +61,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
 
         String title = tipList.get(position).getTitle().toString();
         String description = tipList.get(position).getDescription().toString();
+
         Boolean noteState = tipList.get(position).getActive().booleanValue();
         int likesCount = tipList.get(position).getLikes();
 
@@ -90,15 +91,15 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
             {
                 holder.imgFavorite.setVisibility(View.GONE);
             }
-
+            holder.txtDescription.setText("Autor: "+user.getCompleteName());
         }catch (Exception e){
-
+            holder.txtDescription.setText("Autor: Cuidador");
         }
 
 
 
         holder.txtTitle.setText(title);
-        holder.txtDescription.setText(description);
+
 
         if(likesCount==0)
         {

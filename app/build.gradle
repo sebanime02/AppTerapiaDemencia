@@ -10,8 +10,16 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+        testApplicationId "co.edu.unicauca.appterapiademencia.tests"
     }
+
+    testOptions
+            {
+                reportDir = "$project.buildDir/results/report"
+                resultsDir = "$project.buildDir/results"
+            }
+
     buildTypes {
         release {
             minifyEnabled false

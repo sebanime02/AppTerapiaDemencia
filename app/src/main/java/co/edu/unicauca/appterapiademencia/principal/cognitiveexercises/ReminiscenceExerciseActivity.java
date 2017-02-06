@@ -119,7 +119,11 @@ public class ReminiscenceExerciseActivity extends AppCompatActivity {
             tvTitle.setText(reminiscence.getTitle());
             tvDescription.setText(reminiscence.getDescription());
 
+
             imgPhoto.setBackground(Drawable.createFromPath(reminiscence.getPhotopath()));
+
+            imgPhoto.setContentDescription("Imagen "+ reminiscence.getTitle()); //El content Description
+            tvDescription.setContentDescription(reminiscence.getDescription());
 
         }catch (Exception e)
         {

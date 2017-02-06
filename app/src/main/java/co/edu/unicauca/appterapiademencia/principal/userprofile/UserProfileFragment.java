@@ -121,28 +121,31 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         Log.e("Registro","va a validar");
         if(validateInputs(edtUsername.getText().toString(),edtPassword.getText().toString(),edtCompleteName.getText().toString())==false)
         {
-            try {
-                User useredit = helper.getUserInformation(username);
 
-                useredit.setUsername(edtUsername.getText().toString());
-                useredit.setPassword(edtPassword.getText().toString());
-                useredit.setCompleteName(edtCompleteName.getText().toString());
-                useredit.update();
-                //Log.e("userprofile","usereditado "+" username"+useredit.getUsername()+" CompleteName"+useredit.getCompleteName());
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("username",edtUsername.getText().toString());
-                editor.commit();
-                preferences.edit();
-
-
-                new MaterialDialog.Builder(getContext()).title(R.string.succes_set_user_information_title).positiveText(R.string.dialog_succes_agree).show();
-
-
-
-            }catch (Exception e)
+            if(validatePasswordLength(edtPassword.getText().toString()))
             {
-                new MaterialDialog.Builder(getContext()).title(R.string.error_set_user_title).content(R.string.error_set_user_content).positiveText(R.string.dialog_succes_agree).icon(getResources().getDrawable(R.drawable.sadface)).show();
-                Log.e("userprofile","Error seteando datos");
+                try {
+                    User useredit = helper.getUserInformation(username);
+
+                    useredit.setUsername(edtUsername.getText().toString());
+                    useredit.setPassword(edtPassword.getText().toString());
+                    useredit.setCompleteName(edtCompleteName.getText().toString());
+                    useredit.update();
+                    //Log.e("userprofile","usereditado "+" username"+useredit.getUsername()+" CompleteName"+useredit.getCompleteName());
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("username",edtUsername.getText().toString());
+                    editor.commit();
+                    preferences.edit();
+
+
+                    new MaterialDialog.Builder(getContext()).title(R.string.succes_set_user_information_title).positiveText(R.string.dialog_succes_agree).show();
+
+
+
+                }catch (Exception e)
+                {
+                    new MaterialDialog.Builder(getContext()).title(R.string.error_set_user_title).content(R.string.error_set_user_content).positiveText(R.string.dialog_succes_agree).icon(getResources().getDrawable(R.drawable.sadface)).show();
+                    Log.e("userprofile","Error seteando datos");
 
                 /*
                 try {
@@ -159,11 +162,19 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                     edtUsername.setText("");
                 }
                 */
+                }
+                edtUsername.setEnabled(false);
+                edtPassword.setEnabled(false);
+                edtCompleteName.setEnabled(false);
+                startActivity(new Intent(getContext(), MainActivity.class));
+
+
+
+            }else
+            {
+                new MaterialDialog.Builder(getContext()).title(R.string.error_minimal_length_description).positiveText(R.string.dialog_succes_agree).show();
+
             }
-            edtUsername.setEnabled(false);
-            edtPassword.setEnabled(false);
-            edtCompleteName.setEnabled(false);
-            startActivity(new Intent(getContext(), MainActivity.class));
 
         }
         else
@@ -184,6 +195,18 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         else{
             return  false;
         }
+    }
+
+    private boolean validatePasswordLength(String password)
+    {
+        if(password.length()<8)
+        {
+            return false;
+        }else
+        {
+            return true;
+        }
+
     }
 
 

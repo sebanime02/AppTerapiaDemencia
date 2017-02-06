@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="4"
+            android:weightSum="6"
 
 
 
@@ -33,7 +33,7 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="2"
+            android:layout_weight="4"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
@@ -59,7 +59,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:text="@string/logo_txt2"
+                    android:text="@string/logo_txt"
                     android:layout_gravity="center_vertical"
                     android:textStyle="bold"
 
@@ -219,7 +219,7 @@
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:textAllCaps="false"
                         android:fontFamily="sans-serif-black"
-                        android:textSize="@dimen/textsize_btn_irRegistro"
+                        android:textSize="@dimen/medium_text_size"
                         android:onClick="toRegister"
 
                         />

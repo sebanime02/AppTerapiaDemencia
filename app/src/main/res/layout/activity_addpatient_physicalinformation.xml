@@ -43,7 +43,7 @@
                 <TextView
 
                 android:layout_gravity="center_horizontal"
-                android:text="LIMITACIONES FISICAS Y DE LA VIDA DIARIA"
+                android:text="ACTIVIDADES DE LA VIDA DIARIA"
                 android:textSize="25sp"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
@@ -134,7 +134,7 @@
 
 
                 <TextView
-                    android:text="1. Incapacidad para realizar  tareas domesticas"
+                    android:text="1. Incapacidad para realizar  tareas domésticas"
                     android:textSize="@dimen/medium_text_size"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:id="@+id/textView8" />

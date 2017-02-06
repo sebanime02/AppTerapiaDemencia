@@ -1,4 +1,4 @@
-package co.edu.unicauca.appterapiademencia;
+package co.edu.unicauca.appterapiademencia.tests;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -23,4 +23,8 @@ public class ExampleInstrumentedTest {
 
         assertEquals("co.edu.unicauca.appterapiademencia", appContext.getPackageName());
     }
+
+
+
+
 }

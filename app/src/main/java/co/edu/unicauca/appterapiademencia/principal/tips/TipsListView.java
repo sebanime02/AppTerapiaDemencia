@@ -12,5 +12,6 @@ public interface TipsListView {
     void getListTips();
     int showListTips(List<Tip> listTips);
     void showTipsListEmpty();
+    void refreshView();
 
 }

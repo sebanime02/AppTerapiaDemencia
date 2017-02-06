@@ -168,4 +168,26 @@ public class ReminiscenceListFragment extends Fragment implements ReminiscenceLi
         imgArrowReminiscence.setVisibility(View.VISIBLE);
 
     }
+
+    @Override
+    public void refreshView() {
+        super.onResume();
+        try {
+
+            recycler.setHasFixedSize(true);
+            //LManager = new LinearLayoutManager(getActivity().getApplicationContext());
+            //gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
+            lLayout = new GridLayoutManager(getActivity(), 2);
+            //recycler.setLayoutManager(LManager);
+            recycler.setLayoutManager(lLayout);
+            adapter = new ReminiscenceAdapter(list, getActivity());
+            recycler.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            //callListenerText();
+        } catch (Exception e) {
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+
 }

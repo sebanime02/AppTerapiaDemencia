@@ -78,6 +78,8 @@
             android:text="@string/txt_rutina_estado"
             android:textStyle="bold"
             android:textSize="@dimen/medium_text_size"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
 
             />
 
@@ -176,6 +178,7 @@
                 android:text="@string/btn_nuevo"
                 android:drawableLeft="@mipmap/ic_content_paste_white_18dp"
                 android:layout_gravity="center_horizontal"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
 
                 />
 
@@ -189,6 +192,7 @@
             android:text="@string/txt_demas_rutinas"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:textSize="@dimen/medium_text_size"
 
             />
 

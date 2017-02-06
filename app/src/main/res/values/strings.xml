@@ -11,14 +11,16 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
+
         completions."
     </string>
+    <string name="abecedario">abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</string>
     <!-- LOGIN 1 LAYOUT-->
-    <string name="logo_txt">APLICACIÓN MÓVIL ESPECIALIZADA EN LA ASISTENCIA DE INVOLUCRADOS EN LA TERAPIA DE ESTIMUACIÓN COGNITIVA DE ADULTOS MAYORES CON DEMENCIA EN DIVERSAS ETAPAS</string>
+    <string name="logo_txt">APLICACIÓN MÓVIL ESPECIALIZADA EN LA ASISTENCIA DE INVOLUCRADOS EN LA TERAPIA DE ESTIMULACIÓN COGNITIVA DE ADULTOS MAYORES CON DEMENCIA EN DIVERSAS ETAPAS</string>
     <string name="logo_txt2">Aplicación Móvil Especializada En La Asistencia DE Involucrados En La Terapia De Estimulación Cognitiva De Adultos Mayores Con Demencia Senil En Diversas Etapas</string>
 
     <string name="Titulo_aplicacion">Aplicación Para Terapia Demencia</string>
-    <string name="txt_choose_user">Eligue una opción dependiendo de tu perfil</string>
+    <string name="txt_choose_user">Elige una opción dependiendo de tu perfil</string>
     <string name="txt_or_choose">---------- O Eres --------</string>
     <string name="btn_soycuidador">Cuidador (Acceso de Invitado)</string>
     <string name="btn_soysupervisor">Supervisor de Cuidadores o Profesional en Psicología</string>
@@ -97,17 +99,17 @@
 
 
     <!-- TIPS -->
-    <string name="txt_tips_supervisor">Aqui puedes Agregar Tips o recomendaciones para tus cuidadores..</string>
+    <string name="txt_tips_supervisor">Aqui puedes Agregar Tips o recomendaciones para los cuidadores</string>
     <string name="txt_tips_cuidador">Aqui puedes ver los Tips o recomendaciones que han dejado tus supervisores</string>
 
     <string name="txt_tips_empty_title">No hay Tips Registrados</string>
-    <string name="txt_tips_empty_description">Si deseas puedes agregar una, presionando el boton rojo, asi compartes conocimiento!</string>
+    <string name="txt_tips_empty_description">Presionando el botón rojo puede agregar un Tip o recomendación para tus cuidadores, asi compartes conocimiento!</string>
 
 
     <!--REMINISCENCES -->
     <string name="dialog_reminiscence_empty_title">Debes Especificar Un Título</string>
     <string name="txt_reminiscence_empty_title">Lista De Ejercicios de Reminiscencia Vacia</string>
-    <string name="txt_reminiscence_empty_descripcion">No se han creado ejercicios de reminiscencias, Con el botón rojo de la esquina inferior derecha puede agregar uno y asi desarrollar tus terapias cognitivas</string>
+    <string name="txt_reminiscence_empty_descripcion">No se han creado ejercicios de reminiscencias por el momento. Puede agregar uno pulsando el botón rojo de la esquina inferior derecha</string>
 
     <!-- PATIENT LIST -->
     <string name="txt_find_patient">Busque por Nombre...</string>
@@ -147,7 +149,7 @@
     <string name="textview_profile_information">INFORMACIÓN DEL PACIENTE</string>
     <string name="textview_profile_physics">LIMITACIONES DEL PACIENTE</string>
     <string name="txt_back_principal">Regresar Al Menu Principal</string>
-    <string name="txt_info_listpatients">Aqui Puedes Ingresar tus pacientes, Al entrar en ellos puedes ver detalles e indicadores, ingresar notas y eventos, finalmente hacer tus terapias de reminiscencias</string>
+    <string name="txt_info_listpatients">Aqui Puedes Registrar pacientes. Ademas, Ingresando en cada uno, puedes conocer detalles e indicadores (AIVD, Demencia, Riesgo Caidas), ingresar notas y eventos, finalmente hacer tus terapias de reminiscencias</string>
     <string name="title_note_added">Evento Registrado</string>
     <string name="content_note_added">El Evento será notificado a los supervisores para su aprobación</string>
     <string name="blessed_no_demencia">No presenta demencia por el momento</string>
@@ -409,12 +411,16 @@
     <string name="error_set_user_title">Error al Actualizar Datos</string>
     <string name="error_set_user_content">Es Posible que el Usuario Digitado se encuentre en Uso,Escriba otro.</string>
     <string name="error_disable_inputs">No ha seleccionado ningun editor</string>
+    <string name="error_minimal_length_title">Longitud de contraseña invalida</string>
+    <string name="error_minimal_length_description">La contraseña debe tener mínimo 8 Caracteres</string>
 
 
 
     <!--COGNITIVE EXERCISES MAIN SCREENN -->
     <string name="txt_rutina_graficas">Estadisticas Generales</string>
-    <string name="txt_rutina_estado">Rutinas De Estimulacion Cognitiva por medio de Terapias de Reminiscencias</string>
+    <string name="txt_rutina_estado">Aqui puedes crear, desarrollar y analizar terapias de reminiscencia.
+
+    </string>
     <string name="txt_ultima_rutina">Ùltima Rutina</string>
     <string name="txt_ultima_rutina_estado">Estado :</string>
     <string name="txt_ultima_rutina_autor">Iniciado por :</string>
@@ -532,7 +538,7 @@
 
     <!-- REMINISCENCE FRAGMENT -->
 
-    <string name="txt_info_reminiscence">Aqui Puedes Agregar Ejercicios de Reminiscencia,para\nposteriormente hacer tus terapias con pacientes</string>
+    <string name="txt_info_reminiscence">Aqui Puedes Crear, Editar y Eliminar Ejercicios de Reminiscencia</string>
     <string name="txt_state_0">Finalizado</string>
     <string name="txt_state_1">Test MMSE Inicial</string>
     <string name="txt_state_2">Rutina Activa</string>
@@ -546,6 +552,7 @@
     <string name="txt_reminiscence_description">3. Agregue La Descripción del Recuerdo Fotográfico</string>
     <string name="txt_carer_type">Cuidador Anónimo</string>
     <string name="txt_preview">Imagen Preva del Ejercicio:</string>
+    <string name="dialog_reminiscence_empty_photo">El ejercicio de reminiscencia no puede quedar sin fotografía, agregue una por favor</string>
 
 
 

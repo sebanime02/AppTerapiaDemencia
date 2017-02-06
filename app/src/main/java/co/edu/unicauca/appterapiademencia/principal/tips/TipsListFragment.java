@@ -91,10 +91,12 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         list.clear();
-        getListTips();
+
 
 
         try {
+            getListTips();
+
             recycler.setHasFixedSize(true);
             //LManager = new LinearLayoutManager(getActivity().getApplicationContext());
             //gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
@@ -119,10 +121,9 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     {
         super.onResume();
         list.clear();
-        getListTips();
-
 
         try {
+            getListTips();
             recycler.setHasFixedSize(true);
             //LManager = new LinearLayoutManager(getActivity().getApplicationContext());
             //gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
@@ -166,5 +167,23 @@ public class TipsListFragment extends Fragment implements  TipsListView {
         recycler.setVisibility(View.GONE);
         linearTipsListEmpty.setVisibility(View.VISIBLE);
         imgArrowTip.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void refreshView() {
+        try {
+            recycler.setHasFixedSize(true);
+            //LManager = new LinearLayoutManager(getActivity().getApplicationContext());
+            //gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
+            lLayout = new GridLayoutManager(getActivity(), 2);
+            //recycler.setLayoutManager(LManager);
+            recycler.setLayoutManager(lLayout);
+            adapter = new TipAdapter(list, getActivity());
+            recycler.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            //callListenerText();
+        } catch (Exception e) {
+            adapter.notifyDataSetChanged();
+        }
     }
 }

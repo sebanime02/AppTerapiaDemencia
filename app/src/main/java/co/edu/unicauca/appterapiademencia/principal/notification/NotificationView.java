@@ -13,4 +13,5 @@ public interface NotificationView {
     int showNotifications(List<Note> notificationList);
     void refreshNotification();
     void showEmptyNotificationList();
+    void disableEmptyNotificationList();
 }

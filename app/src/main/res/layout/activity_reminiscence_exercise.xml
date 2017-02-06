@@ -103,8 +103,7 @@
                             android:paddingRight="@dimen/activity_horizontal_margin"
                             android:paddingLeft="@dimen/activity_horizontal_margin"
                             android:minHeight="@dimen/height_reminiscence_photo"
-                            android:layout_gravity="center_vertical|end"
-                            android:gravity="end"
+
 
 
                             />
