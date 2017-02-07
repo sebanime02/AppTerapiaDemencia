@@ -14,7 +14,7 @@
 
         completions."
     </string>
-    <string name="abecedario">abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</string>
+    <string name="abecedario">abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóuÁÉÍÓÚ</string>
     <!-- LOGIN 1 LAYOUT-->
     <string name="logo_txt">APLICACIÓN MÓVIL ESPECIALIZADA EN LA ASISTENCIA DE INVOLUCRADOS EN LA TERAPIA DE ESTIMULACIÓN COGNITIVA DE ADULTOS MAYORES CON DEMENCIA EN DIVERSAS ETAPAS</string>
     <string name="logo_txt2">Aplicación Móvil Especializada En La Asistencia DE Involucrados En La Terapia De Estimulación Cognitiva De Adultos Mayores Con Demencia Senil En Diversas Etapas</string>
@@ -42,9 +42,9 @@
     <string name="title_register">Registro</string>
     <string name="btn_save">Guardar</string>
     <string name="txt_register_instructions">Por favor, Complete los siguientes datos :</string>
-    <string name="txt_password_short">La contraseña Es muy corta, Debe Tener Minimo 8 Letras</string>
+    <string name="txt_password_short">La contraseña Es muy corta, Debe Tener Minimo 8 Caracteres</string>
     <string name="txt_name_short">Nombre muy corto, debe tener al menos 6 letras</string>
-    <string name="txt_username_short">Nombre muy corto, debe tener al menos 6 caracteres</string>
+    <string name="txt_username_short">Nombre muy corto, debe tener al menos 5 caracteres</string>
     <string name="txt_password_specialcharacter">Use unicamente letras y numeros</string>
     <string name="txt_username_specialcharacter">Use unicamente letras del abecedario</string>
     <string name="txt_name_specialcharacter">El nombre completo debe Contener Unicamente Letras</string>
@@ -101,7 +101,7 @@
     <!-- TIPS -->
     <string name="txt_tips_supervisor">Aqui puedes Agregar Tips o recomendaciones para los cuidadores</string>
     <string name="txt_tips_cuidador">Aqui puedes ver los Tips o recomendaciones que han dejado tus supervisores</string>
-
+    <string name="toast_like">Te gusta el Tip</string>
     <string name="txt_tips_empty_title">No hay Tips Registrados</string>
     <string name="txt_tips_empty_description">Presionando el botón rojo puede agregar un Tip o recomendación para tus cuidadores, asi compartes conocimiento!</string>
 
@@ -109,7 +109,8 @@
     <!--REMINISCENCES -->
     <string name="dialog_reminiscence_empty_title">Debes Especificar Un Título</string>
     <string name="txt_reminiscence_empty_title">Lista De Ejercicios de Reminiscencia Vacia</string>
-    <string name="txt_reminiscence_empty_descripcion">No se han creado ejercicios de reminiscencias por el momento. Puede agregar uno pulsando el botón rojo de la esquina inferior derecha</string>
+    <string name="item_list_reminiscence_autor">Autor: </string>
+    <string name="txt_reminiscence_empty_descripcion">No se han creado ejercicios de reminiscencia por el momento. Puede agregar uno pulsando el botón rojo de la esquina inferior derecha</string>
 
     <!-- PATIENT LIST -->
     <string name="txt_find_patient">Busque por Nombre...</string>
@@ -543,7 +544,7 @@
     <string name="txt_state_1">Test MMSE Inicial</string>
     <string name="txt_state_2">Rutina Activa</string>
     <string name="txt_last_rutinas">Anteriores Rutinas</string>
-    <string name="txt_mmse">Minimental MMSE</string>
+    <string name="txt_mmse">Minimental MMSE Inicial</string>
 
     <!--ADD REMINISCENCE -->
     <string name="txt_reminiscence_instructions">Creando un Nuevo Ejercicio Para las Terapias de Reminiscencia, también puedes modificarlos</string>

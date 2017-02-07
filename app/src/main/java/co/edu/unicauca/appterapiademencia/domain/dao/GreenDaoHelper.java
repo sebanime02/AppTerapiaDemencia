@@ -1614,6 +1614,13 @@ public class GreenDaoHelper {
             if(z != rutinaList.size()-1)
             {
                 rutinaListFinal.add(rutinaList.get(z));
+            }else
+            {
+                if( rutinaList.get(rutinaList.size()-1).getState()==0)
+                {
+                    rutinaListFinal.add(rutinaList.get(z));
+
+                }
             }
         }
         return rutinaListFinal;

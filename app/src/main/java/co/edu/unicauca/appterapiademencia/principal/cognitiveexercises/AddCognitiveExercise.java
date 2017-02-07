@@ -171,6 +171,9 @@ public class AddCognitiveExercise extends AppCompatActivity {
             spiTaller.setVisibility(View.GONE);
             containerDemo.setVisibility(View.GONE);
 
+        }else
+        {
+            Log.e("Count","spi taller: "+spiTaller.getAdapter().getCount());
         }
 
         spiTaller.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

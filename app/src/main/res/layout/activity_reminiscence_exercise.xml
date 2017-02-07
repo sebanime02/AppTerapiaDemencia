@@ -100,8 +100,8 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/negro"
                             android:textStyle="bold"
-                            android:paddingRight="@dimen/activity_horizontal_margin"
-                            android:paddingLeft="@dimen/activity_horizontal_margin"
+                            android:paddingRight="3dp"
+                            android:paddingLeft="3dp"
                             android:minHeight="@dimen/height_reminiscence_photo"
 
 

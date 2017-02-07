@@ -15,6 +15,7 @@ import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.Reminiscence;
+import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
 import co.edu.unicauca.appterapiademencia.principal.reminiscence.DetailReminiscenceActivity;
@@ -56,9 +57,25 @@ public class ReminiscenceAdapter extends RecyclerView.Adapter<ReminiscenceAdapte
         String author = reminiscencesList.get(position).getAuthor();
 
 
-
         holder.txtTitle.setText(title);
-        holder.txtAuthor.setText(author);
+        if(author!=null)
+        {
+            User user;
+            String autorfinal ="";
+            try
+            {
+                user = helper.getUserInformation(author);
+                autorfinal = user.getCompleteName();
+
+            }catch (Exception e)
+            {
+                e.printStackTrace();
+                autorfinal = "";
+            }
+
+            holder.txtAuthor.setText(activity.getResources().getString(R.string.item_list_reminiscence_autor)+autorfinal);
+
+        }
 
         holder.img.setBackground(Drawable.createFromPath(imgpath));
 

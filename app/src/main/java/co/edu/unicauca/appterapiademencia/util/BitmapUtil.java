@@ -2,6 +2,9 @@ package co.edu.unicauca.appterapiademencia.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -21,11 +24,12 @@ public class BitmapUtil {
 
     public static final int CAM=0;
     public static final int GALERY=1;
+    public static Bitmap newBitmap;
 
     public static String resizeImageFile(String path, int minDim, int origin) throws IOException {
 
         String p = path;
-
+        int orientation;
         if(origin==GALERY){
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-d_H-m-s", Locale.getDefault());
             p = AppUtil.DIR_IMG+format.format(Calendar.getInstance().getTime())+".jpg";
@@ -45,21 +49,16 @@ public class BitmapUtil {
         options.inSampleSize = calculateInSampleSize(options,minDim);
         options.inJustDecodeBounds = false;
 
+        ExifInterface exif = new ExifInterface(path);
+         orientation= exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+
+
         Bitmap bitmap = BitmapFactory.decodeFile(path, options);
 
+        Log.e("Bitmap"," Bitmap Decodificado height"+bitmap.getHeight());
+        Log.e("Bitmap"," Bitmap Decodificado width"+bitmap.getHeight());
 
-        float w,h;
-
-        if(bitmap.getWidth()>bitmap.getHeight()){
-            h = bitmap.getHeight()*minDim/bitmap.getWidth();
-            w = minDim;
-        }else{
-            w = bitmap.getWidth()*minDim/bitmap.getHeight();
-            h=minDim;
-
-        }
-
-        Bitmap newBitmap = Bitmap.createScaledBitmap(bitmap, (int)w,(int)h,true);
+        newBitmap = rotateImage(bitmap,orientation,minDim);
 
 
 
@@ -128,6 +127,32 @@ public class BitmapUtil {
         }
         in.close();
         out.close();
+    }
+
+    public static Bitmap rotateImage(Bitmap bitmap,int orientation, int minDim)
+    {
+        Matrix matrix = new Matrix();
+
+        if (orientation == 6) {
+            matrix.postRotate(90);
+        }
+        else if (orientation == 3) {
+            matrix.postRotate(180);
+        }
+        else if (orientation == 8) {
+            matrix.postRotate(270);
+        }
+
+        float w,h;
+        Bitmap bitmapinitial;
+
+
+        h=minDim;
+        w = bitmap.getWidth()*minDim/bitmap.getHeight();
+        Log.e("Bitmap"," Entro al que SI voltea");
+
+        bitmapinitial = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        return  Bitmap.createScaledBitmap(bitmapinitial, (int)w,(int)h,true);
     }
 
 }

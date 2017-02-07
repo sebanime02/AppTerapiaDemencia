@@ -22,6 +22,7 @@ import org.greenrobot.greendao.query.QueryBuilder;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.principal.MainActivity;
+import co.edu.unicauca.appterapiademencia.security.Security;
 
 /**
  * Created by ENF on 14/10/2016.
@@ -135,7 +136,7 @@ private EditText input_username,input_password_supervisor,input_completename,inp
             @Override
             public void validate(EditText editText, String text) {
                 //Implementamos la validación que queramos
-                if( text.length() < 6 ){
+                if( text.length() < Security.MINIMAL_USERNAME_LENGHT ){
                     input_username.setError(getResources().getString(R.string.txt_username_short));
                     textShortSyntaxis=true;
                 }else
@@ -187,7 +188,7 @@ private EditText input_username,input_password_supervisor,input_completename,inp
             public void validate(EditText editText, String text) {
                 //Implementamos la validación que queramos
 
-                if (text.length() < 8)
+                if (text.length() < Security.MINIMAL_PASSWORD_LENGTH)
                 {
                     input_password_supervisor.setError(getResources().getString(R.string.txt_password_short));
                     textShortSyntaxis = true;

@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -145,6 +146,7 @@ public class TipDetailActivity extends ActionBarActivity {
                         reloadView();
                         likeInteruptor = true;
                         btnMakeLike.setEnabled(false);
+                        Toast.makeText(view.getContext(),getResources().getString(R.string.toast_like),Toast.LENGTH_LONG).show();
 
                     } catch (Exception e) {
                         Log.e("tipdetail","error agregando like");
@@ -209,30 +211,41 @@ public class TipDetailActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menufavorite = menu;
-        SharedPreferences loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
-        if(loginpreference.getBoolean("supervisor",true))
+        //SharedPreferences loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
+
+        if(preferences.getBoolean("supervisor",true))
         {
             getMenuInflater().inflate(R.menu.menu_edit,menu);
             getMenuInflater().inflate(R.menu.menu_delete,menu);
-
+            getMenuInflater().inflate(R.menu.menu_favorite,menu);
 
                 idtip = bundle.getLong("idtip");
-                username = loginpreference.getString("username","Nombre de Usuario");
+                username = preferences.getString("username","Nombre de Usuario");
                 iduser = helper.getUserInformation(username).getId();
 
+
+
+            try
+            {
                 PreferenceTip preferenceTip =  helper.getPreferenceTip(idtip,iduser);
 
 
-            getMenuInflater().inflate(R.menu.menu_favorite,menu);
 
-            if(preferenceTip.getFavorite())
-            {
-                menu.findItem(R.id.menu_favorito).setIcon(getResources().getDrawable(R.mipmap.ic_star_rate_black_18dp));
-            }else
-            {
-                menu.findItem(R.id.menu_favorito).setIcon(getResources().getDrawable(R.mipmap.ic_star_border_white_24dp));
 
+
+                if(preferenceTip.getFavorite())
+                {
+                    menu.findItem(R.id.menu_favorito).setIcon(getResources().getDrawable(R.mipmap.ic_star_rate_black_18dp));
+                }else
+                {
+                    menu.findItem(R.id.menu_favorito).setIcon(getResources().getDrawable(R.mipmap.ic_star_border_white_24dp));
+
+                }
+            }catch (Exception e)
+            {
+                e.printStackTrace();
             }
+
 
 
         }

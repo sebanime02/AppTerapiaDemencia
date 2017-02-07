@@ -55,18 +55,17 @@ import co.edu.unicauca.appterapiademencia.util.BitmapUtil;
  * Created by ENF on 28/10/2016.
  */
 
-public class AddPatientActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener
-{
+public class AddPatientActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
-    private String var_genero="";
-    private String var_fecha="";
-    private Boolean boolEscolaridad=false;
-    private Boolean boolInstitucionalizad=false;
-    private EditText edt_id, edt_nomb,edt_eps,edt_antecedentes,edt_sindromes,edt_observaciones;
-    private TextView txt_titulo1,txt_titulo2;
+    private String var_genero = "";
+    private String var_fecha = "";
+    private Boolean boolEscolaridad = false;
+    private Boolean boolInstitucionalizad = false;
+    private EditText edt_id, edt_nomb, edt_eps, edt_antecedentes, edt_sindromes, edt_observaciones;
+    private TextView txt_titulo1, txt_titulo2;
     private RadioGroup rdgSexo;
-    private RadioButton rdgSexoFemenino,rdgSexoMasculino;
-    private CheckBox chkEscolaridad,chkInstitucionalizado;
+    private RadioButton rdgSexoFemenino, rdgSexoMasculino;
+    private CheckBox chkEscolaridad, chkInstitucionalizado;
     private String[] paciente;
     private boolean[] checks;
     int eleccion;
@@ -78,13 +77,13 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     private String foto_rq;
     private String name = "";
     private String imagen;
-    private Button  b_disparo, b_parar;
+    private Button b_disparo, b_parar;
     private SharedPreferences prefs;
-    private String actualizar="";
+    private String actualizar = "";
     GreenDaoHelper daoHelper;
     private int idpaciente;
     private String[] datosa;
-    private PatientDao  patientDao;
+    private PatientDao patientDao;
     private QueryBuilder queryBuilder;
     private ActionBar actionBar;
     private Toolbar toolbar;
@@ -94,12 +93,13 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     private String var_sexo;
     private RelativeLayout containerfoto;
 
-    public static final String fotodefault = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/"+R.drawable.emptyuser).toString();
 
-  public AddPatientActivity(){
-      this.patientDao = GreenDaoHelper.getInstance().getPatientDao();
+    public static final String fotodefault = Uri.parse("android.resource://co.edu.unicauca.appterapiademencia/" + R.drawable.emptyuser).toString();
 
-  }
+    public AddPatientActivity() {
+        this.patientDao = GreenDaoHelper.getInstance().getPatientDao();
+
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -108,7 +108,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         daoHelper = GreenDaoHelper.getInstance();
         prefs = getSharedPreferences("datos", Context.MODE_PRIVATE);
         edt_id = (EditText) findViewById(R.id.edt_cedula);
-       // btn_guardar = (Button) findViewById(R.id.btn_guardar_paso1);
+        // btn_guardar = (Button) findViewById(R.id.btn_guardar_paso1);
         edt_nomb = (EditText) findViewById(R.id.edt_nombre_paciente);
         btn_fecha = (Button) findViewById(R.id.btn_fecha_patiente);
         edt_eps = (EditText) findViewById(R.id.edt_eps);
@@ -133,7 +133,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         //colocarImagen();
 
 
-         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
 
@@ -155,91 +155,105 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
             try {
                 registerForContextMenu(imgbtn);
                 identity = Long.parseLong(bundle.getString("cedula"));
-                Log.e("Add patient","LLego a adpatient, el id es "+identity);
-                queryBuilder= patientDao.queryBuilder();
-                List<Patient> patientList=  queryBuilder.where(PatientDao.Properties.Identity.eq(identity)).limit(1).list();
-                Patient patientone= patientList.get(0);
+                Log.e("Add patient", "LLego a adpatient, el id es " + identity);
+                queryBuilder = patientDao.queryBuilder();
+                List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(identity)).limit(1).list();
+                Patient patientone = patientList.get(0);
 
 
                 //daoHelper.getIncapacities();
 
-                Log.e("Add patient","El id long devuelvo por dao es "+patientone.getId().toString());
+                Log.e("Add patient", "El id long devuelvo por dao es " + patientone.getId().toString());
                 //List<BlessedIncapacity> blessedList = queryBuilder.where(BlessedIncapacityDao.Properties.PatientId.eq(patientone.getId())).limit(1).list();
                 //BlessedIncapacity blesedone = daoHelper.getBlessedbyid(patientone.getId());
-                Log.e("Add patient","El nombre del paciente devuelvo por dao es "+patientone.getName().toString());
+                Log.e("Add patient", "El nombre del paciente devuelvo por dao es " + patientone.getName().toString());
                 Long patientid = patientone.getId();
                 actualizar = bundle.getString("actualizar");
                 datosa = new String[12];
-                datosb= new  String[8];
+                datosb = new String[8];
 
                 //datosa = bundle.getStringArray("datosa");
-                datosa[0] = identity+"";
+                datosa[0] = identity + "";
                 datosa[1] = patientone.getVisionlimitation().toString();
                 datosa[2] = patientone.getWritinglimitation().toString();
                 datosa[3] = patientone.getDrawinglimitation().toString();
 
 
-                try{
+                try {
 
-                    Sintoma tareasdomesticas = daoHelper.getSintoma(patientid,"Blessed","vestimenta","incapacidadtareasdomesticas");
-                    datosb[0]=tareasdomesticas.getScaleList().get(0).getPuntaje().toString();
-
-
-                }catch (Exception e){datosb[0]="0.0";}
-                try{
-                    Sintoma pequenasdinero = daoHelper.getSintoma(patientid,"Blessed","vestimenta","incapacidadpequenasdinero");
-                    datosb[1]=pequenasdinero.getScaleList().get(0).getPuntaje().toString();
-
-                }catch (Exception e){datosb[1]="0.0";}
-
-                try{
-                    Sintoma memorialistascortas = daoHelper.getSintoma(patientid,"Blessed","memoria","memorialistascortas");
-                    datosb[2]=memorialistascortas.getScaleList().get(0).getPuntaje().toString();
-
-                }catch (Exception e){datosb[2]="0.0";}
-                try{
-                    Sintoma orientacioncasa = daoHelper.getSintoma(patientid,"Blessed","orientacion","orientacioncasa");
-                    datosb[3]=orientacioncasa.getScaleList().get(0).getPuntaje().toString();
+                    Sintoma tareasdomesticas = daoHelper.getSintoma(patientid, "Blessed", "vestimenta", "incapacidadtareasdomesticas");
+                    datosb[0] = tareasdomesticas.getScaleList().get(0).getPuntaje().toString();
 
 
-                }catch (Exception e){datosb[3]="0.0";}
-                try{
-                    Sintoma orientacioncalle = daoHelper.getSintoma(patientid,"Blessed","orientacion","orientacioncalle");
-                    datosb[4]= orientacioncalle.getScaleList().get(0).getPuntaje().toString();
+                } catch (Exception e) {
+                    datosb[0] = "0.0";
+                }
+                try {
+                    Sintoma pequenasdinero = daoHelper.getSintoma(patientid, "Blessed", "vestimenta", "incapacidadpequenasdinero");
+                    datosb[1] = pequenasdinero.getScaleList().get(0).getPuntaje().toString();
+
+                } catch (Exception e) {
+                    datosb[1] = "0.0";
+                }
+
+                try {
+                    Sintoma memorialistascortas = daoHelper.getSintoma(patientid, "Blessed", "memoria", "memorialistascortas");
+                    datosb[2] = memorialistascortas.getScaleList().get(0).getPuntaje().toString();
+
+                } catch (Exception e) {
+                    datosb[2] = "0.0";
+                }
+                try {
+                    Sintoma orientacioncasa = daoHelper.getSintoma(patientid, "Blessed", "orientacion", "orientacioncasa");
+                    datosb[3] = orientacioncasa.getScaleList().get(0).getPuntaje().toString();
 
 
-                }catch (Exception e){datosb[4]="0.0";}
-                try{
-                    Sintoma orientacionentorno = daoHelper.getSintoma(patientid,"Blessed","orientacion","orientacionentorno");
-                    datosb[5]= orientacionentorno.getScaleList().get(0).getPuntaje().toString();
+                } catch (Exception e) {
+                    datosb[3] = "0.0";
+                }
+                try {
+                    Sintoma orientacioncalle = daoHelper.getSintoma(patientid, "Blessed", "orientacion", "orientacioncalle");
+                    datosb[4] = orientacioncalle.getScaleList().get(0).getPuntaje().toString();
 
 
-                }catch (Exception e){datosb[5]="0.0";}
-
-                try{
-                    Sintoma memoriaolvidosbenignos = daoHelper.getSintoma(patientid,"Blessed","memoria","memoriaolvidosbenignos");
-                    datosb[6]= memoriaolvidosbenignos.getScaleList().get(0).getPuntaje().toString();
-
-
-
-                }catch (Exception e){datosb[6]="0.0";}
-
-                try{
-                    Sintoma tendenciarememorar = daoHelper.getSintoma(patientid,"Blessed","memoria","memoriatendenciarememorar");
-                    datosb[7]= tendenciarememorar.getScaleList().get(0).getPuntaje().toString();
-
-                }catch (Exception e){datosb[7]="0.0";}
+                } catch (Exception e) {
+                    datosb[4] = "0.0";
+                }
+                try {
+                    Sintoma orientacionentorno = daoHelper.getSintoma(patientid, "Blessed", "orientacion", "orientacionentorno");
+                    datosb[5] = orientacionentorno.getScaleList().get(0).getPuntaje().toString();
 
 
+                } catch (Exception e) {
+                    datosb[5] = "0.0";
+                }
 
-                Log.e("datosb0 ",""+datosb[0]);
-                Log.e("datosb1 ",""+datosb[1]);
-                Log.e("datosb2 ",""+datosb[2]);
-                Log.e("datosb3 ",""+datosb[3]);
-                Log.e("datosb4 ",""+datosb[4]);
-                Log.e("datosb5 ",""+datosb[5]);
-                Log.e("datosb6 ",""+datosb[6]);
-                Log.e("datosb7 ",""+datosb[7]);
+                try {
+                    Sintoma memoriaolvidosbenignos = daoHelper.getSintoma(patientid, "Blessed", "memoria", "memoriaolvidosbenignos");
+                    datosb[6] = memoriaolvidosbenignos.getScaleList().get(0).getPuntaje().toString();
+
+
+                } catch (Exception e) {
+                    datosb[6] = "0.0";
+                }
+
+                try {
+                    Sintoma tendenciarememorar = daoHelper.getSintoma(patientid, "Blessed", "memoria", "memoriatendenciarememorar");
+                    datosb[7] = tendenciarememorar.getScaleList().get(0).getPuntaje().toString();
+
+                } catch (Exception e) {
+                    datosb[7] = "0.0";
+                }
+
+
+                Log.e("datosb0 ", "" + datosb[0]);
+                Log.e("datosb1 ", "" + datosb[1]);
+                Log.e("datosb2 ", "" + datosb[2]);
+                Log.e("datosb3 ", "" + datosb[3]);
+                Log.e("datosb4 ", "" + datosb[4]);
+                Log.e("datosb5 ", "" + datosb[5]);
+                Log.e("datosb6 ", "" + datosb[6]);
+                Log.e("datosb7 ", "" + datosb[7]);
 
 
                 txt_titulo1.setText("INFORMACIÓN DEL PACIENTE");
@@ -247,40 +261,30 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 actionBar.setTitle("Actualizando Paciente");
                 containerfoto.setVisibility(View.VISIBLE);
 
-                edt_id.setText(patientone.getIdentity()+"");
+                edt_id.setText(patientone.getIdentity() + "");
                 edt_id.setEnabled(false);
                 edt_nomb.setText(patientone.getName());
                 //false hombre, true mujer
-                if(patientone.getSex()=="masculino")
-                {
+                if (patientone.getSex() == "masculino") {
                     rdgSexoMasculino.setChecked(true);
                     rdgSexoFemenino.setChecked(false);
-                }
-                else
-                {
+                } else {
                     rdgSexoFemenino.setChecked(true);
                     rdgSexoMasculino.setChecked(false);
                 }
 
 
-                if(patientone.getScolarity())
-                {
+                if (patientone.getScolarity()) {
                     chkEscolaridad.setChecked(true);
-                }
-                else
-                {
+                } else {
                     chkEscolaridad.setChecked(false);
                 }
 
-                if(patientone.getInstitutional())
-                {
+                if (patientone.getInstitutional()) {
                     chkInstitucionalizado.setChecked(true);
-                }
-                else
-                {
+                } else {
                     chkInstitucionalizado.setChecked(false);
                 }
-
 
 
                 btn_fecha.setText(patientone.getBirthday().toString());
@@ -290,22 +294,19 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 edt_observaciones.setText(patientone.getObservations().toString());
 
 
-
-                if(patientone.getPhotopath().toString().equalsIgnoreCase("")){
+                if (patientone.getPhotopath().toString().equalsIgnoreCase("")) {
                     img.setBackgroundResource(R.drawable.emptyuser);
 
-                }
-                else {
+                } else {
                     img.setBackground(Drawable.createFromPath(patientone.getPhotopath()));
-                    name2= patientone.getPhotopath();
-                     }
+                    name2 = patientone.getPhotopath();
+                }
 
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
 
 
         edt_id.addTextChangedListener(new TextWatcher() {
@@ -330,22 +331,18 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
     }
 
-    public void savePage1(View view)
-    {
+    public void savePage1(View view) {
 
-        Log.e("Agregar paciente","Presiono el boton siguiente");
+        Log.e("Agregar paciente", "Presiono el boton siguiente");
 
-        if(validar(edt_id.getText().toString(),btn_fecha.getText().toString(),edt_nomb.getText().toString())==false)
-        {
+        if (validar(edt_id.getText().toString(), btn_fecha.getText().toString(), edt_nomb.getText().toString()) == false) {
             new MaterialDialog.Builder(this).title("Campos Obligagorios Faltantes").content("Debe Escribir Cédula, Fecha de Nacimiento, Nombre Completo y Sexo").positiveText(R.string.dialog_succes_agree).show();
 
 
-            btn_fecha.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.red_dark));
+            btn_fecha.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red_dark));
 
-            Log.e("Agregar paciente","faltan campos obligatorios");
-        }
-        else
-        {
+            Log.e("Agregar paciente", "faltan campos obligatorios");
+        } else {
 
             queryBuilder = GreenDaoHelper.getInstance().getPatientDao().queryBuilder();
 
@@ -353,18 +350,17 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
             List<Patient> patientList = queryBuilder.where(PatientDao.Properties.Identity.eq(Long.parseLong(edt_id.getText().toString()))).limit(1).list();
             //.limit(1).list();
 
-            for(int j=0;j<patientList.size();j++){
-                Log.e("Agregar paciente",""+patientList.get(j).getIdentity());
+            for (int j = 0; j < patientList.size(); j++) {
+                Log.e("Agregar paciente", "" + patientList.get(j).getIdentity());
 
             }
 
 
-            if (actualizar.equals("actualizar"))
-            {
-                Log.e("Agregar paciente","Listo para enviar los actualizados");
+            if (actualizar.equals("actualizar")) {
+                Log.e("Agregar paciente", "Listo para enviar los actualizados");
                 paciente = new String[9];
                 checks = new boolean[2];
-                Log.e("name2 a actualizar",name2);
+                Log.e("name2 a actualizar", name2);
                 Intent ir_reg = new Intent(this, AddPatient2Activity.class);
 
                 paciente[0] = datosa[0];
@@ -376,12 +372,14 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 paciente[6] = edt_sindromes.getText().toString();
                 paciente[7] = edt_observaciones.getText().toString();
 
-                try{
+                try {
                     paciente[8] = var_sexo.toString();
-                }catch (Exception e){   paciente[8] = "femenino";}
+                } catch (Exception e) {
+                    paciente[8] = "femenino";
+                }
 
-                Log.e("Agregar paciente","boolEscolaridad "+boolEscolaridad);
-                Log.e("Agregar paciente","boolInstitucionalizado "+boolInstitucionalizad);
+                Log.e("Agregar paciente", "boolEscolaridad " + boolEscolaridad);
+                Log.e("Agregar paciente", "boolInstitucionalizado " + boolInstitucionalizad);
                 checks[0] = chkEscolaridad.isChecked();
                 checks[1] = chkInstitucionalizado.isChecked();
 
@@ -390,16 +388,13 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                 ir_reg.putExtra("actualizar", actualizar);
                 ir_reg.putExtra("datosa", datosa);
                 ir_reg.putExtra("datosb", datosb);
-                ir_reg.putExtra("checks",checks);
+                ir_reg.putExtra("checks", checks);
 
                 startActivity(ir_reg);
                 overridePendingTransition(R.anim.left_in, R.anim.left_out);
-            }
-            else
-            {
-                if (patientList.size()==0)
-                {
-                    Log.e("Agregar paciente","La cedula esta libre");
+            } else {
+                if (patientList.size() == 0) {
+                    Log.e("Agregar paciente", "La cedula esta libre");
 
                     paciente = new String[9];
                     checks = new boolean[2];
@@ -418,7 +413,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
                     }
                     */
-                    Log.e("name2",name2);
+                    Log.e("name2", name2);
 
                     paciente[1] = name2;
                     paciente[2] = edt_nomb.getText().toString();
@@ -427,25 +422,26 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                     paciente[5] = edt_antecedentes.getText().toString();
                     paciente[6] = edt_sindromes.getText().toString();
                     paciente[7] = edt_observaciones.getText().toString();
-                    try{
+                    try {
                         paciente[8] = var_sexo.toString();
-                    }catch (Exception e){   paciente[8] = "femenino";}
+                    } catch (Exception e) {
+                        paciente[8] = "femenino";
+                    }
 
-                    Log.e("Agregar paciente","boolEscolaridad "+boolEscolaridad);
-                    Log.e("Agregar paciente","boolInstitucionalizado "+boolInstitucionalizad);
+                    Log.e("Agregar paciente", "boolEscolaridad " + boolEscolaridad);
+                    Log.e("Agregar paciente", "boolInstitucionalizado " + boolInstitucionalizad);
 
 
                     checks[0] = chkEscolaridad.isChecked();
                     checks[1] = chkInstitucionalizado.isChecked();
 
                     ir_reg.putExtra("paciente", paciente);
-                    ir_reg.putExtra("checks",checks);
+                    ir_reg.putExtra("checks", checks);
 
                     startActivity(ir_reg);
                     overridePendingTransition(R.anim.left_in, R.anim.left_out);
-                } else
-                {
-                    Log.e("Agregar paciente","Cedula ya existe");
+                } else {
+                    Log.e("Agregar paciente", "Cedula ya existe");
                     Toast.makeText(this, "La cédula ingresada ya existe, puede  que el paciente haya sido ingresado con anterioridad", Toast.LENGTH_LONG).show();
                 }
             }
@@ -474,7 +470,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    public void openContextM(View view){
+    public void openContextM(View view) {
         imgbtn.performLongClick();
         registerForContextMenu(imgbtn);
         openContextMenu(view);
@@ -484,8 +480,12 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     protected Dialog onCreateDialog(int id) {
         // TODO Auto-generated method stub
         if (id == 999) {
-            DatePickerDialog dialogDate = new DatePickerDialog(this, myDateListener, year, month, day);
+            //DatePickerDialog dialogDate = new DatePickerDialog(this, myDateListener, year, month, day);
+            DatePickerDialog dialogDate = new DatePickerDialog(this, myDateListener, 1960, 0, 1);
+
+            //dialogDate.getDatePicker().init(2050,00,01,dialogDate);
             dialogDate.getDatePicker().setMaxDate(new Date().getTime());
+
             return dialogDate;
         }
         return null;
@@ -506,29 +506,30 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         var_fecha = (new StringBuilder().append(day).append("/")
                 .append(month).append("/").append(year)).toString();
         btn_fecha.setText(var_fecha);
-        btn_fecha.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.negro));
+        btn_fecha.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.negro));
     }
 
     public Boolean validar(String id, String fecha, String genero) {
-        if (id.equals("")  || fecha.equals("") || genero.equals("") || fecha.equals("DD/MM/AAAA")) {
+        if (id.equals("") || fecha.equals("") || genero.equals("") || fecha.equals("DD/MM/AAAA")) {
             return false;
-        }else {
+        } else {
             return true;
         }
     }
+
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         // TODO Auto-generated method stub
-        if(checkedId==R.id.rdgSexoFemenino){
-            Log.e("addpatient","sexo femenino");
-            var_sexo="femenino";
+        if (checkedId == R.id.rdgSexoFemenino) {
+            Log.e("addpatient", "sexo femenino");
+            var_sexo = "femenino";
 
 
         }
-        if(checkedId==R.id.rdgSexoMasculino){
-        Log.e("addpatient","sexo masculino");
+        if (checkedId == R.id.rdgSexoMasculino) {
+            Log.e("addpatient", "sexo masculino");
 
-        var_sexo="masculino";
+            var_sexo = "masculino";
 
         }
     }
@@ -559,7 +560,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         switch (item.getItemId()) {
 
             case R.id.nueva_foto:
-                Intent intent_foto =  new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                Intent intent_foto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 Uri output = Uri.fromFile(new File(name));
                 intent_foto.putExtra(MediaStore.EXTRA_OUTPUT, output);
                 eleccion = 1;
@@ -568,33 +569,26 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
             case R.id.opc_galeria:
 
-                new Thread(new Runnable() {
+                Log.d("Contar"," Abriendo galeria, empieza a contar");
+                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+                Log.d("Contar"," Abriendo galeria, termino de contar");
+                Log.d("Contar"," desplegando la fotografia, empieza a contar");
+                eleccion = 2;
+                startActivityForResult(intent, eleccion);
 
-                    @Override
-                    public void run() {
-                        try
-                        {
-                            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-                            eleccion = 2;
-                            startActivityForResult(intent, eleccion);
 
-                        }catch (Exception e)
-                        {
-                            Log.e("Error blessed","Atrapo la excepcion en blessed data");
-
-                        }
-                    }
-                }).start();
                 return true;
             default:
                 return super.onContextItemSelected(item);
         }
     }
+
     private void colocarImagen() {
         name = imagen;
         img.setImageURI(Uri.parse(imagen));
 
     }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
@@ -627,9 +621,11 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-    @Override protected void onActivityResult(int requestCode,  int resultCode, Intent data) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        int origin=0;
+       int origin = 0;
+
         switch (requestCode) {
 
             case 1:
@@ -663,7 +659,11 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
                     if (data == null) {
                         Toast.makeText(getApplicationContext(), "No se eligio la foto!", Toast.LENGTH_LONG).show();
                     } else {
+
                         Uri selectedImage = data.getData();
+
+
+                        //Cursor cursor = getContentResolver().query(selectedImage, null, null, null, null);
 
                         Cursor cursor = getContentResolver().query(selectedImage, null, null, null, null);
                         cursor.moveToFirst();
@@ -680,23 +680,31 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
 
 
                         name2 = path;
-                        Log.d("pathprimero",name2);
+                        Log.d("pathprimero", name2);
                         //imgbtn.setImageURI(selectedImage);
                         img.setBackground(Drawable.createFromPath(name2));
+
+
                     }
                 }
                 break;
         }
-        if(!name2.equals("")) {
+        if (!name2.equals("")) {
+
             String path = null;
-            try {
-                path = BitmapUtil.resizeImageFile(name2, 800, origin);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            name2=path;
-            Log.d("path",name2);
+
+                        try {
+                            path = BitmapUtil.resizeImageFile(name2, 800, origin);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+            name2 = path;
+            Log.d("path", name2);
             img.setBackground(Drawable.createFromPath(name2));
+            Log.d("Contar"," desplegando la fotografia, finaliza de contar");
+
+
         }
 
 

@@ -1,7 +1,6 @@
 package co.edu.unicauca.appterapiademencia.principal.tips;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -171,19 +170,11 @@ public class TipsListFragment extends Fragment implements  TipsListView {
 
     @Override
     public void refreshView() {
-        try {
-            recycler.setHasFixedSize(true);
-            //LManager = new LinearLayoutManager(getActivity().getApplicationContext());
-            //gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
-            lLayout = new GridLayoutManager(getActivity(), 2);
-            //recycler.setLayoutManager(LManager);
-            recycler.setLayoutManager(lLayout);
-            adapter = new TipAdapter(list, getActivity());
-            recycler.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-            //callListenerText();
-        } catch (Exception e) {
-            adapter.notifyDataSetChanged();
-        }
+
+            recycler.setVisibility(View.VISIBLE);
+            linearTipsListEmpty.setVisibility(View.GONE);
+            imgArrowTip.setVisibility(View.GONE);
+
+
     }
 }

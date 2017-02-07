@@ -67,6 +67,7 @@ public class AddReminiscenceExercise extends AppCompatActivity {
     private String var_title;
 
 
+
     public AddReminiscenceExercise()
     {
         this.reminiscenceDao = GreenDaoHelper.getInstance().getReminiscenceDao();
@@ -78,7 +79,7 @@ public class AddReminiscenceExercise extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_reminscence);
-        prefs = getSharedPreferences("datos", Context.MODE_PRIVATE);
+        prefs = getSharedPreferences("appdata", Context.MODE_PRIVATE);
 
         img = (ImageView) findViewById(R.id.reminiscence_photo);
         imgbtn = (FloatingActionButton) findViewById(R.id.add_photo_reminiscence);
@@ -330,7 +331,7 @@ public class AddReminiscenceExercise extends AppCompatActivity {
 
     @Override protected void onActivityResult(int requestCode,  int resultCode, Intent data) {
 
-        int origin=0;
+         int origin=0;
         switch (requestCode) {
 
             case 1:
@@ -364,40 +365,77 @@ public class AddReminiscenceExercise extends AppCompatActivity {
                     if (data == null) {
                         Toast.makeText(getApplicationContext(), "No se eligio la foto!", Toast.LENGTH_LONG).show();
                     } else {
-                        Uri selectedImage = data.getData();
-
-                        Cursor cursor = getContentResolver().query(selectedImage, null, null, null, null);
-                        cursor.moveToFirst();
-                        String document_id = cursor.getString(0);
-                        document_id = document_id.substring(document_id.lastIndexOf(":") + 1);
-                        cursor.close();
-
-                        cursor = getContentResolver().query(
-                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                                null, MediaStore.Images.Media._ID + " =? ", new String[]{document_id}, null);
-                        cursor.moveToFirst();
-                        String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-                        cursor.close();
+                        final Uri selectedImage = data.getData();
 
 
-                        name2 = path;
-                        Log.d("pathprimero",name2);
-                        //imgbtn.setImageURI(selectedImage);
-                        img.setBackground(Drawable.createFromPath(name2));
+                        /*
+                        *  new Thread(new Runnable() {
+
+
+                            @Override
+                            public void run()
+                            {
+
+                                try
+                                {
+                                 }catch (Exception e)
+                        {
+                            Log.e("Error blessed","Atrapo la excepcion en blessed data");
+
+                        }
+                        }
+                        }).start();
+
+                        *
+                        *
+                        * */
+
+                                    Cursor cursor = getContentResolver().query(selectedImage, null, null, null, null);
+                                    cursor.moveToFirst();
+                                    String document_id = cursor.getString(0);
+                                    document_id = document_id.substring(document_id.lastIndexOf(":") + 1);
+                                    cursor.close();
+
+                                    cursor = getContentResolver().query(
+                                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                                            null, MediaStore.Images.Media._ID + " =? ", new String[]{document_id}, null);
+                                    cursor.moveToFirst();
+                                    String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                                    cursor.close();
+
+
+                                    name2 = path;
+                                    Log.d("pathprimero",name2);
+                                    //imgbtn.setImageURI(selectedImage);
+                                    img.setBackground(Drawable.createFromPath(name2));
+
+
+
+
                     }
                 }
                 break;
         }
-        if(!name2.equals("")) {
+        if(!name2.equals(""))
+        {
+
             String path = null;
-            try {
-                path = BitmapUtil.resizeImageFile(name2, 800, origin);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+                            try
+                            {
+                                path = BitmapUtil.resizeImageFile(name2, 800, origin);
+                            } catch (IOException e)
+                            {
+                            e.printStackTrace();
+                            }
+
+
+
             name2=path;
             Log.d("path",name2);
             img.setBackground(Drawable.createFromPath(name2));
+
+
         }
 
 

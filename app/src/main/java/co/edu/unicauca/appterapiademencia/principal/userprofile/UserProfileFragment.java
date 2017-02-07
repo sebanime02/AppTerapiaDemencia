@@ -19,8 +19,10 @@ import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.domain.dao.UserDao;
+import co.edu.unicauca.appterapiademencia.login.LoginValidator;
 import co.edu.unicauca.appterapiademencia.login.RegisterActivity;
 import co.edu.unicauca.appterapiademencia.principal.MainActivity;
+import co.edu.unicauca.appterapiademencia.security.Security;
 
 /**
  * Created by ENF on 25/10/2016.
@@ -38,6 +40,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     private User user;
     private Boolean nothingIndicator= false;
     private AppCompatImageButton btnAddUser;
+    private boolean textShortSyntaxis =false;
 
     public UserProfileFragment()
     {
@@ -103,6 +106,37 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             }
         });
 
+        edtPassword.addTextChangedListener(new LoginValidator(edtPassword) {
+            @Override
+            public void validate(EditText editText, String text)
+            {
+                if( text.length() < Security.MINIMAL_PASSWORD_LENGTH){
+                    edtPassword.setError(getResources().getString(R.string.txt_password_short));
+                    textShortSyntaxis = true;
+                }else
+                {
+                    textShortSyntaxis = false;
+                }
+            }
+
+            @Override
+            public void validateSpecialCharacters(EditText editText, String text)
+            {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2)
+            {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+        });
+
 
         return rootView;
 
@@ -122,7 +156,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         if(validateInputs(edtUsername.getText().toString(),edtPassword.getText().toString(),edtCompleteName.getText().toString())==false)
         {
 
-            if(validatePasswordLength(edtPassword.getText().toString()))
+            if(!textShortSyntaxis)
             {
                 try {
                     User useredit = helper.getUserInformation(username);
@@ -134,7 +168,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                     //Log.e("userprofile","usereditado "+" username"+useredit.getUsername()+" CompleteName"+useredit.getCompleteName());
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("username",edtUsername.getText().toString());
-                    editor.commit();
+                    editor.apply();
                     preferences.edit();
 
 
@@ -172,7 +206,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
 
             }else
             {
-                new MaterialDialog.Builder(getContext()).title(R.string.error_minimal_length_description).positiveText(R.string.dialog_succes_agree).show();
+                new MaterialDialog.Builder(getContext()).title(R.string.txt_password_short).positiveText(R.string.dialog_succes_agree).show();
 
             }
 
@@ -197,17 +231,6 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         }
     }
 
-    private boolean validatePasswordLength(String password)
-    {
-        if(password.length()<8)
-        {
-            return false;
-        }else
-        {
-            return true;
-        }
-
-    }
 
 
     @Override

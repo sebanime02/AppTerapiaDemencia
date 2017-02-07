@@ -1,7 +1,6 @@
 package co.edu.unicauca.appterapiademencia.principal.reminiscence;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -166,27 +165,14 @@ public class ReminiscenceListFragment extends Fragment implements ReminiscenceLi
         recycler.setVisibility(View.GONE);
         linearReminiscenceListEmpty.setVisibility(View.VISIBLE);
         imgArrowReminiscence.setVisibility(View.VISIBLE);
-
     }
 
     @Override
     public void refreshView() {
         super.onResume();
-        try {
-
-            recycler.setHasFixedSize(true);
-            //LManager = new LinearLayoutManager(getActivity().getApplicationContext());
-            //gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
-            lLayout = new GridLayoutManager(getActivity(), 2);
-            //recycler.setLayoutManager(LManager);
-            recycler.setLayoutManager(lLayout);
-            adapter = new ReminiscenceAdapter(list, getActivity());
-            recycler.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-            //callListenerText();
-        } catch (Exception e) {
-            adapter.notifyDataSetChanged();
-        }
+        recycler.setVisibility(View.VISIBLE);
+        linearReminiscenceListEmpty.setVisibility(View.GONE);
+        imgArrowReminiscence.setVisibility(View.GONE);
     }
 
 

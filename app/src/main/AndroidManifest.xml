@@ -20,6 +20,7 @@
         android:icon="@drawable/logoaplicationborderblack"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:installLocation="preferExternal"
         android:theme="@style/AppTheme">
         <activity
             android:name=".login.LoginActivity"

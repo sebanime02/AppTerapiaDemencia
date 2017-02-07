@@ -54,13 +54,14 @@
                     android:lines="7"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
+
                     android:id="@+id/txt_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/gray_soft"
                     android:hint="@string/txt_description_tip"
                     android:textSize="@dimen/medium_text_size"
+                    android:imeOptions="actionDone"
                     />
 
                 <View

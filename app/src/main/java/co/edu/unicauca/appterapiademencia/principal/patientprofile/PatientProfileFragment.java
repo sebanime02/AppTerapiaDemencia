@@ -206,11 +206,18 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
 
         }
 
-        getPatientData(idpatient);
-        getBlessedScore(idsistema);
-        getFastScore(idsistema);
-        getLawtonScore(idsistema);
-        getMMSEScore(idsistema);
+        try {
+
+        }catch (Exception e)
+        {
+            getPatientData(idpatient);
+            getBlessedScore(idsistema);
+            getFastScore(idsistema);
+            getLawtonScore(idsistema);
+            getMMSEScore(idsistema);
+        }
+
+
 
         new Thread(new Runnable() {
 
@@ -345,11 +352,18 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         }
         catch (Exception e){}
 
-        getBlessedScore(idsistema);
-        getFastScore(idsistema);
-        getLawtonScore(idsistema);
-        getDowntonScore(idsistema);
-        getMMSEScore(idsistema);
+        try
+        {
+            getBlessedScore(idsistema);
+            getFastScore(idsistema);
+            getLawtonScore(idsistema);
+            getDowntonScore(idsistema);
+            getMMSEScore(idsistema);
+        }catch (Exception e)
+        {
+
+        }
+
 
         //patientProfilePresenter.getBlessedData(idsistema);
 
