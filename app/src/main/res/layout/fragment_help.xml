@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
@@ -10,19 +10,338 @@
     android:background="@color/white"
     tools:context="co.edu.unicauca.appterapiademencia.principal.MainActivity">
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
 
-    <TextView
-        android:text="Ayuda"
-        android:textSize="30dp"
-        android:gravity="center"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+        android:id="@+id/help_getting_stared"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="8"
+        >
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_action_content_report"
+                />
+            <LinearLayout
+                android:id="@+id/btnGettingStarted"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="5"
+                >
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="COMO USAR LA APLICACIÓN"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/medium_text_size"
+                />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Conoce las funcionalidades de la aplicación y como sacarle el máximo provecho"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/small_text_size"
+                    />
+
+        </LinearLayout>
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:src="@mipmap/ic_shortcut_keyboard_arrow_right"
+            android:textSize="50sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textAlignment="center"
+            android:background="@drawable/md_transparent"
+            />
 
 
 
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearEmpezarAplicacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray_soft"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:id="@+id/help_frequently_questions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="8"
+            >
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_action_action_help"
+                />
+            <LinearLayout
+                android:id="@+id/btnFrequentlyQuestions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="5"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="PREGUNTAS FRECUENTES"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/medium_text_size"
+                    android:id="@+id/textView11" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Preguntas que contienen inquietudes mas comunes de los usuarios"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/small_text_size"
+                    />
+
+            </LinearLayout>
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:src="@mipmap/ic_shortcut_keyboard_arrow_right"
+                android:textSize="50sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textAlignment="center"
+                android:background="@drawable/md_transparent"
+                />
 
 
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearPreguntasFrecuentes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-Que diferencia hay entre un supervisor y un cuidador?
+                \nAunque en principio ambos desempeñen labores de cuidado del adulto mayor. El supervisor tiene mayor responsabilidad, ya que debe monitorear y evaluar cada uno de los signos, sintomas y hàbitos que el adulto mayor presente en ese momento, de esta manera puede tener claro los puntos débiles en donde debe realizar terapia, tipicamente asociada a la promociòn de independencia en sus actividades diarias bàsicas e instrumentales (movilidad, aseo, alimentaciòn, baño, etc).
+                "
+                android:textSize="@dimen/little_text_size"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-Que terapias no farmacológicas para el adulto mayor existen?
+                \n-Programas de estimulación cognitiva y actividad fisica.
+                \n-Restructuración Ambiental
+                \n-Entrenamiento en capacidades cognitivas especificas
+                "
+                android:textSize="@dimen/little_text_size"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                />
 
 
-</RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="-Mas específicamente que terapias de estimulación cognitiva (TEC) se practican?
+                \n-Programas de psicoestimulación cognitiva (Talleres modularizados de memoria, atención, entre otros).
+                \n-Musicoterapia
+                \n-Terapia de Reminiscencia
+                "
+
+                android:textSize="@dimen/little_text_size"
+
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="-Mas específicamente que terapias de estimulación cognitiva (TEC) se practican?
+                \n-Programas de psicoestimulación cognitiva (Talleres modularizados de memoria, atención, entre otros).
+                \n-Musicoterapia
+                \n-Terapia de Reminiscencia
+                "
+
+                android:textSize="@dimen/little_text_size"
+
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="-En que consiste la terapia de reminiscencia?
+                \nTerapia proactiva no farmacológica, que busca recuperar recuerdos autobiográficos usando música, sonidos y especialmente fotografías. Numerosos estudios afirman que la terapia de reminisencia, trabaja el lenguaje verbal, la memoria y la atención. Además, mejora la comunicación paciente-terapeuta.
+                "
+
+                android:textSize="@dimen/little_text_size"
+
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="-Que indicadores relacionados a la demencia senil soporta la aplicación?
+                \n Demencia: Blessed Dementia Scale.
+                \n Actividades instrumentales de la vida diaria: Escala de Lawton y Brody.
+                \n Riesgo de Caidas: Escala de Downton.
+                \n Alzhéimer: FAST Assestment Tool.
+                 \n Deterioro Cognitivo: Minimental State Examination MMSE(administración a cargo del terapeuta).
+                "
+
+                android:textSize="@dimen/little_text_size"
+
+                />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray_soft"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:id="@+id/help_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="8"
+            >
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@mipmap/ic_phone_black_36dp"
+                />
+            <LinearLayout
+                android:id="@+id/btnContact"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="5"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CONTACTO"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/medium_text_size"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ponte en contacto con el soporte"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/small_text_size"
+                    />
+
+            </LinearLayout>
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:textSize="50sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textAlignment="center"
+                android:src="@mipmap/ic_shortcut_keyboard_arrow_right"
+                android:background="@color/white"
+                />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearContacto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Somos Estudiantes de la Universidad del Cauca y Estaremos pendientes a sus preguntas, sugerencias, reportes de errores, solicitudes de mejoras, etc. En todo lo que necesiten. "
+                android:textSize="@dimen/medium_text_size"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Correos:\n sebastiandejoy@unicauca.edu.co \n ead@unicauca.edu.co"
+                android:textSize="@dimen/medium_text_size"
+                />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray_soft"
+        />
+
+
+</LinearLayout>
+</ScrollView>
