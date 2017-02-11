@@ -58,25 +58,25 @@
             android:name=".principal.patientlist.AddPatientActivity"
             android:label="Agregar Paciente"
             android:parentActivityName=".principal.MainActivity"
-
+            android:screenOrientation="landscape"
              />
         <activity
             android:name=".principal.patientlist.AddPatient2Activity"
             android:label="Agregar Paciente"
             android:parentActivityName=".principal.patientlist.AddPatientActivity"
-
+            android:screenOrientation="landscape"
             />
         <activity
             android:name=".principal.tips.AddTipActivity"
             android:label="Agregar Paciente"
             android:parentActivityName=".principal.MainActivity"
-
+            android:screenOrientation="landscape"
             />
         <activity
             android:name=".principal.tips.TipDetailActivity"
             android:label="Agregar Paciente"
             android:parentActivityName=".principal.MainActivity"
-
+            android:screenOrientation="landscape"
             />
         <activity
             android:name=".principal.patientlist.PatientProfileActivity"

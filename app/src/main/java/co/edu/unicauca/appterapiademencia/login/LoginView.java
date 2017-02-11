@@ -5,6 +5,7 @@ package co.edu.unicauca.appterapiademencia.login;
  */
 
 public interface LoginView {
+    //LoginView es una interfaz que abstrae las funciones de la vista
     void enableInputs();
     void disableInputs();
     void setInputs();
@@ -19,7 +20,10 @@ public interface LoginView {
     void navigateToRegister();
     void saveLoginPreference();
     void setSupervisorPreference();
+    void shotTooManyTries();
 
 
 
 }
+
+

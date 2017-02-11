@@ -6,6 +6,8 @@ import android.util.Log;
  * Created by ENF on 14/10/2016.
  */
 
+        //La implementacion del Interactor contiene la instanciación al repositorio
+
 public class LoginInteractorImplementation implements  LoginInteractor {
     private LoginRepository loginRepository;
 
@@ -21,6 +23,7 @@ public class LoginInteractorImplementation implements  LoginInteractor {
 
 
 
+    //El metodo doSingIn pasa los parametros al método signIn del repositorio
     @Override
     public void doSignIn(String username, String password) {
         Log.e("Login","Estoy en el interactor");

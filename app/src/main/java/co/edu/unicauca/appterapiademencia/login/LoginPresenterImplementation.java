@@ -10,6 +10,8 @@ import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
  * Created by ENF on 14/10/2016.
  */
 
+ //El loginPresenterImplementation implementa los metodos de la interfaz LoginPresenter
+
 public class LoginPresenterImplementation implements LoginPresenter {
 
     private EventBus eventBus;
@@ -18,8 +20,8 @@ public class LoginPresenterImplementation implements LoginPresenter {
     private LoginInteractor loginInteractor;
     private Boolean inputState = false;
 
-
-
+ //Como vemos, se inyecta la dependencia de la vista por medio del constructor
+ //Además es posible acceder al contexto del Framework Android
 
     public LoginPresenterImplementation(LoginView loginView){
         this.loginView = loginView;
@@ -27,11 +29,11 @@ public class LoginPresenterImplementation implements LoginPresenter {
         this.eventBus = GreenRobotEventBus.getInstance();
     }
 
-
     @Override
     public void OnCreate(){
 
-        eventBus.register(this); //Se registra al presentador para que escuche por eventbus
+        eventBus.register(this); //Se registra como suscriber en EventBus,
+        // cuando un publisher publiqe un evento, esta clase puede recibir
 
     }
     @Override
@@ -41,42 +43,26 @@ public class LoginPresenterImplementation implements LoginPresenter {
         eventBus.unregister(this);
 
     }
-
-
     @Override
     public void validateLogin(String username, String password) {
-        Log.e("Login","Estoy en el presentador");
-
         loginInteractor.doSignIn(username,password);
-
     }
-
-
-
-
     @Override
     public void onEventMainThread(LoginEvent event) {
         switch (event.getEventType()){
             case LoginEvent.onSingInSuccess:
-                Log.e("Login","En el presentador de vuelta, login success");
                 onSignInSucces();
                 break;
             case LoginEvent.onSingInError:
-                Log.e("Login","En el presentador de vuelta, login error");
                 onSignInError();
                 break;
-
             case LoginEvent.onFailedToRecoverSession:
                 onFailedToRecoverSession();
                 break;
         }
     }
-
     @Override
     public void manageInputs() {
-        Log.e("Login","Entro al manageInputs del presentador");
-
-
         if (getInputState() == false) {
         if(loginView != null) {
 

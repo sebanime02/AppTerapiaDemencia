@@ -33,7 +33,7 @@
             android:ems="2"
 
             android:layout_alignBottom="@+id/img_patient"
-            android:layout_alignStart="@+id/patient_name" />
+            android:layout_alignRight="@+id/patient_name" />
         
         <ImageView
             android:id="@+id/tip_state"
@@ -77,7 +77,7 @@
             android:layout_below="@+id/tip_title"
 
 
-            android:layout_toEndOf="@+id/img_patient" />
+            android:layout_toLeftOf="@+id/img_patient" />
 
 
     </RelativeLayout>

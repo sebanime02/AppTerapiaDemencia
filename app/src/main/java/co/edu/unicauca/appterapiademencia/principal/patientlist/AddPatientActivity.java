@@ -471,7 +471,9 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
     }
 
     public void openContextM(View view) {
+
         imgbtn.performLongClick();
+        Log.d("Contar"," Abriendo galeria, empieza a contar");
         registerForContextMenu(imgbtn);
         openContextMenu(view);
     }
@@ -490,6 +492,8 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         }
         return null;
     }
+
+
 
     private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
         @Override

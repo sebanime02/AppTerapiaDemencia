@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:visibility="gone"
         >
         <LinearLayout
         android:id="@+id/help_getting_stared"
@@ -135,15 +136,15 @@
                     />
 
             </LinearLayout>
-            <ImageButton
+            <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:src="@mipmap/ic_shortcut_keyboard_arrow_right"
                 android:textSize="50sp"
                 android:textColor="@color/colorPrimaryDark"
                 android:textAlignment="center"
-                android:background="@drawable/md_transparent"
+                android:src="@mipmap/ic_shortcut_keyboard_arrow_right"
+                android:background="@color/white"
                 />
 
 
@@ -156,27 +157,29 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:visibility="gone"
             >
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="-Que diferencia hay entre un supervisor y un cuidador?
+                android:text="1. Que diferencia hay entre un supervisor y un cuidador?
                 \nAunque en principio ambos desempeñen labores de cuidado del adulto mayor. El supervisor tiene mayor responsabilidad, ya que debe monitorear y evaluar cada uno de los signos, sintomas y hàbitos que el adulto mayor presente en ese momento, de esta manera puede tener claro los puntos débiles en donde debe realizar terapia, tipicamente asociada a la promociòn de independencia en sus actividades diarias bàsicas e instrumentales (movilidad, aseo, alimentaciòn, baño, etc).
                 "
-                android:textSize="@dimen/little_text_size"
+                android:textSize="@dimen/medium_text_size"
 
                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="-Que terapias no farmacológicas para el adulto mayor existen?
+                android:text="2. Que terapias no farmacológicas para el adulto mayor existen?
                 \n-Programas de estimulación cognitiva y actividad fisica.
                 \n-Restructuración Ambiental
                 \n-Entrenamiento en capacidades cognitivas especificas
                 "
-                android:textSize="@dimen/little_text_size"
+                android:textSize="@dimen/medium_text_size"
+
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 />
 
@@ -184,43 +187,32 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="-Mas específicamente que terapias de estimulación cognitiva (TEC) se practican?
+                android:text="3. Mas específicamente que terapias de estimulación cognitiva (TEC) se practican?
                 \n-Programas de psicoestimulación cognitiva (Talleres modularizados de memoria, atención, entre otros).
                 \n-Musicoterapia
                 \n-Terapia de Reminiscencia
                 "
 
-                android:textSize="@dimen/little_text_size"
+                android:textSize="@dimen/medium_text_size"
+
 
                 />
+
+
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="-Mas específicamente que terapias de estimulación cognitiva (TEC) se practican?
-                \n-Programas de psicoestimulación cognitiva (Talleres modularizados de memoria, atención, entre otros).
-                \n-Musicoterapia
-                \n-Terapia de Reminiscencia
-                "
-
-                android:textSize="@dimen/little_text_size"
-
-                />
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="-En que consiste la terapia de reminiscencia?
+                android:text="4. En que consiste la terapia de reminiscencia?
                 \nTerapia proactiva no farmacológica, que busca recuperar recuerdos autobiográficos usando música, sonidos y especialmente fotografías. Numerosos estudios afirman que la terapia de reminisencia, trabaja el lenguaje verbal, la memoria y la atención. Además, mejora la comunicación paciente-terapeuta.
                 "
 
-                android:textSize="@dimen/little_text_size"
+                android:textSize="@dimen/medium_text_size"
+
 
                 />
 
@@ -229,15 +221,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="-Que indicadores relacionados a la demencia senil soporta la aplicación?
+                android:text="5. Que indicadores relacionados a la demencia senil soporta la aplicación?
                 \n Demencia: Blessed Dementia Scale.
                 \n Actividades instrumentales de la vida diaria: Escala de Lawton y Brody.
                 \n Riesgo de Caidas: Escala de Downton.
                 \n Alzhéimer: FAST Assestment Tool.
                  \n Deterioro Cognitivo: Minimental State Examination MMSE(administración a cargo del terapeuta).
                 "
-
-                android:textSize="@dimen/little_text_size"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/medium_text_size"
 
                 />
 
@@ -292,10 +284,12 @@
                     android:text="Ponte en contacto con el soporte"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/small_text_size"
+                    android:lines="2"
                     />
 
             </LinearLayout>
-            <ImageButton
+
+            <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -307,7 +301,6 @@
                 />
 
 
-
         </LinearLayout>
 
         <LinearLayout
@@ -316,6 +309,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:visibility="gone"
             >
 
             <TextView

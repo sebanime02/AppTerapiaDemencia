@@ -134,6 +134,7 @@
                     android:textSize="@dimen/medium_text_size"
                     android:text="@string/register_mode"
                     android:textStyle="bold"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
                     />
 
             <RadioGroup android:layout_marginLeft="@dimen/activity_horizontal_margin" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/rdgUserMode">
@@ -141,11 +142,13 @@
                 <RadioButton
                     android:text="Supervisor de Cuidadores"
                     android:id="@+id/rdg_user_supervisor"
-
+                    android:gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:textStyle="bold"
+                    android:textSize="@dimen/medium_text_size"
+                    android:lines="2"
 
                     />
 
@@ -158,6 +161,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:textStyle="bold"
+                    android:textSize="@dimen/medium_text_size"
 
 
 
@@ -222,7 +226,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
                 android:text="@string/btn_save"
-                android:background="@color/magenta"
+                android:background="@drawable/corner_button_red"
                 android:textColor="@color/white"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"

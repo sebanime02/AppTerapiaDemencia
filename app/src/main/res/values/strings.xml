@@ -29,6 +29,8 @@
     <string name="hint_password">Contraseña</string>
     <string name="btn_entrar">Entrar</string>
     <string name="error_loguin">Su Usuario y Contraseña NO Son Correctos</string>
+    <string name="too_many_tries">Si no recuerdas tu usuario y/o contraseña, puedes crear otro registrándote</string>
+
     <string name="btn_irRegistro">Regístrate</string>
     <string name="dialog_succes_title">Te has registrado!</string>
     <string name="dialog_succes_content">Se ha registrado correctamente, ingrese de nuevo sus datos</string>
@@ -48,11 +50,11 @@
     <string name="txt_password_specialcharacter">Use unicamente letras y numeros</string>
     <string name="txt_username_specialcharacter">Use unicamente letras del abecedario</string>
     <string name="txt_name_specialcharacter">El nombre completo debe Contener Unicamente Letras</string>
-    <string name="hint_username_supervisor">Nombre de usuario que te identifique</string>
-    <string name="hint_complename_supervisor">Primer Nombre y Apellido</string>
-    <string name="hint_password_supervisor">Tu contraseña (Minimo 8 caracteres)</string>
+    <string name="hint_username_supervisor">Nombre de usuario que te identifique*</string>
+    <string name="hint_complename_supervisor">Nombre completo*</string>
+    <string name="hint_password_supervisor">Tu contraseña (Minimo 8 caracteres)*</string>
     <string name="hint_password_supervisor_aprobar">Contraseña de un supervisor anteriormente registrado</string>
-    <string name="register_mode">Eliga su cargo en la institución: </string>
+    <string name="register_mode">Eliga su cargo en la institución*</string>
     <string name="back_login">Regresar al inicio de sesión</string>
     <string name="txt_error_syntaxis">Has usado caracteres (*,/,?) no permitidos, por favor revisa tus datos</string>
 

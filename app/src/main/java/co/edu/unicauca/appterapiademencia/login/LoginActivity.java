@@ -3,13 +3,9 @@ package co.edu.unicauca.appterapiademencia.login;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.ContactsContract;
-import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -22,18 +18,19 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 
 import co.edu.unicauca.appterapiademencia.R;
-import co.edu.unicauca.appterapiademencia.domain.Exercise;
 import co.edu.unicauca.appterapiademencia.domain.Reminiscence;
 import co.edu.unicauca.appterapiademencia.domain.User;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.principal.MainActivity;
+import co.edu.unicauca.appterapiademencia.security.Security;
 
 import static co.edu.unicauca.appterapiademencia.R.string.reminiscence_demo_autor;
 
 
+//LoginActivity implementa las funciones de LoginView,
+// las funciones se limitan unicamente a despligue de datos y eventos E/S
 public class LoginActivity extends AppCompatActivity implements LoginView {
     private EditText input_username,input_password;
     private Button btn_salir,btn_cuidador,btn_supervisor;
@@ -42,33 +39,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     private String username,password;
     private String pathFolder;
     SharedPreferences loginpreference;
-    /*
-    @BindView(R.id.btn_salir)
-    Button btn_salir;
-    @BindView(R.id.btn_soycuidador)
-    Button btn_cuidador;
-    @BindView(R.id.btn_soysupervisor)
-    Button btn_supervisor;
-    @BindView(R.id.txt_username)
-    EditText edt_username;
-    @BindView(R.id.txt_password)
-    EditText edt_password;
-
-    @BindView(R.id.container_SingIn)
-    CoordinatorLayout container;
-
-    @BindView(R.id.txt_error)
-    TextView txt_error;
-    */
-
-
     private LoginPresenter loginPresenter;
+    private int intentos = 0;
 
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
 
 
     @Override
@@ -78,16 +51,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         createCarerUser();
 
         loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
-        /*
-        if(loginpreference.getBoolean("sessionValidation",true)){
-            SharedPreferences.Editor editor = loginpreference.edit();
-            editor.putBoolean("supervisor",true);
-            editor.commit();
-            navigateToMainScreen();
-        }
-        */
-
-
         setContentView(R.layout.activity_login);
         input_username = (EditText) findViewById(R.id.txt_username);
         input_password = (EditText) findViewById(R.id.txt_password);
@@ -134,7 +97,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
         container.setVisibility(View.VISIBLE);
 
-        btn_supervisor.setBackgroundColor(getResources().getColor(R.color.accent_color));
+        btn_supervisor.setBackground(getResources().getDrawable(R.drawable.corner_button_selected));
 
 
     }
@@ -175,12 +138,18 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     {
 
         String msgErr = getResources().getString(R.string.error_loguin);
-        new MaterialDialog.Builder(this).title("Usuario no Encontrado").content(R.string.error_loguin).positiveText(R.string.dialog_succes_agree).icon(getResources().getDrawable(R.drawable.sadface)).show();
 
-        //input_password.setError(msgErr);
-       /* txt_error.setEnabled(true);
-        txt_error.setVisibility(View.VISIBLE);
-        txt_error.setText(msgErr);*/
+        if(intentos!= Security.MAXIMAL_INTENTS_LOGUIN)
+        {
+            new MaterialDialog.Builder(this).title("Usuario no Encontrado").content(R.string.error_loguin).positiveText(R.string.dialog_succes_agree).icon(getResources().getDrawable(R.drawable.sadface)).show();
+            intentos = intentos +1;
+        }else
+        {
+            shotTooManyTries();
+        }
+
+
+
 
 
     }
@@ -209,6 +178,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         editor.putBoolean("supervisor",true);
         editor.putString("username",input_username.getText().toString());
         editor.commit();
+    }
+
+    @Override
+    public void shotTooManyTries() {
+        new MaterialDialog.Builder(this).title("Muchos Intentos Fallidos").content(R.string.too_many_tries).positiveText(R.string.dialog_succes_agree).show();
+
     }
 
 

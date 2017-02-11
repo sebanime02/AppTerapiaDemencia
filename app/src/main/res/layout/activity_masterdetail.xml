@@ -20,13 +20,14 @@
         app:theme="@style/ToolbarTheme" />
 
     <LinearLayout
-        android:layout_below="@id/toolbar"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="8"
         android:background="@color/gray_soft"
 
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
         <LinearLayout
@@ -54,7 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_image_profile"
                     android:paddingTop="10dp"
-                    android:src="@drawable/nursefemaledark"
+
                     android:visibility="gone"
 
                     />

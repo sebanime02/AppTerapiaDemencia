@@ -45,7 +45,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="2"
+                    android:weightSum="3"
                     >
                     <ImageView
 
@@ -58,12 +58,13 @@
                         />
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:text="@string/logo_txt"
                         android:layout_gravity="center_vertical"
                         android:textStyle="bold"
+                        android:layout_height="wrap_content"
 
-                        android:layout_height="wrap_content" />
+                        />
 
 
                 </LinearLayout>
@@ -89,12 +90,14 @@
                     android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
                     android:textAllCaps="false"
                     android:textStyle="bold"
-                    android:background="@color/primary_color"
+                    android:background="@drawable/corner_button"
                     android:textColor="@color/white"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:onClick="deployInputs"
                     android:textSize="@dimen/medium_text_size"
+
+
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -113,7 +116,7 @@
                     android:fontFamily="sans-serif-black"
                     android:text="@string/btn_soycuidador"
                     android:textAllCaps="false"
-                    android:background="@color/primary_color"
+                    android:background="@drawable/corner_button"
                     android:id="@+id/btn_soycuidador"
                     android:textColor="@color/white"
                     android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
@@ -181,7 +184,7 @@
                                 android:inputType="textPassword"
                                 android:hint="@string/hint_password"
                                 android:textSize="@dimen/medium_text_size"
-                                android:drawableStart="@mipmap/ic_lock_black_24dp"/>
+                                android:drawableLeft="@mipmap/ic_lock_black_24dp"/>
                         </android.support.design.widget.TextInputLayout>
 
                         <Button
@@ -190,11 +193,13 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
                             android:text="@string/btn_entrar"
-                            android:background="@color/colorAccent"
+                            android:background="@drawable/corner_button_red"
                             android:textColor="@color/white"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
                             android:onClick="autenticateUser"
+
+
                             />
 
 
@@ -208,6 +213,7 @@
                             android:gravity="center_horizontal"
                             />
                         <Button
+
                             android:id="@+id/btn_irRegistro"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

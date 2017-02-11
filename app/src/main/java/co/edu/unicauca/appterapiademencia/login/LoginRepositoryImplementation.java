@@ -19,6 +19,7 @@ import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
  */
 
 public class LoginRepositoryImplementation implements LoginRepository {
+    //Se implementa la interfaz del repositorio
     private GreenDaoHelper helper;
     private UserDao userDao;
     private boolean accessType;
@@ -26,6 +27,7 @@ public class LoginRepositoryImplementation implements LoginRepository {
 
     public LoginRepositoryImplementation()
     {
+        //aqui los metodos pueden instanciar el metodo getInstance proviente del Singleton Holder del OROM GreenDAO
         this.helper = GreenDaoHelper.getInstance();
         this.userDao = GreenDaoHelper.getInstance().getUserDao();
 
@@ -37,12 +39,6 @@ public class LoginRepositoryImplementation implements LoginRepository {
 
 
         Log.e("Registro","llego al patron repositorio");
-        /*
-        QueryBuilder qbsignup = GreenDaoHelper.getUserDao().queryBuilder();
-        qbsignup.where(UserDao.Properties.Password.eq(passwordaprobal));
-
-        List users = qbsignup.list();
-*/
 
         QueryBuilder qbsignup = helper.getUserDao().queryBuilder();
         qbsignup.where(UserDao.Properties.Username.eq(username));
@@ -74,38 +70,19 @@ public class LoginRepositoryImplementation implements LoginRepository {
             postEvent(RegisterEvent.onSingUpErrorAprobal,2);
         }
 
-        /*
-        accessType = true; //verdadero es supervisor
-        User user = new User(null,username,password,completeName,accessType,"");
-        this.userDao.insert(user);
-
-        Log.d("RegistroUsuario","Nueva id insertada: "+user.getId());
-
-        if(user.getId()!=null)
-        {
-
-            postEvent(RegisterEvent.onSingUpSuccess,2);
-        }
-        else
-        {
-            Log.e("Registro","Error al registrar el nuevo usuario");
-            postEvent(RegisterEvent.onSingUpError,2);
-        }
-      */
 
     }
 
     @Override
     public void signIn(String username, String password) {
-        Log.e("Login","Estoy en el repositorio");
+        //Esta subcapa implementa la logica de negocio, en este caso el Login
 
-        QueryBuilder qbsignin = helper.getUserDao().queryBuilder();
+        QueryBuilder qbsignin = helper.getUserDao().queryBuilder(); //instancia al helper del ORM
         qbsignin.where(UserDao.Properties.Username.eq(username), UserDao.Properties.Password.eq(password));
 
         List<User> users = qbsignin.listLazyUncached();
-        //Log.e("loginrepo","username aceptada "+users.get(0).getUsername());
 
-
+        //En cualqueir caso reporta exito o error por medio de la libreria EventBus
         if(users.size()==1)
         {
 
