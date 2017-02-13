@@ -14,7 +14,7 @@
         android:id="@+id/txt_instructions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/mediumlittle_text_size"
+        android:textSize="@dimen/medium_text_size"
         android:text="@string/txt_info_listpatients"/>
 
    <EditText
