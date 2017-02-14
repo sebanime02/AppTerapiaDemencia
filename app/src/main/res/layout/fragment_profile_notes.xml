@@ -224,7 +224,7 @@
                 android:lines="2"
                 android:gravity="center_horizontal"
 
-                android:textColor="@color/white" android:background="@color/material_green" android:textAlignment="center" android:id="@+id/count_orientacion" android:text="@string/addnote_orientacion"/>
+                android:textColor="@color/white" android:background="@color/material_deepblue" android:textAlignment="center" android:id="@+id/count_orientacion" android:text="@string/addnote_orientacion"/>
 
         </TableRow>
 

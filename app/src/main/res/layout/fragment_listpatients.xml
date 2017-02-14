@@ -17,6 +17,12 @@
         android:textSize="@dimen/medium_small_text_size"
         android:text="@string/txt_info_listpatients"/>
 
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="2dp"
+      android:background="@color/colorPrimaryDark"
+      android:layout_below="@id/txt_instructions"
+      />
    <EditText
 
 

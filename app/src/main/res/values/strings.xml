@@ -41,7 +41,7 @@
     <string name="input_empty_both">Los campos: nombre de usuario y contraseña estan vacíos</string>
     <!--REGISTER -->
 
-    <string name="title_register">Registro</string>
+    <string name="title_register">Registro Para\n Supervisor o Profesional en Psicología</string>
     <string name="btn_save">Guardar</string>
     <string name="txt_register_instructions">Por favor, Complete los siguientes datos :</string>
     <string name="txt_password_short">La contraseña Es muy corta, Debe Tener Minimo 8 Caracteres</string>
@@ -466,7 +466,7 @@
 
     <string name="btn_agregar">Agregar</string>
 
-    <string name="txt_empty_exercises">No se han creado ejercicios !! Regresa al menu principal y dirigete a "Ejercicios de Reminiscencias"</string>
+    <string name="txt_empty_exercises">No se han creado ejercicios !! Regresa al menu principal y dirígete a "Ejercicios de Reminiscencias"</string>
 
     <string name="txt_taller">Seleccione Taller: </string>
     <string name="txt_nivel">Seleccione Nivel: </string>
@@ -554,7 +554,7 @@
     <string name="txt_reminiscence_photo">2. Seleccione un recuerdo Fotográfico</string>
     <string name="txt_reminiscence_description">3. Agregue La Descripción del Recuerdo Fotográfico</string>
     <string name="txt_carer_type">Cuidador Anónimo</string>
-    <string name="txt_preview">Imagen Preva del Ejercicio:</string>
+    <string name="txt_preview">Imagen Previa del Ejercicio:</string>
     <string name="dialog_reminiscence_empty_photo">El ejercicio de reminiscencia no puede quedar sin fotografía, agregue una por favor</string>
 
 

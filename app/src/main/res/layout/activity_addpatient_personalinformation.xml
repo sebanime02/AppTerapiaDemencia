@@ -207,7 +207,7 @@
 
                     android:orientation="vertical">
                     <TextView
-                        android:text="Institucionalizado"
+                        android:text="Marque si es Institucionalizado"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                          />
@@ -219,7 +219,7 @@
                         android:text="SI"
                         />
                     <TextView
-                        android:text="Escolaridad Baja"
+                        android:text="Marque si tiene baja Escolaridad"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         />

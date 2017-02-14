@@ -53,6 +53,7 @@ public class TipDetailActivity extends ActionBarActivity {
     private Menu menufavorite;
 
 
+
     public TipDetailActivity()
     {
         this.helper = GreenDaoHelper.getInstance();
@@ -96,24 +97,8 @@ public class TipDetailActivity extends ActionBarActivity {
 
         String dato="";
         String Autor;
-        String Notificaciones;
 
-
-        try {
-            if(man.getActive()){
-                Notificaciones ="Activas";
-                tvNotificaciones.setTextColor(getResources().getColor(R.color.material_green));
-            }
-            else{Notificaciones="Desactivadas";
-                tvNotificaciones.setTextColor(getResources().getColor(R.color.material_red));
-            }
-        }catch (NullPointerException e)
-        {
-            Notificaciones="Desactivadas";
-            tvNotificaciones.setTextColor(getResources().getColor(R.color.material_red));
-
-        }
-        tvNotificaciones.setText(Notificaciones);
+        showNotificationsState(man);
 
 
 
@@ -266,9 +251,24 @@ public class TipDetailActivity extends ActionBarActivity {
                     menu.findItem(R.id.menu_favorito).setIcon(getResources().getDrawable(R.mipmap.ic_star_border_white_24dp));
 
                 }
+
+
+
+
             }catch (Exception e)
             {
                 e.printStackTrace();
+            }
+
+
+            if(helper.getTip(idtip).getActive())
+            {
+                menu.findItem(R.id.menu_notifications).setIcon(getResources().getDrawable(R.mipmap.ic_notifications_white_24dp));
+
+            }else
+            {
+                menu.findItem(R.id.menu_notifications).setIcon(getResources().getDrawable(R.mipmap.ic_notifications_off_white_24dp));
+
             }
 
 
@@ -281,7 +281,9 @@ public class TipDetailActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        MenuItem menuItem;
         switch (item.getItemId()){
+
             case R.id.menu_editar:
 
                 Intent ir=new Intent(TipDetailActivity.this,AddTipActivity.class);
@@ -290,6 +292,72 @@ public class TipDetailActivity extends ActionBarActivity {
                 startActivity(ir);
                 overridePendingTransition(R.anim.left_in, R.anim.left_out);
                 return true;
+
+            case R.id.menu_notifications:
+
+              menuItem = menufavorite.findItem(R.id.menu_notifications);
+
+                try
+                {
+                    idtip = bundle.getLong("idtip");
+
+                    iduser = helper.getUserInformation(username).getId();
+                }catch (Exception e)
+                {
+                    Log.e("tipdetail","Error al traer iduser y el idtip");
+
+                }
+
+                Log.e("tipdetail","iduser "+iduser);
+                Log.e("tipdetail","idtip "+idtip);
+
+                try {
+
+                    Tip tip = helper.getTip(idtip);
+                    if(tip.getActive())
+                    {
+                        Log.e("tipdetail","las notificaciones estan activas");
+
+
+                        //MenuItem menuItem = menufavorite.findItem(R.id.menu_favorito);
+                        menuItem.setIcon(getResources().getDrawable(R.mipmap.ic_notifications_off_white_24dp));
+
+
+                        new MaterialDialog.Builder(this).title("Ya no estan actividades las notificaciones").positiveText(R.string.dialog_sucess_agree2).icon(getResources().getDrawable(R.drawable.ic_action_toggle_star)).show();
+
+                        //tipfavorite = helper.getTip(idtip);
+                        tip.setActive(false);
+                        tipDao.update(tip);
+                        showNotificationsState(tip);
+
+                    }
+                    else
+                    {
+                        Log.e("tipdetail","el preference tip esta en false");
+
+
+                        menuItem.setIcon(getResources().getDrawable(R.mipmap.ic_notifications_white_24dp));
+
+                        //tipfavorite = helper.getTip(idtip);
+                        tip.setActive(true);
+                        tipDao.update(tip);
+                        showNotificationsState(tip);
+
+                        new MaterialDialog.Builder(this).title("Actividas las notifcaciones Para este Tip").positiveText(R.string.dialog_sucess_agree2).icon(getResources().getDrawable(R.drawable.ic_action_toggle_star)).show();
+
+                    }
+                    return true;
+                }catch (Exception e)
+                {
+                    Log.e("tipdetail","Error al traer el preference tip");
+
+
+                }
+
+
+
+                return true;
+
             case R.id.menu_borrar:
 
                 new MaterialDialog.Builder(this).title("Desea Borrar El TIP actual?").positiveText("SI").negativeText("NO").negativeColor(getResources().getColor(R.color.colorPrimaryDark)).icon(getResources().getDrawable(R.drawable.trash))
@@ -316,8 +384,10 @@ public class TipDetailActivity extends ActionBarActivity {
                         ;
                 return true;
 
+
+
             case R.id.menu_favorito:
-                    MenuItem menuItem = menufavorite.findItem(R.id.menu_favorito);
+                    menuItem = menufavorite.findItem(R.id.menu_favorito);
 
                     try
                     {
@@ -393,6 +463,7 @@ public class TipDetailActivity extends ActionBarActivity {
             Long idusertest = helper.getTip(idtip).getUserId();
             if(idusertest == iduser)
             {
+                Log.e(" Pruebatest","El idusertes es: "+idusertest+" El iduser recibido es"+iduser);
                 return true;
             }
             else
@@ -404,5 +475,27 @@ public class TipDetailActivity extends ActionBarActivity {
             return false;
         }
 
+    }
+
+    public void showNotificationsState(Tip man)
+    {
+        String Notificaciones;
+
+
+        try {
+            if(man.getActive()){
+                Notificaciones ="Activas";
+                tvNotificaciones.setTextColor(getResources().getColor(R.color.material_green));
+            }
+            else{Notificaciones="Desactivadas";
+                tvNotificaciones.setTextColor(getResources().getColor(R.color.material_red));
+            }
+        }catch (NullPointerException e)
+        {
+            Notificaciones="Desactivadas";
+            tvNotificaciones.setTextColor(getResources().getColor(R.color.material_red));
+
+        }
+        tvNotificaciones.setText(Notificaciones);
     }
 }

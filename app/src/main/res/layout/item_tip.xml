@@ -63,7 +63,7 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:background="@color/red_dark"
+            android:background="@color/material_red"
             android:paddingLeft="@dimen/separador_like"
             android:paddingRight="@dimen/separador_like"
 

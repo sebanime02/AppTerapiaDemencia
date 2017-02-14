@@ -57,6 +57,8 @@ public class AddCognitiveExercise extends AppCompatActivity {
     private CardView cardTaller;
     private ImageView imgDemo;
     private TextView msgEmptyExercises;
+    private TextView msgTargetPreview;
+    private LinearLayout containerSelector;
     private String[] arrayTalleres;
     public static final String[]  niveles = {"Atencion","Funciones Ejecutivas","Lenguaje","Memoria","Percepción","Lectoescritura y Visoconstrucción"};
     public static final String[]  talleres = {"Visión Normal","Baja visión","Ceguera"};
@@ -91,6 +93,8 @@ public class AddCognitiveExercise extends AppCompatActivity {
         cardTaller = (CardView) findViewById(R.id.cardTalleres);
         imgDemo = (ImageView) findViewById(R.id.taller_imagen);
         msgEmptyExercises = (TextView) findViewById(R.id.msg_empty);
+        msgTargetPreview = (TextView) findViewById(R.id.taller_preview);
+        containerSelector = (LinearLayout) findViewById(R.id.container_selector);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -164,12 +168,16 @@ public class AddCognitiveExercise extends AppCompatActivity {
 
 */      representReminiscence();
 
-        if(spiTaller.getAdapter().getCount()==0)
+
+
+        if(spiReminiscencia.getAdapter().getCount()==0)
         {
             btnGuardar.setVisibility(View.GONE);
             msgEmptyExercises.setVisibility(View.VISIBLE);
             spiTaller.setVisibility(View.GONE);
             containerDemo.setVisibility(View.GONE);
+            containerReminiscencia.setVisibility(View.GONE);
+
 
         }else
         {

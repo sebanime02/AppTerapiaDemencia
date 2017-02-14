@@ -362,7 +362,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case 4:
                 if (supervisormode==true){
                     callUserProfile();
-                    ;
+
                 }
 
                 break;
@@ -428,32 +428,37 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         actionBar.setTitle("Ayuda");
     }
     public void callSignOff(){
-        SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor=preferencias.edit();
-        editor.putBoolean("sessionValidation", false);
-        editor.putBoolean("supervisor",false);
-        editor.putString("username",null);
-        editor.commit();
-        Intent i2 = new Intent(MainActivity.this, LoginActivity.class);
-        i2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(i2);
-        finish();
+      goSignOff();
     }
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Salir")
-                .setMessage("Estás seguro?").setNegativeButton(android.R.string.cancel, null)//sin listener
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {//un listener que al pulsar, cierre la aplicacion
-                    @Override
-                    public void onClick(DialogInterface dialog, int which){
-                     callSignOff();
-                    }
-                }).show();
+            goSignOff();
+
             // Si el listener devuelve true, significa que el evento esta procesado, y nadie debe hacer nada mas
             return true;
         }
         //para las demas cosas, se reenvia el evento al listener habitual
         return super.onKeyDown(keyCode, event);
+    }
+    public void goSignOff()
+    {
+        new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Salir")
+                .setMessage("Estás seguro?").setNegativeButton(android.R.string.cancel, null)//sin listener
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {//un listener que al pulsar, cierre la aplicacion
+                    @Override
+                    public void onClick(DialogInterface dialog, int which){
+                        SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor=preferencias.edit();
+                        editor.putBoolean("sessionValidation", false);
+                        editor.putBoolean("supervisor",false);
+                        editor.putString("username",null);
+                        editor.commit();
+                        Intent i2 = new Intent(MainActivity.this, LoginActivity.class);
+                        i2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i2);
+                        finish();
+                    }
+                }).show();
     }
 
 }

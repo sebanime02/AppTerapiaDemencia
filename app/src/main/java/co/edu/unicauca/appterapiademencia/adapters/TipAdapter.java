@@ -62,7 +62,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
         String title = tipList.get(position).getTitle().toString();
         String description = tipList.get(position).getDescription().toString();
 
-        Boolean noteState = tipList.get(position).getActive().booleanValue();
+        //Boolean noteState = tipList.get(position).getActive().booleanValue();
         int likesCount = tipList.get(position).getLikes();
 
         try {
@@ -114,6 +114,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
         //try
         //{
 
+        /*
             if (noteState==true)
             {
                 holder.imgState.setBackgroundColor(activity.getResources().getColor(R.color.material_green));
@@ -121,6 +122,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.TipViewHolder>  
             {
                 holder.imgState.setBackgroundColor(activity.getResources().getColor(R.color.material_red));
             }
+            */
        // }catch (Exception e)
         //{
         //    holder.imgState.setBackgroundColor(activity.getResources().getColor(R.color.material_red));
