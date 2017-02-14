@@ -219,7 +219,7 @@
                         android:text="SI"
                         />
                     <TextView
-                        android:text="Escolaridad"
+                        android:text="Escolaridad Baja"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         />
@@ -227,7 +227,7 @@
                         android:id="@+id/chk_escolaridad"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Baja"
+                        android:text="SI"
                         />
 
 

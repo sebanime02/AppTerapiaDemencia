@@ -41,6 +41,7 @@
             android:layout_height="@dimen/square_state"
             android:background="@color/red_dark"
             android:layout_alignParentRight="true"
+            android:visibility="invisible"
             />
 
         <ImageView

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -177,6 +178,12 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
 
                          Log.e("Add tip","actualizado :"+helper.getTip(idtip).getTitle());
 
+                         Intent ir_detalle = new Intent(this, TipDetailActivity.class);
+                         ir_detalle.putExtra("idtip",idtip);
+                         startActivity(ir_detalle);
+                         overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                         finish();
+
                      }
                      else
                      {
@@ -201,6 +208,9 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
 
 
                          }
+                         Intent ir_main = new Intent(this, MainActivity.class);
+                         startActivity(ir_main);
+                         finish();
 
 
 
@@ -225,6 +235,50 @@ public class AddTipActivity extends AppCompatActivity implements View.OnClickLis
         }else {
             return true;
         }
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+
+
+            int id = item.getItemId();
+            switch (id)
+            {
+                case android.R.id.home:
+                    if (actualizar.equals("actualizar"))
+                    {
+                        goToDetail();
+
+                    }else
+                    {
+                       onBackPressed();
+                        onBackPressed();
+                    }
+
+                    return  true;
+
+
+
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+
+    }
+
+
+    public void goToDetail()
+    {
+
+        Intent i2 = new Intent(getApplicationContext(), TipDetailActivity.class);
+        i2.putExtra("idtip",idtip);
+        startActivity(i2);
+
+
+        finish();
     }
 
 }

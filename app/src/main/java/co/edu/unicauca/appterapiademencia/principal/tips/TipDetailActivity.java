@@ -52,6 +52,7 @@ public class TipDetailActivity extends ActionBarActivity {
     private Long iduser;
     private Menu menufavorite;
 
+
     public TipDetailActivity()
     {
         this.helper = GreenDaoHelper.getInstance();
@@ -88,7 +89,10 @@ public class TipDetailActivity extends ActionBarActivity {
 
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        Tip man = helper.getTip(idtip);
+
+            Tip man = helper.getTip(idtip);
+
+
 
         String dato="";
         String Autor;
@@ -96,12 +100,22 @@ public class TipDetailActivity extends ActionBarActivity {
 
 
         try {
-            if(man.getActive()){Notificaciones ="Activas";}
-            else{Notificaciones="Desactivadas";}
+            if(man.getActive()){
+                Notificaciones ="Activas";
+                tvNotificaciones.setTextColor(getResources().getColor(R.color.material_green));
+            }
+            else{Notificaciones="Desactivadas";
+                tvNotificaciones.setTextColor(getResources().getColor(R.color.material_red));
+            }
         }catch (NullPointerException e)
         {
             Notificaciones="Desactivadas";
+            tvNotificaciones.setTextColor(getResources().getColor(R.color.material_red));
+
         }
+        tvNotificaciones.setText(Notificaciones);
+
+
 
 
         String foto;
@@ -112,7 +126,10 @@ public class TipDetailActivity extends ActionBarActivity {
 
 
         tvDescription.setText(man.getDescription());
+
         tvAutor.setText("Publicado por: "+Autor.toString());
+
+
 
         actionBar.setTitle(man.getTitle());
 
@@ -216,10 +233,18 @@ public class TipDetailActivity extends ActionBarActivity {
         if(preferences.getBoolean("supervisor",true))
         {
             getMenuInflater().inflate(R.menu.menu_edit,menu);
-            getMenuInflater().inflate(R.menu.menu_delete,menu);
-            getMenuInflater().inflate(R.menu.menu_favorite,menu);
 
-                idtip = bundle.getLong("idtip");
+            if(authorLogged(iduser,idtip))
+            {
+                getMenuInflater().inflate(R.menu.menu_delete,menu);
+
+            }
+
+            getMenuInflater().inflate(R.menu.menu_favorite,menu);
+            getMenuInflater().inflate(R.menu.menu_notifications,menu);
+
+
+            idtip = bundle.getLong("idtip");
                 username = preferences.getString("username","Nombre de Usuario");
                 iduser = helper.getUserInformation(username).getId();
 
@@ -357,5 +382,27 @@ public class TipDetailActivity extends ActionBarActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+
+    public boolean authorLogged(Long iduser,Long idtip)
+    {
+
+        try
+        {
+            Long idusertest = helper.getTip(idtip).getUserId();
+            if(idusertest == iduser)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }catch (Exception e)
+        {
+            return false;
+        }
+
     }
 }

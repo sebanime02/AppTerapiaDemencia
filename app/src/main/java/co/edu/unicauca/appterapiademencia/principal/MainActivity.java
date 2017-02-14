@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Toolbar toolbar;
     private List<RowItem> rowItems;
     private String titleMessage;
-    private TextView completeNameNavbar;
+    private TextView completeNameNavbar,typeUserNavBar;
     private ImageView userAvatarNavbar;
 
     public static final Integer[] imagessupervisor = {R.drawable.ic_list_black_24dp,R.drawable.ic_action_content_report,R.drawable.ic_action_toggle_star,R.mipmap.ic_extension_black_48dp,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.mipmap.ic_signout};
@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         userAvatarNavbar= (ImageView) findViewById(R.id.image_header);
         completeNameNavbar = (TextView) findViewById(R.id.completename_navbar);
+        typeUserNavBar = (TextView) findViewById(R.id.typeuser_navbar);
         QueryBuilder queryBuilder = helper.getUserDao().queryBuilder();
         rowItems = new ArrayList<RowItem>();
 
@@ -102,14 +103,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                     if(usermode==1)
                     {
-                        completeNameNavbar.setText("Supervisor "+completename);
+                        completeNameNavbar.setText(completename);
                         titleMessage = "Sesión de Supervisor";
+                        typeUserNavBar.setText("Supervisor");
 
                     }
                     else
                     {
-                        completeNameNavbar.setText("Profesional en\nPsicología "+completename);
+                        completeNameNavbar.setText(completename);
                         titleMessage = "Sesión de Profesional en Psicología";
+                        typeUserNavBar.setText("Profesional en Psicología");
 
                     }
 
@@ -238,14 +241,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 if(usermode==1)
                 {
-                    completeNameNavbar.setText("Supervisor "+completename);
+                    completeNameNavbar.setText(completename);
                     titleMessage = "Sesión de Supervisor";
+                    typeUserNavBar.setText("Supervisor");
+
 
                 }
                 else
                 {
-                    completeNameNavbar.setText("Profesional en\nPsicología "+completename);
+                    completeNameNavbar.setText(completename);
                     titleMessage = "Sesión de Profesional en Psicología";
+                    typeUserNavBar.setText("Profesional en Psicología");
 
                 }
 

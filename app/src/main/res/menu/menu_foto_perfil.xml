@@ -4,12 +4,22 @@
     >
 
 
+    <item
+
+        android:title="Ingresar desde :"
+        android:checked="false"
+        android:enabled="false"
+       />
     <item android:id="@+id/opc_galeria"
         android:orderInCategory="100"
-        android:title="Galeria"/>
+        android:title="Galeria"
+        android:icon="@android:drawable/gallery_thumb"
+        />
 
     <item android:id="@+id/nueva_foto"
         android:orderInCategory="100"
-        android:title="Camara"/>
+        android:title="Camara"
+        android:icon="@android:drawable/ic_menu_camera"
+        />
 
 </menu>

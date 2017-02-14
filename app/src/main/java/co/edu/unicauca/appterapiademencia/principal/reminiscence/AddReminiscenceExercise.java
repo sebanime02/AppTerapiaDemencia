@@ -439,6 +439,49 @@ public class AddReminiscenceExercise extends AppCompatActivity {
         }
 
 
+
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+
+
+        int id = item.getItemId();
+        switch (id)
+        {
+            case android.R.id.home:
+                if (actualizar.equals("actualizar"))
+                {
+                    goToDetail();
+
+                }else
+                {
+                    onBackPressed();
+                    onBackPressed();
+                }
+
+                return  true;
+
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+
+    public void goToDetail()
+    {
+
+        Intent i2 = new Intent(getApplicationContext(), DetailReminiscenceActivity.class);
+        i2.putExtra("idreminiscence",idreminiscence);
+        startActivity(i2);
+
+
+        finish();
     }
 
 }
