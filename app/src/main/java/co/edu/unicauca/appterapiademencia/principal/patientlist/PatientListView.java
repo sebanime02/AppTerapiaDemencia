@@ -1,5 +1,7 @@
 package co.edu.unicauca.appterapiademencia.principal.patientlist;
 
+import android.view.View;
+
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.domain.Patient;
@@ -15,5 +17,6 @@ public interface PatientListView {
     void openMecTest(Long identity);
     void navigateToExercise(Long identity);
     void getPatients();
+    void showInstructions(View rootview);
 
 }

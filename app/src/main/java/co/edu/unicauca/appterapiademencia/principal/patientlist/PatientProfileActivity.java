@@ -39,7 +39,7 @@ public class PatientProfileActivity extends AppCompatActivity{
     private GreenDaoHelper helper;
     private boolean tabCondition = true;
     private boolean editCondition = true;
-    private String tabselector;
+    private int tabselector;
 
 
 
@@ -79,9 +79,12 @@ public class PatientProfileActivity extends AppCompatActivity{
             cedula = bundle.get("cedula").toString();
 
 
-            if( bundle.get("tabselector").toString()!=null)
+            if( bundle.get("tabselector")!=null)
             {
-                tabselector = bundle.get("tabselector").toString();
+
+                tabselector = bundle.getInt("tabselector");
+                Log.e("patienprofile","tabselector "+tabselector);
+
                 setViewPagerTab(tabselector);
             }
 
@@ -196,14 +199,14 @@ public class PatientProfileActivity extends AppCompatActivity{
 
     }
 
-    public void setViewPagerTab(String tabselector)
+    public void setViewPagerTab(int tabselector)
     {
-        int selector;
+
         try
         {
-            selector = Integer.parseInt(tabselector);
 
-            viewPager.setCurrentItem(selector);
+
+            viewPager.setCurrentItem(tabselector);
 
         }catch (Exception e)
         {

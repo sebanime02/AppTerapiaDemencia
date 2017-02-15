@@ -113,7 +113,7 @@
                     android:id="@+id/txt_completename"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:hint="@string/hint_complename_supervisor"
                     android:nextFocusDown="@+id/txt_password_supervisor_aprobar"
                     android:drawableLeft="@mipmap/ic_account_circle_black_24dp"

@@ -459,15 +459,16 @@
                  android:orientation="vertical"
                  android:layout_marginTop="@dimen/activity_vertical_margin"
                  >
+
                  <TextView
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
                      android:text="@string/txt_note_color"
                      android:textSize="@dimen/medium_text_size"
                      android:fontFamily="sans-serif"
-
-                     />
-           <!--  MEMORIA -->
+                     android:imeOptions="actionDone"
+                     android:id="@+id/textView12" />
+                 <!--  MEMORIA -->
 
 
                  <RadioGroup
@@ -1227,6 +1228,7 @@
                         android:inputType="text"
                         android:hint="@string/txt_note_responsable"
                         android:textSize="@dimen/medium_text_size"
+                        android:imeOptions="actionDone"
 
 
                         />

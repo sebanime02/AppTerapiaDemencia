@@ -184,6 +184,7 @@
                                 android:inputType="textPassword"
                                 android:hint="@string/hint_password"
                                 android:textSize="@dimen/medium_text_size"
+                                android:imeOptions="actionDone"
                                 android:drawableLeft="@mipmap/ic_lock_black_24dp"/>
                         </android.support.design.widget.TextInputLayout>
 

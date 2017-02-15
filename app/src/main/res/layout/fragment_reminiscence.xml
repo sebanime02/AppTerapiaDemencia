@@ -46,6 +46,8 @@
           android:lines="2"
           android:gravity="center"
           android:textStyle="bold"
+          android:drawableLeft="@mipmap/ic_extension_black_48dp"
+
           />
             <TextView
 

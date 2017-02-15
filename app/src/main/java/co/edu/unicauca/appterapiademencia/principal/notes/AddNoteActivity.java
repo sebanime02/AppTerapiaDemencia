@@ -1632,7 +1632,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         ir_main.putExtra("carerIndicator",carerMessageIndicator);
         ir_main.putExtra("cedula", cedula);
         ir_main.putExtra("guardar",true);
-        ir_main.putExtra("tabselector",1);
+        ir_main.putExtra("tabselector",2);
 
 
         EventBus.clearCaches();

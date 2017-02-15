@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -95,6 +96,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private LinearLayout linearMinimental;
 
 
+
     public PatientProfileFragment(){
 
         daoHelper = GreenDaoHelper.getInstance();
@@ -177,18 +179,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
             }
         });
 
-        try {
-            containerBlessed.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    new MaterialDialog.Builder(view.getContext()).title("Rangos Blessed").content(R.string.error_loguin).positiveText(R.string.dialog_succes_agree).icon(getResources().getDrawable(R.drawable.sadface)).show();
 
-                }
-            });
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
 
 
 
@@ -413,6 +404,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         if(this.puntajeMMSE=="")
         {
             txtPuntajeMMSE.setText("Sin Valores MMSE");
+            txtPuntajeMMSE.setTextColor(getResources().getColor(R.color.gray));
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
             //linearMinimental.setLayoutParams(params);
             txtPuntajeMMSE.setLayoutParams(params);
