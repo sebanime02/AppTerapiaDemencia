@@ -41,7 +41,7 @@
     <string name="input_empty_both">Los campos: nombre de usuario y contraseña estan vacíos</string>
     <!--REGISTER -->
 
-    <string name="title_register">Registro Para\n Supervisor o Profesional en Psicología</string>
+    <string name="title_register">Registro</string>
     <string name="btn_save">Guardar</string>
     <string name="txt_register_instructions">Por favor, Complete los siguientes datos :</string>
     <string name="txt_password_short">La contraseña Es muy corta, Debe Tener Minimo 8 Caracteres</string>
@@ -95,7 +95,7 @@
 
     <!--NOTIFICATIONS -->
     <string name="title_notifications">Aqui puedes Aprobar las notas ingresadas por tus cuidadores</string>
-    <string name="aprobe_note">Eliga si desea aprobar o elimnar la nota?</string>
+    <string name="aprobe_note">Eliga si desea aprobar o eliminar la nota?</string>
     <string name="txt_notifications_empty_title">No hay Notas por Aprobar</string>
 
 
@@ -399,7 +399,7 @@
 
     <string name="txt_title_tip">Escriba el título del Tip o Recomendación</string>
     <string name="txt_description_tip">Describalo mas detalladamente...</string>
-    <string name="txt_state_tip">Desea Activar las notificaciones para este Tip: NO</string>
+    <string name="txt_state_tip">Desea Activar las notificaciones para este Tip: </string>
 
     <string name="txt_state_tip2">SI</string>
     <string name="txt_save_tip">GUARDAR</string>

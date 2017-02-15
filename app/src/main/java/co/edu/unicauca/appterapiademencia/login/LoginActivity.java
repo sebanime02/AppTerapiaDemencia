@@ -97,7 +97,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
         container.setVisibility(View.VISIBLE);
 
-        btn_supervisor.setBackground(getResources().getDrawable(R.drawable.corner_button_selected));
+        //btn_supervisor.setBackground(getResources().getDrawable(R.drawable.corner_button_selected));
+        btn_supervisor.setBackgroundColor(getResources().getColor(R.color.accent_color));
 
 
     }

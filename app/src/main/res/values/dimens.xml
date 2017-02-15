@@ -65,7 +65,7 @@
     <!-- COGNITIVE MAIN SCREEN -->
     <dimen name="height_pass_indicator">100dp</dimen>
     <dimen name="size_media_button">120dp</dimen>
-    <dimen name="size_historial_button">150dp</dimen>
+    <dimen name="size_historial_button">200dp</dimen>
     <dimen name="size_imagen_check">50dp</dimen>
     <dimen name="height_banner_graphics">100dp</dimen>
 

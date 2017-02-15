@@ -89,8 +89,8 @@
                     android:layout_height="wrap_content"
                     app:theme="@style/ColorSwitchStyle"
                     android:textSize="@dimen/medium_text_size"
-                    android:textOff="OFF"
-                    android:textOn="ON"
+                    android:textOff="NO"
+                    android:textOn="SI"
 
                     />
                     <TextView
@@ -98,8 +98,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/txt_state_tip2"
+                        android:visibility="gone"
                         android:textSize="@dimen/large_title_text_size"
                         />
+
                 </LinearLayout>
 
                 <LinearLayout

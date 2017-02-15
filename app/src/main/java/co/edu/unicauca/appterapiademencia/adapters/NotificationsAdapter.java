@@ -1,27 +1,24 @@
 package co.edu.unicauca.appterapiademencia.adapters;
 
 import android.app.Activity;
-import android.app.Notification;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.domain.Note;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
-import co.edu.unicauca.appterapiademencia.events.ItemNoteEvent;
 import co.edu.unicauca.appterapiademencia.events.ItemNotificationEvent;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by ENF on 17/11/2016.
@@ -164,6 +161,7 @@ public class NotificationsAdapter  extends RecyclerView.Adapter<NotificationsAda
                     itemNotificationEvent.setMode(1);
                     eventBus.post(itemNotificationEvent);
 
+                    Toast.makeText(activity,"Nota Aprobada",Toast.LENGTH_LONG);
 
 
 
@@ -189,6 +187,7 @@ public class NotificationsAdapter  extends RecyclerView.Adapter<NotificationsAda
                     itemNotificationEvent.setIdnote(getItemId(position));
                     itemNotificationEvent.setMode(0);
                     eventBus.post(itemNotificationEvent);
+                    Toast.makeText(activity,"Nota Eliminada",Toast.LENGTH_LONG);
 
 
                 }catch (Exception e)
