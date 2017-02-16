@@ -81,7 +81,10 @@ public class PatientProfileActivity extends AppCompatActivity{
 
             if( bundle.get("tabselector")!=null)
             {
+
                 tabselector = bundle.getInt("tabselector");
+                Log.e("patienprofile","tabselector "+tabselector);
+
                 setViewPagerTab(tabselector);
             }
 
@@ -202,8 +205,8 @@ public class PatientProfileActivity extends AppCompatActivity{
         try
         {
 
+
             viewPager.setCurrentItem(tabselector);
-            Log.e("tabselector"," received: "+tabselector);
 
         }catch (Exception e)
         {

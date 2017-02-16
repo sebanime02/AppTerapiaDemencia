@@ -152,7 +152,10 @@
     <string name="textview_profile_information">INFORMACIÓN DEL PACIENTE</string>
     <string name="textview_profile_physics">LIMITACIONES DEL PACIENTE</string>
     <string name="txt_back_principal">Regresar Al Menu Principal</string>
-    <string name="txt_info_listpatients">Aquí puedes registrar pacientes. Además, ingresando en cada uno, puedes: 1. Conocer detalles e indicadores (AIVD, Demencia, Riesgo Caidas);2. Ingresar notas y eventos;3. Hacer tus terapias de reminiscencias</string>
+    <string name="txt_info_listpatients">Aquí puedes registrar pacientes. Además, ingresando en cada uno, puedes: \n
+        1. Conocer detalles e indicadores (AIVD, Demencia, Riesgo Caidas)\n
+        2. Ingresar notas y eventos\n
+        3. Realizar terapias de reminiscencia o evocación a través de ejercicios creados en la seccion "Ejercicios de reminiscencia"</string>
     <string name="title_note_added">Evento Registrado</string>
     <string name="content_note_added">El Evento será notificado a los supervisores para su aprobación</string>
     <string name="blessed_no_demencia">No presenta demencia por el momento</string>

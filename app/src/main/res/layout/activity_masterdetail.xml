@@ -62,18 +62,18 @@
                     />
 
                 <TextView
-                    android:id="@+id/completename_navbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Usuario"
+                        android:id="@+id/completename_navbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Usuario"
 
-                    android:fontFamily="sans-serif-smallcaps"
-                    android:textColor="@color/white"
-                    android:textAlignment="center"
-                    android:gravity="center_horizontal"
-                    android:textSize="@dimen/medium_text_size"
-                    android:lines="2"
-                    />
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:gravity="center_horizontal"
+                        android:textSize="@dimen/medium_text_size"
+                        android:lines="2"
+                        />
 
                 <TextView
                     android:id="@+id/typeuser_navbar"

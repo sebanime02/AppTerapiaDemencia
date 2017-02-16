@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -95,6 +96,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private LinearLayout linearMinimental;
 
 
+
     public PatientProfileFragment(){
 
         daoHelper = GreenDaoHelper.getInstance();
@@ -176,6 +178,10 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
                 goToStatistics(idsistema);
             }
         });
+
+
+
+
 
 
 

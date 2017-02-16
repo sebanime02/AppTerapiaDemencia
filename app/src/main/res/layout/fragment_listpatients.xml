@@ -18,21 +18,21 @@
         android:layout_alignParentRight="true"
         android:src="@drawable/ic_action_action_help"
         android:background="@color/white"
-        />
+     />
 
 
 
-    <EditText
+   <EditText
 
 
-        android:drawableLeft="@drawable/search"
-        android:id="@+id/search_box"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autoLink="none"
-        android:hint="@string/txt_find_patient"
-        android:layout_below="@id/btn_instructions_listpatients"
-        />
+       android:drawableLeft="@drawable/search"
+       android:id="@+id/search_box"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:autoLink="none"
+       android:hint="@string/txt_find_patient"
+       android:layout_below="@id/btn_instructions_listpatients"
+       />
 
 
     <android.support.v7.widget.RecyclerView

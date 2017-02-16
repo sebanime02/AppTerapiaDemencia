@@ -1,223 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    xmlns:app1="http://schemas.android.com/apk/res-auto"
     tools:context=".principal.cognitiveexercises.GraphicsExercises"
     android:background="@color/white"
 
     >
 
 
-    <LinearLayout
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
 
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_corner"
+        android:visibility="gone"
+
+        >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_rutina_graficas"
+        android:textStyle="bold"
+        android:visibility="gone"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="2"
+        android:visibility="gone"
+
 
         >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_corner"
-            android:visibility="gone"
 
-            >
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/cognitiveResumenChart1"
+            android:layout_width="0dp"
+            android:layout_weight="1.01"
+            android:layout_height="match_parent"
+
+
+
+            />
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/cognitiveResumenChart2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="200dp"
+
+            />
+    </LinearLayout>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_rutina_graficas"
+            android:layout_height="@dimen/height_banner_graphics"
+            android:text="@string/txt_rutina_estado"
             android:textStyle="bold"
-            android:visibility="gone"
+            android:textSize="@dimen/medium_text_size"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            android:maxLines="2"
+
             />
 
         <LinearLayout
+            android:id="@+id/containerLastRutina"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="2"
-            android:visibility="gone"
-
-
-            >
-
-
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/cognitiveResumenChart1"
-                android:layout_width="0dp"
-                android:layout_weight="1.01"
-                android:layout_height="match_parent"
-
-
-
-                />
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/cognitiveResumenChart2"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="200dp"
-
-                />
-        </LinearLayout>
-
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_corner"
             android:orientation="vertical"
             >
+
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_banner_graphics"
-                android:text="@string/txt_rutina_estado"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_ultima_rutina"
                 android:textStyle="bold"
                 android:textSize="@dimen/medium_text_size"
-                android:background="@color/colorPrimary"
-                android:textColor="@color/white"
-                android:gravity="center_vertical"
-                android:maxLines="2"
+                android:id="@+id/textView6" />
+
+            <TextView
+                android:id="@+id/tv_last_rutina_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_ultima_rutina_estado"
+                android:textSize="@dimen/medium_text_size"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/tv_last_rutina_starter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_ultima_rutina_autor"
+                android:textStyle="bold"
+                android:textSize="@dimen/medium_text_size"
+
+                />
+            <TextView
+                android:id="@+id/tv_last_rutina_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_ultima_rutina_fecha"
+                android:textStyle="bold"
+                android:textSize="@dimen/medium_text_size"
 
                 />
 
-            <LinearLayout
-                android:id="@+id/containerLastRutina"
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/rounded_corner"
-                android:orientation="vertical"
-                >
+                android:layout_height="1dp"
+                android:background="@color/gray_soft"
+                />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_ultima_rutina"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/medium_text_size"
-                    android:id="@+id/textView6" />
-
-                <TextView
-                    android:id="@+id/tv_last_rutina_state"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_ultima_rutina_estado"
-                    android:textSize="@dimen/medium_text_size"
-                    android:textStyle="bold"
-                    />
-                <TextView
-                    android:id="@+id/tv_last_rutina_starter"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_ultima_rutina_autor"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/medium_text_size"
-
-                    />
-                <TextView
-                    android:id="@+id/tv_last_rutina_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_ultima_rutina_fecha"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/medium_text_size"
-
-                    />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray_soft"
-                    />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/activity_horizontal_margin"
-                    >
-
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/btnLastRutina"
-                        android:layout_width="@dimen/size_historial_button"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:src="@mipmap/ic_play_arrow_white_24dp"
-                        app1:backgroundTint="@color/material_green"
-
-                        />
-
-                    <Button
-                        android:layout_width="@dimen/size_media_button"
-                        android:layout_height="wrap_content"
-                        android:background="@color/material_red"
-                        android:textColor="@color/white"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:text="@string/btn_finalizar"
-                        android:visibility="gone"
-                        />
-                </LinearLayout>
-
-
-            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
+                android:padding="@dimen/activity_horizontal_margin"
                 >
 
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/btnNewRutina"
+                <Button
+                    android:id="@+id/btnLastRutina"
                     android:layout_width="@dimen/size_historial_button"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/corner_button_red"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@mipmap/ic_add_white_24dp"
+                    android:background="@drawable/corner_button_green"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:text="@string/btn_reiniciar"
+                    android:textSize="@dimen/medium_text_size"
+                    android:drawableLeft="@mipmap/ic_play_arrow_white_24dp"
+                    android:padding="@dimen/activity_horizontal_margin"
 
                     />
 
-
+                <Button
+                    android:layout_width="@dimen/size_media_button"
+                    android:layout_height="wrap_content"
+                    android:background="@color/material_red"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:text="@string/btn_finalizar"
+                    android:visibility="gone"
+                    />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/txt_demas_rutinas"
-                android:layout_width="match_parent"
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            >
+
+            <Button
+                android:id="@+id/btnNewRutina"
+                android:layout_width="@dimen/size_historial_button"
                 android:layout_height="wrap_content"
-                android:text="@string/txt_demas_rutinas"
-                android:textStyle="bold"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="@drawable/corner_button_red"
+                android:textColor="@color/white"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:text="@string/btn_nuevo"
+                android:drawableLeft="@mipmap/ic_content_paste_white_18dp"
+                android:layout_gravity="center_horizontal"
                 android:textSize="@dimen/medium_text_size"
+                android:padding="@dimen/activity_horizontal_margin"
 
                 />
 
 
         </LinearLayout>
-        <ScrollView
+
+        <TextView
+            android:id="@+id/txt_demas_rutinas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
-
-
-        <android.support.v7.widget.RecyclerView
-
-            android:id="@+id/recicladorHistoric"
-            android:gravity="center"
-            android:scrollbars="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="800dp"
+            android:text="@string/txt_demas_rutinas"
+            android:textStyle="bold"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-
+            android:textSize="@dimen/medium_text_size"
 
             />
-        </ScrollView>
+
 
     </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+    <android.support.v7.widget.RecyclerView
+
+        android:id="@+id/recicladorHistoric"
+        android:gravity="center"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="800dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+
+
+        />
+    </ScrollView>
+
+</LinearLayout>
 
 </LinearLayout>
