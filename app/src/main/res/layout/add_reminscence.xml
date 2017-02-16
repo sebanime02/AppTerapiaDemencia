@@ -85,7 +85,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:backgroundTint="@color/colorPrimaryDark"
-                    android:elevation="@dimen/activity_vertical_margin"
                     android:tint="@color/white"
                     android:layout_alignBottom="@id/foto_paciente"
                     android:src="@mipmap/ic_camera_alt_black_24dp"
@@ -117,13 +116,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@drawable/corner_button_primary_dark"
+                    android:padding="@dimen/activity_vertical_margin"
                     >
                     <ImageView
 
                         android:id="@+id/reminiscence_photo"
                         android:layout_gravity="center"
 
-                        android:layout_width="250dp"
+                        android:layout_width="300dp"
                         android:layout_height="250dp"
 
                         />
@@ -150,7 +151,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
                         android:text="@string/btn_save"
-                        android:background="@color/magenta"
+                        android:background="@drawable/corner_button_red"
                         android:textColor="@color/white"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"

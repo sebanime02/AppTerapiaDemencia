@@ -139,8 +139,21 @@ public class PrincipalListInteractorImplementation implements PrincipalListInter
     }
 
     @Override
-    public List<Reminiscence> getReminiscenceList() {
+    public List<Reminiscence> getReminiscenceList()
+    {
         return principalListRepository.getReminiscenceList();
+    }
+
+    @Override
+    public boolean getNotificationState()
+    {
+        return principalListRepository.getNotificationState();
+    }
+
+    @Override
+    public void setNotificationsState(boolean mode)
+    {
+        principalListRepository.changeNotificationsState(mode);
     }
 
 

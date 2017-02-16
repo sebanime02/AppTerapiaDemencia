@@ -493,7 +493,7 @@
                         android:layout_height="wrap_content"
                         android:text="Guardar"
                         android:textColor="@color/white"
-                        android:background="@color/colorAccent"/>
+                        android:background="@drawable/corner_button_red"/>
 
                 </LinearLayout>
 

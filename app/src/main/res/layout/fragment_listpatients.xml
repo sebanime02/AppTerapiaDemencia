@@ -10,30 +10,29 @@
     android:background="@color/white"
     tools:context="co.edu.unicauca.appterapiademencia.principal.MainActivity">
 
-    <TextView
-        android:id="@+id/txt_instructions"
+    <ImageButton
+        android:id="@+id/btn_instructions_listpatients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_action_action_help"
+        android:background="@color/white"
+        />
+
+
+
+    <EditText
+
+
+        android:drawableLeft="@drawable/search"
+        android:id="@+id/search_box"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/medium_small_text_size"
-        android:text="@string/txt_info_listpatients"/>
-
-  <View
-      android:layout_width="match_parent"
-      android:layout_height="2dp"
-      android:background="@color/colorPrimaryDark"
-      android:layout_below="@id/txt_instructions"
-      />
-   <EditText
-
-
-       android:drawableLeft="@drawable/search"
-       android:id="@+id/search_box"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:autoLink="none"
-       android:hint="@string/txt_find_patient"
-       android:layout_below="@id/txt_instructions"
-       />
+        android:autoLink="none"
+        android:hint="@string/txt_find_patient"
+        android:layout_below="@id/btn_instructions_listpatients"
+        />
 
 
     <android.support.v7.widget.RecyclerView

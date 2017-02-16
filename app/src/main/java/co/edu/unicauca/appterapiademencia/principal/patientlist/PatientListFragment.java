@@ -16,6 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +26,6 @@ import java.util.List;
 import co.edu.unicauca.appterapiademencia.R;
 import co.edu.unicauca.appterapiademencia.adapters.PatientListAdapter;
 import co.edu.unicauca.appterapiademencia.domain.Patient;
-import co.edu.unicauca.appterapiademencia.principal.tips.AddTipActivity;
 
 /**
  * Created by ENF on 25/10/2016.
@@ -39,7 +41,7 @@ public class PatientListFragment extends Fragment implements PatientListView {
     private RecyclerView.LayoutManager LManager;
     private List<Patient> list = new ArrayList<Patient>();
     private EditText searchBox;
-
+    private ImageButton imgBtnHelpListPatients;
     private List<Patient> patientList;
 
 
@@ -51,6 +53,7 @@ public class PatientListFragment extends Fragment implements PatientListView {
         floatingActionButton = (FloatingActionButton) rootView.findViewById(R.id.add_patient);
         recycler = (RecyclerView) rootView.findViewById(R.id.reciclador);
         searchBox = (EditText) rootView.findViewById(R.id.search_box);
+        imgBtnHelpListPatients = (ImageButton) rootView.findViewById(R.id.btn_instructions_listpatients);
 
 
         recycler.setHasFixedSize(true);
@@ -63,6 +66,15 @@ public class PatientListFragment extends Fragment implements PatientListView {
         registerForContextMenu(recycler);
         callListenerText();
 
+
+
+        imgBtnHelpListPatients.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showInstructions(view);
+            }
+        });
+
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,6 +82,9 @@ public class PatientListFragment extends Fragment implements PatientListView {
             }
         });
         return rootView;
+
+
+
     }
 
 
@@ -186,6 +201,13 @@ public class PatientListFragment extends Fragment implements PatientListView {
     @Override
     public void getPatients() {
         patientListPresenter.getPatient();
+    }
+
+    @Override
+    public void showInstructions(View view)
+    {
+        new MaterialDialog.Builder(view.getContext()).title("Manejo de Pacientes").content(R.string.txt_info_listpatients).positiveText("Bueno").icon(getResources().getDrawable(R.drawable.ic_action_action_help)).show();
+
     }
 
     public void navigateToAddPatient() {

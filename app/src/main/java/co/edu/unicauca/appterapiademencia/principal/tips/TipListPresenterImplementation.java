@@ -16,30 +16,26 @@ public class TipListPresenterImplementation implements TipsListPresenter {
     private EventBus eventBus;
 
 
-    public TipListPresenterImplementation(TipsListView tipsListView)
-    {
+    public TipListPresenterImplementation(TipsListView tipsListView) {
         this.tipsListView = tipsListView;
         this.principalListInteractor = new PrincipalListInteractorImplementation();
         this.eventBus = GreenRobotEventBus.getInstance();
 
+
     }
 
     @Override
-    public void getTips()
-    {
-      int countResultados;
+    public void getTips() {
+        int countResultados;
 
-        if(tipsListView!=null)
-        {
+        if (tipsListView != null) {
+
             countResultados = tipsListView.showListTips(principalListInteractor.getTips());
 
 
-            if(countResultados==0)
-            {
+            if (countResultados == 0) {
                 tipsListView.showTipsListEmpty();
-            }
-            else
-            {
+            } else {
                 tipsListView.refreshView();
             }
         }
@@ -50,12 +46,41 @@ public class TipListPresenterImplementation implements TipsListPresenter {
     @Override
     public void onCreate() {
         //eventBus.register(this);
+
+
     }
 
     @Override
     public void onDestroy() {
         //eventBus.unregister(this);
-        tipsListView= null;
+        tipsListView = null;
 
     }
+
+    @Override
+    public void turnNotifications()
+    {
+        new Thread(new Runnable() {
+            @Override
+            public void run()
+            {
+
+                boolean notificationState;
+                notificationState = principalListInteractor.getNotificationState();
+                if (tipsListView != null) {
+                    if (notificationState) {
+                        tipsListView.turnNotifications(false);
+                        principalListInteractor.setNotificationsState(false);
+                    } else {
+                        tipsListView.turnNotifications(true);
+                        principalListInteractor.setNotificationsState(false);
+
+                    }
+                }
+            }
+        }).start();
+    }
+
+
+
 }

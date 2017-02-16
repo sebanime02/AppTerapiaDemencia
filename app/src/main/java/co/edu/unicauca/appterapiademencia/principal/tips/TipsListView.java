@@ -1,5 +1,7 @@
 package co.edu.unicauca.appterapiademencia.principal.tips;
 
+import android.view.View;
+
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.domain.Tip;
@@ -13,5 +15,8 @@ public interface TipsListView {
     int showListTips(List<Tip> listTips);
     void showTipsListEmpty();
     void refreshView();
+    void turnNotifications(boolean mode);
+    void showInstructions(View view);
+    void showNotificationsChange(View view, boolean state);
 
 }

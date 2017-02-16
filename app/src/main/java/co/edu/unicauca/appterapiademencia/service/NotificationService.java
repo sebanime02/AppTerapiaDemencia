@@ -1,4 +1,4 @@
-package service;
+package co.edu.unicauca.appterapiademencia.service;
 
 import android.app.Notification;
 import android.app.NotificationManager;

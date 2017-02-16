@@ -63,9 +63,10 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:background="@color/material_red"
+            android:background="@color/colorPrimaryDark"
             android:paddingLeft="@dimen/separador_like"
             android:paddingRight="@dimen/separador_like"
+            android:drawableLeft="@mipmap/ic_thumb_up_white_24dp"
 
             />
 

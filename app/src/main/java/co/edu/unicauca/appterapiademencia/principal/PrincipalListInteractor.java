@@ -51,5 +51,8 @@ public interface PrincipalListInteractor {
 
     List<Reminiscence> getReminiscenceList();
 
+    boolean getNotificationState();
+    void setNotificationsState(boolean mode);
+
 
 }

@@ -350,14 +350,22 @@ public class PrincipalListRepositoryImplementation implements PrincipalListRepos
             Log.e("Principal Repository","Va a registrar el evento");
             eventBus.post(graphEvent);
 
-
-
-
     }
 
     @Override
     public List<Reminiscence> getReminiscenceList() {
         return helper.getReminiscenceList();
+    }
+
+    @Override
+    public void changeNotificationsState(boolean mode)
+    {
+        helper.turnTipNotifications(mode);
+    }
+
+    @Override
+    public boolean getNotificationState() {
+        return  helper.getTipNotificationsState();
     }
 
 

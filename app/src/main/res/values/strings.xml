@@ -297,7 +297,7 @@
     <string name="addnote_eventos">Relacionados a Eventos:</string>
     <string name="addnote_signos">Relacionado a Signos o Sintomas de la Demencia Senil:</string>
     <string name="addnote_orientacion">Orientación</string>
-    <string name="notelist_banner_tips">ATENCIÓN!! Los signos, sintomas y eventos relacionados a la demencia senil que puedes ingresar con el botón rojo son los siguientes:</string>
+    <string name="notelist_banner_tips">Los signos, sintomas y eventos relacionados a la demencia senil que puedes ingresar con el botón rojo son los siguientes:</string>
 
 
     <!--RADIOBUTTONS-->
@@ -421,7 +421,7 @@
 
     <!--COGNITIVE EXERCISES MAIN SCREENN -->
     <string name="txt_rutina_graficas">Estadisticas Generales</string>
-    <string name="txt_rutina_estado">Aqui puedes crear, desarrollar y analizar terapias de reminiscencia.
+    <string name="txt_rutina_estado">Rutinas de terapias de reminisencia O evocación.
 
     </string>
     <string name="txt_ultima_rutina">Ùltima Rutina</string>

@@ -48,4 +48,8 @@ public interface PrincipalListRepository {
     List<Reminiscence> getReminiscenceList();
 
 
+    void changeNotificationsState(boolean mode);
+    boolean getNotificationState();
+
+
 }

@@ -11,8 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +42,7 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     private GridLayoutManager lLayout;
     private LinearLayout linearTipsListEmpty;
     private ImageView imgArrowTip;
+    private ImageButton notificationsToggle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class TipsListFragment extends Fragment implements  TipsListView {
         Log.d("Time count","Fragment to fragment termina de contar");
         linearTipsListEmpty = (LinearLayout) rootView.findViewById(R.id.containerEmptyTipsList);
         imgArrowTip = (ImageView) rootView.findViewById(R.id.arrow_tip);
+        notificationsToggle = (ImageButton) rootView.findViewById(R.id.btn_notifications_tips);
 
 
         recycler = (RecyclerView) rootView.findViewById(R.id.reciclador);
@@ -68,6 +73,12 @@ public class TipsListFragment extends Fragment implements  TipsListView {
             @Override
             public void onClick(View view) {
                 addTip();
+            }
+        });
+        notificationsToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tipListPresenter.turnNotifications();
             }
         });
 
@@ -169,7 +180,8 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     }
 
     @Override
-    public void refreshView() {
+    public void refreshView()
+    {
 
             recycler.setVisibility(View.VISIBLE);
             linearTipsListEmpty.setVisibility(View.GONE);
@@ -177,4 +189,40 @@ public class TipsListFragment extends Fragment implements  TipsListView {
 
 
     }
+
+    @Override
+    public void turnNotifications(boolean mode)
+    {
+        if(mode)
+        {
+            notificationsToggle.setImageDrawable(getResources().getDrawable(R.mipmap.ic_notifications_active_black_48dp));
+        }else
+        {
+            notificationsToggle.setImageDrawable(getResources().getDrawable(R.mipmap.ic_notifications_off_black_48dp));
+        }
+    }
+
+    @Override
+    public void showInstructions(View view)
+    {
+        new MaterialDialog.Builder(view.getContext()).title("Ayuda").content(R.string.txt_tips_supervisor).positiveText("Bueno").icon(getResources().getDrawable(R.drawable.ic_action_action_help)).show();
+
+    }
+
+    @Override
+    public void showNotificationsChange(View view, boolean state)
+    {
+        if(state)
+        {
+            new MaterialDialog.Builder(view.getContext()).title("Notificaciones").content("Activadas").positiveText("Bueno").icon(getResources().getDrawable(R.mipmap.ic_notifications_active_black_48dp)).show();
+
+        }else
+        {
+            new MaterialDialog.Builder(view.getContext()).title("Notificaciones").content("Desactivadas").positiveText("Bueno").icon(getResources().getDrawable(R.mipmap.ic_notifications_off_black_48dp)).show();
+
+        }
+
+    }
+
+
 }

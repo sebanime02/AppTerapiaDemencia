@@ -283,12 +283,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margen_entre_elementos_loguin"
                     android:text="@string/btn_agregar"
-                    android:background="@color/magenta"
+                    android:background="@drawable/corner_button_red"
                     android:textColor="@color/white"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:onClick="saveExercise"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:textSize="@dimen/medium_text_size"
                     />
             </LinearLayout>
 

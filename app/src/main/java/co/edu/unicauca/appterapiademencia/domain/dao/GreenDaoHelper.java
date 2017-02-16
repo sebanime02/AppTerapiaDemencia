@@ -1627,6 +1627,41 @@ public class GreenDaoHelper {
 
     }
 
+    public void turnTipNotifications(boolean mode)
+    {
+        List<Tip> tipList;
+        Tip tip;
+
+        QueryBuilder<Tip> tipQueryBuilder= getTipDao().queryBuilder();
+        tipList = tipQueryBuilder.list();
+        for(int m=0;m<tipList.size();m++)
+        {
+            tipList.get(m).setActive(mode);
+            getTipDao().update(tipList.get(m));
+        }
+
+
+
+
+    }
+
+
+    public boolean getTipNotificationsState()
+    {
+
+        List<Tip> tipList;
+        boolean resultState;
+
+
+        QueryBuilder<Tip> tipQueryBuilder= getTipDao().queryBuilder();
+            tipList = tipQueryBuilder.list();
+         resultState = tipList.get(0).getActive();
+
+        return  resultState;
+
+    }
+
+
 
 
 

@@ -336,10 +336,11 @@
                         android:id="@+id/btn_more_minimental"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@drawable/corner_button_primary_dark"
                         android:text="@string/txt_see_more"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:textColor="@color/white"
+                        android:textSize="@dimen/medium_text_size"
                         />
 
                     <LinearLayout
@@ -407,10 +408,12 @@
                             android:id="@+id/btn_more_lawton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/colorPrimaryDark"
+                            android:background="@drawable/corner_button_primary_dark"
                             android:text="@string/txt_see_more"
                             android:layout_marginTop="@dimen/activity_vertical_margin"
                             android:textColor="@color/white"
+                            android:textSize="@dimen/medium_text_size"
+
 
                             />
                     </LinearLayout>
@@ -570,8 +573,9 @@
             android:id="@+id/btn_more_blessed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/corner_button_primary_dark"
             android:text="@string/txt_see_more"
+            android:textSize="@dimen/medium_text_size"
             android:textColor="@color/white"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             />
@@ -647,15 +651,16 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/small_text_size"
                         android:text="@string/txt_fast_note_information"
-                        ></TextView>
+                        />
                     <Button
                         android:id="@+id/btn_more_fast"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorPrimaryDark"
+                        android:textSize="@dimen/medium_text_size"
                         android:text="@string/txt_see_more"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:textColor="@color/white"
+                        android:background="@drawable/corner_button_primary_dark"
                         />
                 </LinearLayout>
 
@@ -732,10 +737,11 @@
                         android:id="@+id/btn_more_downton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@drawable/corner_button_primary_dark"
                         android:text="@string/txt_see_more"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:textColor="@color/white"
+                        android:textSize="@dimen/medium_text_size"
 
                         />
                 </LinearLayout>
@@ -793,12 +799,14 @@
                     android:id="@+id/btnMoreStatistics"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@drawable/corner_button_primary_dark"
                     android:text="@string/blessed_more_statistics"
                     android:textColor="@color/white"
                     android:drawableLeft="@mipmap/ic_equalizer_white_24dp"
                     android:layout_gravity="center_vertical"
                     android:padding="2dp"
+                    android:lines="2"
+                    android:textSize="@dimen/medium_text_size"
 
 
                     />

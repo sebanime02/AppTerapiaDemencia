@@ -5,11 +5,25 @@
 
     <!-- This could be your fragment container, or something -->
 
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/bottom_navigation_reminiscence"
+        android:background="@color/colorPrimary"
+
+        />
+
     <FrameLayout
         android:id="@+id/contentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/bottom_navigation"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
 
@@ -52,7 +66,7 @@
                     android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:visibility="gone"
                     android:textSize="@dimen/medium_text_size"
                     android:text="@string/txt_detail_reminiscence"/>
 
@@ -83,16 +97,13 @@
                         />
 
 
-                    <android.support.v7.widget.CardView
+                    <LinearLayout
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        app:cardBackgroundColor="@color/gray_soft"
-                        card_view:cardCornerRadius="4dp"
-                        card_view:cardElevation="4dp"
-                        card_view:cardUseCompatPadding="true"
-                        android:padding="@dimen/activity_horizontal_margin"
+                        android:background="@color/gray_soft"
+
 
 
 
@@ -106,14 +117,15 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/negro"
                             android:textStyle="bold"
-                            android:paddingRight="@dimen/activity_horizontal_margin"
-                            android:paddingLeft="@dimen/activity_horizontal_margin"
+                            android:paddingRight="3dp"
+                            android:paddingLeft="3dp"
                             android:minHeight="@dimen/height_reminiscence_photo"
+
 
 
                             />
 
-                    </android.support.v7.widget.CardView>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -121,16 +133,5 @@
             </LinearLayout>
         </ScrollView>
     </FrameLayout>
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:itemBackground="@color/colorPrimary"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:menu="@menu/bottom_navigation_reminiscence"
-
-        />
 
 </RelativeLayout>

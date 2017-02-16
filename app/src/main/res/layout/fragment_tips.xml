@@ -11,14 +11,41 @@
     tools:context="co.edu.unicauca.appterapiademencia.principal.tips.TipsListFragment">
 
 
+
     <TextView
         android:id="@+id/txt_info_tips"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/medium_text_size"
         android:text="@string/txt_tips_supervisor"
-
+        android:visibility="gone"
        />
+
+    <ImageButton
+        android:id="@+id/btn_instructions_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_action_action_help"
+        android:background="@color/white"
+        />
+
+    <ImageButton
+        android:id="@+id/btn_notifications_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+
+        android:src="@mipmap/ic_notifications_off_black_48dp"
+        android:background="@color/white"
+        android:layout_toLeftOf="@id/btn_instructions_tips"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        />
+
+
+
+
     <View
         android:id="@+id/separationLine"
         android:layout_width="match_parent"
@@ -57,18 +84,6 @@
             />
 
     </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:layout_below="@id/separationLine"
-        android:id="@+id/reciclador"
-        android:gravity="center"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:headerDividersEnabled="true"
-        android:footerDividersEnabled="true"
-
-
-        />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_tip"
@@ -90,6 +105,20 @@
         android:layout_alignTop="@id/add_tip"
         android:visibility="gone"
         />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/reciclador"
+        android:gravity="center"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:headerDividersEnabled="true"
+        android:footerDividersEnabled="true"
+
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

@@ -41,7 +41,7 @@ import co.edu.unicauca.appterapiademencia.principal.reminiscence.ReminiscenceLis
 import co.edu.unicauca.appterapiademencia.principal.tips.TipsListFragment;
 import co.edu.unicauca.appterapiademencia.principal.userprofile.UserProfileFragment;
 import co.edu.unicauca.appterapiademencia.util.CircleTransform;
-import service.NotificationService;
+import co.edu.unicauca.appterapiademencia.service.NotificationService;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ImageView userAvatarNavbar;
 
     public static final Integer[] imagessupervisor = {R.drawable.ic_list_black_24dp,R.drawable.ic_action_content_report,R.mipmap.ic_lightbulb_outline_black_48dp,R.mipmap.ic_extension_black_48dp,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.mipmap.ic_signout};
-    public static final String[] titlessupervisor= {"Lista de Pacientes","Notas Por Aprobar","Tips para el cuidador","Ejercicios de Reminiscencia","Perfil de usuario","Ayuda","Salir"};
-    public static final Integer[] imagescarer ={R.drawable.ic_list_black_24dp,R.drawable.ic_action_toggle_star,R.drawable.ic_action_action_help,R.mipmap.ic_signout};
-    public static final String[] titlescarer ={"Lista de Pacientes","Tips para el cuidador","Ayuda","Salir"};
+    public static final String[] titlessupervisor= {"Lista de Pacientes","Notas Por Aprobar","Tips para el cuidador","Ejercicios de Reminiscencia","Perfil de usuario","Ayuda","Cerrar Sesión"};
+    public static final Integer[] imagescarer ={R.drawable.ic_list_black_24dp,R.mipmap.ic_lightbulb_outline_black_48dp,R.drawable.ic_action_action_help,R.mipmap.ic_signout};
+    public static final String[] titlescarer ={"Lista de Pacientes","Tips para el cuidador","Ayuda","Cerrar Sesión"};
     private String username;
     private GreenDaoHelper helper;
 

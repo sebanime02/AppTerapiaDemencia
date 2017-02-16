@@ -7,7 +7,5 @@
         android:id="@+id/menu_finalizar"
         android:title="Finalizar"
         app:showAsAction="ifRoom"
-
-
         />
 </menu>
