@@ -8,7 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,7 @@ public class NotificationListFragment extends Fragment implements NotificationVi
     private LinearLayoutManager lLayout;
     private NotificationsAdapter adapter;
     private LinearLayout linearNotificationsListEmpty;
+    private ImageButton imgBtnHelpNotifications;
 
 
     public NotificationListFragment()
@@ -41,6 +45,7 @@ public class NotificationListFragment extends Fragment implements NotificationVi
         rootView = inflater.inflate(R.layout.fragment_notifications, container, false);
         notificationPresenter = new NotificationPresenterImplementation(this);
         linearNotificationsListEmpty = (LinearLayout) rootView.findViewById(R.id.containerEmptyNotificationsList);
+        imgBtnHelpNotifications = (ImageButton) rootView.findViewById(R.id.btn_instructions_notifications);
 
 
         return rootView;
@@ -114,6 +119,15 @@ public class NotificationListFragment extends Fragment implements NotificationVi
             adapter.notifyDataSetChanged();
         }
 
+
+        imgBtnHelpNotifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                showInstructions(view);
+            }
+        });
+
     }
 
     @Override
@@ -163,6 +177,12 @@ public class NotificationListFragment extends Fragment implements NotificationVi
     @Override
     public void disableEmptyNotificationList() {
         linearNotificationsListEmpty.setVisibility(View.GONE);
+
+    }
+    @Override
+    public void showInstructions(View view)
+    {
+        new MaterialDialog.Builder(view.getContext()).title("Ayuda").content(R.string.title_notifications).positiveText("Bueno").icon(getResources().getDrawable(R.drawable.ic_action_action_help)).show();
 
     }
 }

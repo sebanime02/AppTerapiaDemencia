@@ -1,5 +1,7 @@
 package co.edu.unicauca.appterapiademencia.principal.reminiscence;
 
+import android.view.View;
+
 import java.util.List;
 
 import co.edu.unicauca.appterapiademencia.domain.Reminiscence;
@@ -15,4 +17,5 @@ public interface ReminiscenceListView {
     void getReminiscenceList();
     void emtpyReminiscenceList();
     void refreshView();
+    void showInstructions(View view);
 }

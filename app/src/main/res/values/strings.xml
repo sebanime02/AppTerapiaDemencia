@@ -101,7 +101,7 @@
 
 
     <!-- TIPS -->
-    <string name="txt_tips_supervisor">Aqui puedes Agregar Tips o recomendaciones para los cuidadores</string>
+    <string name="txt_tips_supervisor">Aqui puedes Agregar Tips o recomendaciones para los cuidadores de la institución</string>
     <string name="txt_tips_cuidador">Aqui puedes ver los Tips o recomendaciones que han dejado tus supervisores</string>
     <string name="toast_like">Te gusta el Tip</string>
     <string name="txt_tips_empty_title">No hay Tips Registrados</string>

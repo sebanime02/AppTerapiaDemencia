@@ -161,7 +161,7 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.Hist
             btnDetail = (Button) itemView.findViewById(R.id.btn_detail_historic);
 
 
-            btnDetail.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Log.e("id del card",""+HistorialAdapter.this.getItemId(getPosition()));

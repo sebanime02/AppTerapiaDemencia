@@ -66,6 +66,7 @@
             android:background="@color/colorPrimaryDark"
             android:paddingLeft="@dimen/separador_like"
             android:paddingRight="@dimen/separador_like"
+            android:textSize="@dimen/medium_text_size"
             android:drawableLeft="@mipmap/ic_thumb_up_white_24dp"
 
             />

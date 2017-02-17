@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -35,7 +36,9 @@ public class GraphicsExercises extends Fragment{
     private GreenDaoHelper daoHelper;
     private Long idpatient,idsistema;
     private TextView txtSate,txtStarter,txtDate,txtDemasRutinas;
-    private FloatingActionButton btnNewRutina,btnLastRutina;
+    private Button btnNewRutina;
+
+    private FloatingActionButton btnLastRutina;
     private Rutina lastRutina;
     private LinearLayout containerLastRutina;
     private RutinaDao rutinaDao;
@@ -108,7 +111,7 @@ public class GraphicsExercises extends Fragment{
         txtDate = (TextView) view.findViewById(R.id.tv_last_rutina_date);
         txtStarter = (TextView) view.findViewById(R.id.tv_last_rutina_starter);
         btnLastRutina = (FloatingActionButton) view.findViewById(R.id.btnLastRutina);
-        btnNewRutina = (FloatingActionButton) view.findViewById(R.id.btnNewRutina);
+        btnNewRutina = (Button) view.findViewById(R.id.btnNewRutina);
         recycler = (RecyclerView) view.findViewById(R.id.recicladorHistoric);
         txtDemasRutinas = (TextView) view.findViewById(R.id.txt_demas_rutinas);
 

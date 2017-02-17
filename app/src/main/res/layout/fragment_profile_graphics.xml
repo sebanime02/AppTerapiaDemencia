@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    xmlns:app1="http://schemas.android.com/apk/res-auto"
     tools:context=".principal.cognitiveexercises.GraphicsExercises"
     android:background="@color/white"
 
@@ -141,18 +143,19 @@
                 android:padding="@dimen/activity_horizontal_margin"
                 >
 
-                <Button
+                <android.support.design.widget.FloatingActionButton
                     android:id="@+id/btnLastRutina"
                     android:layout_width="@dimen/size_historial_button"
                     android:layout_height="wrap_content"
                     android:background="@drawable/corner_button_green"
                     android:textColor="@color/white"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@mipmap/ic_play_arrow_white_24dp"
+                    app1:backgroundTint="@color/colorPrimaryDark"
                     android:text="@string/btn_reiniciar"
                     android:textSize="@dimen/medium_text_size"
                     android:drawableLeft="@mipmap/ic_play_arrow_white_24dp"
                     android:padding="@dimen/activity_horizontal_margin"
-
                     />
 
                 <Button

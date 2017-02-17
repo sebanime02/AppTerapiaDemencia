@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 for (int i = 0; i < titlessupervisor.length; i++)
                 {
-                    RowItem    item = new RowItem(imagessupervisor[i], titlessupervisor[i]);
+                    RowItem  item = new RowItem(imagessupervisor[i], titlessupervisor[i]);
                     rowItems.add(item);
                 }
 
@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
                 titleMessage = "Sesión de Cuidador";
                 completeNameNavbar.setText("Cuidador");
+                typeUserNavBar.setText("Acceso de Invitado");
 
                 //userAvatarNavbar.setImageDrawable(getResources().getDrawable(R.drawable.emptyuser));
                 //Picasso.with(getApplicationContext()).load(R.drawable.emptyuser).resize(50,50).transform(new CircleTransform()).into(userAvatarNavbar);
@@ -283,6 +284,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             titleMessage = "Sesión de Cuidador";
             completeNameNavbar.setText("Cuidador");
+            typeUserNavBar.setText("Acceso de Invitado");
             supervisormode= false;
             Picasso.with(getApplicationContext()).load(R.drawable.emptyuser).resize(50,50).transform(new CircleTransform()).into(userAvatarNavbar);
         }
@@ -292,6 +294,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        view.setSelected(true);
+        view.setActivated(true);
         /* SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);
         if(preferencias.getBoolean("supervisor",true))
         {

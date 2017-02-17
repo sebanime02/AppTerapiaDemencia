@@ -1,5 +1,7 @@
 package co.edu.unicauca.appterapiademencia.principal.tips;
 
+import android.util.Log;
+
 import co.edu.unicauca.appterapiademencia.lib.EventBus;
 import co.edu.unicauca.appterapiademencia.lib.GreenRobotEventBus;
 import co.edu.unicauca.appterapiademencia.principal.PrincipalListInteractor;
@@ -60,27 +62,20 @@ public class TipListPresenterImplementation implements TipsListPresenter {
     @Override
     public void turnNotifications()
     {
-        new Thread(new Runnable() {
-            @Override
-            public void run()
-            {
-
                 boolean notificationState;
+
                 notificationState = principalListInteractor.getNotificationState();
-                if (tipsListView != null) {
-                    if (notificationState) {
-                        tipsListView.turnNotifications(false);
-                        principalListInteractor.setNotificationsState(false);
-                    } else {
-                        tipsListView.turnNotifications(true);
-                        principalListInteractor.setNotificationsState(false);
+                Log.e("notificaciones"," Valor interactor llegado"+notificationState);
 
-                    }
-                }
+
+
+                        Log.e("notificaciones"," Valor interactor llegado"+notificationState);
+                        principalListInteractor.setNotificationsState(!notificationState);
+                        tipsListView.turnNotifications(!notificationState);
+
+
+
             }
-        }).start();
-    }
-
 
 
 }

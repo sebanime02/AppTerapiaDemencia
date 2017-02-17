@@ -66,8 +66,6 @@ public class PatientListFragment extends Fragment implements PatientListView {
         registerForContextMenu(recycler);
         callListenerText();
 
-
-
         imgBtnHelpListPatients.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -206,7 +204,7 @@ public class PatientListFragment extends Fragment implements PatientListView {
     @Override
     public void showInstructions(View view)
     {
-        new MaterialDialog.Builder(view.getContext()).title("Manejo de Pacientes").content(R.string.txt_info_listpatients).positiveText("Bueno").icon(getResources().getDrawable(R.drawable.ic_action_action_help)).show();
+        new MaterialDialog.Builder(view.getContext()).title("Manejo de Pacientes").content(R.string.txt_info_reminiscence).positiveText("Bueno").icon(getResources().getDrawable(R.drawable.ic_action_action_help)).show();
 
     }
 

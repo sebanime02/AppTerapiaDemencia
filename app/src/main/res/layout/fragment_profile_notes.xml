@@ -298,6 +298,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:textAppearanceMedium"
             android:text="@string/txt_note_empty"
+            android:textSize="@dimen/medium_text_size"
             />
 
         <android.support.v7.widget.RecyclerView

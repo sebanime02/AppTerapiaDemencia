@@ -226,7 +226,7 @@ public class TipDetailActivity extends ActionBarActivity {
             }
 
             getMenuInflater().inflate(R.menu.menu_favorite,menu);
-            getMenuInflater().inflate(R.menu.menu_notifications,menu);
+
 
 
             idtip = bundle.getLong("idtip");
@@ -259,18 +259,6 @@ public class TipDetailActivity extends ActionBarActivity {
             {
                 e.printStackTrace();
             }
-
-
-            if(helper.getTip(idtip).getActive())
-            {
-                menu.findItem(R.id.menu_notifications).setIcon(getResources().getDrawable(R.mipmap.ic_notifications_white_24dp));
-
-            }else
-            {
-                menu.findItem(R.id.menu_notifications).setIcon(getResources().getDrawable(R.mipmap.ic_notifications_off_white_24dp));
-
-            }
-
 
 
         }

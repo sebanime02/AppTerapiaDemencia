@@ -17,16 +17,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/medium_text_size"
+        android:visibility="gone"
         android:text="@string/txt_info_reminiscence"
 
         />
+    <ImageButton
+        android:id="@+id/btn_instructions_reminiscence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_action_action_help"
+        android:background="@color/white"
+        />
+
     <View
         android:id="@+id/separationLine"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorPrimaryDark"
-        android:layout_below="@id/txt_info_reminiscence"
+        android:layout_below="@id/btn_instructions_reminiscence"
         android:paddingBottom="1dp"
+
         />
   <LinearLayout
       android:id="@+id/containerEmptyReminiscenceList"

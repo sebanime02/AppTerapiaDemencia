@@ -43,6 +43,7 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     private LinearLayout linearTipsListEmpty;
     private ImageView imgArrowTip;
     private ImageButton notificationsToggle;
+    private ImageButton btnInstructions;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class TipsListFragment extends Fragment implements  TipsListView {
         linearTipsListEmpty = (LinearLayout) rootView.findViewById(R.id.containerEmptyTipsList);
         imgArrowTip = (ImageView) rootView.findViewById(R.id.arrow_tip);
         notificationsToggle = (ImageButton) rootView.findViewById(R.id.btn_notifications_tips);
+        btnInstructions = (ImageButton) rootView.findViewById(R.id.btn_instructions_tips);
 
 
         recycler = (RecyclerView) rootView.findViewById(R.id.reciclador);
@@ -65,20 +67,28 @@ public class TipsListFragment extends Fragment implements  TipsListView {
         getListTips();
         adapter = new TipAdapter(list, getActivity());
         recycler.setAdapter(adapter);
-
         registerForContextMenu(recycler);
 
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        floatingActionButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 addTip();
             }
         });
-        notificationsToggle.setOnClickListener(new View.OnClickListener() {
+        notificationsToggle.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 tipListPresenter.turnNotifications();
+            }
+        });
+
+        btnInstructions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showInstructions(view);
             }
         });
 
@@ -199,12 +209,15 @@ public class TipsListFragment extends Fragment implements  TipsListView {
         }else
         {
             notificationsToggle.setImageDrawable(getResources().getDrawable(R.mipmap.ic_notifications_off_black_48dp));
+
         }
+        showNotificationsChange(rootView,mode);
     }
 
     @Override
     public void showInstructions(View view)
     {
+        Log.e("Instrucciones","Muestra instrucciones");
         new MaterialDialog.Builder(view.getContext()).title("Ayuda").content(R.string.txt_tips_supervisor).positiveText("Bueno").icon(getResources().getDrawable(R.drawable.ic_action_action_help)).show();
 
     }

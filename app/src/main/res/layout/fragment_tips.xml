@@ -51,8 +51,9 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorPrimaryDark"
-        android:layout_below="@id/txt_info_tips"
+        android:layout_below="@id/btn_notifications_tips"
         android:paddingBottom="1dp"
+
         />
     <LinearLayout
         android:id="@+id/containerEmptyTipsList"
@@ -111,15 +112,12 @@
         android:id="@+id/reciclador"
         android:gravity="center"
         android:scrollbars="vertical"
+        android:layout_below="@id/separationLine"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:headerDividersEnabled="true"
         android:footerDividersEnabled="true"
-
-
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+         />
 
 
 </RelativeLayout>

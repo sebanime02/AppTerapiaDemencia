@@ -151,6 +151,8 @@ public class NotificationsAdapter  extends RecyclerView.Adapter<NotificationsAda
             @Override
             public void onClick(View view) {
                 try {
+                    Toast.makeText(activity,"Nota Aprobada",Toast.LENGTH_LONG);
+
 
                     de.greenrobot.event.EventBus.getDefault().removeAllStickyEvents();
 
@@ -161,7 +163,6 @@ public class NotificationsAdapter  extends RecyclerView.Adapter<NotificationsAda
                     itemNotificationEvent.setMode(1);
                     eventBus.post(itemNotificationEvent);
 
-                    Toast.makeText(activity,"Nota Aprobada",Toast.LENGTH_LONG);
 
 
 
@@ -178,7 +179,7 @@ public class NotificationsAdapter  extends RecyclerView.Adapter<NotificationsAda
                 try {
 
 
-
+                    Toast.makeText(activity,"Nota Eliminada",Toast.LENGTH_LONG);
                     de.greenrobot.event.EventBus.getDefault().removeAllStickyEvents();
 
                     de.greenrobot.event.EventBus.clearCaches();
@@ -187,7 +188,7 @@ public class NotificationsAdapter  extends RecyclerView.Adapter<NotificationsAda
                     itemNotificationEvent.setIdnote(getItemId(position));
                     itemNotificationEvent.setMode(0);
                     eventBus.post(itemNotificationEvent);
-                    Toast.makeText(activity,"Nota Eliminada",Toast.LENGTH_LONG);
+
 
 
                 }catch (Exception e)

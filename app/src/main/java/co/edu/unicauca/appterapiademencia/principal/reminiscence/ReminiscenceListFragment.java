@@ -11,8 +11,11 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +44,7 @@ public class ReminiscenceListFragment extends Fragment implements ReminiscenceLi
     private GridLayoutManager lLayout;
     private LinearLayout linearReminiscenceListEmpty;
     private ImageView imgArrowReminiscence;
+    private ImageButton imgBtnHelpLisReminiscence;
 
 
     @Nullable
@@ -51,6 +55,7 @@ public class ReminiscenceListFragment extends Fragment implements ReminiscenceLi
         recycler = (RecyclerView) rootView.findViewById(R.id.reciclador);
         linearReminiscenceListEmpty = (LinearLayout) rootView.findViewById(R.id.containerEmptyReminiscenceList);
         imgArrowReminiscence = (ImageView) rootView.findViewById(R.id.arrow_reminiscence);
+        imgBtnHelpLisReminiscence = (ImageButton) rootView.findViewById(R.id.btn_instructions_reminiscence);
 
         recycler.setHasFixedSize(true);
         //LManager = new LinearLayoutManager(getActivity().getApplicationContext());
@@ -70,7 +75,12 @@ public class ReminiscenceListFragment extends Fragment implements ReminiscenceLi
 
         }
 
-
+        imgBtnHelpLisReminiscence.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showInstructions(view);
+            }
+        });
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,5 +185,10 @@ public class ReminiscenceListFragment extends Fragment implements ReminiscenceLi
         imgArrowReminiscence.setVisibility(View.GONE);
     }
 
+    @Override
+    public void showInstructions(View view)
+    {
+        new MaterialDialog.Builder(view.getContext()).title("Ayuda Bandeja de Ejercicios Reminiscencia").content(R.string.txt_info_reminiscence).positiveText("Bueno").icon(getResources().getDrawable(R.drawable.ic_action_action_help)).show();
 
+    }
 }
