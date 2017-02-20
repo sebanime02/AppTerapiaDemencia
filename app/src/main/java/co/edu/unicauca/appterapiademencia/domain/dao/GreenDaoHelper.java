@@ -1,5 +1,6 @@
 package co.edu.unicauca.appterapiademencia.domain.dao;
 
+import android.app.Notification;
 import android.content.Context;
 import android.util.Log;
 
@@ -1659,6 +1660,14 @@ public class GreenDaoHelper {
 
         return  resultState;
 
+    }
+
+
+    public int getNotePendingCount()
+    {
+        int count;
+        count = getNotification().size();
+        return  count;
     }
 
 

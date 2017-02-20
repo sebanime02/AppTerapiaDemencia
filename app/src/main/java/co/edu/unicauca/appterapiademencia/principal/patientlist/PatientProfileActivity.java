@@ -134,7 +134,8 @@ public class PatientProfileActivity extends AppCompatActivity{
 
         if(editCondition)
         {
-            getMenuInflater().inflate(R.menu.menu_edit,menu);
+
+            //getMenuInflater().inflate(R.menu.menu_edit,menu);
 
         }
 

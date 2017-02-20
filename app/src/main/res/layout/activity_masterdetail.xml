@@ -91,7 +91,7 @@
             </LinearLayout>
 
             <ListView
-                android:paddingTop="@dimen/activity_vertical_margin"
+
                 android:scrollbars="none"
                 android:background="@color/white"
                 android:id="@+id/listaPacientes"
@@ -100,7 +100,8 @@
                 android:footerDividersEnabled="true"
                 android:dividerHeight="5sp"
 
-
+                android:choiceMode="singleChoice"
+                android:listSelector="#666666"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </ListView>

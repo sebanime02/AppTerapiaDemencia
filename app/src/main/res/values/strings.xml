@@ -122,8 +122,8 @@
     <string name="spinner_escritura">Limitación de Escritura</string>
     <string name="spinner_dibujo">Limitación de Dibujo</string>
 
-    <string name="txt_patient_name">Nombre Paciente</string>
-    <string name="txt_patient_identity">Documento de Identidad</string>
+    <string name="txt_patient_name">Nombre Paciente (Obligatorio)</string>
+    <string name="txt_patient_identity">Documento de Identidad (Obligatorio)</string>
     <string name="txt_patient_formato_fecha">DD/MM/AAAA</string>
     <string name="txt_patient_eps">Entidad Prestadora de Salud</string>
     <string name="txt_patient_antecedents">Antecedentes</string>
@@ -141,7 +141,7 @@
     <string name="txt_alteracionesextremidades">Alteraciones de las Extremidades</string>
 
 
-    <string name="txt_addpatient_fechanacimiento">Fecha de Nacimiento:</string>
+    <string name="txt_addpatient_fechanacimiento">Fecha de Nacimiento (Obligatorio)</string>
     <string name="txt_addpatient_sexo">Sexo</string>
     <string name="txt_addpatient_femenino">Femenino</string>
     <string name="txt_addpatient_masculino">Masculino</string>
@@ -151,7 +151,7 @@
     <!--TAB PATIENT INFORMATION -->
     <string name="textview_profile_information">INFORMACIÓN DEL PACIENTE</string>
     <string name="textview_profile_physics">LIMITACIONES DEL PACIENTE</string>
-    <string name="txt_back_principal">Regresar Al Menu Principal</string>
+    <string name="txt_back_principal">Ficha de Paciente</string>
     <string name="txt_info_listpatients">Aquí puedes registrar pacientes. Además, ingresando en cada uno, puedes: \n
         1. Conocer detalles e indicadores (AIVD, Demencia, Riesgo Caidas)\n
         2. Ingresar notas y eventos\n

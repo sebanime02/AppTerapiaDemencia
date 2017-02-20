@@ -75,6 +75,15 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
         String nombre = patientList.get(position).getName();
         long id = patientList.get(position).getIdentity();
 
+        if(patientList.get(position).getSex().equals("masculino"))
+        {
+            holder.itemView.setBackgroundColor(activity.getResources().getColor(R.color.soft_blue));
+        }else
+        {
+            holder.itemView.setBackgroundColor(activity.getResources().getColor(R.color.soft_pink));
+
+        }
+
         Log.e("adapter information","Nombre"+nombre+" Foto :"+foto);
 
 
@@ -104,67 +113,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
         return patientList.get(arg0).getIdentity();
     }
 
-    /* NO HIZO FALTA
-    @Override
-    public Filter getFilter()
-    {
-        return mfilter;
-    }
 
-
-
-    public class CustomFilter extends Filter{
-        private PatientListAdapter mAdapter;
-        private CustomFilter(PatientListAdapter mAdapter){
-            super();
-            this.mAdapter = mAdapter;
-        }
-
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint)
-        {
-            filteredList.clear();
-            final FilterResults results = new FilterResults();
-            if (constraint.length() == 0)
-            {
-                filteredList.addAll(patientList);
-            } else {
-                final String filterPattern = constraint.toString().toLowerCase().trim();
-                for (final Patient mWords : patientList) {
-                    if (mWords.getName().toLowerCase().startsWith(filterPattern)) {
-                        filteredList.add(mWords);
-                    }
-                }
-            }
-            System.out.println("Count Number " + filteredList.size());
-            results.values = filteredList;
-            for(int j=0;j<filteredList.size();j++){
-                System.out.println("Count Number " + filteredList.get(j).getName().toString());
-
-            }
-            results.count = filteredList.size();
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults)
-        {
-
-             //   new PatientListFragment().setResults(filteredList);
-                new PatientListAdapter(patientList,filteredList,activity);
-                this.mAdapter.notifyDataSetChanged();
-
-
-            //Object objetc = filterResults.
-            //PatientListAdapter acces = new PatientListAdapter(filterResults.values,activity);
-
-
-        }
-
-
-    }
-
-        */
     public class PatientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener {
         public ImageView img_patient;
         public TextView patient_name;

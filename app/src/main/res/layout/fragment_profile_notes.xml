@@ -35,7 +35,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:background="@color/gray_soft"
     android:orientation="horizontal"
-
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
     tools:context="co.edu.unicauca.appterapiademencia.principal.MainActivity">
 
 <LinearLayout
@@ -47,6 +47,7 @@
     android:layout_gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="@dimen/activity_horizontal_margin"
+
     >
 
     <LinearLayout
@@ -299,6 +300,8 @@
             android:textAppearance="?android:textAppearanceMedium"
             android:text="@string/txt_note_empty"
             android:textSize="@dimen/medium_text_size"
+            android:padding="@dimen/activity_horizontal_margin"
+
             />
 
         <android.support.v7.widget.RecyclerView

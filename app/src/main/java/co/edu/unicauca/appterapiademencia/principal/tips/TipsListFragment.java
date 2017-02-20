@@ -32,7 +32,7 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     private View rootView;
     private TipsListPresenter tipListPresenter;
 
-    private FloatingActionButton floatingActionButton;
+    private FloatingActionButton btnAddTip;
     private RecyclerView recycler;
     private TipAdapter adapter;
     private RecyclerView.Adapter newadapter;
@@ -48,7 +48,9 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_tips, container, false);
-        floatingActionButton = (FloatingActionButton) rootView.findViewById(R.id.add_tip);
+
+
+        btnAddTip = (FloatingActionButton) rootView.findViewById(R.id.add_tip);
         Log.d("Time count","Fragment to fragment termina de contar");
         linearTipsListEmpty = (LinearLayout) rootView.findViewById(R.id.containerEmptyTipsList);
         imgArrowTip = (ImageView) rootView.findViewById(R.id.arrow_tip);
@@ -70,13 +72,7 @@ public class TipsListFragment extends Fragment implements  TipsListView {
         registerForContextMenu(recycler);
 
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view) {
-                addTip();
-            }
-        });
+
         notificationsToggle.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -92,6 +88,14 @@ public class TipsListFragment extends Fragment implements  TipsListView {
             }
         });
 
+
+        btnAddTip.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+                addTip();
+            }
+        });
 
         return rootView;
     }
@@ -133,6 +137,8 @@ public class TipsListFragment extends Fragment implements  TipsListView {
     }
 
     public void addTip() {
+        Log.e("addtip"," Dio add tip");
+
         startActivity(new Intent(getActivity(), AddTipActivity.class));
     }
 

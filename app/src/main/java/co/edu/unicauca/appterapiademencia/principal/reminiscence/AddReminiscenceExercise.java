@@ -95,7 +95,7 @@ public class AddReminiscenceExercise extends AppCompatActivity {
         actionBar = getSupportActionBar();
 
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Volver Al Menu Principal");
+        actionBar.setTitle("Agregando Ejercicio de Reminiscencia");
         daoHelper = GreenDaoHelper.getInstance();
 
         Bundle bundle = getIntent().getExtras();

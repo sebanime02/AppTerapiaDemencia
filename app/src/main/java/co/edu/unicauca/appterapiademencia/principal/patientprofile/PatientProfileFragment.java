@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -41,6 +42,7 @@ import co.edu.unicauca.appterapiademencia.domain.Patient;
 import co.edu.unicauca.appterapiademencia.domain.dao.GreenDaoHelper;
 import co.edu.unicauca.appterapiademencia.items.BlessedScoreAverage;
 import co.edu.unicauca.appterapiademencia.principal.patientlist.AddPatient2Activity;
+import co.edu.unicauca.appterapiademencia.principal.patientlist.AddPatientActivity;
 import co.edu.unicauca.appterapiademencia.util.CircleTransform;
 
 /**
@@ -94,6 +96,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
     private static final String[]  estadisticablessed = {"Últimos Meses","Últimos Años"};
     private Button btnMoreStatistics;
     private LinearLayout linearMinimental;
+    private FloatingActionButton btnEditPatient;
 
 
 
@@ -157,9 +160,7 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         btnMoreLawton = (Button) view.findViewById(R.id.btn_more_lawton);
         btnMoreMinimenta = (Button) view.findViewById(R.id.btn_more_minimental);
         linearMinimental = (LinearLayout) view.findViewById(R.id.minimentalcontainer);
-
-
-
+        btnEditPatient = (FloatingActionButton) view.findViewById(R.id.edit_patient);
 
 
         Bundle args = getArguments();
@@ -172,17 +173,22 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         Log.d("Vista profile","Cedula: "+idpatient);
 
 
-        btngoMoreStatistics.setOnClickListener(new View.OnClickListener() {
+
+        btngoMoreStatistics.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 goToStatistics(idsistema);
             }
         });
-
-
-
-
-
+        btnEditPatient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                goToEditPatient(idpatient);
+            }
+        });
 
 
         try
@@ -797,6 +803,16 @@ public class PatientProfileFragment extends Fragment implements PatientProfileVi
         Intent intent = new Intent(getContext(), StatisticsActivity.class);
         intent.putExtra("idsistema",idsistema);
         intent.putExtra("cedula",idpatient);
+        startActivity(intent);
+    }
+
+    @Override
+    public void goToEditPatient(Long cedula)
+    {
+        Intent intent = new Intent(getContext(), AddPatientActivity.class);
+        Log.e("cedula"," cedula recibida"+cedula);
+        intent.putExtra("cedula",cedula.toString());
+        intent.putExtra("actualizar","actualizar");
         startActivity(intent);
     }
 

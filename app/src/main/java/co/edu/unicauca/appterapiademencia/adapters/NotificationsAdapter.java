@@ -151,7 +151,7 @@ public class NotificationsAdapter  extends RecyclerView.Adapter<NotificationsAda
             @Override
             public void onClick(View view) {
                 try {
-                    Toast.makeText(activity,"Nota Aprobada",Toast.LENGTH_LONG);
+                    Toast.makeText(activity,"Nota Aprobada",Toast.LENGTH_LONG).show();
 
 
                     de.greenrobot.event.EventBus.getDefault().removeAllStickyEvents();
@@ -179,7 +179,7 @@ public class NotificationsAdapter  extends RecyclerView.Adapter<NotificationsAda
                 try {
 
 
-                    Toast.makeText(activity,"Nota Eliminada",Toast.LENGTH_LONG);
+                    Toast.makeText(activity,"Nota Eliminada",Toast.LENGTH_LONG).show();
                     de.greenrobot.event.EventBus.getDefault().removeAllStickyEvents();
 
                     de.greenrobot.event.EventBus.clearCaches();

@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -273,7 +274,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         actionBar = getSupportActionBar();
 
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Volver A La Ficha de Paciente");
+        actionBar.setTitle("Agregando Nota de paciente");
         SharedPreferences loginpreference = getSharedPreferences("appdata", Context.MODE_PRIVATE);
 
         if(loginpreference.getBoolean("supervisor",true) && loginpreference.getString("username","")!=null)
@@ -1609,6 +1610,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             }
             else
             {
+                Toast.makeText(getApplicationContext(),"Nota guardada",Toast.LENGTH_LONG);
                 goToProfile();
             }
 

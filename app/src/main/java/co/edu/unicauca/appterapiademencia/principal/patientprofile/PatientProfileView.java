@@ -29,6 +29,7 @@ public interface PatientProfileView  {
     void graphDowntonScore();
     void graphGDSScore();
     void goToStatistics(Long idsistema);
+    void goToEditPatient(Long cedula);
 
 
 }

@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -54,9 +55,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private TextView completeNameNavbar,typeUserNavBar;
     private ImageView userAvatarNavbar;
 
-    public static final Integer[] imagessupervisor = {R.drawable.ic_list_black_24dp,R.drawable.ic_action_content_report,R.mipmap.ic_lightbulb_outline_black_48dp,R.mipmap.ic_extension_black_48dp,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.mipmap.ic_signout};
+    public static final Integer[] imagessupervisor = {R.mipmap.ic_list_black_48dp,R.drawable.ic_action_content_report,R.mipmap.ic_lightbulb_outline_black_48dp,R.mipmap.ic_extension_black_48dp,R.drawable.ic_action_action_settings,R.drawable.ic_action_action_help,R.mipmap.ic_signout};
     public static final String[] titlessupervisor= {"Lista de Pacientes","Notas Por Aprobar","Tips para el cuidador","Ejercicios de Reminiscencia","Perfil de usuario","Ayuda","Cerrar Sesión"};
-    public static final Integer[] imagescarer ={R.drawable.ic_list_black_24dp,R.mipmap.ic_lightbulb_outline_black_48dp,R.drawable.ic_action_action_help,R.mipmap.ic_signout};
+    public static final Integer[] imagescarer ={R.mipmap.ic_list_black_48dp,R.mipmap.ic_lightbulb_outline_black_48dp,R.drawable.ic_action_action_help,R.mipmap.ic_signout};
     public static final String[] titlescarer ={"Lista de Pacientes","Tips para el cuidador","Ayuda","Cerrar Sesión"};
     private String username;
     private GreenDaoHelper helper;
@@ -163,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 R.layout.item_list, rowItems);
         //listView = (ListView)  findViewById(R.id.lista);
         listView.setOnItemClickListener(this);
-
+        listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
 
         listView.setAdapter(adapter);
 
@@ -195,6 +196,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new PatientListFragment())
                 .commit();
+        listView.setItemChecked(0,true);
 
 
 
@@ -294,6 +296,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        listView.setItemChecked(position,true);
         view.setSelected(true);
         view.setActivated(true);
         /* SharedPreferences preferencias=getSharedPreferences("appdata", Context.MODE_PRIVATE);

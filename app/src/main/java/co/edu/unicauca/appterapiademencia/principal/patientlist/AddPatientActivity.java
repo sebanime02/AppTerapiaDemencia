@@ -140,7 +140,7 @@ public class AddPatientActivity extends AppCompatActivity implements View.OnClic
         actionBar = getSupportActionBar();
 
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Agregar Paciente");
+        actionBar.setTitle("Agregar Paciente Paso 1 de 2");
 
 
         calendar = Calendar.getInstance();

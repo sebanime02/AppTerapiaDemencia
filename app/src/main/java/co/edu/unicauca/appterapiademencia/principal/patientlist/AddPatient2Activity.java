@@ -193,7 +193,7 @@ public class AddPatient2Activity extends AppCompatActivity implements View.OnCli
         actionBar = getSupportActionBar();
 
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Agregar Paciente paso 2");
+        actionBar.setTitle("Agregar Paciente Paso 2 de 2");
 
 
 
