@@ -6,7 +6,8 @@
         android:enabled="true"
         android:icon="@mipmap/ic_finish"
         android:title="@string/tab_finish"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        />
     <item
         android:id="@+id/action_add"
         android:enabled="true"

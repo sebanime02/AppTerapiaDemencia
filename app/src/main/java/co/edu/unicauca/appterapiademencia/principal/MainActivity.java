@@ -112,8 +112,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     else
                     {
                         completeNameNavbar.setText(completename);
-                        titleMessage = "Sesión de Profesional en Psicología";
-                        typeUserNavBar.setText("Profesional en Psicología");
+                        titleMessage = "Sesión de Terapeuta Cognitivo";
+                        typeUserNavBar.setText("Terapeuta Cognitivo");
 
                     }
 
@@ -253,8 +253,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 else
                 {
                     completeNameNavbar.setText(completename);
-                    titleMessage = "Sesión de Profesional en Psicología";
-                    typeUserNavBar.setText("Profesional en Psicología");
+                    titleMessage = "Sesión de Terapeuta Cognitivo";
+                    typeUserNavBar.setText("Terapeuta Cognitivo");
 
                 }
 

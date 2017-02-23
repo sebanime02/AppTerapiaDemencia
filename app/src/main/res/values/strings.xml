@@ -23,7 +23,7 @@
     <string name="txt_choose_user">Elige una opción dependiendo de tu perfil</string>
     <string name="txt_or_choose">---------- O Eres --------</string>
     <string name="btn_soycuidador">Cuidador (Acceso de Invitado)</string>
-    <string name="btn_soysupervisor">Supervisor de Cuidadores o Profesional en Psicología</string>
+    <string name="btn_soysupervisor">Supervisor de Cuidadores o Terapeuta Cognitivo</string>
     <string name="btn_salir">Salir</string>
     <string name="hint_username">Nombre de Usuario</string>
     <string name="hint_password">Contraseña</string>
@@ -544,7 +544,7 @@
 
     <!-- REMINISCENCE FRAGMENT -->
 
-    <string name="txt_info_reminiscence">Aqui Puedes Crear, Editar y Eliminar Ejercicios de Reminiscencia</string>
+    <string name="txt_info_reminiscence">lista de Pacientes</string>
     <string name="txt_state_0">Finalizado</string>
     <string name="txt_state_1">Test MMSE Inicial</string>
     <string name="txt_state_2">Rutina Activa</string>

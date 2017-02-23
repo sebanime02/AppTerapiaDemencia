@@ -19,6 +19,7 @@
         android:textSize="@dimen/medium_text_size"
         android:visibility="gone"
         android:text="@string/txt_info_reminiscence"
+        android:gravity="center_horizontal"
 
         />
     <ImageButton

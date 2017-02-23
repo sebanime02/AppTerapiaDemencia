@@ -154,7 +154,7 @@
 
 
                 <RadioButton
-                    android:text="Profesional en Psicologia"
+                    android:text="Terapeuta Cognitivo"
                     android:id="@+id/rdg_user_psicologia"
 
                     android:layout_width="wrap_content"

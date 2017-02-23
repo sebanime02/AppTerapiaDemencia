@@ -75,6 +75,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
         String nombre = patientList.get(position).getName();
         long id = patientList.get(position).getIdentity();
 
+
         if(patientList.get(position).getSex().equals("masculino"))
         {
             holder.itemView.setBackgroundColor(activity.getResources().getColor(R.color.soft_blue));

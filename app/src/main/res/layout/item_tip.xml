@@ -28,10 +28,10 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:textAppearanceLarge"
-            android:maxLength="14"
             android:ellipsize="end"
-            android:ems="2"
-
+            android:maxLines="1"
+            android:maxLength="15"
+            android:text="Procedimientos asddss"
             android:layout_alignBottom="@+id/img_patient"
             android:layout_alignRight="@+id/patient_name" />
         

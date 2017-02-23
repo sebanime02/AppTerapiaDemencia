@@ -48,11 +48,11 @@
 
             android:layout_height="wrap_content"
             android:textAppearance="?android:textAppearanceLarge"
-            android:text="Medium text"
-            android:maxLength="20"
+            android:text="Medium text adasdsadsadad"
             android:ellipsize="end"
-            android:ems="2"
-            android:maxLines="2"
+            android:maxLines="1"
+
+
 
 
 
