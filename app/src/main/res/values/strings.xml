@@ -411,7 +411,7 @@
 
 
   <!--USER PROFILE -->
-    <string name="txt_instructions_go_adduser">Si Desea agregar un NUEVO Supervisor o Profesional en Psicologia, puedes hacerlo presionando el siguiente botón: </string>
+    <string name="txt_instructions_go_adduser">Si Desea agregar un NUEVO Supervisor o Terapeuta Cognitivo, puedes hacerlo presionando el siguiente botón: </string>
     <string name="txt_save_user">GUARDAR</string>
     <string name="succes_set_user_information_title">Informacion Guardada con Éxito</string>
     <string name="error_set_user_title">Error al Actualizar Datos</string>

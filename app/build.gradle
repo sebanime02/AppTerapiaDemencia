@@ -13,6 +13,10 @@ android {
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
         testApplicationId "co.edu.unicauca.appterapiademencia.tests"
     }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
 
     testOptions
             {
@@ -29,6 +33,7 @@ android {
     }
 
 }
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])

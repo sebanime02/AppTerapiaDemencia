@@ -106,33 +106,6 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             }
         });
 
-
-        edtUsername.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                edtUsername.setEnabled(true);
-                nothingIndicator = true;
-            }
-        });
-        edtPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                edtPassword.setEnabled(true);
-                nothingIndicator = true;
-            }
-        });
-
-        edtCompleteName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                edtCompleteName.setEnabled(true);
-                nothingIndicator = true;
-            }
-        });
-
-
-
-
         edtPassword.addTextChangedListener(new LoginValidator(edtPassword) {
             @Override
             public void validate(EditText editText, String text)
