@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -38,6 +39,7 @@ public class NotesFragment extends Fragment implements NotesView{
     private Long idpatient;
     private List<Note> noteList;
     private Intent ir_reg;
+    private ImageButton btnCaida,btnMovilidad,btnAlimentacion,btnEstadoAnimo,btnHigiene,btnOrientacion,btnMemoria,btnLenguaje,btnMedicacion,btnInstrumentales,btnChangeBehaviour,btnVestimenta;
     private List<Note> list = new ArrayList<Note>();
 
     int movCount=0;
@@ -138,11 +140,21 @@ public class NotesFragment extends Fragment implements NotesView{
         txt_medicacion = (TextView) view.findViewById(R.id.count_medicacion);
         txt_lenguaje = (TextView) view.findViewById(R.id.count_lenguaje);
         txt_memoria = (TextView) view.findViewById(R.id.count_memoria);
-
         txt_empty = (TextView) view.findViewById(R.id.txt_vacio_note);
 
 
-
+        btnCaida = (ImageButton) view.findViewById(R.id.btnLaunchCaida);
+        btnMovilidad = (ImageButton) view.findViewById(R.id.btnLaunchMovility);
+        btnAlimentacion = (ImageButton) view.findViewById(R.id.btnLaunchEating);
+        btnEstadoAnimo = (ImageButton) view.findViewById(R.id.btnLaunchAnimo);
+        btnHigiene = (ImageButton) view.findViewById(R.id.btnLaunchHigiene);
+        btnOrientacion = (ImageButton) view.findViewById(R.id.btnLaunchOrientation);
+        btnMemoria = (ImageButton) view.findViewById(R.id.btnLaunchMemory);
+        btnLenguaje = (ImageButton) view.findViewById(R.id.btnLaunchLanguage);
+        btnMedicacion = (ImageButton) view.findViewById(R.id.btnLaunchMedication);
+        btnInstrumentales = (ImageButton) view.findViewById(R.id.btnLaunchInstrumentals);
+        btnChangeBehaviour = (ImageButton) view.findViewById(R.id.btnLaunchChangeBehaviour);
+        btnVestimenta = (ImageButton) view.findViewById(R.id.btnLaunchVestimenta);
 
         recycler = (RecyclerView) view.findViewById(R.id.reciclador);
         recycler.setHasFixedSize(true);
@@ -158,13 +170,108 @@ public class NotesFragment extends Fragment implements NotesView{
         recycler.setAdapter(adapter);
 
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        floatingActionButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
 
                 Log.e("Notes","entro al onclick");
                 Log.e("Calculo","Arranca a contar");
                 addNote(idpatient);
+            }
+        });
+
+        btnCaida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendCategory(idpatient,"category","caida");
+            }
+        });
+
+        btnMovilidad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendCategory(idpatient,"category","movilidad");
+
+            }
+        });
+
+        btnAlimentacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendCategory(idpatient,"category","alimentacion");
+
+            }
+        });
+
+        btnEstadoAnimo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendCategory(idpatient,"category","estadoanimo");
+
+            }
+        });
+
+        btnHigiene.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendCategory(idpatient,"category","higiene");
+
+            }
+        });
+
+        btnOrientacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendCategory(idpatient,"category","orientacion");
+
+            }
+        });
+
+        btnMemoria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendCategory(idpatient,"category","memoria");
+
+            }
+        });
+
+        btnMedicacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendCategory(idpatient,"category","medicacion");
+
+            }
+        });
+
+        btnInstrumentales.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendCategory(idpatient,"category","instrumentales");
+            }
+        });
+
+        btnChangeBehaviour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendCategory(idpatient,"category","cambiopersonalidad");
+
+            }
+        });
+
+        btnVestimenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendCategory(idpatient,"category","vestimenta");
+
+            }
+        });
+        btnLenguaje.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                sendCategory(idpatient,"category","lenguaje");
+
             }
         });
 
@@ -420,6 +527,17 @@ public class NotesFragment extends Fragment implements NotesView{
             return true;
         }
 
+    }
+
+    @Override
+    public void sendCategory(Long idpatient,String metadata, String category)
+    {
+        Intent ir_reg = new Intent(getContext(), AddNoteActivity.class);
+        Log.e("idpatient recibido :",""+idpatient);
+        ir_reg.putExtra("idpatient", idpatient);
+        ir_reg.putExtra("categoria",category);
+        ir_reg.putExtra("metadata",metadata);
+        startActivity(ir_reg);
     }
 
     @Override

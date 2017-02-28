@@ -19,10 +19,11 @@ import co.edu.unicauca.appterapiademencia.R;
 
 public class HelpFragment extends Fragment {
     private View rootView;
-    private LinearLayout linearPreguntasFrecuentes,linearContacto;
-    private LinearLayout desplegablePreguntasFrecuentes,desplegableContacto;
+    private LinearLayout linearPreguntasFrecuentes,linearContacto,linearComoUsar;
+    private LinearLayout desplegablePreguntasFrecuentes,desplegableContacto,desplegableComoUsar;
     private boolean preguntasFrecuentesSwitch = false;
     private boolean contactoSwitch = false;
+    private boolean comoUsarSwitch = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,8 +38,10 @@ public class HelpFragment extends Fragment {
     {
         linearContacto = (LinearLayout) view.findViewById(R.id.help_contact);
         linearPreguntasFrecuentes = (LinearLayout) view.findViewById(R.id.help_frequently_questions);
+        linearComoUsar = (LinearLayout) view.findViewById(R.id.help_how_touse);
         desplegableContacto = (LinearLayout) view.findViewById(R.id.linearContacto);
         desplegablePreguntasFrecuentes  = (LinearLayout) view.findViewById(R.id.linearPreguntasFrecuentes);
+        desplegableComoUsar  = (LinearLayout) view.findViewById(R.id.linearHowToUse);
 
 
         linearContacto.setOnClickListener(new View.OnClickListener() {
@@ -50,12 +53,14 @@ public class HelpFragment extends Fragment {
                 {
                     enableContacto(true);
                     enablePreguntasFrecuentes(false);
+                    enableComoUsar(false);
                     contactoSwitch =true;
                 }
                 else
                 {
                     enableContacto(false);
                     enablePreguntasFrecuentes(false);
+                    enableComoUsar(false);
                     contactoSwitch =false;
                 }
 
@@ -73,15 +78,38 @@ public class HelpFragment extends Fragment {
                 {
                     enableContacto(false);
                     enablePreguntasFrecuentes(true);
+                    enableComoUsar(false);
                     preguntasFrecuentesSwitch =true;
                 }
                 else
                 {
                     enableContacto(false);
+                    enableComoUsar(false);
                     enablePreguntasFrecuentes(false);
                     preguntasFrecuentesSwitch =false;
                 }
 
+            }
+        });
+
+        linearComoUsar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(!comoUsarSwitch)
+                {
+                    enableContacto(false);
+                    enablePreguntasFrecuentes(false);
+                    enableComoUsar(true);
+                    comoUsarSwitch =true;
+                }
+                else
+                {
+                    enableContacto(false);
+                    enableComoUsar(false);
+                    enablePreguntasFrecuentes(false);
+                    comoUsarSwitch =false;
+                }
             }
         });
 
@@ -109,6 +137,18 @@ public class HelpFragment extends Fragment {
         }else
         {
             desplegableContacto.setVisibility(View.GONE);
+
+        }
+    }
+    public void enableComoUsar(boolean mode)
+    {
+        if(mode)
+        {
+            desplegableComoUsar.setVisibility(View.VISIBLE);
+
+        }else
+        {
+            desplegableComoUsar.setVisibility(View.GONE);
 
         }
     }

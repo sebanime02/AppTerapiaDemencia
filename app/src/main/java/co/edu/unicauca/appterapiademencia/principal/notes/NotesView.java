@@ -18,5 +18,6 @@ public interface NotesView {
     void showNote(Note note);
     void onItemClicked(Long position);
     Boolean checkDialogOpen();
+    void sendCategory(Long idpatient,String metadata, String category);
 
 }

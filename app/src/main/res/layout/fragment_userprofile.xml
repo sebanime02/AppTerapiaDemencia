@@ -81,7 +81,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="textEmailAddress"
-
+                                android:clickable="true"
                                 android:textSize="@dimen/medium_text_size"
                                 android:hint="@string/hint_username_supervisor"
                                 android:nextFocusDown="@+id/txt_password_supervisor"
@@ -123,7 +123,7 @@
                             android:nextFocusDown="@+id/txt_completename"
                             android:drawableLeft="@mipmap/ic_lock_black_24dp"
                             android:textSize="@dimen/medium_text_size"
-
+                            android:clickable="true"
                             android:enabled="false"
 
                             />
@@ -169,6 +169,7 @@
                                 android:enabled="false"
                                 android:textSize="@dimen/medium_text_size"
                                 android:imeOptions="actionDone"
+                                android:clickable="true"
 
 
                                 />

@@ -93,6 +93,65 @@
         android:background="@color/gray_soft"
         />
     <LinearLayout
+        android:id="@+id/help_how_touse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="8"
+        >
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_action_content_report"
+            />
+        <LinearLayout
+            android:id="@+id/btnHowToUse"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="5"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="COMO USAR LA APLICACION?"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/medium_text_size"
+               />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gui para utilizar la aplicación"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/small_text_size"
+                />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:textSize="50sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textAlignment="center"
+            android:src="@mipmap/ic_shortcut_keyboard_arrow_right"
+            android:background="@color/white"
+            />
+
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray_soft"
+        />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -111,7 +170,7 @@
                 android:src="@drawable/ic_action_action_help"
                 />
             <LinearLayout
-                android:id="@+id/btnFrequentlyQuestions"
+                android:id="@+id/btnManual"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -150,6 +209,133 @@
 
 
         </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearHowToUse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:visibility="gone"
+
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Menu Principal"
+                android:textSize="@dimen/medium_text_size"
+                android:textColor="@color/colorPrimaryDark"
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/menuprincipalayuda"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height=  "match_parent"
+                android:text="Ficha de Paciente"
+                android:textSize="@dimen/medium_text_size"
+                android:textColor="@color/colorPrimaryDark"
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/fichaayuda"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Ingresar una nota de paciente"
+                android:textSize="@dimen/medium_text_size"
+                android:textColor="@color/colorPrimaryDark"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="El módulo de notas permite hacer un seguimiento de la demencia en tus pacientes, lo único que debes hacer es agregar notas cuando se presenten cambios en el adulto mayor, adicionalmente asociarlas con categorías  que a su vez provienen de escalas funcionales como Blessed Timlinson Dementia Scale, Downton, Lawton y Brody.
+Ubícate en la pestaña notas, en seguida presiona el botón rojo agregar nota.
+
+"
+                android:textSize="@dimen/medium_text_size"
+
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/notasayuda"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Crear y realizar una terapia de reminiscencia"
+                android:textSize="@dimen/medium_text_size"
+                android:textColor="@color/colorPrimaryDark"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Si no has creado ejercicios de reminiscencia, dirígete desde el menú principal a “Ejercicios de reminiscencia”, posteriormente presiona el botón rojo con signo +. Continua agregando el título, la descripción y la fotografía del ejercicio, tal como en la figura siguiente:
+"
+                android:textSize="@dimen/medium_text_size"
+
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/reminiscencia1ayuda"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Para llevarlo a cabo debes ingresar a uno de tus pacientes, presionando encima de su tarjeta; luego dirigirte a terapia cognitiva e iniciar una nueva rutina."
+                android:textSize="@dimen/medium_text_size"
+
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/reminiscencia2ayuda"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="El paso siguiente consiste en ingresar opcionalmente un valor de Minimental State Examination, luego configurar el panel de rutinas. Allí con la opción “Agregar ejercicio” llegas a la siguiente pantalla:"
+                android:textSize="@dimen/medium_text_size"
+
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/reminiscencia3ayuda"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Allí el selector te permite elegir entre todos los ejercicios creados por el momento. Una vez guardado puedes buscar a tu paciente y mostrarle el ejercicio. Si deseas finalizar busca en el panel superior derecho el control “finalizar”. Las observaciones pueden realizarse a continuación.  "
+                android:textSize="@dimen/medium_text_size"
+
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/reminiscencia4ayuda"
+                />
+
+
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/linearPreguntasFrecuentes"

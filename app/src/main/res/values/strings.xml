@@ -18,7 +18,7 @@
     <!-- LOGIN 1 LAYOUT-->
     <string name="logo_txt">APLICACIÓN MÓVIL ESPECIALIZADA EN LA ASISTENCIA DE INVOLUCRADOS EN LA TERAPIA DE ESTIMULACIÓN COGNITIVA DE ADULTOS MAYORES CON DEMENCIA EN DIVERSAS ETAPAS</string>
     <string name="logo_txt2">Aplicación Móvil Especializada En La Asistencia DE Involucrados En La Terapia De Estimulación Cognitiva De Adultos Mayores Con Demencia Senil En Diversas Etapas</string>
-
+    <string name="logo_txt3">Aplicación Móvil para realizar Terapia de reminiscencia en Instituciones Geriátricas</string>>
     <string name="Titulo_aplicacion">Aplicación Para Terapia Demencia</string>
     <string name="txt_choose_user">Elige una opción dependiendo de tu perfil</string>
     <string name="txt_or_choose">---------- O Eres --------</string>
@@ -300,7 +300,7 @@
     <string name="addnote_eventos">Relacionados a Eventos:</string>
     <string name="addnote_signos">Relacionado a Signos o Sintomas de la Demencia Senil:</string>
     <string name="addnote_orientacion">Orientación</string>
-    <string name="notelist_banner_tips">Los signos, sintomas y eventos relacionados a la demencia senil que puedes ingresar con el botón rojo son los siguientes:</string>
+    <string name="notelist_banner_tips">Los signos, sintomas y eventos relacionados a la demencia senil que puedes ingresar son:</string>
 
 
     <!--RADIOBUTTONS-->

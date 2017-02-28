@@ -105,6 +105,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private String puntaje3;
     private String var_seleccion2;
     private String var_seleccion3;
+    private LinearLayout containerCategories;
 
     public AddNoteActivity(){
         this.helper = GreenDaoHelper.getInstance();
@@ -145,8 +146,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         memoria = (ImageButton) findViewById(R.id.btn_memory);
         orientacion = (ImageButton) findViewById(R.id.btn_orientation);
         instrumentales = (ImageButton) findViewById(R.id.btn_instrumentals);
-
-
+        containerCategories = (LinearLayout) findViewById(R.id.container_categories);
 
         rdgTardia = (CheckBox) findViewById(R.id.rdgTardia);
 
@@ -302,10 +302,12 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
 
         if(bundl!=null)
         {
-            Log.e("addnote","bundle: "+bundl.getLong("idpatient"));
-            cedula =bundl.getLong("idpatient");
-            Patient patient = helper.getPatientInformation(cedula);
-            patientid = patient.getId();
+                Log.e("addnote","bundle: "+bundl.getLong("idpatient"));
+                cedula =bundl.getLong("idpatient");
+                Patient patient = helper.getPatientInformation(cedula);
+                patientid = patient.getId();
+
+
         }
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
@@ -332,7 +334,15 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         orientacion.setOnClickListener(this);
         instrumentales.setOnClickListener(this);
 
+        if(bundl!=null)
+        {
+            if(bundl.getString("metadata")!=null)
+            {
+                containerCategories.setVisibility(View.GONE);
+                setCategory(bundl.getString("categoria"),this);
 
+            }
+        }
 
     }
 
@@ -419,12 +429,11 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             noteDao.insert(note);
             //noteDao.update(note);
 
-
-
             if(var_tipo==1)
             {
 
             if(note!=null) {
+
                 for (int i = 0; i < sintomasList.size(); i++) {
 
                     switch (sintomasList.get(i)) {
@@ -2497,17 +2506,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         rdgPersonalidadHiperactividadJustificada.setOnCheckedChangeListener(this);
 
 
-
-
-
-
-
-
-
-
     }
-
-
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -2945,9 +2944,53 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
 
-
-
         }
 
+    }
+    public void setCategory(String category,Context ctx)
+    {
+
+        Log.e("categoria","categoria recibida "+category);
+        switch (category)
+        {
+            case "caida":
+                fall.callOnClick();
+                break;
+            case "movilidad":
+                movility.callOnClick();
+                break;
+            case "alimentacion":
+                eating.callOnClick();
+
+                break;
+            case "estadodeanimo":
+                estadodeanimo.callOnClick();
+                break;
+            case "higiene":
+                higiene.callOnClick();
+
+                break;
+            case "orientacion":
+                orientacion.callOnClick();
+            break;
+            case "memoria":
+                memoria.callOnClick();
+                break;
+            case "medicacion":
+                medication.callOnClick();
+                break;
+            case "cambiopersonalidad":
+                changeBehaviour.callOnClick();
+                break;
+            case "vestimenta":
+                vestimenta.callOnClick();
+                break;
+            case "lenguaje":
+                lenguaje.callOnClick();
+                break;
+            case "instrumentales":
+                instrumentales.callOnClick();
+                break;
+        }
     }
 }
